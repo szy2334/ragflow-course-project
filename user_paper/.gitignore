@@ -1,0 +1,6 @@
+# Local secrets and machine-specific overrides.
+.env
+*.local.env
+
+# Pipeline output is reproducible local runtime data.
+data/user_paper_runs/
