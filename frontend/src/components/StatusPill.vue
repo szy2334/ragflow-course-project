@@ -6,11 +6,11 @@ const props = defineProps<{ status: string; label?: string }>()
 const variant = computed(() => {
   if (['ready', 'succeeded', 'parsed'].includes(props.status)) return 'success'
   if (['failed', 'cancelled', 'stale'].includes(props.status)) return 'danger'
-  if (['running', 'parsing', 'indexing'].includes(props.status)) return 'progress'
+  if (['running', 'mineru_parsing', 'ocr_processing', 'cleaning', 'quality_check', 'indexing'].includes(props.status)) return 'progress'
   return 'muted'
 })
 const text = computed(() => props.label ?? ({
-  uploaded: '已上传', parsing: '解析中', parsed: '已解析', indexing: '建立索引中', ready: '可阅读',
+  uploaded: '已上传', mineru_parsing: 'MinerU 解析中', ocr_processing: '图表 OCR 中', cleaning: '结构化清洗中', quality_check: '质量检查中', indexing: '导入索引中', ready: '可问答',
   pending: '等待执行', running: '执行中', succeeded: '已完成', failed: '失败', cancelled: '已取消', stale: '需要重建', not_indexed: '未建索引',
 } as Record<string, string>)[props.status] ?? props.status)
 const icon = computed(() => ({ success: Check, danger: props.status === 'cancelled' ? PauseCircle : AlertTriangle, progress: LoaderCircle, muted: props.status === 'pending' ? Clock3 : X }[variant.value]))

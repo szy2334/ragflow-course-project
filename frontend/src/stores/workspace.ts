@@ -116,13 +116,19 @@ export const useWorkspaceStore = defineStore('workspace', {
         emit(6, 'final', { answer: demo.answer })
         return
       }
+      if (!workflow.task.stream_url) {
+        workflow.phase = '任务已提交，正在等待处理结果'
+        const task = await this.pollTask(taskId, 60)
+        if (task?.status === 'failed' || task?.status === 'cancelled') workflow.error = task.error?.message ?? '任务已停止。'
+        else if (task?.status === 'succeeded') workflow.phase = '任务已完成，请查看结果'
+        return
+      }
       let reconnects = 0
       while (reconnects < 3 && !workflow.completedAnswer && !workflow.error) {
         try {
           const after = workflow.lastSequence ? `?after_sequence=${workflow.lastSequence}` : ''
           const eventIds = [...workflow.eventIds]
-          const streamUrl = workflow.task.stream_url ?? `/api/v1/messages/${workflow.task.message_id ?? workflow.task.resource_id}/events`
-          const response = await fetch(`${streamUrl}${after}`, {
+          const response = await fetch(`${workflow.task.stream_url}${after}`, {
             headers: { Authorization: `Bearer ${getAccessToken() ?? ''}`, 'Last-Event-ID': eventIds[eventIds.length - 1] ?? '' },
             credentials: 'include',
           })

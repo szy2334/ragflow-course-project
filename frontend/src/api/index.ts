@@ -3,6 +3,27 @@ import { http, newRequestId, request } from './http'
 import { demo } from './demo'
 import type { AdminRecord, AnswerDetailView, AuthView, ChatMessageView, ChatSessionView, MetricsOverviewView, PageData, PaperSectionView, PaperUploadBatchView, PaperView, ReadingReportView, TaskAccepted, TaskView, UserView } from './contracts'
 
+function createDemoPaperBlob() {
+  const stream = 'BT\n/F1 24 Tf\n72 720 Td\n(Demo paper preview) Tj\nET\n'
+  const objects = [
+    '1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n',
+    '2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n',
+    '3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>\nendobj\n',
+    `4 0 obj\n<< /Length ${stream.length} >>\nstream\n${stream}endstream\nendobj\n`,
+    '5 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n',
+  ]
+  const header = '%PDF-1.4\n'
+  let offset = header.length
+  const offsets = objects.map((object) => {
+    const start = offset
+    offset += object.length
+    return start
+  })
+  const xref = `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n${offsets.map((start) => `${String(start).padStart(10, '0')} 00000 n \n`).join('')}`
+  const trailer = `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${offset}\n%%EOF\n`
+  return new Blob([header, ...objects, xref, trailer], { type: 'application/pdf' })
+}
+
 const get = <T>(url: string, params?: Record<string, unknown>) => request<T>({ url, method: 'GET', params })
 const post = <T>(url: string, data?: unknown, config?: AxiosRequestConfig) => request<T>({ ...config, url, data, method: 'POST', headers: { ...config?.headers, 'Idempotency-Key': newRequestId() } })
 const put = <T>(url: string, data: unknown, config?: AxiosRequestConfig) => request<T>({ ...config, url, data, method: 'PUT', headers: { ...config?.headers, 'Idempotency-Key': newRequestId() } })
@@ -14,7 +35,7 @@ export const api = {
 
   listPapers: (params: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.papers()) : get<PageData<PaperView>>('/papers', params),
   getPaper: (paper_id: string) => demo.active() ? Promise.resolve(demo.paper(paper_id)) : get<PaperView>(`/papers/${paper_id}`),
-  getPaperFile: (paper_id: string) => demo.active() ? Promise.resolve(new Blob(['%PDF-1.4\n% Demo paper preview\n%%EOF'], { type: 'application/pdf' })) : http.get<Blob>(`/papers/${paper_id}/file`, { params: { disposition: 'inline' }, responseType: 'blob' }).then((response) => response.data),
+  getPaperFile: (paper_id: string) => demo.active() ? Promise.resolve(createDemoPaperBlob()) : http.get<Blob>(`/papers/${paper_id}/file`, { params: { disposition: 'inline' }, responseType: 'blob' }).then((response) => response.data),
   listSections: (paper_id: string, params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.sections(paper_id)) : get<PageData<PaperSectionView>>(`/papers/${paper_id}/sections`, params),
   getTask: (task_id: string) => demo.active() ? Promise.resolve(task_id === 'demo-export' ? { ...demo.task(task_id), result: { download_url: 'data:text/plain;charset=utf-8,%E7%9F%A5%E9%98%85%E6%BC%94%E7%A4%BA%E6%8A%A5%E5%91%8A' } } : demo.task(task_id)) : get<TaskView>(`/tasks/${task_id}`),
   uploadPapers: (files: File[], knowledge_base_id?: string) => {
@@ -26,6 +47,7 @@ export const api = {
   },
   reparsePaper: (paper_id: string, data: { parser_name?: string; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-reparse', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, { ...data, stage: 'mineru_parsing' }),
   reindexPaper: (paper_id: string, data: { embedding_model_config_id?: string; retrieval_config_id?: string; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-index', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, { ...data, stage: 'indexing' }),
+  retryPaper: (paper_id: string, data: { stage: 'mineru_parsing' | 'ocr_processing' | 'cleaning' | 'quality_check' | 'indexing'; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-retry', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, data),
   deletePaper: (paper_id: string) => demo.active() ? Promise.resolve({ paper_id, deleted_at: new Date().toISOString(), cleanup_task_id: 'demo-cleanup' }) : request<{ paper_id: string; deleted_at: string; cleanup_task_id: string } | Record<string, never>>({ url: `/papers/${paper_id}`, method: 'DELETE' }),
 
   listSessions: (params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.sessions()) : get<PageData<ChatSessionView>>('/sessions', params),

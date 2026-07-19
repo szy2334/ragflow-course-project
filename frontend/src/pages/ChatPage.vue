@@ -3,6 +3,7 @@ import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { AlertTriangle, BookOpen, CheckCircle2, ChevronRight, CircleStop, MessageCircleQuestion, Plus, SearchCheck, Send, Sparkles, X } from 'lucide-vue-next'
 import EvidenceCard from '@/components/EvidenceCard.vue'
+import AnswerContext from '@/components/AnswerContext.vue'
 import MarkdownContent from '@/components/MarkdownContent.vue'
 import StatusPill from '@/components/StatusPill.vue'
 import WorkflowTimeline from '@/components/WorkflowTimeline.vue'
@@ -26,8 +27,9 @@ const session = computed<ChatSessionView | undefined>(() => workspace.sessions.f
 const messages = computed(() => workspace.messagesBySession[props.sessionId] ?? [])
 const papers = computed(() => Object.values(workspace.papersById))
 const activeWorkflow = computed(() => activeTaskId.value ? workspace.workflows[activeTaskId.value] : null)
-const activeEvidences = computed(() => activeWorkflow.value?.completedAnswer?.evidences ?? activeWorkflow.value?.evidences ?? [])
-const activeClaims = computed(() => activeWorkflow.value?.completedAnswer?.claims ?? [])
+const activeEvidences = computed(() => activeWorkflow.value?.completedAnswer?.evidences ?? activeWorkflow.value?.evidences ?? detail.value?.answer.evidences ?? [])
+const activeClaims = computed(() => activeWorkflow.value?.completedAnswer?.claims ?? detail.value?.answer.claims ?? [])
+const displayedAnswer = computed(() => activeWorkflow.value?.completedAnswer ?? detail.value?.answer ?? null)
 
 async function load() {
   error.value = ''
@@ -59,6 +61,11 @@ async function submit() {
     question.value = ''
     await scrollToEnd()
     void workspace.streamWorkflow(task.task_id).finally(async () => {
+      const messageId = task.message_id ?? task.resource_id
+      if (messageId) {
+        try { detail.value = await api.getAnswerDetail(messageId) }
+        catch { /* The message list still provides the completed answer if details are not ready yet. */ }
+      }
       await workspace.loadMessages(props.sessionId)
       activeTaskId.value = ''
     })
@@ -76,7 +83,7 @@ async function inspectMessage(messageId: string) {
   try { detail.value = await api.getAnswerDetail(messageId) }
   catch { /* Pending or non-answer messages do not have a detail view. */ }
 }
-function locate(evidence: EvidenceItem) { router.push({ path: `/papers/${evidence.paper_id}`, query: { page: evidence.page_number } }) }
+function locate(evidence: EvidenceItem) { if (evidence.paper_id) router.push({ path: `/papers/${evidence.paper_id}`, query: { page: evidence.page_number } }) }
 watch(() => props.sessionId, load)
 onMounted(load)
 </script>
@@ -103,6 +110,7 @@ onMounted(load)
 
     <aside class="reading-right">
       <WorkflowTimeline :events="activeWorkflow?.events || detail?.workflow_run ? (activeWorkflow?.events || []) : []" :phase="activeWorkflow?.phase || '尚未开始任务'" />
+      <AnswerContext v-if="displayedAnswer" :answer="displayedAnswer" />
       <section class="evidence-panel"><div class="evidence-heading"><div><SearchCheck :size="17" /><strong>证据定位</strong></div><span>{{ activeEvidences.length }} 条</span></div><div v-if="activeEvidences.length" class="evidence-list"><EvidenceCard v-for="evidence in activeEvidences" :key="evidence.evidence_id" :evidence="evidence" @locate="locate" /></div><p v-else class="side-empty">回答完成后，实际使用的原文证据会显示在这里。</p></section>
       <section v-if="activeClaims.length" class="claims-panel"><div class="evidence-heading"><div><CheckCircle2 :size="17" /><strong>已核验结论</strong></div></div><article v-for="claim in activeClaims" :key="claim.claim_id" class="claim-row"><span :class="`verdict-${claim.verdict}`">{{ claim.verdict === 'supported' ? '支持' : claim.verdict === 'refuted' ? '反驳' : claim.verdict === 'conflicting_evidence' ? '冲突' : '不足' }}</span><p>{{ claim.text }}</p><small>{{ Math.round(claim.confidence * 100) }}% · {{ claim.reason }}</small></article></section>
     </aside>
