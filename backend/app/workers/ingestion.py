@@ -10,11 +10,20 @@ from pathlib import Path
 from typing import Any
 
 import httpx
-from sqlalchemy import delete
+from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from app.core.config import Settings
-from app.db.models import Paper, PaperChunk, RagMapping, TaskRecord
+from app.db.models import (
+    IngestionQualityReport,
+    MediaObjectRecord,
+    Paper,
+    PaperChunk,
+    PaperIngestionRun,
+    ParsedBlockRecord,
+    RagMapping,
+    TaskRecord,
+)
 from app.runtime.adapters import task_view
 from app.runtime.redis_store import RedisRuntime
 
@@ -209,11 +218,13 @@ class RagFlowManualImporter:
             ):
                 mapping[str(item["source_chunk_id"])] = str(item["ragflow_chunk_id"])
         if not document_id or set(mapping) != {chunk.chunk_id for chunk in chunks}:
-            raise IngestionFailure("RAGFLOW_MAPPING_INCOMPLETE", "论文知识库映射不完整。")
+            raise IngestionFailure("RAGFLOW_IMPORT_INCOMPLETE", "论文知识库映射不完整。")
         return document_id, mapping
 
 
 class IngestionTaskExecutor:
+    """Persists every stage artifact so retries restart at the requested boundary."""
+
     def __init__(
         self, settings: Settings, sessions: async_sessionmaker[AsyncSession], redis: RedisRuntime
     ) -> None:
@@ -231,13 +242,13 @@ class IngestionTaskExecutor:
 
     async def run(self, task_id: str, *, start_stage: str | None = None) -> None:
         try:
-            await self._run(task_id)
+            await self._run(task_id, start_stage=start_stage)
         except IngestionFailure as exc:
             await self._fail(task_id, exc.code, exc.message, exc.retryable)
         except Exception:
             await self._fail(task_id, "PAPER_INGEST_FAILED", "论文入库失败，请稍后重试。", True)
 
-    async def _run(self, task_id: str) -> None:
+    async def _run(self, task_id: str, *, start_stage: str | None) -> None:
         async with self._sessions() as session:
             task = await session.get(TaskRecord, task_id)
             if task is None or not task.resource_id:
@@ -245,67 +256,293 @@ class IngestionTaskExecutor:
             paper = await session.get(Paper, task.resource_id)
             if paper is None:
                 return
-            task.status, task.stage, task.started_at = (
-                "running",
-                "mineru_parsing",
-                datetime.now(UTC),
-            )
+            stage = _ingestion_stage(start_stage or task.stage)
+            task.status, task.stage, task.started_at = "running", stage, datetime.now(UTC)
             paper.status, paper.parse_progress, paper.index_status, paper.failure = (
-                "mineru_parsing",
-                0.05,
+                stage,
+                _ingestion_progress(stage),
                 "pending",
                 None,
             )
+            run = await session.scalar(
+                select(PaperIngestionRun).where(PaperIngestionRun.task_id == task.task_id)
+            )
+            if run is None:
+                run = PaperIngestionRun(
+                    task_id=task.task_id,
+                    paper_id=paper.paper_id,
+                    paper_version_id=paper.paper_version_id,
+                    stage=stage,
+                    status="running",
+                    started_at=task.started_at,
+                )
+                session.add(run)
+            else:
+                run.stage, run.status, run.started_at, run.error_json = stage, "running", task.started_at, None
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
-            file_path = Path(paper.file_path)
-            paper_id = paper.paper_id
+            paper_id, version_id, file_path = paper.paper_id, paper.paper_version_id, Path(paper.file_path)
 
-        parsed = await MinerUClient(self._settings).parse(file_path)
-        async with self._sessions() as session:
-            task, paper = await _task_and_paper(session, task_id, paper_id)
-            task.stage, task.progress = "ocr_processing", 0.3
-            paper.status, paper.parse_progress = "ocr_processing", 0.3
-            await session.commit()
-            await self._redis.set_task_state(task.task_id, task_view(task))
+        if stage == "mineru_parsing" or not await self._has_parse_artifacts(paper_id, version_id):
+            parsed = await MinerUClient(self._settings).parse(file_path)
+            await self._store_parse_artifacts(task_id, paper_id, version_id, parsed)
+        parsed = await self._load_parsed_artifacts(paper_id, version_id)
 
-        ocr_results: dict[str, str] = {}
-        ocr = BaiduSpecializedOcrClient(self._settings)
-        for item in parsed.media:
-            ocr_results[item.object_id] = await ocr.recognize(item)
+        await self._set_stage(task_id, paper_id, "ocr_processing")
+        ocr_results = await self._run_ocr(task_id, paper_id, version_id, parsed.media)
+        parsed = ParsedPaper(blocks=parsed.blocks, media=parsed.media)
 
+        await self._set_stage(task_id, paper_id, "cleaning")
         chunks = _build_chunks(paper_id, parsed, ocr_results)
-        report = _quality_report(parsed, chunks, ocr_results)
-        if report:
+        await self._store_chunks(paper_id, chunks)
+
+        await self._set_stage(task_id, paper_id, "quality_check")
+        errors = _quality_report(parsed, chunks, ocr_results)
+        await self._store_quality_report(task_id, paper_id, errors)
+        if errors:
             raise IngestionFailure(
                 "CHUNK_QUALITY_FAILED", "论文结构化质量检查未通过。", retryable=False
             )
+
+        await self._set_stage(task_id, paper_id, "indexing")
         async with self._sessions() as session:
-            task, paper = await _task_and_paper(session, task_id, paper_id)
-            task.stage, task.progress = "quality_check", 0.65
-            paper.status, paper.parse_progress, paper.quality_status = (
-                "quality_check",
-                0.65,
-                "ready",
+            paper = await session.get(Paper, paper_id)
+            assert paper is not None
+            reusable = await _complete_mapping(session, paper_id, chunks)
+        if reusable is None:
+            document_id, mappings = await RagFlowManualImporter(self._settings).import_chunks(
+                paper, chunks
             )
+            await self._store_mappings(paper_id, document_id, mappings, chunks)
+        else:
+            document_id, mappings = reusable
+        await self._complete(task_id, paper_id, document_id, mappings, len(chunks))
+
+    async def _has_parse_artifacts(self, paper_id: str, version_id: str) -> bool:
+        async with self._sessions() as session:
+            item = await session.scalar(
+                select(ParsedBlockRecord.parsed_block_id).where(
+                    ParsedBlockRecord.paper_id == paper_id,
+                    ParsedBlockRecord.paper_version_id == version_id,
+                )
+            )
+            return item is not None
+
+    async def _store_parse_artifacts(
+        self, task_id: str, paper_id: str, version_id: str, parsed: ParsedPaper
+    ) -> None:
+        async with self._sessions() as session:
+            await session.execute(
+                delete(ParsedBlockRecord).where(
+                    ParsedBlockRecord.paper_id == paper_id,
+                    ParsedBlockRecord.paper_version_id == version_id,
+                )
+            )
+            await session.execute(
+                delete(MediaObjectRecord).where(
+                    MediaObjectRecord.paper_id == paper_id,
+                    MediaObjectRecord.paper_version_id == version_id,
+                )
+            )
+            session.add_all(
+                [
+                    ParsedBlockRecord(
+                        paper_id=paper_id,
+                        paper_version_id=version_id,
+                        block_id=block.block_id,
+                        content=block.content,
+                        content_type=block.content_type,
+                        section_title=block.section_title,
+                        page_number=block.page_number,
+                        source_ref=block.source_ref,
+                    )
+                    for block in parsed.blocks
+                ]
+            )
+            session.add_all(
+                [
+                    MediaObjectRecord(
+                        paper_id=paper_id,
+                        paper_version_id=version_id,
+                        object_id=item.object_id,
+                        object_type=item.kind,
+                        page_number=item.page_number,
+                        source_ref=item.source_ref,
+                        image_url=item.image_url,
+                        image_sha256=_image_hash(item.image_url),
+                        caption=item.caption,
+                        required=item.required,
+                    )
+                    for item in parsed.media
+                ]
+            )
+            run = await session.scalar(
+                select(PaperIngestionRun).where(PaperIngestionRun.task_id == task_id)
+            )
+            if run is not None:
+                run.stage = "ocr_processing"
+            await session.commit()
+
+    async def _load_parsed_artifacts(self, paper_id: str, version_id: str) -> ParsedPaper:
+        async with self._sessions() as session:
+            blocks = list(
+                (
+                    await session.scalars(
+                        select(ParsedBlockRecord)
+                        .where(
+                            ParsedBlockRecord.paper_id == paper_id,
+                            ParsedBlockRecord.paper_version_id == version_id,
+                        )
+                        .order_by(ParsedBlockRecord.page_number, ParsedBlockRecord.block_id)
+                    )
+                ).all()
+            )
+            media = list(
+                (
+                    await session.scalars(
+                        select(MediaObjectRecord)
+                        .where(
+                            MediaObjectRecord.paper_id == paper_id,
+                            MediaObjectRecord.paper_version_id == version_id,
+                        )
+                        .order_by(MediaObjectRecord.page_number, MediaObjectRecord.object_id)
+                    )
+                ).all()
+            )
+        if not blocks:
+            raise IngestionFailure("MINERU_PARSE_FAILED", "论文解析产物缺失。")
+        return ParsedPaper(
+            blocks=[
+                ParsedBlock(
+                    item.block_id,
+                    item.content,
+                    item.page_number,
+                    item.section_title,
+                    item.content_type,
+                    item.source_ref,
+                )
+                for item in blocks
+            ],
+            media=[
+                MediaObject(
+                    item.object_id,
+                    item.object_type,
+                    item.page_number,
+                    item.source_ref,
+                    item.image_url,
+                    item.caption,
+                    item.required,
+                )
+                for item in media
+            ],
+        )
+
+    async def _run_ocr(
+        self, task_id: str, paper_id: str, version_id: str, media: list[MediaObject]
+    ) -> dict[str, str]:
+        async with self._sessions() as session:
+            rows = {
+                item.object_id: item
+                for item in (
+                    await session.scalars(
+                        select(MediaObjectRecord).where(
+                            MediaObjectRecord.paper_id == paper_id,
+                            MediaObjectRecord.paper_version_id == version_id,
+                        )
+                    )
+                ).all()
+            }
+        client = BaiduSpecializedOcrClient(self._settings)
+        result: dict[str, str] = {}
+        for item in media:
+            row = rows[item.object_id]
+            if not item.required:
+                result[item.object_id] = row.ocr_text or ""
+                continue
+            if row.ocr_status != "succeeded":
+                try:
+                    text = await client.recognize(item)
+                except IngestionFailure:
+                    await self._record_ocr_failure(paper_id, version_id, item.object_id)
+                    raise
+                async with self._sessions() as session:
+                    current = await session.scalar(
+                        select(MediaObjectRecord).where(
+                            MediaObjectRecord.paper_id == paper_id,
+                            MediaObjectRecord.paper_version_id == version_id,
+                            MediaObjectRecord.object_id == item.object_id,
+                        )
+                    )
+                    assert current is not None
+                    current.ocr_status, current.ocr_text = "succeeded", text
+                    current.ocr_engine = (
+                        "baidu-table-v2" if item.kind == "table" else "baidu-paddleocr-vl"
+                    )
+                    await session.commit()
+                row.ocr_status, row.ocr_text = "succeeded", text
+            result[item.object_id] = row.ocr_text or ""
+        return result
+
+    async def _record_ocr_failure(self, paper_id: str, version_id: str, object_id: str) -> None:
+        async with self._sessions() as session:
+            item = await session.scalar(
+                select(MediaObjectRecord).where(
+                    MediaObjectRecord.paper_id == paper_id,
+                    MediaObjectRecord.paper_version_id == version_id,
+                    MediaObjectRecord.object_id == object_id,
+                )
+            )
+            if item is not None:
+                item.ocr_status = "failed"
+                await session.commit()
+
+    async def _store_chunks(self, paper_id: str, chunks: list[BuiltChunk]) -> None:
+        async with self._sessions() as session:
             await session.execute(delete(PaperChunk).where(PaperChunk.paper_id == paper_id))
             session.add_all([_chunk_row(paper_id, item) for item in chunks])
             await session.commit()
-            await self._redis.set_task_state(task.task_id, task_view(task))
 
+    async def _store_quality_report(self, task_id: str, paper_id: str, errors: list[str]) -> None:
+        async with self._sessions() as session:
+            item = await session.scalar(
+                select(IngestionQualityReport).where(IngestionQualityReport.task_id == task_id)
+            )
+            status = "failed" if errors else "ready"
+            payload = {"status": status, "blocking_errors": errors, "indexable_chunks": 0}
+            if item is None:
+                session.add(
+                    IngestionQualityReport(
+                        task_id=task_id, paper_id=paper_id, status=status, report_json=payload
+                    )
+                )
+            else:
+                item.status, item.report_json = status, payload
+            run = await session.scalar(
+                select(PaperIngestionRun).where(PaperIngestionRun.task_id == task_id)
+            )
+            if run is not None:
+                run.stage, run.quality_status = "quality_check", status
+            await session.commit()
+
+    async def _set_stage(self, task_id: str, paper_id: str, stage: str) -> None:
         async with self._sessions() as session:
             task, paper = await _task_and_paper(session, task_id, paper_id)
-            task.stage, task.progress = "indexing", 0.8
-            paper.status, paper.parse_progress, paper.index_status = "indexing", 0.8, "running"
+            task.stage, task.progress = stage, _ingestion_progress(stage)
+            paper.status, paper.parse_progress = stage, task.progress
+            if stage == "indexing":
+                paper.index_status = "running"
+            run = await session.scalar(
+                select(PaperIngestionRun).where(PaperIngestionRun.task_id == task_id)
+            )
+            if run is not None:
+                run.stage = stage
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
-            paper_for_import = paper
-        document_id, mappings = await RagFlowManualImporter(self._settings).import_chunks(
-            paper_for_import, chunks
-        )
 
+    async def _store_mappings(
+        self, paper_id: str, document_id: str, mappings: dict[str, str], chunks: list[BuiltChunk]
+    ) -> None:
         async with self._sessions() as session:
-            task, paper = await _task_and_paper(session, task_id, paper_id)
             await session.execute(delete(RagMapping).where(RagMapping.paper_id == paper_id))
             session.add_all(
                 [
@@ -316,10 +553,23 @@ class IngestionTaskExecutor:
                         document_id=document_id,
                         ragflow_chunk_id=mappings[chunk.chunk_id],
                         content_sha256=chunk.content_sha256,
+                        status="ready",
                     )
                     for chunk in chunks
                 ]
             )
+            await session.commit()
+
+    async def _complete(
+        self,
+        task_id: str,
+        paper_id: str,
+        document_id: str,
+        mappings: dict[str, str],
+        count: int,
+    ) -> None:
+        async with self._sessions() as session:
+            task, paper = await _task_and_paper(session, task_id, paper_id)
             task.status, task.stage, task.progress, task.completed_at = (
                 "succeeded",
                 "completed",
@@ -329,7 +579,7 @@ class IngestionTaskExecutor:
             task.result_json = {
                 "paper_id": paper_id,
                 "document_id": document_id,
-                "mapped_chunks": len(chunks),
+                "mapped_chunks": count,
             }
             paper.status, paper.parse_progress, paper.index_status, paper.quality_status = (
                 "ready",
@@ -338,6 +588,16 @@ class IngestionTaskExecutor:
                 "ready",
             )
             paper.active_index_version = (paper.active_index_version or 0) + 1
+            run = await session.scalar(
+                select(PaperIngestionRun).where(PaperIngestionRun.task_id == task_id)
+            )
+            if run is not None:
+                run.stage, run.status, run.quality_status, run.completed_at = (
+                    "completed",
+                    "succeeded",
+                    "ready",
+                    task.completed_at,
+                )
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
 
@@ -362,6 +622,16 @@ class IngestionTaskExecutor:
                     "message": message,
                     "retryable": retryable,
                 }
+            run = await session.scalar(
+                select(PaperIngestionRun).where(PaperIngestionRun.task_id == task_id)
+            )
+            if run is not None:
+                run.stage, run.status, run.completed_at, run.error_json = (
+                    failed_stage,
+                    "failed",
+                    task.completed_at,
+                    task.error_json,
+                )
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
 
@@ -374,6 +644,50 @@ async def _task_and_paper(
     if task is None or paper is None:
         raise IngestionFailure("PAPER_INGEST_FAILED", "论文入库任务不存在。", retryable=False)
     return task, paper
+
+
+async def _complete_mapping(
+    session: AsyncSession, paper_id: str, chunks: list[BuiltChunk]
+) -> tuple[str, dict[str, str]] | None:
+    """Reuse only a complete, content-identical mapping from a prior retry."""
+    rows = list(
+        (
+            await session.scalars(
+                select(RagMapping).where(RagMapping.paper_id == paper_id, RagMapping.status == "ready")
+            )
+        ).all()
+    )
+    expected = {item.chunk_id: item.content_sha256 for item in chunks}
+    by_chunk = {item.source_chunk_id: item for item in rows if item.source_chunk_id}
+    if set(by_chunk) != set(expected):
+        return None
+    if any(by_chunk[key].content_sha256 != digest for key, digest in expected.items()):
+        return None
+    documents = {item.document_id for item in by_chunk.values()}
+    if len(documents) != 1 or not all(item.ragflow_chunk_id for item in by_chunk.values()):
+        return None
+    return documents.pop(), {key: str(item.ragflow_chunk_id) for key, item in by_chunk.items()}
+
+
+def _ingestion_stage(value: str) -> str:
+    stages = {"mineru_parsing", "ocr_processing", "cleaning", "quality_check", "indexing"}
+    return value if value in stages else "mineru_parsing"
+
+
+def _ingestion_progress(stage: str) -> float:
+    return {
+        "mineru_parsing": 0.05,
+        "ocr_processing": 0.3,
+        "cleaning": 0.5,
+        "quality_check": 0.65,
+        "indexing": 0.8,
+    }.get(stage, 0.0)
+
+
+def _image_hash(image_url: str | None) -> str | None:
+    if not image_url:
+        return None
+    return hashlib.sha256(image_url.encode("utf-8")).hexdigest()
 
 
 def _block_from_raw(raw: dict[str, Any], index: int) -> ParsedBlock:

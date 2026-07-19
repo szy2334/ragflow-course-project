@@ -57,3 +57,38 @@ class FeedbackInput(ApiModel):
     feedback_type: Literal["like", "dislike", "issue"]
     reason: str | None = Field(default=None, max_length=1000)
     tags: list[str] = Field(default_factory=list, max_length=10)
+
+
+class AnalysisInput(ApiModel):
+    question: str | None = Field(default=None, max_length=8000)
+    force_refresh: bool = False
+
+
+class ComparisonInput(ApiModel):
+    paper_ids: list[str] = Field(min_length=2, max_length=10)
+    dimensions: list[str] = Field(min_length=1, max_length=12)
+    question: str | None = Field(default=None, max_length=8000)
+
+
+class ReadingReportInput(ApiModel):
+    paper_ids: list[str] = Field(min_length=1, max_length=10)
+    session_id: str | None = None
+    template_key: str = Field(min_length=1, max_length=128)
+    title: str = Field(min_length=1, max_length=300)
+
+
+class ExportInput(ApiModel):
+    format: Literal["markdown", "pdf", "docx"]
+
+
+class EvaluationInput(ApiModel):
+    dataset_id: str = Field(min_length=1, max_length=128)
+    split: str = Field(default="default", min_length=1, max_length=64)
+    experiment_type: str = Field(min_length=1, max_length=128)
+    model_config_id: str | None = Field(default=None, max_length=128)
+    sample_limit: int | None = Field(default=None, ge=1, le=10_000)
+    random_seed: int | None = None
+
+
+class ConfigUpdateInput(ApiModel):
+    value: dict[str, object]

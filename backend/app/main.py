@@ -18,6 +18,7 @@ from app.db.models import Base
 from app.runtime.executor import WorkflowTaskExecutor
 from app.runtime.redis_store import RedisRuntime
 from app.workers.ingestion import IngestionTaskExecutor
+from app.workers.operations import OperationsTaskExecutor
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
@@ -42,6 +43,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             runtime_settings, app.state.session_factory, app.state.redis
         )
         app.state.ingestion_executor = IngestionTaskExecutor(
+            runtime_settings, app.state.session_factory, app.state.redis
+        )
+        app.state.operations_executor = OperationsTaskExecutor(
             runtime_settings, app.state.session_factory, app.state.redis
         )
         yield

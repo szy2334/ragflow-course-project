@@ -47,6 +47,7 @@ class RefreshToken(Base):
 class Paper(Base):
     __tablename__ = "papers"
     paper_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    paper_version_id: Mapped[str] = mapped_column(String(36), default=new_id, index=True)
     owner_id: Mapped[str] = mapped_column(ForeignKey("users.user_id"), index=True)
     title: Mapped[str] = mapped_column(String(500))
     file_name: Mapped[str] = mapped_column(String(500))
@@ -60,6 +61,10 @@ class Paper(Base):
     quality_status: Mapped[str | None] = mapped_column(String(32), nullable=True)
     failure: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
     active_index_version: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    ingestion_config_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)
+    deletion_requested_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
     deleted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     updated_at: Mapped[datetime] = mapped_column(
@@ -94,6 +99,10 @@ class RagMapping(Base):
     document_id: Mapped[str] = mapped_column(String(128), index=True)
     ragflow_chunk_id: Mapped[str | None] = mapped_column(String(128), nullable=True)
     content_sha256: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    status: Mapped[str] = mapped_column(String(32), default="ready")
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=utcnow, onupdate=utcnow
+    )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     __table_args__ = (
         UniqueConstraint("source_chunk_id", "content_sha256", name="uq_rag_chunk_map"),
@@ -107,6 +116,7 @@ class ChatSession(Base):
     title: Mapped[str] = mapped_column(String(300), default="未命名会话")
     paper_ids: Mapped[list[str]] = mapped_column(JsonValue, default=list)
     knowledge_base_id: Mapped[str | None] = mapped_column(String(128), nullable=True)
+    is_internal: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
     last_message_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
@@ -121,6 +131,7 @@ class ChatMessage(Base):
     task_id: Mapped[str | None] = mapped_column(String(36), nullable=True, index=True)
     status: Mapped[str | None] = mapped_column(String(32), nullable=True)
     confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
+    route_type: Mapped[str | None] = mapped_column(String(32), nullable=True)
     answer_json: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
@@ -133,10 +144,11 @@ class TaskRecord(Base):
     status: Mapped[str] = mapped_column(String(32), default="pending", index=True)
     progress: Mapped[float] = mapped_column(Float, default=0.0)
     stage: Mapped[str] = mapped_column(String(64), default="queued")
-    resource_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
+    resource_id: Mapped[str | None] = mapped_column(String(128), nullable=True)
     message_id: Mapped[str | None] = mapped_column(String(36), nullable=True, index=True)
     error_json: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
     result_json: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
+    payload_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)
     request_id: Mapped[str] = mapped_column(String(80))
     correlation_id: Mapped[str] = mapped_column(String(80))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
@@ -168,6 +180,104 @@ class WorkflowRun(Base):
     summary_json: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
     status: Mapped[str] = mapped_column(String(32), default="running")
     started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+
+class PaperIngestionRun(Base):
+    __tablename__ = "paper_ingestion_runs"
+    ingestion_run_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    task_id: Mapped[str] = mapped_column(ForeignKey("tasks.task_id"), unique=True, index=True)
+    paper_id: Mapped[str] = mapped_column(ForeignKey("papers.paper_id"), index=True)
+    paper_version_id: Mapped[str] = mapped_column(String(36), index=True)
+    stage: Mapped[str] = mapped_column(String(32))
+    status: Mapped[str] = mapped_column(String(32), default="pending")
+    parser_version: Mapped[str] = mapped_column(String(128), default="mineru-v1")
+    cleaning_version: Mapped[str] = mapped_column(String(128), default="cleaning-v1")
+    quality_status: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    error_json: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
+
+
+class ParsedBlockRecord(Base):
+    __tablename__ = "parsed_blocks"
+    parsed_block_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    paper_id: Mapped[str] = mapped_column(ForeignKey("papers.paper_id"), index=True)
+    paper_version_id: Mapped[str] = mapped_column(String(36), index=True)
+    block_id: Mapped[str] = mapped_column(String(128))
+    content: Mapped[str] = mapped_column(Text)
+    content_type: Mapped[str] = mapped_column(String(32), default="text")
+    section_title: Mapped[str] = mapped_column(String(500), default="")
+    page_number: Mapped[int] = mapped_column(Integer)
+    source_ref: Mapped[str] = mapped_column(String(1024))
+    metadata_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)
+    __table_args__ = (
+        UniqueConstraint("paper_version_id", "block_id", name="uq_parsed_block_version"),
+    )
+
+
+class MediaObjectRecord(Base):
+    __tablename__ = "media_objects"
+    media_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    paper_id: Mapped[str] = mapped_column(ForeignKey("papers.paper_id"), index=True)
+    paper_version_id: Mapped[str] = mapped_column(String(36), index=True)
+    object_id: Mapped[str] = mapped_column(String(128))
+    object_type: Mapped[str] = mapped_column(String(32))
+    page_number: Mapped[int] = mapped_column(Integer)
+    source_ref: Mapped[str] = mapped_column(String(1024))
+    image_url: Mapped[str | None] = mapped_column(String(2048), nullable=True)
+    image_sha256: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    caption: Mapped[str | None] = mapped_column(Text, nullable=True)
+    required: Mapped[bool] = mapped_column(Boolean, default=True)
+    ocr_status: Mapped[str] = mapped_column(String(32), default="pending")
+    ocr_text: Mapped[str | None] = mapped_column(Text, nullable=True)
+    ocr_engine: Mapped[str | None] = mapped_column(String(128), nullable=True)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=utcnow, onupdate=utcnow
+    )
+    __table_args__ = (
+        UniqueConstraint("paper_version_id", "object_id", name="uq_media_object_version"),
+    )
+
+
+class IngestionQualityReport(Base):
+    __tablename__ = "ingestion_quality_reports"
+    report_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    task_id: Mapped[str] = mapped_column(ForeignKey("tasks.task_id"), unique=True, index=True)
+    paper_id: Mapped[str] = mapped_column(ForeignKey("papers.paper_id"), index=True)
+    status: Mapped[str] = mapped_column(String(32))
+    report_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class ReadingReport(Base):
+    __tablename__ = "reading_reports"
+    report_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.user_id"), index=True)
+    session_id: Mapped[str | None] = mapped_column(
+        ForeignKey("chat_sessions.session_id"), nullable=True
+    )
+    paper_ids: Mapped[list[str]] = mapped_column(JsonValue, default=list)
+    title: Mapped[str] = mapped_column(String(300))
+    template_key: Mapped[str] = mapped_column(String(128))
+    status: Mapped[str] = mapped_column(String(32), default="pending")
+    content_markdown: Mapped[str | None] = mapped_column(Text, nullable=True)
+    claims_json: Mapped[list[dict[str, Any]]] = mapped_column(JsonValue, default=list)
+    evidence_ids: Mapped[list[str]] = mapped_column(JsonValue, default=list)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+
+class ReportExport(Base):
+    __tablename__ = "report_exports"
+    export_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    report_id: Mapped[str] = mapped_column(ForeignKey("reading_reports.report_id"), index=True)
+    task_id: Mapped[str] = mapped_column(ForeignKey("tasks.task_id"), unique=True, index=True)
+    format: Mapped[str] = mapped_column(String(16))
+    status: Mapped[str] = mapped_column(String(32), default="pending")
+    file_path: Mapped[str | None] = mapped_column(String(1024), nullable=True)
+    checksum_sha256: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
 

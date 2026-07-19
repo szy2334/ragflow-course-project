@@ -6,6 +6,7 @@ import hashlib
 import json
 from typing import Any
 
+from fastapi.encoders import jsonable_encoder
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -63,6 +64,6 @@ def save_response(
             path=path,
             request_hash=fingerprint,
             status_code=status_code,
-            response_json=response,
+            response_json=jsonable_encoder(response),
         )
     )

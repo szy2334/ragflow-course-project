@@ -48,7 +48,7 @@ export const api = {
   reparsePaper: (paper_id: string, data: { parser_name?: string; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-reparse', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, { ...data, stage: 'mineru_parsing' }),
   reindexPaper: (paper_id: string, data: { embedding_model_config_id?: string; retrieval_config_id?: string; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-index', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, { ...data, stage: 'indexing' }),
   retryPaper: (paper_id: string, data: { stage: 'mineru_parsing' | 'ocr_processing' | 'cleaning' | 'quality_check' | 'indexing'; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-retry', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, data),
-  deletePaper: (paper_id: string) => demo.active() ? Promise.resolve({ paper_id, deleted_at: new Date().toISOString(), cleanup_task_id: 'demo-cleanup' }) : request<{ paper_id: string; deleted_at: string; cleanup_task_id: string } | Record<string, never>>({ url: `/papers/${paper_id}`, method: 'DELETE' }),
+  deletePaper: (paper_id: string) => demo.active() ? Promise.resolve({ paper_id, deleted_at: new Date().toISOString(), cleanup_task_id: 'demo-cleanup' }) : request<{ paper_id: string; deleted_at: string; cleanup_task_id: string } | Record<string, never>>({ url: `/papers/${paper_id}`, method: 'DELETE', headers: { 'Idempotency-Key': newRequestId() } }),
 
   listSessions: (params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.sessions()) : get<PageData<ChatSessionView>>('/sessions', params),
   createSession: (data: { title?: string; paper_ids: string[]; knowledge_base_id?: string }) => demo.active() ? Promise.resolve(demo.session()) : post<ChatSessionView>('/sessions', data),
@@ -65,7 +65,7 @@ export const api = {
   exportReport: (report_id: string, format: 'markdown' | 'pdf' | 'docx') => demo.active() ? Promise.resolve(demo.accepted('demo-export')) : post<TaskAccepted>(`/reading-reports/${report_id}/exports`, { format }),
 
   listAdmin: (resource: 'model-configs' | 'prompt-templates' | 'retrieval-configs' | 'knowledge-bases' | 'datasets', params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.admin(resource)) : get<PageData<AdminRecord>>(`/admin/${resource}`, params),
-  upsertAdmin: (resource: 'model-configs' | 'prompt-templates' | 'retrieval-configs', id: string, data: AdminRecord, version?: number) => put<AdminRecord>(`/admin/${resource}/${id}`, data, { headers: version ? { 'If-Match': String(version) } : undefined }),
+  upsertAdmin: (resource: 'model-configs' | 'prompt-templates' | 'retrieval-configs', id: string, data: AdminRecord, version?: number) => put<AdminRecord>(`/admin/${resource}/${id}`, { value: data }, { headers: { 'If-Match': version ? String(version) : '*' } }),
   getMetrics: (params: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.metrics()) : get<MetricsOverviewView>('/admin/metrics/overview', params),
   getWorkflowTrace: (workflow_run_id: string) => get<AdminRecord>(`/admin/workflow-runs/${workflow_run_id}`, { include_events: true, include_evidences: true }),
   createEvaluation: (data: { dataset_id: string; split: string; experiment_type: string; model_config_id?: string; sample_limit?: number; random_seed?: number }) => demo.active() ? Promise.resolve(demo.accepted('demo-evaluation')) : post<TaskAccepted>('/admin/evaluation-runs', data),
