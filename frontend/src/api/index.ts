@@ -24,17 +24,17 @@ export const api = {
     form.append('auto_index', 'true')
     return demo.active() ? Promise.resolve(demo.upload()) : post<PaperUploadBatchView>('/papers', form)
   },
-  reparsePaper: (paper_id: string, data: { parser_name?: string; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-reparse', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/reparse`, data),
-  reindexPaper: (paper_id: string, data: { embedding_model_config_id?: string; retrieval_config_id?: string; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-index', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/indexes`, data),
+  reparsePaper: (paper_id: string, data: { parser_name?: string; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-reparse', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, { ...data, stage: 'mineru_parsing' }),
+  reindexPaper: (paper_id: string, data: { embedding_model_config_id?: string; retrieval_config_id?: string; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-index', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, { ...data, stage: 'indexing' }),
   deletePaper: (paper_id: string) => demo.active() ? Promise.resolve({ paper_id, deleted_at: new Date().toISOString(), cleanup_task_id: 'demo-cleanup' }) : request<{ paper_id: string; deleted_at: string; cleanup_task_id: string } | Record<string, never>>({ url: `/papers/${paper_id}`, method: 'DELETE' }),
 
-  listSessions: (params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.sessions()) : get<PageData<ChatSessionView>>('/chat/sessions', params),
-  createSession: (data: { title?: string; paper_ids: string[]; knowledge_base_id?: string }) => demo.active() ? Promise.resolve(demo.session()) : post<ChatSessionView>('/chat/sessions', data),
-  listMessages: (session_id: string, params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.messages()) : get<PageData<ChatMessageView>>(`/chat/sessions/${session_id}/messages`, params),
-  askQuestion: (session_id: string, data: { question: string; paper_ids?: string[]; knowledge_base_id?: string; enable_critical_review: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-workflow', demo.answer.message_id)) : post<TaskAccepted>(`/chat/sessions/${session_id}/questions`, data),
-  cancelWorkflow: (task_id: string, reason?: string) => demo.active() ? Promise.resolve({ ...demo.task(task_id), status: 'cancelled' as const }) : post<TaskView>(`/workflows/${task_id}/cancel`, { reason }),
-  getAnswerDetail: (message_id: string) => demo.active() ? Promise.resolve(demo.answerDetail()) : get<AnswerDetailView>(`/chat/messages/${message_id}/details`),
-  sendFeedback: (message_id: string, data: { feedback_type: 'like' | 'dislike' | 'issue'; reason?: string; tags: string[] }) => demo.active() ? Promise.resolve({ feedback_id: 'demo-feedback', message_id, feedback_type: data.feedback_type }) : post(`/chat/messages/${message_id}/feedback`, data),
+  listSessions: (params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.sessions()) : get<PageData<ChatSessionView>>('/sessions', params),
+  createSession: (data: { title?: string; paper_ids: string[]; knowledge_base_id?: string }) => demo.active() ? Promise.resolve(demo.session()) : post<ChatSessionView>('/sessions', data),
+  listMessages: (session_id: string, params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.messages()) : get<PageData<ChatMessageView>>(`/sessions/${session_id}/messages`, params),
+  askQuestion: (session_id: string, data: { question: string; paper_ids?: string[]; knowledge_base_id?: string }) => demo.active() ? Promise.resolve(demo.accepted('demo-workflow', demo.answer.message_id)) : post<TaskAccepted>(`/sessions/${session_id}/messages`, { ...data, stream: true }),
+  cancelWorkflow: (message_id: string, reason?: string) => demo.active() ? Promise.resolve({ ...demo.task(message_id), status: 'cancelled' as const }) : post<TaskView>(`/messages/${message_id}/cancel`, { reason }),
+  getAnswerDetail: (message_id: string) => demo.active() ? Promise.resolve(demo.answerDetail()) : get<AnswerDetailView>(`/messages/${message_id}/details`),
+  sendFeedback: (message_id: string, data: { feedback_type: 'like' | 'dislike' | 'issue'; reason?: string; tags: string[] }) => demo.active() ? Promise.resolve({ feedback_id: 'demo-feedback', message_id, feedback_type: data.feedback_type }) : post(`/messages/${message_id}/feedback`, data),
 
   createAnalysis: (paper_id: string, kind: 'summary' | 'method' | 'experiment' | 'critical-review', data: { question?: string; force_refresh: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-analysis', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/analyses/${kind}`, data),
   comparePapers: (data: { paper_ids: string[]; dimensions: string[]; question?: string }) => demo.active() ? Promise.resolve(demo.accepted('demo-comparison')) : post<TaskAccepted>('/paper-comparisons', data),

@@ -4,12 +4,12 @@
  * should replace these imports once the backend publishes /api/v1/openapi.json.
  */
 export type TaskStatus = 'pending' | 'running' | 'succeeded' | 'failed' | 'cancelled'
-export type PaperStatus = 'uploaded' | 'parsing' | 'parsed' | 'indexing' | 'ready' | 'failed'
+export type PaperStatus = 'uploaded' | 'mineru_parsing' | 'ocr_processing' | 'cleaning' | 'quality_check' | 'indexing' | 'ready' | 'failed'
 export type IndexStatus = 'not_indexed' | 'pending' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'stale'
 export type ClaimVerdict = 'supported' | 'refuted' | 'insufficient_evidence' | 'conflicting_evidence'
 export type FeedbackType = 'like' | 'dislike' | 'issue'
 export type AgentName = 'coordinator' | 'retrieval' | 'method_analysis' | 'experiment_analysis' | 'critical_review' | 'evidence_verification' | 'synthesis'
-export type EventType = 'workflow_started' | 'agent_started' | 'agent_completed' | 'retrieval_completed' | 'evidence_added' | 'answer_delta' | 'answer_completed' | 'workflow_failed'
+export type EventType = 'status' | 'delta' | 'citation' | 'review_summary' | 'final' | 'error'
 
 export interface ApiResponse<T> {
   code: string
@@ -25,7 +25,7 @@ export interface TokenView { access_token: string; token_type: string; access_ex
 export interface UserView { user_id: string; email: string; display_name: string; role: 'user' | 'admin'; is_active: boolean; created_at: string }
 export interface AuthView { user: UserView; token: TokenView }
 
-export interface TaskAccepted { task_id: string; status: TaskStatus; status_url: string; stream_url: string | null; resource_id: string | null }
+export interface TaskAccepted { task_id: string; message_id?: string | null; status: TaskStatus; status_url: string; stream_url: string | null; resource_id: string | null }
 export interface TaskView {
   task_id: string; task_type: string; status: TaskStatus; progress: number; stage: string; resource_id: string | null
   result: Record<string, unknown> | null; error: { code: string; message: string; details?: Record<string, unknown> } | null
@@ -47,17 +47,17 @@ export interface ChatMessageView { message_id: string; session_id: string; role:
 export interface EvidenceItem {
   evidence_id: string; paper_id: string; chunk_id: string; paper_title: string; section_title: string; page_number: number
   paragraph_index: number; quote: string; retrieval_score: number; rerank_score: number | null; source_uri: string
-  content_type: 'text' | 'table' | 'figure_caption' | 'formula' | 'reference'; bbox: number[] | null
+  content_type: 'text' | 'figure' | 'table' | 'figure_caption' | 'formula' | 'metadata' | 'reference'; bbox: number[] | null
 }
 export interface Claim { claim_id: string; text: string; verdict: ClaimVerdict; confidence: number; evidence_ids: string[]; reason: string }
 export interface AgentMetrics { latency_ms: number; input_tokens: number; output_tokens: number; model_config_id: string | null; retry_count: number; estimated_cost?: string | null; currency?: string | null }
 export interface AgentResult { agent_name: AgentName; status: TaskStatus; summary: string; claims: Claim[]; evidence_ids: string[]; confidence: number; warnings: string[]; metrics: AgentMetrics }
-export interface AnswerView { message_id: string; session_id: string; task_id: string; answer: string; claims: Claim[]; evidences: EvidenceItem[]; confidence: number; is_refusal: boolean; refusal_reason: string | null; warnings: string[]; completed_at: string }
+export interface AnswerView { message_id: string; session_id: string; task_id: string; route_type?: 'fact' | 'explain' | 'review' | 'score' | 'follow_up' | 'out_of_scope'; answer: string; claims: Claim[]; evidences: EvidenceItem[]; confidence: number; is_refusal: boolean; refusal_reason: string | null; warnings: string[]; completed_at: string }
 export interface WorkflowRunView { workflow_run_id: string; task_id: string; session_id: string | null; task_type: string; status: TaskStatus; planned_agents: AgentName[]; confidence: number | null; started_at: string | null; completed_at: string | null; metrics: AgentMetrics }
 export interface AnswerDetailView { answer: AnswerView; workflow_run: WorkflowRunView; agent_results: AgentResult[] }
 
 export interface StreamEvent {
-  event_id: string; event_type: EventType; task_id: string; session_id: string | null; agent_name: AgentName | null; sequence: number; timestamp: string
+  event_id: string; event_type: EventType; task_id: string; message_id?: string | null; session_id: string | null; agent_name: AgentName | null; sequence: number; timestamp: string
   data: Record<string, unknown>
 }
 export interface ReadingReportView { report_id: string; user_id: string; title: string; paper_ids: string[]; status: TaskStatus; content_markdown: string | null; claims: Claim[]; evidence_ids: string[]; created_at: string; completed_at: string | null }
