@@ -1,0 +1,322 @@
+{
+  "schema_version": "user_paper_qa_golden_v1",
+  "paper": {
+    "document_name": "UMAP.pdf",
+    "title": "Multimodal Emotion Recognition with Missing Modality via a Unified Multi-task Pre-training Framework",
+    "paper_id": "07a2f03f-244b-5edf-87cc-767f98c74e72",
+    "paper_version_id": "2332f27c-d065-5a43-bb9f-4e520126dc81",
+    "file_sha256": "d5b4858c1d5e493e703a1f5835b5db86d543f0a0bfaa903da5ca2ff2c478afec"
+  },
+  "notes": "通用科研论文 QA 基线：覆盖书目信息、研究问题、方法、数据、实验、结论与不可回答问题。每题的预期证据均来自本次导入的稳定 Chunk。",
+  "cases": [
+    {
+      "id": "paper_title",
+      "result_kind": "bibliography",
+      "question_zh": "这篇论文的标题是什么？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "9b2f2a3e-0176-5bea-9d98-de330a3fa811"
+      ],
+      "expected_fact_groups": [
+        [
+          "Multimodal Emotion Recognition with Missing Modality via a Unified Multi-task Pre-training Framework"
+        ]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "research_problem",
+      "result_kind": "research_problem",
+      "question_zh": "论文要解决的核心问题是什么？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "66e97d13-e047-54b5-b4c2-6553466c98bd",
+        "4e274f85-6090-54f4-8b29-44ab16edc56a"
+      ],
+      "evidence_note": "The abstract and the Figure 1 / Introduction evidence chunk both explicitly describe the missing-modality and representation-learning limitations addressed by the paper.",
+      "expected_fact_groups": [
+        [
+          "missing modality",
+          "missing modalities",
+          "模态缺失"
+        ],
+        [
+          "multimodal emotion recognition",
+          "多模态情感识别"
+        ]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "proposed_method",
+      "result_kind": "method",
+      "question_zh": "论文提出的 UMAP 方法采用什么总体结构？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "c020bfb9-4cde-5b96-9806-97c06ffdf9a3"
+      ],
+      "expected_fact_groups": [
+        [
+          "UMAP",
+          "Unified Multi-task Pre-training"
+        ],
+        [
+          "mixture of experts",
+          "MoE",
+          "专家混合"
+        ],
+        [
+          "modality-specific experts",
+          "shared experts",
+          "模态专属专家",
+          "共享专家"
+        ]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "pretraining_tasks",
+      "result_kind": "method",
+      "question_zh": "UMAP 集成了哪三种预训练任务？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "66e97d13-e047-54b5-b4c2-6553466c98bd",
+        "547e408d-d73d-50c4-bbba-1225b08e07e1"
+      ],
+      "expected_fact_groups": [
+        [
+          "contrastive learning",
+          "对比学习"
+        ],
+        [
+          "modality matching",
+          "模态匹配"
+        ],
+        [
+          "modality generation",
+          "模态生成"
+        ]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "missing_modality_handling",
+      "result_kind": "method",
+      "question_zh": "在微调阶段出现模态缺失时，UMAP 如何处理？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "3f484123-7a16-5bfb-bb18-4c49403351b8"
+      ],
+      "expected_fact_groups": [
+        [
+          "deactivat",
+          "禁用",
+          "停用",
+          "关闭"
+        ],
+        [
+          "expert",
+          "专家"
+        ],
+        [
+          "remaining available modalities",
+          "其余可用模态",
+          "剩余模态"
+        ]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "datasets",
+      "result_kind": "experiment_setup",
+      "question_zh": "论文使用了哪些多模态情感数据集？这些数据集包含哪些信号？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "78ed1a98-a936-5be4-b279-a63c1e8325d7"
+      ],
+      "expected_fact_groups": [
+        [
+          "SEED-IV"
+        ],
+        [
+          "SEED-V"
+        ],
+        [
+          "SEED-VII"
+        ],
+        [
+          "EEG",
+          "脑电"
+        ],
+        [
+          "eye movement",
+          "眼动"
+        ]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "key_results",
+      "result_kind": "results",
+      "question_zh": "在 SEED-V 上，论文报告 UMAP 相比次优方法有哪些代表性的性能提升？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "6378153f-50cc-58d2-a7d6-e6157d12f005"
+      ],
+      "expected_fact_groups": [
+        [
+          "UMAP"
+        ],
+        [
+          "SEED-V"
+        ]
+      ],
+      "expected_numbers": [
+        "0.51%",
+        "1.09%",
+        "2.99%"
+      ]
+    },
+    {
+      "id": "conclusion_and_limitation",
+      "result_kind": "conclusion",
+      "question_zh": "论文指出 UMAP 当前的主要限制及未来研究方向是什么？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "6378153f-50cc-58d2-a7d6-e6157d12f005"
+      ],
+      "expected_fact_groups": [
+        [
+          "two modalities",
+          "两种模态",
+          "两个模态"
+        ],
+        [
+          "extend",
+          "扩展",
+          "更多模态"
+        ]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "missing_modality_causes",
+      "result_kind": "research_background",
+      "question_zh": "论文列举了哪些 EEG 与眼动数据采集情况会导致模态缺失？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "4cbc2de2-eb45-5814-984f-4c7551e7e05e"
+      ],
+      "expected_fact_groups": [
+        ["poor device contact", "设备接触不良"],
+        ["participant movement", "严重移动"],
+        ["inaccurate synchronization", "同步不准确"]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "two_stage_pipeline",
+      "result_kind": "method",
+      "question_zh": "UMAP 的两个训练阶段分别是什么？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "3f484123-7a16-5bfb-bb18-4c49403351b8"
+      ],
+      "expected_fact_groups": [
+        ["pre-training", "预训练"],
+        ["fine-tuning", "微调"],
+        ["unlabeled data", "无标注数据"]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "expert_and_gate_structure",
+      "result_kind": "method_component",
+      "question_zh": "UMAP 如何使用模态特定专家、共享专家和门控模块？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "4f743e23-067c-5cd2-ab17-4091e7812e2e"
+      ],
+      "expected_fact_groups": [
+        ["modality-specific experts", "模态特定专家"],
+        ["shared expert", "共享专家"],
+        ["modality-specific gates", "模态特定门控"]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "implementation_pretraining_setup",
+      "result_kind": "implementation",
+      "question_zh": "UMAP 预训练使用了哪种优化器，以及多少张 GPU、batch size 和 epoch？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "ef24bc69-e83f-509c-85bb-4dc418f48963"
+      ],
+      "expected_fact_groups": [
+        ["AdamW"],
+        ["NVIDIA 3090", "3090 GPU"]
+      ],
+      "expected_numbers": ["8", "2048", "200"]
+    },
+    {
+      "id": "comparison_method_categories",
+      "result_kind": "experiment_setup",
+      "question_zh": "论文将对比方法分为哪两大类？每类各举一个例子。",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "0316b1cb-66ae-5e33-ac80-f66d9fcb25a2"
+      ],
+      "expected_fact_groups": [
+        ["traditional multimodal methods", "传统多模态方法"],
+        ["modality missing", "模态缺失"],
+        ["ETF", "IMDer", "MMIN"]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "pretraining_effect",
+      "result_kind": "ablation",
+      "question_zh": "图 4 和消融实验如何说明预训练的作用？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "52158a22-57dc-5c2b-87cd-86c942e89c2d",
+        "4cd37876-74a4-548c-b616-f08bc9bd0761"
+      ],
+      "expected_fact_groups": [
+        ["trained from scratch", "从头训练"],
+        ["significant decline", "显著下降"],
+        ["pre-training", "预训练"]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "total_pretraining_loss",
+      "result_kind": "loss_formula",
+      "question_zh": "UMAP 的总预训练损失公式由哪些项组成？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "c533da93-6ca3-5c26-9dd3-fcbe80215178"
+      ],
+      "expected_fact_groups": [
+        ["L_con"],
+        ["L_mat"],
+        ["L_gen"]
+      ],
+      "expected_numbers": []
+    },
+    {
+      "id": "generation_loss_ablation",
+      "result_kind": "ablation",
+      "question_zh": "移除模态生成损失 L_gen 后，SEED-V 在完整模态、仅 EEG 和仅眼动三种情况下的性能变化是什么？",
+      "answerable": true,
+      "expected_source_chunk_ids": [
+        "496c71ee-089d-5d64-9ba4-973b1a4edbd7"
+      ],
+      "expected_fact_groups": [
+        ["performance drops", "性能下降"],
+        ["SEED-V"]
+      ],
+      "expected_numbers": ["5.19%", "3.2%", "0.82%"]
+    }
+  ]
+}
