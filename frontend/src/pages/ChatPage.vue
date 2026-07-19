@@ -16,7 +16,6 @@ const router = useRouter()
 const workspace = useWorkspaceStore()
 const question = ref('')
 const selectedPaperIds = ref<string[]>([])
-const criticalReview = ref(false)
 const sending = ref(false)
 const error = ref('')
 const activeTaskId = ref('')
@@ -53,7 +52,7 @@ async function submit() {
   sending.value = true; error.value = ''
   try {
     workspace.appendMessage({ message_id: `local-${crypto.randomUUID()}`, session_id: props.sessionId, role: 'user', content: normalized, task_id: null, status: null, confidence: null, created_at: new Date().toISOString() })
-    const task = await api.askQuestion(props.sessionId, { question: normalized, paper_ids: selectedPaperIds.value, enable_critical_review: criticalReview.value })
+    const task = await api.askQuestion(props.sessionId, { question: normalized, paper_ids: selectedPaperIds.value })
     activeTaskId.value = task.task_id
     workspace.startWorkflow(task)
     workspace.appendMessage({ message_id: task.resource_id ?? `pending-${task.task_id}`, session_id: props.sessionId, role: 'assistant', content: '', task_id: task.task_id, status: task.status, confidence: null, created_at: new Date().toISOString() })
@@ -68,7 +67,9 @@ async function submit() {
 }
 async function stop() {
   if (!activeTaskId.value) return
-  try { await api.cancelWorkflow(activeTaskId.value, '用户主动停止') }
+  const messageId = activeWorkflow.value?.task.message_id ?? activeWorkflow.value?.task.resource_id
+  if (!messageId) { error.value = '当前问题尚未获得可取消的消息标识。'; return }
+  try { await api.cancelWorkflow(messageId, '用户主动停止') }
   catch (cause) { error.value = cause instanceof ApiError ? cause.message : '无法停止当前任务。' }
 }
 async function inspectMessage(messageId: string) {
@@ -97,7 +98,7 @@ onMounted(load)
         <article v-for="message in messages" :key="message.message_id" class="message" :class="message.role"><div class="message-avatar">{{ message.role === 'user' ? '你' : '知' }}</div><div class="message-body"><div class="message-meta"><span>{{ message.role === 'user' ? '你的问题' : '知阅助手' }}</span><span>{{ new Date(message.created_at).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) }}</span></div><p v-if="message.role === 'user'">{{ message.content }}</p><MarkdownContent v-else-if="message.content" :content="message.content" /><div v-else-if="message.task_id === activeTaskId" class="answer-pending"><span class="dot-loader"><i /><i /><i /></span>正在等待已核验的答案…</div><button v-if="message.role === 'assistant' && message.content" class="inspect-link" @click="inspectMessage(message.message_id)">查看引用与执行记录</button></div></article>
         <article v-if="activeWorkflow" class="message assistant live-answer"><div class="message-avatar">知</div><div class="message-body"><div class="message-meta"><span>知阅助手 · 实时回答</span><StatusPill :status="activeWorkflow.completedAnswer ? 'succeeded' : activeWorkflow.error ? 'failed' : 'running'" /></div><MarkdownContent v-if="activeWorkflow.text" :content="activeWorkflow.text" /><div v-else class="answer-pending"><span class="dot-loader"><i /><i /><i /></span>{{ activeWorkflow.phase }}</div><p v-if="activeWorkflow.completedAnswer?.is_refusal" class="refusal-note"><AlertTriangle :size="16" />{{ activeWorkflow.completedAnswer.refusal_reason || '现有论文证据不足，系统没有使用外部常识补答。' }}</p><p v-if="activeWorkflow.error" class="inline-error">{{ activeWorkflow.error }}</p></div></article>
       </div>
-      <form class="question-box" @submit.prevent="submit"><textarea v-model="question" rows="2" :disabled="sending" placeholder="针对已选论文提问；答案将只依据检索到的原文证据…" @keydown.ctrl.enter="submit" /><div class="question-actions"><label class="toggle-option"><input v-model="criticalReview" type="checkbox" /><span>启用批判性审阅</span></label><span class="shortcut-hint">Ctrl + Enter 发送</span><button v-if="activeWorkflow && !activeWorkflow.completedAnswer && !activeWorkflow.error" type="button" class="stop-button" @click="stop"><CircleStop :size="17" />停止</button><button type="submit" class="send-button" :disabled="sending || !question.trim()"><Send :size="18" /><span>{{ sending ? '提交中' : '发送' }}</span></button></div></form>
+      <form class="question-box" @submit.prevent="submit"><textarea v-model="question" rows="2" :disabled="sending" placeholder="针对已选论文提问；答案将只依据检索到的原文证据…" @keydown.ctrl.enter="submit" /><div class="question-actions"><span class="shortcut-hint">系统将自动判断是否进入评审流程</span><span class="shortcut-hint">Ctrl + Enter 发送</span><button v-if="activeWorkflow && !activeWorkflow.completedAnswer && !activeWorkflow.error" type="button" class="stop-button" @click="stop"><CircleStop :size="17" />停止</button><button type="submit" class="send-button" :disabled="sending || !question.trim()"><Send :size="18" /><span>{{ sending ? '提交中' : '发送' }}</span></button></div></form>
     </main>
 
     <aside class="reading-right">

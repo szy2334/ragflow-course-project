@@ -1,6 +1,6 @@
 # 科研论文智能阅读系统前端
 
-Vue 3 + Pinia + Axios 的前端实现，接口严格以 `../科研论文智能阅读系统_完整项目设计文档.md` 和后端 `/api/v1/openapi.json` 为准。
+Vue 3 + Pinia + Axios 的前端实现，接口严格以 [`../docs/统一接口规范_V1.0.md`](../docs/统一接口规范_V1.0.md) 和后端 `/api/v1/openapi.json` 为准。
 
 ```bash
 npm install

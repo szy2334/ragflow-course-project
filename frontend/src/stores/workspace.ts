@@ -17,7 +17,6 @@ interface LiveWorkflow {
   events: StreamEvent[]
 }
 
-const apiBase = import.meta.env.VITE_API_BASE_URL ?? '/api/v1'
 const wait = (ms: number) => new Promise((resolve) => window.setTimeout(resolve, ms))
 
 export const useWorkspaceStore = defineStore('workspace', {
@@ -77,25 +76,24 @@ export const useWorkspaceStore = defineStore('workspace', {
       workflow.lastSequence = event.sequence
       workflow.events.push(event)
       const eventData = event.data as {
-        delta?: string; evidence?: EvidenceItem; answer?: AnswerView; error?: { message?: string }; agent_name?: string; node_name?: string
+        delta?: string; evidence?: EvidenceItem; answer?: AnswerView; error?: { message?: string }; message?: string; label?: string; stage?: string; warnings?: string[]
       }
-      if (event.event_type === 'workflow_started') workflow.phase = '正在规划阅读任务'
-      if (event.event_type === 'agent_started') workflow.phase = `正在执行 ${eventData.agent_name ?? event.agent_name ?? eventData.node_name ?? '智能体'}`
-      if (event.event_type === 'retrieval_completed') workflow.phase = '已完成证据检索'
-      if (event.event_type === 'evidence_added' && eventData.evidence) workflow.evidences.push(eventData.evidence)
-      if (event.event_type === 'answer_delta') {
+      if (event.event_type === 'status') workflow.phase = eventData.label ?? eventData.stage ?? '正在处理问题'
+      if (event.event_type === 'citation' && eventData.evidence) workflow.evidences.push(eventData.evidence)
+      if (event.event_type === 'review_summary' && eventData.warnings) workflow.warnings = eventData.warnings
+      if (event.event_type === 'delta') {
         workflow.phase = '正在组织已核验结论'
         workflow.text += eventData.delta ?? ''
       }
-      if (event.event_type === 'answer_completed' && eventData.answer) {
+      if (event.event_type === 'final' && eventData.answer) {
         workflow.completedAnswer = eventData.answer
         workflow.text = eventData.answer.answer
         workflow.evidences = eventData.answer.evidences
         workflow.warnings = eventData.answer.warnings
         workflow.phase = eventData.answer.is_refusal ? '已说明证据不足' : '回答已完成'
       }
-      if (event.event_type === 'workflow_failed') {
-        workflow.error = eventData.error?.message ?? '工作流未能完成。'
+      if (event.event_type === 'error') {
+        workflow.error = eventData.error?.message ?? eventData.message ?? '工作流未能完成。'
         workflow.phase = '工作流已结束'
       }
     },
@@ -104,18 +102,18 @@ export const useWorkspaceStore = defineStore('workspace', {
       if (!workflow) return
       if (demo.active()) {
         const emit = (sequence: number, event_type: StreamEvent['event_type'], data: Record<string, unknown>) => this.applyEvent(taskId, {
-          event_id: `demo-${taskId}-${sequence}`, event_type, task_id: taskId, session_id: demo.answer.session_id, agent_name: event_type === 'agent_started' ? 'retrieval' : null, sequence, timestamp: new Date().toISOString(), data,
+          event_id: `demo-${taskId}-${sequence}`, event_type, task_id: taskId, message_id: demo.answer.message_id, session_id: demo.answer.session_id, agent_name: null, sequence, timestamp: new Date().toISOString(), data,
         })
-        emit(1, 'workflow_started', { task_type: 'paper_qa', planned_agents: ['coordinator', 'retrieval', 'evidence_verification', 'synthesis'] })
+        emit(1, 'status', { stage: 'routing', label: '正在规划阅读任务' })
         await wait(280)
-        emit(2, 'agent_started', { agent_name: 'retrieval', node_name: 'retrieval' })
+        emit(2, 'status', { stage: 'retrieving', label: '正在检索论文证据' })
         await wait(280)
-        emit(3, 'evidence_added', { evidence: demo.evidence })
-        emit(4, 'retrieval_completed', { evidence_count: 1, top_retrieval_score: demo.evidence.retrieval_score })
+        emit(3, 'citation', { evidence: demo.evidence })
+        emit(4, 'status', { stage: 'synthesizing', label: '正在汇总已核验证据' })
         await wait(280)
-        emit(5, 'answer_delta', { message_id: demo.answer.message_id, delta: '正在依据实验章节的原文证据组织回答…\n\n' })
+        emit(5, 'delta', { message_id: demo.answer.message_id, delta: '正在依据实验章节的原文证据组织回答…\n\n' })
         await wait(280)
-        emit(6, 'answer_completed', { answer: demo.answer })
+        emit(6, 'final', { answer: demo.answer })
         return
       }
       let reconnects = 0
@@ -123,7 +121,8 @@ export const useWorkspaceStore = defineStore('workspace', {
         try {
           const after = workflow.lastSequence ? `?after_sequence=${workflow.lastSequence}` : ''
           const eventIds = [...workflow.eventIds]
-          const response = await fetch(`${apiBase}/workflows/${taskId}/events${after}`, {
+          const streamUrl = workflow.task.stream_url ?? `/api/v1/messages/${workflow.task.message_id ?? workflow.task.resource_id}/events`
+          const response = await fetch(`${streamUrl}${after}`, {
             headers: { Authorization: `Bearer ${getAccessToken() ?? ''}`, 'Last-Event-ID': eventIds[eventIds.length - 1] ?? '' },
             credentials: 'include',
           })
