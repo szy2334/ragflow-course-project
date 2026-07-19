@@ -7,7 +7,7 @@ from sqlalchemy import update
 
 from app.core.config import Settings
 from app.db.base import build_engine
-from app.db.models import Paper
+from app.db.models import Paper, User
 from app.main import create_app
 
 
@@ -52,6 +52,13 @@ async def _mark_ready(database_url: str, paper_id: str) -> None:
     await engine.dispose()
 
 
+async def _promote_admin(database_url: str, user_id: str) -> None:
+    engine = build_engine(database_url)
+    async with engine.begin() as connection:
+        await connection.execute(update(User).where(User.user_id == user_id).values(role="admin"))
+    await engine.dispose()
+
+
 def test_write_request_id_and_login_contract(tmp_path):
     app = create_app(_settings(tmp_path))
     with TestClient(app) as client:
@@ -88,10 +95,17 @@ def test_question_idempotency_and_terminal_sse_resume(tmp_path):
         asyncio.run(_mark_ready(settings.database_url, paper_id))
         session = client.post(
             "/api/v1/sessions",
-            headers=_headers(token),
+            headers=_headers(token, **{"Idempotency-Key": "session-1"}),
             json={"title": "Paper chat", "paper_ids": [paper_id]},
         )
         assert session.status_code == 201
+        session_replay = client.post(
+            "/api/v1/sessions",
+            headers=_headers(token, **{"Idempotency-Key": "session-1"}),
+            json={"title": "Paper chat", "paper_ids": [paper_id]},
+        )
+        assert session_replay.status_code == 201
+        assert session_replay.json()["data"]["session_id"] == session.json()["data"]["session_id"]
         session_id = session.json()["data"]["session_id"]
         body = {"question": "这篇论文说明了什么？", "stream": True}
         headers = _headers(token, **{"Idempotency-Key": "question-1"})
@@ -120,3 +134,73 @@ def test_question_idempotency_and_terminal_sse_resume(tmp_path):
         )
         assert resumed.status_code == 200
         assert resumed.text == ""
+
+
+def test_admin_configuration_and_evaluation_contract(tmp_path):
+    settings = _settings(tmp_path)
+    app = create_app(settings)
+    configuration_id = "00000000-0000-4000-8000-000000000001"
+    with TestClient(app) as client:
+        token = _register(client)
+        user_id = client.get("/api/v1/auth/me", headers=_headers(token)).json()["data"]["user_id"]
+        asyncio.run(_promote_admin(settings.database_url, user_id))
+
+        denied = client.get("/api/v1/admin/model-configs", headers=_headers("invalid"))
+        assert denied.status_code == 401
+
+        create = client.put(
+            f"/api/v1/admin/model-configs/{configuration_id}",
+            headers=_headers(
+                token,
+                **{"Idempotency-Key": "config-create", "If-Match": "*"},
+            ),
+            json={"value": {"name": "primary_generation", "model_name": "test-model"}},
+        )
+        assert create.status_code == 201
+        assert create.json()["data"]["model_config_id"] == configuration_id
+        version = create.headers["etag"]
+
+        listed = client.get("/api/v1/admin/model-configs", headers=_headers(token))
+        assert listed.status_code == 200
+        assert listed.json()["data"]["total"] == 1
+
+        conflict = client.put(
+            f"/api/v1/admin/model-configs/{configuration_id}",
+            headers=_headers(
+                token,
+                **{"Idempotency-Key": "config-conflict", "If-Match": "outdated"},
+            ),
+            json={"value": {"name": "primary_generation", "model_name": "new-model"}},
+        )
+        assert conflict.status_code == 409
+        assert conflict.json()["code"] == "CONFIG_VERSION_CONFLICT"
+
+        update_config = client.put(
+            f"/api/v1/admin/model-configs/{configuration_id}",
+            headers=_headers(
+                token,
+                **{"Idempotency-Key": "config-update", "If-Match": version},
+            ),
+            json={"value": {"name": "primary_generation", "model_name": "new-model"}},
+        )
+        assert update_config.status_code == 200
+        assert update_config.headers["etag"] != version
+
+        evaluation = client.post(
+            "/api/v1/admin/evaluation-runs",
+            headers=_headers(token, **{"Idempotency-Key": "evaluation-1"}),
+            json={"dataset_id": "qasper", "experiment_type": "multi_agent_rag"},
+        )
+        assert evaluation.status_code == 202
+        task_url = evaluation.json()["data"]["status_url"]
+        for _ in range(20):
+            task = client.get(task_url, headers=_headers(token))
+            if task.json()["data"]["status"] in {"succeeded", "failed"}:
+                break
+            time.sleep(0.02)
+        assert task.json()["data"]["status"] == "succeeded"
+        assert task.json()["data"]["result"]["dataset_id"] == "qasper"
+
+        metrics = client.get("/api/v1/admin/metrics/overview", headers=_headers(token))
+        assert metrics.status_code == 200
+        assert metrics.json()["data"]["request_count"] >= 1

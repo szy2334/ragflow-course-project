@@ -8,7 +8,7 @@ from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from uuid import uuid4
 
-from fastapi import APIRouter, Depends, File, Form, Request, Response, UploadFile
+from fastapi import APIRouter, Depends, File, Form, Header, Request, Response, UploadFile
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from sqlalchemy import func, select
@@ -18,15 +18,22 @@ from app.ai.schemas import StartQaWorkflowCommand
 from app.api.dependencies import (
     current_user,
     get_session,
+    require_admin,
     require_idempotency_key,
     require_request_id,
 )
 from app.api.schemas import (
+    AnalysisInput,
     CancelInput,
+    ComparisonInput,
+    ConfigUpdateInput,
+    EvaluationInput,
+    ExportInput,
     FeedbackInput,
     LoginInput,
     PaperRetryInput,
     QuestionInput,
+    ReadingReportInput,
     RegisterInput,
     SessionCreateInput,
     SessionUpdateInput,
@@ -43,11 +50,16 @@ from app.core.security import (
 from app.db.models import (
     ChatMessage,
     ChatSession,
+    ConfigurationVersion,
     Feedback,
     Paper,
     PaperChunk,
+    RagMapping,
+    ReadingReport,
     RefreshToken,
+    ReportExport,
     TaskRecord,
+    TraceRecord,
     User,
     WorkflowRun,
     new_id,
@@ -75,10 +87,196 @@ def _accepted(task: TaskRecord, *, message_id: str | None = None) -> dict[str, o
     }
 
 
-def _json(status_code: int, data: object, request_id: str) -> JSONResponse:
+def _json(
+    status_code: int,
+    data: object,
+    request_id: str,
+    *,
+    headers: dict[str, str] | None = None,
+) -> JSONResponse:
     return JSONResponse(
-        status_code=status_code, content=jsonable_encoder(envelope(data, request_id))
+        status_code=status_code,
+        content=jsonable_encoder(envelope(data, request_id)),
+        headers=headers,
     )
+
+
+def _report_view(report: ReadingReport) -> dict[str, object]:
+    return {
+        "report_id": report.report_id,
+        "user_id": report.user_id,
+        "title": report.title,
+        "paper_ids": report.paper_ids,
+        "status": report.status,
+        "content_markdown": report.content_markdown,
+        "claims": report.claims_json,
+        "evidence_ids": report.evidence_ids,
+        "created_at": report.created_at,
+        "completed_at": report.completed_at,
+    }
+
+
+_CONFIG_ID_FIELDS = {
+    "model": "model_config_id",
+    "prompt": "prompt_template_id",
+    "retrieval": "retrieval_config_id",
+}
+_SECRET_FIELD_MARKERS = (
+    "api_key",
+    "secret",
+    "password",
+    "authorization",
+    "access_token",
+    "refresh_token",
+)
+
+
+def _contains_secret(value: object) -> bool:
+    if isinstance(value, dict):
+        return any(
+            any(marker in str(key).lower() for marker in _SECRET_FIELD_MARKERS)
+            or _contains_secret(item)
+            for key, item in value.items()
+        )
+    if isinstance(value, list):
+        return any(_contains_secret(item) for item in value)
+    return False
+
+
+def _public_config_value(value: object) -> object:
+    if isinstance(value, dict):
+        return {
+            str(key): _public_config_value(item)
+            for key, item in value.items()
+            if not any(marker in str(key).lower() for marker in _SECRET_FIELD_MARKERS)
+        }
+    if isinstance(value, list):
+        return [_public_config_value(item) for item in value]
+    return value
+
+
+def _config_view(config: ConfigurationVersion) -> dict[str, object]:
+    value = _public_config_value(config.payload_json)
+    data = dict(value) if isinstance(value, dict) else {"value": value}
+    data.update(
+        {
+            _CONFIG_ID_FIELDS[config.kind]: config.configuration_id,
+            "kind": config.kind,
+            "version": config.version,
+            "status": "active",
+            "updated_at": config.created_at,
+        }
+    )
+    return data
+
+
+def _next_config_version(config: ConfigurationVersion) -> str:
+    prefix, separator, suffix = config.version.rpartition(":")
+    if separator and suffix.isdecimal():
+        return f"{prefix}:{int(suffix) + 1}"
+    return f"{config.version}:2"
+
+
+async def _configuration(
+    session: AsyncSession, *, kind: str, configuration_id: str
+) -> ConfigurationVersion:
+    item = await session.scalar(
+        select(ConfigurationVersion).where(
+            ConfigurationVersion.configuration_id == configuration_id,
+            ConfigurationVersion.kind == kind,
+        )
+    )
+    if item is None:
+        raise ApiError(404, "CONFIG_NOT_FOUND", "配置不存在。")
+    return item
+
+
+async def _ready_papers(
+    session: AsyncSession, *, user_id: str, paper_ids: list[str]
+) -> list[Paper]:
+    papers = list(
+        (
+            await session.scalars(
+                select(Paper).where(
+                    Paper.paper_id.in_(paper_ids),
+                    Paper.owner_id == user_id,
+                    Paper.status == "ready",
+                    Paper.deleted_at.is_(None),
+                )
+            )
+        ).all()
+    )
+    if len(papers) != len(set(paper_ids)):
+        raise ApiError(409, "PAPER_NOT_READY", "论文尚未完成解析和索引。", {"paper_ids": paper_ids})
+    return papers
+
+
+async def _create_internal_workflow(
+    session: AsyncSession,
+    *,
+    request: Request,
+    user: User,
+    paper_ids: list[str],
+    question: str,
+    task_type: str,
+    resource_id: str,
+    request_id: str,
+) -> tuple[TaskRecord, ChatMessage, StartQaWorkflowCommand]:
+    task_id, message_id = new_id(), new_id()
+    chat_session = ChatSession(
+        user_id=user.user_id,
+        title=f"系统任务：{task_type}",
+        paper_ids=paper_ids,
+        is_internal=True,
+    )
+    session.add(chat_session)
+    await session.flush()
+    snapshot = snapshot_from_settings(request.app.state.settings)
+    message = ChatMessage(
+        message_id=message_id,
+        session_id=chat_session.session_id,
+        user_id=user.user_id,
+        role="user",
+        content=question,
+        task_id=task_id,
+        status="pending",
+    )
+    task = TaskRecord(
+        task_id=task_id,
+        user_id=user.user_id,
+        task_type=task_type,
+        status="pending",
+        stage="queued",
+        message_id=message_id,
+        resource_id=resource_id,
+        request_id=request_id,
+        correlation_id=task_id,
+    )
+    session.add_all(
+        [
+            message,
+            task,
+            WorkflowRun(
+                task_id=task_id,
+                session_id=chat_session.session_id,
+                user_id=user.user_id,
+                configuration_json=snapshot.model_dump(mode="json"),
+                status="pending",
+            ),
+        ]
+    )
+    command = StartQaWorkflowCommand(
+        request_id=request_id,
+        correlation_id=task_id,
+        task_id=task_id,
+        message_id=message_id,
+        user_id=user.user_id,
+        session_id=chat_session.session_id,
+        paper_ids=paper_ids,
+        original_question=question,
+        configuration=snapshot,
+    )
+    return task, message, command
 
 
 async def _token_view(request: Request, session: AsyncSession, user: User) -> dict[str, object]:
@@ -520,14 +718,354 @@ async def retry_paper(
     return _json(202, data, request_id)
 
 
+@router.delete("/papers/{paper_id}")
+async def delete_paper(
+    paper_id: str,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    paper = await _owned_paper(session, user.user_id, paper_id)
+    fingerprint = request_fingerprint({"paper_id": paper_id})
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="DELETE",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(202, replay, request_id)
+    paper.status = "deleting"
+    paper.index_status = "cancelling"
+    task = TaskRecord(
+        user_id=user.user_id,
+        task_type="paper_cleanup",
+        resource_id=paper.paper_id,
+        status="pending",
+        stage="queued",
+        request_id=request_id,
+        correlation_id=new_id(),
+    )
+    session.add(task)
+    await session.flush()
+    data = _accepted(task)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="DELETE",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=202,
+        response=data,
+    )
+    await session.commit()
+    await request.app.state.redis.set_task_state(task.task_id, task_view(task))
+    request.app.state.operations_executor.submit(task.task_id)
+    return _json(202, data, request_id)
+
+
+@router.post("/papers/{paper_id}/analyses/{kind}")
+async def create_analysis(
+    paper_id: str,
+    kind: str,
+    body: AnalysisInput,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    if kind not in {"summary", "method", "experiment", "critical-review"}:
+        raise ApiError(422, "VALIDATION_ERROR", "不支持的论文分析类型。")
+    await _ready_papers(session, user_id=user.user_id, paper_ids=[paper_id])
+    fingerprint = request_fingerprint({"kind": kind, **body.model_dump(mode="json")})
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(202, replay, request_id)
+    default_questions = {
+        "summary": "请基于论文原文给出结构化阅读摘要，并标注关键证据。",
+        "method": "请分析论文的方法设计、假设与局限，并标注原文证据。",
+        "experiment": "请分析论文的实验设计、结果与证据充分性。",
+        "critical-review": "请对论文进行平衡的同行评审，给出优点、问题和证据。",
+    }
+    task, message, command = await _create_internal_workflow(
+        session,
+        request=request,
+        user=user,
+        paper_ids=[paper_id],
+        question=body.question or default_questions[kind],
+        task_type=f"paper_analysis:{kind}",
+        resource_id=paper_id,
+        request_id=request_id,
+    )
+    await session.flush()
+    data = _accepted(task, message_id=message.message_id)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=202,
+        response=data,
+    )
+    await session.commit()
+    await request.app.state.redis.set_task_state(task.task_id, task_view(task))
+    request.app.state.workflow_executor.submit(command)
+    return _json(202, data, request_id)
+
+
+@router.post("/paper-comparisons")
+async def compare_papers(
+    body: ComparisonInput,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    await _ready_papers(session, user_id=user.user_id, paper_ids=body.paper_ids)
+    fingerprint = request_fingerprint(body.model_dump(mode="json"))
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(202, replay, request_id)
+    dimensions = "、".join(body.dimensions)
+    question = body.question or f"请比较这些论文在以下维度的异同：{dimensions}。所有结论必须引用对应论文证据。"
+    task, message, command = await _create_internal_workflow(
+        session,
+        request=request,
+        user=user,
+        paper_ids=body.paper_ids,
+        question=question,
+        task_type="paper_comparison",
+        resource_id=new_id(),
+        request_id=request_id,
+    )
+    await session.flush()
+    data = _accepted(task, message_id=message.message_id)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=202,
+        response=data,
+    )
+    await session.commit()
+    await request.app.state.redis.set_task_state(task.task_id, task_view(task))
+    request.app.state.workflow_executor.submit(command)
+    return _json(202, data, request_id)
+
+
+@router.post("/reading-reports")
+async def create_reading_report(
+    body: ReadingReportInput,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    await _ready_papers(session, user_id=user.user_id, paper_ids=body.paper_ids)
+    if body.session_id:
+        await _owned_session(session, user.user_id, body.session_id)
+    fingerprint = request_fingerprint(body.model_dump(mode="json"))
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(202, replay, request_id)
+    report = ReadingReport(
+        user_id=user.user_id,
+        session_id=body.session_id,
+        paper_ids=body.paper_ids,
+        title=body.title,
+        template_key=body.template_key,
+    )
+    session.add(report)
+    await session.flush()
+    task = TaskRecord(
+        user_id=user.user_id,
+        task_type="reading_report",
+        resource_id=report.report_id,
+        status="pending",
+        stage="queued",
+        request_id=request_id,
+        correlation_id=new_id(),
+    )
+    session.add(task)
+    await session.flush()
+    data = _accepted(task)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=202,
+        response=data,
+    )
+    await session.commit()
+    await request.app.state.redis.set_task_state(task.task_id, task_view(task))
+    request.app.state.operations_executor.submit(task.task_id)
+    return _json(202, data, request_id)
+
+
+@router.get("/reading-reports/{report_id}")
+async def get_reading_report(
+    report_id: str,
+    request: Request,
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    report = await session.scalar(
+        select(ReadingReport).where(
+            ReadingReport.report_id == report_id, ReadingReport.user_id == user.user_id
+        )
+    )
+    if report is None:
+        raise ApiError(404, "REPORT_NOT_FOUND", "阅读报告不存在。")
+    return envelope(_report_view(report), request.state.request_id)
+
+
+@router.post("/reading-reports/{report_id}/exports")
+async def export_reading_report(
+    report_id: str,
+    body: ExportInput,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    report = await session.scalar(
+        select(ReadingReport).where(
+            ReadingReport.report_id == report_id, ReadingReport.user_id == user.user_id
+        )
+    )
+    if report is None:
+        raise ApiError(404, "REPORT_NOT_FOUND", "阅读报告不存在。")
+    if report.status != "succeeded" or not report.content_markdown:
+        raise ApiError(409, "REPORT_NOT_READY", "阅读报告尚未生成完成。")
+    fingerprint = request_fingerprint(body.model_dump(mode="json"))
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(202, replay, request_id)
+    task = TaskRecord(
+        user_id=user.user_id,
+        task_type="report_export",
+        resource_id=report_id,
+        status="pending",
+        stage="queued",
+        request_id=request_id,
+        correlation_id=new_id(),
+        payload_json={"format": body.format},
+    )
+    session.add(task)
+    await session.flush()
+    export = ReportExport(report_id=report_id, task_id=task.task_id, format=body.format)
+    session.add(export)
+    data = _accepted(task)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=202,
+        response=data,
+    )
+    await session.commit()
+    await request.app.state.redis.set_task_state(task.task_id, task_view(task))
+    request.app.state.operations_executor.submit(task.task_id)
+    return _json(202, data, request_id)
+
+
+@router.get("/reading-reports/{report_id}/exports/{export_id}/file")
+async def download_report_export(
+    report_id: str,
+    export_id: str,
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    export = await session.scalar(
+        select(ReportExport)
+        .join(ReadingReport, ReadingReport.report_id == ReportExport.report_id)
+        .where(
+            ReportExport.export_id == export_id,
+            ReportExport.report_id == report_id,
+            ReadingReport.user_id == user.user_id,
+        )
+    )
+    if export is None or export.status != "succeeded" or not export.file_path:
+        raise ApiError(404, "REPORT_EXPORT_NOT_FOUND", "报告导出文件不存在。")
+    path = Path(export.file_path)
+    if not path.is_file():
+        raise ApiError(404, "REPORT_EXPORT_NOT_FOUND", "报告导出文件不存在。")
+    media = {
+        "markdown": "text/markdown; charset=utf-8",
+        "pdf": "application/pdf",
+        "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    }[export.format]
+    return FileResponse(path, media_type=media, filename=f"report-{report_id}.{export.format}")
+
+
 @router.post("/sessions")
 async def create_session(
     body: SessionCreateInput,
     request: Request,
     request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_session),
 ):
+    fingerprint = request_fingerprint(body.model_dump(mode="json"))
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(201, replay, request_id)
     papers = list(
         (
             await session.scalars(
@@ -549,9 +1087,21 @@ async def create_session(
         knowledge_base_id=body.knowledge_base_id,
     )
     session.add(item)
+    await session.flush()
+    data = session_view(item)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=201,
+        response=data,
+    )
     await session.commit()
     await session.refresh(item)
-    return _json(201, session_view(item), request_id)
+    return _json(201, data, request_id)
 
 
 @router.get("/sessions")
@@ -565,13 +1115,15 @@ async def list_sessions(
     page, page_size = _page(page, page_size)
     total = (
         await session.scalar(
-            select(func.count()).select_from(ChatSession).where(ChatSession.user_id == user.user_id)
+            select(func.count())
+            .select_from(ChatSession)
+            .where(ChatSession.user_id == user.user_id, ChatSession.is_internal.is_(False))
         )
         or 0
     )
     rows = await session.scalars(
         select(ChatSession)
-        .where(ChatSession.user_id == user.user_id)
+        .where(ChatSession.user_id == user.user_id, ChatSession.is_internal.is_(False))
         .order_by(ChatSession.last_message_at.desc().nullslast(), ChatSession.created_at.desc())
         .offset((page - 1) * page_size)
         .limit(page_size)
@@ -604,13 +1156,36 @@ async def update_session(
     body: SessionUpdateInput,
     request: Request,
     request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_session),
 ):
+    fingerprint = request_fingerprint(body.model_dump(mode="json"))
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="PATCH",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(200, replay, request_id)
     item = await _owned_session(session, user.user_id, session_id)
     item.title = body.title
+    data = session_view(item)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="PATCH",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=200,
+        response=data,
+    )
     await session.commit()
-    return envelope(session_view(item), request_id)
+    return _json(200, data, request_id)
 
 
 @router.get("/sessions/{session_id}/messages")
@@ -861,9 +1436,21 @@ async def feedback(
     body: FeedbackInput,
     request: Request,
     request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_session),
 ):
+    fingerprint = request_fingerprint(body.model_dump(mode="json"))
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(200, replay, request_id)
     message = await session.scalar(
         select(ChatMessage).where(
             ChatMessage.message_id == message_id, ChatMessage.user_id == user.user_id
@@ -879,15 +1466,24 @@ async def feedback(
         tags=body.tags,
     )
     session.add(item)
-    await session.commit()
-    return envelope(
-        {
-            "feedback_id": item.feedback_id,
-            "message_id": message_id,
-            "feedback_type": item.feedback_type,
-        },
-        request_id,
+    await session.flush()
+    data = {
+        "feedback_id": item.feedback_id,
+        "message_id": message_id,
+        "feedback_type": item.feedback_type,
+    }
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=200,
+        response=data,
     )
+    await session.commit()
+    return _json(200, data, request_id)
 
 
 @router.get("/messages/{message_id}/events")
@@ -934,4 +1530,504 @@ async def stream_events(
         event_source(),
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
+
+
+async def _list_configurations(
+    *,
+    kind: str,
+    request: Request,
+    session: AsyncSession,
+    page: int,
+    page_size: int,
+) -> dict[str, object]:
+    page, page_size = _page(page, page_size)
+    where = ConfigurationVersion.kind == kind
+    total = await session.scalar(select(func.count()).select_from(ConfigurationVersion).where(where))
+    rows = await session.scalars(
+        select(ConfigurationVersion)
+        .where(where)
+        .order_by(ConfigurationVersion.created_at.desc())
+        .offset((page - 1) * page_size)
+        .limit(page_size)
+    )
+    return envelope(
+        {
+            "page": page,
+            "page_size": page_size,
+            "total": total or 0,
+            "items": [_config_view(item) for item in rows],
+        },
+        request.state.request_id,
+    )
+
+
+async def _get_configuration_response(
+    *,
+    kind: str,
+    configuration_id: str,
+    request: Request,
+    session: AsyncSession,
+) -> JSONResponse:
+    item = await _configuration(session, kind=kind, configuration_id=configuration_id)
+    data = _config_view(item)
+    return _json(200, data, request.state.request_id, headers={"ETag": item.version})
+
+
+async def _put_configuration(
+    *,
+    kind: str,
+    configuration_id: str,
+    body: ConfigUpdateInput,
+    request: Request,
+    request_id: str,
+    if_match: str | None,
+    idempotency_key: str,
+    user: User,
+    session: AsyncSession,
+) -> JSONResponse:
+    if _contains_secret(body.value):
+        raise ApiError(422, "CONFIG_SECRET_FORBIDDEN", "配置中不能保存密钥或令牌。")
+    fingerprint = request_fingerprint(
+        {"kind": kind, "configuration_id": configuration_id, **body.model_dump(mode="json")}
+    )
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="PUT",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(200, replay, request_id, headers={"ETag": str(replay["version"])})
+
+    item = await session.scalar(
+        select(ConfigurationVersion).where(
+            ConfigurationVersion.configuration_id == configuration_id,
+            ConfigurationVersion.kind == kind,
+        )
+    )
+    created = item is None
+    if item is None:
+        if if_match != "*":
+            raise ApiError(
+                409,
+                "CONFIG_VERSION_CONFLICT",
+                "创建配置时 If-Match 必须为 *。",
+            )
+        item = ConfigurationVersion(
+            configuration_id=configuration_id,
+            kind=kind,
+            version=f"{configuration_id}:1",
+            payload_json=body.value,
+        )
+        session.add(item)
+    else:
+        if if_match != item.version:
+            raise ApiError(
+                409,
+                "CONFIG_VERSION_CONFLICT",
+                "配置已经被其他管理员更新。",
+                {"current_version": item.version},
+            )
+        item.version = _next_config_version(item)
+        item.payload_json = body.value
+
+    await session.flush()
+    data = _config_view(item)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="PUT",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=201 if created else 200,
+        response=data,
+    )
+    await session.commit()
+    return _json(201 if created else 200, data, request_id, headers={"ETag": item.version})
+
+
+@router.get("/admin/model-configs")
+async def list_model_configs(
+    request: Request,
+    page: int = 1,
+    page_size: int = 50,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    return await _list_configurations(
+        kind="model", request=request, session=session, page=page, page_size=page_size
+    )
+
+
+@router.get("/admin/prompt-templates")
+async def list_prompt_templates(
+    request: Request,
+    page: int = 1,
+    page_size: int = 50,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    return await _list_configurations(
+        kind="prompt", request=request, session=session, page=page, page_size=page_size
+    )
+
+
+@router.get("/admin/retrieval-configs")
+async def list_retrieval_configs(
+    request: Request,
+    page: int = 1,
+    page_size: int = 50,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    return await _list_configurations(
+        kind="retrieval", request=request, session=session, page=page, page_size=page_size
+    )
+
+
+@router.get("/admin/model-configs/{configuration_id}")
+async def get_model_config(
+    configuration_id: str,
+    request: Request,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    return await _get_configuration_response(
+        kind="model", configuration_id=configuration_id, request=request, session=session
+    )
+
+
+@router.get("/admin/prompt-templates/{configuration_id}")
+async def get_prompt_template(
+    configuration_id: str,
+    request: Request,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    return await _get_configuration_response(
+        kind="prompt", configuration_id=configuration_id, request=request, session=session
+    )
+
+
+@router.get("/admin/retrieval-configs/{configuration_id}")
+async def get_retrieval_config(
+    configuration_id: str,
+    request: Request,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    return await _get_configuration_response(
+        kind="retrieval", configuration_id=configuration_id, request=request, session=session
+    )
+
+
+@router.put("/admin/model-configs/{configuration_id}")
+async def put_model_config(
+    configuration_id: str,
+    body: ConfigUpdateInput,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    if_match: str | None = Header(default=None, alias="If-Match"),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    return await _put_configuration(
+        kind="model",
+        configuration_id=configuration_id,
+        body=body,
+        request=request,
+        request_id=request_id,
+        if_match=if_match,
+        idempotency_key=idempotency_key,
+        user=user,
+        session=session,
+    )
+
+
+@router.put("/admin/prompt-templates/{configuration_id}")
+async def put_prompt_template(
+    configuration_id: str,
+    body: ConfigUpdateInput,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    if_match: str | None = Header(default=None, alias="If-Match"),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    return await _put_configuration(
+        kind="prompt",
+        configuration_id=configuration_id,
+        body=body,
+        request=request,
+        request_id=request_id,
+        if_match=if_match,
+        idempotency_key=idempotency_key,
+        user=user,
+        session=session,
+    )
+
+
+@router.put("/admin/retrieval-configs/{configuration_id}")
+async def put_retrieval_config(
+    configuration_id: str,
+    body: ConfigUpdateInput,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    if_match: str | None = Header(default=None, alias="If-Match"),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    return await _put_configuration(
+        kind="retrieval",
+        configuration_id=configuration_id,
+        body=body,
+        request=request,
+        request_id=request_id,
+        if_match=if_match,
+        idempotency_key=idempotency_key,
+        user=user,
+        session=session,
+    )
+
+
+async def _admin_dataset_items(session: AsyncSession, request: Request) -> list[dict[str, object]]:
+    rows = await session.execute(
+        select(RagMapping.dataset_id, func.count(RagMapping.mapping_id))
+        .group_by(RagMapping.dataset_id)
+        .order_by(RagMapping.dataset_id)
+    )
+    counts = {str(dataset_id): int(count) for dataset_id, count in rows}
+    settings = request.app.state.settings
+    configured = {
+        settings.ragflow_user_dataset_id: "用户论文库",
+        settings.ragflow_public_dataset_id: "公共评审知识库",
+    }
+    for dataset_id in configured:
+        if dataset_id:
+            counts.setdefault(dataset_id, 0)
+    return [
+        {
+            "dataset_id": dataset_id,
+            "dataset_name": configured.get(dataset_id) or dataset_id,
+            "dataset_version": "ragflow",
+            "status": "ready" if count else "empty",
+            "document_count": count,
+            "chunk_mapping_count": count,
+        }
+        for dataset_id, count in counts.items()
+    ]
+
+
+@router.get("/admin/knowledge-bases")
+async def list_knowledge_bases(
+    request: Request,
+    page: int = 1,
+    page_size: int = 50,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    page, page_size = _page(page, page_size)
+    datasets = await _admin_dataset_items(session, request)
+    items = [
+        {
+            "knowledge_base_id": item["dataset_id"],
+            "name": item["dataset_name"],
+            "status": item["status"],
+            "paper_count": item["document_count"],
+            "active_index_version": item["dataset_version"],
+        }
+        for item in datasets
+    ]
+    return envelope(
+        {
+            "page": page,
+            "page_size": page_size,
+            "total": len(items),
+            "items": items[(page - 1) * page_size : page * page_size],
+        },
+        request.state.request_id,
+    )
+
+
+@router.get("/admin/datasets")
+async def list_datasets(
+    request: Request,
+    page: int = 1,
+    page_size: int = 50,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    page, page_size = _page(page, page_size)
+    items = await _admin_dataset_items(session, request)
+    return envelope(
+        {
+            "page": page,
+            "page_size": page_size,
+            "total": len(items),
+            "items": items[(page - 1) * page_size : page * page_size],
+        },
+        request.state.request_id,
+    )
+
+
+@router.get("/admin/workflow-runs/{workflow_run_id}")
+async def get_workflow_run(
+    workflow_run_id: str,
+    request: Request,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    run = await session.get(WorkflowRun, workflow_run_id)
+    if run is None:
+        raise ApiError(404, "WORKFLOW_RUN_NOT_FOUND", "工作流运行记录不存在。")
+    task = await session.get(TaskRecord, run.task_id)
+    traces = await session.scalars(
+        select(TraceRecord)
+        .where(TraceRecord.task_id == run.task_id)
+        .order_by(TraceRecord.created_at)
+    )
+    return envelope(
+        {
+            "workflow_run_id": run.workflow_run_id,
+            "task_id": run.task_id,
+            "session_id": run.session_id,
+            "user_id": run.user_id,
+            "status": run.status,
+            "task": task_view(task) if task else None,
+            "configuration": _public_config_value(run.configuration_json),
+            "summary": run.summary_json,
+            "traces": [
+                {
+                    "trace_id": trace.trace_id,
+                    "node_name": trace.node_name,
+                    "duration_ms": trace.duration_ms,
+                    "status": trace.status,
+                    "error_code": trace.error_code,
+                    "metrics": trace.metrics_json,
+                    "created_at": trace.created_at,
+                }
+                for trace in traces
+            ],
+        },
+        request.state.request_id,
+    )
+
+
+@router.post("/admin/evaluation-runs")
+async def create_evaluation_run(
+    body: EvaluationInput,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    fingerprint = request_fingerprint(body.model_dump(mode="json"))
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(202, replay, request_id)
+    task = TaskRecord(
+        user_id=user.user_id,
+        task_type="evaluation",
+        resource_id=body.dataset_id,
+        status="pending",
+        stage="queued",
+        request_id=request_id,
+        correlation_id=new_id(),
+        payload_json=body.model_dump(mode="json"),
+    )
+    session.add(task)
+    await session.flush()
+    data = _accepted(task)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=202,
+        response=data,
+    )
+    await session.commit()
+    await request.app.state.redis.set_task_state(task.task_id, task_view(task))
+    request.app.state.operations_executor.submit(task.task_id)
+    return _json(202, data, request_id)
+
+
+def _percentile(values: list[int], percentile: float) -> int:
+    if not values:
+        return 0
+    index = max(0, min(len(values) - 1, int(len(values) * percentile + 0.9999) - 1))
+    return sorted(values)[index]
+
+
+@router.get("/admin/metrics/overview")
+async def metrics_overview(
+    request: Request,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    tasks = list((await session.scalars(select(TaskRecord))).all())
+    workflow_tasks = [
+        task
+        for task in tasks
+        if task.task_type == "qa_workflow"
+        or task.task_type.startswith("paper_analysis:")
+        or task.task_type == "paper_comparison"
+    ]
+    terminal = [task for task in tasks if task.status in {"succeeded", "failed", "cancelled"}]
+    failures = [task for task in terminal if task.status in {"failed", "cancelled"}]
+    latencies = [
+        int((task.completed_at - task.started_at).total_seconds() * 1000)
+        for task in terminal
+        if task.started_at is not None and task.completed_at is not None
+    ]
+    no_evidence = [
+        task
+        for task in workflow_tasks
+        if (task.error_json or {}).get("code") in {"RAG_NO_EVIDENCE", "QA_EVIDENCE_INVALID"}
+    ]
+    successful_workflows = [task for task in workflow_tasks if task.status == "succeeded"]
+    created_at = [task.created_at for task in tasks]
+    return envelope(
+        {
+            "request_count": len(tasks),
+            "question_count": len(workflow_tasks),
+            "token_input": 0,
+            "token_output": 0,
+            "estimated_cost": "0.00000000",
+            "latency_p50_ms": _percentile(latencies, 0.5),
+            "latency_p95_ms": _percentile(latencies, 0.95),
+            "error_rate": len(failures) / len(terminal) if terminal else 0.0,
+            "retrieval_metrics": {
+                "empty_rate": len(no_evidence) / len(workflow_tasks) if workflow_tasks else 0.0,
+            },
+            "workflow_metrics": {
+                "success_rate": len(successful_workflows) / len(workflow_tasks)
+                if workflow_tasks
+                else 0.0,
+                "refusal_rate": len(no_evidence) / len(workflow_tasks) if workflow_tasks else 0.0,
+            },
+            "time_range": {
+                "start_time": min(created_at).isoformat() if created_at else None,
+                "end_time": max(created_at).isoformat() if created_at else None,
+                "interval": "all",
+            },
+        },
+        request.state.request_id,
     )
