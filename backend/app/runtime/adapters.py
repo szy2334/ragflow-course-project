@@ -44,7 +44,12 @@ class SqlAlchemyContextPort(ContextPort):
                 .limit(8)
             )
             messages = list(reversed(rows.all()))
-        summary = "\n".join(f"{item.role}: {item.content}" for item in messages)
+        turns: list[str] = []
+        for item in messages:
+            turns.append(f"user: {item.content}")
+            if item.answer_text:
+                turns.append(f"assistant: {item.answer_text}")
+        summary = "\n".join(turns)
         return summary[-6000:]
 
 
@@ -117,8 +122,16 @@ class SqlAlchemyAnswerPersistence(AnswerPersistencePort):
 
             answer_json = command.answer.model_dump(mode="json")
             message.answer_json = answer_json
+            message.answer_text = command.answer.answer
             message.status = "succeeded"
             message.confidence = command.answer.confidence
+            message.route_type = command.answer.route_type
+            message.model_version = command.configuration.model.config_version
+            message.prompt_version = command.configuration.prompt_version
+            message.retrieval_config_json = {
+                "schema_version": command.configuration.schema_version,
+                "standard_version": command.configuration.standard_version,
+            }
             task.status = "succeeded"
             task.progress = 1.0
             task.stage = "completed"
@@ -143,6 +156,20 @@ class SqlAlchemyAnswerPersistence(AnswerPersistencePort):
                     Citation(
                         message_id=message.message_id,
                         evidence_id=evidence.evidence_id,
+                        source_type=evidence.source_type,
+                        paper_id=evidence.paper_id,
+                        document_id=evidence.document_id,
+                        chunk_id=evidence.chunk_id,
+                        content_type=evidence.content_type,
+                        source_text=evidence.quote,
+                        section_title=evidence.section_title,
+                        page_start=evidence.page_number,
+                        page_end=int(evidence.metadata.get("page_end") or evidence.page_number)
+                        if evidence.page_number is not None
+                        else None,
+                        similarity=evidence.retrieval_score,
+                        source_uri=evidence.source_uri,
+                        content_sha256=evidence.metadata.get("content_sha256"),
                         evidence_json=evidence.model_dump(mode="json"),
                     )
                 )
@@ -151,6 +178,9 @@ class SqlAlchemyAnswerPersistence(AnswerPersistencePort):
                     ReviewResult(
                         message_id=message.message_id,
                         reviewer=opinion.reviewer,
+                        position=opinion.position,
+                        confidence=opinion.confidence,
+                        summary=opinion.summary,
                         opinion_json=opinion.model_dump(mode="json"),
                     )
                 )
@@ -186,10 +216,17 @@ class RagFlowRetrievalPort:
                     relaxed=request.relaxed,
                     warnings=["authorized paper scope is unavailable"],
                 )
+            current_versions = [
+                item.paper_version_id for item in papers if item.paper_version_id is not None
+            ]
             mappings = list(
                 (
                     await session.scalars(
-                        select(RagMapping).where(RagMapping.paper_id.in_(request.paper_ids))
+                        select(RagMapping).where(
+                            RagMapping.paper_id.in_(request.paper_ids),
+                            RagMapping.paper_version_id.in_(current_versions),
+                            RagMapping.status == "ready",
+                        )
                     )
                 ).all()
             )

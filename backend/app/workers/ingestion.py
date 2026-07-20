@@ -168,8 +168,10 @@ class RagFlowManualImporter:
             "chunk_method": "manual",
             "metadata": {
                 "paper_id": paper.paper_id,
+                "paper_version_id": paper.paper_version_id,
                 "user_id": paper.owner_id,
                 "quality_status": "ready",
+                "file_hash": paper.content_sha256,
             },
             "chunks": [
                 {
@@ -177,6 +179,7 @@ class RagFlowManualImporter:
                     "content": item.content,
                     "metadata": {
                         "paper_id": paper.paper_id,
+                        "paper_version_id": paper.paper_version_id,
                         "source_chunk_id": item.chunk_id,
                         "content_type": item.content_type,
                         "section_title": item.section_title,
@@ -256,6 +259,12 @@ class IngestionTaskExecutor:
             paper = await session.get(Paper, task.resource_id)
             if paper is None:
                 return
+            if paper.paper_version_id is None:
+                raise IngestionFailure(
+                    "PAPER_VERSION_MISSING",
+                    "论文缺少可处理的版本记录。",
+                    retryable=False,
+                )
             stage = _ingestion_stage(start_stage or task.stage)
             task.status, task.stage, task.started_at = "running", stage, datetime.now(UTC)
             paper.status, paper.parse_progress, paper.index_status, paper.failure = (
@@ -294,11 +303,11 @@ class IngestionTaskExecutor:
 
         await self._set_stage(task_id, paper_id, "cleaning")
         chunks = _build_chunks(paper_id, parsed, ocr_results)
-        await self._store_chunks(paper_id, chunks)
+        await self._store_chunks(paper_id, version_id, chunks)
 
         await self._set_stage(task_id, paper_id, "quality_check")
         errors = _quality_report(parsed, chunks, ocr_results)
-        await self._store_quality_report(task_id, paper_id, errors)
+        await self._store_quality_report(task_id, paper_id, version_id, errors, len(chunks))
         if errors:
             raise IngestionFailure(
                 "CHUNK_QUALITY_FAILED", "论文结构化质量检查未通过。", retryable=False
@@ -308,12 +317,12 @@ class IngestionTaskExecutor:
         async with self._sessions() as session:
             paper = await session.get(Paper, paper_id)
             assert paper is not None
-            reusable = await _complete_mapping(session, paper_id, chunks)
+            reusable = await _complete_mapping(session, paper_id, version_id, chunks)
         if reusable is None:
             document_id, mappings = await RagFlowManualImporter(self._settings).import_chunks(
                 paper, chunks
             )
-            await self._store_mappings(paper_id, document_id, mappings, chunks)
+            await self._store_mappings(paper_id, version_id, document_id, mappings, chunks)
         else:
             document_id, mappings = reusable
         await self._complete(task_id, paper_id, document_id, mappings, len(chunks))
@@ -459,7 +468,7 @@ class IngestionTaskExecutor:
             if not item.required:
                 result[item.object_id] = row.ocr_text or ""
                 continue
-            if row.ocr_status != "succeeded":
+            if row.ocr_status != "success":
                 try:
                     text = await client.recognize(item)
                 except IngestionFailure:
@@ -474,12 +483,14 @@ class IngestionTaskExecutor:
                         )
                     )
                     assert current is not None
-                    current.ocr_status, current.ocr_text = "succeeded", text
+                    current.ocr_status, current.ocr_text = "success", text
                     current.ocr_engine = (
                         "baidu-table-v2" if item.kind == "table" else "baidu-paddleocr-vl"
                     )
+                    current.engines_json = [current.ocr_engine]
+                    current.failure_json = None
                     await session.commit()
-                row.ocr_status, row.ocr_text = "succeeded", text
+                row.ocr_status, row.ocr_text = "success", text
             result[item.object_id] = row.ocr_text or ""
         return result
 
@@ -494,29 +505,60 @@ class IngestionTaskExecutor:
             )
             if item is not None:
                 item.ocr_status = "failed"
+                item.retry_count += 1
+                item.failure_json = {"code": "BAIDU_OCR_SPECIALIZED_FAILED"}
                 await session.commit()
 
-    async def _store_chunks(self, paper_id: str, chunks: list[BuiltChunk]) -> None:
+    async def _store_chunks(
+        self, paper_id: str, version_id: str, chunks: list[BuiltChunk]
+    ) -> None:
         async with self._sessions() as session:
-            await session.execute(delete(PaperChunk).where(PaperChunk.paper_id == paper_id))
-            session.add_all([_chunk_row(paper_id, item) for item in chunks])
+            await session.execute(
+                delete(PaperChunk).where(
+                    PaperChunk.paper_id == paper_id,
+                    PaperChunk.paper_version_id == version_id,
+                )
+            )
+            session.add_all([_chunk_row(paper_id, version_id, item) for item in chunks])
             await session.commit()
 
-    async def _store_quality_report(self, task_id: str, paper_id: str, errors: list[str]) -> None:
+    async def _store_quality_report(
+        self,
+        task_id: str,
+        paper_id: str,
+        version_id: str,
+        errors: list[str],
+        indexable_chunk_count: int,
+    ) -> None:
         async with self._sessions() as session:
             item = await session.scalar(
                 select(IngestionQualityReport).where(IngestionQualityReport.task_id == task_id)
             )
             status = "failed" if errors else "ready"
-            payload = {"status": status, "blocking_errors": errors, "indexable_chunks": 0}
+            payload = {
+                "status": status,
+                "blocking_errors": errors,
+                "indexable_chunks": indexable_chunk_count,
+            }
             if item is None:
                 session.add(
                     IngestionQualityReport(
-                        task_id=task_id, paper_id=paper_id, status=status, report_json=payload
+                        task_id=task_id,
+                        paper_id=paper_id,
+                        paper_version_id=version_id,
+                        status=status,
+                        indexable_chunk_count=indexable_chunk_count,
+                        blocking_error_count=len(errors),
+                        expected_mapping_count=indexable_chunk_count,
+                        report_json=payload,
                     )
                 )
             else:
-                item.status, item.report_json = status, payload
+                item.status = status
+                item.indexable_chunk_count = indexable_chunk_count
+                item.blocking_error_count = len(errors)
+                item.expected_mapping_count = indexable_chunk_count
+                item.report_json = payload
             run = await session.scalar(
                 select(PaperIngestionRun).where(PaperIngestionRun.task_id == task_id)
             )
@@ -540,14 +582,25 @@ class IngestionTaskExecutor:
             await self._redis.set_task_state(task.task_id, task_view(task))
 
     async def _store_mappings(
-        self, paper_id: str, document_id: str, mappings: dict[str, str], chunks: list[BuiltChunk]
+        self,
+        paper_id: str,
+        version_id: str,
+        document_id: str,
+        mappings: dict[str, str],
+        chunks: list[BuiltChunk],
     ) -> None:
         async with self._sessions() as session:
-            await session.execute(delete(RagMapping).where(RagMapping.paper_id == paper_id))
+            await session.execute(
+                delete(RagMapping).where(
+                    RagMapping.paper_id == paper_id,
+                    RagMapping.paper_version_id == version_id,
+                )
+            )
             session.add_all(
                 [
                     RagMapping(
                         paper_id=paper_id,
+                        paper_version_id=version_id,
                         source_chunk_id=chunk.chunk_id,
                         dataset_id=self._settings.ragflow_user_dataset_id or "",
                         document_id=document_id,
@@ -568,6 +621,8 @@ class IngestionTaskExecutor:
         mappings: dict[str, str],
         count: int,
     ) -> None:
+        if len(mappings) != count:
+            raise IngestionFailure("RAGFLOW_IMPORT_INCOMPLETE", "论文知识库映射不完整。")
         async with self._sessions() as session:
             task, paper = await _task_and_paper(session, task_id, paper_id)
             task.status, task.stage, task.progress, task.completed_at = (
@@ -598,6 +653,18 @@ class IngestionTaskExecutor:
                     "ready",
                     task.completed_at,
                 )
+            report = await session.scalar(
+                select(IngestionQualityReport).where(IngestionQualityReport.task_id == task_id)
+            )
+            if report is not None:
+                report.mapped_chunk_count = len(mappings)
+                report.mapping_failure_count = max(0, count - len(mappings))
+                report.report_json = {
+                    **report.report_json,
+                    "expected_mappings": count,
+                    "mapped_chunks": len(mappings),
+                    "mapping_failures": max(0, count - len(mappings)),
+                }
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
 
@@ -647,13 +714,17 @@ async def _task_and_paper(
 
 
 async def _complete_mapping(
-    session: AsyncSession, paper_id: str, chunks: list[BuiltChunk]
+    session: AsyncSession, paper_id: str, version_id: str, chunks: list[BuiltChunk]
 ) -> tuple[str, dict[str, str]] | None:
     """Reuse only a complete, content-identical mapping from a prior retry."""
     rows = list(
         (
             await session.scalars(
-                select(RagMapping).where(RagMapping.paper_id == paper_id, RagMapping.status == "ready")
+                select(RagMapping).where(
+                    RagMapping.paper_id == paper_id,
+                    RagMapping.paper_version_id == version_id,
+                    RagMapping.status == "ready",
+                )
             )
         ).all()
     )
@@ -725,10 +796,15 @@ def _build_chunks(
     paper_id: str, parsed: ParsedPaper, ocr_results: dict[str, str]
 ) -> list[BuiltChunk]:
     chunks: list[BuiltChunk] = []
-    for index, block in enumerate(parsed.blocks, start=1):
-        if not block.content:
-            continue
+    text_blocks = [block for block in parsed.blocks if block.content]
+    text_ids = [f"{paper_id}:text:{index}" for index in range(1, len(text_blocks) + 1)]
+    for index, block in enumerate(text_blocks, start=1):
         chunk_id = f"{paper_id}:text:{index}"
+        content_role = {
+            "formula": "formula",
+            "reference": "reference_entry",
+            "metadata": "metadata",
+        }.get(block.content_type, "paragraph")
         chunks.append(
             _built(
                 chunk_id,
@@ -737,6 +813,13 @@ def _build_chunks(
                 block.section_title,
                 block.page_number,
                 block.source_ref,
+                metadata={
+                    "content_role": content_role,
+                    "section_path": [block.section_title] if block.section_title else [],
+                    "prev_chunk_id": text_ids[index - 2] if index > 1 else None,
+                    "next_chunk_id": text_ids[index] if index < len(text_ids) else None,
+                    "retrieval_weight": 0.35 if content_role == "reference_entry" else 1.0,
+                },
             )
         )
     for item in parsed.media:
@@ -754,23 +837,32 @@ def _build_chunks(
                 item.page_number,
                 item.source_ref,
                 object_id=item.object_id,
-                metadata={"content_role": f"{item.kind}_overview"},
+                metadata={
+                    "content_role": f"{item.kind}_overview",
+                    "section_path": [item.caption] if item.caption else [],
+                },
             )
         )
-        child_type = "table" if item.kind == "table" else "figure_caption"
-        chunks.append(
-            _built(
-                f"{parent_id}:ocr",
-                text,
-                child_type,
-                item.caption or item.kind,
-                item.page_number,
-                item.source_ref,
-                object_id=item.object_id,
-                parent_chunk_id=parent_id,
-                metadata={"content_role": "table_rows" if item.kind == "table" else "figure_ocr"},
+        if text:
+            child_type = "table" if item.kind == "table" else "figure"
+            chunks.append(
+                _built(
+                    f"{parent_id}:ocr",
+                    text,
+                    child_type,
+                    item.caption or item.kind,
+                    item.page_number,
+                    item.source_ref,
+                    object_id=item.object_id,
+                    parent_chunk_id=parent_id,
+                    metadata={
+                        "content_role": "table_rows"
+                        if item.kind == "table"
+                        else "figure_ocr",
+                        "section_path": [item.caption] if item.caption else [],
+                    },
+                )
             )
-        )
     return chunks
 
 
@@ -818,19 +910,31 @@ def _quality_report(
     return errors
 
 
-def _chunk_row(paper_id: str, item: BuiltChunk) -> PaperChunk:
+def _chunk_row(paper_id: str, version_id: str, item: BuiltChunk) -> PaperChunk:
+    metadata = item.metadata or {}
     return PaperChunk(
         chunk_id=item.chunk_id,
         paper_id=paper_id,
+        paper_version_id=version_id,
         content=item.content,
         content_type=item.content_type,
+        content_role=str(metadata.get("content_role") or "paragraph"),
         section_title=item.section_title,
+        section_path_json=list(metadata.get("section_path") or []),
         page_number=item.page_number,
+        page_end=int(metadata.get("page_end") or item.page_number),
         source_ref=item.source_ref,
         object_id=item.object_id,
         parent_chunk_id=item.parent_chunk_id,
+        prev_chunk_id=metadata.get("prev_chunk_id"),
+        next_chunk_id=metadata.get("next_chunk_id"),
+        retrieval_weight=float(metadata.get("retrieval_weight") or 1.0),
+        quality_flags=list(metadata.get("quality_flags") or []),
+        indexable=bool(metadata.get("indexable", True)),
+        parser_version=str(metadata.get("parser_version") or "mineru-v1"),
+        cleaning_version=str(metadata.get("cleaning_version") or "cleaning-v1"),
         content_sha256=item.content_sha256,
-        metadata_json=item.metadata or {},
+        metadata_json=metadata,
     )
 
 

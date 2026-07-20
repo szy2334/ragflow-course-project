@@ -157,11 +157,17 @@ class OperationsTaskExecutor:
             )
             if len(papers) != len(set(report.paper_ids)):
                 raise OperationFailure("PAPER_NOT_READY", "报告包含尚未就绪的论文。", retryable=False)
+            current_versions = [
+                paper.paper_version_id for paper in papers if paper.paper_version_id is not None
+            ]
             chunks = list(
                 (
                     await session.scalars(
                         select(PaperChunk)
-                        .where(PaperChunk.paper_id.in_(report.paper_ids))
+                        .where(
+                            PaperChunk.paper_id.in_(report.paper_ids),
+                            PaperChunk.paper_version_id.in_(current_versions),
+                        )
                         .order_by(PaperChunk.paper_id, PaperChunk.page_number)
                     )
                 ).all()

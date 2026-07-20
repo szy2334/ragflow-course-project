@@ -3,11 +3,12 @@ import json
 import time
 
 from fastapi.testclient import TestClient
-from sqlalchemy import update
+from sqlalchemy import func, select, update
+from sqlalchemy.ext.asyncio import async_sessionmaker
 
 from app.core.config import Settings
 from app.db.base import build_engine
-from app.db.models import Paper, User
+from app.db.models import ConfigurationRevision, Paper, PaperVersion, SessionPaper, User
 from app.main import create_app
 
 
@@ -59,6 +60,15 @@ async def _promote_admin(database_url: str, user_id: str) -> None:
     await engine.dispose()
 
 
+async def _row_count(database_url: str, model) -> int:
+    engine = build_engine(database_url)
+    sessions = async_sessionmaker(engine, expire_on_commit=False)
+    async with sessions() as session:
+        count = await session.scalar(select(func.count()).select_from(model))
+    await engine.dispose()
+    return count or 0
+
+
 def test_write_request_id_and_login_contract(tmp_path):
     app = create_app(_settings(tmp_path))
     with TestClient(app) as client:
@@ -106,6 +116,8 @@ def test_question_idempotency_and_terminal_sse_resume(tmp_path):
         )
         assert session_replay.status_code == 201
         assert session_replay.json()["data"]["session_id"] == session.json()["data"]["session_id"]
+        assert asyncio.run(_row_count(settings.database_url, PaperVersion)) == 1
+        assert asyncio.run(_row_count(settings.database_url, SessionPaper)) == 1
         session_id = session.json()["data"]["session_id"]
         body = {"question": "这篇论文说明了什么？", "stream": True}
         headers = _headers(token, **{"Idempotency-Key": "question-1"})
@@ -118,6 +130,13 @@ def test_question_idempotency_and_terminal_sse_resume(tmp_path):
         assert replay.json()["data"]["task_id"] == accepted.json()["data"]["task_id"]
 
         message_id = accepted.json()["data"]["message_id"]
+        feedback = client.post(
+            f"/api/v1/messages/{message_id}/feedback",
+            headers=_headers(token, **{"Idempotency-Key": "feedback-1"}),
+            json={"feedback_type": "issue", "reason": "citation mismatch"},
+        )
+        assert feedback.status_code == 200
+        assert feedback.json()["data"]["feedback_type"] == "issue"
         for _ in range(20):
             task = client.get(accepted.json()["data"]["status_url"], headers=_headers(token))
             if task.json()["data"]["status"] in {"failed", "cancelled"}:
@@ -185,6 +204,7 @@ def test_admin_configuration_and_evaluation_contract(tmp_path):
         )
         assert update_config.status_code == 200
         assert update_config.headers["etag"] != version
+        assert asyncio.run(_row_count(settings.database_url, ConfigurationRevision)) == 2
 
         evaluation = client.post(
             "/api/v1/admin/evaluation-runs",

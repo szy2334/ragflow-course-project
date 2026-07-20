@@ -27,8 +27,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         engine = build_engine(runtime_settings.database_url)
-        async with engine.begin() as connection:
-            await connection.run_sync(Base.metadata.create_all)
+        # Local contract tests may bootstrap an empty SQLite database. Production
+        # schemas are created exclusively by versioned Alembic migrations.
+        if not runtime_settings.is_production:
+            async with engine.begin() as connection:
+                await connection.run_sync(Base.metadata.create_all)
         app.state.settings = runtime_settings
         app.state.engine = engine
         app.state.session_factory = build_session_factory(engine)

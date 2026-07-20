@@ -4,6 +4,7 @@
 
 import asyncio
 import hashlib
+import json
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from uuid import uuid4
@@ -50,14 +51,18 @@ from app.core.security import (
 from app.db.models import (
     ChatMessage,
     ChatSession,
+    ConfigurationRevision,
     ConfigurationVersion,
     Feedback,
     Paper,
     PaperChunk,
+    PaperVersion,
     RagMapping,
     ReadingReport,
+    ReadingReportPaper,
     RefreshToken,
     ReportExport,
+    SessionPaper,
     TaskRecord,
     TraceRecord,
     User,
@@ -164,7 +169,7 @@ def _config_view(config: ConfigurationVersion) -> dict[str, object]:
             "kind": config.kind,
             "version": config.version,
             "status": "active",
-            "updated_at": config.created_at,
+            "updated_at": config.updated_at,
         }
     )
     return data
@@ -231,6 +236,12 @@ async def _create_internal_workflow(
     )
     session.add(chat_session)
     await session.flush()
+    session.add_all(
+        [
+            SessionPaper(session_id=chat_session.session_id, paper_id=paper_id, position=index)
+            for index, paper_id in enumerate(paper_ids)
+        ]
+    )
     snapshot = snapshot_from_settings(request.app.state.settings)
     message = ChatMessage(
         message_id=message_id,
@@ -512,6 +523,18 @@ async def upload_papers(
         )
         session.add(paper)
         await session.flush()
+        version = PaperVersion(
+            paper_id=paper.paper_id,
+            version_number=1,
+            file_name=paper.file_name,
+            object_key=paper.file_path,
+            content_sha256=paper.content_sha256,
+            file_size_bytes=paper.file_size_bytes,
+            chunk_schema_version=request.app.state.settings.schema_version,
+        )
+        session.add(version)
+        await session.flush()
+        paper.paper_version_id = version.paper_version_id
         task = TaskRecord(
             user_id=user.user_id,
             task_type="paper_ingest",
@@ -634,16 +657,19 @@ async def list_sections(
     session: AsyncSession = Depends(get_session),
 ):
     page, page_size = _page(page, page_size)
-    await _owned_paper(session, user.user_id, paper_id)
+    paper = await _owned_paper(session, user.user_id, paper_id)
+    version_filter = PaperChunk.paper_version_id == paper.paper_version_id
     total = (
         await session.scalar(
-            select(func.count()).select_from(PaperChunk).where(PaperChunk.paper_id == paper_id)
+            select(func.count())
+            .select_from(PaperChunk)
+            .where(PaperChunk.paper_id == paper_id, version_filter)
         )
         or 0
     )
     chunks = await session.scalars(
         select(PaperChunk)
-        .where(PaperChunk.paper_id == paper_id)
+        .where(PaperChunk.paper_id == paper_id, version_filter)
         .offset((page - 1) * page_size)
         .limit(page_size)
     )
@@ -656,7 +682,7 @@ async def list_sections(
             "section_level": 1,
             "section_order": index,
             "page_start": item.page_number,
-            "page_end": item.page_number,
+            "page_end": item.page_end,
             "text": item.content,
         }
         for index, item in enumerate(chunks, start=(page - 1) * page_size + 1)
@@ -911,6 +937,12 @@ async def create_reading_report(
     )
     session.add(report)
     await session.flush()
+    session.add_all(
+        [
+            ReadingReportPaper(report_id=report.report_id, paper_id=paper_id, position=index)
+            for index, paper_id in enumerate(body.paper_ids)
+        ]
+    )
     task = TaskRecord(
         user_id=user.user_id,
         task_type="reading_report",
@@ -1088,6 +1120,12 @@ async def create_session(
     )
     session.add(item)
     await session.flush()
+    session.add_all(
+        [
+            SessionPaper(session_id=item.session_id, paper_id=paper_id, position=index)
+            for index, paper_id in enumerate(body.paper_ids)
+        ]
+    )
     data = session_view(item)
     save_response(
         session,
@@ -1602,6 +1640,14 @@ async def _put_configuration(
     if replay is not None:
         return _json(200, replay, request_id, headers={"ETag": str(replay["version"])})
 
+    content_hash = hashlib.sha256(
+        json.dumps(
+            jsonable_encoder(body.value),
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=False,
+        ).encode("utf-8")
+    ).hexdigest()
     item = await session.scalar(
         select(ConfigurationVersion).where(
             ConfigurationVersion.configuration_id == configuration_id,
@@ -1621,6 +1667,7 @@ async def _put_configuration(
             kind=kind,
             version=f"{configuration_id}:1",
             payload_json=body.value,
+            content_hash=content_hash,
         )
         session.add(item)
     else:
@@ -1633,8 +1680,19 @@ async def _put_configuration(
             )
         item.version = _next_config_version(item)
         item.payload_json = body.value
+        item.content_hash = content_hash
 
     await session.flush()
+    session.add(
+        ConfigurationRevision(
+            configuration_id=item.configuration_id,
+            kind=item.kind,
+            version=item.version,
+            payload_json=item.payload_json,
+            content_hash=item.content_hash,
+            created_by=user.user_id,
+        )
+    )
     data = _config_view(item)
     save_response(
         session,

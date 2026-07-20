@@ -26,24 +26,31 @@ async def test_persistence_adapter_commits_answer_before_terminal_event(tmp_path
         await connection.run_sync(Base.metadata.create_all)
     sessions = async_sessionmaker(engine, expire_on_commit=False)
     async with sessions() as session:
+        session.add(
+            User(
+                user_id="user-1",
+                email="user@example.test",
+                password_hash="scrypt$unused",
+                display_name="User",
+            )
+        )
+        await session.flush()
+        session.add(ChatSession(session_id="session-1", user_id="user-1", paper_ids=[]))
+        await session.flush()
+        session.add(
+            ChatMessage(
+                message_id="message-1",
+                session_id="session-1",
+                user_id="user-1",
+                role="user",
+                content="问题",
+                task_id="task-1",
+                status="running",
+            )
+        )
+        await session.flush()
         session.add_all(
             [
-                User(
-                    user_id="user-1",
-                    email="user@example.test",
-                    password_hash="scrypt$unused",
-                    display_name="User",
-                ),
-                ChatSession(session_id="session-1", user_id="user-1", paper_ids=["paper-1"]),
-                ChatMessage(
-                    message_id="message-1",
-                    session_id="session-1",
-                    user_id="user-1",
-                    role="user",
-                    content="问题",
-                    task_id="task-1",
-                    status="running",
-                ),
                 TaskRecord(
                     task_id="task-1",
                     user_id="user-1",
@@ -116,8 +123,16 @@ async def test_persistence_adapter_commits_answer_before_terminal_event(tmp_path
             await session.scalars(select(Citation).where(Citation.message_id == "message-1"))
         )
     assert message is not None and message.answer_json["answer"] == "回答。"
+    assert message.answer_text == "回答。"
+    assert message.route_type == "fact"
+    assert message.model_version == "model-v1"
+    assert message.prompt_version == "v1"
     assert task is not None and task.status == "succeeded"
     assert [citation.evidence_id for citation in citations] == ["P1"]
+    assert citations[0].source_text == "论文原文。"
+    assert citations[0].document_id == "document-1"
+    assert citations[0].chunk_id == "chunk-1"
+    assert citations[0].similarity == 0.9
 
     first = StreamEvent(
         event_id="event-1",
