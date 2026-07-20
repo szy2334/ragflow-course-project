@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { BookOpenText, BrainCircuit, ChevronLeft, ClipboardList, FileBarChart2, Files, FolderCog, LayoutDashboard, LogOut, Menu, MessageSquareText, ScrollText, Settings2, Sparkles, X } from 'lucide-vue-next'
+import { BookOpenText, BrainCircuit, ChevronLeft, ClipboardList, FileSearch, FolderCog, LayoutDashboard, LogOut, Menu, MessageSquareText, Scale, Settings2, Sparkles, X } from 'lucide-vue-next'
 import { useAuthStore } from '@/stores/auth'
 
 const route = useRoute()
@@ -11,9 +11,8 @@ const mobileOpen = ref(false)
 const isPublic = computed(() => route.path === '/login' || route.path === '/register')
 
 const primaryNav = [
-  { to: '/papers', label: '论文库', icon: Files },
-  { to: '/compare', label: '论文对比', icon: FileBarChart2 },
-  { to: '/reports', label: '阅读报告', icon: ScrollText },
+  { to: '/papers', label: '读论文', icon: FileSearch },
+  { to: '/review', label: '审论文', icon: Scale },
 ]
 const adminNav = [
   { to: '/admin/models', label: '模型配置', icon: Settings2 },
@@ -68,7 +67,7 @@ function logout() { auth.logout(); router.push('/login') }
         </button>
         <button v-if="route.path !== '/papers'" class="back-link" @click="router.back()"><ChevronLeft :size="18" /> 返回</button>
         <div class="topbar-spacer" />
-        <div class="privacy-note"><MessageSquareText :size="15" /> 仅基于已选论文回答</div>
+        <div class="privacy-note"><MessageSquareText :size="15" /> 本地论文 + 固定参考库</div>
       </header>
       <RouterView />
     </main>

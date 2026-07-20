@@ -102,6 +102,9 @@ def test_question_idempotency_and_terminal_sse_resume(tmp_path):
         )
         assert upload.status_code == 202
         paper_id = upload.json()["data"]["items"][0]["paper_id"]
+        paper_detail = client.get(f"/api/v1/papers/{paper_id}", headers=_headers(token))
+        assert paper_detail.status_code == 200
+        assert "understanding" in paper_detail.json()["data"]
         asyncio.run(_mark_ready(settings.database_url, paper_id))
         session = client.post(
             "/api/v1/sessions",

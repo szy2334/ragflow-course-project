@@ -1,5 +1,6 @@
 """Concrete adapters that connect the pure AI graph to runtime infrastructure."""
 
+import re
 from datetime import UTC, datetime
 from typing import Any
 
@@ -21,7 +22,7 @@ from app.db.models import (
     ChatMessage,
     Citation,
     Paper,
-    RagMapping,
+    PaperChunk,
     ReviewResult,
     TaskRecord,
     TraceRecord,
@@ -189,7 +190,7 @@ class SqlAlchemyAnswerPersistence(AnswerPersistencePort):
 
 
 class RagFlowRetrievalPort:
-    """Authorized document filtering plus generic RAGFlow evidence normalization."""
+    """Local user-paper evidence plus on-demand fixed RAGFlow reference retrieval."""
 
     def __init__(self, settings: Settings, sessions: async_sessionmaker[AsyncSession]) -> None:
         self._settings = settings
@@ -219,42 +220,72 @@ class RagFlowRetrievalPort:
             current_versions = [
                 item.paper_version_id for item in papers if item.paper_version_id is not None
             ]
-            mappings = list(
+            chunks = list(
                 (
                     await session.scalars(
-                        select(RagMapping).where(
-                            RagMapping.paper_id.in_(request.paper_ids),
-                            RagMapping.paper_version_id.in_(current_versions),
-                            RagMapping.status == "ready",
+                        select(PaperChunk)
+                        .where(
+                            PaperChunk.paper_id.in_(request.paper_ids),
+                            PaperChunk.paper_version_id.in_(current_versions),
+                            PaperChunk.indexable.is_(True),
                         )
+                        .order_by(PaperChunk.paper_id, PaperChunk.page_number)
                     )
                 ).all()
             )
-        documents = {item.document_id: item.paper_id for item in mappings}
-        datasets = sorted({item.dataset_id for item in mappings})
-        if not documents or not datasets:
-            return EvidenceSet(items=[], query=request.standalone_question, relaxed=request.relaxed)
-        raw = await self._retrieve(
-            request.standalone_question, datasets, list(documents), request.relaxed
+        if request.content_preferences:
+            preferred = [
+                item for item in chunks if item.content_type in request.content_preferences
+            ]
+            chunks = preferred or chunks
+        ranked = sorted(
+            chunks,
+            key=lambda item: _local_relevance(item.content, request.standalone_question),
+            reverse=True,
         )
+        limit = 12 if request.relaxed else 6
         items = [
-            item
-            for item in self._normalize(raw, source_type="paper", paper_by_document=documents)
-            if item.document_id in documents and item.paper_id in request.paper_ids
+            EvidenceItem(
+                evidence_id=f"P{index}",
+                source_type="paper",
+                paper_id=item.paper_id,
+                document_id=f"local:{item.paper_id}",
+                chunk_id=item.chunk_id,
+                content_type=item.content_type,
+                quote=item.content,
+                section_title=item.section_title or None,
+                page_number=item.page_number,
+                source_uri=f"paper://{item.paper_id}/{item.chunk_id}",
+                retrieval_score=_local_relevance(item.content, request.standalone_question),
+                content_role=item.content_role,
+                object_id=item.object_id,
+                parent_chunk_id=item.parent_chunk_id,
+                metadata=item.metadata_json,
+            )
+            for index, item in enumerate(ranked[:limit], start=1)
         ]
         return EvidenceSet(items=items, query=request.standalone_question, relaxed=request.relaxed)
 
     async def retrieve_standards(self, request: RetrieveStandardsRequest) -> EvidenceSet:
-        dataset_id = self._settings.ragflow_public_dataset_id
+        dataset_id = self._settings.ragflow_reference_dataset
         if not dataset_id:
             return EvidenceSet(
                 items=[],
                 query=request.standalone_question,
-                warnings=["public standards dataset is not configured"],
+                warnings=["reference paper knowledge base is not configured"],
             )
         raw = await self._retrieve(request.standalone_question, [dataset_id], [], False)
+        items = self._normalize(raw, source_type="standard", paper_by_document={})
+        for item in items:
+            item.metadata.update(
+                {
+                    "knowledge_base": "user_paper",
+                    "evidence_role": "reference_paper",
+                    "name": item.metadata.get("name") or item.section_title or "参考论文",
+                }
+            )
         return EvidenceSet(
-            items=self._normalize(raw, source_type="standard", paper_by_document={}),
+            items=items,
             query=request.standalone_question,
         )
 
@@ -345,6 +376,17 @@ def _positive_int(value: Any) -> int | None:
         return None
 
 
+def _local_relevance(content: str, question: str) -> float:
+    latin_terms = set(re.findall(r"[a-z0-9_]{2,}", question.lower()))
+    chinese_terms = set(re.findall(r"[\u4e00-\u9fff]", question))
+    terms = latin_terms | chinese_terms
+    if not terms:
+        return 0.01
+    normalized = content.lower()
+    matches = sum(term in normalized for term in terms)
+    return matches / len(terms) if matches else 0.01
+
+
 def _stage_progress(stage: str) -> float:
     stages = {
         "queued": 0.0,
@@ -352,7 +394,7 @@ def _stage_progress(stage: str) -> float:
         "routing": 0.12,
         "retrieving_paper": 0.28,
         "understanding": 0.48,
-        "retrieving_standards": 0.58,
+        "retrieving_references": 0.58,
         "review_a": 0.7,
         "review_b": 0.8,
         "synthesizing": 0.9,

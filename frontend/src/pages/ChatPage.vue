@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { AlertTriangle, BookOpen, CheckCircle2, ChevronRight, CircleStop, MessageCircleQuestion, Plus, SearchCheck, Send, Sparkles, X } from 'lucide-vue-next'
 import EvidenceCard from '@/components/EvidenceCard.vue'
 import AnswerContext from '@/components/AnswerContext.vue'
@@ -13,6 +13,7 @@ import type { AnswerDetailView, ChatSessionView, EvidenceItem } from '@/api/cont
 import { useWorkspaceStore } from '@/stores/workspace'
 
 const props = defineProps<{ sessionId: string }>()
+const route = useRoute()
 const router = useRouter()
 const workspace = useWorkspaceStore()
 const question = ref('')
@@ -30,6 +31,9 @@ const activeWorkflow = computed(() => activeTaskId.value ? workspace.workflows[a
 const activeEvidences = computed(() => activeWorkflow.value?.completedAnswer?.evidences ?? activeWorkflow.value?.evidences ?? detail.value?.answer.evidences ?? [])
 const activeClaims = computed(() => activeWorkflow.value?.completedAnswer?.claims ?? detail.value?.answer.claims ?? [])
 const displayedAnswer = computed(() => activeWorkflow.value?.completedAnswer ?? detail.value?.answer ?? null)
+const reviewMode = computed(() => route.query.mode === 'review')
+const workspaceLabel = computed(() => reviewMode.value ? '论文审阅工作台' : '论文阅读工作台')
+const questionPlaceholder = computed(() => reviewMode.value ? '例如：这篇论文的实验设计是否足以支持结论？' : '例如：这个方法的核心创新是什么？')
 
 async function load() {
   error.value = ''
@@ -50,7 +54,7 @@ async function submit() {
   if (!normalized) return
   if (!selectedPaperIds.value.length) { error.value = '请至少选择一篇已就绪论文。'; showPaperPicker.value = true; return }
   const blocked = selectedPaperIds.value.some((id) => workspace.papersById[id]?.status !== 'ready')
-  if (blocked) { error.value = '所选论文仍在解析或索引，完成后才能提问。'; return }
+  if (blocked) { error.value = '所选论文仍在解析或理解中，完成后才能提问。'; return }
   sending.value = true; error.value = ''
   try {
     workspace.appendMessage({ message_id: `local-${crypto.randomUUID()}`, session_id: props.sessionId, role: 'user', content: normalized, task_id: null, status: null, confidence: null, created_at: new Date().toISOString() })
@@ -98,14 +102,14 @@ onMounted(load)
     </aside>
 
     <main class="reading-center">
-      <header class="reader-titlebar"><div><p class="eyebrow">智能阅读工作台</p><h2>问题与证据在同一处对齐</h2></div><div class="scope-summary"><BookOpen :size="16" /><span>{{ selectedPaperIds.length }} 篇已选论文</span></div></header>
+      <header class="reader-titlebar"><div><p class="eyebrow">{{ workspaceLabel }}</p><h2>{{ reviewMode ? '原文结论与参考论文对照' : '原文与参考证据一同阅读' }}</h2></div><div class="scope-summary"><BookOpen :size="16" /><span>{{ selectedPaperIds.length }} 篇已选论文</span></div></header>
       <p v-if="error" class="inline-error reader-error" role="alert">{{ error }}</p>
       <div ref="chatScroll" class="message-stream">
-        <div v-if="!messages.length && !activeWorkflow" class="chat-empty"><Sparkles :size="29" /><h3>从论文中开始一个问题</h3><p>例如：这个方法的核心创新是什么？主要实验是否充分支持作者的结论？</p></div>
+        <div v-if="!messages.length && !activeWorkflow" class="chat-empty"><Sparkles :size="29" /><h3>{{ reviewMode ? '开始一次论文审阅' : '从论文中开始一个问题' }}</h3><p>{{ reviewMode ? '聚焦研究设计、实验充分性和结论边界。' : '聚焦研究问题、方法、实验与结论。' }}</p></div>
         <article v-for="message in messages" :key="message.message_id" class="message" :class="message.role"><div class="message-avatar">{{ message.role === 'user' ? '你' : '知' }}</div><div class="message-body"><div class="message-meta"><span>{{ message.role === 'user' ? '你的问题' : '知阅助手' }}</span><span>{{ new Date(message.created_at).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) }}</span></div><p v-if="message.role === 'user'">{{ message.content }}</p><MarkdownContent v-else-if="message.content" :content="message.content" /><div v-else-if="message.task_id === activeTaskId" class="answer-pending"><span class="dot-loader"><i /><i /><i /></span>正在等待已核验的答案…</div><button v-if="message.role === 'assistant' && message.content" class="inspect-link" @click="inspectMessage(message.message_id)">查看引用与执行记录</button></div></article>
         <article v-if="activeWorkflow" class="message assistant live-answer"><div class="message-avatar">知</div><div class="message-body"><div class="message-meta"><span>知阅助手 · 实时回答</span><StatusPill :status="activeWorkflow.completedAnswer ? 'succeeded' : activeWorkflow.error ? 'failed' : 'running'" /></div><MarkdownContent v-if="activeWorkflow.text" :content="activeWorkflow.text" /><div v-else class="answer-pending"><span class="dot-loader"><i /><i /><i /></span>{{ activeWorkflow.phase }}</div><p v-if="activeWorkflow.completedAnswer?.is_refusal" class="refusal-note"><AlertTriangle :size="16" />{{ activeWorkflow.completedAnswer.refusal_reason || '现有论文证据不足，系统没有使用外部常识补答。' }}</p><p v-if="activeWorkflow.error" class="inline-error">{{ activeWorkflow.error }}</p></div></article>
       </div>
-      <form class="question-box" @submit.prevent="submit"><textarea v-model="question" rows="2" :disabled="sending" placeholder="针对已选论文提问；答案将只依据检索到的原文证据…" @keydown.ctrl.enter="submit" /><div class="question-actions"><span class="shortcut-hint">系统将自动判断是否进入评审流程</span><span class="shortcut-hint">Ctrl + Enter 发送</span><button v-if="activeWorkflow && !activeWorkflow.completedAnswer && !activeWorkflow.error" type="button" class="stop-button" @click="stop"><CircleStop :size="17" />停止</button><button type="submit" class="send-button" :disabled="sending || !question.trim()"><Send :size="18" /><span>{{ sending ? '提交中' : '发送' }}</span></button></div></form>
+      <form class="question-box" @submit.prevent="submit"><textarea v-model="question" rows="2" :disabled="sending" :placeholder="questionPlaceholder" @keydown.ctrl.enter="submit" /><div class="question-actions"><span class="shortcut-hint">{{ reviewMode ? '将检索固定参考论文库' : '将检索固定参考论文库' }}</span><span class="shortcut-hint">Ctrl + Enter 发送</span><button v-if="activeWorkflow && !activeWorkflow.completedAnswer && !activeWorkflow.error" type="button" class="stop-button" @click="stop"><CircleStop :size="17" />停止</button><button type="submit" class="send-button" :disabled="sending || !question.trim()"><Send :size="18" /><span>{{ sending ? '提交中' : '发送' }}</span></button></div></form>
     </main>
 
     <aside class="reading-right">

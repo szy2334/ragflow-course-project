@@ -18,7 +18,7 @@ const opinionLabel = (opinion: ReviewOpinion) => ({ critical: '严格视角', su
     <div class="context-head"><div><FileSearch :size="17" /><strong>{{ routeLabel }}</strong></div><span>{{ Math.round(answer.confidence * 100) }}% 置信度</span></div>
     <div v-if="answer.score" class="score-row"><Scale :size="18" /><div><span>评分维度</span><strong>{{ answer.score.dimension }}</strong></div><b>{{ answer.score.value }}<small>/ {{ answer.score.scale }}</small></b></div>
     <div v-if="hasReview" class="review-list"><article v-for="opinion in answer.review_opinions" :key="opinion.reviewer"><div><ShieldCheck :size="15" /><strong>{{ opinion.reviewer === 'review_a' ? '评审 A' : '评审 B' }}</strong><span>{{ opinionLabel(opinion) }}</span></div><p>{{ opinion.summary }}</p></article></div>
-    <div v-if="answer.standards?.length" class="standards"><BadgeCheck :size="15" /><span>评审依据：</span><strong>{{ answer.standards.map((item) => `${item.name} ${item.version}`).join('；') }}</strong></div>
+    <div v-if="answer.standards?.length" class="standards"><BadgeCheck :size="15" /><span>参考论文：</span><strong>{{ answer.standards.map((item) => `${item.name} ${item.version}`).join('；') }}</strong></div>
     <div v-if="answer.warnings.length || answer.is_refusal" class="uncertainty"><MessageSquareWarning :size="16" /><div><strong>不确定性说明</strong><p>{{ answer.refusal_reason || answer.warnings.join('；') }}</p></div></div>
   </section>
 </template>

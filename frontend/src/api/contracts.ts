@@ -4,7 +4,7 @@
  * should replace these imports once the backend publishes /api/v1/openapi.json.
  */
 export type TaskStatus = 'pending' | 'running' | 'succeeded' | 'failed' | 'cancelled'
-export type PaperStatus = 'uploaded' | 'mineru_parsing' | 'ocr_processing' | 'cleaning' | 'quality_check' | 'indexing' | 'ready' | 'failed'
+export type PaperStatus = 'uploaded' | 'mineru_parsing' | 'ocr_processing' | 'cleaning' | 'quality_check' | 'understanding' | 'indexing' | 'ready' | 'failed'
 export type IndexStatus = 'not_indexed' | 'pending' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'stale'
 export type ClaimVerdict = 'supported' | 'refuted' | 'insufficient_evidence' | 'conflicting_evidence'
 export type RouteType = 'fact' | 'explain' | 'review' | 'score' | 'follow_up' | 'out_of_scope'
@@ -43,9 +43,10 @@ export interface PaperFailure {
 export interface PaperView {
   paper_id: string; owner_id: string; title: string; authors: string[]; abstract: string | null; language: string | null
   publication_year: number | null; doi: string | null; file_name: string; file_size_bytes: number; page_count: number | null
-  status: PaperStatus; parse_progress: number; index_status: IndexStatus; quality_status?: 'pending' | 'ready' | 'failed' | null; failure?: PaperFailure | null; active_index_version: number | null
+  status: PaperStatus; parse_progress: number; index_status: IndexStatus; quality_status?: 'pending' | 'ready' | 'failed' | null; understanding: PaperUnderstanding | null; failure?: PaperFailure | null; active_index_version: number | null
   created_at: string; updated_at: string
 }
+export interface PaperUnderstanding { answerable: boolean; paper_summary: string; missing_information: string[]; facts: Array<{ claim: string; evidence_ids: string[]; evidence_status: 'explicit' | 'directly_inferred' | 'missing'; confidence: number }> }
 export interface PaperUploadItem { paper_id: string; file_name: string; status: PaperStatus; task_id: string }
 export interface PaperUploadBatchView { items: PaperUploadItem[] }
 export interface PaperSectionView { section_id: string; paper_id: string; parent_section_id: string | null; section_title: string; section_level: number; section_order: number; page_start: number; page_end: number; text: string }
@@ -55,7 +56,7 @@ export interface ChatMessageView { message_id: string; session_id: string; role:
 export interface EvidenceItem {
   evidence_id: string; source_type: 'paper' | 'standard'; paper_id: string | null; chunk_id: string; paper_title: string; section_title: string; page_number: number
   paragraph_index: number; quote: string; retrieval_score: number; rerank_score: number | null; source_uri: string
-  content_type: 'text' | 'figure' | 'table' | 'figure_caption' | 'formula' | 'metadata' | 'reference'; standard_name?: string | null; standard_version?: string | null; bbox: number[] | null
+  content_type: 'text' | 'figure' | 'table' | 'figure_caption' | 'formula' | 'metadata' | 'reference'; standard_name?: string | null; standard_version?: string | null; metadata?: Record<string, unknown>; bbox: number[] | null
 }
 export interface Claim { claim_id: string; text: string; verdict: ClaimVerdict; confidence: number; evidence_ids: string[]; reason: string }
 export interface AgentMetrics { latency_ms: number; input_tokens: number; output_tokens: number; model_config_id: string | null; retry_count: number; estimated_cost?: string | null; currency?: string | null }

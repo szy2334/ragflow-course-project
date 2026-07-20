@@ -21,13 +21,13 @@ start unless `DATABASE_URL` is PostgreSQL, `REDIS_URL` is set, and
 ## Runtime Boundaries
 
 - PostgreSQL stores users, refresh tokens, papers, structured chunks,
-  RAGFlow mappings, sessions, messages, task records, citations, reviews,
+  sessions, messages, task records, citations, reviews,
   configuration snapshots, workflow runs and node traces.
 - Redis stores task snapshots, cancellation markers and a bounded event stream
   per message. `Last-Event-ID` and `after_sequence` both resume the SSE feed.
-- MinerU, Baidu specialized OCR and RAGFlow are invoked only through adapters.
-  Required OCR or a partial RAGFlow mapping fails the paper task; it never
-  advances the paper to `ready`.
+- MinerU and Baidu specialized OCR are invoked only through adapters. User PDFs
+  remain local after parsing; RAGFlow is queried only for fixed reference-paper
+  evidence during question answering.
 - Model configuration is read from environment variables. API keys are not
   accepted from clients or persisted in workflow configuration snapshots.
 

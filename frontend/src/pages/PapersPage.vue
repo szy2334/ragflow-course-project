@@ -27,7 +27,7 @@ const statusFilters = [
   { value: 'ocr_processing', label: '图表 OCR 中' },
   { value: 'cleaning', label: '结构化清洗中' },
   { value: 'quality_check', label: '质量检查中' },
-  { value: 'indexing', label: '索引中' },
+  { value: 'understanding', label: '智能理解中' },
   { value: 'ready', label: '可问答' },
   { value: 'failed', label: '失败' },
 ]
@@ -71,13 +71,13 @@ onMounted(load)
 
 <template>
   <section class="page page-papers">
-    <PageHeader eyebrow="我的研究空间" title="论文库" description="从上传到证据化阅读，所有论文状态一目了然。">
-      <button class="primary-button" @click="showUpload = true"><Plus :size="18" />上传论文</button>
+    <PageHeader eyebrow="本地论文" title="读论文" description="从原文理解开始进入阅读会话。">
+      <button class="primary-button" @click="showUpload = true"><Plus :size="18" />添加论文</button>
     </PageHeader>
     <div class="library-summary">
       <div><span class="summary-number">{{ workspace.paperTotal }}</span><span>篇已收录</span></div>
       <div><span class="summary-number">{{ readyPapers }}</span><span>篇可开始阅读</span></div>
-      <p><AlertCircle :size="16" /> 仅 <strong>ready</strong> 状态的论文可进入问答，以确保回答可追溯。</p>
+      <p><AlertCircle :size="16" /> 论文解析和理解完成后即可开始阅读。</p>
     </div>
     <div class="toolbar">
       <label class="search-input"><Search :size="18" /><input v-model="query" aria-label="搜索论文" placeholder="按标题、作者或 DOI 搜索" @keyup.enter="load" /></label>
@@ -89,12 +89,12 @@ onMounted(load)
     <div v-else-if="papers.length" class="paper-grid">
       <article v-for="paper in papers" :key="paper.paper_id" class="paper-card">
         <div class="paper-card-icon"><FileText :size="22" /></div>
-        <div class="paper-card-main"><div class="card-heading"><StatusPill :status="paper.status" /><span v-if="paper.publication_year">{{ paper.publication_year }}</span></div><h2>{{ paper.title }}</h2><p class="authors">{{ paper.authors?.join(' · ') || '作者信息待解析' }}</p><p class="abstract">{{ paper.abstract || '论文正在解析中，摘要将在解析完成后显示。' }}</p><IngestionProgress :status="paper.status" :progress="paper.parse_progress" :failure="paper.failure" compact /><div class="paper-meta"><span>{{ paper.page_count ? `${paper.page_count} 页` : '页数待解析' }}</span><span>{{ paper.index_status === 'succeeded' ? '索引已就绪' : '索引：' + paper.index_status }}</span></div></div>
+        <div class="paper-card-main"><div class="card-heading"><StatusPill :status="paper.status" /><span v-if="paper.publication_year">{{ paper.publication_year }}</span></div><h2>{{ paper.title }}</h2><p class="authors">{{ paper.authors?.join(' · ') || '作者信息待解析' }}</p><p class="abstract">{{ paper.understanding?.paper_summary || paper.abstract || '论文正在解析与理解中。' }}</p><IngestionProgress :status="paper.status" :progress="paper.parse_progress" :failure="paper.failure" compact /><div class="paper-meta"><span>{{ paper.page_count ? `${paper.page_count} 页` : '页数待解析' }}</span><span>仅保存在本地工作区</span></div></div>
         <footer class="card-footer"><button class="text-button" @click="router.push(`/papers/${paper.paper_id}`)">查看详情 <ArrowUpRight :size="15" /></button><button class="action-button" :disabled="paper.status !== 'ready'" @click="startReading(paper)">开始阅读</button></footer>
       </article>
     </div>
-    <div v-else class="empty-state"><FolderOpen :size="34" /><h2>还没有论文</h2><p>上传 PDF 后，系统会解析章节、表格与参考文献，并在索引完成后开放问答。</p><button class="primary-button" @click="showUpload = true"><UploadCloud :size="18" />上传第一篇论文</button></div>
+    <div v-else class="empty-state"><FolderOpen :size="34" /><h2>还没有论文</h2><button class="primary-button" @click="showUpload = true"><UploadCloud :size="18" />添加第一篇论文</button></div>
   </section>
 
-  <div v-if="showUpload" class="modal-scrim" @click.self="showUpload = false"><section class="modal upload-modal" role="dialog" aria-modal="true" aria-labelledby="upload-title"><button class="icon-button modal-close" aria-label="关闭" @click="showUpload = false"><X :size="20" /></button><div class="modal-icon"><UploadCloud :size="25" /></div><h2 id="upload-title">上传论文</h2><p>支持一次选择 1–20 个 PDF，每个文件不超过 100 MB。服务端会依次校验版面解析、图表 OCR、结构化清洗、质量门禁与索引映射。</p><label class="upload-drop"><input type="file" accept="application/pdf,.pdf" multiple @change="chooseFiles" /><UploadCloud :size="25" /><strong>选择 PDF 文件</strong><span>或将文件拖到这里</span></label><ul v-if="files.length" class="selected-files"><li v-for="file in files" :key="file.name"><FileText :size="15" />{{ file.name }} <span>{{ (file.size / 1024 / 1024).toFixed(1) }} MB</span></li></ul><p v-if="uploadError" class="inline-error" role="alert">{{ uploadError }}</p><div class="modal-actions"><button class="ghost-button" @click="showUpload = false">取消</button><button class="primary-button" :disabled="uploading || !files.length" @click="upload">{{ uploading ? '正在提交…' : '开始解析与索引' }}</button></div></section></div>
+  <div v-if="showUpload" class="modal-scrim" @click.self="showUpload = false"><section class="modal upload-modal" role="dialog" aria-modal="true" aria-labelledby="upload-title"><button class="icon-button modal-close" aria-label="关闭" @click="showUpload = false"><X :size="20" /></button><div class="modal-icon"><UploadCloud :size="25" /></div><h2 id="upload-title">添加论文</h2><p>支持一次选择 1–20 个 PDF，每个文件不超过 100 MB。</p><label class="upload-drop"><input type="file" accept="application/pdf,.pdf" multiple @change="chooseFiles" /><UploadCloud :size="25" /><strong>选择 PDF 文件</strong><span>或将文件拖到这里</span></label><ul v-if="files.length" class="selected-files"><li v-for="file in files" :key="file.name"><FileText :size="15" />{{ file.name }} <span>{{ (file.size / 1024 / 1024).toFixed(1) }} MB</span></li></ul><p v-if="uploadError" class="inline-error" role="alert">{{ uploadError }}</p><div class="modal-actions"><button class="ghost-button" @click="showUpload = false">取消</button><button class="primary-button" :disabled="uploading || !files.length" @click="upload">{{ uploading ? '正在提交…' : '开始理解' }}</button></div></section></div>
 </template>

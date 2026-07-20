@@ -38,16 +38,13 @@ export const api = {
   getPaperFile: (paper_id: string) => demo.active() ? Promise.resolve(createDemoPaperBlob()) : http.get<Blob>(`/papers/${paper_id}/file`, { params: { disposition: 'inline' }, responseType: 'blob' }).then((response) => response.data),
   listSections: (paper_id: string, params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.sections(paper_id)) : get<PageData<PaperSectionView>>(`/papers/${paper_id}/sections`, params),
   getTask: (task_id: string) => demo.active() ? Promise.resolve(task_id === 'demo-export' ? { ...demo.task(task_id), result: { download_url: 'data:text/plain;charset=utf-8,%E7%9F%A5%E9%98%85%E6%BC%94%E7%A4%BA%E6%8A%A5%E5%91%8A' } } : demo.task(task_id)) : get<TaskView>(`/tasks/${task_id}`),
-  uploadPapers: (files: File[], knowledge_base_id?: string) => {
+  uploadPapers: (files: File[]) => {
     const form = new FormData()
     files.forEach((file) => form.append('files', file))
-    if (knowledge_base_id) form.append('knowledge_base_id', knowledge_base_id)
-    form.append('auto_index', 'true')
     return demo.active() ? Promise.resolve(demo.upload()) : post<PaperUploadBatchView>('/papers', form)
   },
   reparsePaper: (paper_id: string, data: { parser_name?: string; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-reparse', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, { ...data, stage: 'mineru_parsing' }),
-  reindexPaper: (paper_id: string, data: { embedding_model_config_id?: string; retrieval_config_id?: string; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-index', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, { ...data, stage: 'indexing' }),
-  retryPaper: (paper_id: string, data: { stage: 'mineru_parsing' | 'ocr_processing' | 'cleaning' | 'quality_check' | 'indexing'; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-retry', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, data),
+  retryPaper: (paper_id: string, data: { stage: 'mineru_parsing' | 'ocr_processing' | 'cleaning' | 'quality_check' | 'understanding'; force: boolean }) => demo.active() ? Promise.resolve(demo.accepted('demo-retry', paper_id)) : post<TaskAccepted>(`/papers/${paper_id}/retry`, data),
   deletePaper: (paper_id: string) => demo.active() ? Promise.resolve({ paper_id, deleted_at: new Date().toISOString(), cleanup_task_id: 'demo-cleanup' }) : request<{ paper_id: string; deleted_at: string; cleanup_task_id: string } | Record<string, never>>({ url: `/papers/${paper_id}`, method: 'DELETE', headers: { 'Idempotency-Key': newRequestId() } }),
 
   listSessions: (params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.sessions()) : get<PageData<ChatSessionView>>('/sessions', params),

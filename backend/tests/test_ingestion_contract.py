@@ -5,6 +5,7 @@ from app.workers.ingestion import (
     ParsedPaper,
     _build_chunks,
     _quality_report,
+    _understanding_evidences,
 )
 
 
@@ -96,3 +97,26 @@ def test_optional_media_without_ocr_does_not_create_an_empty_child():
 
     assert [chunk.chunk_id for chunk in chunks] == ["paper-1:figure:decoration-1"]
     assert not _quality_report(parsed, chunks, {})
+
+
+def test_upload_time_understanding_uses_local_bounded_evidence_only():
+    chunks = [
+        BuiltChunk(
+            chunk_id=f"chunk-{index}",
+            content=f"正文 {index}",
+            content_type="text" if index else "reference",
+            section_title="正文",
+            page_number=index + 1,
+            source_ref=f"page:{index + 1}",
+            content_sha256="a" * 64,
+            metadata={"indexable": index != 1},
+        )
+        for index in range(30)
+    ]
+
+    evidences = _understanding_evidences("paper-1", chunks)
+
+    assert len(evidences) == 24
+    assert all(item.document_id == "local:paper-1" for item in evidences)
+    assert all(item.source_uri.startswith("paper://paper-1/") for item in evidences)
+    assert all(item.content_type != "reference" for item in evidences)

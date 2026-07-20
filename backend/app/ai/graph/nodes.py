@@ -203,7 +203,7 @@ class WorkflowNodes:
     async def standard_retrieve(self, state: ReviewGraphState) -> dict[str, Any]:
         command = _command(state)
         route = _route(state)
-        started = await self._begin(state, "retrieving_standards", "正在检索评审标准")
+        started = await self._begin(state, "retrieving_references", "正在检索参考论文证据")
         warnings = list(state.get("warnings", []))
         if route.effective_route_type == "score" and not command.configuration.standard_version:
             await self._trace(
@@ -235,9 +235,9 @@ class WorkflowNodes:
                 raise
             standards = []
         if not standards:
-            warnings.append("PUBLIC_KB_UNAVAILABLE: review is limited to paper evidence")
+            warnings.append("REFERENCE_KB_UNAVAILABLE: answer is limited to the uploaded paper")
             await self._trace(
-                command, "standard_retrieve", started, "failed", "PUBLIC_KB_UNAVAILABLE"
+                command, "standard_retrieve", started, "failed", "REFERENCE_KB_UNAVAILABLE"
             )
             return {
                 "standard_evidences": [],

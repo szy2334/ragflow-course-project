@@ -10,6 +10,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/register', component: () => import('@/pages/AuthPage.vue'), props: { mode: 'register' } },
   { path: '/papers', component: () => import('@/pages/PapersPage.vue'), meta: { requiresAuth: true } },
   { path: '/papers/:paperId', component: () => import('@/pages/PaperDetailPage.vue'), props: true, meta: { requiresAuth: true } },
+  { path: '/review', component: () => import('@/pages/ReviewPage.vue'), meta: { requiresAuth: true } },
   { path: '/chat/:sessionId', component: () => import('@/pages/ChatPage.vue'), props: true, meta: { requiresAuth: true } },
   { path: '/compare', component: () => import('@/pages/ComparePage.vue'), meta: { requiresAuth: true } },
   { path: '/reports', component: () => import('@/pages/ReportsPage.vue'), meta: { requiresAuth: true } },

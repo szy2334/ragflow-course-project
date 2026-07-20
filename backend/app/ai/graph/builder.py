@@ -83,14 +83,16 @@ def _after_required_step(state: ReviewGraphState) -> str:
 def _after_understanding(state: ReviewGraphState) -> str:
     if state.get("error_code"):
         return "refuse"
-    route = RouteDecision.model_validate(state["route_decision"])
-    return "standards" if route.effective_route_type in {"review", "score"} else "synthesize"
+    return "standards"
 
 
 def _after_standards(state: ReviewGraphState) -> str:
     if state.get("error_code"):
         return "refuse"
-    return "synthesize" if state.get("skip_reviews") else "review"
+    route = RouteDecision.model_validate(state["route_decision"])
+    if route.effective_route_type in {"review", "score"} and not state.get("skip_reviews"):
+        return "review"
+    return "synthesize"
 
 
 def _after_synthesis(state: ReviewGraphState) -> str:

@@ -44,6 +44,7 @@ PAPER_STATUSES = (
     "ocr_processing",
     "cleaning",
     "quality_check",
+    "understanding",
     "indexing",
     "ready",
     "failed",
@@ -119,6 +120,7 @@ class Paper(Base):
     parse_progress: Mapped[float] = mapped_column(Float, default=0.0)
     index_status: Mapped[str] = mapped_column(String(32), default="not_indexed")
     quality_status: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    understanding_json: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
     failure: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
     active_index_version: Mapped[int | None] = mapped_column(Integer, nullable=True)
     ingestion_config_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)

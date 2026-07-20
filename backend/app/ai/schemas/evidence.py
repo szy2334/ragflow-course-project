@@ -64,6 +64,6 @@ class RetrieveEvidenceRequest(StrictModel):
 class RetrieveStandardsRequest(StrictModel):
     task_id: str = Field(min_length=1)
     standalone_question: str = Field(min_length=1)
-    route_type: Literal["review", "score"]
-    dimensions: list[str] = Field(min_length=1)
+    route_type: EffectiveRouteType
+    dimensions: list[str] = Field(default_factory=list)
     standard_version: str | None = None

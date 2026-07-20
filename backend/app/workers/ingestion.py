@@ -1,4 +1,4 @@
-"""Strict PDF ingestion: MinerU -> Baidu OCR -> chunks -> quality gate -> RAGFlow."""
+"""PDF ingestion: parse -> OCR -> chunks -> quality -> AI understanding."""
 
 # ruff: noqa: E501
 
@@ -13,6 +13,10 @@ import httpx
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
+from app.ai.agents import PaperUnderstandingAgent
+from app.ai.llm import OpenAICompatibleClient
+from app.ai.prompts import PromptRepository
+from app.ai.schemas import EvidenceItem
 from app.core.config import Settings
 from app.db.models import (
     IngestionQualityReport,
@@ -25,6 +29,7 @@ from app.db.models import (
     TaskRecord,
 )
 from app.runtime.adapters import task_view
+from app.runtime.executor import snapshot_from_settings
 from app.runtime.redis_store import RedisRuntime
 
 
@@ -267,10 +272,11 @@ class IngestionTaskExecutor:
                 )
             stage = _ingestion_stage(start_stage or task.stage)
             task.status, task.stage, task.started_at = "running", stage, datetime.now(UTC)
-            paper.status, paper.parse_progress, paper.index_status, paper.failure = (
+            paper.status, paper.parse_progress, paper.index_status, paper.failure, paper.understanding_json = (
                 stage,
                 _ingestion_progress(stage),
                 "pending",
+                None,
                 None,
             )
             run = await session.scalar(
@@ -313,19 +319,41 @@ class IngestionTaskExecutor:
                 "CHUNK_QUALITY_FAILED", "论文结构化质量检查未通过。", retryable=False
             )
 
-        await self._set_stage(task_id, paper_id, "indexing")
+        await self._set_stage(task_id, paper_id, "understanding")
+        understanding = await self._understand(paper_id, chunks)
+        await self._store_understanding(paper_id, understanding)
+
+        await self._complete(task_id, paper_id, len(chunks))
+
+    async def _understand(self, paper_id: str, chunks: list[BuiltChunk]) -> dict[str, Any]:
+        if not self._settings.llm_base_url or not self._settings.llm_api_key or not self._settings.llm_model:
+            raise IngestionFailure("MODEL_NOT_CONFIGURED", "模型服务尚未配置。", retryable=False)
+        evidences = _understanding_evidences(paper_id, chunks)
+        if not evidences:
+            raise IngestionFailure("PAPER_UNDERSTANDING_FAILED", "论文缺少可供理解的正文内容。")
+        try:
+            understanding, _ = await PaperUnderstandingAgent(
+                OpenAICompatibleClient(self._settings.llm_api_key), PromptRepository()
+            ).run(
+                standalone_question="请概括这篇论文的研究问题、方法、实验设置、主要发现和局限。",
+                evidences=evidences,
+                configuration=snapshot_from_settings(self._settings),
+            )
+        except Exception as exc:
+            raise IngestionFailure("PAPER_UNDERSTANDING_FAILED", "论文智能理解失败，请稍后重试。") from exc
+        evidence_ids = {item.evidence_id for item in evidences}
+        cited_ids = {item for fact in understanding.facts for item in fact.evidence_ids}
+        if not cited_ids.issubset(evidence_ids):
+            raise IngestionFailure("PAPER_UNDERSTANDING_FAILED", "论文理解结果包含无效证据引用。")
+        return understanding.model_dump(mode="json")
+
+    async def _store_understanding(self, paper_id: str, understanding: dict[str, Any]) -> None:
         async with self._sessions() as session:
             paper = await session.get(Paper, paper_id)
-            assert paper is not None
-            reusable = await _complete_mapping(session, paper_id, version_id, chunks)
-        if reusable is None:
-            document_id, mappings = await RagFlowManualImporter(self._settings).import_chunks(
-                paper, chunks
-            )
-            await self._store_mappings(paper_id, version_id, document_id, mappings, chunks)
-        else:
-            document_id, mappings = reusable
-        await self._complete(task_id, paper_id, document_id, mappings, len(chunks))
+            if paper is None:
+                raise IngestionFailure("PAPER_NOT_FOUND", "论文不存在。", retryable=False)
+            paper.understanding_json = understanding
+            await session.commit()
 
     async def _has_parse_artifacts(self, paper_id: str, version_id: str) -> bool:
         async with self._sessions() as session:
@@ -617,12 +645,8 @@ class IngestionTaskExecutor:
         self,
         task_id: str,
         paper_id: str,
-        document_id: str,
-        mappings: dict[str, str],
         count: int,
     ) -> None:
-        if len(mappings) != count:
-            raise IngestionFailure("RAGFLOW_IMPORT_INCOMPLETE", "论文知识库映射不完整。")
         async with self._sessions() as session:
             task, paper = await _task_and_paper(session, task_id, paper_id)
             task.status, task.stage, task.progress, task.completed_at = (
@@ -633,16 +657,15 @@ class IngestionTaskExecutor:
             )
             task.result_json = {
                 "paper_id": paper_id,
-                "document_id": document_id,
-                "mapped_chunks": count,
+                "local_chunks": count,
+                "understanding": paper.understanding_json,
             }
             paper.status, paper.parse_progress, paper.index_status, paper.quality_status = (
                 "ready",
                 1.0,
-                "succeeded",
+                "not_indexed",
                 "ready",
             )
-            paper.active_index_version = (paper.active_index_version or 0) + 1
             run = await session.scalar(
                 select(PaperIngestionRun).where(PaperIngestionRun.task_id == task_id)
             )
@@ -657,13 +680,13 @@ class IngestionTaskExecutor:
                 select(IngestionQualityReport).where(IngestionQualityReport.task_id == task_id)
             )
             if report is not None:
-                report.mapped_chunk_count = len(mappings)
-                report.mapping_failure_count = max(0, count - len(mappings))
+                report.expected_mapping_count = 0
+                report.mapped_chunk_count = 0
+                report.mapping_failure_count = 0
                 report.report_json = {
                     **report.report_json,
-                    "expected_mappings": count,
-                    "mapped_chunks": len(mappings),
-                    "mapping_failures": max(0, count - len(mappings)),
+                    "local_chunks": count,
+                    "knowledge_base_import": "not_required",
                 }
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
@@ -741,7 +764,14 @@ async def _complete_mapping(
 
 
 def _ingestion_stage(value: str) -> str:
-    stages = {"mineru_parsing", "ocr_processing", "cleaning", "quality_check", "indexing"}
+    stages = {
+        "mineru_parsing",
+        "ocr_processing",
+        "cleaning",
+        "quality_check",
+        "understanding",
+        "indexing",
+    }
     return value if value in stages else "mineru_parsing"
 
 
@@ -751,6 +781,7 @@ def _ingestion_progress(stage: str) -> float:
         "ocr_processing": 0.3,
         "cleaning": 0.5,
         "quality_check": 0.65,
+        "understanding": 0.75,
         "indexing": 0.8,
     }.get(stage, 0.0)
 
@@ -908,6 +939,34 @@ def _quality_report(
         if chunk.parent_chunk_id and chunk.parent_chunk_id not in ids:
             errors.append(f"orphan_chunk:{chunk.chunk_id}")
     return errors
+
+
+def _understanding_evidences(paper_id: str, chunks: list[BuiltChunk]) -> list[EvidenceItem]:
+    """Build a bounded, local evidence set for upload-time paper understanding."""
+    candidates = [
+        chunk
+        for chunk in chunks
+        if chunk.content.strip() and chunk.content_type != "reference" and (chunk.metadata or {}).get("indexable", True)
+    ]
+    if len(candidates) > 24:
+        positions = sorted({round(index * (len(candidates) - 1) / 23) for index in range(24)})
+        candidates = [candidates[index] for index in positions]
+    return [
+        EvidenceItem(
+            evidence_id=f"U{index}",
+            source_type="paper",
+            paper_id=paper_id,
+            document_id=f"local:{paper_id}",
+            chunk_id=chunk.chunk_id,
+            content_type=chunk.content_type,
+            quote=chunk.content[:2_000],
+            section_title=chunk.section_title or None,
+            page_number=chunk.page_number,
+            source_uri=f"paper://{paper_id}/{chunk.chunk_id}",
+            retrieval_score=1.0,
+        )
+        for index, chunk in enumerate(candidates, start=1)
+    ]
 
 
 def _chunk_row(paper_id: str, version_id: str, item: BuiltChunk) -> PaperChunk:

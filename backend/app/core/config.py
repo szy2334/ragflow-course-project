@@ -28,6 +28,8 @@ class Settings(BaseSettings):
     object_storage_path: Path = Path("./var/uploads")
     ragflow_base_url: str | None = None
     ragflow_api_key: SecretStr | None = None
+    ragflow_reference_dataset_id: str | None = None
+    # Backward compatibility for deployments configured before user PDFs stopped being indexed.
     ragflow_user_dataset_id: str | None = None
     ragflow_public_dataset_id: str | None = None
     mineru_base_url: str | None = None
@@ -53,6 +55,10 @@ class Settings(BaseSettings):
     @property
     def is_production(self) -> bool:
         return self.app_env.lower() in {"production", "prod"}
+
+    @property
+    def ragflow_reference_dataset(self) -> str | None:
+        return self.ragflow_reference_dataset_id or self.ragflow_user_dataset_id
 
     def validate_runtime(self) -> None:
         if self.is_production and not self.database_url.startswith("postgresql+"):

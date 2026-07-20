@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { BadgeCheck, CircleAlert, Database, FileUp, ScanSearch, ScanText, Sparkles, TableProperties } from 'lucide-vue-next'
+import { BadgeCheck, BrainCircuit, CircleAlert, FileUp, ScanSearch, ScanText, Sparkles, TableProperties } from 'lucide-vue-next'
 import type { PaperFailure, PaperStatus } from '@/api/contracts'
 
 const props = withDefaults(defineProps<{
@@ -16,7 +16,7 @@ const stages = [
   { key: 'ocr_processing', label: '图表 OCR', icon: ScanSearch },
   { key: 'cleaning', label: '清洗', icon: Sparkles },
   { key: 'quality_check', label: '质检', icon: TableProperties },
-  { key: 'indexing', label: '索引', icon: Database },
+  { key: 'understanding', label: '理解', icon: BrainCircuit },
   { key: 'ready', label: '可问答', icon: BadgeCheck },
 ] as const
 
@@ -31,8 +31,9 @@ const statusLabel = computed(() => ({
   ocr_processing: '正在识别图片、流程图和表格内容',
   cleaning: '正在关联正文、图表与结构化内容',
   quality_check: '正在检查来源追踪和可索引性',
-  indexing: '正在导入 RAGFlow 并验证映射',
-  ready: '解析、质检和检索自检均已完成',
+  understanding: '正在提取论文问题、方法、实验与结论',
+  indexing: '正在整理历史索引任务',
+  ready: '解析、质检和论文理解均已完成',
   failed: props.failure?.message ?? '处理未完成，可从失败阶段重新尝试。',
 } as Record<PaperStatus, string>)[props.status])
 const lineWidth = computed(() => `${(activeIndex.value / (stages.length - 1)) * 100}%`)

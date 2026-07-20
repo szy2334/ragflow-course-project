@@ -448,7 +448,7 @@ async def health(request: Request, session: AsyncSession = Depends(get_session))
 async def upload_papers(
     request: Request,
     files: list[UploadFile] = File(...),
-    knowledge_base_id: str | None = Form(default=None),
+    # Kept only so older clients can defer local processing; it no longer controls indexing.
     auto_index: bool = Form(default=True),
     request_id: str = Depends(require_request_id),
     idempotency_key: str = Depends(require_idempotency_key),
@@ -468,7 +468,7 @@ async def upload_papers(
             raise ApiError(413, "FILE_TOO_LARGE", "论文文件超过大小限制。")
         uploads.append((upload, content, hashlib.sha256(content).hexdigest()))
     fingerprint = request_fingerprint(
-        {"files": [(item[0].filename, item[2]) for item in uploads], "auto_index": auto_index}
+        {"files": [(item[0].filename, item[2]) for item in uploads], "auto_process": auto_index}
     )
     replay = await replay_or_raise(
         session,
@@ -519,7 +519,7 @@ async def upload_papers(
             content_sha256=digest,
             file_size_bytes=len(content),
             status="uploaded",
-            index_status="pending" if auto_index else "not_indexed",
+            index_status="not_indexed",
         )
         session.add(paper)
         await session.flush()
@@ -1864,7 +1864,7 @@ async def _admin_dataset_items(session: AsyncSession, request: Request) -> list[
     counts = {str(dataset_id): int(count) for dataset_id, count in rows}
     settings = request.app.state.settings
     configured = {
-        settings.ragflow_user_dataset_id: "用户论文库",
+        settings.ragflow_reference_dataset: "user_paper 参考论文库",
         settings.ragflow_public_dataset_id: "公共评审知识库",
     }
     for dataset_id in configured:

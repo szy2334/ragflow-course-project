@@ -159,7 +159,7 @@ def review_draft(with_standard=True):
 
 
 @pytest.mark.asyncio
-async def test_fact_path_skips_public_retrieval(command, paper_evidence):
+async def test_fact_path_retrieves_fixed_reference_papers(command, paper_evidence):
     llm = ScriptedLlm([fact_route(), paper_understanding(), fact_draft()])
     retrieval = FakeRetrieval([paper_evidence])
     deps, events, _ = dependencies(retrieval)
@@ -168,7 +168,7 @@ async def test_fact_path_skips_public_retrieval(command, paper_evidence):
     result = await AiWorkflowService(llm).run(command, deps, saver)
 
     assert result.answer.answer.startswith("论文使用了")
-    assert not retrieval.standard_requests
+    assert len(retrieval.standard_requests) == 1
     assert llm.calls == ["RouteDecision", "PaperUnderstanding", "AnswerDraft"]
     assert events.items[-1].event_type == "final"
     assert len(deps.persistence.commands) == 1
@@ -222,7 +222,7 @@ async def test_review_degrades_when_public_kb_is_empty(command, paper_evidence):
 
     assert not result.answer.is_refusal
     assert "ReviewOpinions" not in llm.calls
-    assert any("PUBLIC_KB_UNAVAILABLE" in item for item in result.workflow_summary["warnings"])
+    assert any("REFERENCE_KB_UNAVAILABLE" in item for item in result.workflow_summary["warnings"])
 
 
 @pytest.mark.asyncio

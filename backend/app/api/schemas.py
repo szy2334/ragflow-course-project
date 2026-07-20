@@ -45,7 +45,13 @@ class QuestionInput(ApiModel):
 
 
 class PaperRetryInput(ApiModel):
-    stage: Literal["mineru_parsing", "ocr_processing", "cleaning", "quality_check", "indexing"]
+    stage: Literal[
+        "mineru_parsing",
+        "ocr_processing",
+        "cleaning",
+        "quality_check",
+        "understanding",
+    ]
     force: bool = False
 
 

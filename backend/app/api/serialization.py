@@ -34,6 +34,7 @@ def paper_view(paper: Paper) -> dict[str, Any]:
         "parse_progress": paper.parse_progress,
         "index_status": paper.index_status,
         "quality_status": paper.quality_status,
+        "understanding": paper.understanding_json,
         "failure": paper.failure,
         "active_index_version": paper.active_index_version,
         "created_at": paper.created_at,
