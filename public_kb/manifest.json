@@ -1,0 +1,85 @@
+{
+  "schema_version": "public_format_standard_v1",
+  "ragflow_base_url": "http://localhost:9380/api/v1",
+  "active_datasets": [
+    {
+      "dataset_name": "public_degree_format_2026",
+      "dataset_id": "13470cac831c11f1966fe5529e1d1cda",
+      "document_id": "17ae2c44831b11f1966fe5529e1d1cda",
+      "source_document_id": "02970f84832511f1966fe5529e1d1cda",
+      "source_file": "degree_format_source_2026.pdf",
+      "embedding_model": "BAAI/bge-m3@silicon@SILICONFLOW",
+      "chunk_count": 29,
+      "paper_type": "degree",
+      "rule_scope": "format_degree",
+      "standards_file": "degree_format_standards.jsonl",
+      "standard_version": "degree_format_2026.1",
+      "authority_level": "local_official",
+      "status": "ready_format_only"
+    }
+  ],
+  "content_datasets": [
+    {
+      "venue_code": null,
+      "venue_name": "学位论文（临时内容标准）",
+      "venue_type": "degree",
+      "venue_year": 2026,
+      "dataset_name": "public_degree_content_2026",
+      "dataset_id": "c3c1700a832511f1966fe5529e1d1cda",
+      "document_id": "c9174f5c832511f1966fe5529e1d1cda",
+      "embedding_model": "BAAI/bge-m3@silicon@SILICONFLOW",
+      "source_file": "degree_content_source_2026.pdf",
+      "standards_file": "degree_content_standards.jsonl",
+      "source_url": null,
+      "chunk_count": 10,
+      "standard_version": "degree_content_2026.1",
+      "authority_level": "provisional_course_rubric",
+      "status": "ready_content_provisional"
+    },
+    {
+      "venue_code": "ICML",
+      "venue_name": "International Conference on Machine Learning",
+      "venue_type": "conference",
+      "venue_year": 2026,
+      "dataset_name": "public_research_content_icml_2026",
+      "dataset_id": "6b437a0e832511f1966fe5529e1d1cda",
+      "document_id": "724093d2832511f1966fe5529e1d1cda",
+      "embedding_model": "BAAI/bge-m3@silicon@SILICONFLOW",
+      "source_file": "venues/icml Reviewer Instructions 2026.html",
+      "offline_assets_dir": "venues/icml Reviewer Instructions 2026_files",
+      "standards_file": "venues/icml_2026_content_standards.jsonl",
+      "source_url": "https://icml.cc/Conferences/2026/ReviewerInstructions#MainTrack",
+      "chunk_count": 13,
+      "standard_version": "icml_content_2026.1",
+      "status": "ready_content_only"
+    }
+  ],
+  "venue_format_datasets": [
+    {
+      "venue_code": "NEURIPS",
+      "venue_name": "Conference on Neural Information Processing Systems",
+      "venue_type": "conference",
+      "venue_year": 2026,
+      "dataset_name": "public_research_format_neurips_2026",
+      "dataset_id": "05475238832111f1966fe5529e1d1cda",
+      "document_id": "7de535b8832411f1966fe5529e1d1cda",
+      "embedding_model": "BAAI/bge-m3@silicon@SILICONFLOW",
+      "official_format_url": "https://neurips.cc/Conferences/2026/MainTrackHandbook",
+      "source_file": "venues/neurips_2026_format_source.txt",
+      "offline_source_file": "venues/neurips主赛道手册2026.html",
+      "offline_assets_dir": "venues/neurips主赛道手册2026_files",
+      "standards_file": "venues/neurips_2026_standards.jsonl",
+      "chunk_count": 7,
+      "standard_version": "neurips_format_2026.1",
+      "status": "ready_format_only"
+    }
+  ],
+  "archived_not_active": [
+    {
+      "dataset_name": "public_research_content_common_2026",
+      "reason": "Only format checking is active; content review library removed from RAGFlow.",
+      "source_url": "https://icml.cc/Conferences/2026/ReviewerInstructions#ReviewingPrinciples"
+    }
+  ],
+  "venue_format_template": "venue_format_template.json"
+}

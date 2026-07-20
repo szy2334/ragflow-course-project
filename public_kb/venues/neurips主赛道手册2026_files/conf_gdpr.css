@@ -1,0 +1,14 @@
+
+#cookie-bar {
+  background-color: #22252a;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px;
+  text-align: center;
+  color: white;
+}
+
+
+

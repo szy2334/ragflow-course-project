@@ -1,0 +1,23 @@
+{
+  "venue_code": "NEURIPS",
+  "venue_name": "Conference on Neural Information Processing Systems",
+  "venue_type": "conference",
+  "venue_year": 2026,
+  "paper_type": "research",
+  "rule_scope": "format_venue_specific",
+  "dataset_name": "public_research_format_neurips_2026",
+  "dataset_id": "05475238832111f1966fe5529e1d1cda",
+  "document_id": "7de535b8832411f1966fe5529e1d1cda",
+  "embedding_model": "BAAI/bge-m3@silicon@SILICONFLOW",
+  "official_format_url": "https://neurips.cc/Conferences/2026/MainTrackHandbook",
+  "source_file": "neurips_2026_format_source.txt",
+  "received_source_file": "neurips主赛道手册2026.html",
+  "offline_assets_dir": "neurips主赛道手册2026_files",
+  "standards_file": "neurips_2026_standards.jsonl",
+  "standard_version": "neurips_format_2026.1",
+  "configured": true,
+  "source_verified": true,
+  "document_count": 1,
+  "chunk_count": 7,
+  "status": "ready_format_only"
+}

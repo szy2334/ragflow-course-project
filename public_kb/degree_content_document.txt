@@ -1,0 +1,6 @@
+学位论文内容评价标准
+版本：degree_content_2026.1
+来源：《计算机系统结构课程论文评分标准(2026-05-15)》第 2 页
+性质：临时参考标准（provisional）
+
+本文件仅用于在 RAGFlow 中建立手工 Chunk 文档容器。实际检索内容由 degree_content_standards.jsonl 中经过清洗和溯源的标准条目生成。

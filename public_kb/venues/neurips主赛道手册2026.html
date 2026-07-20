@@ -1,0 +1,2750 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)https://neurips.cc/Conferences/2026/MainTrackHandbook?utm_source=chatgpt.com -->
+<html lang="zh-CN" class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">:host,:root{--fa-font-solid:normal 900 1em/1 "Font Awesome 6 Free";--fa-font-regular:normal 400 1em/1 "Font Awesome 6 Free";--fa-font-light:normal 300 1em/1 "Font Awesome 6 Pro";--fa-font-thin:normal 100 1em/1 "Font Awesome 6 Pro";--fa-font-duotone:normal 900 1em/1 "Font Awesome 6 Duotone";--fa-font-brands:normal 400 1em/1 "Font Awesome 6 Brands";--fa-font-sharp-solid:normal 900 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-regular:normal 400 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-light:normal 300 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-thin:normal 100 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-duotone-solid:normal 900 1em/1 "Font Awesome 6 Sharp Duotone"}svg:not(:host).svg-inline--fa,svg:not(:root).svg-inline--fa{overflow:visible;box-sizing:content-box}.svg-inline--fa{display:var(--fa-display,inline-block);height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-2xs{vertical-align:.1em}.svg-inline--fa.fa-xs{vertical-align:0}.svg-inline--fa.fa-sm{vertical-align:-.0714285705em}.svg-inline--fa.fa-lg{vertical-align:-.2em}.svg-inline--fa.fa-xl{vertical-align:-.25em}.svg-inline--fa.fa-2xl{vertical-align:-.3125em}.svg-inline--fa.fa-pull-left{margin-right:var(--fa-pull-margin,.3em);width:auto}.svg-inline--fa.fa-pull-right{margin-left:var(--fa-pull-margin,.3em);width:auto}.svg-inline--fa.fa-li{width:var(--fa-li-width,2em);top:.25em}.svg-inline--fa.fa-fw{width:var(--fa-fw-width,1.25em)}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{transform-origin:center center}.fa-layers-text{left:50%;top:50%;transform:translate(-50%,-50%);transform-origin:center center}.fa-layers-counter{background-color:var(--fa-counter-background-color,#ff253a);border-radius:var(--fa-counter-border-radius,1em);box-sizing:border-box;color:var(--fa-inverse,#fff);line-height:var(--fa-counter-line-height,1);max-width:var(--fa-counter-max-width,5em);min-width:var(--fa-counter-min-width,1.5em);overflow:hidden;padding:var(--fa-counter-padding,.25em .5em);right:var(--fa-right,0);text-overflow:ellipsis;top:var(--fa-top,0);transform:scale(var(--fa-counter-scale,.25));transform-origin:top right}.fa-layers-bottom-right{bottom:var(--fa-bottom,0);right:var(--fa-right,0);top:auto;transform:scale(var(--fa-layers-scale,.25));transform-origin:bottom right}.fa-layers-bottom-left{bottom:var(--fa-bottom,0);left:var(--fa-left,0);right:auto;top:auto;transform:scale(var(--fa-layers-scale,.25));transform-origin:bottom left}.fa-layers-top-right{top:var(--fa-top,0);right:var(--fa-right,0);transform:scale(var(--fa-layers-scale,.25));transform-origin:top right}.fa-layers-top-left{left:var(--fa-left,0);right:auto;top:var(--fa-top,0);transform:scale(var(--fa-layers-scale,.25));transform-origin:top left}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-2xs{font-size:.625em;line-height:.1em;vertical-align:.225em}.fa-xs{font-size:.75em;line-height:.0833333337em;vertical-align:.125em}.fa-sm{font-size:.875em;line-height:.0714285718em;vertical-align:.0535714295em}.fa-lg{font-size:1.25em;line-height:.05em;vertical-align:-.075em}.fa-xl{font-size:1.5em;line-height:.0416666682em;vertical-align:-.125em}.fa-2xl{font-size:2em;line-height:.03125em;vertical-align:-.1875em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:var(--fa-li-margin,2.5em);padding-left:0}.fa-ul>li{position:relative}.fa-li{left:calc(-1 * var(--fa-li-width,2em));position:absolute;text-align:center;width:var(--fa-li-width,2em);line-height:inherit}.fa-border{border-color:var(--fa-border-color,#eee);border-radius:var(--fa-border-radius,.1em);border-style:var(--fa-border-style,solid);border-width:var(--fa-border-width,.08em);padding:var(--fa-border-padding,.2em .25em .15em)}.fa-pull-left{float:left;margin-right:var(--fa-pull-margin,.3em)}.fa-pull-right{float:right;margin-left:var(--fa-pull-margin,.3em)}.fa-beat{animation-name:fa-beat;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,ease-in-out)}.fa-bounce{animation-name:fa-bounce;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,cubic-bezier(.28,.84,.42,1))}.fa-fade{animation-name:fa-fade;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1))}.fa-beat-fade{animation-name:fa-beat-fade;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1))}.fa-flip{animation-name:fa-flip;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,ease-in-out)}.fa-shake{animation-name:fa-shake;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,linear)}.fa-spin{animation-name:fa-spin;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,2s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,linear)}.fa-spin-reverse{--fa-animation-direction:reverse}.fa-pulse,.fa-spin-pulse{animation-name:fa-spin;animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,steps(8))}@media (prefers-reduced-motion:reduce){.fa-beat,.fa-beat-fade,.fa-bounce,.fa-fade,.fa-flip,.fa-pulse,.fa-shake,.fa-spin,.fa-spin-pulse{animation-delay:-1ms;animation-duration:1ms;animation-iteration-count:1;transition-delay:0s;transition-duration:0s}}@keyframes fa-beat{0%,90%{transform:scale(1)}45%{transform:scale(var(--fa-beat-scale,1.25))}}@keyframes fa-bounce{0%{transform:scale(1,1) translateY(0)}10%{transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0)}30%{transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em))}50%{transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0)}57%{transform:scale(1,1) translateY(var(--fa-bounce-rebound,-.125em))}64%{transform:scale(1,1) translateY(0)}100%{transform:scale(1,1) translateY(0)}}@keyframes fa-fade{50%{opacity:var(--fa-fade-opacity,.4)}}@keyframes fa-beat-fade{0%,100%{opacity:var(--fa-beat-fade-opacity,.4);transform:scale(1)}50%{opacity:1;transform:scale(var(--fa-beat-fade-scale,1.125))}}@keyframes fa-flip{50%{transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg))}}@keyframes fa-shake{0%{transform:rotate(-15deg)}4%{transform:rotate(15deg)}24%,8%{transform:rotate(-18deg)}12%,28%{transform:rotate(18deg)}16%{transform:rotate(-22deg)}20%{transform:rotate(22deg)}32%{transform:rotate(-12deg)}36%{transform:rotate(12deg)}100%,40%{transform:rotate(0)}}@keyframes fa-spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.fa-rotate-90{transform:rotate(90deg)}.fa-rotate-180{transform:rotate(180deg)}.fa-rotate-270{transform:rotate(270deg)}.fa-flip-horizontal{transform:scale(-1,1)}.fa-flip-vertical{transform:scale(1,-1)}.fa-flip-both,.fa-flip-horizontal.fa-flip-vertical{transform:scale(-1,-1)}.fa-rotate-by{transform:rotate(var(--fa-rotate-angle,0))}.fa-stack{display:inline-block;vertical-align:middle;height:2em;position:relative;width:2.5em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0;z-index:var(--fa-stack-z-index,auto)}.svg-inline--fa.fa-stack-1x{height:1em;width:1.25em}.svg-inline--fa.fa-stack-2x{height:2em;width:2.5em}.fa-inverse{color:var(--fa-inverse,#fff)}.fa-sr-only,.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.fa-sr-only-focusable:not(:focus),.sr-only-focusable:not(:focus){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.svg-inline--fa .fa-primary{fill:var(--fa-primary-color,currentColor);opacity:var(--fa-primary-opacity,1)}.svg-inline--fa .fa-secondary{fill:var(--fa-secondary-color,currentColor);opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-primary{opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-secondary{opacity:var(--fa-primary-opacity,1)}.svg-inline--fa mask .fa-primary,.svg-inline--fa mask .fa-secondary{fill:#000}.fa-duotone.fa-inverse,.fad.fa-inverse{color:var(--fa-inverse,#fff)}</style><style>html { scroll-padding-top: 70px; /* height of sticky header plus extra */ }</style>
+    
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./neurips主赛道手册2026_files/virtual.js.下载"></script>
+    <meta name="google-site-verification" content="0jwPnVXIAk4FvFdT37dwMmd-kjHF86e5DKwvqlStUW0">
+
+
+    
+    <link rel="stylesheet" href="./neurips主赛道手册2026_files/core.css" type="text/css">
+    <link rel="stylesheet" href="./neurips主赛道手册2026_files/virtual.css" type="text/css">
+     <link href="./neurips主赛道手册2026_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./neurips主赛道手册2026_files/custom.css" type="text/css">
+    
+    <link rel="stylesheet" href="./neurips主赛道手册2026_files/bootstrap-select.min.css">
+    <link href="./neurips主赛道手册2026_files/css2" rel="stylesheet">
+    <script nonce="">
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true,
+          },
+          options: {
+            ignoreHtmlClass: 'no-mathjax',
+          }
+        };
+    </script>
+
+    <script id="MathJax-script" async="" src="./neurips主赛道手册2026_files/tex-mml-chtml.js.下载" nonce="">
+    </script>
+
+    <!--This script keeps local links inside the web app rather than opening them
+in Safari, and has nothing to do with editing or Aloha.-->
+
+<script nonce="">
+    (function (document, navigator, standalone) {
+
+        if ((standalone in navigator) && navigator[standalone]) {
+            var curnode, location = document.location, stop = /^(a|html)$/i;
+            document.addEventListener('click', function (e) {
+                curnode = e.target;
+                while (!(stop).test(curnode.nodeName)) {
+                    curnode = curnode.parentNode;
+                }
+
+                if (
+                    'href' in curnode && // is a link
+                    (chref = curnode.href).replace(location.href, '').indexOf('#') && // is not an anchor
+                    (!(/^[a-z\+\.\-]+:/i).test(chref) ||                       // either does not have a proper scheme (relative links)
+                        chref.indexOf(location.protocol + '//' + location.host) === 0) // or is in the same protocol and domain
+                ) {
+                    e.preventDefault();
+                    location.href = curnode.href;
+                }
+            }, false);
+        }
+    })(document, window.navigator, 'standalone');
+</script>
+
+
+<style>
+
+    @media screen and (min-width: 767px) {
+        .blurb {
+            min-height: 260px;
+        }
+    }
+</style>
+    
+
+<script src="./neurips主赛道手册2026_files/jquery-3.6.1.min.js.下载" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+</script>
+
+<script nonce="">
+    if (typeof jQuery === 'undefined') {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = "/static/core/js/jquery-3.6.1.min.js";
+        document.head.appendChild(script);
+    }
+</script>
+
+    
+    <script nonce="">
+        var $ = jQuery;
+    </script>
+
+    
+    <script src="./neurips主赛道手册2026_files/bootstrap.bundle.min.js.下载" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <script src="./neurips主赛道手册2026_files/ajax-csrf-snippet.js.下载"></script>
+    
+    <link rel="stylesheet" href="./neurips主赛道手册2026_files/all.min.css">
+    <script src="./neurips主赛道手册2026_files/all.min.js.下载"></script>
+    <script src="./neurips主赛道手册2026_files/bootstrap-select.min.js.下载"></script>
+
+
+    <style nonce="">
+        body {
+            font-family: Exo;}
+    </style>
+
+
+
+
+
+
+
+
+        
+
+
+    <link rel="stylesheet" href="./neurips主赛道手册2026_files/css">
+    <link rel="stylesheet" href="./neurips主赛道手册2026_files/css(1)">
+    <link href="./neurips主赛道手册2026_files/css2" rel="stylesheet">
+    <link rel="stylesheet" href="./neurips主赛道手册2026_files/virtual.css">
+    <script src="./neurips主赛道手册2026_files/d3.v5.min.js.下载"></script>
+    <script src="./neurips主赛道手册2026_files/typeahead.bundle.min.js.下载" integrity="sha512-lEb9Vp/rkl9g2E/LdHIMFTqz21+LA79f84gqP75fbimHqVTu6483JG1AwJlWLLQ8ezTehty78fObKupq3HSHPQ==" crossorigin="anonymous"></script>
+    <script src="./neurips主赛道手册2026_files/moment.min.js.下载"></script>
+    <script src="./neurips主赛道手册2026_files/js.cookie.min.js.下载"></script>
+    <script src="./neurips主赛道手册2026_files/ajax-csrf-snippet.js.下载"></script>
+    <script src="./neurips主赛道手册2026_files/virtual.js.下载"></script>
+    
+
+    
+
+    
+    <link rel="canonical" href="https://neurips.cc/Conferences/2026/MainTrackHandbook">
+
+    <title _msttexthash="16200704" _msthash="0">主赛道手册2026</title>
+<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+
+<body>
+<!-- <h1><a href="#" onclick="alert('CSP Test');">CSP Test</a></h1> -->
+
+
+
+
+<div class="noprint">
+    
+        
+            <!--Navbar start-->
+<header>
+    <a href="https://neurips.cc/Conferences/2026/MainTrackHandbook?utm_source=chatgpt.com#child-menu" class="off-screen" _msttexthash="29914794" _msthash="1">跳转到年度菜单栏</a>
+    <a href="https://neurips.cc/Conferences/2026/MainTrackHandbook?utm_source=chatgpt.com#main" class="off-screen" _msttexthash="24448099" _msthash="2">跳转到主要内容</a>
+    <div id="id_navbar" class="navbar navbar-expand-sm navbar-dark" aria-label="主导航" style="background-color:#212529" _mstaria-label="255502" _msthash="3">
+        <h2 class="off-screen" _msttexthash="8170123" _msthash="4">主导航</h2>
+        <div class="container-fluid">
+            <div><a class="navbar-brand" href="https://neurips.cc/" aria-label="首页" _mstaria-label="43979" _msthash="6">
+
+                <img src="./neurips主赛道手册2026_files/neurips-navbar-logo.svg" alt="conference_logo" height="40" _mstalt="287079" _msthash="5"></a></div>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler1" aria-expanded="false" aria-label="Toggle main navigation" _msthidden="A" _mstaria-label="455273" _msthash="7">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarToggler1">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle  p-1" href="https://neurips.cc/Conferences/2026/MainTrackHandbook?utm_source=chatgpt.com#" role="button" data-bs-toggle="dropdown" aria-expanded="false" _msttexthash="6234332" _msthash="8">神经IPS</a>
+        <ul class="dropdown-menu dropdown-menu-dark" _msthidden="13">
+            
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/FAQ" _msthidden="1">
+                    <span _msttexthash="87620" _msthidden="1" _msthash="9">
+                        Help/FAQ
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Help/Contact" _msthidden="1">
+                    <span _msttexthash="236353" _msthidden="1" _msthash="10">
+                        Contact NeurIPS
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Profile/create" _msthidden="1">
+                    <span _msttexthash="225277" _msthidden="1" _msthash="11">
+                        Create Profile
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2023/EthicsGuidelines" _msthidden="1">
+                    <span _msttexthash="197938" _msthidden="1" _msthash="12">
+                        Code of Ethics
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/public/CodeOfConduct" _msthidden="1">
+                    <span _msttexthash="225706" _msthidden="1" _msthash="13">
+                        Code of Conduct
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/public/JournalToConference" _msthidden="1">
+                    <span _msttexthash="587873" _msthidden="1" _msthash="14">
+                        Journal To Conference Track
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/public/DiversityInclusion" _msthidden="1">
+                    <span _msttexthash="409656" _msthidden="1" _msthash="15">
+                        Diversity &amp; Inclusion
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://proceedings.neurips.cc/" _msthidden="1">
+                    <span _msttexthash="179491" _msthidden="1" _msthash="16">
+                        Proceedings
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/FutureMeetings" _msthidden="1">
+                    <span _msttexthash="258882" _msthidden="1" _msthash="17">
+                        Future Meetings
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2025/Press" _msthidden="1">
+                    <span _msttexthash="62348" _msthidden="1" _msthash="18">
+                        Press
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Exhibitors/exhibitorinfo" _msthidden="1">
+                    <span _msttexthash="455624" _msthidden="1" _msthash="19">
+                        Exhibitor Information
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/public/PrivacyPolicy" _msthidden="1">
+                    <span _msttexthash="231452" _msthidden="1" _msthash="20">
+                        Privacy Policy
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Downloads" _msthidden="1">
+                    <span _msttexthash="135733" _msthidden="1" _msthash="21">
+                        Downloads
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://neurips.cc/MyStuff">
+                    <span _msttexthash="12355317" _msthash="22">我的东西</span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+                    
+                </ul>
+
+                
+                <form class="d-flex mx-2" aria-label="搜索" role="search" action="https://neurips.cc/search" _mstaria-label="74607" _msthash="23">
+                    <div class="input-group" role="search" style="outline-color:green;">
+                        <input type="text" class="form-control" placeholder="搜索" name="q" value="sam3.1_multiplex fp16.safetensors" aria-label="搜索" aria-describedby="btnGroupAddon" id="navbar-search" _mstplaceholder="74607" _msthash="24" _mstaria-label="74607">
+                        <div class="input-group-text btn-primary" id="btnGroupAddon">
+                            <button style="border: none; background-color: transparent; padding: 0;" type="submit" aria-label="执行搜索" _mstaria-label="233103" _msthash="25">
+                                <svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg><!-- <i class="fa-solid fa-magnifying-glass"></i> Font Awesome fontawesome.com -->
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+
+                
+                    <a href="https://neurips.cc/accounts/login?nextp=/search" class="navbar-brand"><svg class="svg-inline--fa fa-right-to-bracket" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="right-to-bracket" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg><!-- <span class="fa-solid fa-right-to-bracket"></span> Font Awesome fontawesome.com --><font _mstmutation="1" _msttexthash="5298241" _msthash="26">登录</font></a>
+                
+
+            </div>
+        </div>
+    </div>
+</header>
+<!--Navbar end-->
+        
+    
+</div><!--noprint div-->
+
+<!--This holds the whole page including the navbar-->
+<main id="main">
+    
+        
+            <div class="container-fluid">
+                
+<!--Navbar start-->
+
+
+
+
+<div class="container-fluid">
+
+    <div class="dropdown" id="child-menu">
+        <nav class="align-middle navbar navbar-expand-md mx-4 border border-3 border-top-0 rounded-bottom" style="min-height: 57px; background-color: #F6f6f6;">
+            <div class="container-fluid">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler1182" aria-expanded="false" aria-label="Toggle navigation" _msthidden="A" _mstaria-label="320099" _msthash="27">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarToggler1182">
+                    <ul class="navbar-nav me-auto mb-lg-0">
+                        
+
+
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle border-3  btn btn-primary text-white p-1" style="background-color: #070bff; font-size: 1.2 em;" href="https://neurips.cc/Conferences/2026/MainTrackHandbook?utm_source=chatgpt.com#" role="button" data-bs-toggle="dropdown" aria-expanded="false" _msttexthash="50495445" _msthash="28">特别年份：（2026年）</a>
+        <ul class="dropdown-menu" _msthidden="22">
+            
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2026" _msttexthash="22412" _msthidden="1" _msthash="29">2026
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2025" _msttexthash="22282" _msthidden="1" _msthash="30">2025
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2024" _msttexthash="22152" _msthidden="1" _msthash="31">2024
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2023" _msttexthash="22022" _msthidden="1" _msthash="32">2023
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2022" _msttexthash="21892" _msthidden="1" _msthash="33">2022
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2021" _msttexthash="21762" _msthidden="1" _msthash="34">2021
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2020" _msttexthash="21632" _msthidden="1" _msthash="35">2020
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2019" _msttexthash="22685" _msthidden="1" _msthash="36">2019
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2018" _msttexthash="22555" _msthidden="1" _msthash="37">2018
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2017" _msttexthash="22425" _msthidden="1" _msthash="38">2017
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2016" _msttexthash="22295" _msthidden="1" _msthash="39">2016
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2015" _msttexthash="22165" _msthidden="1" _msthash="40">2015
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2014" _msttexthash="22035" _msthidden="1" _msthash="41">2014
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2013" _msttexthash="21905" _msthidden="1" _msthash="42">2013
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2012" _msttexthash="21775" _msthidden="1" _msthash="43">2012
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2011" _msttexthash="21645" _msthidden="1" _msthash="44">2011
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2010" _msttexthash="21515" _msthidden="1" _msthash="45">2010
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2009" _msttexthash="22568" _msthidden="1" _msthash="46">2009
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2008" _msttexthash="22438" _msthidden="1" _msthash="47">2008
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2007" _msttexthash="22308" _msthidden="1" _msthash="48">2007
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/2006" _msttexthash="22178" _msthidden="1" _msthash="49">2006
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item " _msthidden="1">
+                <a class="dropdown-item p-1" href="https://neurips.cc/Conferences/PastConferences" _msttexthash="375518" _msthidden="1" _msthash="50">Earlier Conferences
+                </a>
+                
+            </li>
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/Dates">
+                    <span _msttexthash="5119231" _msthash="51">日期</span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle  p-1" href="https://neurips.cc/Conferences/2026/MainTrackHandbook?utm_source=chatgpt.com#" role="button" data-bs-toggle="dropdown" aria-expanded="false" _msttexthash="4418960" _msthash="52">提交</a>
+        <ul class="dropdown-menu" _msthidden="17">
+            
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallForPapers" _msthidden="1">
+                    <span _msttexthash="228202" _msthidden="1" _msthash="53">
+                        Call for Papers
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/MainTrackHandbook" _msthidden="1">
+                    <span style="font-size: .8em;" _msttexthash="335127" _msthidden="1" _msthash="54">
+                        &nbsp;&nbsp;&nbsp;&nbsp;Main Track Handbook
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/ReviewerGuidelines" _msthidden="1">
+                    <span style="font-size: .8em;" _msttexthash="413725" _msthidden="1" _msthash="55">
+                        &nbsp;&nbsp;&nbsp;&nbsp;Reviewing Guidelines
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/ai-reviewing-experiment" _msthidden="1">
+                    <span _msttexthash="485537" _msthidden="1" _msthash="56">
+                        AI Reviewing Experiment
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets" _msthidden="1">
+                    <span _msttexthash="715637" _msthidden="1" _msthash="57">
+                        Call for Evaluations &amp; Datasets
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/EvaluationsDatasetsFAQ" _msthidden="1">
+                    <span style="font-size: .8em;" _msttexthash="610051" _msthidden="1" _msthash="58">
+                        &nbsp;&nbsp;&nbsp;&nbsp;Evaluations and Datasets FAQ
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/EvaluationsDatasetsReviewerGuidelines" _msthidden="1">
+                    <span style="font-size: .8em;" _msttexthash="413725" _msthidden="1" _msthash="59">
+                        &nbsp;&nbsp;&nbsp;&nbsp;Reviewing Guidelines
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallForPositionPapers" _msthidden="1">
+                    <span _msttexthash="487877" _msthidden="1" _msthash="60">
+                        Call for Position Papers
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallForReproducibility" _msthidden="1">
+                    <span _msttexthash="532701" _msthidden="1" _msthash="61">
+                        Call for Reproducibility
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallForTutorials" _msthidden="1">
+                    <span _msttexthash="320996" _msthidden="1" _msthash="62">
+                        Call for Tutorials
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallForCompetitions" _msthidden="1">
+                    <span _msttexthash="416884" _msthidden="1" _msthash="63">
+                        Call For Competitions
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CompetitionReviewerGuidelines" _msthidden="1">
+                    <span style="font-size: .8em;" _msttexthash="1139827" _msthidden="1" _msthash="64">
+                        &nbsp;&nbsp;&nbsp;&nbsp;Competition Track Reviewing Guidelines
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallForWorkshops" _msthidden="1">
+                    <span _msttexthash="323791" _msthidden="1" _msthash="65">
+                        Call for Workshops
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallForAffinityEvents" _msthidden="1">
+                    <span _msttexthash="482313" _msthidden="1" _msthash="66">
+                        Call For Affinity Events
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallforEducationalResources" _msthidden="1">
+                    <span _msttexthash="736788" _msthidden="1" _msthash="67">
+                        Call for Educational Resources
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallForCreativeAI" _msthidden="1">
+                    <span _msttexthash="318071" _msthidden="1" _msthash="68">
+                        Call For Creative AI
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/CallforSocials" _msthidden="1">
+                    <span _msttexthash="409448" _msthidden="1" _msthash="69">
+                        Call for Social Events
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle  p-1" href="https://neurips.cc/Conferences/2026/MainTrackHandbook?utm_source=chatgpt.com#" role="button" data-bs-toggle="dropdown" aria-expanded="false" _msttexthash="10162893" _msthash="70">组织者</a>
+        <ul class="dropdown-menu" _msthidden="3">
+            
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/Committees" _msthidden="1">
+                    <span _msttexthash="415324" _msthidden="1" _msthash="71">
+                        Organizing Committee
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/Board" _msthidden="1">
+                    <span _msttexthash="185484" _msthidden="1" _msthash="72">
+                        NeurIPS Board
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/About" _msthidden="1">
+                    <span _msttexthash="336908" _msthidden="1" _msthash="73">
+                        NeurIPS Foundation
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle  p-1" href="https://neurips.cc/Conferences/2026/MainTrackHandbook?utm_source=chatgpt.com#" role="button" data-bs-toggle="dropdown" aria-expanded="false" _msttexthash="7631624" _msthash="74">放映商</a>
+        <ul class="dropdown-menu" _msthidden="2">
+            
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/Conferences/2026/Sponsors" _msthidden="1">
+                    <span _msttexthash="238303" _msthidden="1" _msthash="75">
+                        2026 Exhibitors
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2" _msthidden="1">
+                <a class="nav-link p-1" href="https://neurips.cc/sponsors/sponsorportal" _msthidden="1">
+                    <span _msttexthash="77961" _msthidden="1" _msthash="76">
+                        Portal
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--Navbar end-->
+
+            </div>
+            <br><br>
+        
+    
+    
+        
+        <div class="container">
+    
+    
+
+    
+    <div class="container">
+        
+            <!--JUst above the HTML in document-snippet.html-->
+            <div> <div>
+<h1><span><span><span><span><span><span _msttexthash="20734311" _msthash="77">NeurIPS主轨手册</span></span></span></span></span></span></h1>
+
+<h1><span><span><span><span><span><span _msttexthash="50931959" _msthash="78">（作者、审稿人、AC和SACs）</span></span></span></span></span></span></h1>
+
+<p _msttexthash="48659" _msthash="79">V2026.3</p>
+
+<p>&nbsp;</p>
+
+<h2><span><span><span><span><span><span _msttexthash="4518605" _msthash="80">大家</span></span></span></span></span></span></h2>
+
+<p>&nbsp;</p>
+
+<h3><span><span><span><span><span><span _msttexthash="15695537" _msthash="81">OpenReview 设置</span></span></span></span></span></span></h3>
+
+<p _msttexthash="1316714698" _msthash="82">所有作者、审稿人、AC和SAC都需要在摘要提交截止日前拥有活跃的OpenReview个人资料。你<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">可以通过登录并在 https://openreview.net/ 点击你的名字来编辑你的OpenReview个人资料</span></span></span></span></span></span><a href="https://openreview.net/" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1"></span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">。这会带你去一个网址 </span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="66842087" _msthash="83">“https://openreview.net/profile?id=~[名字]_[姓氏][n]”</span></span></span></span></span></span></p>
+
+<p _msttexthash="4653361531" _msthash="84"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">其中最后一部分是你的个人资料名，例如~Po-Yi_Lu1。OpenReview的资料必须是最新的，包含作者的所有出版物及其当前的隶属关系。导入出版物最简单的方式是通过DBLP，但并非必需，</span></span></span></span></span></span><a href="https://openreview.net/faq" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">详见OpenReview常见问题解答</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">。由于配置文件用于提供利益冲突信息，未适当更新的配置文件可能面临被拒绝（作者）和处罚（审稿人）。</span></span></span></span></span></span></p>
+
+<p _msttexthash="2098062603" _msthash="85"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">请注意，OpenReview对新创建的个人资料有审核政策：未经机构邮件创建的新个人资料将经历最长两周的审核流程。使用机构邮箱创建的新资料将自动激活。如果您对OpenReview的使用有任何疑问，请参阅其常见问题解答：</span></span></span></span></span></span><a href="https://openreview.net/faq" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">https://openreview.net/faq</span></u></span></span></span></span></span></a></p>
+
+<p _msttexthash="2834491699" _msthash="86"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">所有邮件均由 noreply@openreview.net 发送。请确保您在OpenReview中的首选联系邮箱是最新的，并且您的邮件服务器或垃圾邮件过滤器没有拒绝OpenReview的邮件。有关OpenReview的一般问题，请访问 </span></span></span></span></span></span><a href="https://openreview.net/faq" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">https://openreview.net/faq</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">。如有技术问题，请直接联系 OpenReview 支持团队 info@openreview.net。</span></span></span></span></span></span></p>
+
+<p><span><span><span><strong><span><span _msttexthash="49135801" _msthash="87">附加常见问题解答：</span></span></strong></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="300658696" _msthash="88">问：我没有DBLP页面或之前的发表作品，我该如何完成我的OpenReview个人资料？</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="621759931" _msthash="89">答：在这种情况下，DBLP和相关文件可以空填，但请务必在“教育与职业经历”栏目下添加所有电子邮件地址和隶属关系。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="103061127" _msthash="90">问：我有发表过论文，但没有DBLP页面。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="59010939" _msthash="91">答：您可以直接将论文导入Openreview。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="446805788" _msthash="92">问：我有一些发表的论文，但与神经国际精神病学（NeurIPS）主题领域无关。我需要上传吗？</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="18105009" _msthash="93">答：没有。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="12860874" _msthash="94">机构资格</span></span></span></span></span></span></h3>
+
+<p _msttexthash="43566133" _msthash="95">请参阅<a href="https://neurips.cc/Conferences/2026/StateDeptGuidelines" _istranslated="1">美国国务院指南</a>。</p>
+
+<h3><span><span><span><span><span><span _msttexthash="11600511" _msthash="96">利益冲突</span></span></span></span></span></span></h3>
+
+<p _msttexthash="1566324578" _msthash="97"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">所有作者、审稿人、助理、高级编辑和PC必须在OpenReview中声明其利益冲突。 </span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">你将被要求申报两种类型的冲突---领域冲突和个人冲突。这两种类型均需填写OpenReview个人资料中相应的部分，如下所述。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="2990207480" _msthash="98">领域冲突（填写在教育与职业历史中）。当你进入域名冲突时，你的提交内容将不会被审稿人、区域主席或也进入该领域冲突的高级区域主席看到。只会使用你和对方的教育与职业经历的最后三年。你资料中的这部分是公开的。注意：所有合作关系，如20%咨询、休假等，都应包含在内。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="376855791" _msthash="99">与个别作者及项目委员会成员的冲突（记录在顾问及其他关系中）。以下构成个人冲突：</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span _msttexthash="22233549" _msthash="100">家庭或亲密关系</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="28124525" _msthash="101">博士指导老师关系</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="158950675" _msthash="102">过去三年所有原创研究文章的合著者。透视作品不算数。</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span _msttexthash="3402277450" _msthash="103">在某些情况下，您可能存在未被上述定义涵盖的个人利益冲突，但这仍会显著影响审查过程的公平性。您可以选择将此类冲突标记为隐藏，方法是将该冲突的可见性从“所有人”改为“NeurIPS 2026项目主席”。如果项目主席有任何理由怀疑此类冲突的有效性，他们可以要求伦理与申诉委员会保密调查其性质。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="1366873833" _msthash="104">请注意，OpenReview配置文件在各会议间是持久存在的，但其他会议可能有不同的冲突解决政策。任何通过虚假声明冲突影响评审者分配的行为，都可能导致未经审核的拒绝。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="7960446" _msthash="105">反勾结</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="549376165" _msthash="106">遗憾的是，过去几年确实有少数评审人采用欺骗性竞价行为。NeurIPS不容忍作者秘密与评审者、AC或SAC合作以获得好评。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="939952403" _msthash="107">如果发现有勾结，相关作者和审稿人将被通知，并能够对指控作出回应。鉴于行动时间紧迫，PC们会仔细考虑他们的回答，但他们的决定将是最终的。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="284214944" _msthash="108">识别串通可以在审查过程中的任何阶段发生，包括但不限于招标和反驳阶段。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="902765279" _msthash="109">勾结的惩罚包括立即从评审系统中除名，拒绝所有正在审议的论文，与姊妹会议共享身份，通知勾结方的本院机构，和/或对未来的NeurIPS实施制裁。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="26066183" _msthash="110">提交文件的保密性</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="7713396639" _msthash="111">评审员、助理教练、特别助理和社区顾问必须对评审过程的一切保密。请勿与任何人分享、讨论或披露任何与提交相关的信息，包括任何未经授权的大型语言模型。除非创意、代码或投稿成果公开且作者已授予适用于你预期用途的适当许可或许可，否则不得在自己的作品中使用。提交审核的代码不得分发给任何人，包括任何未经授权的大型语言模型，且不得用于除审查过程以外的任何目的。如果评审、AC或SAC需要外部评审的额外支持，应通过OpenReview正式邀请他们。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="2055588145" _msthash="112">最后，会分配评审、助理和SAC的任务，以确保无利益冲突。评审员、助理和SAC不应与其他评审员、AC或SAC讨论他们分配的论文，这些评审员或SAC不属于同一投稿。审稿人、AC和SAC向其他评审、AC和SAC索取其作为作者的投稿信息也是违规的。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="19081244" _msthash="113">NeurIPS伦理守则</span></span></span></span></span></span></h3>
+
+<p _msttexthash="5828123392" _msthash="114"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">该伦理守则旨在引导NeurIPS社区在研究伦理要素及提交给NeurIPS的研究对社会和环境影响方面达到更高的伦理行为标准。它概述了提交作者、项目成员和组织委员会必须遵循的伦理实践的会议期望。该道德准则补充</span></span></span></span></span></span>了<a href="https://neurips.cc/public/CodeOfConduct" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">NeurIPS行为准则</span></u></span></span></span></span></span></a>，后者<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">关注职业行为和研究诚信问题，包括抄袭、欺诈和可重复性问题。以下所述的要点也为NeurIPS提交清单提供了参考，该清单勾勒出更具体的沟通要求。</span></span></span></span></span></span></p>
+
+<h3 _msttexthash="11723582" _msthash="115">学术诚信</h3>
+
+<p _msttexthash="43172688" _msthash="116">参见<a href="https://neurips.cc/public/guides/AcademicIntegrity" _istranslated="1">NeurIPS学术整合政策</a></p>
+
+<h3><span><span><span><span><span><span _msttexthash="47087625" _msthash="117">研究过程可能带来的危害</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="84794814" _msthash="118">涉及人体受试者或参与者的研究：</span></span></span></span></span></span></p>
+
+<ul>
+	<li _msttexthash="807113047" _msthash="119"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">公平工资：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">所有人体研究对象或参与者必须获得适当的报酬。如果你在研究项目中使用众包或承包工作，必须遵守该工作的最低小时费率。</span></span></span></span></span></span></li>
+	<li _msttexthash="3999199139" _msthash="120"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">涉及人类参与者的研究：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">如果所提交的研究涉及研究人员与人类参与者之间的直接互动，或技术系统与人类参与者之间的互动，作者必须遵循其机构内现有的规范（例如人类受试者研究认证，IRB），并遵循相关流程。在没有正式流程的情况下，他们可以接受同等的非正式流程（例如通过同行或内部伦理审查）。</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span _msttexthash="383284330" _msthash="121">数据相关关切：以下所述要点适用于所有提交数据的数据集，包括公开数据和内部数据集。</span></span></span></span></span></span></p>
+
+<ul>
+	<li _msttexthash="335453560" _msthash="122"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">隐私：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">数据集应尽量减少任何个人身份信息的暴露，除非获得相关人员的知情同意。 </span></span></span></span></span></span></li>
+	<li _msttexthash="462029061" _msthash="123"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">同意：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">任何选择创建真实人物真实数据的论文，都应征求参与者的明确同意，或解释为何无法同意。</span></span></span></span></span></span></li>
+	<li _msttexthash="1905500181" _msthash="124"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">弃用数据集：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">作者应与数据集创建者确认该数据集仍然可供使用。原作者下架的数据集（即被认为过时或已停用）不应再使用，除非用于审计或关键评估。有关已知弃用数据集的指示，请参阅NeurIPS</span></span></span></span></span></span>的<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">弃用数据集</span></span></span></span></span></span><a href="https://neurips.cc/public/deprecated-datasets" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">列表</span></u></span></span></span></span></span></a>。</li>
+	<li _msttexthash="762448271" _msthash="125"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">版权与合理使用：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">虽然机器学习研究中的合理使用和版权规范仍在演变中，作者必须尊重定义许可的数据集条款（如CC 4.0、MIT等等）。 </span></span></span></span></span></span></li>
+	<li _msttexthash="1158780831" _msthash="126"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">具有代表性的评估实践： </span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"> 在收集新数据集或决定使用哪些数据集时，作者应评估并传达其数据集对目标人群的代表性。多元或普遍代表性的主张应由具体证据或实例来支持。</span></span></span></span></span></span></li>
+</ul>
+
+<h3><span><span><span><span><span><span _msttexthash="41612402" _msthash="127">社会影响及潜在有害后果</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="340183090" _msthash="128">作者应透明地传达研究的已知或预期结果：例如通过论文清单或投稿中的单独部分。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="61112415" _msthash="129">以下具体领域尤为令人关注：</span></span></span></span></span></span></p>
+
+<ul>
+	<li _msttexthash="1166974159" _msthash="130"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">安全性：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">贡献者应考虑其技术是否可能在可预见的情况下通过直接应用、副作用或潜在滥用被用来伤害、伤害或致死他人。我们不接受以提升武器系统杀伤力为主要目标的研究。</span></span></span></span></span></span></li>
+	<li _msttexthash="1250711826" _msthash="131"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">安全性：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">研究人员应考虑应用在实际环境中部署时是否存在暴露安全漏洞或引发严重事故的风险。如果是这样，他们应采取切实措施，建议或实施防护此类安全风险的方法。</span></span></span></span></span></span></li>
+	<li _msttexthash="814198931" _msthash="132"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">歧视：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">研究人员应考虑他们开发的技术是否可能被用来歧视、排斥或以其他方式对人们产生负面影响，包括对医疗、教育或信贷等服务的提供。 </span></span></span></span></span></span></li>
+	<li _msttexthash="1098359730" _msthash="133"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">监控：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">研究人员在收集或分析任何大规模监控数据前，应咨询当地法律或立法。监控不应用于预测性别、种族、性取向或其他受保护特征，也不应以任何方式危及个人福祉。</span></span></span></span></span></span></li>
+	<li _msttexthash="1443733473" _msthash="134"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">欺骗与骚扰：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">研究人员应沟通其方法是否可能被用来促进欺骗性互动，从而造成盗窃、欺诈或骚扰等伤害，以及是否可用于冒充公众人物、影响政治进程，或作为推广仇恨言论或滥用的工具。</span></span></span></span></span></span></li>
+	<li _msttexthash="650020254" _msthash="135"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">环境：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">研究人员应考虑他们的研究是否会对环境产生负面影响，例如促进化石燃料开采、增加社会消费或产生大量温室气体。</span></span></span></span></span></span></li>
+	<li _msttexthash="1005337918" _msthash="136"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">人权：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">我们禁止传播任何基于或促进非法活动的研究成果，并强烈反对任何可能剥夺人们隐私、言论、健康、自由、安全、法人资格或良心或宗教自由权利的作品。</span></span></span></span></span></span></li>
+	<li _msttexthash="975402155" _msthash="137"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">偏见与公平性： </span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"> 贡献者应考虑模型或数据集内容的潜在偏见或限制，并检查这些偏见是否编码、包含或加剧对特定性别、种族、性取向或其他受保护特征的偏见。</span></span></span></span></span></span></li>
+</ul>
+
+<h3><span><span><span><span><span><span _msttexthash="20587658" _msthash="138">影响缓解措施</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="217270066" _msthash="139">我们建议反思并采取措施，以减轻研究项目可能带来的有害后果。</span></span></span></span></span></span></p>
+
+<ul>
+	<li _msttexthash="341523806" _msthash="140"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">数据和模型文档：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">研究人员应通过结构化模板在提交时传达数据集或模型的详细信息。</span></span></span></span></span></span></li>
+	<li _msttexthash="761935551" _msthash="141"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">数据和模型许可：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">如果发布数据或模型，作者也应提供许可。这些内容应包括这些人工物的预期用途和限制，以防止滥用或不当使用。</span></span></span></span></span></span></li>
+	<li _msttexthash="1309222707" _msthash="142"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">安全且保护隐私的数据存储与分发</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">：作者应利用隐私协议、加密和匿名化，以降低数据泄露或盗窃的风险。对于更敏感的数据（如生物识别或医疗数据）应采用更强有力的措施。</span></span></span></span></span></span></li>
+	<li _msttexthash="2129060687" _msthash="143"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">负责任的发布与发布策略：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">存在高滥用或双重用途风险的模型应在发布时加入必要的保障措施，以便模型可受控使用，例如要求用户遵守行为准则才能访问模型。揭露系统安全漏洞的论文作者应遵循系统所有者的负责任披露程序。</span></span></span></span></span></span></li>
+	<li _msttexthash="1027059397" _msthash="144"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">允许访问研究成果：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">发布研究成果时，重要的是提供理解这些成果物所需的信息（如代码、执行环境版本、权重和系统超参数），以便外部审查和审计。</span></span></span></span></span></span></li>
+	<li _msttexthash="1612510445" _msthash="145"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">披露可重复性的关键要素：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">提交给NeurIPS的任何工作应附有足以复现所述结果的信息。这可以包括代码描述、实际代码、数据、模型权重，以及/或训练拟议模型或验证结果所需的计算资源描述。</span></span></span></span></span></span></li>
+	<li _msttexthash="2086894069" _msthash="146"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">确保法律合规：</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">确保对地区法律要求的充分了解。例如，可以通过咨询专注于知识产权和技术问题的法学院诊所来实现。如果因人权侵犯（如言论自由、工作和教育权、身体自主权等）未能实现法律合规，作者需提供额外信息。</span></span></span></span></span></span></li>
+</ul>
+
+<h3><span><span><span><span><span><span _msttexthash="13705055" _msthash="147">违规行为</span></span></span></span></span></span></h3>
+
+<p _msttexthash="3498601223" _msthash="148">违反<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">道德守则的行为应向 </span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">hotline@neurips.cc</span></span></span></span></span></span> 报告<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">。NeurIPS保留拒绝发表违反伦理守则的科学著作的权利。请注意，会议贡献者还必须遵守来自其他利益相关者如资助方和研究机构的额外伦理守则或审查要求。NeurIPS保留随时调查伦理准则是否被遵守的权利，包括论文接受、发表或会议后。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="827424975" _msthash="149">违规处罚可能包括立即从评审系统中移除、撤销论文的发表状态、与姊妹会议共享身份、通知合谋方的本院机构，以及/或对未来的NeurIPS处以制裁。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="13473265" _msthash="150">延伸阅读</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span></span><span><span><span><span><span><span _msttexthash="18468255" _msthash="151">理解许可证</span></span></span></span></span></span></p>
+
+<ul>
+	<li><a href="https://arxiv.org/abs/1903.12262"><span><span><span><span><span><u><span _msttexthash="103894479" _msthash="152">迈向数据许可标准化：蒙特利尔数据许可</span></u></span></span></span></span></span></a></li>
+	<li><a href="https://choosealicense.com/"><span><span><span><span><span><u><span _msttexthash="27026896" _msthash="153">选择开源许可证</span></u></span></span></span></span></span></a><span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span _msttexthash="32838845" _msthash="154">模型与数据文档模板</span></span></span></span></span></span></p>
+
+<ul>
+	<li><a href="https://arxiv.org/abs/1810.03993"><span><span><span><span><span><u><span _msttexthash="36772385" _msthash="155">用于模型报告的模型卡</span></u></span></span></span></span></span></a></li>
+	<li><a href="https://arxiv.org/abs/1803.09010"><span><span><span><span><span><u><span _msttexthash="21989552" _msthash="156">数据集数据表</span></u></span></span></span></span></span></a></li>
+	<li><a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/factsheets-model-inventory.html"><span><span><span><span><span><u><span _msttexthash="44809700" _msthash="157">使用AI事实表进行AI治理</span></u></span></span></span></span></span></a></li>
+	<li><a href="https://partnershiponai.org/about-ml-resources-library/"><span><span><span><span><span><u><span _msttexthash="50482952" _msthash="158">机器学习生命周期文档实践</span></u></span></span></span></span></span></a></li>
+</ul>
+
+<p><span><span><span><span><span><span _msttexthash="10611289" _msthash="159">社会影响</span></span></span></span></span></span></p>
+
+<ul>
+	<li _msttexthash="86825414" _msthash="160"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">安全：</span></span></span></span></span></span><a href="https://cset.georgetown.edu/publication/key-concepts-in-ai-safety-an-overview/" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">人工智能安全的关键概念概述</span></u></span></span></span></span></span></a></li>
+	<li _msttexthash="92362660" _msthash="161"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">安全：</span></span></span></span></span></span><a href="https://ieeexplore.ieee.org/document/8406613" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">SoK：机器学习中的安全与隐私</span></u></span></span></span></span></span></a></li>
+	<li _msttexthash="253618911" _msthash="162">《<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">歧视：</span></span></span></span></span></span><a href="https://fra.europa.eu/sites/default/files/fra_uploads/fra-2022-bias-in-algorithms_en.pdf" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">算法中的偏见——人工智能与歧视</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">》; </span></span></span></span></span></span>公平<a href="https://ico.org.uk/for-organisations/guide-to-data-protection/key-dp-themes/guidance-on-ai-and-data-protection/how-do-we-ensure-fairness-in-ai/what-about-fairness-bias-and-discrimination/" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">、偏见和歧视又如何？</span></u></span></span></span></span></span></a></li>
+	<li _msttexthash="52629616" _msthash="163"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">监控：</span></span></span></span></span></span><a href="https://www.aclu.org/other/human-right-privacy-digital-age" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">数字时代的隐私权</span></u></span></span></span></span></span></a></li>
+	<li><font _mstmutation="1" _msttexthash="280690449" _msthash="164"><span _mstmutation="1" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">欺骗与骚扰：</span></span></span></span></span></span><a href="https://arxiv.org/abs/2301.04246" _mstmutation="1" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">生成式语言模型与自动化影响操作：新兴威胁与潜在缓解措施</span></u></span></span></span></span></span></a></font><span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span></li>
+	<li _msttexthash="211314961" _msthash="165"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">环境：</span></span></span></span></span></span><a href="https://arxiv.org/abs/1910.09700" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">量化机器学习的碳排放</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">及</span></span></span></span></span></span><a href="https://www.nature.com/articles/s41558-022-01377-7" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">将人工智能与气候变化缓解相结合</span></u></span></span></span></span></span></a></li>
+	<li><font _mstmutation="1" _msttexthash="54811978" _msthash="166"><span _mstmutation="1" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">人权：</span></span></span></span></span></span><a href="https://www.hrw.org/topic/technology-and-rights" _mstmutation="1" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">技术与权利 |人权观察</span></u></span></span></span></span></span></a></font><span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span></li>
+	<li><font _mstmutation="1" _msttexthash="56867148" _msthash="167"><span _mstmutation="1" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">偏见与公平：</span></span></span></span></span></span><a href="https://fairmlbook.org/" _mstmutation="1" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">公平与机器学习</span></u></span></span></span></span></span></a></font><span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span></li>
+	<li _msttexthash="157087775" _msthash="168"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">双重用途问题：</span></span></span></span></span></span>人工智能<a href="https://www.nature.com/articles/s42256-022-00465-9" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">驱动药物发现的双重用途 </span></u></span></span></span></span></span></a></li>
+	<li _msttexthash="77207897" _msthash="169"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">数据丰富：</span></span></span></span></span></span><a href="https://partnershiponai.org/responsible-sourcing-library/" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">负责任的数据丰富来源</span></u></span></span></span></span></span></a></li>
+	<li _msttexthash="97610188" _msthash="170"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">合成媒体：</span></span></span></span></span></span><a href="https://syntheticmedia.partnershiponai.org/#read_the_framework" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">PAI对合成媒体的负责任实践</span></u></span></span></span></span></span></a></li>
+</ul>
+
+<p><span><span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span></span><span><span><span><span><span><span _msttexthash="9891739" _msthash="171">相关事业</span></span></span></span></span></span></p>
+
+<ul>
+	<li><a href="https://www.acm.org/code-of-ethics"><span><span><span><span><span><u><span _msttexthash="14110603" _msthash="172">ACM伦理守则</span></u></span></span></span></span></span></a><span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span></li>
+	<li><a href="https://2021.aclweb.org/ethics/Ethics-FAQ/"><span><span><span><span><span><u><span _msttexthash="45548334" _msthash="173">ACL伦理常见问题解答</span></u></span></span></span></span></span></a></li>
+	<li><a href="https://iclr.cc/public/CodeOfEthics"><span><span><span><span><span><u><span _msttexthash="15349243" _msthash="174">ICLR伦理守则</span></u></span></span></span></span></span></a></li>
+	<li><a href="https://oir.nih.gov/sourcebook/ethical-conduct/responsible-conduct-research-training"><span><span><span><span><span><u><span _msttexthash="43924595" _msthash="175">负责任的研究培训行为</span></u></span></span></span></span></span></a><span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span _msttexthash="20374250" _msthash="176">相关研究社区</span></span></span></span></span></span></p>
+
+<ul>
+	<li><a href="https://satml.org/"><span><span><span><span><span><u><span _msttexthash="146198" _msthash="177">IEEE SaTML 2023</span></u></span></span></span></span></span></a></li>
+	<li><a href="https://facctconference.org/"><span><span><span><span><span><u><span _msttexthash="5690152" _msthash="178">ACM 协会</span></u></span></span></span></span></span></a></li>
+	<li><a href="https://www.aies-conference.com/2023/"><span><span><span><span><span><u><span _msttexthash="13546884" _msthash="179">艾斯联盟</span></u></span></span></span></span></span></a></li>
+	<li><a href="https://responsiblecomputing.org/forc-2022/"><span><span><span><span><span><u><span _msttexthash="3531892" _msthash="180">2022年FORC</span></u></span></span></span></span></span></a><span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span></li>
+	<li><a href="https://eaamo.org/"><span><span><span><span><span><u><span _msttexthash="9785165" _msthash="181">伊阿莫</span></u></span></span></span></span></span></a></li>
+</ul>
+
+<h3><span><span><span><span><span><span _msttexthash="6248970" _msthash="182">实验</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="2647175518" _msthash="183">与往年一样，项目主席将通过随机对照实验衡量评审过程的质量和有效性。所有实验均由机构审查委员会（IRB）独立审查和批准。每年实验的信息将通过博客文章分享，并在提交/接受评审时通过同意书发布，以评审员、AC和SAC身份参与。这些数据每年都会有所不同。</span></span></span></span></span></span></p>
+
+<h2><strong><span><span><span><span><span><span _msttexthash="5257148" _msthash="184">作者</span></span></span></span></span></span></strong></h2>
+
+<h3><span><span><span><span><span><span _msttexthash="20969286" _msthash="185">纸张格式说明</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="233072437" _msthash="186">所有提交必须为PDF格式，并包含在一个PDF文件中，按建议顺序排列</span></span></span></span></span></span></p>
+
+<ol>
+	<li><span><span><span><span><span><span _msttexthash="23559406" _msthash="187">提交的论文内容</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="21043607" _msthash="188">论文参考文献</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="316777409" _msthash="189">附录中包含其他支持文本信息，如证明、实验细节（代码和数据将单独提交）。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="34976968" _msthash="190">NeurIPS论文检查清单</span></span></span></span></span></span></li>
+</ol>
+
+<p><span><span><span><span><span><span _msttexthash="1922257142" _msthash="191">提交论文的正文限于九页内容页，包括所有图表和表格。包含参考文献、可选技术附录和强制性纸质清单的附加页面不计入内容页。如果你的投稿被接受，你将被允许为相机准备好版本添加额外的内容页面。最大文件大小为50MB。</span></span></span></span></span></span></p>
+
+<p _msttexthash="5655898092" _msthash="192"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">你必须使用当年LaTeX格式文件格式化提交。其中包括“预印本”选项，用于在线发布的非匿名预印本。这是</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">我们唯一</span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">接受的模板（注：Microsoft Word 模板已停产）。只要你的PDF符合页数限制，你就可以使用任何版本的LaTeX。违反NeurIPS风格（例如缩短边距或字体大小）或页数限制的投稿可能会被桌面拒绝。如果论文未达到提交要求，也可能在未考虑其优劣的情况下被拒绝。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="29978442" _msthash="193">双盲审稿：作者</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="10474219613" _msthash="194">所有投稿必须匿名，且不得包含可能违反双盲评审政策的身份信息。本政策同样适用于任何补充或关联材料，包括代码。如果您包含任何外部材料的链接，您有责任保证匿名浏览。请不要在提交时附上致谢。如果你需要引用自己的论文，应保持足够的匿名性，以保持双盲审稿。例如，写道“在Smith等人的前作[1]中......”而不是“在我们之前的工作中[1]......”。如果你需要引用一篇提交给NeurIPS且无法作为非匿名预印本发布的自己论文，请在补充材料中附上该匿名引用的投稿副本，并写上“匿名等人同时显示......”。违反该政策的论文将被拒绝。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="11564878" _msthash="195">论文提交</span></span></span></span></span></span></h3>
+
+<p _msttexthash="2654431819" _msthash="196">论<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">文应在提交截止日期前以单一PDF形式上传。 </span></span></span></span></span></span>所有作者姓名必须在摘要提交截止日期前填写至投稿表格。之后，除了修改作者顺序外，不能再做任何更改。<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"> 如果您的论文被接受，但我们不允许添加或移除作者。请注意，您可以在审核过程中的任何阶段撤回投稿。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="12996152" _msthash="197">贡献类型</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="113228830" _msthash="198">作者应从以下选项中选择一种贡献类型：</span></span></span></span></span></span></p>
+
+<ul>
+	<li _msttexthash="394561973" _msthash="199"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">一般情况：</span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">如果其他类型都不太合适，请选择这种类型。我们预计大多数论文都属于这类。</span></span></span></span></span></span></li>
+	<li _msttexthash="88070411" _msthash="200"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">理论：</span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">主要贡献是通过分析和证明。</span></span></span></span></span></span></li>
+	<li _msttexthash="274579981" _msthash="201"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">使用启发</span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">：主要贡献来自与现实世界用例相关的新方法、任务和/或指标的影响。</span></span></span></span></span></span></li>
+	<li _msttexthash="440490362" _msthash="202"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">概念与可行性：</span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">主要贡献是一个高风险高回报的创意，初步成果。这些投稿的门槛预计会很高。</span></span></span></span></span></span></li>
+	<li _msttexthash="260287261" _msthash="203"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">负面结果：</span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">主要贡献在于理解阴性结果。这些投稿的门槛预计会很高。</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span _msttexthash="537385199" _msthash="204">审稿人将被要求结合指定的贡献类型进行评审，并获得补充指南，说明应如何根据贡献类型解释评审标准。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="21774805" _msthash="205">代码与数据提交</span></span></span></span></span></span></h3>
+
+<p _msttexthash="2671849934" _msthash="206"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">补充材料，如数据或源代码，也可以单独提交为一个最多100MB的ZIP文件。材料应由作者创作，直接支持投稿内容，并且与主投稿一样，保持匿名。我们鼓励作者将代码作为补充材料的一部分上传，以帮助评审评估作品质量。以下政策;详情请参阅这些</span></span></span></span></span></span><a href="https://github.com/paperswithcode/releasing-research-code" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">指南和模板</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="861634449" _msthash="207">审核员将被要求严格保密提交的代码和数据，仅用于审核用途。对于被接受的论文，你应提供去匿名化的链接，以便更广泛的科学界能够重复。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="12437061" _msthash="208">规范指南</span></span></span></span></span></span></h3>
+
+<p _msttexthash="326214135" _msthash="209"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">你的代码提交应包括培训和评估代码、依赖的规范等。</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"> 更详细的指导</span></span></span></span></span></span>方针请参见 <a href="https://github.com/paperswithcode/releasing-research-code" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1"> https://github.com/paperswithcode/releasing-research-code</span></u></span></span></span></span></span></a>。</p>
+
+<p><span><span><span><span><span><span _msttexthash="513840093" _msthash="210">你的代码提交理想情况下应该是自成一体且可执行的。如果不是这样，你必须解释原因。可能的原因包括：</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span _msttexthash="188271070" _msthash="211">运行实验需要专用硬件（例如专用加速器或机器人平台）。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="624575822" _msthash="212">代码依赖于非开源或非自由库，这些库不包含论文声称的科学贡献算法（例如付费数学编程求解器、商业模拟器、MATLAB）。</span></span></span></span></span></span></li>
+</ul>
+
+<h3><span><span><span><span><span><span _msttexthash="10749921" _msthash="213">数据指南</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="566096453" _msthash="214">如果你要提交新数据集，请在模板中包含的NeurIPS论文清单中回答相关问题。我们也鼓励您遵守以下最佳实践：</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span _msttexthash="156865696" _msthash="215">论文数据集链接（审阅时匿名，拍照时去匿名）。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="104721006" _msthash="216">将数据集存放在确保数据长期保存的仓库中。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="201015594" _msthash="217">数据集应具有持久标识符，如数字对象标识符或紧凑标识符。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="81608345" _msthash="218">数据集应遵循 Schema.org 或DCAT元数据标准。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="129802075" _msthash="219">许可证和/或任何数据访问限制应在论文中说明。</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span _msttexthash="144131273" _msthash="220">如果无法符合上述建议，那么你应该包含一个理由。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="12026729" _msthash="221">论文清单</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="1904243692" _msthash="222">为了提高提交和发表于NeurIPS的研究的严谨性和透明度，作者必须完成论文模板中包含的论文清单。论文清单旨在帮助作者反思与负责任机器学习研究相关的各种问题，包括可重复性、透明度、研究伦理以及社会影响。</span></span></span></span></span></span></p>
+
+<p _msttexthash="2922936471" _msthash="223"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">请注意，您不必在论文中包含题为“更广泛影响”的章节。不过，你仍应考虑工作可能带来的社会负面影响。你可以在论文的任何地方（如引言、结论、单独章节、补充材料等）讨论这些潜在的社会影响，但不得超过页数限制。</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"> 关于清单的更多动</span></span></span></span></span></span>机，请参见这篇<a href="https://neuripsconf.medium.com/introducing-the-neurips-2021-paper-checklist-3220d6df500b" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">博客文章</span></u></span></span></span></span></span></a>。</p>
+
+<h3><span><span><span><span><span><span _msttexthash="118333137" _msthash="224">作者：代理与大型语言模型（LLM）的使用</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="3555447558" _msthash="225">我们期望作者清晰地记录其方法论，以维护科学严谨性和透明度标准。如果实例和/或大型语言模型是方法中重要、原创或非标准的组成部分，例如论文讨论使用LLM作为搜索启发式，应在实验设置部分（或等效部分）进行描述。拼写检查和语法建议、编辑辅助以及基础代码辅助的使用无需文档说明。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="6973904405" _msthash="226">此外，作者对论文的全部内容负责，包括所有文本、图表和参考文献。因此，虽然作者可以使用任何工具来准备和撰写论文，但必须确保所有内容正确且原创。例如，高层次指令在生成图时可能导致幻觉，从而危及科学完整性。文献综述中出现了许多幻觉引用的案例，这违反了神经国际精神病学会（NeurIPS）行为准则。作者有责任核实这些工具的科学负责任使用。相关地，既然你对工作负责，代理和大型语言模型不能成为作者。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="168651613" _msthash="227">最后，我们指出，严禁即时注入以及其他操控审查的行为。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="8864648" _msthash="228">预印本</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="5533488246" _msthash="229">非匿名预印本（在arXiv或其他在线仓库、个人网站、社交媒体上）不会导致被拒。如果您选择使用NeurIPS格式来制作预印本版本，必须使用“预印本”选项而非“最终版”选项。公开版本的提交不应显示“正在NeurIPS审核中”或类似内容。审稿人会被指示不要主动寻找此类预印本，但遇到它们不会构成利益冲突。作者可以向NeurIPS提交已作为预印本（例如arXiv上）的匿名作品，无需引用。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="2098615298" _msthash="230">注意：虽然仅使用非匿名预印本并不违反双盲评审政策，但对正在提交的论文进行积极宣传可能被视为违规。这些规则的宗旨是允许作者获得公开预印本的日期戳，并及时向科学界开放研究成果，同时保护双盲评审流程的完整性。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="13765271" _msthash="231">双重降服</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="4814039269" _msthash="232">评审过程将视为其他由重叠作者提交的档案作品（允许向非档案研讨会提交双重投稿）。如果发布其中一个会使另一个过于增量化，则可能同时被拒绝。这包括“薄切”，即向NeurIPS提交两篇或多篇非常相似的论文，希望其中一篇被接受，以及将同一论文同时提交主论文和电子与发展方向。此外，我们明确禁止在NeurIPS审核期间提交作品后，再向其他档案机构提交。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="619009300" _msthash="233">请注意，这适用于整个审核过程。未遵守双重提交政策，均可作为评审和项目构建过程中任何阶段被拒入办公室的理由。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="13791245" _msthash="234">同时期工作</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="8523606195" _msthash="235">在评审过程中，2026年3月1日之后在线发表的论文通常被视为“同期”，即不会因与同期作品的比较而被拒绝。作者仍需引用和讨论当时的研究成果，并尽可能进行实证比较。任何影响投稿的论文都被视为既有工作，必须引用并讨论。与同期作品非常相似的提交将接受额外审查，以防止抄袭和遗漏先前作品的署名。我们不区分arxiv论文和其他已发表的（会议和期刊）论文，同时工作规则同样适用。更细致的判断，包括如何确定出版日期，将由负责提交的区域主席做出。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="11134929" _msthash="236">伦理审查</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="5185118809" _msthash="237">审核员和助理可能会因提交的提交可能违反NeurIPS伦理守则（如上所述）而进行标记。被标记的投稿将送交伦理审查委员会征求意见。伦理评审员的意见将由主要评审员和AC作为审议的一部分予以考虑。这些内容也会对作者开放，作者将有机会回应。伦理评审无权拒绝论文，但在极端情况下，项目主席可能会基于伦理理由拒绝论文，无论其科学质量或贡献如何。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="5933876" _msthash="238">抄袭</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="41301949" _msthash="239">NeurIPS不容忍任何抄袭。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="817811826" _msthash="240">如果发现抄袭，相关作者将被通知，并能够对指控作出回应。鉴于行动时间紧迫，PC们会仔细考虑他们的回答，但他们的决定将是最终的。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="200833074" _msthash="241">在论文在NeurIPS审议发表期间，任何时候都可能发现抄袭。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="842424297" _msthash="242">抄袭的处罚包括立即从评审系统中移除，拒绝所有正在考虑的论文，与姊妹会议共享身份，通知作者所属机构，和/或对未来的NeurIPS处以制裁。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="67625506" _msthash="243">评审者-作者的负责任审稿政策</span></span></span></span></span></span></h3>
+
+<p _msttexthash="10673235664" _msthash="244"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">同时担任评审的作者除非完成所有指定的评审，否则不会看到自己投稿的评审。</span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"> 如果审稿延迟，评审者（及其合著者）将失去对自己论文的审稿访问权限，直到专业审稿完成（最多直到作者反驳期结束前两天）。</span></span></span></span></span></span><br _istranslated="1"> <br _istranslated="1"> <span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">投稿后不久，每篇论文的合著者将被集体通知哪些共同作者同时也是评审人，以便所有人知道他们的投稿属于此政策范畴。审核员将在审核截止日前收到多次提醒。那些同时是作者但未提交评论的人将被特别提醒。也就是说，最坏情况下，疏忽的审稿人及其合著者将失去对自己论文的审稿访问权限，直到反驳期的最后两天。</span></span></span></span></span></span></p>
+
+<p _msttexthash="5012485322" _msthash="245">桌面<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">拒绝处罚</span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">：我们将保留在元评审阶段的桌面拒绝选项，作为对严重疏忽审稿人最后的制裁。AC和SAC会标记任何低质量的评论，比如占位符，无论是按时提交还是迟交。审核员将被通知并被要求解决相关问题。同样，审稿人也应与作者的回复进行互动。如果存在重大问题并由PC主席和E&amp;D轨道主席确认，评审人自己提交的论文可能会在元评审阶段面临退稿。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="39553800" _msthash="246">AC作者的负责任AC政策</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="675950158" _msthash="247">我们恳请所有临床实践者将AC（临床治疗）视为与NeurIPS的合作伙伴关系，以改善整个社区的成果。作为该合作的一部分：</span></span></span></span></span></span></p>
+
+<p _msttexthash="2572533288" _msthash="248"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">同时是AC的作者，除非完成所有指定的元评审，否则不会看到自己投稿的审稿和元审稿。 </span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">如果元综述迟交，助理顾问（及其合著者）将失去对自己论文的综述和元综述的访问权限，直到专业元综述结束（最多可追溯至作者反驳期结束前两天）。</span></span></span></span></span></span></p>
+
+<p _msttexthash="2582609770" _msthash="249">办公<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">桌拒绝制裁。 </span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"> 我们将在元综述后阶段保留桌面拒绝，作为对严重疏忽的AC作者（未与审稿人互动且提交质量差的元综述）的最后手段制裁。如果重大问题持续存在，并由PC系主任和E&amp;D方向系主任核实，AC自己提交的论文可能会在后元评审阶段面临退稿。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="2168045841" _msthash="250">注意：有时决策很简单：所有评审对论文都很兴奋，你看不到任何警示信号;所有评审都同意论文因某些原因尚未准备好。这并不是说元评测总是需要很长。不过，尤其是在审稿人意见不合或审稿人不参与作者回复时，这需要深思熟虑。</span></span></span></span></span></span></p>
+
+<p _msttexthash="533174980" _msthash="251"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">有了这两项新保障措施，我们预计相当一部分论文将获得更为审慎的审稿流程。 </span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">主线和E&amp;D线都将采用这些措施。</span></span></strong></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="11006554" _msthash="252">作者回应</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="1290323931" _msthash="253">作者将有机会查看评论并在作者回复期间做出相应回应。在此期间，作者不得提交论文或补充材料的修订，但可在OpenReview上以讨论形式发布回应。回应/讨论阶段将分为三个阶段：</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span _msttexthash="412098414" _msthash="254">作者会查看书评、元评审并创建初步回应。在本次期间结束前，AC和审稿人无法访问作者的回复。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="1004699605" _msthash="255">作者、评论者、《刺客信条》讨论。助理和审稿人将能查看作者的初步回复，并能够提出问题，作者也可以对此作出回应。审核员和AC在此期间还能互相发消息。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="185377933" _msthash="256">评论员，关于AC的讨论。此时，作者们将无法继续讨论。</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span _msttexthash="7087315287" _msthash="257">OpenReview回应机制：作者应通过“反驳”按钮对每条评论作出回应。确保信息的“读者”是你打算阅读的人。每条评论的反驳限制为10,000字符。你可以使用OpenReview支持的markdown格式的纯文本，但不能上传任何额外的文件。这些回复可能包含新的结果，但您的原始提交将作为评审（及 AC）接受推荐的依据。反驳应仅用于澄清评审员和AC在讨论期间的问题。这样做是为了减轻作者在短暂的反驳期内匆忙修改论文的负担。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="1557278697" _msthash="258">作者回复不得包含可能违反双盲评审政策的身份信息。请勿在回复的任何部分使用链接。唯一的例外是审核员要求提供代码时，你可以在官方评论中匿名发送链接给AC（确保所有链接文件均为匿名）。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="798938101" _msthash="259">最后，项目主席保留在初次作者回复期结束后征求额外综述的权利。这些评论在添加到OpenReview时会显示给作者，作者将有机会对其作出回应。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="27848119" _msthash="260">已接受投稿的发布</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="7565833834" _msthash="261">接受后，需提前提交可摄像的论文。要编辑Camera Ready文件和信息，请前往论文的OpenReview页面，选择“编辑”（右上角），然后选择“Camera Ready Version”。论文的全部10页、参考文献、文本附录和论文清单应合并并上传为一份PDF文件。请参阅当年度的样式文件以获取提交清单的说明。我们强烈建议根据上述代码和数据提交指南，在适当情况下与已接受的论文一同提交相关代码和数据。会议结束后，作者可短时间内进行小幅修改。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="3410608279" _msthash="262">Camera Ready 文件可以对标题、关键词和摘要进行编辑，只要内容与原始提交内容没有实质性差异。您可以自由重新排序作者列表，但我们不允许添加或删除作者。预计你会根据审稿人的意见和讨论更新主论文。被接受论文的作者还需上传一段长的平行摘要（面向公众，无行话）。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="40458093" _msthash="263">公开发布评论和讨论。</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="2364070813" _msthash="264">审稿、元综述以及与作者的任何讨论将公开用于被接受的论文（但审稿人、区域主席和高级领域主席的身份将保持匿名）。被拒论文的作者将在通知日期后两周内选择将其匿名化的退稿论文公开至OpenReview。这些论文不计入NeurIPS的发表，OpenReview中将显示为被拒。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="22215843" _msthash="265">资金透明声明</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="185703674" _msthash="266">您的Camera Ready论文必须包含资金声明和利益冲突披露。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="119925286" _msthash="267">1. 资金（支持提交工作的财务活动）：</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="3921111389" _msthash="268">为了推进你提交给NeurIPS的工作，作者在提交前的36个月内是否获得了第三方资助或支持？这个问题涉及提交工作的各个方面，包括但不限于人员;数据收集、处理、标签或评估;计算硬件;云计算服务;或者编程支持。例如政府机构的资助，商业赞助商、私人基金会或慈善机构的津贴或捐款。请列出所有此类资金来源。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><em><span _msttexthash="301054559" _msthash="269">示例：直接支持本项工作的资金：NSF资助XXX，YYY捐赠的GPUs，ZZZ公司奖学金。</span></em></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="135317156" _msthash="270">2. 利益冲突（提交作品之外的财务活动）：</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="6042241413" _msthash="271">在提交前的36个月内，有没有作者与可能影响你投稿内容的实体有财务关系？你应披露与任何可能被视为与作品广泛相关的实体的财务关系，即使资金未用于支持提交的工作，且无论报酬金额如何。例如与商业公司或初创企业的合作（休假、就业、津贴）、报酬，或硬件或云计算服务的捐赠。如果您明确列出了某个组织作为主要隶属关系，则无需将其列入声明中。请列出所有已支付或承诺支付的收入来源。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><em><span _msttexthash="956553442" _msthash="272">示例：与本工作相关的额外收入：在Y公司休假;Z连兼职工作;慈善X的讲座酬金;作为Startup C顾问委员会成员的酬金;A基金会提供差旅支持;B公司捐赠的硬件。</span></em></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="33487376" _msthash="273">作者注册与报告要求</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="3275010804" _msthash="274">NeurIPS的价值在于与研究人员社区的互动。每篇被录取论文的作者至少有一名作者必须注册参加主会议。仅凭“虚拟通行证”是不够的。每张被接受的海报必须在主NeurIPS会议场地或卫星地点（如有卫星地点）展示。如果有严重特殊情况导致作者无法出席，你可以找到可以代为发表论文的人。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="1499479254" _msthash="275">无论作者是否能参加，每篇被录取论文的作者至少必须注册主会议。仅凭“虚拟通行证”是不够的。如果作者是学生，只需要学生注册。最后，即使作者有多篇被接受的论文，也只需一次注册。</span></span></span></span></span></span></p>
+
+<p _msttexthash="1195396501" _msthash="276">如果没有作者注册并在官方地点亲自发表论文，<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">我们保留撤销已接受发表资格</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">的权利。对于口试未出席者，我们也保留将他们降级为海报身份和/或完全撤销其录取资格的权利。</span></span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="5176405" _msthash="277">海报</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="580445008" _msthash="278">请参见上文关于论文无障碍的部分，并申请到你的海报上。关于海报规格的具体信息将根据场地而定，并将在此发布。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="5774366" _msthash="279">讲座</span></span></span></span></span></span></h3>
+
+<p _msttexthash="564198440" _msthash="280"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">为了无障碍，我们</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">建议</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">所有演讲者</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">使用以下指南来进行无障碍演讲：</span></span></span></span></span></span><a href="https://www.w3.org/WAI/teach-advocate/accessible-presentations/" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">W3C指南</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">， </span></span></span></span></span></span><a href="https://dl.acm.org/doi/10.1145/3085564" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">ACM 指南</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">和 </span></span></span></span></span></span><a href="https://github.com/hcorona/diversity-inclusion/blob/master/accesible-presentations.md" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">RECSYS 指南</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">。主要点包括： </span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span _msttexthash="465458318" _msthash="281">制作幻灯片时，尽量减少文字，使用大字体，使用粗体强调，避免特殊文本效果（如阴影）。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="137562035" _msthash="282">选择高对比色;奶油色背景上的深色文字效果最好。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="36752430" _msthash="283">避免闪烁文字或图形。</span></span></span></span></span></span></li>
+	<li _msttexthash="469447667" _msthash="284"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">选择能为色盲观众提供更好色彩可及性的色彩调色板（详见</span></span></span></span></span></span><a href="https://medium.com/theuxblog/how-to-design-for-color-blindness-a6f083b08e12" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">Usabilla</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">），且不依赖颜色来传达信息。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="71478784" _msthash="285">使用多元文化受众易于理解的例子。</span></span></span></span></span></span></li>
+	<li _msttexthash="587384447" _msthash="286"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">避免使用带有性、种族或其他冒犯性质的文字、示例或图像。鉴于界限常常不明确，最好只使用你完全</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">确信</span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">合适的材料。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="326160666" _msthash="287">演讲时，不要假设所有听众都能看到幻灯片：讲话时要仔细讲解所有重要内容。</span></span></span></span></span></span></li>
+</ul>
+
+<h3><span><span><span><span><span><span _msttexthash="11608987" _msthash="288">经济援助</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="1413137414" _msthash="289">每篇论文最多可指定一位通讯学生作者的 NeurIPS.cc 账户邮箱地址，该作者确认其需要支持才能参加会议，并在被选中后同意志愿服务。学生还需在经济援助申请表开放时填写申请。</span></span></span></span></span></span></p>
+
+<h2><strong><span><span><span><span><span><span _msttexthash="10810501" _msthash="290">评论者</span></span></span></span></span></span></strong></h2>
+
+<p><span><span><span><span><span><span _msttexthash="456413230" _msthash="291">我们知道担任NeurIPS的评审非常耗时，社区依赖您及时且高质量的评审来维护NeurIPS的科学质量。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="22810229" _msthash="292">任务流程与期望</span></span></span></span></span></span></h3>
+
+<p _msttexthash="156754507" _msthash="293"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">你的分配和任务将显示在OpenReview的审核员控制台上：</span></span></span></span></span></span><a href="https://openreview.net/group?id=NeurIPS.cc/2025/Conference/Reviewers" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">https://openreview.net/group?id=NeurIPS.cc/2026/Conference/Reviewers</span></u></span></span></span></span></span></a></p>
+
+<h4><span><span><span><span><span><span _msttexthash="4275258" _msthash="294">准备</span></span></span></span></span></span></h4>
+
+<p _msttexthash="2277288637" _msthash="295"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">请阅读并同意遵守</span></span></span></span></span></span><a href="https://neurips.cc/public/CodeOfConduct" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">NeurIPS行为准则</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">。阅读手册中关于所有人的政策（例如利益冲突、设置OpenReview个人资料）和作者（例如双重投稿政策、双盲评审）。阅读2026年实验，更好地了解评审者如何使用大型语言模型及其对评审的影响。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="10734958" _msthash="296">投标文件</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="344758843" _msthash="297">你的投标是论文匹配过程中的重要输入。请注意我们的反串通政策（如上所述）。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="18794516" _msthash="298">检查论文作业</span></span></span></span></span></span></h4>
+
+<p _msttexthash="3380464321" _msthash="299"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">一旦你收到需要审阅的论文通知，你应立即登录OpenReview，检查是否有冲突，并确认论文是否属于你的专业领域。 </span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">如果你觉得自己没有资格审阅分配给你的论文，请立即向你的助理主任反映。这些分配可能会在第一周发生变化，因为部分审核员和助理会要求重新分配。请留意Openreview的通知邮件。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="27052402" _msthash="300">写有深度的评论</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="8590929295" _msthash="301">要公平且准确。你的评审应聚焦于科学内容和清晰度。不要让个人情绪影响你的评价，请尽量使评论内容丰富且有根据。肤浅、缺乏信息且缺乏证据的评价比没有评论更糟，因为它们可能为审核过程制造噪音。例如，如果你争论缺乏新颖性，请提供适当的参考文献并指出现有机制——模糊的陈述对作者来说难以应对。一篇好的评审对所有相关方都有益：作者、其他评审者以及AC/SAC。尽量保持建设性的反馈。最后，请确保对技术层面进行详尽评论，而不仅仅是论文组织或语法。</span></span></span></span></span></span></p>
+
+<p _msttexthash="2762896682" _msthash="302">在准备综述时<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">，欢迎使用 </span></span></span></span></span></span><a href="https://neurips.cc/public/guides/PaperChecklist" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1"> </span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">每篇论文中包含的NeurIPS论文清单作为工具。记住，回答“否”通常不是拒绝的理由。总体来说，作者应该因为坦率说明自己作品的局限性和潜在的社会负面影响而受到奖励，而不是惩罚。鼓励你思考是否遗漏了关键点，并向作者反馈。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="4915935349" _msthash="303">最后，要有深度。你正在审阅的论文可能是由一位第一次提交会议的大一研究生写的，你不想打击他们的士气。一般来说，避免使用可能被视为无礼或冒犯的措辞。相关地，撰写综述时请注意，决定做出后，已接受论文的评审和元综述以及你与作者的讨论将被公开（但审稿人及SAC/AC身份将保持匿名）;被拒论文的作者也可以选择将这些信息公开到被拒的论文中。</span></span></span></span></span></span></p>
+
+<p><span><span><span><strong><span><span _msttexthash="49135801" _msthash="304">附加常见问题解答：</span></span></strong></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="71140238" _msthash="305">问：那轻微的格式违规呢？</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="984038484" _msthash="306">答：不必担心小的格式违规，例如论文超过页数限制几行，或检查表、参考文献和补充材料的顺序错误，但如有重大违规，请向你的助理大学报告。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="216923967" _msthash="307">问：如果我在NeurIPS/ICML研讨会上看到过类似的工作怎么办？</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="499636397" _msthash="308">答：我们允许提交到非档案研讨会的工作提交给NeurIPS。为了保持匿名，请不要在评论中提及研讨会论文。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="188295783" _msthash="309">问：我可以建议“接受”或“拒绝”我堆栈中的所有论文吗？</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="249768987" _msthash="310">答：是的。请根据论文本身的优劣来接受和拒绝。你不必匹配会议录取率。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="76868558" _msthash="311">问：我必须阅读补充材料吗？</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="81425071" _msthash="312">答：您不必阅读，但欢迎阅读。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="183955616" _msthash="313">问：如果论文是重新提交，我可以阅读之前的评审吗？</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="671119501" _msthash="314">答：您不应主动查找之前的评论，因为这可能违反我们双盲审核流程中的匿名性，但如果您之前阅读过，这是可以接受的。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="213672121" _msthash="315">问：如果我已经在其他场合审阅过这篇论文，我该怎么办？</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="260058279" _msthash="316">答：不要以为纸张没有变化。仔细阅读论文，确保写出高质量的评价。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="139184994" _msthash="317">问：我可以邀请一位分评审来协助我的评审吗？</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="2675388157" _msthash="318">答：不，涉及分评审者——即让别人帮你做评审，比如培训一个资浅学生，审阅他们的评审，然后作为你的评审提交——是不允许的。除非评审人正式进入系统，否则利益冲突无法被妥善核查，而分评审者也无法参与讨论，而讨论是评审过程的关键阶段。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="51348466" _msthash="319">阅读作者回复并讨论论文</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="432659565" _msthash="320">讨论阶段开始时，请仔细阅读所有其他综述、元综述以及作者对所有分配给你的论文的综述回复。</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span _msttexthash="2529795047" _msthash="321">阅读每位作者的回复时，请保持开放的心态。作者可能会在讨论期间回应你评审中提出的一些观点。当有新信息出现时，努力更新你对论文的理解，并根据这一点修订你的评审。如果作者的回复没有改变你对论文的看法，请承认你已经阅读并考虑过它。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="1025143236" _msthash="322">为了减少评审过程中的误解，我们会在作者初步回复发布后，允许与作者进行轮流讨论。如果你需要与作者沟通，可以在论文页面上让他们看到一条评论。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="1680268239" _msthash="323">参与讨论是你作为审稿人角色中至关重要的一部分。讨论期对于边缘论文和评审评定存在差异的论文尤为重要，我们希望您认真对待讨论。如果您对论文的评价发生了变化，请修改您的评价并说明该变化。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="636238720" _msthash="324">讨论论文时，请记住不同的人有不同的背景和观点。审稿人共识是有价值的——只有极少数情况下会推翻一致评价——但并非强制。</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span _msttexthash="819986661" _msthash="325">讨论期结束后，AC将在作者通知前与SAC做出初步接受/拒绝决定。这段时间你的工作量应该较轻，但如果AC有额外问题，请及时回复。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="60210618" _msthash="326">如有疑问或疑虑，请联系</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="8361996591" _msthash="327">负责论文的区域主席（AC）应是你与该论文联系的第一联系人。助理教练是评审人员在整个评审过程中的主要联系人。AC负责推荐评审人，确保所有投稿获得高质量评审，促进评审间讨论，撰写元评审，评估评审质量，并做出决策建议。除了审稿相关的问题外，如果你怀疑发现任何不道德或可疑行为，比如抄袭、未匿名的论文（注：如果有人逼你写正负反馈，请立即向<a href="mailto:scientific-integrity-chairs@neurips.cc" _istranslated="1">科学诚信委员会</a>反映）。如果你遇到紧急情况且审核延迟，空调也是你的第一联系点。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="1266032261" _msthash="328">最后，如果你对论文内容有伦理相关的疑虑，可以标记该投稿，要求伦理评审员进一步审核。伦理评审的意见将对所有评审、AC和作者可见。你可以利用他们的评论来指导你的审议。</span></span></span></span></span></span></p>
+
+<p _msttexthash="2369221946" _msthash="329"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">你可以通过在OpenReview留言联系AC作为读者。（负责监督AC工作的SAC和负责整个流程的PC也将被列为读者，但不会被通知。）如果你遇到无法通过AC解决的情况，请联系</span></span></span></span></span></span><a href="https://neurips.cc/Help/Contact?select=Program" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">项目负责人</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">。请避免通过项目主席的电子邮件发送信件。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="35700314" _msthash="330">执行代码并点击链接</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="6978538502" _msthash="331">请记住，和其他不可信代码一样，提交的代码可能存在安全漏洞。如果您计划运行任何提交的代码，请务必在安全的环境中进行，因为这些代码未经我们的提交系统审核。我们建议在 Docker 容器中运行源代码（1）或在 Docker 容器中运行，或在 （2） 虚拟机映像中运行（使用 VirtualBox 或 VMWare），或 （3） 在网络隔离的云实例上运行。您也应谨慎访问论文中提供的其他网络链接，这些链接可能存在漏洞或记录访客IP地址。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="53281540" _msthash="332">双盲评审：供评审者参考</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="517838750" _msthash="333">请不要试图查找您指定投稿的作者身份（例如通过在arXiv上搜索）。这将构成对双盲审查政策的积极违反。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="84832605" _msthash="334">审稿人：代理与大型语言模型的使用</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="2503542613" _msthash="335">我们的审稿政策反映了（a）保护投稿保密性的重要性，作者信托其工作不会泄露到负责审稿的评审者、AC、SAC和PC之外;（b）我们仍处于早期阶段，尚未确定代理和大型语言模型在提升评审质量和效率方面的作用，以及它们在相反效果方面的作用。</span></span></span></span></span></span></p>
+
+<p _msttexthash="2827525753" _msthash="336"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">今年，我们计划开展一项实验（细节可能会变动），每位审稿人将有部分论文可使用我们通过OpenReview提供的LLM支持，同时也</span></span></span></span></span></span>有一些<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">论</span></em></span></span></span></span>文不<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">允许使用</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">任何</span></em></span></span>支持。</span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">LLM。评审人员不得使用LLM，除非是专门允许使用的论文，且仅在此类情况下使用经认可的LLM，而非其他LLM。 </span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="3641165554" _msthash="337">最后，我们指出，虽然明确禁止作者使用提示注入来影响审稿，但存在一个灰色地带，作者可以调整文本，使其在交给大型语言模型审阅时获得有利输出。获授权使用该认证LLM的审稿人应注意，作者可能以这种方式优化了文本，不仅是为了提升评审质量，也为了避免为人类而非机器写论文的作者受到惩罚。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="11715743" _msthash="338">复习表格</span></span></span></span></span></span></h3>
+
+<p _msttexthash="10084849346" _msthash="339"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">以下是每篇论文审阅表格中将被问到的问题描述，以及回答这些问题时应考虑的一些指导方针。在</span></span></span></span></span></span>准备综述时，欢迎使用<a href="https://neurips.cc/public/guides/PaperChecklist" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1"></span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">每篇论文中包含的NeurIPS论文清单作为工具。记住，回答“否”通常不是拒绝的理由。撰写综述时，请记住，决定做出后，接受论文和自愿拒绝论文的综述和元综述将会公开。</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">今年，作者将被要求说明其论文中所作贡献的类型，</span></span></strong></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">包括一般性、理论性、应用启发性、概念与可行性以及负面结果。 </span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><strong _istranslated="1"><span _istranslated="1"><span _istranslated="1">请参阅我们的<a href="https://neurips.cc/Conferences/2026/ReviewerGuidelines" _istranslated="1">贡献类型指南</a>，具体如何理解基于贡献类型的四个核心标准——质量、清晰度、重要性和原创性。 </span></span></strong></span></span></span></p>
+
+<ol>
+	<li><span><span><span><span><span><span _msttexthash="1006871645" _msthash="340">摘要：简要总结论文及其贡献。这里不是批评论文的地方;作者通常应同意写得好的摘要。这里也不是贴摘要的地方——请在阅读后根据自己的理解提供摘要。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="1176442696" _msthash="341">今年，主线提交的作品分为不同的贡献类型，评审指南也根据贡献类型有所不同。请选择本次投稿的贡献类型，以确认您已阅读该投稿类型的审核指南（https://neurips.cc/Conferences/2026/ReviewerGuidelines）。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="3788428241" _msthash="342">优缺点：请对本文进行您的评价。一篇好的评论不仅仅是要点——它是展示你对论文理解、突出问题，并涵盖质量、清晰度、意义和原创性的四个维度的叙述。重要提示：今年，质量、清晰度、重要性和原创性应根据贡献类型有不同的解释——详见NeurIPS 2026评审指南（https://neurips.cc/Conferences/2026/ReviewerGuidelines）。你可以在评测中加入Markdown和LaTeX。请参见 https://openreview.net/faq。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="743307864" _msthash="343">质量：根据你在上面评论中讨论的内容，请根据以下质量等级给论文一个数值评分。注意，质量的定义因贡献类型而异——详见 https://neurips.cc/Conferences/2026/ReviewerGuidelines。</span></span></span></span></span></span>
+	<ol>
+		<li><span><span><span><span><span><span _msttexthash="5757180" _msthash="344">4 优秀</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="2387177" _msthash="345">3 好</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="6834464" _msthash="346">2 集市</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="7430982" _msthash="347">1 贫穷</span></span></span></span></span></span></li>
+	</ol>
+	</li>
+	<li><span><span><span><span><span><span _msttexthash="860996461" _msthash="348">清晰度：根据你在上面综述中讨论的内容，请根据清晰度给论文一个以下等级的数值评分。请注意，清晰度的定义会根据贡献类型不同——参见 https://neurips.cc/Conferences/2026/ReviewerGuidelines。</span></span></span></span></span></span>
+	<ol>
+		<li><span><span><span><span><span><span _msttexthash="5757180" _msthash="349">4 优秀</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="2387177" _msthash="350">3 好</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="6834464" _msthash="351">2 集市</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="7430982" _msthash="352">1 贫穷</span></span></span></span></span></span></li>
+	</ol>
+	</li>
+	<li><span><span><span><span><span><span _msttexthash="967135923" _msthash="353">显著性：根据你在上面综述中讨论的内容，请根据以下显著性量表给该论文一个数值评级。注意，显著性的定义会根据贡献类型不同而有所不同——参见 https://neurips.cc/Conferences/2026/ReviewerGuidelines。</span></span></span></span></span></span>
+	<ol>
+		<li><span><span><span><span><span><span _msttexthash="5757180" _msthash="354">4 优秀</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="2387177" _msthash="355">3 好</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="6834464" _msthash="356">2 集市</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="7430982" _msthash="357">1 贫穷</span></span></span></span></span></span></li>
+	</ol>
+	</li>
+	<li><span><span><span><span><span><span _msttexthash="751791820" _msthash="358">原创性：根据你在上面评论中讨论的内容，请根据原创性给该论文一个数字评分。请注意，原创性定义因贡献类型不同而异——详见 https://neurips.cc/Conferences/2026/ReviewerGuidelines。</span></span></span></span></span></span>
+	<ol>
+		<li><span><span><span><span><span><span _msttexthash="5757180" _msthash="359">4 优秀</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="2387177" _msthash="360">3 好</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="6834464" _msthash="361">2 集市</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="7430982" _msthash="362">1 贫穷</span></span></span></span></span></span></li>
+	</ol>
+	</li>
+	<li><span><span><span><span><span><span _msttexthash="8866166244" _msthash="363">问题：请向作者描述任何问题和建议（理想为3-5人），重点关注可执行的关键点并提供明确指导。想想作者的回复能改变你的看法、澄清困惑或解决局限性的事情。强烈建议您明确说明评估分数可能提升或下降的具体标准。这对于与作者进行富有成效的反驳和讨论阶段非常重要。如果你建议新的实验，请说明这些实验能帮助回答什么类型的问题（例如，X的消融研究能帮助你解答问题Y），并要注意作者可能没有庞大的计算基础设施，无法在短时间内进行重要实验。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="2777134022" _msthash="364">局限性：作者是否充分说明了其工作的局限性和影响？如果是，只需留下“是”;如果没有，请提供建设性的改进建议。总体来说，作者应该因为坦率说明作品的局限性和潜在的社会负面影响而受到奖励，而不是惩罚。鼓励你思考是否遗漏了关键点，并向作者反馈。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="145937766" _msthash="365">总体评价：请为本次提交提供“总体评分”。选择：</span></span></span></span></span></span>
+	<ol>
+		<li><span><span><span><span><span><span _msttexthash="1020691802" _msthash="366">6：强烈接受：技术无懈可击的论文，对人工智能的一个或多个领域产生了突破性影响，评估、可重复性和资源都极为强劲，且没有未被解决的伦理问题。</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="1354668081" _msthash="367">5：接受：技术扎实的论文，在至少一个人工智能子领域具有高度潜在价值，或对多个领域影响中等到高，评价良好到优秀，资源丰富，可重复性强，且无未解决的伦理问题。</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="430845038" _msthash="368">4：边缘接受：技术上较为扎实的论文，接受理由大于拒绝理由，例如评估有限。请节制使用。</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="587602600" _msthash="369">3：边缘拒绝：技术上扎实的论文，拒绝理由（如有限评价）超过接受理由（如良好评价）。请节制使用。</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="357521515" _msthash="370">2：拒绝：例如，论文存在技术缺陷、评估薄弱、可重复性不足且伦理问题未充分解决。</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="259656540" _msthash="371">1：强烈拒绝：例如，一篇结果已知或未被充分解决的伦理问题论文。</span></span></span></span></span></span></li>
+	</ol>
+	</li>
+	<li><span><span><span><span><span><span _msttexthash="286218751" _msthash="372">信心：请为你对本次提交的评估提供一个“信心分数”，以表明你对评估的信心。</span></span></span></span></span></span>
+	<ol>
+		<li><span><span><span><span><span><span _msttexthash="357422195" _msthash="373">5：你对自己的评估绝对确定。你对相关工作非常熟悉，并且仔细核对了数学和其他细节。</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="752882858" _msthash="374">4：你对自己的评估很有信心，但并非绝对确定。你不太可能不理解投稿的某些部分，或者对相关工作部分不熟悉，但也不是不可能。</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="677514331" _msthash="375">3：你对自己的评估相当有信心。你可能不理解提交的某些部分，或者对相关工作部分不熟悉。数学和其他细节没有被仔细核查。</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="715985725" _msthash="376">2：你愿意为自己的评估辩护，但很可能你不理解提交的核心部分，或者对相关工作部分不熟悉。数学和其他细节没有被仔细核查。</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="586154686" _msthash="377">1：你的评估是有根据的猜测。这个投稿不在你所在的地区，或者说内容难以理解。数学和其他细节没有被仔细核查。</span></span></span></span></span></span></li>
+	</ol>
+	</li>
+	<li><span><span><span><span><span><span _msttexthash="5355975937" _msthash="378">伦理问题：* 如果存在需要伦理专家审查的重大伦理问题，请将所有重大问题标记为伦理评审的论文;如果没有，只需选择第一个复选框。如需了解何时适合这样做，请参阅NeurIPS伦理指南（https://neurips.cc/public/EthicsGuidelines）。注意：请不要在伦理评审前既降低分数又标记为重大问题：寻求伦理评审意味着论文存在潜在的伦理问题，如果被证实将构成拒绝。</span></span></span></span></span></span>
+	<ol>
+		<li><span><span><span><span><span><span _msttexthash="59842263" _msthash="379">没有或非常轻微的伦理问题</span></span></span></span></span></span></li>
+		<li _msttexthash="1109037930" _msthash="380">明确重大关切：如果有明确且重大的关切，无需进一步说明，请勾选此框。请在优势和劣势部分详细说明问题。如果您需要专家咨询，请使用下面的其他选项。</li>
+		<li><span><span><span><span><span><span _msttexthash="103168013" _msthash="381">主要关注点：涉及人体受试者的不当研究</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="83148715" _msthash="382">主要关注点：数据隐私、版权与同意</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="74227465" _msthash="383">主要关注点：数据质量和代表性</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="50284598" _msthash="384">主要关注点：安全与保障</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="73025004" _msthash="385">主要关注点：歧视、偏见与不公平</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="55401229" _msthash="386">主要关注点：欺骗与骚扰</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="44270395" _msthash="387">主要关注点：环境影响</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span _msttexthash="87221134" _msthash="388">主要关注点：人权（包括监控）</span></span></span></span></span></span></li>
+	</ol>
+	</li>
+	<li _msttexthash="1746546568" _msthash="389">论文格式问题：如果您发现本文中存在格式、匿名性等重大问题，请在下方列出。请注意，您的整体审核评分不应因任何被认为的违规行为而下降——请直接在这里举报。请遵循NeurIPS 2026论文格式说明（https://neurips.cc/Conferences/2026/CallForPapers）。</li>
+	<li _msttexthash="919096412" _msthash="390">行为<span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">准则确认。在履行审稿人职责（包括撰写评审和参与讨论）时，我一直并将继续遵守NeurIPS行为准则（</span></span></span></span></span></span><a href="https://neurips.cc/public/CodeOfConduct" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">NeurIPS行为准则</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">），包括LLM使用的政策。</span></span></span></span></span></span></li>
+	<li _msttexthash="356431296" _msthash="391"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">负责任审查声明：我承认我已阅读关于“负责任审查倡议”的信息，并将遵守此规定。 </span></span></span></span></span></span><a href="https://blog.neurips.cc/2025/05/02/responsible-reviewing-initiative-for-neurips-2025/" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">https://blog.neurips.cc/2026/05/02/responsible-reviewing-initiative-for-neurips-2026/</span></u></span></span></span></span></span></a></li>
+</ol>
+
+<p _msttexthash="11612160001" _msthash="392">*关于伦理问题的说明：支持伦理研究是共同的共同责任。伦理审查员是当你有疑问时的资源：例如，你看到潜在严重的隐私问题但不确定，想咨询隐私伦理专家。如果你在论文中看到明确的伦理问题，就无需要求伦理审查;相反，你应该向你的助理主任反映这一担忧。后者类别的例子可能包括一篇关于提高自主武器杀伤力的论文（明显违反伦理守则），或者一篇未讨论其方法双重用途影响的论文（你必须自行判断是否要求作者修改以完成机上准备，还是拒绝并鼓励他们提交到其他会议——就像你对待其他类型的论文所做的那样可能存在可解决的缺陷）。</p>
+
+<h2><strong><span><span><span><span><span><span _msttexthash="9755655" _msthash="393">区域主席</span></span></span></span></span></span></strong></h2>
+
+<p _msttexthash="2113706244" _msthash="394"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">你的工作对于创建该项目至关重要。 </span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">请遵守截止日期，尽快回复邮件。在审核过程中缺席（例如休假几天）是可以的，但如果你会在超过这段时间内无法工作——尤其是在重要时间段（如讨论、决策）期间——你必须尽快告知你的SAC。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="1980159597" _msthash="395">最后，请保持友善和专业。需要注意的是，个人情况可能导致审稿人工作迟交或未完成。如果审稿人无法按时完成工作，我们鼓励您考虑个人情况;在某些情况下，你可能需要自己承担责任。在所有沟通中，展现同理心和理解。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="60210618" _msthash="396">如有疑问或疑虑，请联系</span></span></span></span></span></span></h3>
+
+<p><span><span><span><span><span><span _msttexthash="1004039608" _msthash="397">如果你遇到无法自行解决的情况，请先通过OpenReview联系你的SAC（设置评论让读者SAC和PC参与）。如对科学诚信有疑虑，请联系<a href="mailto:scientific-integrity-chairs@neurips.cc" _istranslated="1">科学诚信主席</a>。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="22810229" _msthash="398">任务流程与期望</span></span></span></span></span></span></h3>
+
+<h4><span><span><span><span><span><span _msttexthash="4275258" _msthash="399">准备</span></span></span></span></span></span></h4>
+
+<p _msttexthash="2395897517" _msthash="400"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">请阅读并同意遵守</span></span></span></span></span></span><a href="https://neurips.cc/public/CodeOfConduct" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">NeurIPS行为准则</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">。阅读手册中针对所有人的政策（例如利益冲突、设置OpenReview个人资料）、作者（如双重投稿政策、双盲评审）和审稿人。阅读2026年实验，更好地了解评审者如何使用大型语言模型及其对评审的影响。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="10734958" _msthash="401">投标文件</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="252924360" _msthash="402">你的投标是论文匹配过程中的重要输入。请注意我们上述的反串通政策。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="18794516" _msthash="403">检查论文作业</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="1427791703" _msthash="404">一旦收到分配论文通知，请登录OpenReview检查冲突;请尽快向你的SAC报告任何冲突。这些分配可能会在第一周发生变化，因为部分审核员和助理会要求重新分配。请留意Openreview的通知邮件。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="109400304" _msthash="405">确保所有论文都有高质量的评审;紧急复核</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="3825641339" _msthash="406">你可能需要发送多封提醒邮件，但请保持礼貌。如果评审无法完成评审，请寻找替代评审人（说明将在后续更新）。当评论来临时，请仔细阅读。如果评论质量不佳，你应该要求审核员改进他们的评价。请记得礼貌并提供具体指导。如果评审人无法完成复审，请先寻找紧急复审人，然后等待第二阶段复审的指导。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="727178348" _msthash="407">最后，确保任何有争议的论文都被标记为伦理审查对象。这些论文将被分配伦理评审员，他们实际上将加入论文指定的项目委员会。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="56188054" _msthash="408">写初始元综述作为作者的指导</span></span></span></span></span></span></h4>
+
+<p _msttexthash="713478532" _msthash="409"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">你的初次元评审需</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">在</span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"> </span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1"> </span></em></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">作者回复期开始前提交。在这篇元综述中，你应概述你认为作者最需要关注的内容</span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><em _istranslated="1"><span _istranslated="1">，以决定论文是否被接受。</span></em></span></span></span></span></p>
+
+<p _msttexthash="3012083152" _msthash="410"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">首先仔细审查这些评价。 </span></span></span></span></span></span><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">不要太在意分数。相反，请仔细查看评论。评判评论的质量，而不是关注评审者的信心分数;后者更多是个性指标。我们还期望你熟悉所有分配给你的论文，并能够就其技术内容和贡献进行辩论。你的责任是做出正确的决策，而不仅仅是促进审稿人讨论。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="752171901" _msthash="411">一旦你阅读了评论并自己考虑了论文，判断有哪些因素可能改变你对论文是否应被接受的看法。我们预计你的元评测大致分为三类：</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span _msttexthash="2690807431" _msthash="412">[走向被拒绝]声明评审者对[具体项目列表]有严重保留意见，这些疑虑似乎阻碍了NeurIPS发表的途径。请注意，如果保留意见有误，作者应当反驳;但如果保留是正确的，则问题过大，无法在反驳过程中处理，建议作者将修订后的内容提交到其他地方。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="7160941398" _msthash="413">[需要澄清的文件]列出作者必须成功回答的关键问题，才能让论文被强烈考虑发表。在制定这份清单时，要认真识别核心问题，让作者知道重点所在（例如错误证明导致主定理被排除;关键基线缺失）和不应重点关注（例如不合理的额外实验请求）。请记住，如果作者成功回答了你所有优先考虑的问题，你就应该准备好接受论文。你现在的想法，关于说服你需要什么，最终会带来更有针对性的讨论和更轻松的决策阶段。</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span _msttexthash="994213727" _msthash="414">[你打算肯定接受的证件;相对较少]所有评论者都显得积极，你也是。告诉作者总体上评审对作品满意，你希望能得到一些小的澄清（如果有的话）。</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span _msttexthash="9480145324" _msthash="415">在这样做的同时，试着反驳你在评论中感受到的偏见。不合时宜的话题应当得到公平对待，但往往并非如此，这反而有利于主流观点的论文。为了帮助NeurIPS社区更快摆脱局部最小值，重要的是要鼓励风险，并认识到新方法一开始无法产生最先进的竞争结果，也并非所有论文都需要大量计算实验。今年，审稿人将获得简要指导，说明如何根据不同类型的论文贡献（一般、理论、应用启发等）不同方式解释标准评审标准;你应阅读本指南，考虑评审是否公平地调整了他们对论文的考虑方式。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="35824464" _msthash="416">与审稿人和作者讨论</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="2096820557" _msthash="417">一旦作者回复输入系统，立即通过OpenReview对每条投稿发起并引导讨论，并确保审核员参与讨论阶段。监控并管理讨论，确保尊重所有人的意见。阅读你堆栈中的投稿和评论，引导讨论到最关键的需要讨论的方面。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="2742759903" _msthash="418">确保你的审稿人阅读并回复所有作者的回复。让他们专注于你已经识别的关键方面。为了减少审稿过程中的误解，你也可以在作者初步回复发布后，与作者进行滚动讨论。你可以根据需要限制评论只对任何一组读者（作者、审稿人、高级区域主席或项目主席）可见。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="24343150" _msthash="419">撰写最终元评审</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="4057630707" _msthash="420">这是讨论期的最后阶段，在此期间你将修改初始的元评审并做出决策。在你的元综述中，明确表示你已经阅读了作者的回复，并描述你和审稿人是否认为该回复成功解决了你们初次元综述中提出的问题。如果你依赖书面评审未包含的信息——例如反驳期后与审稿人通信——你必须告知作者你已这样做，并明确说明考虑了哪些额外信息。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="3011944000" _msthash="421">你的元评审应明确说明你的决定（接受、拒绝或边缘）。如果你倾向于推翻一致的审稿人意见，你的理由应当像全面审查一样全面，并应考虑寻求辅助审查。请尽量在边缘论文上采取果断立场——许多决定涉及既缺乏强烈热情也未发现重大缺陷的投稿，这些案件需要你的判断力。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="273566124" _msthash="422">最后，和你的SAC一起审查最终决策，这样决策才能在各个AC之间一致校准。</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p>
+
+<h2><strong><span><span><span><span><span><span _msttexthash="15523131" _msthash="423">高级区主席</span></span></span></span></span></span></strong></h2>
+
+<p><span><span><span><span><span><span _msttexthash="1518869495" _msthash="424">作为SAC，你的职责是监督一小群AC的工作，确保审查过程顺利进行。你是需要帮助或指导的AC的第一个联络点，负责帮助他们跟进迟到审核员，调整各个AC的决策，并处理更复杂的案件。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="3835582803" _msthash="425">在最终决策阶段，您将与项目主席（PC）讨论所有拟议决策。一般来说，你应该主动和你的助理教练沟通他们的决策流程。今年，AC尽可能在单一学科领域内分配论文以支持校准，SAC也将尽可能与共享同一学科领域的AC分组。鼓励你利用这种结构，在你所负责的子领域内，促进深思熟虑、高质量且精准的评审。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="9370152168" _msthash="426">作为SAC，你被期望响应迅速、积极主动且善良。遵守截止日期，及时回复邮件。如果您预计会在关键时期如决策期间无法出席超过几天，请尽早通知项目主席。请负责确保审稿流程顺利进行，检查你的助理助理是否响应，协助他们在需要时安排紧急审稿人，并确认他们分配的论文讨论是否活跃。同时，要认识到个人情况可能会影响评审或助理。当出现延误或工作未完成时，以同理心和灵活性处理;您可能需要介入，安排后援支持，或相应调整计划。在所有沟通中，要展现理解力和专业精神。</span></span></span></span></span></span></p>
+
+<h3><span><span><span><span><span><span _msttexthash="22810229" _msthash="427">任务流程与期望</span></span></span></span></span></span></h3>
+
+<h4><span><span><span><span><span><span _msttexthash="25376702" _msthash="428">准备与空调分配</span></span></span></span></span></span></h4>
+
+<p _msttexthash="2026692096" _msthash="429"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">请阅读并同意遵守</span></span></span></span></span></span><a href="https://neurips.cc/public/CodeOfConduct" _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><u _istranslated="1"><span _istranslated="1">NeurIPS行为准则</span></u></span></span></span></span></span></a><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1"><span _istranslated="1">。请阅读本手册中的政策。阅读2026年关于大型语言模型（LLM）实验及指南审查的内容。你将被分配到~10个AC进行操作。收到作业后，仔细查看，如果有任何疑虑可以给专业委员会发邮件。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="72348666" _msthash="430">监督空调，确保他们按任务进行</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="1092594269" _msthash="431">AC 的工作流程已在本手册中如上所述。确保AC已确保有足够的评审，撰写了初步元评审，并及时且专业地与作者和评审人互动。如果空调无响应，你可能需要介入。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="139913943" _msthash="432">SAC会与AC讨论论文，并做出初步接受或拒绝决定</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="2473552861" _msthash="433">通过与你的AC密切合作，安排单独或小组会议，帮助校准决策。你也可以建议AC两人一组先进行初步讨论，但如果这样做，请务必仔细检查是否有利益冲突。特别关注边缘论文、既有正反两面评论的论文，也要注意AC的推荐与评审意见不一致的情况。</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span _msttexthash="3369113306" _msthash="434">如果您认为某位助理需要额外指导，请阅读所有分配给其的论文评审，确保评审尊重并认可作者的回答。阅读所有元综述，确认它们是否向作者明确解释了这一决定。元综述应补充单个综述，描述评论、作者回应和讨论如何指导最终决定。除非有充分理由，否则拒绝或忽视评论是不可接受的。</span></span></span></span></span></span></p>
+
+<h4><span><span><span><span><span><span _msttexthash="85375953" _msthash="435">与项目负责人会面，最终确定决策</span></span></span></span></span></span></h4>
+
+<p><span><span><span><span><span><span _msttexthash="232113791" _msthash="436">请准备好讨论上述更复杂的案例，并更新元评审以准确反映最终判决。</span></span></span></span></span></span></p>
+
+<h2><span><span><span><span><span><span _msttexthash="60210618" _msthash="437">如有疑问或疑虑，请联系</span></span></span></span></span></span></h2>
+
+<ul>
+	<li _msttexthash="13363363" _msthash="438"><span><span><span><span><span><span><span><span><span><span><span><span>If you encounter a situation that you are unable to resolve on your own, please contact the <a href="mailto:program-chairs@neurips.cc">program chairs</a></span></span></span></span></span></span></span></span></span></span></span></span><span><span><span><span><span><span><span><span><span><span><span><span>&nbsp;or the <a href="mailto:scientific-integrity-chairs@neurips.cc">scientific integrity chairs</a>, as appropriate. </span></span></span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+
+<p>&nbsp;</p>
+</div>
+</div>
+        
+    </div>
+
+
+
+    
+        </div>
+    
+
+</div></main>
+<!--END BLOCK CONTENT-->
+
+
+<!--Footer for the edit button-->
+
+
+<script nonce="">
+
+    $(function () {
+        if ($(".editable").length == 0) {
+            $("#editFooter").hide();
+        }
+
+        // Event bindings for edit buttons
+        $('.startEditBtn').on('click', function() {
+            start_edit();
+        });
+        
+        $('.stopEditBtn').on('click', function() {
+            stop_edit();
+        });
+        $('#id_accepted_terms_and_conditions').on('change', function() {
+            this.form.submit();
+        });
+        $('.accepted_terms_and_conditions').on('change', function() {
+            this.form.submit();
+        });
+        $('.workshopstatus').on('change', function() {
+            changeStatus(this);
+        });
+        $('.action-select').on('change', function() {
+            actionChanged(this);
+        });
+        $('.extra').on('change', function() {
+            extraChanged(this);
+        });
+        $('.filter_workshop').on('change', function() {
+            this.form.submit();
+        });
+        $('.volunteer-status, .recommendation-letter-status').on('change', function() {
+            setStatus(this);
+        });
+        $('.status-form-show').on('change', function() {
+            this.form.submit();
+        });
+        $('.download-form-download').on('change', function() {
+            this.form.submit();
+        });
+        $('.presentation-type-form-presentation-type').on('change', function() {
+            this.form.submit();
+        });
+        $('.export-form-resource').on('change', function() {
+            showFieldsForResource(this.value);
+        });
+        $('.import-form-resource').on('change', function() {
+            showFieldsForResource(this.value);
+        });
+        $('.vol-email-form-to, .vol-email-form-template').on('change', function() {
+            this.form.submit();
+        });
+        $('.organizer-alert').on('click', function() {
+            getUserCreateForm(this.href);
+        });
+    })
+</script>
+
+<script src="./neurips主赛道手册2026_files/fastclick.min.js.下载"></script>
+
+<!--We don't know if there are editable tags on the page until after the django template engine has rendered the page. So,
+test in javascript for "editable" tags and if present, load the ckeditor engine dynamically. -->
+
+<script nonce="">
+    if (document.getElementsByClassName('editable').length > 0) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "/static/core/ckeditor/4.18/ckeditor.js";    // use this for linked script
+      script.onload = function () {
+        console.log("ckeditor loaded");
+        // Initial setup when each editor is ready
+        CKEDITOR.on("instanceReady", function (e) {
+          updateToggleDocName(e.editor);
+        });
+
+        // React to any editor entering/leaving read-only
+        CKEDITOR.on("readOnly", function (e) {
+          updateToggleDocName(e.editor);
+        });
+      };
+        document.body.appendChild(script);
+    }
+
+    function updateToggleDocName(editor) {
+      var id = editor && editor.name;
+      if (!id || id.indexOf("id_") !== 0) return;
+
+      var doc_name_element = document.getElementById("document_name_" + id.slice(3));
+      console.log(doc_name_element);
+      if (!doc_name_element) return;
+
+      doc_name_element.style.display = editor.readOnly ? "none" : "block";
+    }
+
+</script>
+
+
+<script nonce="">
+    function fetchContent() {
+        $(".editable").each(function (index) {
+            var myself = this;
+            var docvID = this.getAttribute('id').replace("id_", "");
+            var blurbtext = this.getAttribute("blurbtext");
+            $.ajax({
+                url: "/Admin/RetrieveDocumentVersion",
+                type: "POST",
+                data: {
+                    docvID: docvID,
+                    blurbtext: blurbtext,
+                    csrfmiddlewaretoken: csrftoken,
+                },
+                success: function (data, textStatus, jqXHR) {
+                    myself.setAttribute("contenteditable", "true");
+                    myself.innerHTML = data;
+                    CKEDITOR.inline(myself.id);
+                },
+            });
+        })
+    }
+
+    $("#nopageedit").hide();
+
+    function start_edit() {
+
+        $(".editable").addClass("warning-ring");
+
+        //At the beginning of an edit, we need to replace the content of the
+        //editable div with it's databased content in order to preserve the
+        //template tags. We want the tag, not the rendered tag.
+
+        /* You must remove any countdown.js timers on the page before replacing the page with it's
+        document version otherwise, Javascript will throw an exception.  */
+
+
+        $("[class$='-countdown']").parent().remove();
+        fetchContent();
+        $(".editable").attr("onblur", "ckeditorsave(this)");
+        window.status.bold();
+        window.status = "Click outside the editable area to save. Changes are LIVE!! Refresh page to discard changes.";
+        $("#editpage").hide();
+        $("#noeditpage").show();
+    }
+
+
+    function stop_edit() {
+        ckeditorsave();
+        $("#noeditpage").hide();
+        $("#editpage").show();
+        window.location.reload();
+    }
+
+    function ckeditorsave(event) {
+        for (var name in CKEDITOR.instances) {
+            if (CKEDITOR.instances[name].checkDirty()) {
+                editor = CKEDITOR.instances[name];
+                saveEditable(editor);
+            }
+        }
+    }
+
+    function saveEditable(editor) {
+        var content = editor.getData();
+        var contentId = editor.name;
+        var pageId = window.location.pathname;
+        var originalContent = "N/A";
+        var documentversion = editor.container.getAttribute("id").replace("id_", "");
+        var blurbtext = editor.container.getAttribute("blurbtext");
+        if (contentId.match(/-aloha$/gi)) {
+            contentId = contentId.replace(/-aloha/gi, '');
+        }  /*I'm not sure what this does but it seems like it would matter*/
+        var request = jQuery.ajax({
+            url: "/Admin/SaveDocument",
+            type: "POST",
+            async: false,
+            data: {
+                content: content,
+                originalContent: originalContent,
+                contentId: contentId,
+                pageId: pageId,
+                documentversion: documentversion,
+                blurbtext: blurbtext,
+                csrfmiddlewaretoken: csrftoken
+            },
+            success: function (data) {
+                if (data['message']) {
+                    alert(data['message']);
+                }
+            },
+            error: function (xqXHR, textStatus) {
+                window.status = textStatus;
+                debugger;
+            }
+
+        });
+
+    };
+
+
+</script>
+
+<script nonce="">
+    jQuery(document).ajaxSend(function (event, xhr, settings) {
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function sameOrigin(url) {
+            // url could be relative or scheme relative or absolute
+            var host = document.location.host; // host + port
+            var protocol = document.location.protocol;
+            var sr_origin = '//' + host;
+            var origin = protocol + sr_origin;
+            // Allow absolute or scheme relative URLs to same origin
+            return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                // or any other URL that isn't scheme relative or absolute i.e relative.
+                !(/^(\/\/|http:|https:).*/.test(url));
+        }
+
+        function safeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+    });
+</script>
+
+
+
+
+
+<div id="successful-page-load" class="hidden" _msttexthash="364611" _msthidden="1" _msthash="439">Successful Page Load</div>
+
+
+
+
+
+    
+        <link href="./neurips主赛道手册2026_files/conf_gdpr.css" rel="stylesheet">
+        <div id="cookie-bar" style="z-index: 8">
+            <table class="gdpr-statement">
+                <colgroup><col>
+                <col style="width:120px">
+                </colgroup><tbody><tr>
+                    <td style="padding:5px"><font _mstmutation="1" _msttexthash="330044741" _msthash="440">NeurIPS仅在必要功能中使用Cookie。我们不出售您的个人物品
+ 信息。<a href="https://neurips.cc/public/PrivacyPolicy" _mstmutation="1" _istranslated="1">我们的隐私政策 » </a></font>
+                    </td>
+                    <td>
+                        <button float-end="" class="btn btn-light btn-sm btn btn-outline-dark" id="accept_cookies_button" _msttexthash="4553471" _msthash="441">接受</button>
+                           
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+
+        <script nonce="">
+            function accept_cookies() {
+
+                $.ajax({
+                    method: "POST",
+                    url: "/conf_gdpr/accept",
+                    data: {
+                        csrfmiddlewaretoken: csrftoken,
+                    },
+                }).done(function (data) {
+                    console.log(data);
+                    $("#cookie-bar").fadeOut();
+                }).fail(function (jqXHR, textStatus) {
+                    alert(textStatus);
+                });
+            }
+            $("#accept_cookies_button").on("click", () => {
+                accept_cookies();
+            });
+        </script>
+
+    
+
+
+
+
+
+
+
+<br>
+<div class="noprint">
+    <footer id="bootstrap-footer" class="text-center text-lg-start bg-light text-muted noprint">
+
+        <div class="text-center p-1 border-top border-dark">
+        </div>
+        <!-- Section: Links  -->
+        <section class="pt-1">
+            <div class="container text-center text-md-start mt-3">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-3">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <img src="./neurips主赛道手册2026_files/NeurIPS-logo.svg" alt="NeurIPS 标志" height="30" _mstalt="170313" _msthash="442">
+                        </h6>
+                        <p _msttexthash="455994734" _msthash="443">上述NeurIPS标志可用于演示。右键点击并选择
+ 下载。它是一种矢量图形，可以在任何比例尺下使用。</p>
+
+                    </div>
+
+
+                    <!-- Grid column -->
+                    <div class="col-md-5 col-lg-4 col-xl-3 mx-auto mb-4" style="max-width: 300px;">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4 text-center" _msttexthash="13298259" _msthash="444">有用链接</h6>
+                        <div></div>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4" _msttexthash="12527359" _msthash="445">联系方式</h6>
+                        
+                            <p>
+                                <svg class="svg-inline--fa fa-house me-3" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="house" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path></svg><!-- <i class="fas fa-home me-3"></i> Font Awesome fontawesome.com --><font _mstmutation="1" _msttexthash="35263956" _msthash="446">1269 Law St， San Diego， CA 92109</font></p>
+                        
+                        <p>
+                            <svg class="svg-inline--fa fa-envelope me-3" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"></path></svg><!-- <i class="fas fa-envelope me-3"></i> Font Awesome fontawesome.com --> <a href="https://neurips.cc/Help/Contact" _msttexthash="12122825" _msthash="447">电子邮件</a>
+                        </p>
+                        
+                        
+
+
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            <div></div>
+        </div>
+        <!-- Copyright -->
+    </footer>
+</div>
+<!-- Footer -->
+
+
+<!-- Footer -->
+
+
+
+</body></html>

@@ -1,0 +1,5 @@
+学位论文格式与写作规范
+版本：degree_format_2026.1
+来源：《学位论文的格式检查（2026）》
+
+本文件仅用于在 RAGFlow 中建立手工 Chunk 文档容器。实际检索内容由 degree_format_standards.jsonl 中经过清洗和溯源的标准条目生成。

@@ -1,0 +1,11 @@
+{
+  "venue_code": "",
+  "venue_name": "",
+  "venue_type": "journal",
+  "venue_year": 2026,
+  "official_format_url": "",
+  "dataset_name": "public_research_format_<venue>_<year>",
+  "standard_version": "",
+  "configured": false,
+  "active": false
+}

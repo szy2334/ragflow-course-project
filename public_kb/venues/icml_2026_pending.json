@@ -1,0 +1,28 @@
+{
+  "venue_code": "ICML",
+  "venue_name": "International Conference on Machine Learning",
+  "venue_type": "conference",
+  "venue_year": 2026,
+  "paper_type": "research",
+  "rule_scope": "format_venue_specific",
+  "received_source_file": "icml Reviewer Instructions 2026.html",
+  "offline_assets_dir": "icml Reviewer Instructions 2026_files",
+  "received_source_url": "https://icml.cc/Conferences/2026/ReviewerInstructions",
+  "received_source_suitable_for_format_review": false,
+  "content_dataset_name": "public_research_content_icml_2026",
+  "content_dataset_id": "6b437a0e832511f1966fe5529e1d1cda",
+  "content_document_id": "724093d2832511f1966fe5529e1d1cda",
+  "content_standards_file": "icml_2026_content_standards.jsonl",
+  "content_chunk_count": 13,
+  "content_status": "ready_content_only",
+  "reason": "Reviewer Instructions contains review principles and reviewer-form guidance, not author paper page limits, templates, fonts, margins, PDF or submission-format rules.",
+  "required_source_urls": [
+    "https://icml.cc/Conferences/2026/AuthorInstructions",
+    "https://icml.cc/Conferences/2026/CallForPapers"
+  ],
+  "dataset_name": "public_research_format_icml_2026",
+  "dataset_id": null,
+  "document_id": null,
+  "standard_version": "icml_format_2026.1",
+  "status": "content_ready_format_source_pending"
+}

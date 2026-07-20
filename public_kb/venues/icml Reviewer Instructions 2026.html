@@ -1,0 +1,2772 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://icml.cc/Conferences/2026/ReviewerInstructions#ReviewingPrinciples -->
+<html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">:host,:root{--fa-font-solid:normal 900 1em/1 "Font Awesome 6 Free";--fa-font-regular:normal 400 1em/1 "Font Awesome 6 Free";--fa-font-light:normal 300 1em/1 "Font Awesome 6 Pro";--fa-font-thin:normal 100 1em/1 "Font Awesome 6 Pro";--fa-font-duotone:normal 900 1em/1 "Font Awesome 6 Duotone";--fa-font-brands:normal 400 1em/1 "Font Awesome 6 Brands";--fa-font-sharp-solid:normal 900 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-regular:normal 400 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-light:normal 300 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-thin:normal 100 1em/1 "Font Awesome 6 Sharp";--fa-font-sharp-duotone-solid:normal 900 1em/1 "Font Awesome 6 Sharp Duotone"}svg:not(:host).svg-inline--fa,svg:not(:root).svg-inline--fa{overflow:visible;box-sizing:content-box}.svg-inline--fa{display:var(--fa-display,inline-block);height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-2xs{vertical-align:.1em}.svg-inline--fa.fa-xs{vertical-align:0}.svg-inline--fa.fa-sm{vertical-align:-.0714285705em}.svg-inline--fa.fa-lg{vertical-align:-.2em}.svg-inline--fa.fa-xl{vertical-align:-.25em}.svg-inline--fa.fa-2xl{vertical-align:-.3125em}.svg-inline--fa.fa-pull-left{margin-right:var(--fa-pull-margin,.3em);width:auto}.svg-inline--fa.fa-pull-right{margin-left:var(--fa-pull-margin,.3em);width:auto}.svg-inline--fa.fa-li{width:var(--fa-li-width,2em);top:.25em}.svg-inline--fa.fa-fw{width:var(--fa-fw-width,1.25em)}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{transform-origin:center center}.fa-layers-text{left:50%;top:50%;transform:translate(-50%,-50%);transform-origin:center center}.fa-layers-counter{background-color:var(--fa-counter-background-color,#ff253a);border-radius:var(--fa-counter-border-radius,1em);box-sizing:border-box;color:var(--fa-inverse,#fff);line-height:var(--fa-counter-line-height,1);max-width:var(--fa-counter-max-width,5em);min-width:var(--fa-counter-min-width,1.5em);overflow:hidden;padding:var(--fa-counter-padding,.25em .5em);right:var(--fa-right,0);text-overflow:ellipsis;top:var(--fa-top,0);transform:scale(var(--fa-counter-scale,.25));transform-origin:top right}.fa-layers-bottom-right{bottom:var(--fa-bottom,0);right:var(--fa-right,0);top:auto;transform:scale(var(--fa-layers-scale,.25));transform-origin:bottom right}.fa-layers-bottom-left{bottom:var(--fa-bottom,0);left:var(--fa-left,0);right:auto;top:auto;transform:scale(var(--fa-layers-scale,.25));transform-origin:bottom left}.fa-layers-top-right{top:var(--fa-top,0);right:var(--fa-right,0);transform:scale(var(--fa-layers-scale,.25));transform-origin:top right}.fa-layers-top-left{left:var(--fa-left,0);right:auto;top:var(--fa-top,0);transform:scale(var(--fa-layers-scale,.25));transform-origin:top left}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-2xs{font-size:.625em;line-height:.1em;vertical-align:.225em}.fa-xs{font-size:.75em;line-height:.0833333337em;vertical-align:.125em}.fa-sm{font-size:.875em;line-height:.0714285718em;vertical-align:.0535714295em}.fa-lg{font-size:1.25em;line-height:.05em;vertical-align:-.075em}.fa-xl{font-size:1.5em;line-height:.0416666682em;vertical-align:-.125em}.fa-2xl{font-size:2em;line-height:.03125em;vertical-align:-.1875em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:var(--fa-li-margin,2.5em);padding-left:0}.fa-ul>li{position:relative}.fa-li{left:calc(-1 * var(--fa-li-width,2em));position:absolute;text-align:center;width:var(--fa-li-width,2em);line-height:inherit}.fa-border{border-color:var(--fa-border-color,#eee);border-radius:var(--fa-border-radius,.1em);border-style:var(--fa-border-style,solid);border-width:var(--fa-border-width,.08em);padding:var(--fa-border-padding,.2em .25em .15em)}.fa-pull-left{float:left;margin-right:var(--fa-pull-margin,.3em)}.fa-pull-right{float:right;margin-left:var(--fa-pull-margin,.3em)}.fa-beat{animation-name:fa-beat;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,ease-in-out)}.fa-bounce{animation-name:fa-bounce;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,cubic-bezier(.28,.84,.42,1))}.fa-fade{animation-name:fa-fade;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1))}.fa-beat-fade{animation-name:fa-beat-fade;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,cubic-bezier(.4,0,.6,1))}.fa-flip{animation-name:fa-flip;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,ease-in-out)}.fa-shake{animation-name:fa-shake;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,linear)}.fa-spin{animation-name:fa-spin;animation-delay:var(--fa-animation-delay,0s);animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,2s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,linear)}.fa-spin-reverse{--fa-animation-direction:reverse}.fa-pulse,.fa-spin-pulse{animation-name:fa-spin;animation-direction:var(--fa-animation-direction,normal);animation-duration:var(--fa-animation-duration,1s);animation-iteration-count:var(--fa-animation-iteration-count,infinite);animation-timing-function:var(--fa-animation-timing,steps(8))}@media (prefers-reduced-motion:reduce){.fa-beat,.fa-beat-fade,.fa-bounce,.fa-fade,.fa-flip,.fa-pulse,.fa-shake,.fa-spin,.fa-spin-pulse{animation-delay:-1ms;animation-duration:1ms;animation-iteration-count:1;transition-delay:0s;transition-duration:0s}}@keyframes fa-beat{0%,90%{transform:scale(1)}45%{transform:scale(var(--fa-beat-scale,1.25))}}@keyframes fa-bounce{0%{transform:scale(1,1) translateY(0)}10%{transform:scale(var(--fa-bounce-start-scale-x,1.1),var(--fa-bounce-start-scale-y,.9)) translateY(0)}30%{transform:scale(var(--fa-bounce-jump-scale-x,.9),var(--fa-bounce-jump-scale-y,1.1)) translateY(var(--fa-bounce-height,-.5em))}50%{transform:scale(var(--fa-bounce-land-scale-x,1.05),var(--fa-bounce-land-scale-y,.95)) translateY(0)}57%{transform:scale(1,1) translateY(var(--fa-bounce-rebound,-.125em))}64%{transform:scale(1,1) translateY(0)}100%{transform:scale(1,1) translateY(0)}}@keyframes fa-fade{50%{opacity:var(--fa-fade-opacity,.4)}}@keyframes fa-beat-fade{0%,100%{opacity:var(--fa-beat-fade-opacity,.4);transform:scale(1)}50%{opacity:1;transform:scale(var(--fa-beat-fade-scale,1.125))}}@keyframes fa-flip{50%{transform:rotate3d(var(--fa-flip-x,0),var(--fa-flip-y,1),var(--fa-flip-z,0),var(--fa-flip-angle,-180deg))}}@keyframes fa-shake{0%{transform:rotate(-15deg)}4%{transform:rotate(15deg)}24%,8%{transform:rotate(-18deg)}12%,28%{transform:rotate(18deg)}16%{transform:rotate(-22deg)}20%{transform:rotate(22deg)}32%{transform:rotate(-12deg)}36%{transform:rotate(12deg)}100%,40%{transform:rotate(0)}}@keyframes fa-spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.fa-rotate-90{transform:rotate(90deg)}.fa-rotate-180{transform:rotate(180deg)}.fa-rotate-270{transform:rotate(270deg)}.fa-flip-horizontal{transform:scale(-1,1)}.fa-flip-vertical{transform:scale(1,-1)}.fa-flip-both,.fa-flip-horizontal.fa-flip-vertical{transform:scale(-1,-1)}.fa-rotate-by{transform:rotate(var(--fa-rotate-angle,0))}.fa-stack{display:inline-block;vertical-align:middle;height:2em;position:relative;width:2.5em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0;z-index:var(--fa-stack-z-index,auto)}.svg-inline--fa.fa-stack-1x{height:1em;width:1.25em}.svg-inline--fa.fa-stack-2x{height:2em;width:2.5em}.fa-inverse{color:var(--fa-inverse,#fff)}.fa-sr-only,.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.fa-sr-only-focusable:not(:focus),.sr-only-focusable:not(:focus){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}.svg-inline--fa .fa-primary{fill:var(--fa-primary-color,currentColor);opacity:var(--fa-primary-opacity,1)}.svg-inline--fa .fa-secondary{fill:var(--fa-secondary-color,currentColor);opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-primary{opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-secondary{opacity:var(--fa-primary-opacity,1)}.svg-inline--fa mask .fa-primary,.svg-inline--fa mask .fa-secondary{fill:#000}.fa-duotone.fa-inverse,.fad.fa-inverse{color:var(--fa-inverse,#fff)}</style><style>html { scroll-padding-top: 70px; /* height of sticky header plus extra */ }</style>
+    
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./icml Reviewer Instructions 2026_files/virtual.js.下载"></script>
+    <meta name="google-site-verification" content="0jwPnVXIAk4FvFdT37dwMmd-kjHF86e5DKwvqlStUW0">
+
+
+    
+    <link rel="stylesheet" href="./icml Reviewer Instructions 2026_files/core.css" type="text/css">
+    <link rel="stylesheet" href="./icml Reviewer Instructions 2026_files/virtual.css" type="text/css">
+     <link href="./icml Reviewer Instructions 2026_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./icml Reviewer Instructions 2026_files/custom.css" type="text/css">
+    
+    <link rel="stylesheet" href="./icml Reviewer Instructions 2026_files/bootstrap-select.min.css">
+    <link href="./icml Reviewer Instructions 2026_files/css2" rel="stylesheet">
+    <script nonce="">
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']],
+            processEscapes: true,
+          },
+          options: {
+            ignoreHtmlClass: 'no-mathjax',
+          }
+        };
+    </script>
+
+    <script id="MathJax-script" async="" src="./icml Reviewer Instructions 2026_files/tex-mml-chtml.js.下载" nonce="">
+    </script>
+
+    <!--This script keeps local links inside the web app rather than opening them
+in Safari, and has nothing to do with editing or Aloha.-->
+
+<script nonce="">
+    (function (document, navigator, standalone) {
+
+        if ((standalone in navigator) && navigator[standalone]) {
+            var curnode, location = document.location, stop = /^(a|html)$/i;
+            document.addEventListener('click', function (e) {
+                curnode = e.target;
+                while (!(stop).test(curnode.nodeName)) {
+                    curnode = curnode.parentNode;
+                }
+
+                if (
+                    'href' in curnode && // is a link
+                    (chref = curnode.href).replace(location.href, '').indexOf('#') && // is not an anchor
+                    (!(/^[a-z\+\.\-]+:/i).test(chref) ||                       // either does not have a proper scheme (relative links)
+                        chref.indexOf(location.protocol + '//' + location.host) === 0) // or is in the same protocol and domain
+                ) {
+                    e.preventDefault();
+                    location.href = curnode.href;
+                }
+            }, false);
+        }
+    })(document, window.navigator, 'standalone');
+</script>
+
+
+<style>
+
+    @media screen and (min-width: 767px) {
+        .blurb {
+            min-height: 260px;
+        }
+    }
+</style>
+    
+
+<script src="./icml Reviewer Instructions 2026_files/jquery-3.6.1.min.js.下载" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+</script>
+
+<script nonce="">
+    if (typeof jQuery === 'undefined') {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = "/static/core/js/jquery-3.6.1.min.js";
+        document.head.appendChild(script);
+    }
+</script>
+
+    
+    <script nonce="">
+        var $ = jQuery;
+    </script>
+
+    
+    <script src="./icml Reviewer Instructions 2026_files/bootstrap.bundle.min.js.下载" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <script src="./icml Reviewer Instructions 2026_files/ajax-csrf-snippet.js.下载"></script>
+    
+    <link rel="stylesheet" href="./icml Reviewer Instructions 2026_files/all.min.css">
+    <script src="./icml Reviewer Instructions 2026_files/all.min.js.下载"></script>
+    <script src="./icml Reviewer Instructions 2026_files/bootstrap-select.min.js.下载"></script>
+
+
+    <style nonce="">
+        body {
+            font-family: Exo;}
+    </style>
+
+
+
+
+
+
+
+
+        
+
+
+    <link rel="stylesheet" href="./icml Reviewer Instructions 2026_files/css">
+    <link rel="stylesheet" href="./icml Reviewer Instructions 2026_files/css(1)">
+    <link href="./icml Reviewer Instructions 2026_files/css2" rel="stylesheet">
+    <link rel="stylesheet" href="./icml Reviewer Instructions 2026_files/virtual.css">
+    <script src="./icml Reviewer Instructions 2026_files/d3.v5.min.js.下载"></script>
+    <script src="./icml Reviewer Instructions 2026_files/typeahead.bundle.min.js.下载" integrity="sha512-lEb9Vp/rkl9g2E/LdHIMFTqz21+LA79f84gqP75fbimHqVTu6483JG1AwJlWLLQ8ezTehty78fObKupq3HSHPQ==" crossorigin="anonymous"></script>
+    <script src="./icml Reviewer Instructions 2026_files/moment.min.js.下载"></script>
+    <script src="./icml Reviewer Instructions 2026_files/js.cookie.min.js.下载"></script>
+    <script src="./icml Reviewer Instructions 2026_files/ajax-csrf-snippet.js.下载"></script>
+    <script src="./icml Reviewer Instructions 2026_files/virtual.js.下载"></script>
+    
+
+    
+
+    
+    <link rel="canonical" href="https://icml.cc/Conferences/2026/ReviewerInstructions">
+
+    <title>Reviewer Instructions 2026</title>
+<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head>
+
+<body>
+<!-- <h1><a href="#" onclick="alert('CSP Test');">CSP Test</a></h1> -->
+
+
+
+
+<div class="noprint">
+    
+        
+            <!--Navbar start-->
+<header>
+    <a href="https://icml.cc/Conferences/2026/ReviewerInstructions#child-menu" class="off-screen">Skip to yearly menu bar</a>
+    <a href="https://icml.cc/Conferences/2026/ReviewerInstructions#main" class="off-screen">Skip to main content</a>
+    <div id="id_navbar" class="navbar navbar-expand-sm navbar-dark" aria-label="Main Navigation" style="background-color:#212529">
+        <h2 class="off-screen">Main Navigation</h2>
+        <div class="container-fluid">
+            <div><a class="navbar-brand" href="https://icml.cc/" aria-label="Home">
+
+                <img src="./icml Reviewer Instructions 2026_files/icml-navbar-logo.svg" alt="conference_logo" height="40"></a></div>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler1" aria-expanded="false" aria-label="Toggle main navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarToggler1">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle  p-1" href="https://icml.cc/Conferences/2026/ReviewerInstructions#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ICML
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+            
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/FAQ">
+                    <span>
+                        Help/FAQ
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Help/Contact">
+                    <span>
+                        Contact ICML
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Profile/create">
+                    <span>
+                        Create Profile
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/yearly-document/CodeOfConduct">
+                    <span>
+                        Code of Conduct
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/public/PrivacyPolicy">
+                    <span>
+                        Privacy Policy
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/Press">
+                    <span>
+                        Press
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/public/JournalToConference">
+                    <span>
+                        Journal To Conference Track
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/careers">
+                    <span>
+                        Careers
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Downloads">
+                    <span>
+                        Downloads
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/public/Inclusion">
+                    <span>
+                        Inclusion
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/FutureMeetings">
+                    <span>
+                        Future Meetings
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/MyStuff">
+                    <span>
+                        My Stuff
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+                    
+                </ul>
+
+                
+                <form class="d-flex mx-2" aria-label="Search" role="search" action="https://icml.cc/search">
+                    <div class="input-group" role="search" style="outline-color:green;">
+                        <input type="text" class="form-control" placeholder="Search" name="q" value="" aria-label="Search" aria-describedby="btnGroupAddon" id="navbar-search">
+                        <div class="input-group-text btn-primary" id="btnGroupAddon">
+                            <button style="border: none; background-color: transparent; padding: 0;" type="submit" aria-label="execute search">
+                                <svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg><!-- <i class="fa-solid fa-magnifying-glass"></i> Font Awesome fontawesome.com -->
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+
+                
+                    <a href="https://icml.cc/accounts/login?nextp=/virtual/2026/poster/61745" class="navbar-brand"><svg class="svg-inline--fa fa-right-to-bracket" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="right-to-bracket" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg><!-- <span class="fa-solid fa-right-to-bracket"></span> Font Awesome fontawesome.com --> Login</a>
+                
+
+            </div>
+        </div>
+    </div>
+</header>
+<!--Navbar end-->
+        
+    
+</div><!--noprint div-->
+
+<!--This holds the whole page including the navbar-->
+<main id="main">
+    
+        
+            <div class="container-fluid">
+                
+<!--Navbar start-->
+
+
+
+
+<div class="container-fluid">
+
+    <div class="dropdown" id="child-menu">
+        <nav class="align-middle navbar navbar-expand-md mx-4 border border-3 border-top-0 rounded-bottom" style="min-height: 57px; background-color: #F6f6f6;">
+            <div class="container-fluid">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler1418" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarToggler1418">
+                    <ul class="navbar-nav me-auto mb-lg-0">
+                        
+
+
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle border-3  btn btn-primary text-white p-1" style="background-color: #070bff; font-size: 1.2 em;" href="https://icml.cc/Conferences/2026/ReviewerInstructions#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Select Year: (2026)
+        </a>
+        <ul class="dropdown-menu">
+            
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2026">2026
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2025">2025
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2024">2024
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2023">2023
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2022">2022
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2021/index.html">2021
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2020/">2020
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2019/">2019
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2018">2018
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2017">2017
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2016">2016
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2015">2015
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2014">2014
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2013">2013
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2012">2012
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2011">2011
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2010">2010
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2009">2009
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2008">2008
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2008">2007
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2007">2006
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2005">2005
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2005">2004
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/2002">2002
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="https://icml.cc/Conferences/1996">1996
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item ">
+                <a class="dropdown-item p-1" href="http://www.machinelearning.org/archive.html">IMLS Archives
+                </a>
+                
+            </li>
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/Dates">
+                    <span>
+                        Dates
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle  p-1" href="https://icml.cc/Conferences/2026/ReviewerInstructions#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Calls
+        </a>
+        <ul class="dropdown-menu">
+            
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/CallForPapers">
+                    <span>
+                        Call for Papers
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/CallForTutorialNominations">
+                    <span>
+                        Call for Tutorial Nominations
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/CallForPositionPapers">
+                    <span>
+                        Call for Position Papers
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/CallForWorkshops">
+                    <span>
+                        Call for Workshops
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/CallForSocials">
+                    <span>
+                        Call for Socials and Mentoring
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/CallForTutorials">
+                    <span>
+                        Call for Tutorials
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Expo/applications">
+                    <span>
+                        Call for Expo Presentations
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle  p-1" href="https://icml.cc/Conferences/2026/ReviewerInstructions#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Organization
+        </a>
+        <ul class="dropdown-menu">
+            
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/Committees">
+                    <span>
+                        Organizing Committee
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/Board">
+                    <span>
+                        ICML Board
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/ProgramCommittee">
+                    <span>
+                        Program Committee
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/ReviewerInstructions">
+                    <span>
+                        About ICML
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle  p-1" href="https://icml.cc/Conferences/2026/ReviewerInstructions#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Exhibitors
+        </a>
+        <ul class="dropdown-menu">
+            
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/Sponsors">
+                    <span>
+                        2026 Exhibitors
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/sponsorportal">
+                    <span>
+                        Portal
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle  p-1" href="https://icml.cc/Conferences/2026/ReviewerInstructions#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Resources
+        </a>
+        <ul class="dropdown-menu">
+            
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/PosterInstructions">
+                    <span>
+                        Poster Instructions
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/AuthorInstructions">
+                    <span>
+                        Author Instructions
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/PeerReviewFAQ">
+                    <span>
+                        Peer Review FAQ
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/PeerReviewEthics">
+                    <span>
+                        Peer-review Ethics
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/ConflictOfInterestDefinitions">
+                    <span>
+                        Conflict of Interest Definitions
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/LLM-Policy">
+                    <span>
+                        Policy for LLM use in Reviewing
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/ReviewerInstructions">
+                    <span>
+                        Reviewer Instructions
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/AreaChairInstructions">
+                    <span>
+                        Area Chair Instructions
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/SeniorAreaChairInstructions">
+                    <span>
+                        Senior Area Chair Instructions
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/ResearchEthics">
+                    <span>
+                        Research Ethics
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    <li class="dropdown-item dropdown pe-3">
+        <a class="nav-link dropdown-toggle  p-1" href="https://icml.cc/Conferences/2026/ReviewerInstructions#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Attend
+        </a>
+        <ul class="dropdown-menu">
+            
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Register2">
+                    <span>
+                        Register
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/VisaInformation">
+                    <span>
+                        Visa Information
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/ChildCare">
+                    <span>
+                        Attending with Children
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/AtTheConference">
+                    <span>
+                        At the Conference
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/Hotels">
+                    <span>
+                        Hotel
+                    </span>
+                </a>
+                
+                    <hr class="dropdown-divider" aria-hidden="true">
+                
+            </li>
+
+        
+
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/Conferences/2026/FinancialAid">
+                    <span>
+                        Volunteer and Financial Aid
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+        </ul>
+    </li>
+    
+
+
+
+    
+        
+            <li class="dropdown-item  pe-2">
+                <a class="nav-link p-1" href="https://icml.cc/virtual/2026/index.html">
+                    <span>
+                        Conference Site
+                    </span>
+                </a>
+                
+            </li>
+
+        
+
+    
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--Navbar end-->
+
+            </div>
+            <br><br>
+        
+    
+    
+        
+        <div class="container">
+    
+    
+
+    
+    <div class="container">
+        
+            <!--JUst above the HTML in document-snippet.html-->
+            <div> <div>
+<h1>ICML 2026 Reviewer Instructions</h1>
+
+<p><span><span><span><span><span><span>Thank you for serving as a reviewer for ICML 2026! The commitment and time investment of the program committee are essential to the success of ICML, and we are deeply grateful for your effort.</span></span></span></span></span></span></p>
+
+<ul>
+	<li><a href="https://icml.cc/Conferences/2026/ReviewerInstructions#KeyInformation"><span><span><span><span><span><span>Key Information</span></span></span></span></span></span></a></li>
+	<li><a href="https://icml.cc/Conferences/2026/ReviewerInstructions#ReviewingPrinciples"><span><span><span><span><span><span>Reviewing Principles, Tips, and Best Practices</span></span></span></span></span></span></a></li>
+	<li><span><span><span><span><span><span>Reviewer Form Instructions:</span></span></span></span></span></span>
+	<ul>
+		<li><a href="https://icml.cc/Conferences/2026/ReviewerInstructions#MainTrack"><span><span><span><span><span><span>Main Track Reviewer Form Instructions</span></span></span></span></span></span></a></li>
+		<li><a href="https://icml.cc/Conferences/2026/ReviewerInstructions#PositionPaperTrack"><span><span><span><span><span><span>Position Track Reviewer Form Instructions</span></span></span></span></span></span></a></li>
+	</ul>
+	</li>
+	<li><a href="https://icml.cc/Conferences/2026/ReviewerInstructions#DetailsOfReviewingProcess"><span><span><span><span><span><span>Details of the Reviewing Process</span></span></span></span></span></span></a></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<hr>
+<h1><span><span><span><span><span><a id="KeyInformation" name="KeyInformation"></a>Key Information</span></span></span></span></span></h1>
+
+<h3><span><span><span><strong><span><span>Important Contacts</span></span></strong></span></span></span></h3>
+
+<ul>
+	<li><span><span><span><span><span><span>The area chair (AC) assigned to a paper should be your first point of contact for that paper. You can contact the AC by leaving a comment in OpenReview with the AC as a reader. Senior area chairs (SACs) and program chairs (PCs) will also be listed as readers, but will not be notified.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>If you encounter a situation that you are unable to resolve with your AC, please contact the program chairs. Please refrain from writing to the program chairs at their own email addresses.</span></span></span></span></span></span></li>
+</ul>
+
+<h3><span><span><span><strong><span><span>Responsibilities of Reviewers</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>The responsibilities of a reviewer for ICML are as follows:</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>Indicate areas of research expertise and “bid” on submissions to review.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Check reviewing assignments and notify the overseeing area chair of any problems (e.g., conflicts of interest).</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Carefully review the correctness and merits of the assigned submissions.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Follow their assigned </span></span></span></span></span></span><span><span><span><strong><span><span>actual policy</span></span></strong></span></span></span><span><span><span><span><span><span> for LLM use in reviewing, displayed on their </span></span></span></span></span></span><a href="https://openreview.net/group?id=ICML.cc/2026/Conference/Reviewers#assigned-submissions"><span><span><span><span><span><span>Reviewer Console</span></span></span></span></span></span></a><span><span><span><span><span><span>.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Read and acknowledge the Authors’ Responses.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Actively participate in discussions. There are three rounds in the author-reviewer discussion (rebuttal, reviewer follow-up, author follow-up), each limited to 5000 characters.</span></span></span></span></span></span></li>
+</ul>
+
+<h3><span><span><span><strong><span><span>Important Dates</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>Here is a tentative timeline of the reviewing process. All deadlines are midnight AOE:</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><strong><span><span>Bidding period</span></span></strong></span></span></span><span><span><span><span><span><span>: January 27 - February 2, 2026</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Full paper submission deadline: January 28, 2026</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Submission assignment period: January 29 - February 11, 2026</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>Reviewing period</span></span></strong></span></span></span><span><span><span><span><span><span>: February 12 - March 12, 2026</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>Deadline for reviews</span></span></strong></span></span></span><span><span><span><span><span><span>: March 12, 2026</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>Reviewer-Author discussion period</span></span></strong></span></span></span><span><span><span><span><span><span>: March 24 - April 7, 2026</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>Deadline to acknowledge authors’ response</span></span></strong></span></span></span><span><span><span><span><span><span>: April 3, 2026</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>Reviewer-AC discussion period</span></span></strong></span></span></span><span><span><span><span><span><span>: March 31 - April 12, 2026</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Author notification: April 30, 2026</span></span></span></span></span></span></li>
+</ul>
+
+<h3><span><span><span><strong><span><span>Ethical Conduct of Peer Review:</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>Members of the program committee, including reviewers, are expected to follow </span></span></span></span></span></span><a href="https://icml.cc/Conferences/2026/PeerReviewEthics"><span><span><span><span><span><u><span><span>Peer Review Ethics 2026</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span>.</span></span></span></span></span></span><span><span><span><span><span><span> In particular:</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><strong><span><span>All information related to</span></span></strong></span></span></span><span><span><span><strong><span><span> submitted manuscripts (along with reviews and discussion) is confidential</span></span></strong></span></span></span><span><span><span><span><span><span>. Do not use ideas, code, or results from submissions in your own work until they become publicly available. Do not talk about or share submissions with anyone without prior approval from the program chairs. Code submitted for review cannot be distributed or used for any other purpose.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Any form of collusion, whether explicit or tacit (e.g., an arrangement between authors and reviewers, ACs, or SACs to obtain favorable reviews), is forbidden.</span></span></span></span></span></span></li>
+</ul>
+
+<p><span><span><span><span><span><span>If you believe someone may be engaging in unethical conduct, please notify ICML via the </span></span></span></span></span></span><a href="https://forms.gle/BM5tgcZGuwi87U9CA">Ethics Violation Reporting form</a>.<span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span><span><span><span><span><span><span><span>All suspected unethical conduct will be investigated by the program chairs, the integrity chair, or the ICML Oversight Committee. Individuals found violating the rules may face sanctions and/or have their submissions rejected (see </span></span></span></span></span></span></span><a href="https://icml.cc/Conferences/2026/PeerReviewEthics"><span><span><span><span><span><u><span><span>Peer Review Ethics 2026)</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span>.</span></span></span></span></span></span></p>
+
+<h3><span><span><span><strong><span><span><a id="gen-ai" name="gen-ai"></a>Generative AI Considerations:</span></span></strong></span></span></span></h3>
+
+<ul>
+	<li><span><span><span><span><span><span>Reviewers must follow </span></span></span></span></span></span><span><span><span><span><span><span>their assigned </span></span></span></span></span></span><span><span><span><strong><span><span>actual policy</span></span></strong></span></span></span><span><span><span><span><span><span> for LLM use in reviewing, displayed on their </span></span></span></span></span></span><a href="https://openreview.net/group?id=ICML.cc/2026/Conference/Reviewers#assigned-submissions"><span><span><span><span><span><span>Reviewer Console</span></span></span></span></span></span></a><span><span><span><span><span><span>. (For details, see the</span></span></span></span></span></span><span><span><span><span><span><u><span><span> </span></span></u></span></span></span></span></span><a href="https://icml.cc/Conferences/2026/LLM-Policy"><span><span><span><span><span><u><span><span>Policy for LLM use in reviewing</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span><span>).</span></span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Authors are allowed to </span></span></span></span></span></span><span><span><span><span><span><span><span>use generative AI tools such as LLMs to assist in writing or research, but they remain responsible for all content in their paper, including any AI-generated content that might be construed as plagiarism or scientific misconduct. The latter includes submission of low-quality AI-generated content (AI slop). If you suspect this is the case, please report it via</span><span><span><span><span><span><span><span> </span></span></span></span></span></span></span>the&nbsp;</span></span></span></span></span></span><a href="https://forms.gle/BM5tgcZGuwi87U9CA">Ethics Violation Reporting form</a>.</li>
+	<li>Prompt injection by authors is forbidden.&nbsp;<span><span><span><span><span><span>ICML integrity chairs and program chairs will use prompt-injection detectors to ensure compliance. However, if you suspect anything, please report it via the&nbsp;</span></span></span></span></span></span>&nbsp;<a href="https://forms.gle/BM5tgcZGuwi87U9CA">Ethics Violation Reporting form</a><span><span><span><span><span><span>&nbsp;and review the rest of the paper as normal.</span></span></span></span></span></span><br>
+	(Update 2/14/2026): While prompt injection by authors is disallowed, we will not penalize papers with prompts that merely seek to detect the use of LLMs by reviewers.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<hr>
+<h1><span><span><span><span><span><a id="ReviewingPrinciples" name="ReviewingPrinciples"></a>Reviewing Principles, Tips, and Best Practices</span></span></span></span></span></h1>
+
+<p><span><span><span><span><span><span>(Adapted from the</span></span></span></span></span></span><a href="https://icml.cc/Conferences/2022/ReviewerTutorial"><span><span><span><span><span><span> </span></span></span></span></span></span><span><span><span><span><span><u><span><span>ICML 2022 Reviewer Tutorial</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span>.)</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>"Review the papers of others as you would wish your own to be reviewed."</span></span></span></span></span></span><br>
+<span><span><span><span><span><span>– Mihir Bellare,</span></span></span></span></span></span><a href="https://youtu.be/SPVWSG7-i_E?t=1742"><span><span><span><span><span><span> </span></span></span></span></span></span><span><span><span><span><span><u><span><span>IACR Distinguished Lecture: Caught in Between Theory and Practice</span></span></u></span></span></span></span></span></a></p>
+
+<h3><span><span><span><strong><span><span>Guiding Principles and Professionalism</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>The guiding principle for reviewing is that reviewing should create value for:</span></span></span></span></span></span></p>
+
+<ol>
+	<li><span><span><span><span><span><span>the authors, by giving them actionable feedback to potentially improve their papers.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>the community, by helping authors improve their papers and helping with the decisions to publish papers that advance our field.</span></span></span></span></span></span></li>
+</ol>
+
+<p><span><span><span><span><span><span>A critical aspect of this is the professional conduct of all ICML reviewers. Reviewers are expected to be polite, respectful, and overall professional in their conduct during the whole process. Unprofessional reviews can harm the community in multiple ways: frustration for authors (particularly students) who may slow down in their research, drop out of the field, and/or end up reviewing unprofessionally themselves as a result; loss of promising ideas that could advance the community; resubmission of very similar versions of the paper due to lack of constructive feedback; and so on.</span></span></span></span></span></span></p>
+
+<h3><span><span><span><strong><span><span>Best Practices&nbsp;</span></span></strong></span></span></span></h3>
+
+<ul>
+	<li><span><span><span><strong><span><span>Be thoughtful</span></span></strong></span></span></span><span><span><span><span><span><span>. The paper you are reviewing may have been written by a first-year graduate student who is submitting to a conference for the first time, and you don't want to crush their spirits.</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>Be fair</span></span></strong></span></span></span><span><span><span><span><span><span>. Do not let personal feelings affect your review.</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>Be useful</span></span></strong></span></span></span><span><span><span><span><span><span>. A good review is useful to all parties involved: authors, other reviewers, and AC/SACs. Try to keep your feedback constructive when possible.</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>Be specific</span></span></strong></span></span></span><span><span><span><span><span><span>. Do not make vague statements in your review, as they are unfairly difficult for authors to address.&nbsp;</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>Be flexible</span></span></strong></span></span></span><span><span><span><span><span><span>. The authors may address some points you raised in your review during the discussion period. Make an effort to update your understanding of the paper when new information is presented, and revise your review to reflect this.</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>Be timely</span></span></strong></span></span></span><span><span><span><span><span><span>. Please respect the deadlines and respond promptly during the discussion.&nbsp; If you cannot complete your review on time, please let the AC know as soon as possible.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Please avoid biasing your review according to discriminatory criteria not having to do with scientific content or clarity. Please avoid wording that may be perceived as rude or offensive.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>If someone pressures you into providing a positive or negative review for a submission, please notify program chairs right away.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>If you notice unethical or suspect behavior, please report it via the&nbsp;</span></span></span></span></span></span>&nbsp;<a href="https://forms.gle/BM5tgcZGuwi87U9CA">Ethics Violation Reporting form</a>.</li>
+</ul>
+
+<p><span><span><span><span><span><span>(Best practices are adopted from </span></span></span></span></span></span><a href="https://neurips.cc/Conferences/2025/ReviewerGuidelines"><span><span><span><span><span><u><span><span>NeurIPS 2025 reviewer guidelines</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span>)</span></span></span></span></span></span></p>
+
+<h3><span><span><span><strong><span><span>Tips for Reviewing</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>Before starting to review a paper, (re-)read the Review Form, and think about the aspects of the paper that need to be evaluated.</span></span></span></span></span></span></p>
+
+<p><span><span><span><strong><span><span>Read the paper carefully, critically, and with empathy.</span></span></strong></span></span></span><span><span><span><span><span><span> As you read, keep in mind that you will need to provide an evaluation of the paper via the Review Form, so it will likely help to take notes for yourself (e.g., highlight the main contributions, mark sections you will need to re-read or check more carefully in a subsequent pass).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>After reading the paper, </span></span></span></span></span></span><span><span><span><strong><span><span>think carefully about whether the paper has properly substantiated the claimed contributions</span></span></strong></span></span></span><span><span><span><span><span><span>. This may involve verifying proofs, checking whether hypotheses are actually tested by the experiments, checking whether empirical claims do indeed follow from empirical results, etc. This is often the most time-consuming part of the reviewing process. Good judgment is needed to determine the severity of any issues that you identify. It is helpful to point out minor issues that are easily fixed, but it is more important to focus on major issues that are critical to the main contributions.</span></span></span></span></span></span></p>
+
+<p><span><span><span><strong><span><span>Consider whether the paper places the research presented into the context of current research</span></span></strong></span></span></span><span><span><span><span><span><span>. Assessments about a paper’s “originality” and “significance” often crucially depend on how the paper compares to prior works, and thus, such prior works should be cited and discussed in the paper.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Note that in many cases, it is difficult and often unnecessary to cite </span></span></span></span></span></span><span><span><span><span><em><span>all</span></em></span></span></span></span><span><span><span><span><span><span> related prior works. If some relevant prior works are missed, then think about whether or not including them would change the conclusions of the paper. Some omissions may be considered minor issues that are easily fixed.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Please </span></span></span></span></span></span><span><span><span><strong><span><span>give constructive comments and suggestions to the authors</span></span></strong></span></span></span><span><span><span><span><span><span> to help them potentially improve their paper. In particular, any comments about strengths and weaknesses must be substantiated.</span></span></span></span></span></span></p>
+
+<h3><span><span><span><strong><span><span>Other Resources</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>Please see the</span></span></span></span></span></span><a href="https://icml.cc/Conferences/2022/ReviewerTutorial"><span><span><span><span><span><span> </span></span></span></span></span></span><span><span><span><span><span><u><span><span>ICML 2022 Reviewer Tutorial</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span> and</span></span></span></span></span></span><a href="https://researchonresearch.blog/2024/10/02/peer-reviewer-guidelines-memefied/"><span><span><span><span><span><span> </span></span></span></span></span></span><span><span><span><span><span><u><span><span>Peer Reviewer Guidelines, Memefied</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span> for more tips, suggestions, and resources.</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<h1><span><span><span><span><span><a id="MainTrack" name="MainTrack"></a>Main Track Reviewer Form Instructions</span></span></span></span></span></h1>
+
+<p><span><span><span><span><span><span>You will be asked on the review form to answer several questions for each paper. Below, we provide guidance on what to consider when answering these questions. Please keep in mind that after decisions have been made, reviews and meta-reviews of accepted papers and opted-in rejected papers will be made public. Reviews should therefore be constructive, professional, and respectful.</span></span></span></span></span></span></p>
+
+<h5><span><span><span><strong><span><span>Summary</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Briefly summarize the paper and its contributions. This is not the place to critique the paper; the authors should generally agree with a well-written summary. This is also not the place to paste the abstract; please provide the summary in your own understanding after reading.</span></span></span></span></span></span></p>
+
+<h5><span><span><span><strong><span><span>Strengths and Weaknesses</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please provide a thorough assessment of the strengths and weaknesses of the paper, touching on each of the following dimensions: soundness, presentation, significance, and originality. </span></span></span></span></span></span><span><span><span><strong><span><span>We encourage you to be open-minded about the potential strengths and broad definitions of significance and originality</span></span></strong></span></span></span><span><span><span><span><span><span>. For example, originality may arise from creative combinations of existing ideas, application to a real-world use case, or removing restrictive assumptions from prior theoretical results. We provide detailed guidelines below on each dimension:</span></span></span></span></span></span></p>
+
+<ol>
+	<li><span><span><span><span><em><span>Soundness</span></em></span></span></span></span><span><span><span><span><span><span>: Is the submission technically sound? Are claims well supported (e.g., by theoretical analysis or experimental results)? Are the methods used appropriate? If the paper includes theoretical results, are the proofs correct and based on reasonable assumptions? If the paper includes empirical results, are the experiments well-designed? Are the authors careful and honest about evaluating both the strengths and weaknesses of their work?</span></span></span></span></span></span><br>
+	<br>
+	<span><span><span><span><em><span>Note: Soundness is distinct from impact. A paper can be technically sound—meaning correct, rigorous, and methodologically appropriate—even if its contributions are modest or incremental. Conversely, a paper proposing a high-impact idea must still meet the same bar for technical soundness. Reviewers should assess these dimensions separately.</span></em></span></span></span></span><br>
+	&nbsp;</li>
+	<li><span><span><span><span><em><span>Presentation</span></em></span></span></span></span><span><span><span><span><span><span>: Is the submission clearly written and well structured? (If not, please make constructive suggestions for improving its clarity.) Is the overall narrative easy to follow? Does the work properly position itself in the context of prior/concurrent literature and clearly discuss how it differs? (Note that a superbly written paper provides enough information for an expert reader to reproduce its results.)</span></span></span></span></span></span><br>
+	&nbsp;</li>
+	<li><span><span><span><span><em><span>Significance</span></em></span></span></span></span><span><span><span><span><span><span>: Does the paper address an important or relevant problem? Does it advance understanding, capabilities, or practice in machine learning? Could it influence future research or applications (e.g., other researchers or practitioners are likely to use the ideas or build on them)? Is the scope of impact broad or specialized, and is that appropriate for the contribution? Even if the improvements are modest or domain-specific, could they unlock new directions or provide practical utility?</span></span></span></span></span></span><br>
+	&nbsp;</li>
+	<li><span><span><span><span><em><span>Originality</span></em></span></span></span></span><span><span><span><span><span><span>: Does the work provide new insights, deepen understanding, or highlight important properties of existing methods? Does the work introduce new tasks, methods, theory, data, or perspectives that advance the field in some dimensions? Does this work offer a novel combination of existing techniques, and is the reasoning behind this combination well-articulated? Are the contributions clearly distinguished from closely related literature, and is the novelty well justified? </span></span></span></span></span></span><span><span><span><strong><span><span>As the questions above indicates, originality does not necessarily require introducing an entirely new method. Rather, a work that provides novel insights by evaluating existing methods, or demonstrates improved understanding is also equally valuable.</span></span></strong></span></span></span></li>
+</ol>
+
+<h5><span><span><span><strong><span><span>Soundness</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Based on what you discussed in “Strengths and Weaknesses”, please rate the paper on the following scale to indicate the soundness of the technical claims, experimental and research methodology, and whether the central claims of the paper are adequately supported with evidence. If you select “fair” or “poor” (indicating that the paper falls short of the standard), ensure that “Strengths and Weaknesses” include a clear justification of your rating.</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>4: excellent</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: good</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: fair</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: poor</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Presentation</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Based on what you discussed in “Strengths and Weaknesses”, please rate the paper on the following scale to indicate the quality of the presentation. This should take into account the writing style and clarity, as well as contextualization relative to prior work. If you select “fair” or “poor” (indicating that the paper falls short of the standard), ensure that “Strengths and Weaknesses” include a clear justification of your rating.</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>4: excellent</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: good</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: fair</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: poor</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Significance</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Based on what you discussed in “Strengths and Weaknesses”, please rate the paper on the following scale to indicate the significance of the overall contribution this paper makes to the research area being studied.</span></span></span></span></span></span><span><span><span><span><span><span> If you select “fair” or “poor” (indicating that the paper falls short of the standard), ensure that “Strengths and Weaknesses” include a clear justification of your rating.</span></span></span></span></span></span><span><span><span><span><span><span>&nbsp;</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>4: excellent</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: good</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: fair</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: poor</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Originality</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Based on what you discussed in “Strengths and Weaknesses”, please rate the paper on the following scale to indicate its originality.</span></span></span></span></span></span><span><span><span><span><span><span> If you select “fair” or “poor” (indicating that the paper falls short of the standard), ensure that “Strengths and Weaknesses” include a clear justification of your rating.</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>4: excellent</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: good</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: fair</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: poor</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Key Questions for Authors</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>If you have any </span></span></span></span></span></span><span><span><span><span><em><span>important</span></em></span></span></span></span><span><span><span><span><span><span> questions for the authors, please carefully formulate them here (ideally around 3-5). Please reserve your questions for cases where the response would likely change your evaluation of the paper, clarify a point in the paper that you found confusing, or address a critical limitation you identified. Please number your questions so authors can easily refer to them in the response, and explain how possible responses would change your evaluation of the paper.</span></span></span></span></span></span></p>
+
+<h5><span><span><span><strong><span><span>Limitations</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Have the authors adequately discussed the limitations and potential negative societal impact of their work? If so, simply enter “yes”; if not, please include constructive suggestions for improvement. </span></span></span></span></span></span><span><span><span><span><em><span>Authors should be rewarded rather than punished for being up front about the limitations of their work and any potential negative societal impact.&nbsp;</span></em></span></span></span></span></p>
+
+<h5><span><span><span><strong><span><span><a id="overall" name="overall"></a>Overall Recommendation</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please provide an overall recommendation for this submission. Choices:</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>6: Strong Accept: Technically flawless paper with exceptional impact on one or more areas of AI, with strong evaluation, reproducibility, and resources, and no unaddressed ethical considerations.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>5: Accept: Technically solid paper, with high impact on at least one sub-area of AI or moderate-to-high impact on more than one area of AI, with good-to-excellent evaluation, resources, reproducibility, and no unaddressed ethical considerations.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>4: Weak accept: Technically solid paper that advances at least one sub-area of AI, with a contribution that others are likely to build on, but with some weaknesses that limit its impact (e.g., limited evaluation). Please use sparingly.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: Weak reject: </span></span></span></span></span></span>A paper with clear merits, but also some weaknesses, which overall outweigh the merits. Papers in this category require revisions&nbsp;before they can be meaningfully built upon by others. Please use sparingly.</li>
+	<li><span><span><span><span><span><span>2: Reject: For instance, a paper with technical flaws, weak evaluation, inadequate reproducibility, incompletely addressed ethical considerations, or writing so poor that it is not possible to understand its key claims.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: Strong Reject: For instance, a paper with well-known results, unaddressed ethical considerations, or a poorly written paper where it is impossible to tell what the nature of its contribution is.</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Confidence</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please provide a "confidence score" for your assessment of this submission to indicate how confident you are in your evaluation. Choices:</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the math/other details carefully.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: Your assessment is an educated guess. The submission is not in your area, or the submission was difficult to understand. Math/other details were not carefully checked.</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Ethical Concerns</span></span></strong></span></span></span></h5>
+
+<ol>
+	<li><span><span><span><span><span><span>If you believe there are ethical issues with this paper, please flag the paper for an ethics review. For guidance on when this is appropriate, please review the </span></span></span></span></span></span><a href="https://icml.cc/Conferences/2026/ResearchEthics"><span><span><span><span><span><u><span><span>ICML research ethics guidelines</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span>.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>If you flagged this paper for ethics review, what area of expertise would it be most useful for the ethics reviewer to have? Please click all that apply:</span></span></span></span></span></span>
+	<ol>
+		<li><span><span><span><span><span><span>Discrimination / Bias / Fairness Concerns</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span><span>Inappropriate Potential Applications &amp; Impact (e.g., human rights concerns)</span></span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span>Responsible Research Practice (e.g., IRB, documentation, research ethics)</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span><span>Privacy and Security (e.g., personally identifiable information)</span></span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span><span>Legal Compliance (e.g., EU AI Act, GDPR, copyright, terms of use)</span></span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span>Research Integrity Issues (e.g., plagiarism)</span></span></span></span></span></span></li>
+		<li><span><span><span><span><span><span>Other</span></span></span></span></span></span></li>
+	</ol>
+	</li>
+	<li><span><span><span><span><span><span>If you flagged this paper for an ethics review, please explain your concerns in detail.</span></span></span></span></span></span></li>
+</ol>
+
+<h5><span><span><span><strong><span><span>Compliance with LLM Reviewing Policy</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please affirm the following:&nbsp;</span></span></span></span></span></span></p>
+
+<ul>
+	<li>
+	<p><span><span><span><span><span><span>While writing reviews, I have fully complied with the </span></span></span></span></span></span><a href="https://icml.cc/Conferences/2026/LLM-Policy"><span><span><span><span><span><u><span><span>ICML 2026 policy for LLM use in reviewing</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span>. I confirm that I have strictly followed the </span></span></span></span></span></span><span><span><span><strong><span><span>actual policy</span></span></strong></span></span></span><span><span><span><span><span><span> assigned to me, as displayed </span></span></span></span></span></span><span><span><span><span><span><span>on my </span></span></span></span></span></span><a href="https://openreview.net/group?id=ICML.cc/2026/Conference/Reviewers#assigned-submissions"><span><span><span><span><span><span>Reviewer Console</span></span></span></span></span></span></a><span><span><span><span><span><span>. I understand that any deviation from this assigned policy constitutes a violation of the conference's academic integrity guidelines and can lead to desk rejection of my own submissions.</span></span></span></span></span></span></p>
+	</li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Code of Conduct Acknowledgement</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please affirm the following:&nbsp;</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>While performing my duties as a reviewer (including writing reviews and participating in discussions), I have and will continue to abide by the</span></span></span></span></span></span><span><span><span><span><span><span> </span></span></span></span></span></span><a href="https://icml.cc/Conferences/2026/CodeOfConduct"><span><span><span><span><span><u><span><span>ICML code of conduct</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span>.</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Final Justification (Post-Rebuttal)</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please explain your final recommendation, taking into account both the paper and the authors’ rebuttal. Summarize how you weighed the strengths and weaknesses across dimensions such as soundness, originality, significance, and clarity. Importantly, </span></span></span></span></span></span><span><span><span><strong><span><span>please</span></span></strong></span></span></span><span><span><span><span><span><span> </span></span></span></span></span></span><span><span><span><strong><span><span>indicate whether the rebuttal addressed your main concerns, changed your evaluation, or reinforced your prior assessment.</span></span></strong></span></span></span><span><span><span><span><span><span> This justification is shared with the authors, AC, SAC, and PCs, so ensure it is constructive, respectful, and clearly communicates your final position</span></span></span></span></span></span><span><span><span><span><span><span>.</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<h1><span><span><span><span><span><a id="PositionPaperTrack" name="PositionPaperTrack"></a>Position Paper Reviewer Form Instructions</span></span></span></span></span></h1>
+
+<h3><span><span><span><span><span>General tips from CFP</span></span></span></span></span></h3>
+
+<p>Helpful tips on writing position papers:</p>
+
+<ol>
+	<li>Make sure the Title states the position.
+	<ul>
+		<li>These hypothetical paper titles do state a position:
+		<ul>
+			<li>"Position: Quantum Atelic Learning Methods Should Employ Psychic Insights"</li>
+			<li>"Position: Stop Research on Psychic Properties of Machine Learning"</li>
+		</ul>
+		</li>
+		<li>while these versions do not:
+		<ul>
+			<li>"Position: Psychic Quantum Atelic Learning"</li>
+			<li>"Position: A Perspective on Psychic Quantum Atelic Learning"</li>
+		</ul>
+		</li>
+	</ul>
+	</li>
+	<li>The Abstract should identify the paper as a position paper and briefly state the position (e.g., “This position paper argues that &lt;statement of the position&gt;.”)</li>
+	<li>The Introduction should state the position, using bold text.</li>
+	<li>We encourage the inclusion of a "Call to Action" section that identifies plausible steps to realizing the aims of the stated position.&nbsp; By the end of the paper the reader should know what steps should be taken by whom to bring about these desired outcomes.</li>
+	<li>Papers that describe technical research without advocating a real position (e.g. “everyone should use my new and better learning algorithm”) are not responsive to this call and should instead be submitted to the main paper track.</li>
+</ol>
+
+<h3>Form instructions</h3>
+
+<h5><span><span><span><strong><span><span>Position</span></span></strong></span></span></span></h5>
+
+<ul>
+	<li><span><span><span><span><span><span>Does the paper </span></span></span></span></span></span><span><span><span><strong><span><span>clearly state a position on a machine learning topic</span></span></strong></span></span></span><span><span><span><span><span><span> (policy, implementation, deployment, monitoring, etc.)? Examples include (but are not limited to) an argument in favor of or against a particular research priority (not a particular algorithm or solution), a call to action, a value statement, a policy proposal, or a recommendation for changes to how we conduct and evaluate research.&nbsp;</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>If the paper describes new research without advocating a position, select No.</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Position In Title</span></span></strong></span></span></span></h5>
+
+<ul>
+	<li><span><span><span><span><span><span>Does the paper’s title state the position? Can a reader understand the paper’s position from the title alone? If the title consists of a topic or concept without a position about it (e.g., "Position: Psychic Quantum Atelic Learning", "Position: Directions in Hypertrophic Learning"), select No. For an example like "Position: Psychic Quantum Atelic Learning is a Waste of GPUs", select Yes.</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Alternative Views Section</span></span></strong></span></span></span></h5>
+
+<ul>
+	<li><span><span><span><span><span><span>Does the paper contain an “Alternative Views” section? The section is mandatory. It must be </span></span></span></span></span></span><span><span><span><span><span><span><span>in the main body of the paper (not an appendix) that describes and addresses one or more credible (not strawman) positions that are opposed to the paper’s position.</span></span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Paper Summary</span></span></strong></span></span></span></h5>
+
+<ul>
+	<li><span><span><span><span><span><span>Briefly summarize the paper, its contributions, and the position it advocates (if present). This summary should not be used to critique the paper. A well-written summary should not be disputed by the authors of the paper or other readers.</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Strengths and Weaknesses</span></span></strong></span></span></span></h5>
+
+<ul>
+	<li><span><span><span><span><span><span>Please provide a thorough assessment of the strengths and weaknesses of the paper, </span></span></span></span></span></span><span><span><span><strong><span><span>focusing on the stated position</span></span></strong></span></span></span><span><span><span><span><span><span>. Is it well supported with reasoning and/or evidence? Is the topic of relevance and importance to the ICML community? Is it likely to inspire discussion? Is it clearly argued? Does it cite related work and events appropriately? Suggestions for improvement are welcome.&nbsp;</span></span></span></span></span></span></li>
+	<li><span><span><span><strong><span><span>(Do not comment on whether you agree with the paper’s position.)</span></span></strong></span></span></span></li>
+	<li><span><span><span><span><span><span>If the paper does not state a position, please note that here, along with suggestions for improvement, rather than leaving this field blank.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>You can incorporate Markdown and LaTeX into your review. See</span></span></span></span></span></span><a href="https://openreview.net/faq"><span><span><span><span><span><span> </span></span></span></span></span></span><span><span><span><span><span><u><span><span>https://openreview.net/faq</span></span></u></span></span></span></span></span></a></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Support</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please rate the paper on the following scale to indicate how well it </span></span></span></span></span></span><span><span><span><strong><span><span>supports its position with clear reasoning and evidence where appropriate</span></span></strong></span></span></span><span><span><span><span><span><span>.</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>4: excellent</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: good</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: fair</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: poor</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Significance</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please rate the paper on the following scale to indicate how well it demonstrates that the </span></span></span></span></span></span><span><span><span><strong><span><span>position is important</span></span></strong></span></span></span><span><span><span><span><span><span>, in terms of scope, impact, timeliness, risks, benefits, etc.</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>4: excellent</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: good</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: fair</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: poor</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Discussion Potential</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please rate the paper on the following scale to indicate its potential </span></span></span></span></span></span><span><span><span><strong><span><span>to inspire constructive, useful discussion</span></span></strong></span></span></span><span><span><span><span><span><span> within the ICML community. </span></span></span></span></span></span><span><span><span><strong><span><span>The reviewer need not agree with the stated position.</span></span></strong></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>4: excellent</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: good</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: fair</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: poor</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Argument Clarity</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please rate the paper on the following scale to indicate the paper’s </span></span></span></span></span></span><span><span><span><strong><span><span>clarity of presentation</span></span></strong></span></span></span><span><span><span><span><span><span> (including writing style).</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>4: excellent</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: good</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: fair</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: poor</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Related Work</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please rate the paper on the following scale to indicate the degree to which it includes a </span></span></span></span></span></span><span><span><span><strong><span><span>discussion of (and citations to) literature and events relevant to the stated position</span></span></strong></span></span></span><span><span><span><span><span><span>.</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>4: excellent</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: good</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: fair</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: poor</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Questions</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please articulate any important questions for the authors. Reserve your questions for cases where the response would likely change your opinion, clarify a confusion, or address a critical limitation you identified. This can be very important for a productive rebuttal and discussion phase with the authors. Please number your questions for ease of response.</span></span></span></span></span></span></p>
+
+<h5><span><span><span><strong><span><span>Ethics Flag</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>If you believe there are ethical issues with this paper, please flag the paper for an ethics review. For guidance on when this is appropriate, please review the ethics guidelines (</span></span></span></span></span></span><a href="https://icml.cc/Conferences/2026/ResearchEthics"><span><span><span><span><span><u><span><span>https://icml.cc/Conferences/2026/ResearchEthics</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span>).</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>Yes</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>No</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Ethics Review Area</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>If you flagged this paper for ethics review, what area of expertise would it be most useful for the ethics reviewer to have? Please click all that apply.</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>Discrimination / Bias / Fairness Concerns</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Inappropriate Potential Applications &amp; Impact (e.g., human rights concerns)</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Privacy and Security (e.g., personally identifiable information)</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Legal Compliance (e.g., EU AI Act, GDPR, copyright, terms of use)</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Research Integrity Issues (e.g., plagiarism, collusion rings, etc.)</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Responsible Research Practice (e.g., IRB, documentation, research ethics)</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>Other Expertise</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Ethical Review Concerns</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>If you flagged this paper for an ethics review, please explain your concerns in detail. (And if you selected "Other expertise" above, please specify.)</span></span></span></span></span></span></p>
+
+<h5><span><span><span><strong><span><span>Rating</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Choose an overall recommendation for this paper.</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>6: Strong Accept</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>5: Accept</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>4: Borderline accept. Please use sparingly.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: Borderline reject. Please use sparingly.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: Reject</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: Strong Reject</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Confidence</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please indicate how confident you are in your evaluation.</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>5: You are absolutely certain about your assessment. You are very familiar with the related work and checked the other details carefully.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Other details were not carefully checked.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>2: You are willing to defend your assessment, but it is quite likely that you did not understand the central parts of the submission or that you are unfamiliar with some pieces of related work. Other details were not carefully checked.</span></span></span></span></span></span></li>
+	<li><span><span><span><span><span><span>1: Your assessment is an educated guess. The submission is not in your area or the submission was difficult to understand. Other details were not carefully checked.</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Compliance with LLM Reviewing Policy A (Conservative).</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please affirm the following:&nbsp;</span></span></span></span></span></span></p>
+
+<ul>
+	<li>While writing reviews, I have fully complied with the <a href="https://icml.cc/Conferences/2026/LLM-Policy"><u>ICML 2026 Policy A (Conservative) for LLM use in reviewing</u></a><span>. That is, any </span><span>use of LLMs for reviewing is </span><span><u>strictly prohibited for the position paper track</u></span><span>.</span><span> I confirm that I have strictly followed Policy A. I understand that any deviation from Policy A constitutes a violation of the conference's academic integrity guidelines and can lead to desk rejection of my own submissions.</span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Code of Conduct Acknowledgment</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please affirm the following:</span></span></span></span></span></span></p>
+
+<ul>
+	<li><span><span><span><span><span><span>While performing my duties as a reviewer (including writing reviews and participating in discussions), I have and will continue to abide by the ICML code of conduct (</span></span></span></span></span></span><a href="https://icml.cc/Conferences/2026/CodeOfConduct"><span><span><span><span><span><u><span><span>https://icml.cc/Conferences/2026/CodeOfConduct</span></span></u></span></span></span></span></span></a><span><span><span><span><span><span>).</span></span></span></span></span></span></li>
+</ul>
+
+<h5><span><span><span><strong><span><span>Final Justification (Post-Rebuttal)</span></span></strong></span></span></span></h5>
+
+<p><span><span><span><span><span><span>Please explain your final recommendation, taking into account both the paper and the authors’ rebuttal. Summarize how you weighed the strengths and weaknesses across review dimensions. Importantly, </span></span></span></span></span></span><span><span><span><strong><span><span>please</span></span></strong></span></span></span><span><span><span><span><span><span> </span></span></span></span></span></span><span><span><span><strong><span><span>indicate whether the rebuttal addressed your main concerns, changed your evaluation, or reinforced your prior assessment.</span></span></strong></span></span></span><span><span><span><span><span><span> This justification is shared with the authors, AC, and PCs, so ensure it is constructive, respectful, and clearly communicates your final position.</span></span></span></span></span></span></p>
+
+<p>&nbsp;</p>
+
+<hr>
+<h1><span><span><span><span><span><a id="DetailsOfReviewingProcess" name="DetailsOfReviewingProcess"></a>Details of the Reviewing Process</span></span></span></span></span></h1>
+
+<h3><span><span><span><strong><span><span>Bidding</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>During the bidding period, reviewers will indicate “bids” on (abstracts of) submissions they are interested in (and qualified for) reviewing. This process is done within OpenReview. These bids will be used, in part, to help with the assignment of submissions to reviewers.</span></span></span></span></span></span></p>
+
+<h3><span><span><span><strong><span><span>Reviewing</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>Once the assignments are finalized, reviewers should read the assigned submissions carefully, critically, and with empathy. Reviewers are encouraged (but not required) to read any Supplementary Material provided alongside their assigned submissions. Reviews should be provided in OpenReview by completing the items in the review form. All reviews must be submitted by the stated deadline.&nbsp;</span></span></span></span></span></span></p>
+
+<p><span><span><span><strong><em><span>New this year</span></em></strong><span><span><span>: </span></span></span></span></span></span><span><span><span><span><span><span>During registration, </span></span></span></span></span></span><span><span><span><span><span><span><span>reviewers for the main track declare their preference between</span></span></span></span></span></span></span><span><span><span><span><strong><span><span> two LLM policies</span></span></strong></span></span></span></span><span><span><span><span><span><span><span>: a conservative one (no LLMs) and a permissive one (LLMs allowed to help understand paper and polish reviews). Once papers are assigned to reviewers, each reviewer is explicitly told which policy to follow on all of their assigned papers (some reviewers who prefer the permissive policy might still be asked to follow the conservative one). </span></span></span></span></span></span></span><span><span><span><span><strong><span><span>Any deviation from their assigned policy (shown on their </span></span></strong></span></span></span></span><a href="https://openreview.net/group?id=ICML.cc/2026/Conference/Reviewers#assigned-submissions"><span><span><span><strong><span><span>Reviewer Console</span></span></strong></span></span></span></a><span><span><span><span><strong><span><span>) constitutes a violation of peer-review ethics</span></span></strong></span></span></span></span><span><span><span><span><span><span><span>, and may result in the desk rejection of their own submissions. For full details, see </span></span></span></span></span></span></span><a href="https://icml.cc/Conferences/2026/LLM-Policy"><span><span><span><span><span><span><u><span><span>ICML 2026 Policy for LLM use in reviewing</span></span></u></span></span></span></span></span></span></a><span><span><span><span><span><span><span>. <strong>Note that all reviewing for the Position Paper Track must adhere to the conservative (no LLM) policy.</strong></span></span></span></span></span></span></span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><span><span><strong><span><span>Authors’ Responses</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>After the reviewing deadline, authors are given the opportunity to respond to the initial reviews. They are encouraged to briefly clarify points, explain misunderstandings, etc. They are </span></span></span></span></span></span><span><span><span><span><em><span>not</span></em></span></span></span></span><span><span><span><span><span><span> expected to respond to every individual point in the reviews.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>After authors’ responses are posted, reviewers may engage in one round of additional discussion with the authors to follow up on any remaining questions or concerns.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Reviewers </span></span></span></span></span></span><span><span><span><span><em><span>are</span></em></span></span></span></span><span><span><span><span><span><span> expected to read and acknowledge the authors’ responses (including appropriately updating their reviews and checking an appropriate box), and enter the final justification by the stated deadline.</span></span></span></span></span></span></p>
+
+<h3><span><span><span><strong><span><span>AC-Reviewer Discussions</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>Reviewers are encouraged to discuss the paper with each other by posting and responding to notes on OpenReview (visible only to reviewers/ACs). This is especially important if there are important contradictions between reviews, or if any important aspects of the paper remain unclear to a reviewer. There is no need to wait for the ACs to initiate these discussions.</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>Discussions will not be visible to authors, so reviewers are encouraged to appropriately update their reviews after discussions for the benefit of the authors.</span></span></span></span></span></span></p>
+
+<h3><span><span><span><strong><span><span>Visibility</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>Reviews and the discussion between reviewers and authors for all accepted papers will be made public on OpenReview after the reviewing period. Authors of rejected papers may also opt-in to this public release (and instructions for doing so will be made available later).</span></span></span></span></span></span></p>
+
+<p><span><span><span><span><span><span>The identities of the reviewers will be kept hidden from each other. They will be visible only to ACs, SACs, and program chairs.</span></span></span></span></span></span></p>
+
+<h3><span><span><span><strong><span><span>Concurrent Works</span></span></strong></span></span></span></h3>
+
+<p><span><span><span><span><span><span>Authors are not required (but still welcome) to discuss works that have been made public less than two months before the full-paper submission deadline. Such recent papers should be considered as concurrent and simultaneous. Good judgment is necessary to decide whether a paper that has not yet been peer-reviewed should be discussed. The guideline is to follow the best practices of the specific subfield; the area chair can help in each case with these.</span></span></span></span></span></span></p>
+
+<h3><span><span><span><strong><span><span>Useful Links</span></span></strong></span></span></span></h3>
+
+<ul>
+	<li><a href="https://icml.cc/Conferences/2026/CallForPapers"><span><span><span><span><span><u><span><span>ICML 2026 Call for Papers</span></span></u></span></span></span></span></span></a></li>
+	<li><a href="https://icml.cc/Conferences/2026/PeerReviewFAQ"><span><span><span><span><span><u><span><span>ICML 2026 Peer Review FAQ</span></span></u></span></span></span></span></span></a></li>
+	<li><a href="https://icml.cc/Conferences/2026/LLM-Policy"><span><span><span><span><span><u><span><span>ICML 2026 Policy for LLM Use in Reviewing</span></span></u></span></span></span></span></span></a></li>
+</ul>
+</div>
+</div>
+        
+    </div>
+
+
+
+    
+        </div>
+    
+
+</div></main>
+<!--END BLOCK CONTENT-->
+
+
+<!--Footer for the edit button-->
+
+
+<script nonce="">
+
+    $(function () {
+        if ($(".editable").length == 0) {
+            $("#editFooter").hide();
+        }
+
+        // Event bindings for edit buttons
+        $('.startEditBtn').on('click', function() {
+            start_edit();
+        });
+        
+        $('.stopEditBtn').on('click', function() {
+            stop_edit();
+        });
+        $('#id_accepted_terms_and_conditions').on('change', function() {
+            this.form.submit();
+        });
+        $('.accepted_terms_and_conditions').on('change', function() {
+            this.form.submit();
+        });
+        $('.workshopstatus').on('change', function() {
+            changeStatus(this);
+        });
+        $('.action-select').on('change', function() {
+            actionChanged(this);
+        });
+        $('.extra').on('change', function() {
+            extraChanged(this);
+        });
+        $('.filter_workshop').on('change', function() {
+            this.form.submit();
+        });
+        $('.volunteer-status, .recommendation-letter-status').on('change', function() {
+            setStatus(this);
+        });
+        $('.status-form-show').on('change', function() {
+            this.form.submit();
+        });
+        $('.download-form-download').on('change', function() {
+            this.form.submit();
+        });
+        $('.presentation-type-form-presentation-type').on('change', function() {
+            this.form.submit();
+        });
+        $('.export-form-resource').on('change', function() {
+            showFieldsForResource(this.value);
+        });
+        $('.import-form-resource').on('change', function() {
+            showFieldsForResource(this.value);
+        });
+        $('.vol-email-form-to, .vol-email-form-template').on('change', function() {
+            this.form.submit();
+        });
+        $('.organizer-alert').on('click', function() {
+            getUserCreateForm(this.href);
+        });
+    })
+</script>
+
+<script src="./icml Reviewer Instructions 2026_files/fastclick.min.js.下载"></script>
+
+<!--We don't know if there are editable tags on the page until after the django template engine has rendered the page. So,
+test in javascript for "editable" tags and if present, load the ckeditor engine dynamically. -->
+
+<script nonce="">
+    if (document.getElementsByClassName('editable').length > 0) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "/static/core/ckeditor/4.18/ckeditor.js";    // use this for linked script
+      script.onload = function () {
+        console.log("ckeditor loaded");
+        // Initial setup when each editor is ready
+        CKEDITOR.on("instanceReady", function (e) {
+          updateToggleDocName(e.editor);
+        });
+
+        // React to any editor entering/leaving read-only
+        CKEDITOR.on("readOnly", function (e) {
+          updateToggleDocName(e.editor);
+        });
+      };
+        document.body.appendChild(script);
+    }
+
+    function updateToggleDocName(editor) {
+      var id = editor && editor.name;
+      if (!id || id.indexOf("id_") !== 0) return;
+
+      var doc_name_element = document.getElementById("document_name_" + id.slice(3));
+      console.log(doc_name_element);
+      if (!doc_name_element) return;
+
+      doc_name_element.style.display = editor.readOnly ? "none" : "block";
+    }
+
+</script>
+
+
+<script nonce="">
+    function fetchContent() {
+        $(".editable").each(function (index) {
+            var myself = this;
+            var docvID = this.getAttribute('id').replace("id_", "");
+            var blurbtext = this.getAttribute("blurbtext");
+            $.ajax({
+                url: "/Admin/RetrieveDocumentVersion",
+                type: "POST",
+                data: {
+                    docvID: docvID,
+                    blurbtext: blurbtext,
+                    csrfmiddlewaretoken: csrftoken,
+                },
+                success: function (data, textStatus, jqXHR) {
+                    myself.setAttribute("contenteditable", "true");
+                    myself.innerHTML = data;
+                    CKEDITOR.inline(myself.id);
+                },
+            });
+        })
+    }
+
+    $("#nopageedit").hide();
+
+    function start_edit() {
+
+        $(".editable").addClass("warning-ring");
+
+        //At the beginning of an edit, we need to replace the content of the
+        //editable div with it's databased content in order to preserve the
+        //template tags. We want the tag, not the rendered tag.
+
+        /* You must remove any countdown.js timers on the page before replacing the page with it's
+        document version otherwise, Javascript will throw an exception.  */
+
+
+        $("[class$='-countdown']").parent().remove();
+        fetchContent();
+        $(".editable").attr("onblur", "ckeditorsave(this)");
+        window.status.bold();
+        window.status = "Click outside the editable area to save. Changes are LIVE!! Refresh page to discard changes.";
+        $("#editpage").hide();
+        $("#noeditpage").show();
+    }
+
+
+    function stop_edit() {
+        ckeditorsave();
+        $("#noeditpage").hide();
+        $("#editpage").show();
+        window.location.reload();
+    }
+
+    function ckeditorsave(event) {
+        for (var name in CKEDITOR.instances) {
+            if (CKEDITOR.instances[name].checkDirty()) {
+                editor = CKEDITOR.instances[name];
+                saveEditable(editor);
+            }
+        }
+    }
+
+    function saveEditable(editor) {
+        var content = editor.getData();
+        var contentId = editor.name;
+        var pageId = window.location.pathname;
+        var originalContent = "N/A";
+        var documentversion = editor.container.getAttribute("id").replace("id_", "");
+        var blurbtext = editor.container.getAttribute("blurbtext");
+        if (contentId.match(/-aloha$/gi)) {
+            contentId = contentId.replace(/-aloha/gi, '');
+        }  /*I'm not sure what this does but it seems like it would matter*/
+        var request = jQuery.ajax({
+            url: "/Admin/SaveDocument",
+            type: "POST",
+            async: false,
+            data: {
+                content: content,
+                originalContent: originalContent,
+                contentId: contentId,
+                pageId: pageId,
+                documentversion: documentversion,
+                blurbtext: blurbtext,
+                csrfmiddlewaretoken: csrftoken
+            },
+            success: function (data) {
+                if (data['message']) {
+                    alert(data['message']);
+                }
+            },
+            error: function (xqXHR, textStatus) {
+                window.status = textStatus;
+                debugger;
+            }
+
+        });
+
+    };
+
+
+</script>
+
+<script nonce="">
+    jQuery(document).ajaxSend(function (event, xhr, settings) {
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function sameOrigin(url) {
+            // url could be relative or scheme relative or absolute
+            var host = document.location.host; // host + port
+            var protocol = document.location.protocol;
+            var sr_origin = '//' + host;
+            var origin = protocol + sr_origin;
+            // Allow absolute or scheme relative URLs to same origin
+            return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                // or any other URL that isn't scheme relative or absolute i.e relative.
+                !(/^(\/\/|http:|https:).*/.test(url));
+        }
+
+        function safeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+    });
+</script>
+
+
+
+
+
+<div id="successful-page-load" class="hidden">Successful Page Load</div>
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<br>
+<div class="noprint">
+    <footer id="bootstrap-footer" class="text-center text-lg-start bg-light text-muted noprint">
+
+        <div class="text-center p-1 border-top border-dark">
+        </div>
+        <!-- Section: Links  -->
+        <section class="pt-1">
+            <div class="container text-center text-md-start mt-3">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-3">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <img src="./icml Reviewer Instructions 2026_files/ICML-logo.svg" alt="ICML logo" height="30">
+                        </h6>
+                        <p>
+                            The ICML Logo above may be used on presentations. Right-click and choose
+                            download. It is a vector graphic and may be used at any scale.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Grid column -->
+                    <div class="col-md-5 col-lg-4 col-xl-3 mx-auto mb-4" style="max-width: 300px;">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4 text-center">
+                            Useful links
+                        </h6>
+                        <div>
+             <div>
+<p><a href="https://icml.cc/About">About ICML</a></p>
+
+<p><a href="https://proceedings.mlr.press/">ICML Proceedings at PMLR</a></p>
+
+<p><a href="https://icml.cc/yearly-document/CodeOfConduct">Code of Conduct</a></p>
+</div>
+
+            </div>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        
+                            <p>
+                                <svg class="svg-inline--fa fa-house me-3" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="house" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"></path></svg><!-- <i class="fas fa-home me-3"></i> Font Awesome fontawesome.com --> 1269 Law Street, San Diego CA 92109
+                            </p>
+                        
+                        <p>
+                            <svg class="svg-inline--fa fa-envelope me-3" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"></path></svg><!-- <i class="fas fa-envelope me-3"></i> Font Awesome fontawesome.com --> <a href="https://icml.cc/Help/Contact">Email</a>
+                        </p>
+                        
+                        
+
+
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            <div>
+             <p><a href="https://proceedings.mlr.press/">ICML Proceedings at PMLR</a></p>
+
+            </div>
+        </div>
+        <!-- Copyright -->
+    </footer>
+</div>
+<!-- Footer -->
+
+
+<!-- Footer -->
+
+
+
+</body></html>
