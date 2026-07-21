@@ -173,6 +173,13 @@ def test_question_idempotency_and_terminal_sse_resume(tmp_path):
         )
         assert session_replay.status_code == 201
         assert session_replay.json()["data"]["session_id"] == session.json()["data"]["session_id"]
+        session_reopen = client.post(
+            "/api/v1/sessions",
+            headers=_headers(token, **{"Idempotency-Key": "session-2"}),
+            json={"title": "Paper chat", "paper_ids": [paper_id]},
+        )
+        assert session_reopen.status_code == 200
+        assert session_reopen.json()["data"]["session_id"] == session.json()["data"]["session_id"]
         assert asyncio.run(_row_count(settings.database_url, PaperVersion)) == 1
         assert asyncio.run(_row_count(settings.database_url, SessionPaper)) == 1
         session_id = session.json()["data"]["session_id"]
@@ -210,6 +217,14 @@ def test_question_idempotency_and_terminal_sse_resume(tmp_path):
         )
         assert resumed.status_code == 200
         assert resumed.text == ""
+        deleted = client.delete(
+            f"/api/v1/sessions/{session_id}",
+            headers=_headers(token, **{"Idempotency-Key": "delete-session-1"}),
+        )
+        assert deleted.status_code == 200
+        assert deleted.json()["data"]["session_id"] == session_id
+        sessions = client.get("/api/v1/sessions", headers=_headers(token))
+        assert sessions.json()["data"]["items"] == []
 
 
 def test_format_review_uses_server_profile_mapping_and_persists_rule_contract(tmp_path):

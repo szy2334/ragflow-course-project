@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { BookOpenText, BrainCircuit, ChevronLeft, ClipboardList, FileSearch, FolderCog, LayoutDashboard, LogOut, Menu, MessageSquareText, Scale, Settings2, Sparkles, X } from 'lucide-vue-next'
 import { useAuthStore } from '@/stores/auth'
@@ -9,6 +9,7 @@ const router = useRouter()
 const auth = useAuthStore()
 const mobileOpen = ref(false)
 const isPublic = computed(() => route.path === '/login' || route.path === '/register')
+watch(() => route.fullPath, () => { mobileOpen.value = false })
 
 const primaryNav = [
   { to: '/papers', label: '读论文', icon: FileSearch },
@@ -24,6 +25,7 @@ const adminNav = [
 ]
 
 function go(to: string) { mobileOpen.value = false; router.push(to) }
+function goBack() { window.history.state?.back ? router.back() : go('/papers') }
 function logout() { auth.logout(); router.push('/login') }
 </script>
 
@@ -32,7 +34,7 @@ function logout() { auth.logout(); router.push('/login') }
 
   <div v-else class="app-shell">
     <a class="skip-link" href="#main-content">跳到主要内容</a>
-    <aside class="sidebar" :class="{ 'is-open': mobileOpen }" aria-label="主导航">
+    <aside id="primary-navigation" class="sidebar" :class="{ 'is-open': mobileOpen }" aria-label="主导航">
       <button class="brand" type="button" @click="go('/papers')">
         <div class="brand-mark"><Sparkles :size="18" aria-hidden="true" /></div>
         <div><strong>知阅</strong><span>Evidence reader</span></div>
@@ -62,10 +64,10 @@ function logout() { auth.logout(); router.push('/login') }
     <div v-if="mobileOpen" class="sidebar-scrim" @click="mobileOpen = false" />
     <main id="main-content" class="main-area" tabindex="-1">
       <header class="topbar">
-        <button class="icon-button mobile-menu" :aria-label="mobileOpen ? '收起导航' : '打开导航'" @click="mobileOpen = !mobileOpen">
+        <button class="icon-button mobile-menu" :aria-label="mobileOpen ? '收起导航' : '打开导航'" aria-controls="primary-navigation" :aria-expanded="mobileOpen" @click="mobileOpen = !mobileOpen">
           <X v-if="mobileOpen" :size="20" /><Menu v-else :size="20" />
         </button>
-        <button v-if="route.path !== '/papers'" class="back-link" @click="router.back()"><ChevronLeft :size="18" /> 返回</button>
+        <button v-if="route.path !== '/papers'" class="back-link" @click="goBack"><ChevronLeft :size="18" /> 返回</button>
         <div class="topbar-spacer" />
         <div class="privacy-note"><MessageSquareText :size="15" /> 阅读仅检索本地论文</div>
       </header>

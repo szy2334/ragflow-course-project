@@ -12,7 +12,7 @@ from uuid import uuid4
 from fastapi import APIRouter, Depends, File, Form, Header, Request, Response, UploadFile
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
-from sqlalchemy import func, select
+from sqlalchemy import delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.ai.schemas import StartQaWorkflowCommand
@@ -1374,6 +1374,35 @@ async def create_session(
     )
     if len(papers) != len(set(body.paper_ids)):
         raise ApiError(409, "PAPER_NOT_READY", "所选论文尚未完成解析和索引。")
+    # Reuse the durable conversation for the same paper scope.
+    candidates = list(
+        (
+            await session.scalars(
+                select(ChatSession)
+                .where(
+                    ChatSession.user_id == user.user_id,
+                    ChatSession.is_internal.is_(False),
+                )
+                .order_by(ChatSession.created_at.asc())
+            )
+        ).all()
+    )
+    existing = next((item for item in candidates if item.paper_ids == body.paper_ids), None)
+    if existing is not None:
+        data = session_view(existing)
+        save_response(
+            session,
+            user_id=user.user_id,
+            key=idempotency_key,
+            method="POST",
+            path=request.url.path,
+            fingerprint=fingerprint,
+            status_code=200,
+            response=data,
+        )
+        await session.commit()
+        return _json(200, data, request_id)
+
     item = ChatSession(
         user_id=user.user_id,
         title=body.title or "未命名会话",
@@ -1448,6 +1477,57 @@ async def _owned_session(session: AsyncSession, user_id: str, session_id: str) -
     if item is None:
         raise ApiError(404, "SESSION_NOT_FOUND", "会话不存在。")
     return item
+
+
+@router.delete("/sessions/{session_id}")
+async def delete_session(
+    session_id: str,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    fingerprint = request_fingerprint({})
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="DELETE",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return envelope(replay, request_id)
+
+    item = await _owned_session(session, user.user_id, session_id)
+    active_task = await session.scalar(
+        select(TaskRecord)
+        .join(ChatMessage, TaskRecord.message_id == ChatMessage.message_id)
+        .where(
+            ChatMessage.session_id == session_id,
+            TaskRecord.status.in_(("pending", "running")),
+        )
+        .limit(1)
+    )
+    if active_task is not None:
+        raise ApiError(409, "SESSION_HAS_ACTIVE_TASK", "请先停止当前任务，再删除会话。")
+
+    await session.execute(delete(WorkflowRun).where(WorkflowRun.session_id == session_id))
+    await session.delete(item)
+    data = {"session_id": session_id, "deleted_at": datetime.now(UTC).isoformat()}
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="DELETE",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=200,
+        response=data,
+    )
+    await session.commit()
+    return envelope(data, request_id)
 
 
 @router.patch("/sessions/{session_id}")
