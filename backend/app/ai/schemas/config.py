@@ -16,6 +16,7 @@ class ModelConfigSnapshot(StrictModel):
     temperature: float = Field(default=0.2, ge=0, le=2)
     max_output_tokens: int = Field(default=2048, ge=64, le=65536)
     structured_mode: Literal["json_schema", "json_object"] = "json_schema"
+    enable_thinking: bool | None = None
 
 
 class ConfigurationSnapshot(StrictModel):

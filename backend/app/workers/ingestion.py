@@ -265,6 +265,22 @@ class IngestionTaskExecutor:
         # mark the document ready for evidence retrieval instead of discarding
         # already verified chunks.  Answer generation and format judgment keep
         # their separate MODEL_NOT_CONFIGURED guardrails.
+        if not self._settings.paper_summary_enabled:
+            await self._store_understanding(
+                paper_id,
+                {
+                    "status": "disabled",
+                    "reason": "PAPER_SUMMARY_DISABLED",
+                    "message": "已完成解析、清洗与本地检索；上传时论文摘要功能已关闭。",
+                },
+            )
+            await self._complete(
+                task_id,
+                paper_id,
+                len(chunks),
+                quality_status=str(second_clean.quality_report["status"]),
+            )
+            return
         if not self._settings.llm_base_url or not self._settings.llm_api_key or not self._settings.llm_model:
             await self._store_understanding(
                 paper_id,
@@ -284,15 +300,16 @@ class IngestionTaskExecutor:
         try:
             understanding = await self._understand(paper_id, chunks)
         except IngestionFailure as exc:
-            if exc.code != "MODEL_ENDPOINT_UNAVAILABLE":
-                raise
-            # A transiently unreachable generation provider must not discard
-            # already validated local chunks.  The UI can show that the model
-            # summary is unavailable while still allowing reading and search.
+            # Summary generation is optional enrichment.  Model and schema
+            # failures must not discard validated chunks or block reading.
             await self._store_understanding(
                 paper_id,
                 {
-                    "status": "unavailable",
+                    "status": (
+                        "unavailable"
+                        if exc.code in {"MODEL_ENDPOINT_UNAVAILABLE", "MODEL_NOT_CONFIGURED"}
+                        else "failed"
+                    ),
                     "reason": exc.code,
                     "message": "论文已完成结构化入库；论文理解模型服务暂不可用，可稍后重试生成摘要。",
                 },
@@ -320,10 +337,9 @@ class IngestionTaskExecutor:
         if not evidences:
             raise IngestionFailure("PAPER_UNDERSTANDING_FAILED", "论文缺少可供理解的正文内容。")
         try:
-            understanding, _ = await PaperUnderstandingAgent(
+            summary, _ = await PaperUnderstandingAgent(
                 OpenAICompatibleClient(self._settings.llm_api_key), PromptRepository()
-            ).run(
-                standalone_question="请概括这篇论文的研究问题、方法、实验设置、主要发现和局限。",
+            ).run_summary(
                 evidences=evidences,
                 configuration=snapshot_from_settings(self._settings),
             )
@@ -334,11 +350,13 @@ class IngestionTaskExecutor:
             ) from exc
         except Exception as exc:
             raise IngestionFailure("PAPER_UNDERSTANDING_FAILED", "论文智能理解失败，请稍后重试。") from exc
-        evidence_ids = {item.evidence_id for item in evidences}
-        cited_ids = {item for fact in understanding.facts for item in fact.evidence_ids}
-        if not cited_ids.issubset(evidence_ids):
-            raise IngestionFailure("PAPER_UNDERSTANDING_FAILED", "论文理解结果包含无效证据引用。")
-        return understanding.model_dump(mode="json")
+        return {
+            "status": "ready",
+            "summary_markdown": summary.summary_markdown,
+            "paper_summary": summary.summary_markdown,
+            "model_version": self._settings.model_config_version,
+            "prompt_version": self._settings.prompt_version,
+        }
 
     async def _store_understanding(self, paper_id: str, understanding: dict[str, Any]) -> None:
         async with self._sessions() as session:
@@ -346,6 +364,11 @@ class IngestionTaskExecutor:
             if paper is None:
                 raise IngestionFailure("PAPER_NOT_FOUND", "论文不存在。", retryable=False)
             paper.understanding_json = understanding
+            paper.summary_markdown = understanding.get("summary_markdown")
+            paper.summary_status = str(understanding.get("status") or "failed")
+            paper.summary_model_version = understanding.get("model_version")
+            paper.summary_prompt_version = understanding.get("prompt_version")
+            paper.summary_generated_at = datetime.now(UTC) if paper.summary_markdown else None
             await session.commit()
 
     async def _has_parse_artifacts(self, paper_id: str, version_id: str) -> bool:

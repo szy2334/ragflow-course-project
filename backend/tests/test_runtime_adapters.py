@@ -10,12 +10,27 @@ from app.ai.schemas import (
     EvidenceItem,
     ModelConfigSnapshot,
     PersistAnswerCommand,
+    RetrieveEvidenceRequest,
     StreamEvent,
 )
 from app.core.config import Settings
 from app.db.base import Base, build_engine
-from app.db.models import ChatMessage, ChatSession, Citation, TaskRecord, User, WorkflowRun
-from app.runtime.adapters import SqlAlchemyAnswerPersistence, _evidence_content_type
+from app.db.models import (
+    ChatMessage,
+    ChatSession,
+    Citation,
+    Paper,
+    PaperChunk,
+    PaperVersion,
+    TaskRecord,
+    User,
+    WorkflowRun,
+)
+from app.runtime.adapters import (
+    RagFlowRetrievalPort,
+    SqlAlchemyAnswerPersistence,
+    _evidence_content_type,
+)
 from app.runtime.redis_store import RedisRuntime
 
 
@@ -23,6 +38,85 @@ def test_second_clean_content_types_normalize_to_public_evidence_contract():
     assert _evidence_content_type("abstract") == "text"
     assert _evidence_content_type("chart") == "figure"
     assert _evidence_content_type("table") == "table"
+
+
+@pytest.mark.asyncio
+async def test_local_retrieval_uses_stable_chunk_ids_and_returns_summary(tmp_path):
+    database_url = f"sqlite+aiosqlite:///{(tmp_path / 'retrieval.db').as_posix()}"
+    engine = build_engine(database_url)
+    async with engine.begin() as connection:
+        await connection.run_sync(Base.metadata.create_all)
+    sessions = async_sessionmaker(engine, expire_on_commit=False)
+    async with sessions() as session:
+        session.add(
+            User(
+                user_id="user-1",
+                email="reader@example.test",
+                password_hash="unused",
+                display_name="Reader",
+            )
+        )
+        await session.flush()
+        paper = Paper(
+            paper_id="paper-1",
+            owner_id="user-1",
+            title="Paper",
+            file_name="paper.pdf",
+            file_path="paper.pdf",
+            content_sha256="a" * 64,
+            file_size_bytes=100,
+            status="ready",
+            summary_markdown="# Summary\nA stable summary.",
+            summary_status="ready",
+        )
+        session.add(paper)
+        await session.flush()
+        session.add(
+            PaperVersion(
+                paper_version_id="version-1",
+                paper_id="paper-1",
+                version_number=1,
+                file_name="paper.pdf",
+                object_key="paper.pdf",
+                content_sha256="a" * 64,
+                file_size_bytes=100,
+            )
+        )
+        await session.flush()
+        paper.paper_version_id = "version-1"
+        session.add(
+            PaperChunk(
+                chunk_id="chunk-method-1",
+                paper_id="paper-1",
+                paper_version_id="version-1",
+                content="The method uses a transformer architecture.",
+                content_type="text",
+                content_role="paragraph",
+                section_title="Method",
+                page_number=2,
+                page_end=2,
+                source_ref="page:2",
+                content_sha256="b" * 64,
+                metadata_json={"section_role": "method"},
+            )
+        )
+        await session.commit()
+
+    result = await RagFlowRetrievalPort(
+        Settings(database_url=database_url), sessions
+    ).retrieve_paper(
+        RetrieveEvidenceRequest(
+            task_id="task-1",
+            user_id="user-1",
+            paper_ids=["paper-1"],
+            standalone_question="What architecture does the method use?",
+            route_type="fact",
+        )
+    )
+
+    assert [item.evidence_id for item in result.items] == ["chunk-method-1"]
+    assert result.paper_summary.startswith("# Summary")
+    await engine.dispose()
 
 
 @pytest.mark.asyncio

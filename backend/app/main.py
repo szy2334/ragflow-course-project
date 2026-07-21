@@ -21,6 +21,12 @@ from app.workers.ingestion import IngestionTaskExecutor
 from app.workers.operations import OperationsTaskExecutor
 
 
+def _may_bootstrap_schema(database_url: str) -> bool:
+    """Allow metadata bootstrapping only for disposable local SQLite databases."""
+
+    return database_url.startswith("sqlite+") or database_url.startswith("sqlite:")
+
+
 def create_app(settings: Settings | None = None) -> FastAPI:
     runtime_settings = settings or get_settings()
 
@@ -29,7 +35,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         engine = build_engine(runtime_settings.database_url)
         # Local contract tests may bootstrap an empty SQLite database. Production
         # schemas are created exclusively by versioned Alembic migrations.
-        if not runtime_settings.is_production:
+        if _may_bootstrap_schema(runtime_settings.database_url):
             async with engine.begin() as connection:
                 await connection.run_sync(Base.metadata.create_all)
         app.state.settings = runtime_settings

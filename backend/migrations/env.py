@@ -3,11 +3,13 @@
 import asyncio
 import os
 from logging.config import fileConfig
+from pathlib import Path
 
 from alembic import context
 from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
+from app.core.config import Settings
 from app.db.models import Base
 
 config = context.config
@@ -16,8 +18,12 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 database_url = os.getenv("DATABASE_URL")
-if database_url:
-    config.set_main_option("sqlalchemy.url", database_url.replace("%", "%%"))
+if not database_url:
+    backend_env = Path(__file__).resolve().parents[1] / ".env"
+    database_url = Settings(
+        _env_file=backend_env if backend_env.exists() else None
+    ).database_url
+config.set_main_option("sqlalchemy.url", database_url.replace("%", "%%"))
 
 target_metadata = Base.metadata
 

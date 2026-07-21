@@ -123,6 +123,15 @@ class Paper(Base):
     index_status: Mapped[str] = mapped_column(String(32), default="not_indexed")
     quality_status: Mapped[str | None] = mapped_column(String(32), nullable=True)
     understanding_json: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
+    summary_markdown: Mapped[str | None] = mapped_column(Text, nullable=True)
+    summary_status: Mapped[str] = mapped_column(
+        String(32), default="pending", server_default="pending"
+    )
+    summary_model_version: Mapped[str | None] = mapped_column(String(128), nullable=True)
+    summary_prompt_version: Mapped[str | None] = mapped_column(String(128), nullable=True)
+    summary_generated_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
     failure: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
     active_index_version: Mapped[int | None] = mapped_column(Integer, nullable=True)
     ingestion_config_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)

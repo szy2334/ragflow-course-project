@@ -6,17 +6,27 @@ from typing import Any
 
 from langgraph.checkpoint.base import BaseCheckpointSaver
 
-from .agents import ControllerAgent, PaperUnderstandingAgent, ReviewAgentA, ReviewAgentB
+from .agents import (
+    AnswerGeneratorAgent,
+    ControllerAgent,
+    IntentRouterAgent,
+    PaperUnderstandingAgent,
+    ReviewAgentA,
+    ReviewAgentB,
+)
 from .errors import AiWorkflowError
 from .graph import (
+    MasterController,
     WorkflowEventEmitter,
     WorkflowNodes,
     WorkflowPolicy,
+    build_qa_workflow_graph,
     build_workflow_graph,
 )
 from .llm import StructuredLlm
 from .ports import WorkflowDependencies
 from .prompts import PromptRepository
+from .runner import AgentRunner
 from .schemas import (
     AgentResult,
     AnswerView,
@@ -34,10 +44,12 @@ class AiWorkflowService:
         *,
         prompts: PromptRepository | None = None,
         policy: WorkflowPolicy | None = None,
+        use_v3: bool = True,
     ) -> None:
         self._llm = llm
         self._prompts = prompts or PromptRepository()
         self._policy = policy or WorkflowPolicy()
+        self._use_v3 = use_v3
 
     async def run(
         self,
@@ -46,26 +58,43 @@ class AiWorkflowService:
         checkpointer: BaseCheckpointSaver[Any] | None = None,
     ) -> WorkflowResult:
         events = WorkflowEventEmitter(dependencies.events, command)
-        controller = ControllerAgent(self._llm, self._prompts)
-        nodes = WorkflowNodes(
-            dependencies=dependencies,
-            controller=controller,
-            paper_agent=PaperUnderstandingAgent(self._llm, self._prompts),
-            review_a=ReviewAgentA(self._llm, self._prompts),
-            review_b=ReviewAgentB(self._llm, self._prompts),
-            validators=AnswerValidationPipeline(),
-            events=events,
-            policy=self._policy,
-        )
-        graph = build_workflow_graph(
-            nodes,
-            policy=self._policy,
-            checkpointer=checkpointer,
-        )
+        if self._use_v3:
+            runner = AgentRunner(self._llm, self._prompts)
+            master = MasterController(
+                dependencies=dependencies,
+                intent_router=IntentRouterAgent(runner),
+                answer_generator=AnswerGeneratorAgent(runner),
+                validators=AnswerValidationPipeline(),
+                events=events,
+                policy=self._policy,
+            )
+            graph = build_qa_workflow_graph(
+                master,
+                policy=self._policy,
+                checkpointer=checkpointer,
+            )
+        else:
+            controller = ControllerAgent(self._llm, self._prompts)
+            nodes = WorkflowNodes(
+                dependencies=dependencies,
+                controller=controller,
+                paper_agent=PaperUnderstandingAgent(self._llm, self._prompts),
+                review_a=ReviewAgentA(self._llm, self._prompts),
+                review_b=ReviewAgentB(self._llm, self._prompts),
+                validators=AnswerValidationPipeline(),
+                events=events,
+                policy=self._policy,
+            )
+            graph = build_workflow_graph(
+                nodes,
+                policy=self._policy,
+                checkpointer=checkpointer,
+            )
         initial_state = {
             "command": command.model_dump(mode="json"),
             "conversation_summary": "",
             "paper_evidences": [],
+            "paper_summary": "",
             "standard_evidences": [],
             "paper_understanding": None,
             "review_a": None,
@@ -114,5 +143,6 @@ class AiWorkflowService:
                 "repair_count": state.get("repair_count", 0),
                 "warnings": state.get("warnings", []),
                 "final_sequence": state.get("sequence", events.sequence),
+                "architecture": "qa-v3" if self._use_v3 else "legacy",
             },
         )

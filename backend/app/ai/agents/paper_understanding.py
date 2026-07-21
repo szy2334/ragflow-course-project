@@ -2,20 +2,29 @@
 
 from ..llm import StructuredLlm
 from ..prompts import PromptRepository
+from ..runner import AgentRunner
 from ..schemas import (
     AgentResult,
     Claim,
     ConfigurationSnapshot,
     EvidenceItem,
+    PaperSummary,
     PaperUnderstanding,
 )
 from .common import agent_result, as_json
 
 
 class PaperUnderstandingAgent:
-    def __init__(self, llm: StructuredLlm, prompts: PromptRepository) -> None:
-        self._llm = llm
-        self._prompts = prompts
+    def __init__(
+        self,
+        runner_or_llm: AgentRunner | StructuredLlm,
+        prompts: PromptRepository | None = None,
+    ) -> None:
+        self._runner = (
+            runner_or_llm
+            if isinstance(runner_or_llm, AgentRunner)
+            else AgentRunner(runner_or_llm, prompts or PromptRepository())
+        )
 
     async def run(
         self,
@@ -24,14 +33,17 @@ class PaperUnderstandingAgent:
         evidences: list[EvidenceItem],
         configuration: ConfigurationSnapshot,
     ) -> tuple[PaperUnderstanding, AgentResult]:
-        messages = self._prompts.render(
-            "paper_understanding",
-            configuration.prompt_version,
-            standalone_question=standalone_question,
-            evidence_json=as_json([item.model_dump(mode="json") for item in evidences]),
-        )
-        result = await self._llm.invoke_structured(
-            messages, PaperUnderstanding, configuration.model
+        result = await self._runner.run(
+            prompt_name="paper_understanding",
+            prompt_version=configuration.prompt_version,
+            output_model=PaperUnderstanding,
+            model_config=configuration.model,
+            context={
+                "standalone_question": standalone_question,
+                "evidence_json": as_json(
+                    [item.model_dump(mode="json") for item in evidences]
+                ),
+            },
         )
         understanding = result.output
         claims = [
@@ -61,4 +73,30 @@ class PaperUnderstandingAgent:
             claims=claims,
             evidence_ids=evidence_ids,
             warnings=understanding.missing_information,
+        )
+
+    async def run_summary(
+        self,
+        *,
+        evidences: list[EvidenceItem],
+        configuration: ConfigurationSnapshot,
+    ) -> tuple[PaperSummary, AgentResult]:
+        result = await self._runner.run(
+            prompt_name="paper_summary",
+            prompt_version=configuration.prompt_version,
+            output_model=PaperSummary,
+            model_config=configuration.model,
+            context={
+                "evidence_json": as_json(
+                    [item.model_dump(mode="json") for item in evidences]
+                )
+            },
+        )
+        summary = result.output
+        return summary, agent_result(
+            name="paper_understanding",
+            summary="generated upload-time paper summary",
+            confidence=1.0,
+            metrics=result.metrics,
+            evidence_ids=[item.evidence_id for item in evidences],
         )

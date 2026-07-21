@@ -234,19 +234,38 @@ class RagFlowRetrievalPort:
                 ).all()
             )
         if request.content_preferences:
-            preferred = [
-                item for item in chunks if item.content_type in request.content_preferences
-            ]
-            chunks = preferred or chunks
-        ranked = sorted(
-            chunks,
-            key=lambda item: _local_relevance(item.content, request.standalone_question),
-            reverse=True,
-        )
-        limit = 12 if request.relaxed else 6
+            # Media preferences are ranking signals, not hard filters.  A
+            # table-oriented question may still need its surrounding prose.
+            request_preferences = set(request.content_preferences)
+        else:
+            request_preferences = set()
+        scored = [
+            (
+                item,
+                _local_chunk_relevance(
+                    item,
+                    request.standalone_question,
+                    request_preferences,
+                ),
+            )
+            for item in chunks
+        ]
+        matched = [pair for pair in scored if pair[1] > 0.01]
+        limit = 24 if request.relaxed else 15
+        if matched:
+            ranked_pairs = sorted(scored, key=lambda pair: pair[1], reverse=True)
+        else:
+            # Zero lexical hits must not become an unsupported "paper does not
+            # discuss this" conclusion.  Supply broad, deterministic coverage
+            # so the answer agent can report the evidence gap explicitly.
+            ranked_pairs = sorted(
+                scored,
+                key=lambda pair: (pair[0].page_number, pair[0].chunk_id),
+            )
+        selected = ranked_pairs[:limit]
         items = [
             EvidenceItem(
-                evidence_id=f"P{index}",
+                evidence_id=item.chunk_id,
                 source_type="paper",
                 paper_id=item.paper_id,
                 document_id=f"local:{item.paper_id}",
@@ -260,7 +279,7 @@ class RagFlowRetrievalPort:
                 section_title=item.section_title or None,
                 page_number=item.page_number,
                 source_uri=f"paper://{item.paper_id}/{item.chunk_id}",
-                retrieval_score=_local_relevance(item.content, request.standalone_question),
+                retrieval_score=score,
                 content_role=item.content_role,
                 object_id=item.object_id,
                 parent_chunk_id=item.parent_chunk_id,
@@ -269,9 +288,19 @@ class RagFlowRetrievalPort:
                     "source_content_type": item.content_type,
                 },
             )
-            for index, item in enumerate(ranked[:limit], start=1)
+            for item, score in selected
         ]
-        return EvidenceSet(items=items, query=request.standalone_question, relaxed=request.relaxed)
+        paper_summary = "\n\n".join(
+            summary
+            for summary in (_paper_summary(item) for item in papers)
+            if summary
+        )
+        return EvidenceSet(
+            items=items,
+            query=request.standalone_question,
+            paper_summary=paper_summary,
+            relaxed=request.relaxed,
+        )
 
     async def retrieve_standards(self, request: RetrieveStandardsRequest) -> EvidenceSet:
         return EvidenceSet(
@@ -371,14 +400,67 @@ def _evidence_content_type(value: str) -> str:
 
 
 def _local_relevance(content: str, question: str) -> float:
-    latin_terms = set(re.findall(r"[a-z0-9_]{2,}", question.lower()))
-    chinese_terms = set(re.findall(r"[\u4e00-\u9fff]", question))
-    terms = latin_terms | chinese_terms
+    terms = _local_terms(question)
     if not terms:
         return 0.01
     normalized = content.lower()
     matches = sum(term in normalized for term in terms)
     return matches / len(terms) if matches else 0.01
+
+
+def _local_terms(question: str) -> set[str]:
+    latin_terms = set(re.findall(r"[a-z][a-z0-9_-]+", question.lower()))
+    number_terms = set(re.findall(r"\d+(?:\.\d+)?%?", question))
+    chinese_terms: set[str] = set()
+    ignored = {"什么", "哪些", "怎么", "如何", "为什么", "论文", "这篇", "作者"}
+    for sequence in re.findall(r"[\u4e00-\u9fff]{2,}", question):
+        if sequence not in ignored:
+            chinese_terms.add(sequence)
+        for size in (2, 3):
+            chinese_terms.update(
+                sequence[index : index + size]
+                for index in range(max(0, len(sequence) - size + 1))
+                if sequence[index : index + size] not in ignored
+            )
+    return latin_terms | number_terms | chinese_terms
+
+
+def _local_chunk_relevance(
+    chunk: PaperChunk,
+    question: str,
+    content_preferences: set[str],
+) -> float:
+    score = _local_relevance(chunk.content, question)
+    metadata = chunk.metadata_json or {}
+    section_role = str(metadata.get("section_role") or "").lower()
+    normalized_question = question.lower()
+    role_tokens = {
+        "experiment": ("实验", "结果", "数据集", "experiment", "result", "dataset"),
+        "method": ("方法", "模型", "架构", "method", "model", "architecture"),
+        "introduction": ("问题", "背景", "动机", "problem", "background", "motivation"),
+        "conclusion": ("结论", "贡献", "局限", "conclusion", "contribution", "limitation"),
+    }
+    if section_role and any(
+        token in normalized_question
+        for role, tokens in role_tokens.items()
+        if role in section_role
+        for token in tokens
+    ):
+        score *= 2.0
+    if chunk.content_type in content_preferences:
+        score *= 1.5
+    return max(0.01, score * max(chunk.retrieval_weight, 0.01))
+
+
+def _paper_summary(paper: Paper) -> str:
+    if paper.summary_markdown:
+        return paper.summary_markdown.strip()
+    understanding = paper.understanding_json or {}
+    return str(
+        understanding.get("summary_markdown")
+        or understanding.get("paper_summary")
+        or ""
+    ).strip()
 
 
 def _stage_progress(stage: str) -> float:
@@ -388,6 +470,7 @@ def _stage_progress(stage: str) -> float:
         "routing": 0.12,
         "retrieving_paper": 0.28,
         "understanding": 0.48,
+        "generating_answer": 0.72,
         "retrieving_references": 0.58,
         "review_a": 0.7,
         "review_b": 0.8,

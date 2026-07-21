@@ -2,6 +2,7 @@
 
 from .agents import (
     PaperFact,
+    PaperSummary,
     PaperUnderstanding,
     ReviewClaim,
     ReviewOpinion,
@@ -43,6 +44,7 @@ __all__ = [
     "ModelConfigSnapshot",
     "NodeTrace",
     "PaperFact",
+    "PaperSummary",
     "PaperUnderstanding",
     "PersistAnswerCommand",
     "RetrieveEvidenceRequest",

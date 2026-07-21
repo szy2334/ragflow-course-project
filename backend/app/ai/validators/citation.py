@@ -21,17 +21,19 @@ def validate_citations(
         if unknown := ids - allowed:
             errors.append(f"claim {claim.claim_id} cites unknown evidence IDs: {sorted(unknown)}")
             continue
-        if not ids:
+        if claim.type == "positive" and not ids:
             errors.append(f"claim {claim.claim_id} has no citations")
             continue
-        if not any(source_by_id[item] == "paper" for item in ids):
+        if claim.type == "positive" and not any(
+            source_by_id[item] == "paper" for item in ids
+        ):
             errors.append(f"claim {claim.claim_id} has no paper evidence")
         requires_standard = route.effective_route_type == "score" or (
             route.effective_route_type == "review" and standards_available
         )
         if requires_standard and not any(source_by_id[item] == "standard" for item in ids):
             errors.append(f"review claim {claim.claim_id} has no standard evidence")
-        if not ids.issubset(declared):
+        if ids and not ids.issubset(declared):
             errors.append(f"claim {claim.claim_id} uses evidence omitted from answer.evidence_ids")
 
     if draft.score is not None:

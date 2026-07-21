@@ -3,6 +3,7 @@
 # ruff: noqa: E501
 
 import asyncio
+import logging
 from datetime import UTC, datetime
 from uuid import uuid4
 
@@ -33,6 +34,8 @@ from .adapters import (
 )
 from .checkpoints import workflow_checkpointer
 from .redis_store import RedisRuntime
+
+logger = logging.getLogger(__name__)
 
 
 class WorkflowTaskExecutor:
@@ -81,7 +84,10 @@ class WorkflowTaskExecutor:
         llm = OpenAICompatibleClient(self._settings.llm_api_key)
         try:
             async with workflow_checkpointer(self._settings) as checkpointer:
-                result = await AiWorkflowService(llm).run(command, dependencies, checkpointer)
+                result = await AiWorkflowService(
+                    llm,
+                    use_v3=self._settings.qa_architecture_v3_enabled,
+                ).run(command, dependencies, checkpointer)
             async with self._sessions() as session:
                 run = await session.scalar(
                     select(WorkflowRun).where(WorkflowRun.task_id == command.task_id)
@@ -94,11 +100,18 @@ class WorkflowTaskExecutor:
                     await session.commit()
         except AiWorkflowError as exc:
             # AiWorkflowService emits the terminal error itself. Only durable state remains here.
+            logger.warning(
+                "AI workflow failed task_id=%s code=%s",
+                command.task_id,
+                exc.code,
+                exc_info=True,
+            )
             message = (
                 "任务已取消。" if exc.code == "TASK_CANCELLED" else "工作流未能完成，请稍后重试。"
             )
             await self._mark_failed(command.task_id, exc.code, message)
         except Exception:
+            logger.exception("Unhandled AI workflow failure task_id=%s", command.task_id)
             await self._fail(
                 command, "AI_WORKFLOW_ERROR", "工作流未能完成，请稍后重试。", retryable=True
             )
@@ -179,5 +192,6 @@ def snapshot_from_settings(settings: Settings) -> ConfigurationSnapshot:
             model=model,
             timeout_seconds=settings.llm_timeout_seconds,
             structured_mode=settings.llm_structured_mode,
+            enable_thinking=settings.llm_enable_thinking,
         ),
     )
