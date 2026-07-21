@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { AlertTriangle, BookOpen, CheckCircle2, ChevronRight, CircleStop, MessageCircleQuestion, Plus, SearchCheck, Send, Sparkles, X } from 'lucide-vue-next'
+import { AlertTriangle, BookOpen, ChevronRight, CircleStop, MessageCircleQuestion, Plus, SearchCheck, Send, Sparkles, X } from 'lucide-vue-next'
 import EvidenceCard from '@/components/EvidenceCard.vue'
 import AnswerContext from '@/components/AnswerContext.vue'
 import MarkdownContent from '@/components/MarkdownContent.vue'
@@ -18,11 +18,17 @@ const workspace = useWorkspaceStore()
 const question = ref('')
 const selectedPaperIds = ref<string[]>([])
 const sending = ref(false)
+const creatingSession = ref(false)
 const error = ref('')
 const activeTaskId = ref('')
 const detail = ref<AnswerDetailView | null>(null)
 const showPaperPicker = ref(false)
 const chatScroll = ref<HTMLElement | null>(null)
+const previewEvidence = ref<EvidenceItem | null>(null)
+const previewPdfUrl = ref('')
+const previewLoading = ref(false)
+const previewError = ref('')
+let previewRequestId = 0
 const session = computed<ChatSessionView | undefined>(() => workspace.sessions.find((item) => item.session_id === props.sessionId))
 const messages = computed(() => workspace.messagesBySession[props.sessionId] ?? [])
 const papers = computed(() => Object.values(workspace.papersById))
@@ -32,7 +38,9 @@ const latestStoredAnswer = computed(() => {
   return completedMessage?.answer ?? null
 })
 const activeEvidences = computed(() => activeWorkflow.value?.completedAnswer?.evidences ?? activeWorkflow.value?.evidences ?? detail.value?.answer.evidences ?? latestStoredAnswer.value?.evidences ?? [])
-const activeClaims = computed(() => activeWorkflow.value?.completedAnswer?.claims ?? detail.value?.answer.claims ?? latestStoredAnswer.value?.claims ?? [])
+const readableEvidences = computed<EvidenceItem[]>(() => activeEvidences.value
+  .map((evidence) => ({ ...evidence, quote: readableQuote(evidence.quote) }))
+  .filter((evidence) => Boolean(evidence.quote)))
 const displayedAnswer = computed(() => activeWorkflow.value?.completedAnswer ?? detail.value?.answer ?? latestStoredAnswer.value)
 const workspaceLabel = '论文阅读工作台'
 const questionPlaceholder = '例如：这个方法的核心创新是什么？'
@@ -50,6 +58,34 @@ function togglePaper(paperId: string) {
   if (selectedPaperIds.value.includes(paperId)) selectedPaperIds.value = selectedPaperIds.value.filter((id) => id !== paperId)
   else if (selectedPaperIds.value.length < 10) selectedPaperIds.value.push(paperId)
   else error.value = '一次联合问答最多选择 10 篇论文。'
+}
+function readableQuote(quote: string) {
+  const normalized = quote.replace(/\s+/g, ' ').trim()
+  const relatedText = normalized.lastIndexOf('相关正文:')
+  if (relatedText >= 0) return normalized.slice(relatedText + '相关正文:'.length).trim()
+  if (normalized.includes('公式:') || normalized.includes('图片标题:') || normalized.includes('图片内文字:') || normalized.includes('表格:')) return ''
+  const bodyText = normalized.lastIndexOf('正文:')
+  if (bodyText >= 0) return normalized.slice(bodyText + '正文:'.length).trim()
+  return normalized.startsWith('章节:') ? '' : normalized
+}
+async function createReadingSession() {
+  const paperIds = selectedPaperIds.value.length ? selectedPaperIds.value : session.value?.paper_ids ?? []
+  if (!paperIds.length) {
+    error.value = '请先选择至少一篇已就绪论文。'
+    showPaperPicker.value = true
+    return
+  }
+  creatingSession.value = true
+  error.value = ''
+  try {
+    const created = await api.createSession({ paper_ids: paperIds, title: session.value?.title || undefined })
+    await workspace.loadSessions()
+    await router.push(`/chat/${created.session_id}`)
+  } catch (cause) {
+    error.value = cause instanceof ApiError ? cause.message : '无法新建阅读会话。'
+  } finally {
+    creatingSession.value = false
+  }
 }
 async function submit() {
   const normalized = question.value.trim()
@@ -89,16 +125,43 @@ async function inspectMessage(messageId: string) {
   try { detail.value = await api.getAnswerDetail(messageId) }
   catch { /* Pending or non-answer messages do not have a detail view. */ }
 }
-function locate(evidence: EvidenceItem) { if (evidence.paper_id) router.push({ path: `/papers/${evidence.paper_id}`, query: { page: evidence.page_number } }) }
+async function locate(evidence: EvidenceItem) {
+  if (!evidence.paper_id) return
+  const requestId = ++previewRequestId
+  previewEvidence.value = evidence
+  previewError.value = ''
+  if (previewPdfUrl.value) URL.revokeObjectURL(previewPdfUrl.value)
+  previewPdfUrl.value = ''
+  previewLoading.value = true
+  try {
+    const file = await api.getPaperFile(evidence.paper_id)
+    if (requestId !== previewRequestId) return
+    if (!file.size) throw new Error('empty PDF response')
+    previewPdfUrl.value = URL.createObjectURL(file)
+  } catch (cause) {
+    if (requestId === previewRequestId) previewError.value = cause instanceof ApiError ? cause.message : '无法加载论文原文。'
+  } finally {
+    if (requestId === previewRequestId) previewLoading.value = false
+  }
+}
+function closePreview() {
+  previewRequestId += 1
+  previewEvidence.value = null
+  previewLoading.value = false
+  previewError.value = ''
+  if (previewPdfUrl.value) URL.revokeObjectURL(previewPdfUrl.value)
+  previewPdfUrl.value = ''
+}
 watch(() => props.sessionId, load)
 onMounted(load)
+onBeforeUnmount(closePreview)
 </script>
 
 <template>
   <section class="reading-workspace">
     <aside class="reading-left">
       <div class="workspace-brand-row"><div><p class="eyebrow">阅读会话</p><h1>{{ session?.title || '正在加载会话' }}</h1></div><button class="icon-button" aria-label="回到论文库" title="回到论文库" @click="router.push('/papers')"><X :size="17" /></button></div>
-      <button class="new-session" @click="router.push('/papers')"><Plus :size="16" />新建阅读会话</button>
+      <button class="new-session" :disabled="creatingSession" @click="createReadingSession"><Plus :size="16" />{{ creatingSession ? '正在新建…' : '新建阅读会话' }}</button>
       <nav class="session-list" aria-label="阅读会话列表"><button v-for="item in workspace.sessions" :key="item.session_id" :class="{ active: item.session_id === sessionId }" @click="router.push(`/chat/${item.session_id}`)"><MessageCircleQuestion :size="16" /><span>{{ item.title }}</span><ChevronRight :size="15" /></button></nav>
       <div class="workspace-papers"><button class="workspace-block-head" @click="showPaperPicker = !showPaperPicker"><span><BookOpen :size="16" />本次证据范围</span><span>{{ selectedPaperIds.length }} 篇</span></button><div v-if="showPaperPicker" class="paper-picker"><p>每次问答必须明确限定论文范围。</p><label v-for="paper in papers" :key="paper.paper_id" :class="{ disabled: paper.status !== 'ready' }"><input type="checkbox" :checked="selectedPaperIds.includes(paper.paper_id)" :disabled="paper.status !== 'ready'" @change="togglePaper(paper.paper_id)" /><span>{{ paper.title }}</span><StatusPill :status="paper.status" /></label></div></div>
     </aside>
@@ -118,8 +181,26 @@ onMounted(load)
     <aside class="reading-right">
       <WorkflowTimeline :events="activeWorkflow?.events || detail?.workflow_run ? (activeWorkflow?.events || []) : []" :phase="activeWorkflow?.phase || '尚未开始任务'" />
       <AnswerContext v-if="displayedAnswer" :answer="displayedAnswer" />
-      <section class="evidence-panel"><div class="evidence-heading"><div><SearchCheck :size="17" /><strong>证据定位</strong></div><span>{{ activeEvidences.length }} 条</span></div><div v-if="activeEvidences.length" class="evidence-list"><EvidenceCard v-for="evidence in activeEvidences" :key="evidence.evidence_id" :evidence="evidence" @locate="locate" /></div><p v-else class="side-empty">回答完成后，实际使用的原文证据会显示在这里。</p></section>
-      <section v-if="activeClaims.length" class="claims-panel"><div class="evidence-heading"><div><CheckCircle2 :size="17" /><strong>已核验结论</strong></div></div><article v-for="claim in activeClaims" :key="claim.claim_id" class="claim-row"><span :class="`verdict-${claim.verdict}`">{{ claim.verdict === 'supported' ? '支持' : claim.verdict === 'refuted' ? '反驳' : claim.verdict === 'conflicting_evidence' ? '冲突' : '不足' }}</span><p>{{ claim.text }}</p><small>{{ Math.round(claim.confidence * 100) }}% · {{ claim.reason }}</small></article></section>
+      <section class="evidence-panel"><div class="evidence-heading"><div><SearchCheck :size="17" /><strong>证据定位</strong></div><span>{{ readableEvidences.length }} 条</span></div><div v-if="readableEvidences.length" class="evidence-list"><EvidenceCard v-for="evidence in readableEvidences" :key="evidence.evidence_id" :evidence="evidence" @locate="locate" /></div><p v-else class="side-empty">{{ activeEvidences.length ? '本次回答没有可直接阅读的正文证据。' : '回答完成后，实际使用的原文证据会显示在这里。' }}</p></section>
     </aside>
+
+    <div v-if="previewEvidence" class="evidence-preview-scrim" @click.self="closePreview">
+      <section class="evidence-preview-modal" role="dialog" aria-modal="true" aria-label="论文原文预览">
+        <header><div><p class="eyebrow">原文预览</p><strong>第 {{ previewEvidence.page_number || 1 }} 页</strong></div><button class="icon-button" aria-label="关闭原文预览" title="关闭" @click="closePreview"><X :size="18" /></button></header>
+        <iframe v-if="previewPdfUrl" :src="`${previewPdfUrl}#page=${previewEvidence.page_number || 1}`" title="论文原文预览" />
+        <div v-else class="evidence-preview-status"><span v-if="previewLoading">正在加载论文原文…</span><span v-else>{{ previewError || '论文原文暂不可用。' }}</span></div>
+      </section>
+    </div>
   </section>
 </template>
+
+<style scoped>
+.evidence-preview-scrim { position: fixed; z-index: 80; inset: 0; display: grid; place-items: center; padding: 4vh 3vw; background: rgba(5, 27, 23, .58); backdrop-filter: blur(3px); }
+.evidence-preview-modal { display: flex; width: min(1100px, 94vw); height: min(860px, 88dvh); flex-direction: column; overflow: hidden; border: 1px solid #bdd5cc; border-radius: 14px; background: white; box-shadow: 0 24px 70px rgba(3, 29, 25, .35); }
+.evidence-preview-modal header { display: flex; min-height: 64px; align-items: center; justify-content: space-between; padding: 11px 14px 11px 18px; border-bottom: 1px solid var(--line); }
+.evidence-preview-modal header p { margin: 0 0 2px; }
+.evidence-preview-modal header strong { color: var(--ink); font-size: 14px; }
+.evidence-preview-modal iframe { width: 100%; height: 100%; flex: 1; border: 0; background: #eef1f0; }
+.evidence-preview-status { display: grid; min-height: 220px; flex: 1; place-items: center; padding: 24px; color: var(--ink-soft); text-align: center; }
+@media (max-width: 720px) { .evidence-preview-scrim { padding: 2vh 2vw; }.evidence-preview-modal { width: 96vw; height: 94dvh; border-radius: 11px; } }
+</style>
