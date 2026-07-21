@@ -1,0 +1,191 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9999839067,
+        "min": 0.9999630451,
+        "variance": 1.445982917e-10
+      },
+      "words": "10000"
+    },
+    {
+      "probability": {
+        "average": 0.9999837875,
+        "min": 0.9999725819,
+        "variance": 8.330047763e-11
+      },
+      "words": "1000"
+    },
+    {
+      "probability": {
+        "average": 0.5627796054,
+        "min": 0.4275332689,
+        "variance": 0.01829157211
+      },
+      "words": "畏："
+    },
+    {
+      "probability": {
+        "average": 0.9998316169,
+        "min": 0.9997375607,
+        "variance": 8.700227205e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9996785522,
+        "min": 0.9995115995,
+        "variance": 2.787317399e-08
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9999610186,
+        "min": 0.9999610186,
+        "variance": 0
+      },
+      "words": "1"
+    },
+    {
+      "probability": {
+        "average": 0.9993194938,
+        "min": 0.9970904589,
+        "variance": 6.911041055e-07
+      },
+      "words": "BERT-Base"
+    },
+    {
+      "probability": {
+        "average": 0.9984466434,
+        "min": 0.9867841005,
+        "variance": 1.517001328e-05
+      },
+      "words": "BERT-Large"
+    },
+    {
+      "probability": {
+        "average": 0.9774436355,
+        "min": 0.8980569243,
+        "variance": 0.0009474130929
+      },
+      "words": "RoBERTa-Base"
+    },
+    {
+      "probability": {
+        "average": 0.9774202108,
+        "min": 0.8621819615,
+        "variance": 0.001292700996
+      },
+      "words": "RoBERTa-Large"
+    },
+    {
+      "probability": {
+        "average": 0.9929826856,
+        "min": 0.9715988636,
+        "variance": 0.0001078931382
+      },
+      "words": "T5-Small"
+    },
+    {
+      "probability": {
+        "average": 0.9997201562,
+        "min": 0.999201715,
+        "variance": 6.220886917e-08
+      },
+      "words": "T5-Base"
+    },
+    {
+      "probability": {
+        "average": 0.9992070198,
+        "min": 0.995413363,
+        "variance": 2.161994189e-06
+      },
+      "words": "T5-Large"
+    },
+    {
+      "probability": {
+        "average": 0.9996424913,
+        "min": 0.9992895126,
+        "variance": 7.785255463e-08
+      },
+      "words": "T5-3B"
+    },
+    {
+      "probability": {
+        "average": 0.9992343783,
+        "min": 0.9969026446,
+        "variance": 1.176966407e-06
+      },
+      "words": "GPT-3Small"
+    },
+    {
+      "probability": {
+        "average": 0.999822855,
+        "min": 0.9995241165,
+        "variance": 4.186691172e-08
+      },
+      "words": "T5-11B"
+    },
+    {
+      "probability": {
+        "average": 0.9996775389,
+        "min": 0.9977878332,
+        "variance": 4.131466085e-07
+      },
+      "words": "GPT-3Large"
+    },
+    {
+      "probability": {
+        "average": 0.9985355139,
+        "min": 0.9884019494,
+        "variance": 1.107013031e-05
+      },
+      "words": "GPT-3Medium"
+    },
+    {
+      "probability": {
+        "average": 0.9995081425,
+        "min": 0.9971538782,
+        "variance": 7.275662597e-07
+      },
+      "words": "GPT-32.7B"
+    },
+    {
+      "probability": {
+        "average": 0.9997543693,
+        "min": 0.9994233847,
+        "variance": 3.4061447e-08
+      },
+      "words": "GPT-3XL"
+    },
+    {
+      "probability": {
+        "average": 0.9996697307,
+        "min": 0.9979504943,
+        "variance": 3.852408383e-07
+      },
+      "words": "GPT-36.7B"
+    },
+    {
+      "probability": {
+        "average": 0.9997571111,
+        "min": 0.9991402626,
+        "variance": 8.435621623e-08
+      },
+      "words": "GPT-313B"
+    },
+    {
+      "probability": {
+        "average": 0.9997341633,
+        "min": 0.9977523685,
+        "variance": 4.910724556e-07
+      },
+      "words": "GPT-3175B"
+    }
+  ],
+  "words_result_num": 23,
+  "direction": 0,
+  "log_id": 2079046568713463818
+}

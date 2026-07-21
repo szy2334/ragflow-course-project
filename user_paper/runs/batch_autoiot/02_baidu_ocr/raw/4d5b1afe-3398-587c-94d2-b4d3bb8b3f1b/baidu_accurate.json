@@ -1,0 +1,87 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9103040695,
+        "min": 0.6136772037,
+        "variance": 0.01818356663
+      },
+      "words": "000000"
+    },
+    {
+      "probability": {
+        "average": 0.9979086518,
+        "min": 0.9882119298,
+        "variance": 1.882057768e-05
+      },
+      "words": "Expert"
+    },
+    {
+      "probability": {
+        "average": 0.9997870326,
+        "min": 0.999285996,
+        "variance": 4.257275776e-08
+      },
+      "words": "Non-Expert"
+    },
+    {
+      "probability": {
+        "average": 0.9973540902,
+        "min": 0.9800823331,
+        "variance": 4.267014083e-05
+      },
+      "words": "Baseline"
+    },
+    {
+      "probability": {
+        "average": 0.9998315573,
+        "min": 0.9998315573,
+        "variance": 0
+      },
+      "words": "1"
+    },
+    {
+      "probability": {
+        "average": 0.999980092,
+        "min": 0.999980092,
+        "variance": 0
+      },
+      "words": "2"
+    },
+    {
+      "probability": {
+        "average": 0.9999572039,
+        "min": 0.9999572039,
+        "variance": 0
+      },
+      "words": "3"
+    },
+    {
+      "probability": {
+        "average": 0.9999796152,
+        "min": 0.9999796152,
+        "variance": 0
+      },
+      "words": "4"
+    },
+    {
+      "probability": {
+        "average": 0.9999643564,
+        "min": 0.9999643564,
+        "variance": 0
+      },
+      "words": "5"
+    },
+    {
+      "probability": {
+        "average": 0.9981840253,
+        "min": 0.9849867225,
+        "variance": 1.623235585e-05
+      },
+      "words": "Trial(times)"
+    }
+  ],
+  "words_result_num": 10,
+  "direction": 0,
+  "log_id": 2079044411366104576
+}

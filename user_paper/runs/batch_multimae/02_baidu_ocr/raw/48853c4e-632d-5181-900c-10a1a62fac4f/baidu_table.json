@@ -1,0 +1,605 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 11
+            },
+            {
+              "x": 139,
+              "y": 11
+            },
+            {
+              "x": 138,
+              "y": 88
+            },
+            {
+              "x": 10,
+              "y": 88
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Method"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 139,
+              "y": 11
+            },
+            {
+              "x": 423,
+              "y": 10
+            },
+            {
+              "x": 423,
+              "y": 47
+            },
+            {
+              "x": 139,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Hypersim(S)"
+        },
+        {
+          "col_end": 7,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 423,
+              "y": 10
+            },
+            {
+              "x": 674,
+              "y": 10
+            },
+            {
+              "x": 674,
+              "y": 46
+            },
+            {
+              "x": 423,
+              "y": 47
+            }
+          ],
+          "row_start": 0,
+          "col_start": 4,
+          "words": "NYUv2(S)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 139,
+              "y": 49
+            },
+            {
+              "x": 236,
+              "y": 48
+            },
+            {
+              "x": 236,
+              "y": 89
+            },
+            {
+              "x": 139,
+              "y": 89
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "RGB"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 236,
+              "y": 48
+            },
+            {
+              "x": 305,
+              "y": 48
+            },
+            {
+              "x": 305,
+              "y": 89
+            },
+            {
+              "x": 236,
+              "y": 89
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "D"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 305,
+              "y": 48
+            },
+            {
+              "x": 423,
+              "y": 48
+            },
+            {
+              "x": 423,
+              "y": 89
+            },
+            {
+              "x": 305,
+              "y": 89
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": "RGB-D"
+        },
+        {
+          "col_end": 5,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 423,
+              "y": 48
+            },
+            {
+              "x": 515,
+              "y": 47
+            },
+            {
+              "x": 515,
+              "y": 89
+            },
+            {
+              "x": 423,
+              "y": 89
+            }
+          ],
+          "row_start": 1,
+          "col_start": 4,
+          "words": "RGB"
+        },
+        {
+          "col_end": 6,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 515,
+              "y": 47
+            },
+            {
+              "x": 586,
+              "y": 47
+            },
+            {
+              "x": 586,
+              "y": 89
+            },
+            {
+              "x": 515,
+              "y": 89
+            }
+          ],
+          "row_start": 1,
+          "col_start": 5,
+          "words": "D"
+        },
+        {
+          "col_end": 7,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 586,
+              "y": 47
+            },
+            {
+              "x": 674,
+              "y": 47
+            },
+            {
+              "x": 675,
+              "y": 89
+            },
+            {
+              "x": 586,
+              "y": 89
+            }
+          ],
+          "row_start": 1,
+          "col_start": 6,
+          "words": "RGB-D"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 89
+            },
+            {
+              "x": 139,
+              "y": 89
+            },
+            {
+              "x": 139,
+              "y": 123
+            },
+            {
+              "x": 11,
+              "y": 123
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "MAE"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 139,
+              "y": 89
+            },
+            {
+              "x": 236,
+              "y": 89
+            },
+            {
+              "x": 236,
+              "y": 123
+            },
+            {
+              "x": 139,
+              "y": 123
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "36.5"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 236,
+              "y": 89
+            },
+            {
+              "x": 305,
+              "y": 89
+            },
+            {
+              "x": 305,
+              "y": 123
+            },
+            {
+              "x": 236,
+              "y": 123
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "32.5"
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 305,
+              "y": 89
+            },
+            {
+              "x": 423,
+              "y": 89
+            },
+            {
+              "x": 423,
+              "y": 123
+            },
+            {
+              "x": 305,
+              "y": 123
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "36.9"
+        },
+        {
+          "col_end": 5,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 423,
+              "y": 89
+            },
+            {
+              "x": 515,
+              "y": 89
+            },
+            {
+              "x": 515,
+              "y": 123
+            },
+            {
+              "x": 423,
+              "y": 123
+            }
+          ],
+          "row_start": 2,
+          "col_start": 4,
+          "words": "50.8"
+        },
+        {
+          "col_end": 6,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 515,
+              "y": 89
+            },
+            {
+              "x": 586,
+              "y": 89
+            },
+            {
+              "x": 586,
+              "y": 123
+            },
+            {
+              "x": 515,
+              "y": 123
+            }
+          ],
+          "row_start": 2,
+          "col_start": 5,
+          "words": "23.4"
+        },
+        {
+          "col_end": 7,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 586,
+              "y": 89
+            },
+            {
+              "x": 675,
+              "y": 89
+            },
+            {
+              "x": 675,
+              "y": 123
+            },
+            {
+              "x": 586,
+              "y": 123
+            }
+          ],
+          "row_start": 2,
+          "col_start": 6,
+          "words": "49.3"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 123
+            },
+            {
+              "x": 139,
+              "y": 123
+            },
+            {
+              "x": 139,
+              "y": 149
+            },
+            {
+              "x": 11,
+              "y": 149
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "MultiMAE"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 139,
+              "y": 123
+            },
+            {
+              "x": 236,
+              "y": 123
+            },
+            {
+              "x": 236,
+              "y": 149
+            },
+            {
+              "x": 139,
+              "y": 149
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "37.0"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 236,
+              "y": 123
+            },
+            {
+              "x": 305,
+              "y": 123
+            },
+            {
+              "x": 305,
+              "y": 149
+            },
+            {
+              "x": 236,
+              "y": 149
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "38.5"
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 305,
+              "y": 123
+            },
+            {
+              "x": 423,
+              "y": 123
+            },
+            {
+              "x": 423,
+              "y": 149
+            },
+            {
+              "x": 305,
+              "y": 149
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "47.6"
+        },
+        {
+          "col_end": 5,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 423,
+              "y": 123
+            },
+            {
+              "x": 515,
+              "y": 123
+            },
+            {
+              "x": 515,
+              "y": 149
+            },
+            {
+              "x": 423,
+              "y": 149
+            }
+          ],
+          "row_start": 3,
+          "col_start": 4,
+          "words": "52.0"
+        },
+        {
+          "col_end": 6,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 515,
+              "y": 123
+            },
+            {
+              "x": 586,
+              "y": 123
+            },
+            {
+              "x": 586,
+              "y": 149
+            },
+            {
+              "x": 515,
+              "y": 149
+            }
+          ],
+          "row_start": 3,
+          "col_start": 5,
+          "words": "41.4"
+        },
+        {
+          "col_end": 7,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 586,
+              "y": 123
+            },
+            {
+              "x": 675,
+              "y": 123
+            },
+            {
+              "x": 675,
+              "y": 149
+            },
+            {
+              "x": 586,
+              "y": 149
+            }
+          ],
+          "row_start": 3,
+          "col_start": 6,
+          "words": "56.0"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 9,
+          "y": 10
+        },
+        {
+          "x": 675,
+          "y": 10
+        },
+        {
+          "x": 675,
+          "y": 149
+        },
+        {
+          "x": 9,
+          "y": 149
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079048344541354260
+}

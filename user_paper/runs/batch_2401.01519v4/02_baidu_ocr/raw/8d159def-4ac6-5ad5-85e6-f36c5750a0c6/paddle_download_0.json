@@ -1,0 +1,163 @@
+{
+  "file_name": "a19754ed5969b921be17e0461b2c13fa12cbe68a2e26b43c6e05daf6081a4753.jpg",
+  "file_id": "file-T7aQZ5c3HZs5VumAZGUdFm929mNl40pl",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "1Y3HgC-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "1Y3HgC-layout-1",
+          "text": "LLMs¹ | Experimental research | 1",
+          "position": [
+            0,
+            0,
+            1248,
+            605
+          ],
+          "polygon": [
+            [
+              0,
+              0
+            ],
+            [
+              1248,
+              0
+            ],
+            [
+              1248,
+              605
+            ],
+            [
+              0,
+              605
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>LLMs¹</th><th style='text-align: center;'>Experimental research</th><th style='text-align: center;'>1</th></tr></thead>\n  <tbody>\n  </tbody>\n</table>"
+        },
+        {
+          "layout_id": "1Y3HgC-layout-2",
+          "text": "(a)",
+          "position": [
+            469,
+            635,
+            38,
+            30
+          ],
+          "polygon": [
+            [
+              469,
+              635
+            ],
+            [
+              506,
+              635
+            ],
+            [
+              506,
+              664
+            ],
+            [
+              469,
+              664
+            ]
+          ],
+          "type": "figure_title",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "1Y3HgC-layout-3",
+          "text": "(b)",
+          "position": [
+            826,
+            637,
+            39,
+            30
+          ],
+          "polygon": [
+            [
+              826,
+              637
+            ],
+            [
+              864,
+              637
+            ],
+            [
+              864,
+              666
+            ],
+            [
+              826,
+              666
+            ]
+          ],
+          "type": "figure_title",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "1Y3HgC-layout-4",
+          "text": "(c)",
+          "position": [
+            1116,
+            633,
+            36,
+            31
+          ],
+          "polygon": [
+            [
+              1116,
+              633
+            ],
+            [
+              1151,
+              633
+            ],
+            [
+              1151,
+              663
+            ],
+            [
+              1116,
+              663
+            ]
+          ],
+          "type": "figure_title",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "LLMs¹ | Experimental research | 1(a)(b)(c)",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>LLMs¹</th><th style='text-align: center;'>Experimental research</th><th style='text-align: center;'>1</th></tr></thead>\n  <tbody>\n  </tbody>\n</table>\n\n<div style=\"text-align: center;\">(a)</div>\n\n\n<div style=\"text-align: center;\">(b)</div>\n\n\n<div style=\"text-align: center;\">(c)</div>\n",
+      "meta": {
+        "page_width": 1248,
+        "page_height": 667
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

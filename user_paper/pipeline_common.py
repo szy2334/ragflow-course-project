@@ -82,23 +82,6 @@ def config_value(name: str, default: str | None = None) -> str | None:
     return os.environ.get(name, default)
 
 
-def config_path_value(name: str, default: str | None = None) -> Path | None:
-    """Return a configured filesystem path relative to the configuration file.
-
-    Command-line paths remain relative to the caller's working directory, while
-    paths supplied by ``.env`` stay valid when a script is launched from a
-    different directory.
-    """
-    value = config_value(name, default)
-    if value is None or not value.strip():
-        return None
-    path = Path(value).expanduser()
-    if path.is_absolute():
-        return path
-    config_path = load_user_paper_config()
-    return (config_path.parent / path).resolve()
-
-
 def config_bool(name: str, default: bool = False) -> bool:
     value = config_value(name)
     if value is None or not value.strip():

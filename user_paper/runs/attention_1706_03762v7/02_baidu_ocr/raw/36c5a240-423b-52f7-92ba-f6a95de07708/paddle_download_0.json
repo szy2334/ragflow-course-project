@@ -1,0 +1,208 @@
+{
+  "file_name": "da0cb167628b8c102175cfb8905c35ca892193b2792f27c2ecc67f25752338a5.jpg",
+  "file_id": "file-Aw4A7cdCZh5cZCGm5Q162e5Z55SsjbQF",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "LPaLOv-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "LPaLOv-layout-1",
+          "text": "d Dot-Product Attention",
+          "position": [
+            0,
+            7,
+            272,
+            31
+          ],
+          "polygon": [
+            [
+              0,
+              7
+            ],
+            [
+              272,
+              7
+            ],
+            [
+              272,
+              38
+            ],
+            [
+              0,
+              38
+            ]
+          ],
+          "type": "text",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "LPaLOv-layout-2",
+          "text": "",
+          "position": [
+            12,
+            70,
+            182,
+            359
+          ],
+          "polygon": [
+            [
+              12,
+              70
+            ],
+            [
+              194,
+              70
+            ],
+            [
+              194,
+              429
+            ],
+            [
+              12,
+              429
+            ]
+          ],
+          "type": "image",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "LPaLOv-layout-3",
+          "text": "Multi-Head Attention",
+          "position": [
+            533,
+            6,
+            248,
+            31
+          ],
+          "polygon": [
+            [
+              533,
+              6
+            ],
+            [
+              781,
+              6
+            ],
+            [
+              781,
+              37
+            ],
+            [
+              533,
+              37
+            ]
+          ],
+          "type": "text",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "LPaLOv-layout-4",
+          "text": "",
+          "position": [
+            488,
+            11,
+            336,
+            466
+          ],
+          "polygon": [
+            [
+              493,
+              11
+            ],
+            [
+              488,
+              474
+            ],
+            [
+              823,
+              472
+            ],
+            [
+              823,
+              38
+            ],
+            [
+              811,
+              11
+            ],
+            [
+              788,
+              11
+            ],
+            [
+              783,
+              11
+            ],
+            [
+              534,
+              11
+            ]
+          ],
+          "type": "image",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        }
+      ],
+      "images": [
+        {
+          "layout_id": "LPaLOv-layout-2",
+          "image_title_id": null,
+          "position": [
+            12,
+            70,
+            182,
+            359
+          ],
+          "content_layouts": [],
+          "data": "",
+          "data_url": "<temporary-url-redacted>",
+          "image_description": ""
+        },
+        {
+          "layout_id": "LPaLOv-layout-4",
+          "image_title_id": null,
+          "position": [
+            488,
+            11,
+            336,
+            466
+          ],
+          "content_layouts": [],
+          "data": "",
+          "data_url": "<temporary-url-redacted>",
+          "image_description": ""
+        }
+      ],
+      "inner_images": {},
+      "tables": [],
+      "text": "d Dot-Product AttentionMulti-Head Attention",
+      "markdown": "d Dot-Product Attention\n\n<div style=\"text-align: center;\"><img src=\"<temporary-url-redacted>\" alt=\"Image\" width=\"22%\" /></div>\n\n\nMulti-Head Attention\n\n<div style=\"text-align: center;\"><img src=\"<temporary-url-redacted>\" alt=\"Image\" width=\"40%\" /></div>\n",
+      "meta": {
+        "page_width": 826,
+        "page_height": 482
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

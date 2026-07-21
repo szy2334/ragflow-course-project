@@ -20,5 +20,6 @@ class ReviewGraphState(TypedDict, total=False):
     repair_count: int
     error_code: str | None
     error_message: str | None
+    answer_streamed: bool
     skip_reviews: bool
     sequence: int

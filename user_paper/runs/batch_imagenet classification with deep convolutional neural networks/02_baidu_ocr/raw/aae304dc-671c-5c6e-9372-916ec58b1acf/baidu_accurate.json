@@ -1,0 +1,175 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9991257191,
+        "min": 0.9937268496,
+        "variance": 3.101385801e-06
+      },
+      "words": "Training Set Error"
+    },
+    {
+      "probability": {
+        "average": 0.9997168183,
+        "min": 0.9995013475,
+        "variance": 4.642766172e-08
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.999766767,
+        "min": 0.9990603328,
+        "variance": 6.633963068e-08
+      },
+      "words": "2000-1000-1000-50"
+    },
+    {
+      "probability": {
+        "average": 0.9999232292,
+        "min": 0.9998697042,
+        "variance": 2.864922521e-09
+      },
+      "words": "45"
+    },
+    {
+      "probability": {
+        "average": 0.9998782873,
+        "min": 0.9995529056,
+        "variance": 1.237312297e-08
+      },
+      "words": "2000-2000-1000-50"
+    },
+    {
+      "probability": {
+        "average": 0.999808073,
+        "min": 0.9996315241,
+        "variance": 3.116953451e-08
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9997993112,
+        "min": 0.9997794032,
+        "variance": 3.963265272e-10
+      },
+      "words": "35"
+    },
+    {
+      "probability": {
+        "average": 0.9997580051,
+        "min": 0.9996250868,
+        "variance": 1.766728985e-08
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9998838902,
+        "min": 0.9997977614,
+        "variance": 7.413023084e-09
+      },
+      "words": "25"
+    },
+    {
+      "probability": {
+        "average": 0.9998751879,
+        "min": 0.9992594123,
+        "variance": 4.529585595e-08
+      },
+      "words": "training with dropout"
+    },
+    {
+      "probability": {
+        "average": 0.9999364018,
+        "min": 0.9998776913,
+        "variance": 3.446931629e-09
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9997963905,
+        "min": 0.9985889792,
+        "variance": 8.304834154e-08
+      },
+      "words": "training without dropout"
+    },
+    {
+      "probability": {
+        "average": 0.9998551607,
+        "min": 0.9998233914,
+        "variance": 1.007395056e-09
+      },
+      "words": "15"
+    },
+    {
+      "probability": {
+        "average": 0.9998412132,
+        "min": 0.9997664094,
+        "variance": 5.591155983e-09
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.6512758136,
+        "min": 0.6512758136,
+        "variance": 0
+      },
+      "words": "5"
+    },
+    {
+      "probability": {
+        "average": 0.9998841286,
+        "min": 0.9998154044,
+        "variance": 5.307418949e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9997666478,
+        "min": 0.9996061921,
+        "variance": 2.715313485e-08
+      },
+      "words": "200"
+    },
+    {
+      "probability": {
+        "average": 0.9996214509,
+        "min": 0.9993584752,
+        "variance": 6.539303854e-08
+      },
+      "words": "300"
+    },
+    {
+      "probability": {
+        "average": 0.9995390773,
+        "min": 0.9992539287,
+        "variance": 9.542937818e-08
+      },
+      "words": "400"
+    },
+    {
+      "probability": {
+        "average": 0.9996809363,
+        "min": 0.9995267391,
+        "variance": 3.724687758e-08
+      },
+      "words": "500"
+    },
+    {
+      "probability": {
+        "average": 0.9991717339,
+        "min": 0.9979035854,
+        "variance": 4.118616062e-07
+      },
+      "words": "Epochs"
+    }
+  ],
+  "words_result_num": 21,
+  "direction": 0,
+  "log_id": 2079046064848970689
+}

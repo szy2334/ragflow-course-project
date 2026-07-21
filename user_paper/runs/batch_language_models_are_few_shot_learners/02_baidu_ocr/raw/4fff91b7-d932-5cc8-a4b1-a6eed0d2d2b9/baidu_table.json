@@ -1,0 +1,130 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 5
+            },
+            {
+              "x": 297,
+              "y": 5
+            },
+            {
+              "x": 297,
+              "y": 156
+            },
+            {
+              "x": 10,
+              "y": 156
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": ""
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 297,
+              "y": 5
+            },
+            {
+              "x": 1294,
+              "y": 5
+            },
+            {
+              "x": 1294,
+              "y": 156
+            },
+            {
+              "x": 297,
+              "y": 156
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Context→The truth is that you want, at any price, and against the wishes of th\npeoples of Europe, to continue the negotiations for Turkey's accession\nto the European Union, despite Turkey's continuing refusal to recognise\nCyprus and despite the fact that the democratic reforms are at a\nstandstill. ="
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 156
+            },
+            {
+              "x": 297,
+              "y": 156
+            },
+            {
+              "x": 296,
+              "y": 272
+            },
+            {
+              "x": 8,
+              "y": 272
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Target Completion →"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 297,
+              "y": 156
+            },
+            {
+              "x": 1294,
+              "y": 156
+            },
+            {
+              "x": 1294,
+              "y": 274
+            },
+            {
+              "x": 296,
+              "y": 272
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "Adevārul este cā vā doriti, cu orice pret si impotriva dorintei\neuropenilor, sǎ continuati negocierile de aderare a Turciei la Uniunea\nEuropeana, in ciuda refuzului continuu al Turciei de a recunoaste Ciprul\nsi in ciuda faptului cǎ reformele democratice au ajuns intr-un punct mort."
+        }
+      ],
+      "table_location": [
+        {
+          "x": 8,
+          "y": 5
+        },
+        {
+          "x": 1294,
+          "y": 5
+        },
+        {
+          "x": 1294,
+          "y": 274
+        },
+        {
+          "x": 8,
+          "y": 274
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079046760783459284
+}

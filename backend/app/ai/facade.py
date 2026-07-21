@@ -78,6 +78,7 @@ class AiWorkflowService:
             "repair_count": 0,
             "error_code": None,
             "error_message": None,
+            "answer_streamed": False,
             "skip_reviews": False,
             "sequence": 0,
         }

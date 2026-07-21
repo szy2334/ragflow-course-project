@@ -1,42 +1,51 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { BadgeCheck, BrainCircuit, CircleAlert, FileUp, ScanSearch, ScanText, Sparkles, TableProperties } from 'lucide-vue-next'
-import type { PaperFailure, PaperStatus } from '@/api/contracts'
+import type { PaperFailure, PaperStatus, PaperUnderstanding } from '@/api/contracts'
+import { ingestionFailureMessage, ingestionStageKey, ingestionStageLabel, ingestionStages, isUnderstandingUnavailable } from '@/utils/paperIngestion'
 
 const props = withDefaults(defineProps<{
   status: PaperStatus
   progress: number
   failure?: PaperFailure | null
+  understanding?: PaperUnderstanding | null
   compact?: boolean
-}>(), { failure: null, compact: false })
+}>(), { failure: null, understanding: null, compact: false })
 
 const stages = [
-  { key: 'uploaded', label: '接收', icon: FileUp },
-  { key: 'mineru_parsing', label: '解析', icon: ScanText },
-  { key: 'ocr_processing', label: '图表 OCR', icon: ScanSearch },
-  { key: 'cleaning', label: '清洗', icon: Sparkles },
-  { key: 'quality_check', label: '质检', icon: TableProperties },
-  { key: 'understanding', label: '理解', icon: BrainCircuit },
-  { key: 'ready', label: '可问答', icon: BadgeCheck },
+  { ...ingestionStages[0], icon: FileUp },
+  { ...ingestionStages[1], icon: ScanText },
+  { ...ingestionStages[2], icon: ScanSearch },
+  { ...ingestionStages[3], icon: Sparkles },
+  { ...ingestionStages[4], icon: TableProperties },
+  { ...ingestionStages[5], icon: BrainCircuit },
+  { ...ingestionStages[6], icon: BadgeCheck },
 ] as const
 
 const activeIndex = computed(() => {
-  const key = props.status === 'failed' ? props.failure?.stage ?? 'uploaded' : props.status
+  const key = ingestionStageKey(props.status, props.failure)
   return Math.max(0, stages.findIndex((stage) => stage.key === key))
 })
 const normalizedProgress = computed(() => Math.round(Math.max(0, Math.min(1, props.progress)) * 100))
-const statusLabel = computed(() => ({
-  uploaded: '文件已接收，等待进入处理队列',
-  mineru_parsing: '正在解析论文版面、章节与媒体对象',
-  ocr_processing: '正在识别图片、流程图和表格内容',
-  cleaning: '正在关联正文、图表与结构化内容',
-  quality_check: '正在检查来源追踪和可索引性',
-  understanding: '正在提取论文问题、方法、实验与结论',
-  indexing: '正在整理历史索引任务',
-  ready: '解析、质检和论文理解均已完成',
-  failed: props.failure?.message ?? '处理未完成，可从失败阶段重新尝试。',
-} as Record<PaperStatus, string>)[props.status])
+const statusLabel = computed(() => {
+  if (props.status === 'failed') return ingestionFailureMessage(props.failure)
+  if (props.status === 'ready') {
+    return isUnderstandingUnavailable(props.understanding)
+      ? '论文已完成结构化入库，可检索和阅读；模型理解与摘要暂不可用。'
+      : '论文已就绪，可检索、阅读、总结或发起格式审查。'
+  }
+  return ({
+    uploaded: '文件已接收，等待进入处理队列。',
+    mineru_parsing: '正在用 MinerU 提取版面、章节、图表与正文。',
+    ocr_processing: '正在补全图表、表格等媒体内容。',
+    cleaning: '正在进行二次清洗，生成按章节组织的本地 chunks。',
+    quality_check: '正在校验 chunks、章节关系与检索所需证据。',
+    understanding: '正在生成论文摘要和关键事实，不会评价论文质量。',
+    indexing: '正在处理历史索引迁移。',
+  } as Partial<Record<PaperStatus, string>>)[props.status] ?? '论文正在处理中。'
+})
 const lineWidth = computed(() => `${(activeIndex.value / (stages.length - 1)) * 100}%`)
+const failureStage = computed(() => ingestionStageLabel('failed', props.failure))
 </script>
 
 <template>
@@ -52,7 +61,7 @@ const lineWidth = computed(() => `${(activeIndex.value / (stages.length - 1)) * 
         <span>{{ stage.label }}</span>
       </div>
     </div>
-    <p v-if="failure" class="failure-detail"><CircleAlert :size="14" /><span>{{ failure.error_code }}：{{ failure.message }}</span></p>
+    <p v-if="failure" class="failure-detail"><CircleAlert :size="14" /><span><strong>失败阶段：{{ failureStage }}</strong><span>{{ failure.error_code }}：{{ ingestionFailureMessage(failure) }}</span></span></p>
   </section>
 </template>
 
@@ -72,7 +81,7 @@ const lineWidth = computed(() => `${(activeIndex.value / (stages.length - 1)) * 
 .stage.active svg { box-shadow: 0 0 0 3px rgba(44, 149, 131, .13); }
 .stage.failed { color: #ad3944; }
 .stage.failed svg { border-color: #df9098; background: #fff1f2; }
-.failure-detail { margin: 0; font-size: 11px; line-height: 1.45; }
+.failure-detail { margin: 0; font-size: 11px; line-height: 1.45; }.failure-detail > span { display: grid; gap: 2px; }.failure-detail strong { font-weight: 650; }
 .compact { gap: 8px; padding: 9px 0 0; border: 0; border-top: 1px solid #e2ebe7; border-radius: 0; background: transparent; }
 .compact .ingestion-summary { font-size: 11px; }
 .compact .stage { font-size: 9px; }

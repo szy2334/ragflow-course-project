@@ -1,0 +1,143 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9975978732,
+        "min": 0.9930319786,
+        "variance": 1.042655276e-05
+      },
+      "words": "0.6"
+    },
+    {
+      "probability": {
+        "average": 0.7699096203,
+        "min": 0.6224470139,
+        "variance": 0.02174522914
+      },
+      "words": ".×"
+    },
+    {
+      "probability": {
+        "average": 0.999042809,
+        "min": 0.9975636005,
+        "variance": 1.095995572e-06
+      },
+      "words": "0.5"
+    },
+    {
+      "probability": {
+        "average": 0.9994515777,
+        "min": 0.9984359145,
+        "variance": 5.165042012e-07
+      },
+      "words": "0.4"
+    },
+    {
+      "probability": {
+        "average": 0.995840013,
+        "min": 0.9852740169,
+        "variance": 2.733263682e-05
+      },
+      "words": "Models"
+    },
+    {
+      "probability": {
+        "average": 0.7590206265,
+        "min": 0.5224496722,
+        "variance": 0.03789108992
+      },
+      "words": "All"
+    },
+    {
+      "probability": {
+        "average": 0.9988265038,
+        "min": 0.9968652129,
+        "variance": 1.932022997e-06
+      },
+      "words": "0.3"
+    },
+    {
+      "probability": {
+        "average": 0.9927894473,
+        "min": 0.9927894473,
+        "variance": 0
+      },
+      "words": "×"
+    },
+    {
+      "probability": {
+        "average": 0.999792397,
+        "min": 0.9992639422,
+        "variance": 7.208323893e-08
+      },
+      "words": "Depth"
+    },
+    {
+      "probability": {
+        "average": 0.9975064397,
+        "min": 0.9775487781,
+        "variance": 4.441669444e-05
+      },
+      "words": "Patch size"
+    },
+    {
+      "probability": {
+        "average": 0.9994903207,
+        "min": 0.9987008572,
+        "variance": 3.179620762e-07
+      },
+      "words": "0.2"
+    },
+    {
+      "probability": {
+        "average": 0.9990243912,
+        "min": 0.9971759319,
+        "variance": 1.10999872e-06
+      },
+      "words": "Width MLP"
+    },
+    {
+      "probability": {
+        "average": 0.9980896711,
+        "min": 0.9909920692,
+        "variance": 1.260484896e-05
+      },
+      "words": "Width"
+    },
+    {
+      "probability": {
+        "average": 0.7334262729,
+        "min": 0.7334262729,
+        "variance": 0
+      },
+      "words": "×"
+    },
+    {
+      "probability": {
+        "average": 0.9874432087,
+        "min": 0.9627328515,
+        "variance": 0.0003053177497
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9988224506,
+        "min": 0.9971658587,
+        "variance": 1.414220264e-06
+      },
+      "words": "101"
+    },
+    {
+      "probability": {
+        "average": 0.9997776747,
+        "min": 0.9981265664,
+        "variance": 2.123119032e-07
+      },
+      "words": "Relative Compute"
+    }
+  ],
+  "words_result_num": 17,
+  "direction": 0,
+  "log_id": 2079043466543123203
+}

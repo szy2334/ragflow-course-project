@@ -1,0 +1,630 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 15,
+              "y": 12
+            },
+            {
+              "x": 318,
+              "y": 12
+            },
+            {
+              "x": 318,
+              "y": 83
+            },
+            {
+              "x": 16,
+              "y": 83
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Dataset"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 318,
+              "y": 12
+            },
+            {
+              "x": 473,
+              "y": 12
+            },
+            {
+              "x": 473,
+              "y": 83
+            },
+            {
+              "x": 318,
+              "y": 83
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Quantity\n(tokens)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 473,
+              "y": 12
+            },
+            {
+              "x": 641,
+              "y": 12
+            },
+            {
+              "x": 641,
+              "y": 83
+            },
+            {
+              "x": 473,
+              "y": 83
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Weight in\ntraining mix"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 641,
+              "y": 12
+            },
+            {
+              "x": 933,
+              "y": 12
+            },
+            {
+              "x": 933,
+              "y": 82
+            },
+            {
+              "x": 641,
+              "y": 83
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "Epochs elapsed when\ntraining for 300B tokens"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 83
+            },
+            {
+              "x": 318,
+              "y": 83
+            },
+            {
+              "x": 318,
+              "y": 118
+            },
+            {
+              "x": 16,
+              "y": 118
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Common Crawl(filtered)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 318,
+              "y": 83
+            },
+            {
+              "x": 473,
+              "y": 83
+            },
+            {
+              "x": 473,
+              "y": 118
+            },
+            {
+              "x": 318,
+              "y": 118
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "410 billion"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 473,
+              "y": 83
+            },
+            {
+              "x": 641,
+              "y": 83
+            },
+            {
+              "x": 641,
+              "y": 118
+            },
+            {
+              "x": 473,
+              "y": 118
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "60%"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 641,
+              "y": 83
+            },
+            {
+              "x": 933,
+              "y": 82
+            },
+            {
+              "x": 932,
+              "y": 118
+            },
+            {
+              "x": 641,
+              "y": 118
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": "0.44"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 118
+            },
+            {
+              "x": 318,
+              "y": 118
+            },
+            {
+              "x": 318,
+              "y": 148
+            },
+            {
+              "x": 16,
+              "y": 148
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "WebText2"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 318,
+              "y": 118
+            },
+            {
+              "x": 473,
+              "y": 118
+            },
+            {
+              "x": 473,
+              "y": 148
+            },
+            {
+              "x": 318,
+              "y": 148
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "19 billion"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 473,
+              "y": 118
+            },
+            {
+              "x": 641,
+              "y": 118
+            },
+            {
+              "x": 641,
+              "y": 148
+            },
+            {
+              "x": 473,
+              "y": 148
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "22%"
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 641,
+              "y": 118
+            },
+            {
+              "x": 932,
+              "y": 118
+            },
+            {
+              "x": 932,
+              "y": 148
+            },
+            {
+              "x": 641,
+              "y": 148
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "2.9"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 148
+            },
+            {
+              "x": 318,
+              "y": 148
+            },
+            {
+              "x": 318,
+              "y": 178
+            },
+            {
+              "x": 16,
+              "y": 179
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "Books1"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 318,
+              "y": 148
+            },
+            {
+              "x": 473,
+              "y": 148
+            },
+            {
+              "x": 473,
+              "y": 178
+            },
+            {
+              "x": 318,
+              "y": 178
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "12 billion"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 473,
+              "y": 148
+            },
+            {
+              "x": 641,
+              "y": 148
+            },
+            {
+              "x": 641,
+              "y": 178
+            },
+            {
+              "x": 473,
+              "y": 178
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "8%"
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 641,
+              "y": 148
+            },
+            {
+              "x": 932,
+              "y": 148
+            },
+            {
+              "x": 932,
+              "y": 178
+            },
+            {
+              "x": 641,
+              "y": 178
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "1.9"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 179
+            },
+            {
+              "x": 318,
+              "y": 178
+            },
+            {
+              "x": 318,
+              "y": 210
+            },
+            {
+              "x": 16,
+              "y": 210
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "Books2"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 318,
+              "y": 178
+            },
+            {
+              "x": 473,
+              "y": 178
+            },
+            {
+              "x": 473,
+              "y": 210
+            },
+            {
+              "x": 318,
+              "y": 210
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "55 billion"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 473,
+              "y": 178
+            },
+            {
+              "x": 641,
+              "y": 178
+            },
+            {
+              "x": 641,
+              "y": 210
+            },
+            {
+              "x": 473,
+              "y": 210
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "8%"
+        },
+        {
+          "col_end": 4,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 641,
+              "y": 178
+            },
+            {
+              "x": 932,
+              "y": 178
+            },
+            {
+              "x": 932,
+              "y": 210
+            },
+            {
+              "x": 641,
+              "y": 210
+            }
+          ],
+          "row_start": 4,
+          "col_start": 3,
+          "words": "0.43"
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 210
+            },
+            {
+              "x": 318,
+              "y": 210
+            },
+            {
+              "x": 318,
+              "y": 240
+            },
+            {
+              "x": 16,
+              "y": 240
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "Wikipedia"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 318,
+              "y": 210
+            },
+            {
+              "x": 473,
+              "y": 210
+            },
+            {
+              "x": 473,
+              "y": 240
+            },
+            {
+              "x": 318,
+              "y": 240
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "3 billion"
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 473,
+              "y": 210
+            },
+            {
+              "x": 641,
+              "y": 210
+            },
+            {
+              "x": 641,
+              "y": 240
+            },
+            {
+              "x": 473,
+              "y": 240
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": "3%"
+        },
+        {
+          "col_end": 4,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 641,
+              "y": 210
+            },
+            {
+              "x": 932,
+              "y": 210
+            },
+            {
+              "x": 931,
+              "y": 240
+            },
+            {
+              "x": 641,
+              "y": 240
+            }
+          ],
+          "row_start": 5,
+          "col_start": 3,
+          "words": "3.4"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 15,
+          "y": 12
+        },
+        {
+          "x": 933,
+          "y": 12
+        },
+        {
+          "x": 933,
+          "y": 240
+        },
+        {
+          "x": 15,
+          "y": 240
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079046570182096271
+}

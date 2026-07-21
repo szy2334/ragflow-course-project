@@ -1,0 +1,1080 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 8
+            },
+            {
+              "x": 382,
+              "y": 8
+            },
+            {
+              "x": 382,
+              "y": 47
+            },
+            {
+              "x": 10,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "System"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 8
+            },
+            {
+              "x": 479,
+              "y": 8
+            },
+            {
+              "x": 479,
+              "y": 47
+            },
+            {
+              "x": 382,
+              "y": 47
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 8
+            },
+            {
+              "x": 549,
+              "y": 7
+            },
+            {
+              "x": 549,
+              "y": 47
+            },
+            {
+              "x": 479,
+              "y": 47
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Dev F1 Test F1"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 48
+            },
+            {
+              "x": 382,
+              "y": 47
+            },
+            {
+              "x": 382,
+              "y": 82
+            },
+            {
+              "x": 11,
+              "y": 82
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "ELMo (Peters et al., 2018a)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 47
+            },
+            {
+              "x": 479,
+              "y": 47
+            },
+            {
+              "x": 479,
+              "y": 82
+            },
+            {
+              "x": 382,
+              "y": 82
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "95.7"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 47
+            },
+            {
+              "x": 549,
+              "y": 47
+            },
+            {
+              "x": 549,
+              "y": 82
+            },
+            {
+              "x": 479,
+              "y": 82
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "92.2"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 82
+            },
+            {
+              "x": 382,
+              "y": 82
+            },
+            {
+              "x": 382,
+              "y": 108
+            },
+            {
+              "x": 11,
+              "y": 108
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "CVT (Clark et al., 2018)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 82
+            },
+            {
+              "x": 479,
+              "y": 82
+            },
+            {
+              "x": 479,
+              "y": 108
+            },
+            {
+              "x": 382,
+              "y": 108
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 82
+            },
+            {
+              "x": 549,
+              "y": 82
+            },
+            {
+              "x": 549,
+              "y": 108
+            },
+            {
+              "x": 479,
+              "y": 108
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "92.6"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 108
+            },
+            {
+              "x": 382,
+              "y": 108
+            },
+            {
+              "x": 382,
+              "y": 145
+            },
+            {
+              "x": 11,
+              "y": 146
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "CSE(Akbik et al., 2018)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 108
+            },
+            {
+              "x": 479,
+              "y": 108
+            },
+            {
+              "x": 479,
+              "y": 145
+            },
+            {
+              "x": 382,
+              "y": 145
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 108
+            },
+            {
+              "x": 549,
+              "y": 108
+            },
+            {
+              "x": 549,
+              "y": 145
+            },
+            {
+              "x": 479,
+              "y": 145
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "93.1"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 146
+            },
+            {
+              "x": 382,
+              "y": 145
+            },
+            {
+              "x": 382,
+              "y": 180
+            },
+            {
+              "x": 12,
+              "y": 180
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "Fine-tuning approach"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 145
+            },
+            {
+              "x": 479,
+              "y": 145
+            },
+            {
+              "x": 479,
+              "y": 180
+            },
+            {
+              "x": 382,
+              "y": 180
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 145
+            },
+            {
+              "x": 549,
+              "y": 145
+            },
+            {
+              "x": 549,
+              "y": 180
+            },
+            {
+              "x": 479,
+              "y": 180
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 180
+            },
+            {
+              "x": 382,
+              "y": 180
+            },
+            {
+              "x": 382,
+              "y": 208
+            },
+            {
+              "x": 12,
+              "y": 208
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "BERTLARGE"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 180
+            },
+            {
+              "x": 479,
+              "y": 180
+            },
+            {
+              "x": 479,
+              "y": 208
+            },
+            {
+              "x": 382,
+              "y": 208
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "96.6"
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 180
+            },
+            {
+              "x": 549,
+              "y": 180
+            },
+            {
+              "x": 549,
+              "y": 208
+            },
+            {
+              "x": 479,
+              "y": 208
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": "92.8"
+        },
+        {
+          "col_end": 1,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 208
+            },
+            {
+              "x": 382,
+              "y": 208
+            },
+            {
+              "x": 382,
+              "y": 244
+            },
+            {
+              "x": 13,
+              "y": 244
+            }
+          ],
+          "row_start": 6,
+          "col_start": 0,
+          "words": "BERTBASE"
+        },
+        {
+          "col_end": 2,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 208
+            },
+            {
+              "x": 479,
+              "y": 208
+            },
+            {
+              "x": 479,
+              "y": 244
+            },
+            {
+              "x": 382,
+              "y": 244
+            }
+          ],
+          "row_start": 6,
+          "col_start": 1,
+          "words": "96.4"
+        },
+        {
+          "col_end": 3,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 208
+            },
+            {
+              "x": 549,
+              "y": 208
+            },
+            {
+              "x": 549,
+              "y": 244
+            },
+            {
+              "x": 479,
+              "y": 244
+            }
+          ],
+          "row_start": 6,
+          "col_start": 2,
+          "words": "92.4"
+        },
+        {
+          "col_end": 1,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 13,
+              "y": 244
+            },
+            {
+              "x": 382,
+              "y": 244
+            },
+            {
+              "x": 382,
+              "y": 279
+            },
+            {
+              "x": 13,
+              "y": 279
+            }
+          ],
+          "row_start": 7,
+          "col_start": 0,
+          "words": "Feature-based approach(BERTBASE)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 244
+            },
+            {
+              "x": 479,
+              "y": 244
+            },
+            {
+              "x": 479,
+              "y": 279
+            },
+            {
+              "x": 382,
+              "y": 279
+            }
+          ],
+          "row_start": 7,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 244
+            },
+            {
+              "x": 549,
+              "y": 244
+            },
+            {
+              "x": 549,
+              "y": 279
+            },
+            {
+              "x": 479,
+              "y": 279
+            }
+          ],
+          "row_start": 7,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 13,
+              "y": 279
+            },
+            {
+              "x": 382,
+              "y": 279
+            },
+            {
+              "x": 382,
+              "y": 307
+            },
+            {
+              "x": 13,
+              "y": 307
+            }
+          ],
+          "row_start": 8,
+          "col_start": 0,
+          "words": "Embeddings"
+        },
+        {
+          "col_end": 2,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 279
+            },
+            {
+              "x": 479,
+              "y": 279
+            },
+            {
+              "x": 479,
+              "y": 307
+            },
+            {
+              "x": 382,
+              "y": 307
+            }
+          ],
+          "row_start": 8,
+          "col_start": 1,
+          "words": "91.0"
+        },
+        {
+          "col_end": 3,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 279
+            },
+            {
+              "x": 549,
+              "y": 279
+            },
+            {
+              "x": 549,
+              "y": 307
+            },
+            {
+              "x": 479,
+              "y": 307
+            }
+          ],
+          "row_start": 8,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 13,
+              "y": 307
+            },
+            {
+              "x": 382,
+              "y": 307
+            },
+            {
+              "x": 382,
+              "y": 335
+            },
+            {
+              "x": 14,
+              "y": 335
+            }
+          ],
+          "row_start": 9,
+          "col_start": 0,
+          "words": "Second-to-Last Hidden"
+        },
+        {
+          "col_end": 2,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 307
+            },
+            {
+              "x": 479,
+              "y": 307
+            },
+            {
+              "x": 479,
+              "y": 335
+            },
+            {
+              "x": 382,
+              "y": 335
+            }
+          ],
+          "row_start": 9,
+          "col_start": 1,
+          "words": "95.6"
+        },
+        {
+          "col_end": 3,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 307
+            },
+            {
+              "x": 549,
+              "y": 307
+            },
+            {
+              "x": 549,
+              "y": 335
+            },
+            {
+              "x": 479,
+              "y": 335
+            }
+          ],
+          "row_start": 9,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 14,
+              "y": 335
+            },
+            {
+              "x": 382,
+              "y": 335
+            },
+            {
+              "x": 382,
+              "y": 361
+            },
+            {
+              "x": 14,
+              "y": 361
+            }
+          ],
+          "row_start": 10,
+          "col_start": 0,
+          "words": "Last Hidden"
+        },
+        {
+          "col_end": 2,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 335
+            },
+            {
+              "x": 479,
+              "y": 335
+            },
+            {
+              "x": 479,
+              "y": 361
+            },
+            {
+              "x": 382,
+              "y": 361
+            }
+          ],
+          "row_start": 10,
+          "col_start": 1,
+          "words": "94.9"
+        },
+        {
+          "col_end": 3,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 335
+            },
+            {
+              "x": 549,
+              "y": 335
+            },
+            {
+              "x": 549,
+              "y": 361
+            },
+            {
+              "x": 479,
+              "y": 361
+            }
+          ],
+          "row_start": 10,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 12,
+          "cell_location": [
+            {
+              "x": 14,
+              "y": 361
+            },
+            {
+              "x": 382,
+              "y": 361
+            },
+            {
+              "x": 382,
+              "y": 390
+            },
+            {
+              "x": 14,
+              "y": 390
+            }
+          ],
+          "row_start": 11,
+          "col_start": 0,
+          "words": "Weighted Sum Last Four Hidden"
+        },
+        {
+          "col_end": 2,
+          "row_end": 12,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 361
+            },
+            {
+              "x": 479,
+              "y": 361
+            },
+            {
+              "x": 479,
+              "y": 390
+            },
+            {
+              "x": 382,
+              "y": 390
+            }
+          ],
+          "row_start": 11,
+          "col_start": 1,
+          "words": "95.9"
+        },
+        {
+          "col_end": 3,
+          "row_end": 12,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 361
+            },
+            {
+              "x": 549,
+              "y": 361
+            },
+            {
+              "x": 548,
+              "y": 390
+            },
+            {
+              "x": 479,
+              "y": 390
+            }
+          ],
+          "row_start": 11,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 13,
+          "cell_location": [
+            {
+              "x": 14,
+              "y": 390
+            },
+            {
+              "x": 382,
+              "y": 390
+            },
+            {
+              "x": 382,
+              "y": 416
+            },
+            {
+              "x": 14,
+              "y": 416
+            }
+          ],
+          "row_start": 12,
+          "col_start": 0,
+          "words": "Concat Last Four Hidden"
+        },
+        {
+          "col_end": 2,
+          "row_end": 13,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 390
+            },
+            {
+              "x": 479,
+              "y": 390
+            },
+            {
+              "x": 479,
+              "y": 416
+            },
+            {
+              "x": 382,
+              "y": 416
+            }
+          ],
+          "row_start": 12,
+          "col_start": 1,
+          "words": "96.1"
+        },
+        {
+          "col_end": 3,
+          "row_end": 13,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 390
+            },
+            {
+              "x": 548,
+              "y": 390
+            },
+            {
+              "x": 548,
+              "y": 416
+            },
+            {
+              "x": 479,
+              "y": 416
+            }
+          ],
+          "row_start": 12,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 14,
+          "cell_location": [
+            {
+              "x": 14,
+              "y": 416
+            },
+            {
+              "x": 382,
+              "y": 416
+            },
+            {
+              "x": 382,
+              "y": 440
+            },
+            {
+              "x": 14,
+              "y": 440
+            }
+          ],
+          "row_start": 13,
+          "col_start": 0,
+          "words": "Weighted Sum All 12 Layers"
+        },
+        {
+          "col_end": 2,
+          "row_end": 14,
+          "cell_location": [
+            {
+              "x": 382,
+              "y": 416
+            },
+            {
+              "x": 479,
+              "y": 416
+            },
+            {
+              "x": 479,
+              "y": 440
+            },
+            {
+              "x": 382,
+              "y": 440
+            }
+          ],
+          "row_start": 13,
+          "col_start": 1,
+          "words": "95.5"
+        },
+        {
+          "col_end": 3,
+          "row_end": 14,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 416
+            },
+            {
+              "x": 548,
+              "y": 416
+            },
+            {
+              "x": 548,
+              "y": 440
+            },
+            {
+              "x": 479,
+              "y": 440
+            }
+          ],
+          "row_start": 13,
+          "col_start": 2,
+          "words": ""
+        }
+      ],
+      "table_location": [
+        {
+          "x": 10,
+          "y": 7
+        },
+        {
+          "x": 549,
+          "y": 7
+        },
+        {
+          "x": 549,
+          "y": 440
+        },
+        {
+          "x": 10,
+          "y": 440
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079042248919493518
+}

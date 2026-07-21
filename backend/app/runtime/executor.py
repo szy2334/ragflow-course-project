@@ -173,10 +173,11 @@ def snapshot_from_settings(settings: Settings) -> ConfigurationSnapshot:
         graph_version=settings.graph_version,
         prompt_version=settings.prompt_version,
         schema_version=settings.schema_version,
-        standard_version=settings.standard_version,
         model=ModelConfigSnapshot(
             config_version=settings.model_config_version,
             base_url=base_url,
             model=model,
+            timeout_seconds=settings.llm_timeout_seconds,
+            structured_mode=settings.llm_structured_mode,
         ),
     )

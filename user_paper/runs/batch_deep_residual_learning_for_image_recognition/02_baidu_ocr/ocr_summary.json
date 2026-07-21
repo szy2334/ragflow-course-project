@@ -1,0 +1,11 @@
+{
+  "stage": "baidu_ocr",
+  "objects": 27,
+  "success": 27,
+  "partial": 0,
+  "failed": 0,
+  "skipped": 0,
+  "skip_vl": false,
+  "strict_specialized": true,
+  "output_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_deep_residual_learning_for_image_recognition\\02_baidu_ocr"
+}

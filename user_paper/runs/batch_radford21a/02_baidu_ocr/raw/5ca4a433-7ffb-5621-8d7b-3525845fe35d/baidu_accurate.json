@@ -1,0 +1,199 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9998963475,
+        "min": 0.9998307228,
+        "variance": 4.306603074e-09
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.9901881218,
+        "min": 0.9012991786,
+        "variance": 0.0005856454954
+      },
+      "words": "Linear Probe CLIP"
+    },
+    {
+      "probability": {
+        "average": 0.9998899698,
+        "min": 0.9998163581,
+        "variance": 5.414301896e-09
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9998309612,
+        "min": 0.9997686744,
+        "variance": 3.875941346e-09
+      },
+      "words": "65"
+    },
+    {
+      "probability": {
+        "average": 0.9972128272,
+        "min": 0.9901636243,
+        "variance": 1.259543569e-05
+      },
+      "words": "Zero-Shot"
+    },
+    {
+      "probability": {
+        "average": 0.9905155897,
+        "min": 0.9684444666,
+        "variance": 0.0001640525879
+      },
+      "words": "CLIP"
+    },
+    {
+      "probability": {
+        "average": 0.9881771207,
+        "min": 0.8384427428,
+        "variance": 0.001271803048
+      },
+      "words": "BiT-M(ImageNet-21K)"
+    },
+    {
+      "probability": {
+        "average": 0.9999608397,
+        "min": 0.9999501705,
+        "variance": 1.13832499e-10
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9488433599,
+        "min": 0.7703092694,
+        "variance": 0.005645679776
+      },
+      "words": "SimCLRV2"
+    },
+    {
+      "probability": {
+        "average": 0.6104283929,
+        "min": 0.02278763801,
+        "variance": 0.2276533544
+      },
+      "words": "(%)eJ03s a6ejanv"
+    },
+    {
+      "probability": {
+        "average": 0.9999577403,
+        "min": 0.9999355078,
+        "variance": 4.942855014e-10
+      },
+      "words": "55"
+    },
+    {
+      "probability": {
+        "average": 0.9898812175,
+        "min": 0.9361283779,
+        "variance": 0.0004283358576
+      },
+      "words": "ResNet50"
+    },
+    {
+      "probability": {
+        "average": 0.9999508858,
+        "min": 0.999909997,
+        "variance": 1.671892846e-09
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9999577999,
+        "min": 0.9999315739,
+        "variance": 6.878053682e-10
+      },
+      "words": "45"
+    },
+    {
+      "probability": {
+        "average": 0.9999008179,
+        "min": 0.9998093247,
+        "variance": 8.365541149e-09
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9999252558,
+        "min": 0.9998936653,
+        "variance": 9.979572724e-10
+      },
+      "words": "35"
+    },
+    {
+      "probability": {
+        "average": 0.9999235868,
+        "min": 0.9998563528,
+        "variance": 4.520416041e-09
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9848470688,
+        "min": 0.9848470688,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9964410663,
+        "min": 0.9964410663,
+        "variance": 0
+      },
+      "words": "1"
+    },
+    {
+      "probability": {
+        "average": 0.9999579191,
+        "min": 0.9999579191,
+        "variance": 0
+      },
+      "words": "2"
+    },
+    {
+      "probability": {
+        "average": 0.9999679327,
+        "min": 0.9999679327,
+        "variance": 0
+      },
+      "words": "4"
+    },
+    {
+      "probability": {
+        "average": 0.9998375177,
+        "min": 0.9998375177,
+        "variance": 0
+      },
+      "words": "8"
+    },
+    {
+      "probability": {
+        "average": 0.9999386668,
+        "min": 0.9999352694,
+        "variance": 1.154276674e-11
+      },
+      "words": "16"
+    },
+    {
+      "probability": {
+        "average": 0.9994731545,
+        "min": 0.9949094653,
+        "variance": 1.431202236e-06
+      },
+      "words": "#of labeled training examples per class"
+    }
+  ],
+  "words_result_num": 24,
+  "direction": 0,
+  "log_id": 2079049389304393813
+}

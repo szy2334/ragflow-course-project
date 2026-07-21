@@ -1,0 +1,303 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.999891758,
+        "min": 0.9998344183,
+        "variance": 3.287837558e-09
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.9670266509,
+        "min": 0.8432234526,
+        "variance": 0.00325069041
+      },
+      "words": "0 shot"
+    },
+    {
+      "probability": {
+        "average": 0.9916742444,
+        "min": 0.9875895977,
+        "variance": 3.030692278e-05
+      },
+      "words": "all"
+    },
+    {
+      "probability": {
+        "average": 0.9999406338,
+        "min": 0.9998990297,
+        "variance": 1.730896315e-09
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9999200702,
+        "min": 0.9998414516,
+        "variance": 3.384242886e-09
+      },
+      "words": "128"
+    },
+    {
+      "probability": {
+        "average": 0.9995108843,
+        "min": 0.9992200136,
+        "variance": 8.458840739e-08
+      },
+      "words": "64"
+    },
+    {
+      "probability": {
+        "average": 0.9999204874,
+        "min": 0.9999029636,
+        "variance": 3.070823595e-10
+      },
+      "words": "32"
+    },
+    {
+      "probability": {
+        "average": 0.9998622537,
+        "min": 0.9998372793,
+        "variance": 6.237179662e-10
+      },
+      "words": "65"
+    },
+    {
+      "probability": {
+        "average": 0.9979773164,
+        "min": 0.9902749062,
+        "variance": 1.013823294e-05
+      },
+      "words": "16 shot"
+    },
+    {
+      "probability": {
+        "average": 0.999925375,
+        "min": 0.9998905659,
+        "variance": 1.211674316e-09
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9990831614,
+        "min": 0.9980947375,
+        "variance": 4.715583657e-07
+      },
+      "words": "shot"
+    },
+    {
+      "probability": {
+        "average": 0.9968450665,
+        "min": 0.9827281833,
+        "variance": 3.991584163e-05
+      },
+      "words": "4 shot"
+    },
+    {
+      "probability": {
+        "average": 0.9998514652,
+        "min": 0.9997851253,
+        "variance": 4.397039177e-09
+      },
+      "words": "55"
+    },
+    {
+      "probability": {
+        "average": 0.9999188781,
+        "min": 0.9998700619,
+        "variance": 2.38302178e-09
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9967494607,
+        "min": 0.9824789762,
+        "variance": 4.08134074e-05
+      },
+      "words": "2 shot"
+    },
+    {
+      "probability": {
+        "average": 0.999849081,
+        "min": 0.9997493625,
+        "variance": 9.937851431e-09
+      },
+      "words": "45"
+    },
+    {
+      "probability": {
+        "average": 0.9860853553,
+        "min": 0.937227726,
+        "variance": 0.0005228281952
+      },
+      "words": "1 shot"
+    },
+    {
+      "probability": {
+        "average": 0.9998996258,
+        "min": 0.9998030066,
+        "variance": 9.341016849e-09
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9997751713,
+        "min": 0.9996408224,
+        "variance": 1.804961869e-08
+      },
+      "words": "35"
+    },
+    {
+      "probability": {
+        "average": 0.9999163151,
+        "min": 0.9998527765,
+        "variance": 4.037147505e-09
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.6630881429,
+        "min": 0.6139058471,
+        "variance": 0.002418898279
+      },
+      "words": "--"
+    },
+    {
+      "probability": {
+        "average": 0.989182353,
+        "min": 0.7808659673,
+        "variance": 0.001992738573
+      },
+      "words": "Ideal robust model(y=x)"
+    },
+    {
+      "probability": {
+        "average": 0.9923104048,
+        "min": 0.8287990689,
+        "variance": 0.001115617575
+      },
+      "words": "Few-Shot CLIP(best model)"
+    },
+    {
+      "probability": {
+        "average": 0.9946388006,
+        "min": 0.8794978857,
+        "variance": 0.0005316922325
+      },
+      "words": "Zero-Shot CLIP(best model)"
+    },
+    {
+      "probability": {
+        "average": 0.9999455214,
+        "min": 0.9999057055,
+        "variance": 1.585306109e-09
+      },
+      "words": "25"
+    },
+    {
+      "probability": {
+        "average": 0.9972320795,
+        "min": 0.9406670332,
+        "variance": 0.0001298675925
+      },
+      "words": "Standard ImageNet training"
+    },
+    {
+      "probability": {
+        "average": 0.9998183846,
+        "min": 0.9986800551,
+        "variance": 7.592589668e-08
+      },
+      "words": "Robustness intervention"
+    },
+    {
+      "probability": {
+        "average": 0.9998944998,
+        "min": 0.9995172024,
+        "variance": 1.680132478e-08
+      },
+      "words": "Trained with more data"
+    },
+    {
+      "probability": {
+        "average": 0.9999137521,
+        "min": 0.9998326302,
+        "variance": 6.580766154e-09
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9998521805,
+        "min": 0.9998189807,
+        "variance": 1.100248781e-09
+      },
+      "words": "65"
+    },
+    {
+      "probability": {
+        "average": 0.9999627471,
+        "min": 0.9999365807,
+        "variance": 6.846825329e-10
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9998890162,
+        "min": 0.9998313189,
+        "variance": 3.328977982e-09
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.999794364,
+        "min": 0.9997557998,
+        "variance": 1.484901091e-09
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9997788668,
+        "min": 0.9997482896,
+        "variance": 9.349641061e-10
+      },
+      "words": "85"
+    },
+    {
+      "probability": {
+        "average": 0.9998495579,
+        "min": 0.9998076558,
+        "variance": 1.753287293e-09
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.9998801947,
+        "min": 0.9998660088,
+        "variance": 2.012399136e-10
+      },
+      "words": "95"
+    },
+    {
+      "probability": {
+        "average": 0.9891807437,
+        "min": 0.5817301273,
+        "variance": 0.003753196681
+      },
+      "words": "Average on class subsampled ImageNet (top-1,%)"
+    }
+  ],
+  "words_result_num": 37,
+  "direction": 0,
+  "log_id": 2079046611376276691
+}

@@ -1,0 +1,255 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 22
+            },
+            {
+              "x": 185,
+              "y": 22
+            },
+            {
+              "x": 185,
+              "y": 62
+            },
+            {
+              "x": 12,
+              "y": 62
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Name"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 185,
+              "y": 22
+            },
+            {
+              "x": 662,
+              "y": 22
+            },
+            {
+              "x": 662,
+              "y": 62
+            },
+            {
+              "x": 185,
+              "y": 62
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Negative loss function"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 662,
+              "y": 22
+            },
+            {
+              "x": 1228,
+              "y": 22
+            },
+            {
+              "x": 1228,
+              "y": 62
+            },
+            {
+              "x": 662,
+              "y": 62
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Gradient w.r.t.u"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 62
+            },
+            {
+              "x": 185,
+              "y": 62
+            },
+            {
+              "x": 185,
+              "y": 163
+            },
+            {
+              "x": 13,
+              "y": 163
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "NT-Xent\nNT-Logistic"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 185,
+              "y": 62
+            },
+            {
+              "x": 662,
+              "y": 62
+            },
+            {
+              "x": 662,
+              "y": 163
+            },
+            {
+              "x": 185,
+              "y": 163
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "uTv+/T-log E{v+，v-}exp（uv/T）\nlog σ(uTv+/r)+log σ(-uTv-/T)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 662,
+              "y": 62
+            },
+            {
+              "x": 1228,
+              "y": 62
+            },
+            {
+              "x": 1228,
+              "y": 163
+            },
+            {
+              "x": 662,
+              "y": 163
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "(1-exp(u++/+))/Tu+-exp(u+y=/t)/T0-\n(o(-uTu+/T))/u+-o(uTv-/t)/tv-"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 13,
+              "y": 163
+            },
+            {
+              "x": 185,
+              "y": 163
+            },
+            {
+              "x": 185,
+              "y": 212
+            },
+            {
+              "x": 14,
+              "y": 213
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Margin Triplet"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 185,
+              "y": 163
+            },
+            {
+              "x": 662,
+              "y": 163
+            },
+            {
+              "x": 662,
+              "y": 212
+            },
+            {
+              "x": 185,
+              "y": 212
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "- max(uTv- - uTv++m,0)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 662,
+              "y": 163
+            },
+            {
+              "x": 1228,
+              "y": 163
+            },
+            {
+              "x": 1229,
+              "y": 212
+            },
+            {
+              "x": 662,
+              "y": 212
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "v+ -v- if uTv+ - uTv-<melse 0"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 11,
+          "y": 22
+        },
+        {
+          "x": 1229,
+          "y": 22
+        },
+        {
+          "x": 1229,
+          "y": 213
+        },
+        {
+          "x": 11,
+          "y": 213
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079045038821370323
+}

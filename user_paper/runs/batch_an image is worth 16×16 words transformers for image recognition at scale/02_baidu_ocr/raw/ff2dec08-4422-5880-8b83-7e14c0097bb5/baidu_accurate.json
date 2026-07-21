@@ -1,0 +1,39 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9780095816,
+        "min": 0.7885425687,
+        "variance": 0.003989269026
+      },
+      "words": "S4L(R50x1)"
+    },
+    {
+      "probability": {
+        "average": 0.9999907017,
+        "min": 0.999989152,
+        "variance": 2.401634447e-12
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9999397993,
+        "min": 0.9999067783,
+        "variance": 1.090384671e-09
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9910572171,
+        "min": 0.9156853557,
+        "variance": 0.0003496323479
+      },
+      "words": "Structured(8 tasks)"
+    }
+  ],
+  "words_result_num": 4,
+  "direction": 0,
+  "log_id": 2079043207770748870
+}

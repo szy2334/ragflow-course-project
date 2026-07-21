@@ -1,0 +1,530 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 7
+            },
+            {
+              "x": 204,
+              "y": 7
+            },
+            {
+              "x": 204,
+              "y": 42
+            },
+            {
+              "x": 6,
+              "y": 42
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Method"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 204,
+              "y": 7
+            },
+            {
+              "x": 314,
+              "y": 8
+            },
+            {
+              "x": 314,
+              "y": 42
+            },
+            {
+              "x": 204,
+              "y": 42
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Encoder"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 314,
+              "y": 8
+            },
+            {
+              "x": 489,
+              "y": 9
+            },
+            {
+              "x": 489,
+              "y": 42
+            },
+            {
+              "x": 314,
+              "y": 42
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Num. unmasked"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 489,
+              "y": 9
+            },
+            {
+              "x": 653,
+              "y": 10
+            },
+            {
+              "x": 653,
+              "y": 43
+            },
+            {
+              "x": 489,
+              "y": 42
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "Epoch time(mins)"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 42
+            },
+            {
+              "x": 204,
+              "y": 42
+            },
+            {
+              "x": 204,
+              "y": 73
+            },
+            {
+              "x": 7,
+              "y": 73
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "MAE(D2)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 204,
+              "y": 42
+            },
+            {
+              "x": 314,
+              "y": 42
+            },
+            {
+              "x": 314,
+              "y": 73
+            },
+            {
+              "x": 204,
+              "y": 73
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "ViT-B"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 314,
+              "y": 42
+            },
+            {
+              "x": 489,
+              "y": 42
+            },
+            {
+              "x": 489,
+              "y": 73
+            },
+            {
+              "x": 314,
+              "y": 73
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "49"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 489,
+              "y": 42
+            },
+            {
+              "x": 653,
+              "y": 43
+            },
+            {
+              "x": 653,
+              "y": 74
+            },
+            {
+              "x": 489,
+              "y": 73
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": "2.7"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 7,
+              "y": 73
+            },
+            {
+              "x": 204,
+              "y": 73
+            },
+            {
+              "x": 204,
+              "y": 107
+            },
+            {
+              "x": 7,
+              "y": 107
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "MAE(D8)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 204,
+              "y": 73
+            },
+            {
+              "x": 314,
+              "y": 73
+            },
+            {
+              "x": 314,
+              "y": 107
+            },
+            {
+              "x": 204,
+              "y": 107
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "ViT-B"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 314,
+              "y": 73
+            },
+            {
+              "x": 489,
+              "y": 73
+            },
+            {
+              "x": 489,
+              "y": 108
+            },
+            {
+              "x": 314,
+              "y": 107
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "49"
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 489,
+              "y": 73
+            },
+            {
+              "x": 653,
+              "y": 74
+            },
+            {
+              "x": 653,
+              "y": 108
+            },
+            {
+              "x": 489,
+              "y": 108
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "5.0"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 7,
+              "y": 107
+            },
+            {
+              "x": 204,
+              "y": 107
+            },
+            {
+              "x": 204,
+              "y": 139
+            },
+            {
+              "x": 7,
+              "y": 139
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "MultiMAE"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 204,
+              "y": 107
+            },
+            {
+              "x": 314,
+              "y": 107
+            },
+            {
+              "x": 314,
+              "y": 139
+            },
+            {
+              "x": 204,
+              "y": 139
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "ViT-B"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 314,
+              "y": 107
+            },
+            {
+              "x": 489,
+              "y": 108
+            },
+            {
+              "x": 489,
+              "y": 140
+            },
+            {
+              "x": 314,
+              "y": 139
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "98"
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 489,
+              "y": 108
+            },
+            {
+              "x": 653,
+              "y": 108
+            },
+            {
+              "x": 653,
+              "y": 140
+            },
+            {
+              "x": 489,
+              "y": 140
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "6.0"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 7,
+              "y": 139
+            },
+            {
+              "x": 204,
+              "y": 139
+            },
+            {
+              "x": 204,
+              "y": 162
+            },
+            {
+              "x": 8,
+              "y": 162
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "MultiMAE, w/[M]"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 204,
+              "y": 139
+            },
+            {
+              "x": 314,
+              "y": 139
+            },
+            {
+              "x": 314,
+              "y": 163
+            },
+            {
+              "x": 204,
+              "y": 162
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "ViT-B"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 314,
+              "y": 139
+            },
+            {
+              "x": 489,
+              "y": 140
+            },
+            {
+              "x": 489,
+              "y": 163
+            },
+            {
+              "x": 314,
+              "y": 163
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "98"
+        },
+        {
+          "col_end": 4,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 489,
+              "y": 140
+            },
+            {
+              "x": 653,
+              "y": 140
+            },
+            {
+              "x": 653,
+              "y": 163
+            },
+            {
+              "x": 489,
+              "y": 163
+            }
+          ],
+          "row_start": 4,
+          "col_start": 3,
+          "words": "43.3"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 6,
+          "y": 7
+        },
+        {
+          "x": 653,
+          "y": 7
+        },
+        {
+          "x": 653,
+          "y": 163
+        },
+        {
+          "x": 6,
+          "y": 163
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079048388873534303
+}

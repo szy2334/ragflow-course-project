@@ -1,0 +1,23 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9975920916,
+        "min": 0.9811472893,
+        "variance": 3.428222044e-05
+      },
+      "words": "Check for"
+    },
+    {
+      "probability": {
+        "average": 0.9999288917,
+        "min": 0.9998402596,
+        "variance": 2.715210723e-09
+      },
+      "words": "updates"
+    }
+  ],
+  "words_result_num": 2,
+  "direction": 0,
+  "log_id": 2079049670551442170
+}

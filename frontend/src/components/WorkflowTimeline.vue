@@ -4,11 +4,10 @@ import { Check, CircleDot, LoaderCircle, SearchCheck } from 'lucide-vue-next'
 import type { StreamEvent } from '@/api/contracts'
 
 const props = defineProps<{ events: StreamEvent[]; phase: string }>()
-const items = computed(() => props.events.filter((event) => ['status', 'review_summary', 'final', 'error'].includes(event.event_type)))
+const items = computed(() => props.events.filter((event) => ['status', 'final', 'error'].includes(event.event_type)))
 const label = (event: StreamEvent) => {
   const data = event.data as { stage?: string; label?: string; message?: string }
   if (event.event_type === 'status') return data.label ?? data.stage ?? '正在处理问题'
-  if (event.event_type === 'review_summary') return '已汇总评审观点'
   if (event.event_type === 'final') return '已生成并核验最终回答'
   return data.message ?? '工作流未能完成'
 }

@@ -1,0 +1,87 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9998967648,
+        "min": 0.9997820258,
+        "variance": 6.819742993e-09
+      },
+      "words": "130"
+    },
+    {
+      "probability": {
+        "average": 0.5990932584,
+        "min": 0.1848463565,
+        "variance": 0.1608151942
+      },
+      "words": "(spuo3as)uoneino"
+    },
+    {
+      "probability": {
+        "average": 0.9998572469,
+        "min": 0.9996637106,
+        "variance": 1.882959388e-08
+      },
+      "words": "120"
+    },
+    {
+      "probability": {
+        "average": 0.9998118877,
+        "min": 0.9997180104,
+        "variance": 5.698436834e-09
+      },
+      "words": "110"
+    },
+    {
+      "probability": {
+        "average": 0.9988465309,
+        "min": 0.9851534367,
+        "variance": 1.022624292e-05
+      },
+      "words": "control(105 seconds)"
+    },
+    {
+      "probability": {
+        "average": 0.9704713821,
+        "min": 0.9167010188,
+        "variance": 0.001445826027
+      },
+      "words": "1e8"
+    },
+    {
+      "probability": {
+        "average": 0.9407176971,
+        "min": 0.827573061,
+        "variance": 0.006401326042
+      },
+      "words": "1e9"
+    },
+    {
+      "probability": {
+        "average": 0.9288988113,
+        "min": 0.8590678573,
+        "variance": 0.004864061251
+      },
+      "words": "le10"
+    },
+    {
+      "probability": {
+        "average": 0.8279673457,
+        "min": 0.5943989754,
+        "variance": 0.02506514452
+      },
+      "words": "lel1"
+    },
+    {
+      "probability": {
+        "average": 0.9866130948,
+        "min": 0.5824206471,
+        "variance": 0.005270556081
+      },
+      "words": "Number of parameters (log scale)"
+    }
+  ],
+  "words_result_num": 10,
+  "direction": 0,
+  "log_id": 2079046666257377643
+}

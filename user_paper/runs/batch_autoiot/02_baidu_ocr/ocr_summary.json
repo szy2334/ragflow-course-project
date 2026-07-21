@@ -1,0 +1,11 @@
+{
+  "stage": "baidu_ocr",
+  "objects": 25,
+  "success": 25,
+  "partial": 0,
+  "failed": 0,
+  "skipped": 0,
+  "skip_vl": false,
+  "strict_specialized": true,
+  "output_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_autoiot\\02_baidu_ocr"
+}

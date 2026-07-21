@@ -1,6 +1,8 @@
 """Controller agent: routing and evidence-grounded synthesis."""
 
-from ..errors import AiWorkflowError
+from collections.abc import Awaitable, Callable
+
+from ..errors import AiWorkflowError, ModelOutputInvalid
 from ..llm import StructuredLlm
 from ..prompts import PromptRepository
 from ..schemas import (
@@ -68,7 +70,8 @@ class ControllerAgent:
         configuration: ConfigurationSnapshot,
         previous_draft: AnswerDraft | None = None,
         validation_errors: list[str] | None = None,
-    ) -> tuple[AnswerDraft, AgentResult]:
+        on_answer_delta: Callable[[str], Awaitable[None]] | None = None,
+    ) -> tuple[AnswerDraft, AgentResult, bool]:
         messages = self._prompts.render(
             "synthesis",
             configuration.prompt_version,
@@ -85,10 +88,31 @@ class ControllerAgent:
             previous_draft_json=as_json(previous_draft) if previous_draft else "null",
             validation_errors_json=as_json(validation_errors or []),
         )
-        result = await self._llm.invoke_structured(messages, AnswerDraft, configuration.model)
+        streamed = False
+        stream = getattr(self._llm, "invoke_structured_stream", None)
+        if on_answer_delta is not None and callable(stream):
+            extractor = _JsonStringFieldExtractor("answer")
+
+            async def relay(content: str) -> None:
+                nonlocal streamed
+                delta = extractor.feed(content)
+                if delta:
+                    streamed = True
+                    await on_answer_delta(delta)
+
+            result = await stream(messages, AnswerDraft, configuration.model, relay)
+        else:
+            result = await self._llm.invoke_structured(messages, AnswerDraft, configuration.model)
         draft = result.output
-        if draft.route_type != route.initial_route_type:
-            draft = draft.model_copy(update={"route_type": route.initial_route_type})
+        # Reading answers are descriptive only.  Do not allow a malformed or
+        # overly eager model response to turn this workflow into a score or a
+        # peer-review conclusion.
+        if route.effective_route_type not in {"fact", "explain"}:
+            raise ModelOutputInvalid("reading route cannot be synthesized")
+        if draft.route_type != route.effective_route_type or draft.score is not None:
+            draft = draft.model_copy(
+                update={"route_type": route.effective_route_type, "score": None}
+            )
         evidence_ids = [item for claim in draft.claims for item in claim.evidence_ids]
         return draft, agent_result(
             name="controller",
@@ -98,7 +122,68 @@ class ControllerAgent:
             claims=draft.claims,
             evidence_ids=evidence_ids,
             warnings=draft.warnings,
-        )
+        ), streamed
+
+
+class _JsonStringFieldExtractor:
+    """Extract one JSON string field incrementally from a model token stream."""
+
+    def __init__(self, field: str) -> None:
+        self._marker = f'"{field}"'
+        self._prefix = ""
+        self._started = False
+        self._finished = False
+        self._escaped = False
+        self._unicode: str | None = None
+
+    def feed(self, content: str) -> str:
+        if self._finished:
+            return ""
+        pending = content
+        if not self._started:
+            self._prefix += pending
+            marker_index = self._prefix.find(self._marker)
+            if marker_index < 0:
+                self._prefix = self._prefix[-len(self._marker) - 16 :]
+                return ""
+            value_start = self._prefix.find(":", marker_index + len(self._marker))
+            if value_start < 0:
+                return ""
+            quote_start = self._prefix.find('"', value_start + 1)
+            if quote_start < 0:
+                return ""
+            self._started = True
+            pending = self._prefix[quote_start + 1 :]
+            self._prefix = ""
+
+        output: list[str] = []
+        for char in pending:
+            if self._unicode is not None:
+                self._unicode += char
+                if len(self._unicode) == 4:
+                    try:
+                        output.append(chr(int(self._unicode, 16)))
+                    except ValueError:
+                        output.append("\\u" + self._unicode)
+                    self._unicode = None
+                    self._escaped = False
+                continue
+            if self._escaped:
+                escaped = {"n": "\n", "r": "\r", "t": "\t", "b": "\b", "f": "\f"}
+                if char == "u":
+                    self._unicode = ""
+                else:
+                    output.append(escaped.get(char, char))
+                    self._escaped = False
+                continue
+            if char == "\\":
+                self._escaped = True
+            elif char == '"':
+                self._finished = True
+                break
+            else:
+                output.append(char)
+        return "".join(output)
 
 
 def fallback_route(question: str, conversation_summary: str) -> RouteDecision:
@@ -120,20 +205,19 @@ def fallback_route(question: str, conversation_summary: str) -> RouteDecision:
 
     initial = "fact"
     effective = "fact"
-    dimensions: list[str] = []
+    warnings: list[str] = ["deterministic route fallback"]
     if any(token in normalized for token in out_tokens):
         initial = effective = "out_of_scope"
     elif conversation_summary and any(token in normalized for token in follow_up_tokens):
         initial = "follow_up"
-        effective = "review" if any(token in normalized for token in review_tokens) else "fact"
-    elif any(token in normalized for token in score_tokens):
-        initial = effective = "score"
-    elif any(token in normalized for token in review_tokens):
-        initial = effective = "review"
+        effective = "fact"
+        if any(token in normalized for token in (*score_tokens, *review_tokens)):
+            warnings.append("evaluation intent was handled as non-evaluative paper reading")
+    elif any(token in normalized for token in (*score_tokens, *review_tokens)):
+        initial = "fact"
+        warnings.append("evaluation intent was handled as non-evaluative paper reading")
     elif any(token in normalized for token in explain_tokens):
         initial = effective = "explain"
-    if effective in {"review", "score"}:
-        dimensions = ["实验充分性"]
     standalone = question
     if initial == "follow_up":
         standalone = f"基于会话上下文（{conversation_summary}），回答：{question}"
@@ -141,8 +225,8 @@ def fallback_route(question: str, conversation_summary: str) -> RouteDecision:
         initial_route_type=initial,
         effective_route_type=effective,
         standalone_question=standalone,
-        review_dimensions=dimensions,
-        needs_public_kb=effective in {"review", "score"},
+        review_dimensions=[],
+        needs_public_kb=False,
         confidence=0.55,
-        warnings=["deterministic route fallback"],
+        warnings=warnings,
     )

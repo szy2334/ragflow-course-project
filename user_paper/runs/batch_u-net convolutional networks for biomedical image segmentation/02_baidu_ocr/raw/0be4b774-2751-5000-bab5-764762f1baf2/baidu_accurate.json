@@ -1,0 +1,367 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9998904467,
+        "min": 0.9998904467,
+        "variance": 0
+      },
+      "words": "1"
+    },
+    {
+      "probability": {
+        "average": 0.9999893308,
+        "min": 0.999989152,
+        "variance": 3.197442311e-14
+      },
+      "words": "64"
+    },
+    {
+      "probability": {
+        "average": 0.9999944568,
+        "min": 0.9999927282,
+        "variance": 2.987832204e-12
+      },
+      "words": "64"
+    },
+    {
+      "probability": {
+        "average": 0.9999673963,
+        "min": 0.9999319315,
+        "variance": 6.719780288e-10
+      },
+      "words": "128"
+    },
+    {
+      "probability": {
+        "average": 0.9999671578,
+        "min": 0.9999554157,
+        "variance": 1.378772652e-10
+      },
+      "words": "64"
+    },
+    {
+      "probability": {
+        "average": 0.9999946952,
+        "min": 0.9999935627,
+        "variance": 1.282529638e-12
+      },
+      "words": "64"
+    },
+    {
+      "probability": {
+        "average": 0.999984622,
+        "min": 0.999984622,
+        "variance": 0
+      },
+      "words": "2"
+    },
+    {
+      "probability": {
+        "average": 0.9998506308,
+        "min": 0.999582231,
+        "variance": 1.923639559e-08
+      },
+      "words": "input"
+    },
+    {
+      "probability": {
+        "average": 0.9998855591,
+        "min": 0.9996008277,
+        "variance": 2.08119495e-08
+      },
+      "words": "image"
+    },
+    {
+      "probability": {
+        "average": 0.9994122982,
+        "min": 0.9970644116,
+        "variance": 1.103364411e-06
+      },
+      "words": "output"
+    },
+    {
+      "probability": {
+        "average": 0.9884055257,
+        "min": 0.9777242541,
+        "variance": 0.0001121991081
+      },
+      "words": "tile"
+    },
+    {
+      "probability": {
+        "average": 0.9997557998,
+        "min": 0.9975939393,
+        "variance": 4.390795141e-07
+      },
+      "words": "segmentation"
+    },
+    {
+      "probability": {
+        "average": 0.9997537136,
+        "min": 0.9997330308,
+        "variance": 8.103444027e-10
+      },
+      "words": "map"
+    },
+    {
+      "probability": {
+        "average": 0.7438792586,
+        "min": 0.5221248269,
+        "variance": 0.0144946482
+      },
+      "words": "895×895"
+    },
+    {
+      "probability": {
+        "average": 0.6814647317,
+        "min": 0.4101527929,
+        "variance": 0.04644606635
+      },
+      "words": "368×268"
+    },
+    {
+      "probability": {
+        "average": 0.6723259091,
+        "min": 0.323055774,
+        "variance": 0.04569747671
+      },
+      "words": "068×068"
+    },
+    {
+      "probability": {
+        "average": 0.9999720454,
+        "min": 0.9999588728,
+        "variance": 7.716849382e-11
+      },
+      "words": "128128"
+    },
+    {
+      "probability": {
+        "average": 0.9999914169,
+        "min": 0.9999833107,
+        "variance": 3.575924626e-11
+      },
+      "words": "256"
+    },
+    {
+      "probability": {
+        "average": 0.9999675155,
+        "min": 0.9999350309,
+        "variance": 6.028659238e-10
+      },
+      "words": "128"
+    },
+    {
+      "probability": {
+        "average": 0.6001738906,
+        "min": 0.3915501535,
+        "variance": 0.07488241047
+      },
+      "words": "082"
+    },
+    {
+      "probability": {
+        "average": 0.7662246823,
+        "min": 0.418343544,
+        "variance": 0.0619421564
+      },
+      "words": "002"
+    },
+    {
+      "probability": {
+        "average": 0.9999889731,
+        "min": 0.9999785423,
+        "variance": 6.329869962e-11
+      },
+      "words": "256"
+    },
+    {
+      "probability": {
+        "average": 0.999989748,
+        "min": 0.9999806881,
+        "variance": 4.956746125e-11
+      },
+      "words": "256"
+    },
+    {
+      "probability": {
+        "average": 0.9997243881,
+        "min": 0.9996942282,
+        "variance": 6.649329976e-10
+      },
+      "words": "512"
+    },
+    {
+      "probability": {
+        "average": 0.9999916553,
+        "min": 0.9999843836,
+        "variance": 3.042070415e-11
+      },
+      "words": "256"
+    },
+    {
+      "probability": {
+        "average": 0.7082074285,
+        "min": 0.7082074285,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9900833964,
+        "min": 0.9282334447,
+        "variance": 0.0003468612558
+      },
+      "words": "conv 3x3, ReLU"
+    },
+    {
+      "probability": {
+        "average": 0.06737352908,
+        "min": 0.06737352908,
+        "variance": 0
+      },
+      "words": "2zot"
+    },
+    {
+      "probability": {
+        "average": 0.6351262331,
+        "min": 0.4094446898,
+        "variance": 0.05093214661
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9434514642,
+        "min": 0.9434514642,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9988337755,
+        "min": 0.9905053973,
+        "variance": 7.772146091e-06
+      },
+      "words": "copy and crop"
+    },
+    {
+      "probability": {
+        "average": 0.9999781251,
+        "min": 0.9999603033,
+        "variance": 1.668579303e-10
+      },
+      "words": "512"
+    },
+    {
+      "probability": {
+        "average": 0.9999496341,
+        "min": 0.9999307394,
+        "variance": 5.328537611e-10
+      },
+      "words": "512"
+    },
+    {
+      "probability": {
+        "average": 0.9998275042,
+        "min": 0.9995821118,
+        "variance": 2.404792809e-08
+      },
+      "words": "1024"
+    },
+    {
+      "probability": {
+        "average": 0.999964416,
+        "min": 0.9999485016,
+        "variance": 2.032850971e-10
+      },
+      "words": "512"
+    },
+    {
+      "probability": {
+        "average": 0.743996501,
+        "min": 0.743996501,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.969807148,
+        "min": 0.969807148,
+        "variance": 0
+      },
+      "words": "↓"
+    },
+    {
+      "probability": {
+        "average": 0.9557170868,
+        "min": 0.5385078788,
+        "variance": 0.0161271859
+      },
+      "words": "max pool 2x2"
+    },
+    {
+      "probability": {
+        "average": 0.7498388886,
+        "min": 0.7498388886,
+        "variance": 0
+      },
+      "words": "3"
+    },
+    {
+      "probability": {
+        "average": 0.8313577771,
+        "min": 0.8313577771,
+        "variance": 0
+      },
+      "words": "↓"
+    },
+    {
+      "probability": {
+        "average": 0.9996323586,
+        "min": 0.9990000129,
+        "variance": 1.401418928e-07
+      },
+      "words": "1024"
+    },
+    {
+      "probability": {
+        "average": 0.9085012078,
+        "min": 0.9085012078,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.8986752629,
+        "min": 0.8986752629,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.984886229,
+        "min": 0.8467358947,
+        "variance": 0.001912561478
+      },
+      "words": "up-conv 2x2"
+    },
+    {
+      "probability": {
+        "average": 0.9615219831,
+        "min": 0.7357742786,
+        "variance": 0.007332888432
+      },
+      "words": "conv 1x1"
+    }
+  ],
+  "words_result_num": 45,
+  "direction": 0,
+  "log_id": 2079049975532468155
+}

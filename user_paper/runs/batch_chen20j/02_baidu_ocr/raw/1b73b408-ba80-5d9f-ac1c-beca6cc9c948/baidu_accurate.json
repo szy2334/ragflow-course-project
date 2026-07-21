@@ -1,0 +1,319 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9998631477,
+        "min": 0.9998050332,
+        "variance": 3.373836321e-09
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9982826114,
+        "min": 0.9895098209,
+        "variance": 8.390858966e-06
+      },
+      "words": "Sup.R50(2x)"
+    },
+    {
+      "probability": {
+        "average": 0.9680956006,
+        "min": 0.634150207,
+        "variance": 0.01014659088
+      },
+      "words": "Sup. R50(4x)"
+    },
+    {
+      "probability": {
+        "average": 0.9957264066,
+        "min": 0.976608634,
+        "variance": 6.318864325e-05
+      },
+      "words": "Sup.R50"
+    },
+    {
+      "probability": {
+        "average": 0.9966714382,
+        "min": 0.9778148532,
+        "variance": 5.201896784e-05
+      },
+      "words": "R50(4x)*"
+    },
+    {
+      "probability": {
+        "average": 0.9997945428,
+        "min": 0.9996523857,
+        "variance": 2.020863477e-08
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.9921367168,
+        "min": 0.940197885,
+        "variance": 0.0003857039555
+      },
+      "words": "R50(2x)*"
+    },
+    {
+      "probability": {
+        "average": 0.9983658195,
+        "min": 0.9906219244,
+        "variance": 1.028400493e-05
+      },
+      "words": "R50(4x)"
+    },
+    {
+      "probability": {
+        "average": 0.9574967623,
+        "min": 0.6679676175,
+        "variance": 0.01197724231
+      },
+      "words": "R101(2x)"
+    },
+    {
+      "probability": {
+        "average": 0.9841650724,
+        "min": 0.8805229068,
+        "variance": 0.001539345132
+      },
+      "words": "R152(2x)"
+    },
+    {
+      "probability": {
+        "average": 0.9998933077,
+        "min": 0.9998134971,
+        "variance": 6.374493822e-09
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9990460277,
+        "min": 0.9990460277,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.9984470606,
+        "min": 0.9952293634,
+        "variance": 3.618265282e-06
+      },
+      "words": "R50*"
+    },
+    {
+      "probability": {
+        "average": 0.9928779006,
+        "min": 0.9528192282,
+        "variance": 0.0002677721495
+      },
+      "words": "R50(2x)"
+    },
+    {
+      "probability": {
+        "average": 0.9998146296,
+        "min": 0.9994114637,
+        "variance": 5.777702228e-08
+      },
+      "words": "R152"
+    },
+    {
+      "probability": {
+        "average": 0.9936069846,
+        "min": 0.9557598829,
+        "variance": 0.0002387418936
+      },
+      "words": "R34(4x)"
+    },
+    {
+      "probability": {
+        "average": 0.9996660352,
+        "min": 0.9992256165,
+        "variance": 6.492206239e-08
+      },
+      "words": "R101"
+    },
+    {
+      "probability": {
+        "average": 0.8058890104,
+        "min": 0.7960323691,
+        "variance": 9.715279157e-05
+      },
+      "words": "I dol"
+    },
+    {
+      "probability": {
+        "average": 0.9998793006,
+        "min": 0.9998362064,
+        "variance": 1.857106469e-09
+      },
+      "words": "65"
+    },
+    {
+      "probability": {
+        "average": 0.9970098138,
+        "min": 0.9815782309,
+        "variance": 3.990988625e-05
+      },
+      "words": "R18(4x)"
+    },
+    {
+      "probability": {
+        "average": 0.9995703101,
+        "min": 0.9993065596,
+        "variance": 7.379433953e-08
+      },
+      "words": "R50"
+    },
+    {
+      "probability": {
+        "average": 0.9944049716,
+        "min": 0.9622530937,
+        "variance": 0.0001724377507
+      },
+      "words": "R34(2x)"
+    },
+    {
+      "probability": {
+        "average": 0.9999235272,
+        "min": 0.9998754263,
+        "variance": 2.313701231e-09
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9960980415,
+        "min": 0.9751263261,
+        "variance": 7.358603034e-05
+      },
+      "words": "R18(2x)"
+    },
+    {
+      "probability": {
+        "average": 0.9998699427,
+        "min": 0.999799788,
+        "variance": 4.91749752e-09
+      },
+      "words": "55"
+    },
+    {
+      "probability": {
+        "average": 0.9998137355,
+        "min": 0.9995910525,
+        "variance": 2.524062914e-08
+      },
+      "words": "R34"
+    },
+    {
+      "probability": {
+        "average": 0.999909997,
+        "min": 0.9998342991,
+        "variance": 5.730171893e-09
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9994817376,
+        "min": 0.9991081357,
+        "variance": 6.995053781e-08
+      },
+      "words": "R18"
+    },
+    {
+      "probability": {
+        "average": 0.988471508,
+        "min": 0.988471508,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9999041557,
+        "min": 0.999825418,
+        "variance": 6.194939672e-09
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.99995327,
+        "min": 0.9999101162,
+        "variance": 1.24493249e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9999625087,
+        "min": 0.9999089241,
+        "variance": 1.434456665e-09
+      },
+      "words": "150"
+    },
+    {
+      "probability": {
+        "average": 0.9997937679,
+        "min": 0.9996376038,
+        "variance": 2.20907026e-08
+      },
+      "words": "200"
+    },
+    {
+      "probability": {
+        "average": 0.9999346733,
+        "min": 0.999886632,
+        "variance": 1.80679649e-09
+      },
+      "words": "250"
+    },
+    {
+      "probability": {
+        "average": 0.9999200702,
+        "min": 0.9998569489,
+        "variance": 3.092531786e-09
+      },
+      "words": "300"
+    },
+    {
+      "probability": {
+        "average": 0.9999368787,
+        "min": 0.9998619556,
+        "variance": 2.821208822e-09
+      },
+      "words": "350"
+    },
+    {
+      "probability": {
+        "average": 0.9997866154,
+        "min": 0.9995993972,
+        "variance": 2.676853939e-08
+      },
+      "words": "400"
+    },
+    {
+      "probability": {
+        "average": 0.9999480844,
+        "min": 0.9998724461,
+        "variance": 2.924237519e-09
+      },
+      "words": "450"
+    },
+    {
+      "probability": {
+        "average": 0.9997401834,
+        "min": 0.9970478415,
+        "variance": 2.953052842e-07
+      },
+      "words": "Number of Parameters(Millions)"
+    }
+  ],
+  "words_result_num": 39,
+  "direction": 0,
+  "log_id": 2079045014878251794
+}

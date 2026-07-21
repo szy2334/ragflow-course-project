@@ -1,0 +1,231 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9958090782,
+        "min": 0.9879460931,
+        "variance": 3.091443796e-05
+      },
+      "words": "ITC"
+    },
+    {
+      "probability": {
+        "average": 0.995326221,
+        "min": 0.9864512682,
+        "variance": 3.939297676e-05
+      },
+      "words": "ITM"
+    },
+    {
+      "probability": {
+        "average": 0.9996147156,
+        "min": 0.9994934797,
+        "variance": 1.469090627e-08
+      },
+      "words": "LM"
+    },
+    {
+      "probability": {
+        "average": 0.9995606542,
+        "min": 0.9975942969,
+        "variance": 7.488404776e-07
+      },
+      "words": "Feed Forward"
+    },
+    {
+      "probability": {
+        "average": 0.9992974401,
+        "min": 0.9952296019,
+        "variance": 2.133926728e-06
+      },
+      "words": "Feed Forward"
+    },
+    {
+      "probability": {
+        "average": 0.9991909862,
+        "min": 0.9953768253,
+        "variance": 2.650761189e-06
+      },
+      "words": "Feed Forward"
+    },
+    {
+      "probability": {
+        "average": 0.9989922643,
+        "min": 0.9914449453,
+        "variance": 5.642103133e-06
+      },
+      "words": "Feed Forward"
+    },
+    {
+      "probability": {
+        "average": 0.8978003263,
+        "min": 0.7965308428,
+        "variance": 0.01025551371
+      },
+      "words": "NX"
+    },
+    {
+      "probability": {
+        "average": 0.877430439,
+        "min": 0.7554915547,
+        "variance": 0.0148690911
+      },
+      "words": "NX"
+    },
+    {
+      "probability": {
+        "average": 0.9994263053,
+        "min": 0.9978678226,
+        "variance": 3.891495624e-07
+      },
+      "words": "Cross Attention"
+    },
+    {
+      "probability": {
+        "average": 0.9996985197,
+        "min": 0.9972128272,
+        "variance": 4.880066626e-07
+      },
+      "words": "Cross Attention"
+    },
+    {
+      "probability": {
+        "average": 0.9997279644,
+        "min": 0.9976519942,
+        "variance": 3.597386069e-07
+      },
+      "words": "Cross Attention"
+    },
+    {
+      "probability": {
+        "average": 0.9835166931,
+        "min": 0.8363964558,
+        "variance": 0.001798469573
+      },
+      "words": "Self Attention"
+    },
+    {
+      "probability": {
+        "average": 0.9479502439,
+        "min": 0.7402257323,
+        "variance": 0.01078737807
+      },
+      "words": "Image"
+    },
+    {
+      "probability": {
+        "average": 0.9967399836,
+        "min": 0.9739993215,
+        "variance": 5.404169497e-05
+      },
+      "words": "Bi Self-Att"
+    },
+    {
+      "probability": {
+        "average": 0.9977805614,
+        "min": 0.9846884012,
+        "variance": 1.901987343e-05
+      },
+      "words": "Bi Self-Att"
+    },
+    {
+      "probability": {
+        "average": 0.9913442731,
+        "min": 0.941847384,
+        "variance": 0.0002753132721
+      },
+      "words": "Causal Self-Att"
+    },
+    {
+      "probability": {
+        "average": 0.9997224808,
+        "min": 0.9984809756,
+        "variance": 2.606861074e-07
+      },
+      "words": "Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9990753531,
+        "min": 0.9975653887,
+        "variance": 7.632957022e-07
+      },
+      "words": "Text"
+    },
+    {
+      "probability": {
+        "average": 0.9949163795,
+        "min": 0.928882122,
+        "variance": 0.000335425284
+      },
+      "words": "Image-grounded"
+    },
+    {
+      "probability": {
+        "average": 0.9944187999,
+        "min": 0.9219363928,
+        "variance": 0.0004041308712
+      },
+      "words": "Image-grounded"
+    },
+    {
+      "probability": {
+        "average": 0.9996353984,
+        "min": 0.9980837107,
+        "variance": 4.115661625e-07
+      },
+      "words": "Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9723674059,
+        "min": 0.8171399236,
+        "variance": 0.004021706525
+      },
+      "words": "“[CLS]+"
+    },
+    {
+      "probability": {
+        "average": 0.9991447926,
+        "min": 0.9924492836,
+        "variance": 4.482794793e-06
+      },
+      "words": "Text encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9898303151,
+        "min": 0.9021609426,
+        "variance": 0.0008540604031
+      },
+      "words": "“[Encode]+"
+    },
+    {
+      "probability": {
+        "average": 0.9995688796,
+        "min": 0.9968183041,
+        "variance": 9.108362633e-07
+      },
+      "words": "Text decoder"
+    },
+    {
+      "probability": {
+        "average": 0.9724721909,
+        "min": 0.7551162839,
+        "variance": 0.005905587692
+      },
+      "words": "“[Decode]"
+    },
+    {
+      "probability": {
+        "average": 0.9888823628,
+        "min": 0.5321608782,
+        "variance": 0.004155363888
+      },
+      "words": "“a little girl holding a kitten next to a blue fence\""
+    }
+  ],
+  "words_result_num": 28,
+  "direction": 0,
+  "log_id": 2079047904984013906
+}

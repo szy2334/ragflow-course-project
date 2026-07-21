@@ -48,7 +48,6 @@ def session_view(item: ChatSession) -> dict[str, Any]:
         "user_id": item.user_id,
         "title": item.title,
         "paper_ids": item.paper_ids,
-        "knowledge_base_id": item.knowledge_base_id,
         "last_message_at": item.last_message_at,
         "created_at": item.created_at,
     }
@@ -63,6 +62,7 @@ def message_view(item: ChatMessage) -> dict[str, Any]:
         "task_id": item.task_id,
         "status": item.status,
         "confidence": item.confidence,
+        "answer": item.answer_json,
         "created_at": item.created_at,
     }
 

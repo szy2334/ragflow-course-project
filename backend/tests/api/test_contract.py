@@ -8,15 +8,44 @@ from sqlalchemy.ext.asyncio import async_sessionmaker
 
 from app.core.config import Settings
 from app.db.base import build_engine
-from app.db.models import ConfigurationRevision, Paper, PaperVersion, SessionPaper, User
+from app.db.models import (
+    ConfigurationRevision,
+    FormatProfile,
+    FormatReview,
+    Paper,
+    PaperVersion,
+    SessionPaper,
+    User,
+)
 from app.main import create_app
 
 
 def _settings(tmp_path):
+    reference_root = tmp_path / "user_paper"
+    reference_root.joinpath("runs", "sample-run").mkdir(parents=True)
+    reference_root.joinpath("runs", "sample-run", "summary.json").write_text(
+        '{"status":"ready"}', encoding="utf-8"
+    )
+    reference_root.joinpath("runs", "sample-run", ".env").write_text("secret", encoding="utf-8")
     return Settings(
         database_url=f"sqlite+aiosqlite:///{(tmp_path / 'api.db').as_posix()}",
         object_storage_path=tmp_path / "uploads",
+        user_paper_root=reference_root,
         access_token_secret="test-access-token-secret",
+        # Contract tests must not inherit a developer's live provider keys
+        # from backend/.env; their expected terminal paths are deterministic.
+        redis_url=None,
+        # Format-review contract reaches the model-configuration guard only
+        # after confirming a server-side format-KB configuration exists.
+        ragflow_base_url="http://ragflow.invalid/api/v1",
+        ragflow_api_key="test-ragflow-key",
+        mineru_base_url=None,
+        mineru_api_key=None,
+        baidu_ocr_api_key=None,
+        baidu_ocr_secret_key=None,
+        llm_base_url=None,
+        llm_api_key=None,
+        llm_model="",
     )
 
 
@@ -89,6 +118,31 @@ def test_write_request_id_and_login_contract(tmp_path):
         assert "password" not in json.dumps(me.json())
 
 
+def test_reference_paper_artifacts_are_read_only_and_confined(tmp_path):
+    app = create_app(_settings(tmp_path))
+    with TestClient(app) as client:
+        token = _register(client)
+        listed = client.get("/api/v1/reference-papers/runs", headers=_headers(token))
+        assert listed.status_code == 200
+        assert listed.json()["data"]["items"] == [{"name": "sample-run", "file_count": 2}]
+
+        artifact = client.get(
+            "/api/v1/reference-papers/runs/sample-run/summary.json", headers=_headers(token)
+        )
+        assert artifact.status_code == 200
+        assert artifact.json() == {"status": "ready"}
+
+        forbidden = client.get(
+            "/api/v1/reference-papers/runs/sample-run/.env", headers=_headers(token)
+        )
+        assert forbidden.status_code == 403
+
+        traversal = client.get(
+            "/api/v1/reference-papers/runs/../api.db", headers=_headers(token)
+        )
+        assert traversal.status_code == 404
+
+
 def test_question_idempotency_and_terminal_sse_resume(tmp_path):
     settings = _settings(tmp_path)
     app = create_app(settings)
@@ -156,6 +210,112 @@ def test_question_idempotency_and_terminal_sse_resume(tmp_path):
         )
         assert resumed.status_code == 200
         assert resumed.text == ""
+
+
+def test_format_review_uses_server_profile_mapping_and_persists_rule_contract(tmp_path):
+    settings = _settings(tmp_path)
+    app = create_app(settings)
+    with TestClient(app) as client:
+        token = _register(client)
+        user_id = client.get("/api/v1/auth/me", headers=_headers(token)).json()["data"]["user_id"]
+        asyncio.run(_promote_admin(settings.database_url, user_id))
+
+        profile_body = {
+            "profile_key": "acm_manuscript",
+            "name": "ACM Manuscript Format",
+            "version": "2026.1",
+            "description": "Checks manuscript structure and references.",
+            "ragflow_dataset_id": "ragflow-format-acm-v2026-1",
+            "retrieval_query": "ACM manuscript formatting rules",
+            "rules": [
+                {
+                    "rule_id": "abstract-required",
+                    "title": "Abstract",
+                    "description": "The manuscript must contain an abstract section.",
+                }
+            ],
+        }
+        created_profile = client.post(
+            "/api/v1/admin/format-profiles",
+            headers=_headers(token, **{"Idempotency-Key": "format-profile-1"}),
+            json=profile_body,
+        )
+        assert created_profile.status_code == 201
+        assert created_profile.json()["data"]["ragflow_dataset_id"] == "ragflow-format-acm-v2026-1"
+        profile_id = created_profile.json()["data"]["format_profile_id"]
+
+        next_version = client.post(
+            "/api/v1/admin/format-profiles",
+            headers=_headers(token, **{"Idempotency-Key": "format-profile-2"}),
+            json={
+                **profile_body,
+                "version": "2026.2",
+                "ragflow_dataset_id": "ragflow-format-acm-v2026-2",
+            },
+        )
+        assert next_version.status_code == 201
+        assert next_version.json()["data"]["profile_key"] == profile_body["profile_key"]
+
+        public_profiles = client.get("/api/v1/format-profiles", headers=_headers(token))
+        assert public_profiles.status_code == 200
+        public_profile = next(
+            item
+            for item in public_profiles.json()["data"]["items"]
+            if item["format_profile_id"] == profile_id
+        )
+        assert "ragflow_dataset_id" not in public_profile
+        assert "retrieval_query" not in public_profile
+
+        upload = client.post(
+            "/api/v1/papers",
+            headers=_headers(token, **{"Idempotency-Key": "format-paper-upload"}),
+            files={"files": ("paper.pdf", b"%PDF-1.4\nminimal", "application/pdf")},
+            data={"auto_index": "false"},
+        )
+        assert upload.status_code == 202
+        paper_id = upload.json()["data"]["items"][0]["paper_id"]
+        asyncio.run(_mark_ready(settings.database_url, paper_id))
+
+        invalid_rule = client.post(
+            "/api/v1/format-reviews",
+            headers=_headers(token, **{"Idempotency-Key": "format-review-invalid"}),
+            json={
+                "paper_id": paper_id,
+                "format_profile_id": profile_id,
+                "rule_ids": ["not-in-profile"],
+            },
+        )
+        assert invalid_rule.status_code == 422
+        assert invalid_rule.json()["code"] == "FORMAT_RULES_INVALID"
+
+        accepted = client.post(
+            "/api/v1/format-reviews",
+            headers=_headers(token, **{"Idempotency-Key": "format-review-1"}),
+            json={
+                "paper_id": paper_id,
+                "format_profile_id": profile_id,
+                "rule_ids": ["abstract-required"],
+            },
+        )
+        assert accepted.status_code == 202
+        assert accepted.json()["data"]["resource_id"]
+        assert asyncio.run(_row_count(settings.database_url, FormatProfile)) == 2
+        assert asyncio.run(_row_count(settings.database_url, FormatReview)) == 1
+
+        task_url = accepted.json()["data"]["status_url"]
+        for _ in range(20):
+            task = client.get(task_url, headers=_headers(token))
+            if task.json()["data"]["status"] in {"succeeded", "failed"}:
+                break
+            time.sleep(0.02)
+        assert task.json()["data"]["status"] == "failed"
+        assert task.json()["data"]["error"]["code"] == "MODEL_NOT_CONFIGURED"
+
+        review_id = accepted.json()["data"]["resource_id"]
+        report = client.get(f"/api/v1/format-reviews/{review_id}", headers=_headers(token))
+        assert report.status_code == 200
+        assert report.json()["data"]["status"] == "failed"
+        assert report.json()["data"]["error"]["code"] == "MODEL_NOT_CONFIGURED"
 
 
 def test_admin_configuration_and_evaluation_contract(tmp_path):

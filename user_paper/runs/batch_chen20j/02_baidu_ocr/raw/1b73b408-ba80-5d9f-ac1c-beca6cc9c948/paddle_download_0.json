@@ -1,0 +1,61 @@
+{
+  "file_name": "bf7aed699d0e45280b3db7fec20fdf149579c051e47c31ff5d3897238a32c648.jpg",
+  "file_id": "file-9CPhBP3snZ5nCsi4om91zD35QKdqAlrv",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "5Mfc9f-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "5Mfc9f-layout-1",
+          "text": "Series | Label | Number of Parameters (Millions) | Top 1\nRed Circle | R50* | 25 | 69.5\nRed Circle | R101 | 25 | 66.5\nRed Circle | R18(2x) | 25 | 59.5\nRed Circle | R34 | 25 | 54.5\nRed Circle | R50 | 90 | 74.0\nRed Circle | R50(2x) | 90 | 74.0\nRed Circle | R101(2x) | 180 | 71.0\nRed Circle | R152(2x) | 225 | 72.0\nRed Circle | R200 | 180 | 65.5\nRed Circle | R34(4x) | 350 | 68.0\nRed Circle | R50(4x) | 380 | 73.0\nBlue Square | R18 | 10 | 50.5\nBlue Square | R101 | 100 | 69.5\nBlue Square | R18(4x) | 180 | 65.5\nBlue Square | R200 | 180 | 65.5\nBlue Square | R34 | 380 | 78.5",
+          "position": [
+            0,
+            1,
+            631,
+            572
+          ],
+          "polygon": [
+            [
+              0,
+              1
+            ],
+            [
+              631,
+              1
+            ],
+            [
+              631,
+              574
+            ],
+            [
+              0,
+              574
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>Series</th><th style='text-align: center;'>Label</th><th style='text-align: center;'>Number of Parameters (Millions)</th><th style='text-align: center;'>Top 1</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R50*</td><td style='text-align: center;'>25</td><td style='text-align: center;'>69.5</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R101</td><td style='text-align: center;'>25</td><td style='text-align: center;'>66.5</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R18(2x)</td><td style='text-align: center;'>25</td><td style='text-align: center;'>59.5</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R34</td><td style='text-align: center;'>25</td><td style='text-align: center;'>54.5</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R50</td><td style='text-align: center;'>90</td><td style='text-align: center;'>74.0</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R50(2x)</td><td style='text-align: center;'>90</td><td style='text-align: center;'>74.0</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R101(2x)</td><td style='text-align: center;'>180</td><td style='text-align: center;'>71.0</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R152(2x)</td><td style='text-align: center;'>225</td><td style='text-align: center;'>72.0</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R200</td><td style='text-align: center;'>180</td><td style='text-align: center;'>65.5</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R34(4x)</td><td style='text-align: center;'>350</td><td style='text-align: center;'>68.0</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R50(4x)</td><td style='text-align: center;'>380</td><td style='text-align: center;'>73.0</td></tr>\n    <tr><td style='text-align: center;'>Blue Square</td><td style='text-align: center;'>R18</td><td style='text-align: center;'>10</td><td style='text-align: center;'>50.5</td></tr>\n    <tr><td style='text-align: center;'>Blue Square</td><td style='text-align: center;'>R101</td><td style='text-align: center;'>100</td><td style='text-align: center;'>69.5</td></tr>\n    <tr><td style='text-align: center;'>Blue Square</td><td style='text-align: center;'>R18(4x)</td><td style='text-align: center;'>180</td><td style='text-align: center;'>65.5</td></tr>\n    <tr><td style='text-align: center;'>Blue Square</td><td style='text-align: center;'>R200</td><td style='text-align: center;'>180</td><td style='text-align: center;'>65.5</td></tr>\n    <tr><td style='text-align: center;'>Blue Square</td><td style='text-align: center;'>R34</td><td style='text-align: center;'>380</td><td style='text-align: center;'>78.5</td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "Series | Label | Number of Parameters (Millions) | Top 1\nRed Circle | R50* | 25 | 69.5\nRed Circle | R101 | 25 | 66.5\nRed Circle | R18(2x) | 25 | 59.5\nRed Circle | R34 | 25 | 54.5\nRed Circle | R50 | 90 | 74.0\nRed Circle | R50(2x) | 90 | 74.0\nRed Circle | R101(2x) | 180 | 71.0\nRed Circle | R152(2x) | 225 | 72.0\nRed Circle | R200 | 180 | 65.5\nRed Circle | R34(4x) | 350 | 68.0\nRed Circle | R50(4x) | 380 | 73.0\nBlue Square | R18 | 10 | 50.5\nBlue Square | R101 | 100 | 69.5\nBlue Square | R18(4x) | 180 | 65.5\nBlue Square | R200 | 180 | 65.5\nBlue Square | R34 | 380 | 78.5",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>Series</th><th style='text-align: center;'>Label</th><th style='text-align: center;'>Number of Parameters (Millions)</th><th style='text-align: center;'>Top 1</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R50*</td><td style='text-align: center;'>25</td><td style='text-align: center;'>69.5</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R101</td><td style='text-align: center;'>25</td><td style='text-align: center;'>66.5</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R18(2x)</td><td style='text-align: center;'>25</td><td style='text-align: center;'>59.5</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R34</td><td style='text-align: center;'>25</td><td style='text-align: center;'>54.5</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R50</td><td style='text-align: center;'>90</td><td style='text-align: center;'>74.0</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R50(2x)</td><td style='text-align: center;'>90</td><td style='text-align: center;'>74.0</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R101(2x)</td><td style='text-align: center;'>180</td><td style='text-align: center;'>71.0</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R152(2x)</td><td style='text-align: center;'>225</td><td style='text-align: center;'>72.0</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R200</td><td style='text-align: center;'>180</td><td style='text-align: center;'>65.5</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R34(4x)</td><td style='text-align: center;'>350</td><td style='text-align: center;'>68.0</td></tr>\n    <tr><td style='text-align: center;'>Red Circle</td><td style='text-align: center;'>R50(4x)</td><td style='text-align: center;'>380</td><td style='text-align: center;'>73.0</td></tr>\n    <tr><td style='text-align: center;'>Blue Square</td><td style='text-align: center;'>R18</td><td style='text-align: center;'>10</td><td style='text-align: center;'>50.5</td></tr>\n    <tr><td style='text-align: center;'>Blue Square</td><td style='text-align: center;'>R101</td><td style='text-align: center;'>100</td><td style='text-align: center;'>69.5</td></tr>\n    <tr><td style='text-align: center;'>Blue Square</td><td style='text-align: center;'>R18(4x)</td><td style='text-align: center;'>180</td><td style='text-align: center;'>65.5</td></tr>\n    <tr><td style='text-align: center;'>Blue Square</td><td style='text-align: center;'>R200</td><td style='text-align: center;'>180</td><td style='text-align: center;'>65.5</td></tr>\n    <tr><td style='text-align: center;'>Blue Square</td><td style='text-align: center;'>R34</td><td style='text-align: center;'>380</td><td style='text-align: center;'>78.5</td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 631,
+        "page_height": 573
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

@@ -16,6 +16,7 @@ from pipeline_common import (
     estimate_tokens,
     iter_jsonl,
     normalize_prose,
+    normalize_text,
     quality_flags,
     read_json,
     sha256_text,
@@ -26,7 +27,10 @@ from pipeline_common import (
 )
 
 
-CLEANING_VERSION = "paper_second_clean_v1"
+CLEANING_VERSION = "paper_second_clean_v2"
+_PREFERRED_TRUNCATION_BOUNDARIES = frozenset(
+    "\n \t,;:.!?\u3002\uff0c\uff1b\uff1a\uff01\uff1f"
+)
 
 
 class HtmlTableParser(HTMLParser):
@@ -240,6 +244,199 @@ def build_metadata_chunk(document: dict[str, Any], _blocks: list[dict[str, Any]]
     )
 
 
+def is_spurious_numeric_heading(text: str) -> bool:
+    """Identify MinerU's occasional table-cell sequence misclassified as a heading."""
+    return bool(re.fullmatch(r"(?:\d+\s+){2,}\d+", normalize_prose(text)))
+
+
+def html_to_prose(markup: str) -> str:
+    """Recover readable prose from MinerU's HTML-wrapped algorithm body."""
+    value = re.sub(r"</?(?:br|div|p|li|tr)[^>]*>", "\n", markup, flags=re.IGNORECASE)
+    value = re.sub(r"<[^>]+>", "", value)
+    return normalize_prose(html.unescape(value))
+
+
+def repair_mineru_blocks(
+    mineru_clean_dir: Path,
+    blocks: list[dict[str, Any]],
+    media_objects: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, int]]:
+    """Apply narrow, auditable repairs for known MinerU structural mistakes.
+
+    MinerU can emit an algorithm as a ``code_body`` while leaving its ordinary
+    ``text`` field empty.  It can also mistake a table's repeated numeric cells
+    for a section heading.  The raw export remains untouched; corrections are
+    applied only to the in-memory input of the second-clean stage.
+    """
+    raw_files = sorted((mineru_clean_dir / "raw_mineru").rglob("*_content_list.json"))
+    raw_items: list[dict[str, Any]] = []
+    if raw_files:
+        try:
+            raw_content = read_json(raw_files[0])
+            if isinstance(raw_content, list):
+                raw_items = [item for item in raw_content if isinstance(item, dict)]
+        except (OSError, json.JSONDecodeError):
+            pass
+
+    repaired: list[dict[str, Any]] = []
+    repaired_paths: dict[str, list[str]] = {}
+    repairs = Counter()
+    last_valid_section_path: list[str] = []
+    noisy_section_path: list[str] | None = None
+
+    for original in blocks:
+        block = {**original, "section_path": list(original.get("section_path") or [])}
+        source_index = block.get("source_index")
+        raw_item = (
+            raw_items[source_index]
+            if isinstance(source_index, int) and 0 <= source_index < len(raw_items)
+            else {}
+        )
+
+        if block.get("content_role") == "section_heading":
+            if is_spurious_numeric_heading(str(block.get("normalized_text") or "")):
+                noisy_section_path = block["section_path"]
+                block.update(
+                    {
+                        "content_type": "navigation",
+                        "content_role": "page_footnote",
+                        "indexable": False,
+                        "repair_provenance": {"rule": "drop_spurious_numeric_heading"},
+                    }
+                )
+                repairs["spurious_numeric_headings_removed"] += 1
+            else:
+                last_valid_section_path = block["section_path"]
+                noisy_section_path = None
+        elif noisy_section_path and block["section_path"] == noisy_section_path:
+            block["section_path"] = list(last_valid_section_path)
+            block["repair_provenance"] = {"rule": "restore_section_after_numeric_heading"}
+            repairs["section_paths_restored"] += 1
+
+        if (
+            block.get("content_role") == "paragraph"
+            and not str(block.get("normalized_text") or "").strip()
+            and raw_item.get("type") == "code"
+            and raw_item.get("code_body")
+        ):
+            recovered = html_to_prose(str(raw_item["code_body"]))
+            if recovered:
+                block.update(
+                    {
+                        "content_type": "text",
+                        "content_role": "algorithm",
+                        "raw_text": str(raw_item["code_body"]),
+                        "normalized_text": recovered,
+                        "quality_flags": quality_flags(recovered, require_text=True),
+                        "repair_provenance": {"rule": "recover_algorithm_code_body"},
+                    }
+                )
+                repairs["algorithm_blocks_recovered"] += 1
+
+        repaired.append(block)
+        repaired_paths[str(block["block_id"])] = block["section_path"]
+
+    if not any(classify_section(block["section_path"]) == "abstract" for block in repaired):
+        for block in repaired:
+            text = str(block.get("normalized_text") or "")
+            if (
+                block.get("content_role") == "paragraph"
+                and block.get("page_start") == 1
+                and len(text) >= 280
+            ):
+                block["section_path"] = [*block["section_path"], "Abstract"]
+                block["repair_provenance"] = {"rule": "infer_unlabelled_first_page_abstract"}
+                repaired_paths[str(block["block_id"])] = block["section_path"]
+                repairs["abstracts_inferred"] += 1
+                break
+
+    repaired_media = []
+    for original in media_objects:
+        media = {**original, "section_path": list(original.get("section_path") or [])}
+        repaired_path = repaired_paths.get(str(media.get("block_id")))
+        if repaired_path is not None and media["section_path"] != repaired_path:
+            media["section_path"] = repaired_path
+            media["repair_provenance"] = {"rule": "restore_section_after_numeric_heading"}
+        repaired_media.append(media)
+    return repaired, repaired_media, dict(repairs)
+
+
+def split_text_at_token_limit(text: str, max_tokens: int) -> list[str]:
+    """Split oversized prose while preserving all text and favoring natural breaks."""
+    normalized = normalize_prose(text)
+    if not normalized:
+        return []
+    if max_tokens < 1:
+        raise ValueError("max_tokens must be at least 1")
+
+    fragments: list[str] = []
+    remaining = normalized
+    while estimate_tokens(remaining) > max_tokens:
+        low, high, best = 1, len(remaining), 0
+        while low <= high:
+            middle = (low + high) // 2
+            if estimate_tokens(remaining[:middle]) <= max_tokens:
+                best = middle
+                low = middle + 1
+            else:
+                high = middle - 1
+        # A single character can always fit when max_tokens is positive.
+        best = max(1, best)
+        minimum_preferred_cut = max(1, int(best * 0.55))
+        preferred_cuts = [
+            index + 1
+            for index, char in enumerate(remaining[:best])
+            if index + 1 >= minimum_preferred_cut
+            and char in _PREFERRED_TRUNCATION_BOUNDARIES
+        ]
+        cut = preferred_cuts[-1] if preferred_cuts else best
+        fragment = remaining[:cut].rstrip()
+        if fragment:
+            fragments.append(fragment)
+        remaining = remaining[cut:].lstrip()
+    if remaining:
+        fragments.append(remaining)
+    return fragments
+
+
+def split_block_at_token_limit(block: dict[str, Any], max_tokens: int) -> list[dict[str, Any]]:
+    """Expose oversized source blocks as mergeable fragments for chunking."""
+    fragments = split_text_at_token_limit(str(block["normalized_text"]), max_tokens)
+    if len(fragments) <= 1:
+        return [block]
+    count = len(fragments)
+    return [
+        {
+            **block,
+            "normalized_text": text,
+            "chunk_fragment": {
+                "block_id": block["block_id"],
+                "fragment_index": index,
+                "fragment_count": count,
+            },
+        }
+        for index, text in enumerate(fragments, start=1)
+    ]
+
+
+def normalize_formula_spacing(equation: str) -> str:
+    """Repair character-spaced MinerU math without changing ordinary formulas."""
+    value = normalize_text(equation)
+    command_space_marker = "\x00"
+    value = re.sub(
+        r"(\\[A-Za-z]+)\s+(?=[A-Za-z])", rf"\1{command_space_marker}", value
+    )
+    value = re.sub(r"(?<=[A-Za-z])\s+(?=[A-Za-z])", "", value)
+    value = re.sub(r"(?<=[A-Za-z])\s+_\s*", "_", value)
+    value = re.sub(r"(?<=[A-Za-z])\s+\\_\s*", r"\\_", value)
+    value = re.sub(r"(?<=_)\s+(?=[A-Za-z{])", "", value)
+    value = re.sub(r"(?<=\\_)\s+(?=[A-Za-z])", "", value)
+    value = re.sub(r"(?<=\d)\.\s+(?=\d)", ".", value)
+    value = re.sub(r"(?<=[{^])\s+(?=-\s*\d)", "", value)
+    value = re.sub(r"(?<=-)\s+(?=\d)", "", value)
+    return value.replace(command_space_marker, " ")
+
+
 def group_text_blocks(
     document: dict[str, Any], blocks: list[dict[str, Any]], target_tokens: int, max_tokens: int
 ) -> list[dict[str, Any]]:
@@ -280,13 +477,42 @@ def group_text_blocks(
 
         buffer: list[dict[str, Any]] = []
         buffer_tokens = 0
+        groups: list[list[dict[str, Any]]] = []
 
         def flush() -> None:
             nonlocal buffer, buffer_tokens
             if not buffer:
                 return
-            text = "\n\n".join(block["normalized_text"] for block in buffer)
+            groups.append(buffer)
+            buffer = []
+            buffer_tokens = 0
+
+        for block in section_blocks:
+            for fragment in split_block_at_token_limit(block, max_tokens):
+                block_tokens = estimate_tokens(fragment["normalized_text"])
+                if buffer and buffer_tokens + block_tokens > max_tokens:
+                    flush()
+                buffer.append(fragment)
+                buffer_tokens += block_tokens
+                if buffer_tokens >= target_tokens:
+                    flush()
+        flush()
+
+        # A target-sized group can leave a very short final group.  Merge it
+        # back when doing so stays within the hard limit.
+        if len(groups) > 1:
+            previous_text = "\n\n".join(block["normalized_text"] for block in groups[-2])
+            final_text = "\n\n".join(block["normalized_text"] for block in groups[-1])
+            if estimate_tokens(f"{previous_text}\n\n{final_text}") <= max_tokens:
+                groups[-2].extend(groups[-1])
+                groups.pop()
+
+        for group in groups:
+            text = "\n\n".join(block["normalized_text"] for block in group)
             role = "abstract" if classify_section(section_path) == "abstract" else "paragraph"
+            fragment_provenance = [
+                block["chunk_fragment"] for block in group if block.get("chunk_fragment")
+            ]
             chunks.append(
                 chunk_record(
                     document=document,
@@ -295,26 +521,24 @@ def group_text_blocks(
                     section_path=section_path,
                     raw_content=text,
                     embedding_text=f"章节：{section_label(section_path)}\n{text}",
-                    page_start=min(block["page_start"] for block in buffer),
-                    page_end=max(block["page_end"] for block in buffer),
-                    bbox=[block.get("bbox") for block in buffer],
-                    source_refs=[block["source_ref"] for block in buffer],
-                    source_block_ids=[block["block_id"] for block in buffer],
+                    page_start=min(block["page_start"] for block in group),
+                    page_end=max(block["page_end"] for block in group),
+                    bbox=[block.get("bbox") for block in group],
+                    source_refs=[block["source_ref"] for block in group],
+                    source_block_ids=[block["block_id"] for block in group],
                     parent_chunk_id=parent_id,
+                    provenance=(
+                        {
+                            "truncation_merge": {
+                                "strategy": "preferred_boundary_then_hard_cut",
+                                "source_block_fragments": fragment_provenance,
+                            }
+                        }
+                        if fragment_provenance
+                        else {}
+                    ),
                 )
             )
-            buffer = []
-            buffer_tokens = 0
-
-        for block in section_blocks:
-            block_tokens = estimate_tokens(block["normalized_text"])
-            if buffer and buffer_tokens + block_tokens > max_tokens:
-                flush()
-            buffer.append(block)
-            buffer_tokens += block_tokens
-            if buffer_tokens >= target_tokens:
-                flush()
-        flush()
     return chunks
 
 
@@ -332,7 +556,14 @@ def build_formula_chunks(
             and candidate.get("normalized_text")
         ]
         context = "\n".join(candidate["normalized_text"] for candidate in neighbours)
-        equation = block["normalized_text"]
+        original_equation = str(block["normalized_text"])
+        equation = normalize_formula_spacing(original_equation)
+        formula_flags = [
+            flag
+            for flag in (block.get("quality_flags") or [])
+            if flag != "possible_spaced_ocr_text"
+        ]
+        formula_flags.extend(quality_flags(equation, require_text=True))
         embedding = (
             f"章节：{section_label(block.get('section_path') or [])}\n"
             f"公式：{equation}\n上下文：{context}"
@@ -350,7 +581,43 @@ def build_formula_chunks(
                 bbox=block.get("bbox"),
                 source_refs=[block["source_ref"]],
                 source_block_ids=[block["block_id"]],
+                flags=formula_flags,
+                provenance=(
+                    {"mineru_repair": {"rule": "normalize_spaced_formula"}}
+                    if equation != original_equation
+                    else {}
+                ),
+            )
+        )
+    return chunks
+
+
+def build_algorithm_chunks(
+    document: dict[str, Any], blocks: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    chunks: list[dict[str, Any]] = []
+    for block in blocks:
+        if block.get("content_role") != "algorithm" or not block.get("normalized_text"):
+            continue
+        text = str(block["normalized_text"])
+        chunks.append(
+            chunk_record(
+                document=document,
+                content_type="text",
+                content_role="algorithm",
+                section_path=block.get("section_path") or [],
+                raw_content=str(block.get("raw_text") or text),
+                embedding_text=(
+                    f"Section: {section_label(block.get('section_path') or [])}\n"
+                    f"Algorithm:\n{text}"
+                ),
+                page_start=block.get("page_start"),
+                page_end=block.get("page_end"),
+                bbox=block.get("bbox"),
+                source_refs=[block["source_ref"]],
+                source_block_ids=[block["block_id"]],
                 flags=block.get("quality_flags") or [],
+                provenance={"mineru_repair": block.get("repair_provenance") or {}},
             )
         )
     return chunks
@@ -584,10 +851,17 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    if args.target_tokens < 1 or args.max_tokens < 1:
+        raise ValueError("target_tokens and max_tokens must both be at least 1")
+    if args.target_tokens > args.max_tokens:
+        raise ValueError("target_tokens cannot exceed max_tokens")
     args.output_dir.mkdir(parents=True, exist_ok=True)
     document = read_json(args.mineru_clean_dir / "document.json")
     blocks = list(iter_jsonl(args.mineru_clean_dir / "blocks.jsonl"))
     media_objects = list(iter_jsonl(args.mineru_clean_dir / "media_objects.jsonl"))
+    blocks, media_objects, mineru_repairs = repair_mineru_blocks(
+        args.mineru_clean_dir, blocks, media_objects
+    )
     ocr_path = args.ocr_dir / "ocr_results.jsonl"
     ocr_by_id = (
         {row["object_id"]: row for row in iter_jsonl(ocr_path)}
@@ -602,6 +876,7 @@ def main() -> int:
         )
     )
     chunks.extend(build_formula_chunks(document, blocks))
+    chunks.extend(build_algorithm_chunks(document, blocks))
     chunks.extend(build_media_chunks(document, media_objects, ocr_by_id))
     chunks.extend(build_reference_chunks(document, blocks))
     link_chunks(chunks)
@@ -669,6 +944,7 @@ def main() -> int:
         "ocr_results": len(ocr_by_id),
         "ocr_failures": ocr_failures,
         "ocr_partials": ocr_partials,
+        "mineru_repairs": mineru_repairs,
         "generated_at": utc_now(),
     }
     write_json(args.output_dir / "quality_report.json", quality_report)

@@ -80,9 +80,8 @@ export const useWorkspaceStore = defineStore('workspace', {
       }
       if (event.event_type === 'status') workflow.phase = eventData.label ?? eventData.stage ?? '正在处理问题'
       if (event.event_type === 'citation' && eventData.evidence) workflow.evidences.push(eventData.evidence)
-      if (event.event_type === 'review_summary' && eventData.warnings) workflow.warnings = eventData.warnings
       if (event.event_type === 'delta') {
-        workflow.phase = '正在组织已核验结论'
+        workflow.phase = '正在生成回答，待最终校验'
         workflow.text += eventData.delta ?? ''
       }
       if (event.event_type === 'final' && eventData.answer) {

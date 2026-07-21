@@ -1,0 +1,23 @@
+{
+  "schema_version": "paper_document_v1",
+  "paper_id": "24ef9fd0-f826-5d0d-9bfc-b788d3fb9751",
+  "paper_version_id": "53901cb6-cdfc-59af-9d8e-1ffa044abb89",
+  "file_name": "2401.01519v4.pdf",
+  "file_path": "D:\\JIXUN\\document_pdf\\2401.01519v4.pdf",
+  "file_sha256": "212a25ccfb8f79eee498dd52d9bfbc7ad5d2dd8a883cdd05c543a23758b4836b",
+  "title": "Exploring the Frontiers of LLMs in Psychological Applications: A Comprehensive Review",
+  "parser_name": "mineru",
+  "parser_version": "3.4.0",
+  "cleaning_version": "user_paper_pipeline_v1",
+  "mineru_export_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_2401.01519v4\\01_mineru_clean\\raw_mineru\\extracted",
+  "mineru_metadata": {
+    "backend": "hybrid",
+    "effort": "medium",
+    "ocr_enabled": true,
+    "version": "3.4.0"
+  },
+  "block_count": 275,
+  "media_count": 14,
+  "recovered_references": 0,
+  "created_at": "2026-07-20T03:15:38.924562+00:00"
+}

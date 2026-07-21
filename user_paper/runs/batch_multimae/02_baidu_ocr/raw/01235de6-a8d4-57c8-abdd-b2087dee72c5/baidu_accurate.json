@@ -1,0 +1,63 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9995850921,
+        "min": 0.9993566871,
+        "variance": 5.673669534e-08
+      },
+      "words": "RGB"
+    },
+    {
+      "probability": {
+        "average": 0.9999347925,
+        "min": 0.9997224212,
+        "variance": 1.132028515e-08
+      },
+      "words": "Depth"
+    },
+    {
+      "probability": {
+        "average": 0.9989501834,
+        "min": 0.992125988,
+        "variance": 6.667079106e-06
+      },
+      "words": "Semantic"
+    },
+    {
+      "probability": {
+        "average": 0.7514552474,
+        "min": 0.6897727847,
+        "variance": 0.002786457771
+      },
+      "words": "..."
+    },
+    {
+      "probability": {
+        "average": 0.9654851556,
+        "min": 0.6242396235,
+        "variance": 0.01164493803
+      },
+      "words": "~Dir(α=0.1)"
+    },
+    {
+      "probability": {
+        "average": 0.9598401189,
+        "min": 0.6405149698,
+        "variance": 0.01274607703
+      },
+      "words": "~Dir(a=1)"
+    },
+    {
+      "probability": {
+        "average": 0.9652255177,
+        "min": 0.8353366256,
+        "variance": 0.003269568784
+      },
+      "words": "~Dir(a→∞)"
+    }
+  ],
+  "words_result_num": 7,
+  "direction": 0,
+  "log_id": 2079048373509814303
+}

@@ -1,0 +1,471 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9992632866,
+        "min": 0.992086947,
+        "variance": 4.711124802e-06
+      },
+      "words": "StanfordCars"
+    },
+    {
+      "probability": {
+        "average": 0.9999862909,
+        "min": 0.9999748468,
+        "variance": 1.111317288e-10
+      },
+      "words": "+28.9"
+    },
+    {
+      "probability": {
+        "average": 0.9998751879,
+        "min": 0.999181807,
+        "variance": 5.920435342e-08
+      },
+      "words": "Country211"
+    },
+    {
+      "probability": {
+        "average": 0.9999429584,
+        "min": 0.9997758269,
+        "variance": 7.321474982e-09
+      },
+      "words": "+23.2"
+    },
+    {
+      "probability": {
+        "average": 0.999651432,
+        "min": 0.9984917641,
+        "variance": 2.315872791e-07
+      },
+      "words": "Food101"
+    },
+    {
+      "probability": {
+        "average": 0.9999688268,
+        "min": 0.9999240637,
+        "variance": 8.672295104e-10
+      },
+      "words": "+22.5"
+    },
+    {
+      "probability": {
+        "average": 0.9997208118,
+        "min": 0.998598516,
+        "variance": 2.257938689e-07
+      },
+      "words": "Kinetics700"
+    },
+    {
+      "probability": {
+        "average": 0.9999841452,
+        "min": 0.9999620914,
+        "variance": 1.736765454e-10
+      },
+      "words": "+14.5"
+    },
+    {
+      "probability": {
+        "average": 0.999366641,
+        "min": 0.9985792637,
+        "variance": 2.590399504e-07
+      },
+      "words": "SST2"
+    },
+    {
+      "probability": {
+        "average": 0.9999588132,
+        "min": 0.9999110699,
+        "variance": 1.418866469e-09
+      },
+      "words": "+12.4"
+    },
+    {
+      "probability": {
+        "average": 0.9998957515,
+        "min": 0.9994980097,
+        "variance": 3.231990675e-08
+      },
+      "words": "SUN397"
+    },
+    {
+      "probability": {
+        "average": 0.9997866154,
+        "min": 0.9996259212,
+        "variance": 1.53810511e-08
+      },
+      "words": "+7.8"
+    },
+    {
+      "probability": {
+        "average": 0.9997848868,
+        "min": 0.9995167255,
+        "variance": 2.064374804e-08
+      },
+      "words": "UCF101"
+    },
+    {
+      "probability": {
+        "average": 0.9999092817,
+        "min": 0.9998027682,
+        "variance": 6.099665661e-09
+      },
+      "words": "+7.7"
+    },
+    {
+      "probability": {
+        "average": 0.9994988441,
+        "min": 0.9967582822,
+        "variance": 1.111582037e-06
+      },
+      "words": "HatefulMemes"
+    },
+    {
+      "probability": {
+        "average": 0.9997630119,
+        "min": 0.9993563294,
+        "variance": 6.778333272e-08
+      },
+      "words": "+6.7"
+    },
+    {
+      "probability": {
+        "average": 0.9969490767,
+        "min": 0.9809346795,
+        "variance": 4.281697693e-05
+      },
+      "words": "CIFAR10"
+    },
+    {
+      "probability": {
+        "average": 0.9998252392,
+        "min": 0.9994798303,
+        "variance": 4.362418338e-08
+      },
+      "words": "+3.9"
+    },
+    {
+      "probability": {
+        "average": 0.9984272718,
+        "min": 0.9880105853,
+        "variance": 1.55034686e-05
+      },
+      "words": "CIFAR100"
+    },
+    {
+      "probability": {
+        "average": 0.9994654655,
+        "min": 0.9988068342,
+        "variance": 2.547622557e-07
+      },
+      "words": "+3.0"
+    },
+    {
+      "probability": {
+        "average": 0.9993141294,
+        "min": 0.9984904528,
+        "variance": 2.965538499e-07
+      },
+      "words": "STL10"
+    },
+    {
+      "probability": {
+        "average": 0.9995782971,
+        "min": 0.9987263083,
+        "variance": 2.571675566e-07
+      },
+      "words": "+3.0"
+    },
+    {
+      "probability": {
+        "average": 0.9998222589,
+        "min": 0.9994190931,
+        "variance": 5.140433146e-08
+      },
+      "words": "FER2013"
+    },
+    {
+      "probability": {
+        "average": 0.999817431,
+        "min": 0.9995927215,
+        "variance": 2.166564883e-08
+      },
+      "words": "+2.8"
+    },
+    {
+      "probability": {
+        "average": 0.999548316,
+        "min": 0.9980583787,
+        "variance": 4.702118872e-07
+      },
+      "words": "Caltech101"
+    },
+    {
+      "probability": {
+        "average": 0.9994684458,
+        "min": 0.9981802702,
+        "variance": 5.639034271e-07
+      },
+      "words": "+2.0"
+    },
+    {
+      "probability": {
+        "average": 0.9871567488,
+        "min": 0.9394257665,
+        "variance": 0.0005143217277
+      },
+      "words": "ImageNet"
+    },
+    {
+      "probability": {
+        "average": 0.9998044968,
+        "min": 0.9995456338,
+        "variance": 3.541843441e-08
+      },
+      "words": "+1.9"
+    },
+    {
+      "probability": {
+        "average": 0.9970279932,
+        "min": 0.981713891,
+        "variance": 3.433037637e-05
+      },
+      "words": "OxfordPets"
+    },
+    {
+      "probability": {
+        "average": 0.9990491867,
+        "min": 0.9983281493,
+        "variance": 3.177812289e-07
+      },
+      "words": "+1.1"
+    },
+    {
+      "probability": {
+        "average": 0.9985969067,
+        "min": 0.9917460084,
+        "variance": 8.475078175e-06
+      },
+      "words": "PascalVOC2007"
+    },
+    {
+      "probability": {
+        "average": 0.9992370605,
+        "min": 0.9979938269,
+        "variance": 5.383358825e-07
+      },
+      "words": "+0.5"
+    },
+    {
+      "probability": {
+        "average": 0.9979075789,
+        "min": 0.9948982596,
+        "variance": 3.705963081e-06
+      },
+      "words": "-3.2"
+    },
+    {
+      "probability": {
+        "average": 0.9995030761,
+        "min": 0.9981507659,
+        "variance": 5.505078775e-07
+      },
+      "words": "Birdsnap"
+    },
+    {
+      "probability": {
+        "average": 0.9990662336,
+        "min": 0.9961513877,
+        "variance": 2.185581479e-06
+      },
+      "words": "-10.0"
+    },
+    {
+      "probability": {
+        "average": 0.9997292757,
+        "min": 0.9992536902,
+        "variance": 5.970036909e-08
+      },
+      "words": "MNIST"
+    },
+    {
+      "probability": {
+        "average": 0.995626092,
+        "min": 0.9843541384,
+        "variance": 3.542748891e-05
+      },
+      "words": "-11.3"
+    },
+    {
+      "probability": {
+        "average": 0.9999273419,
+        "min": 0.9997529387,
+        "variance": 6.949475218e-09
+      },
+      "words": "FGVCAircraft"
+    },
+    {
+      "probability": {
+        "average": 0.998415947,
+        "min": 0.9946295023,
+        "variance": 4.285435807e-06
+      },
+      "words": "-11.9"
+    },
+    {
+      "probability": {
+        "average": 0.9996933341,
+        "min": 0.9982024431,
+        "variance": 3.257887613e-07
+      },
+      "words": "RESISC45"
+    },
+    {
+      "probability": {
+        "average": 0.9988796115,
+        "min": 0.9955566525,
+        "variance": 2.827163144e-06
+      },
+      "words": "-12.5"
+    },
+    {
+      "probability": {
+        "average": 0.9994777441,
+        "min": 0.9972673655,
+        "variance": 9.420897413e-07
+      },
+      "words": "Flowers102"
+    },
+    {
+      "probability": {
+        "average": 0.9987524748,
+        "min": 0.9949035645,
+        "variance": 3.803490017e-06
+      },
+      "words": "-16.6"
+    },
+    {
+      "probability": {
+        "average": 0.9999470711,
+        "min": 0.9999281168,
+        "variance": 4.951725141e-10
+      },
+      "words": "DTD"
+    },
+    {
+      "probability": {
+        "average": 0.9970715642,
+        "min": 0.9882220626,
+        "variance": 2.058806058e-05
+      },
+      "words": "-18.2"
+    },
+    {
+      "probability": {
+        "average": 0.9995571375,
+        "min": 0.997531116,
+        "variance": 6.174868759e-07
+      },
+      "words": "CLEVRCounts"
+    },
+    {
+      "probability": {
+        "average": 0.9980107546,
+        "min": 0.9926025271,
+        "variance": 8.020541827e-06
+      },
+      "words": "-18.4"
+    },
+    {
+      "probability": {
+        "average": 0.9993702769,
+        "min": 0.9975029826,
+        "variance": 8.75724993e-07
+      },
+      "words": "GTSRB"
+    },
+    {
+      "probability": {
+        "average": 0.9987530708,
+        "min": 0.9949971437,
+        "variance": 3.611697366e-06
+      },
+      "words": "-19.5"
+    },
+    {
+      "probability": {
+        "average": 0.999881804,
+        "min": 0.9992208481,
+        "variance": 5.289584948e-08
+      },
+      "words": "PatchCamelyon"
+    },
+    {
+      "probability": {
+        "average": 0.9977758527,
+        "min": 0.9944289923,
+        "variance": 6.976108125e-06
+      },
+      "words": "-34.0"
+    },
+    {
+      "probability": {
+        "average": 0.9980489016,
+        "min": 0.9871013165,
+        "variance": 1.300969325e-05
+      },
+      "words": "KITTI Distance"
+    },
+    {
+      "probability": {
+        "average": 0.9980652928,
+        "min": 0.9912822247,
+        "variance": 1.156300004e-05
+      },
+      "words": "-37.1"
+    },
+    {
+      "probability": {
+        "average": 0.9995871186,
+        "min": 0.9991179109,
+        "variance": 1.062326902e-07
+      },
+      "words": "EuroSAT"
+    },
+    {
+      "probability": {
+        "average": 0.9999424219,
+        "min": 0.9997205138,
+        "variance": 6.117749862e-09
+      },
+      "words": "-40-30-20-1001020"
+    },
+    {
+      "probability": {
+        "average": 0.9999681115,
+        "min": 0.9999634027,
+        "variance": 2.217248607e-11
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9999874234,
+        "min": 0.9999759197,
+        "variance": 1.323350318e-10
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9558391571,
+        "min": 0.6058781147,
+        "variance": 0.01530958526
+      },
+      "words": "ΔScore(%)"
+    }
+  ],
+  "words_result_num": 58,
+  "direction": 0,
+  "log_id": 2079049369881567559
+}

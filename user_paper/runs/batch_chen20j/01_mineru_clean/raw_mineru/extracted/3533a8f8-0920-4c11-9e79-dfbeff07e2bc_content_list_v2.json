@@ -1,0 +1,4452 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                114,
+                109,
+                856,
+                132
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Ting Chen  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{1}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  Simon Kornblith  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{1}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  Mohammad Norouzi  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{1}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  Geoffrey Hinton  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{1}"
+                    }
+                ]
+            },
+            "bbox": [
+                223,
+                176,
+                746,
+                194
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Abstract"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                241,
+                219,
+                321,
+                236
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "This paper presents SimCLR: a simple framework for contrastive learning of visual representations. We simplify recently proposed contrastive self-supervised learning algorithms without requiring specialized architectures or a memory bank. In order to understand what enables the contrastive prediction tasks to learn useful representations, we systematically study the major components of our framework. We show that (1) composition of data augmentations plays a critical role in defining effective predictive tasks, (2) introducing a learnable nonlinear transformation between the representation and the contrastive loss substantially improves the quality of the learned representations, and (3) contrastive learning benefits from larger batch sizes and more training steps compared to supervised learning. By combining these findings, we are able to considerably outperform previous methods for self-supervised and semi-supervised learning on ImageNet. A linear classifier trained on self-supervised representations learned by SimCLR achieves 76.5% top-1 accuracy, which is a 7% relative improvement over previous state-of-the-art, matching the performance of a supervised ResNet-50. When fine-tuned on only 1% of the labels, we achieve 85.8% top-5 accuracy, outperforming AlexNet with 100× fewer labels.  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{1}"
+                    }
+                ]
+            },
+            "bbox": [
+                117,
+                246,
+                444,
+                656
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1. Introduction"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                86,
+                688,
+                217,
+                705
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Learning effective visual representations without human supervision is a long-standing problem. Most mainstream approaches fall into one of two classes: generative or discriminative. Generative approaches learn to generate or otherwise model pixels in the input space (Hinton et al., 2006; Kingma & Welling, 2013; Goodfellow et al., 2014)."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                714,
+                477,
+                806
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/a50cd2d3c610a65e44265bf680bdf5ae9f4e1a49309622f2d7d33d72cc13677e.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 1. ImageNet Top-1 accuracy of linear classifiers trained on representations learned with different self-supervised methods (pretrained on ImageNet). Gray cross indicates supervised ResNet-50. Our method, SimCLR, is shown in bold."
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                501,
+                223,
+                882,
+                434
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "However, pixel-level generation is computationally expensive and may not be necessary for representation learning. Discriminative approaches learn representations using objective functions similar to those used for supervised learning, but train networks to perform pretext tasks where both the inputs and labels are derived from an unlabeled dataset. Many such approaches have relied on heuristics to design pretext tasks (Doersch et al., 2015; Zhang et al., 2016; Noroozi & Favaro, 2016; Gidaris et al., 2018), which could limit the generality of the learned representations. Discriminative approaches based on contrastive learning in the latent space have recently shown great promise, achieving state-of-the-art results (Hadsell et al., 2006; Dosovitskiy et al., 2014; Oord et al., 2018; Bachman et al., 2019)."
+                    }
+                ]
+            },
+            "bbox": [
+                496,
+                518,
+                890,
+                732
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In this work, we introduce a simple framework for contrastive learning of visual representations, which we call SimCLR. Not only does SimCLR outperform previous work (Figure 1), but it is also simpler, requiring neither specialized architectures (Bachman et al., 2019; Hénaff et al., 2019) nor a memory bank (Wu et al., 2018; Tian et al., 2019; He et al., 2019; Misra & van der Maaten, 2019)."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                738,
+                890,
+                845
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In order to understand what enables good contrastive representation learning, we systematically study the major components of our framework and show that:"
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                851,
+                890,
+                898
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "^{1}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " Google Research, Brain Team. Correspondence to: Ting Chen <iamtingchen@google.com>."
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                814,
+                475,
+                843
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "text",
+                        "content": "Proceedings of the 37  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{th}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " International Conference on Machine Learning, Vienna, Austria, PMLR 119, 2020. Copyright 2020 by the author(s)."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                852,
+                475,
+                891
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "^{1}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " Code available at https://github.com/google-research/simclr."
+                    }
+                ]
+            },
+            "bbox": [
+                104,
+                890,
+                472,
+                906
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "- Composition of multiple data augmentation operations is crucial in defining the contrastive prediction tasks that yield effective representations. In addition, unsupervised contrastive learning benefits from stronger data augmentation than supervised learning."
+                    }
+                ]
+            },
+            "bbox": [
+                91,
+                85,
+                475,
+                161
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "- Introducing a learnable nonlinear transformation between the representation and the contrastive loss substantially improves the quality of the learned representations."
+                    }
+                ]
+            },
+            "bbox": [
+                93,
+                165,
+                477,
+                210
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "- Representation learning with contrastive cross entropy loss benefits from normalized embeddings and an appropriately adjusted temperature parameter."
+                    }
+                ]
+            },
+            "bbox": [
+                93,
+                215,
+                475,
+                262
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "- Contrastive learning benefits from larger batch sizes and longer training compared to its supervised counterpart. Like supervised learning, contrastive learning benefits from deeper and wider networks."
+                    }
+                ]
+            },
+            "bbox": [
+                93,
+                266,
+                475,
+                327
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We combine these findings to achieve a new state-of-the-art in self-supervised and semi-supervised learning on ImageNet ILSVRC-2012 (Russakovsky et al., 2015). Under the linear evaluation protocol, SimCLR achieves 76.5% top-1 accuracy, which is a 7% relative improvement over previous state-of-the-art (Hénaff et al., 2019). When fine-tuned with only 1% of the ImageNet labels, SimCLR achieves 85.8% top-5 accuracy, a relative improvement of 10% (Hénaff et al., 2019). When fine-tuned on other natural image classification datasets, SimCLR performs on par with or better than a strong supervised baseline (Kornblith et al., 2019) on 10 out of 12 datasets."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                334,
+                477,
+                516
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2. Method"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                86,
+                534,
+                176,
+                551
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.1. The Contrastive Learning Framework"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                84,
+                560,
+                387,
+                575
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Inspired by recent contrastive learning algorithms (see Section 7 for an overview), SimCLR learns representations by maximizing agreement between differently augmented views of the same data example via a contrastive loss in the latent space. As illustrated in Figure 2, this framework comprises the following four major components."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                584,
+                475,
+                676
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "- A stochastic data augmentation module that transforms any given data example randomly resulting in two correlated views of the same example, denoted  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde{\\boldsymbol{x}}_i"
+                    },
+                    {
+                        "type": "text",
+                        "content": " and  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde{\\boldsymbol{x}}_j"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", which we consider as a positive pair. In this work, we sequentially apply three simple augmentations: random cropping followed by resize back to the original size, random color distortions, and random Gaussian blur. As shown in Section 3, the combination of random crop and color distortion is crucial to achieve a good performance."
+                    }
+                ]
+            },
+            "bbox": [
+                91,
+                681,
+                477,
+                819
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "- A neural network base encoder  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "f(\\cdot)"
+                    },
+                    {
+                        "type": "text",
+                        "content": " that extracts representation vectors from augmented data examples. Our framework allows various choices of the network architecture without any constraints. We opt for simplicity and adopt the commonly used ResNet (He et al., 2016)"
+                    }
+                ]
+            },
+            "bbox": [
+                93,
+                823,
+                477,
+                900
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/3a128a9d96c8e51c11a901b33304cbb92ad9d1d023445259c883924f7053447a.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 2. A simple framework for contrastive learning of visual representations. Two separate data augmentation operators are sampled from the same family of augmentations (  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t \\sim T"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  and   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t' \\sim T"
+                    },
+                    {
+                        "type": "text",
+                        "content": " ) and applied to each data example to obtain two correlated views. A base encoder network   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "f(\\cdot)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  and a projection head   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(\\cdot)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  are trained to maximize agreement using a contrastive loss. After training is completed, we throw away the projection head   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(\\cdot)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  and use encoder   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "f(\\cdot)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  and representation h for downstream tasks."
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                544,
+                85,
+                839,
+                260
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "to obtain   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\boldsymbol{h}_{i}=f(\\tilde{\\boldsymbol{x}}_{i})=\\operatorname{ResNet}(\\tilde{\\boldsymbol{x}}_{i})"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  where   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "h_{i}\\in R^{d}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  is the output after the average pooling layer."
+                    }
+                ]
+            },
+            "bbox": [
+                517,
+                398,
+                885,
+                430
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "- A small neural network projection head  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(\\cdot)"
+                    },
+                    {
+                        "type": "text",
+                        "content": " that maps representations to the space where contrastive loss is applied. We use a MLP with one hidden layer to obtain  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z_{i} = g(\\boldsymbol{h}_{i}) = W^{(2)}\\sigma (W^{(1)}\\boldsymbol{h}_{i})"
+                    },
+                    {
+                        "type": "text",
+                        "content": " where  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sigma"
+                    },
+                    {
+                        "type": "text",
+                        "content": " is a ReLU nonlinearity. As shown in section 4, we find it beneficial to define the contrastive loss on  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z_{i}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "'s rather than  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "h_i"
+                    },
+                    {
+                        "type": "text",
+                        "content": "'s."
+                    }
+                ]
+            },
+            "bbox": [
+                504,
+                435,
+                887,
+                526
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "- A contrastive loss function defined for a contrastive prediction task. Given a set  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\{\\tilde{\\boldsymbol{x}}_k\\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " including a positive pair of examples  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde{\\boldsymbol{x}}_i"
+                    },
+                    {
+                        "type": "text",
+                        "content": " and  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde{\\boldsymbol{x}}_j"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the contrastive prediction task aims to identify  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde{\\boldsymbol{x}}_j"
+                    },
+                    {
+                        "type": "text",
+                        "content": " in  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\{\\tilde{\\boldsymbol{x}}_k\\}_{k\\neq i}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " for a given  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde{\\boldsymbol{x}}_i"
+                    },
+                    {
+                        "type": "text",
+                        "content": "."
+                    }
+                ]
+            },
+            "bbox": [
+                504,
+                531,
+                888,
+                593
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We randomly sample a minibatch of N examples and define the contrastive prediction task on pairs of augmented examples derived from the minibatch, resulting in 2N data points. We do not sample negative examples explicitly. Instead, given a positive pair, similar to (Chen et al., 2017), we treat the other   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2(N-1)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  augmented examples within a minibatch as negative examples. Let   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\text{sim}(\\boldsymbol{u},\\boldsymbol{v}) = \\boldsymbol{u}^{\\top}\\boldsymbol{v}/\\|\\boldsymbol{u}\\|\\|\\boldsymbol{v}\\|"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  denote the dot product between   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell_{2}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  normalized u and v (i.e. cosine similarity). Then the loss function for a positive pair of examples   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "(i,j)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  is defined as"
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                598,
+                888,
+                751
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\ell_ {i, j} = - \\log \\frac {\\exp (\\mathrm{sim} (\\pmb {z} _ {i} , \\pmb {z} _ {j}) / \\tau)}{\\sum_ {k = 1} ^ {2 N} \\mathbb {1} _ {[ k \\neq i ]} \\exp (\\mathrm{sim} (\\pmb {z} _ {i} , \\pmb {z} _ {k}) / \\tau)},\\tag{1}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/441b574f5d50376865a0ae49ee69a35f08446353f7ae54df1d45d43ab6580975.jpg"
+                }
+            },
+            "bbox": [
+                521,
+                757,
+                841,
+                794
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "1_{[k\\neq i]}\\in\\{0,1\\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  is an indicator function evaluating to 1 iff   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "k\\neq i"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  and   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  denotes a temperature parameter. The final loss is computed across all positive pairs, both   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "(i,j)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  and   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "(j,i)"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", in a mini-batch. This loss has been used in previous work (Sohn, 2016; Wu et al., 2018; Oord et al., 2018); for convenience, we term it NT-Xent (the normalized temperature-scaled cross entropy loss)."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                799,
+                888,
+                907
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    }
+                ]
+            },
+            "bbox": [
+                254,
+                56,
+                718,
+                71
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/c88d6073c0a8d527b976267432a383a6769c387950eb3c62529d84799f852b20.jpg"
+                },
+                "content": "",
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                524,
+                80,
+                854,
+                205
+            ]
+        },
+        {
+            "type": "algorithm",
+            "content": {
+                "algorithm_caption": [],
+                "algorithm_content": [
+                    {
+                        "type": "text",
+                        "content": "Algorithm 1 SimCLR's main learning algorithm.\n\ninput: batch size N, constant τ, structure of f, g, T.\nfor sampled minibatch   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\{x_{k}\\}_{k=1}^{N}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  do\n    for all   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "k \\in \\{1, \\ldots, N\\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  do\n    draw two augmentation functions   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t \\sim T"
+                    },
+                    {
+                        "type": "text",
+                        "content": " ,   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t' \\sim T"
+                    },
+                    {
+                        "type": "text",
+                        "content": " \n    # the first augmentation\n     "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde{x}_{2k-1} = t(x_{k})"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "h_{2k-1} = f(\\tilde{x}_{2k-1})"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  # representation\n     "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z_{2k-1} = g(h_{2k-1})"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  # projection\n    # the second augmentation\n     "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde{x}_{2k} = t'(x_{k})"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "h_{2k} = f(\\tilde{x}_{2k})"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  # representation\n     "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z_{2k} = g(h_{2k})"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  # projection\nend for\nfor all   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "i \\in \\{1, \\ldots, 2N\\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  and   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "j \\in \\{1, \\ldots, 2N\\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  do\n     "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "s_{i,j} = z_{i}^{\\top} z_{j}/(\\|z_{i}\\| \\|z_{j}\\|)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  # pairwise similarity\nend for\ndefine   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell(i,j)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  as   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell(i,j) = -\\log \\frac{\\exp(s_{i,j}/\\tau)}{\\sum_{k=1}^{2N} 1_{[k \\neq i]} \\exp(s_{i,k}/\\tau)}"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "L = \\frac{1}{2N} \\sum_{k=1}^{N} [\\ell(2k-1, 2k) + \\ell(2k, 2k-1)]"
+                    },
+                    {
+                        "type": "text",
+                        "content": " \n    update networks f and g to minimize L\nend for\nreturn encoder network   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "f(\\cdot)"
+                    },
+                    {
+                        "type": "text",
+                        "content": " , and throw away   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(\\cdot)"
+                    },
+                    {
+                        "type": "text",
+                        "content": " \n\nAlgorithm 1 summarizes the proposed method."
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                82,
+                475,
+                465
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.2. Training with Large Batch Size"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                84,
+                479,
+                339,
+                494
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "To keep it simple, we do not train the model with a memory bank (Wu et al., 2018; He et al., 2019). Instead, we vary the training batch size N from 256 to 8192. A batch size of 8192 gives us 16382 negative examples per positive pair from both augmentation views. Training with large batch size may be unstable when using standard SGD/Momentum with linear learning rate scaling (Goyal et al., 2017). To stabilize the training, we use the LARS optimizer (You et al., 2017) for all batch sizes. We train our model with Cloud TPUs, using 32 to 128 cores depending on the batch size.  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{2}"
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                503,
+                477,
+                656
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Global BN. Standard ResNets use batch normalization (Ioffe & Szegedy, 2015). In distributed training with data parallelism, the BN mean and variance are typically aggregated locally per device. In our contrastive learning, as positive pairs are computed in the same device, the model can exploit the local information leakage to improve prediction accuracy without improving representations. We address this issue by aggregating BN mean and variance over all devices during the training. Other approaches include shuffling data examples across devices (He et al., 2019), or replacing BN with layer norm (Hénaff et al., 2019)."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                661,
+                477,
+                830
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 3. Solid rectangles are images, dashed rectangles are random crops. By randomly cropping images, we sample contrastive prediction tasks that include global to local view   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "(B \\rightarrow A)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  or adjacent view   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "(D \\rightarrow C)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  prediction."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                215,
+                888,
+                273
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.3. Evaluation Protocol"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                496,
+                285,
+                671,
+                300
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Here we lay out the protocol for our empirical studies, which aim to understand different design choices in our framework."
+                    }
+                ]
+            },
+            "bbox": [
+                496,
+                308,
+                888,
+                340
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Dataset and Metrics. Most of our study for unsupervised pretraining (learning encoder network f without labels) is done using the ImageNet ILSVRC-2012 dataset (Russakovsky et al., 2015). Some additional pretraining experiments on CIFAR-10 (Krizhevsky & Hinton, 2009) can be found in Appendix B.9. We also test the pretrained results on a wide range of datasets for transfer learning. To evaluate the learned representations, we follow the widely used linear evaluation protocol (Zhang et al., 2016; Oord et al., 2018; Bachman et al., 2019; Kolesnikov et al., 2019), where a linear classifier is trained on top of the frozen base network, and test accuracy is used as a proxy for representation quality. Beyond linear evaluation, we also compare against state-of-the-art on semi-supervised and transfer learning."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                345,
+                890,
+                559
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Default setting. Unless otherwise specified, for data augmentation we use random crop and resize (with random flip), color distortions, and Gaussian blur (for details, see Appendix A). We use ResNet-50 as the base encoder network, and a 2-layer MLP projection head to project the representation to a 128-dimensional latent space. As the loss, we use NT-Xent, optimized using LARS with learning rate of   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "4.8 (= 0.3 \\times \\text{BatchSize}/256)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  and weight decay of   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "10^{-6}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " . We train at batch size 4096 for 100 epochs.  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{3}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  Furthermore, we use linear warmup for the first 10 epochs, and decay the learning rate with the cosine decay schedule without restarts (Loshchilov & Hutter, 2016)."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                565,
+                890,
+                748
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3. Data Augmentation for Contrastive Representation Learning"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                496,
+                765,
+                818,
+                801
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Data augmentation defines predictive tasks. While data augmentation has been widely used in both supervised and unsupervised representation learning (Krizhevsky et al.,"
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                809,
+                888,
+                857
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    }
+                ]
+            },
+            "bbox": [
+                253,
+                56,
+                718,
+                71
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "^{2}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " With 128 TPU v3 cores, it takes   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sim"
+                    },
+                    {
+                        "type": "text",
+                        "content": " 1.5 hours to train our ResNet-50 with a batch size of 4096 for 100 epochs."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                835,
+                475,
+                864
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "^{3}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " Although max performance is not reached in 100 epochs, reasonable results are achieved, allowing fair and efficient ablations."
+                    }
+                ]
+            },
+            "bbox": [
+                496,
+                864,
+                888,
+                892
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/a4dd603c480d25589d84a148e9faed73b483a73b4f7f734c832079cf772097f4.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "(a) Original"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                114,
+                83,
+                253,
+                189
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/2556ec8c12e6f1aa31b652394614a2ea20371044be2ba2455cf22de82fab4522.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "(b) Crop and resize"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                266,
+                82,
+                403,
+                190
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/170a90ed916a2a6b80a0d800f5bdd8bbc00ecd759a1cd60bf655108fe82a62dd.jpg"
+                },
+                "content": "",
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                415,
+                82,
+                557,
+                189
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/5ca18bd33eccb213281bf80b6f38dff1227638af5a8adccbff26bda08ed5a042.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "(c) Crop, resize (and flip) (d) Color distort. (drop) (e) Color distort. (jitter)"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                566,
+                83,
+                705,
+                189
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/69ecc4ab26204d0d1bc878cc19da3897caf80e627a93382221a193d2279bffa6.jpg"
+                },
+                "content": "",
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                718,
+                82,
+                857,
+                189
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/2795d90ed258f240f3c3894201ca917d45c03732d3cea73c01a088f2ad5f1c7c.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "(f) Rotate   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\{90^{\\circ}, 180^{\\circ}, 270^{\\circ}\\}"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                114,
+                209,
+                253,
+                315
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/ba0168e3e3186381e90004192d55d3d6011c509bf23e3bb77b07f489edfa47a2.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "(g) Cutout"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                266,
+                209,
+                405,
+                315
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/fe6394c79621958b5b3ad3f1c50ec2c571059501412935d992644afb7ee30613.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "(h) Gaussian noise"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                416,
+                209,
+                555,
+                315
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/8f6db95d2ad035c240d5f9b505d4a7c0ea7a0759d80b777f4581ef567964f749.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "(i) Gaussian blur"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                568,
+                210,
+                705,
+                315
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/f6fd72ac581b1fcdd4fcaca86228fe7b2d68ad926521e39708018575c2615be5.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "(j) Sobel filtering"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Figure 4. Illustrations of the studied data augmentation operators. Each augmentation can transform data stochastically with some internal parameters (e.g. rotation degree, noise level). Note that we only test these operators in ablation, the augmentation policy used to train our models only includes random crop (with flip and resize), color distortion, and Gaussian blur. (Original image cc-by: Von.grzanka)"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                718,
+                210,
+                857,
+                315
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2012; Hénaff et al., 2019; Bachman et al., 2019), it has not been considered as a systematic way to define the contrastive prediction task. Many existing approaches define contrastive prediction tasks by changing the architecture. For example, Hjelm et al. (2018); Bachman et al. (2019) achieve global-to-local view prediction via constraining the receptive field in the network architecture, whereas Oord et al. (2018); Hénaff et al. (2019) achieve neighboring view prediction via a fixed image splitting procedure and a context aggregation network. We show that this complexity can be avoided by performing simple random cropping (with resizing) of target images, which creates a family of predictive tasks subsuming the above mentioned two, as shown in Figure 3. This simple design choice conveniently decouples the predictive task from other components such as the neural network architecture. Broader contrastive prediction tasks can be defined by extending the family of augmentations and composing them stochastically."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                407,
+                477,
+                681
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.1. Composition of data augmentation operations is crucial for learning good representations"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                84,
+                696,
+                454,
+                728
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "To systematically study the impact of data augmentation, we consider several common augmentations here. One type of augmentation involves spatial/geometric transformation of data, such as cropping and resizing (with horizontal flipping), rotation (Gidaris et al., 2018) and cutout (De-Vries & Taylor, 2017). The other type of augmentation involves appearance transformation, such as color distortion (including color dropping, brightness, contrast, saturation, hue) (Howard, 2013; Szegedy et al., 2015), Gaussian blur, and Sobel filtering. Figure 4 visualizes the augmentations that we study in this work."
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                734,
+                477,
+                902
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/e8134dcc5a0da21b71ac882fe7f7753da2ec2ce77e413c06a800a302e9e4e1bb.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 5. Linear evaluation (ImageNet top-1 accuracy) under individual or composition of data augmentations, applied only to one branch. For all columns but the last, diagonal entries correspond to single transformation, and off-diagonals correspond to composition of two transformations (applied sequentially). The last column reflects the average over the row."
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                498,
+                407,
+                901,
+                587
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "To understand the effects of individual data augmentations and the importance of augmentation composition, we investigate the performance of our framework when applying augmentations individually or in pairs. Since ImageNet images are of different sizes, we always apply crop and resize images (Krizhevsky et al., 2012; Szegedy et al., 2015), which makes it difficult to study other augmentations in the absence of cropping. To eliminate this confound, we consider an asymmetric data transformation setting for this ablation. Specifically, we always first randomly crop images and resize them to the same resolution, and we then apply the targeted transformation(s) only to one branch of the framework in Figure 2, while leaving the other branch as the identity (i.e.  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t(\\boldsymbol{x}_i) = \\boldsymbol{x}_i"
+                    },
+                    {
+                        "type": "text",
+                        "content": "). Note that this asymmetric data augmentation hurts the performance. Nonetheless, this setup should not substantively change the impact of individual data augmentations or their compositions."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                694,
+                890,
+                906
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    }
+                ]
+            },
+            "bbox": [
+                254,
+                56,
+                718,
+                70
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/553c0558228480b53828eaefa3878c2227a60dc8ab56c884506215b0f97965ee.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "(a) Without color distortion."
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                96,
+                80,
+                272,
+                213
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/ae0b9be5dd732c4d2cdb0c3ef309cbef5be975cd52cd0663f1ac6e65f0a4b92c.jpg"
+                },
+                "content": "",
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "(b) With color distortion."
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                287,
+                80,
+                462,
+                214
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/fd095480e57e246d2908ec39d0c24802ae93db89b53b084c125b57d8895df2ba.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 6. Histograms of pixel intensities (over all channels) for different crops of two different images (i.e. two rows). The image for the first row is from Figure 4. All axes have the same range."
+                    },
+                    {
+                        "type": "text",
+                        "content": "Table 1. Top-1 accuracy of unsupervised ResNet-50 using linear evaluation and supervised ResNet-  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "50^{5}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " , under varied color distortion strength (see Appendix A) and other data transformations. Strength 1 (+Blur) is our default data augmentation policy."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td rowspan=\"2\">Methods</td><td colspan=\"5\">Color distortion strength</td><td rowspan=\"2\">AutoAug</td></tr><tr><td>1/8</td><td>1/4</td><td>1/2</td><td>1</td><td>1 (+Blur)</td></tr><tr><td>SimCLR</td><td>59.6</td><td>61.0</td><td>62.6</td><td>63.2</td><td>64.5</td><td>61.1</td></tr><tr><td>Supervised</td><td>77.0</td><td>76.7</td><td>76.5</td><td>75.7</td><td>75.4</td><td>77.1</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                88,
+                306,
+                482,
+                369
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                84,
+                450,
+                475,
+                498
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 5 shows linear evaluation results under individual and composition of transformations. We observe that no single transformation suffices to learn good representations, even though the model can almost perfectly identify the positive pairs in the contrastive task. When composing augmentations, the contrastive prediction task becomes harder, but the quality of representation improves dramatically. Appendix B.2 provides a further study on composing broader set of augmentations."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                503,
+                477,
+                641
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "One composition of augmentations stands out: random cropping and random color distortion. We conjecture that one serious issue when using only random cropping as data augmentation is that most patches from an image share a similar color distribution. Figure 6 shows that color histograms alone suffice to distinguish images. Neural nets may exploit this shortcut to solve the predictive task. Therefore, it is critical to compose cropping with color distortion in order to learn generalizable features."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                647,
+                477,
+                785
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.2. Contrastive learning needs stronger data augmentation than supervised learning"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                84,
+                800,
+                403,
+                830
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "To further demonstrate the importance of the color augmentation, we adjust the strength of color augmentation as shown in Table 1. Stronger color augmentation substantially improves the linear evaluation of the learned unsupervised models. In this context, AutoAugment (Cubuk et al., 2019), a sophisticated augmentation policy found using supervised learning, does not work better than simple cropping + (stronger) color distortion. When training supervised models with the same set of augmentations, we observe that stronger color augmentation does not improve or even hurts their performance. Thus, our experiments show that unsupervised contrastive learning benefits from stronger (color) data augmentation than supervised learning. Although previous work has reported that data augmentation is useful for self-supervised learning (Doersch et al., 2015; Bachman et al., 2019; Hénaff et al., 2019; Asano et al., 2019), we show that data augmentation that does not yield accuracy benefits for supervised learning can still help considerably with contrastive learning."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                839,
+                477,
+                869
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/bf7aed699d0e45280b3db7fec20fdf149579c051e47c31ff5d3897238a32c648.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 7. Linear evaluation of models with varied depth and width. Models in blue dots are ours trained for 100 epochs, models in red stars are ours trained for 1000 epochs, and models in green crosses are supervised ResNets trained for 90 epochs  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{7}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " (He et al., 2016)."
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                506,
+                82,
+                877,
+                342
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                495,
+                417,
+                890,
+                676
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4. Architectures for Encoder and Head"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                496,
+                694,
+                826,
+                710
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1. Unsupervised contrastive learning benefits (more) from bigger models"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                496,
+                719,
+                877,
+                751
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 7 shows, perhaps unsurprisingly, that increasing depth and width both improve performance. While similar findings hold for supervised learning (He et al., 2016), we find the gap between supervised models and linear classifiers trained on unsupervised models shrinks as the model size increases, suggesting that unsupervised learning benefits more from bigger models than its supervised counterpart."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                758,
+                888,
+                866
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    }
+                ]
+            },
+            "bbox": [
+                254,
+                56,
+                718,
+                71
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "^{5}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " Supervised models are trained for 90 epochs; longer training improves performance of stronger augmentation by  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sim 0.5\\%"
+                    },
+                    {
+                        "type": "text",
+                        "content": "."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                878,
+                475,
+                906
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "^{7}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " Training longer does not improve supervised ResNets (see Appendix B.3)."
+                    }
+                ]
+            },
+            "bbox": [
+                496,
+                873,
+                887,
+                901
+            ]
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/749c819a5c9f37a6dde3b54c2610d358ff17b30798e3024950f95b5d1e1f207a.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Table 2. Negative loss functions and their gradients. All input vectors, i.e.  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\boldsymbol{u}, \\boldsymbol{v}^{+}, \\boldsymbol{v}^{-}"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", are  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell_2"
+                    },
+                    {
+                        "type": "text",
+                        "content": " normalized. NT-Xent is an abbreviation for \"Normalized Temperature-scaled Cross Entropy\". Different loss functions impose different weightings of positive and negative examples."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td>Name</td><td>Negative loss function</td><td>Gradient w.r.t. u</td></tr><tr><td>NT-Xent</td><td> $\\boldsymbol{u}^{T}\\boldsymbol{v}^{+}/\\tau - \\log \\sum_{\\boldsymbol{v} \\in \\{\\boldsymbol{v}^{+}, \\boldsymbol{v}^{-}\\}} \\exp(\\boldsymbol{u}^{T}\\boldsymbol{v}/\\tau)$ </td><td> $(1 - \\frac{\\exp(\\boldsymbol{u}^{T}\\boldsymbol{v}^{+}/\\tau)}{Z(\\boldsymbol{u})})/\\tau \\boldsymbol{v}^{+} - \\sum_{\\boldsymbol{v}^{-}} \\frac{\\exp(\\boldsymbol{u}^{T}\\boldsymbol{v}^{-}/\\tau)}{Z(\\boldsymbol{u})}/\\tau \\boldsymbol{v}^{-}$ </td></tr><tr><td>NT-Logistic</td><td> $\\log \\sigma(\\boldsymbol{u}^{T}\\boldsymbol{v}^{+}/\\tau) + \\log \\sigma(-\\boldsymbol{u}^{T}\\boldsymbol{v}^{-}/\\tau)$ </td><td> $(\\sigma(-\\boldsymbol{u}^{T}\\boldsymbol{v}^{+}/\\tau))/\\tau \\boldsymbol{v}^{+} - \\sigma(\\boldsymbol{u}^{T}\\boldsymbol{v}^{-}/\\tau)/\\tau \\boldsymbol{v}^{-}$ </td></tr><tr><td>Margin Triplet</td><td> $-\\max(\\boldsymbol{u}^{T}\\boldsymbol{v}^{-}-\\boldsymbol{u}^{T}\\boldsymbol{v}^{+}+m,0)$ </td><td> $\\boldsymbol{v}^{+}-\\boldsymbol{v}^{-} \\text{ if } \\boldsymbol{u}^{T}\\boldsymbol{v}^{+}-\\boldsymbol{u}^{T}\\boldsymbol{v}^{-}< m \\text{ else } \\boldsymbol{0}$ </td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                120,
+                75,
+                852,
+                176
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/40b8b073a97abc8dad8a901a76bf75dae178439455b1bc056cc956a92daa54c4.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 8. Linear evaluation of representations with different projection heads   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(\\cdot)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  and various dimensions of   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = g(h)"
+                    },
+                    {
+                        "type": "text",
+                        "content": " . The representation h (before projection) is 2048-dimensional here."
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                138,
+                231,
+                418,
+                362
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.2. A nonlinear projection head improves the representation quality of the layer before it"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                84,
+                420,
+                418,
+                450
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We then study the importance of including a projection head, i.e.   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(\\boldsymbol{h})"
+                    },
+                    {
+                        "type": "text",
+                        "content": " . Figure 8 shows linear evaluation results using three different architecture for the head: (1) identity mapping; (2) linear projection, as used by several previous approaches (Wu et al., 2018); and (3) the default nonlinear projection with one additional hidden layer (and ReLU activation), similar to Bachman et al. (2019). We observe that a nonlinear projection is better than a linear projection (+3%), and much better than no projection (>10%). When a projection head is used, similar results are observed regardless of output dimension. Furthermore, even when nonlinear projection is used, the layer before the projection head, h, is still much better (>10%) than the layer after,   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = g(\\boldsymbol{h})"
+                    },
+                    {
+                        "type": "text",
+                        "content": " , which shows that the hidden layer before the projection head is a better representation than the layer after."
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                458,
+                477,
+                686
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We conjecture that the importance of using the representation before the nonlinear projection is due to loss of information induced by the contrastive loss. In particular,   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = g(\\boldsymbol{h})"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  is trained to be invariant to data transformation. Thus, g can remove information that may be useful for the downstream task, such as the color or orientation of objects. By leveraging the nonlinear transformation   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(\\cdot)"
+                    },
+                    {
+                        "type": "text",
+                        "content": " , more information can be formed and maintained in h. To verify this hypothesis, we conduct experiments that use either h or   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(\\boldsymbol{h})"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  to learn to predict the transformation applied during the pretraining. Here we set   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(h) = W^{(2)}\\sigma(W^{(1)}h)"
+                    },
+                    {
+                        "type": "text",
+                        "content": " , with the same input and output dimensionality (i.e. 2048). Table 3 shows h contains much more information about the transformation applied, while   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(\\boldsymbol{h})"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  loses information. Further analysis can"
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                693,
+                477,
+                905
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/10441deb72dfabf2bc7a7e65d3d0542882f6d147c2b4d0ba34124fa596424941.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 3. Accuracy of training additional MLPs on different representations to predict the transformation applied. Other than crop and color augmentation, we additionally and independently add rotation (one of   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\{0^{\\circ}, 90^{\\circ}, 180^{\\circ}, 270^{\\circ}\\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " ), Gaussian noise, and Sobel filtering transformation during the pretraining for the last three rows. Both h and   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g(h)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  are of the same dimensionality, i.e. 2048."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td rowspan=\"2\">What to predict?</td><td rowspan=\"2\">Random guess</td><td colspan=\"2\">Representation</td></tr><tr><td>h</td><td>g(h)</td></tr><tr><td>Color vs grayscale</td><td>80</td><td>99.3</td><td>97.4</td></tr><tr><td>Rotation</td><td>25</td><td>67.6</td><td>25.6</td></tr><tr><td>Orig. vs corrupted</td><td>50</td><td>99.5</td><td>59.6</td></tr><tr><td>Orig. vs Sobel filtered</td><td>50</td><td>96.6</td><td>56.3</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                511,
+                239,
+                874,
+                330
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "be found in Appendix B.4."
+                    }
+                ]
+            },
+            "bbox": [
+                496,
+                435,
+                676,
+                450
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5. Loss Functions and Batch Size"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                496,
+                469,
+                777,
+                486
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5.1. Normalized cross entropy loss with adjustable temperature works better than alternatives"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                496,
+                494,
+                852,
+                527
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We compare the NT-Xent loss against other commonly used contrastive loss functions, such as logistic loss (Mikolov et al., 2013), and margin loss (Schroff et al., 2015). Table 2 shows the objective function as well as the gradient to the input of the loss function. Looking at the gradient, we observe 1)  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell_2"
+                    },
+                    {
+                        "type": "text",
+                        "content": " normalization (i.e. cosine similarity) along with temperature effectively weights different examples, and an appropriate temperature can help the model learn from hard negatives; and 2) unlike cross-entropy, other objective functions do not weigh the negatives by their relative hardness. As a result, one must apply semi-hard negative mining (Schroff et al., 2015) for these loss functions: instead of computing the gradient over all loss terms, one can compute the gradient using semi-hard negative terms (i.e., those that are within the loss margin and closest in distance, but farther than positive examples)."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                534,
+                888,
+                777
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "To make the comparisons fair, we use the same   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell_{2}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  normalization for all loss functions, and we tune the hyperparameters, and report their best results.  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{8}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  Table 4 shows that, while (semi-hard) negative mining helps, the best result is still much worse than our default NT-Xent loss."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                784,
+                888,
+                859
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "^{8}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " Details can be found in Appendix B.10. For simplicity, we only consider the negatives from one augmentation view."
+                    }
+                ]
+            },
+            "bbox": [
+                496,
+                864,
+                887,
+                893
+            ]
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/1582080ce28b6a4863feb23cf07585a6bed8d6d21e0b908a162676c87f595383.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Table 4. Linear evaluation (top-1) for models trained with different loss functions. “sh” means using semi-hard negative mining."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td>Margin</td><td>NT-Logi.</td><td>Margin (sh)</td><td>NT-Logi.(sh)</td><td>NT-Xent</td></tr><tr><td>50.9</td><td>51.6</td><td>57.5</td><td>57.9</td><td>63.9</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                89,
+                83,
+                470,
+                122
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/b80c20556c09c4ce5c7bfc70044f8e5d3bc843886a683a8320156f019f24ae58.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 5. Linear evaluation for models trained with different choices of   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell_{2}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  norm and temperature   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  for NT-Xent loss. The contrastive distribution is over 4096 examples."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td> $\\ell_2$ norm?</td><td> $\\tau$ </td><td>Entropy</td><td>Contrastive acc.</td><td>Top 1</td></tr><tr><td rowspan=\"4\">Yes</td><td>0.05</td><td>1.0</td><td>90.5</td><td>59.7</td></tr><tr><td>0.1</td><td>4.5</td><td>87.8</td><td>64.4</td></tr><tr><td>0.5</td><td>8.2</td><td>68.2</td><td>60.7</td></tr><tr><td>1</td><td>8.3</td><td>59.1</td><td>58.0</td></tr><tr><td rowspan=\"2\">No</td><td>10</td><td>0.5</td><td>91.7</td><td>57.2</td></tr><tr><td>100</td><td>0.5</td><td>92.1</td><td>57.0</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                101,
+                174,
+                460,
+                282
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/abeb832c66c09d3d8820cd19f1309fab7d72408874304c492d36c1fa25426219.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 9. Linear evaluation models (ResNet-50) trained with different batch size and epochs. Each bar is a single run from scratch.  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{10}"
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                86,
+                342,
+                470,
+                541
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We next test the importance of the   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell_{2}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  normalization (i.e. cosine similarity vs dot product) and temperature   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  in our default NT-Xent loss. Table 5 shows that without normalization and proper temperature scaling, performance is significantly worse. Without   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell_{2}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  normalization, the contrastive task accuracy is higher, but the resulting representation is worse under linear evaluation."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                589,
+                478,
+                696
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5.2. Contrastive learning benefits (more) from larger batch sizes and longer training"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                84,
+                712,
+                457,
+                744
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 9 shows the impact of batch size when models are trained for different numbers of epochs. We find that, when the number of training epochs is small (e.g. 100 epochs), larger batch sizes have a significant advantage over the smaller ones. With more training steps/epochs, the gaps between different batch sizes decrease or disappear, provided the batches are randomly resampled. In contrast to supervised learning (Goyal et al., 2017), in contrastive learning, larger batch sizes provide more negative examples, facilitating convergence (i.e. taking fewer epochs and steps for a given accuracy). Training longer also provides more negative examples, improving the results. In Appendix B.1, results with even longer training steps are provided."
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                751,
+                477,
+                858
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/78e7b996b5b5cea513304c162faedca02f1368ab33a32a5d96da5910751cea49.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 6. ImageNet accuracies of linear classifiers trained on representations learned with different self-supervised methods."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td>Method</td><td>Architecture</td><td>Param (M)</td><td>Top 1</td><td>Top 5</td></tr><tr><td colspan=\"5\">Methods using ResNet-50:</td></tr><tr><td>Local Agg.</td><td>ResNet-50</td><td>24</td><td>60.2</td><td>-</td></tr><tr><td>MoCo</td><td>ResNet-50</td><td>24</td><td>60.6</td><td>-</td></tr><tr><td>PIRL</td><td>ResNet-50</td><td>24</td><td>63.6</td><td>-</td></tr><tr><td>CPC v2</td><td>ResNet-50</td><td>24</td><td>63.8</td><td>85.3</td></tr><tr><td>SimCLR (ours)</td><td>ResNet-50</td><td>24</td><td>69.3</td><td>89.0</td></tr><tr><td colspan=\"5\">Methods using other architectures:</td></tr><tr><td>Rotation</td><td>RevNet-50 (4×)</td><td>86</td><td>55.4</td><td>-</td></tr><tr><td>BigBiGAN</td><td>RevNet-50 (4×)</td><td>86</td><td>61.3</td><td>81.9</td></tr><tr><td>AMDIM</td><td>Custom-ResNet</td><td>626</td><td>68.1</td><td>-</td></tr><tr><td>CMC</td><td>ResNet-50 (2×)</td><td>188</td><td>68.4</td><td>88.2</td></tr><tr><td>MoCo</td><td>ResNet-50 (4×)</td><td>375</td><td>68.6</td><td>-</td></tr><tr><td>CPC v2</td><td>ResNet-161 (*)</td><td>305</td><td>71.5</td><td>90.1</td></tr><tr><td>SimCLR (ours)</td><td>ResNet-50 (2×)</td><td>94</td><td>74.2</td><td>92.0</td></tr><tr><td>SimCLR (ours)</td><td>ResNet-50 (4×)</td><td>375</td><td>76.5</td><td>93.2</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                501,
+                82,
+                885,
+                304
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/ca4d9e3e14c937fbae50d915d5f3c0b6a80b0202e4a21e62295285e52f1983ed.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 7. ImageNet accuracy of models trained with few labels."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td rowspan=\"3\">Method</td><td rowspan=\"3\">Architecture</td><td colspan=\"2\">Label fraction</td></tr><tr><td>1%</td><td>10%</td></tr><tr><td colspan=\"2\">Top 5</td></tr><tr><td>Supervised baseline</td><td>ResNet-50</td><td>48.4</td><td>80.4</td></tr><tr><td colspan=\"4\">Methods using other label-propagation:</td></tr><tr><td>Pseudo-label</td><td>ResNet-50</td><td>51.6</td><td>82.4</td></tr><tr><td>VAT+Entropy Min.</td><td>ResNet-50</td><td>47.0</td><td>83.4</td></tr><tr><td>UDA (w. RandAug)</td><td>ResNet-50</td><td>-</td><td>88.5</td></tr><tr><td>FixMatch (w. RandAug)</td><td>ResNet-50</td><td>-</td><td>89.1</td></tr><tr><td>S4L (Rot+VAT+En. M.)</td><td>ResNet-50 (4×)</td><td>-</td><td>91.2</td></tr><tr><td colspan=\"4\">Methods using representation learning only:</td></tr><tr><td>InstDisc</td><td>ResNet-50</td><td>39.2</td><td>77.4</td></tr><tr><td>BigBiGAN</td><td>RevNet-50 (4×)</td><td>55.2</td><td>78.8</td></tr><tr><td>PIRL</td><td>ResNet-50</td><td>57.2</td><td>83.8</td></tr><tr><td>CPC v2</td><td>ResNet-161(*)</td><td>77.9</td><td>91.2</td></tr><tr><td>SimCLR (ours)</td><td>ResNet-50</td><td>75.5</td><td>87.8</td></tr><tr><td>SimCLR (ours)</td><td>ResNet-50 (2×)</td><td>83.0</td><td>91.2</td></tr><tr><td>SimCLR (ours)</td><td>ResNet-50 (4×)</td><td>85.8</td><td>92.6</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                501,
+                352,
+                880,
+                604
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                495,
+                641,
+                890,
+                734
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "6. Comparison with State-of-the-art"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                496,
+                751,
+                803,
+                768
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In this subsection, similar to Kolesnikov et al. (2019); He et al. (2019), we use ResNet-50 in 3 different hidden layer widths (width multipliers of   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "1\\times"
+                    },
+                    {
+                        "type": "text",
+                        "content": " ,   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2\\times"
+                    },
+                    {
+                        "type": "text",
+                        "content": " , and   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "4\\times"
+                    },
+                    {
+                        "type": "text",
+                        "content": " ). For better convergence, our models here are trained for 1000 epochs."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                777,
+                888,
+                839
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Linear evaluation. Table 6 compares our results with previous approaches (Zhuang et al., 2019; He et al., 2019; Misra & van der Maaten, 2019; Hénaff et al., 2019; Kolesnikov et al., 2019; Donahue & Simonyan, 2019; Bachman et al.,"
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                845,
+                890,
+                907
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "^{10}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " A linear learning rate scaling is used here. Figure B.1 shows using a square root learning rate scaling can improve performance of ones with small batch sizes."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                864,
+                475,
+                905
+            ]
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/dd9bcfd18e3c56d1030901f207d4a0cd22b2c81d54d63c5f4f849fedac3e13fd.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Table 8. Comparison of transfer learning performance of our self-supervised approach with supervised baselines across 12 natural image classification datasets, for ResNet-50 (4×) models pretrained on ImageNet. Results not significantly worse than the best (p > 0.05, permutation test) are shown in bold. See Appendix B.8 for experimental details and results with standard ResNet-50."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td></td><td>Food</td><td>CIFAR10</td><td>CIFAR100</td><td>Birdsnap</td><td>SUN397</td><td>Cars</td><td>Aircraft</td><td>VOC2007</td><td>DTD</td><td>Pets</td><td>Caltech-101</td><td>Flowers</td></tr><tr><td colspan=\"13\">Linear evaluation:</td></tr><tr><td>SimCLR (ours)</td><td>76.9</td><td>95.3</td><td>80.2</td><td>48.4</td><td>65.9</td><td>60.0</td><td>61.2</td><td>84.2</td><td>78.9</td><td>89.2</td><td>93.9</td><td>95.0</td></tr><tr><td>Supervised</td><td>75.2</td><td>95.7</td><td>81.2</td><td>56.4</td><td>64.9</td><td>68.8</td><td>63.8</td><td>83.8</td><td>78.7</td><td>92.3</td><td>94.1</td><td>94.2</td></tr><tr><td colspan=\"13\">Fine-tuned:</td></tr><tr><td>SimCLR (ours)</td><td>89.4</td><td>98.6</td><td>89.0</td><td>78.2</td><td>68.1</td><td>92.1</td><td>87.0</td><td>86.6</td><td>77.8</td><td>92.1</td><td>94.1</td><td>97.6</td></tr><tr><td>Supervised</td><td>88.7</td><td>98.3</td><td>88.7</td><td>77.8</td><td>67.0</td><td>91.4</td><td>88.0</td><td>86.5</td><td>78.8</td><td>93.2</td><td>94.2</td><td>98.0</td></tr><tr><td>Random init</td><td>88.3</td><td>96.0</td><td>81.9</td><td>77.0</td><td>53.7</td><td>91.3</td><td>84.8</td><td>69.4</td><td>64.1</td><td>82.7</td><td>72.5</td><td>92.5</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                93,
+                79,
+                880,
+                204
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2019; Tian et al., 2019) in the linear evaluation setting (see Appendix B.6). Table 1 shows more numerical comparisons among different methods. We are able to use standard networks to obtain substantially better results compared to previous methods that require specifically designed architectures. The best result obtained with our ResNet-50 (4×) can match the supervised pretrained ResNet-50."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                282,
+                477,
+                388
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Semi-supervised learning. We follow Zhai et al. (2019) and sample 1% or 10% of the labeled ILSVRC-12 training datasets in a class-balanced way (  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sim"
+                    },
+                    {
+                        "type": "text",
+                        "content": " 12.8 and   "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sim"
+                    },
+                    {
+                        "type": "text",
+                        "content": " 128 images per class respectively).  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^{[11]}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "  We simply fine-tune the whole base network on the labeled data without regularization (see Appendix B.5). Table 7 shows the comparisons of our results against recent methods (Zhai et al., 2019; Xie et al., 2019; Sohn et al., 2020; Wu et al., 2018; Donahue & Simonyan, 2019; Misra & van der Maaten, 2019; Hénaff et al., 2019). The supervised baseline from (Zhai et al., 2019) is strong due to intensive search of hyper-parameters (including augmentation). Again, our approach significantly improves over state-of-the-art with both 1% and 10% of the labels. Interestingly, fine-tuning our pretrained ResNet-50 (  "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2\\times,4\\times"
+                    },
+                    {
+                        "type": "text",
+                        "content": " ) on full ImageNet are also significantly better than training from scratch (up to 2%, see Appendix B.2)."
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                395,
+                477,
+                638
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Transfer learning. We evaluate transfer learning performance across 12 natural image datasets in both linear evaluation (fixed feature extractor) and fine-tuning settings. Following Kornblith et al. (2019), we perform hyperparameter tuning for each model-dataset combination and select the best hyperparameters on a validation set. Table 8 shows results with the ResNet-50 (4×) model. When fine-tuned, our self-supervised model significantly outperforms the supervised baseline on 5 datasets, whereas the supervised baseline is superior on only 2 (i.e. Pets and Flowers). On the remaining 5 datasets, the models are statistically tied. Full experimental details as well as results with the standard ResNet-50 architecture are provided in Appendix B.8."
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                643,
+                478,
+                843
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "7. Related Work"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                496,
+                281,
+                640,
+                297
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The idea of making representations of an image agree with each other under small transformations dates back to Becker & Hinton (1992). We extend it by leveraging recent advances in data augmentation, network architecture and contrastive loss. A similar consistency idea, but for class label prediction, has been explored in other contexts such as semi-supervised learning (Xie et al., 2019; Berthelot et al., 2019)."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                306,
+                890,
+                414
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Handcrafted pretext tasks. The recent renaissance of self-supervised learning began with artificially designed pretext tasks, such as relative patch prediction (Doersch et al., 2015), solving jigsaw puzzles (Noroozi & Favaro, 2016), colorization (Zhang et al., 2016) and rotation prediction (Gidaris et al., 2018; Chen et al., 2019). Although good results can be obtained with bigger networks and longer training (Kolesnikov et al., 2019), these pretext tasks rely on somewhat ad-hoc heuristics, which limits the generality of learned representations."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                420,
+                890,
+                573
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Contrastive visual representation learning. Dating back to Hadsell et al. (2006), these approaches learn representations by contrasting positive pairs against negative pairs. Along these lines, Dosovitskiy et al. (2014) proposes to treat each instance as a class represented by a feature vector (in a parametric form). Wu et al. (2018) proposes to use a memory bank to store the instance class representation vector, an approach adopted and extended in several recent papers (Zhuang et al., 2019; Tian et al., 2019; He et al., 2019; Misra & van der Maaten, 2019). Other work explores the use of in-batch samples for negative sampling instead of a memory bank (Doersch & Zisserman, 2017; Ye et al., 2019; Ji et al., 2019)."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                579,
+                890,
+                776
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Recent literature has attempted to relate the success of their methods to maximization of mutual information between latent representations (Oord et al., 2018; Hénaff et al., 2019; Hjelm et al., 2018; Bachman et al., 2019). However, it is not clear if the success of contrastive approaches is determined by the mutual information, or by the specific form of the contrastive loss (Tschannen et al., 2019)."
+                    }
+                ]
+            },
+            "bbox": [
+                495,
+                782,
+                890,
+                888
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "^{11}"
+                    },
+                    {
+                        "type": "text",
+                        "content": " The details of sampling and exact subsets can be found in https://www.tensorflow.org/datasets/catalog/imagenet2012_subset."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                849,
+                475,
+                878
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We note that almost all individual components of our framework have appeared in previous work, although the specific instantiations may be different. The superiority of our framework relative to previous work is not explained by any single design choice, but by their composition. We provide a comprehensive comparison of our design choices with those of previous work in Appendix C."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                85,
+                477,
+                191
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "8. Conclusion"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                84,
+                204,
+                205,
+                219
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In this work, we present a simple framework and its instantiation for contrastive visual representation learning. We carefully study its components, and show the effects of different design choices. By combining our findings, we improve considerably over previous methods for self-supervised, semi-supervised, and transfer learning."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                229,
+                477,
+                321
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Our approach differs from standard supervised learning on ImageNet only in the choice of data augmentation, the use of a nonlinear head at the end of the network, and the loss function. The strength of this simple framework suggests that, despite a recent surge in interest, self-supervised learning remains undervalued."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                327,
+                475,
+                419
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Acknowledgements"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                86,
+                438,
+                253,
+                455
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We would like to thank Xiaohua Zhai, Rafael Müller and Yani Ioannou for their feedback on the draft. We are also grateful for general support from Google Research teams in Toronto and elsewhere."
+                    }
+                ]
+            },
+            "bbox": [
+                84,
+                464,
+                475,
+                523
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "References"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                86,
+                544,
+                183,
+                559
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Asano, Y. M., Rupprecht, C., and Vedaldi, A. A critical analysis of self-supervision, or what we can learn from a single image. arXiv preprint arXiv:1904.13132, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                88,
+                566,
+                475,
+                604
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Bachman, P., Hjelm, R. D., and Buchwalter, W. Learning representations by maximizing mutual information across views. In Advances in Neural Information Processing Systems, pp. 15509–15519, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                88,
+                619,
+                475,
+                669
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Becker, S. and Hinton, G. E. Self-organizing neural network that discovers surfaces in random-dot stereograms. Nature, 355(6356):161–163, 1992."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                88,
+                684,
+                473,
+                722
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Berg, T., Liu, J., Lee, S. W., Alexander, M. L., Jacobs, D. W., and Belhumeur, P. N. Birdsnap: Large-scale fine-grained visual categorization of birds. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 2019–2026. IEEE, 2014."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                88,
+                736,
+                473,
+                787
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Berthelot, D., Carlini, N., Goodfellow, I., Papernot, N., Oliver, A., and Raffel, C. A. Mixmatch: A holistic approach to semi-supervised learning. In Advances in Neural Information Processing Systems, pp. 5050–5060, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                88,
+                801,
+                475,
+                853
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Bossard, L., Guillaumin, M., and Van Gool, L. Food-101–mining discriminative components with random forests. In European conference on computer vision, pp. 446–461. Springer, 2014."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                88,
+                866,
+                473,
+                905
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Chen, T., Sun, Y., Shi, Y., and Hong, L. On sampling strategies for neural network-based collaborative filtering. In Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, pp. 767–776, 2017."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                85,
+                887,
+                138
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Chen, T., Zhai, X., Ritter, M., Lucic, M., and Houlsby, N. Self-supervised gans via auxiliary rotation loss. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pp. 12154–12163, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                148,
+                887,
+                200
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Cimpoi, M., Maji, S., Kokkinos, I., Mohamed, S., and Vedaldi, A. Describing textures in the wild. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 3606–3613. IEEE, 2014."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                210,
+                888,
+                263
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Cubuk, E. D., Zoph, B., Mane, D., Vasudevan, V., and Le, Q. V. Autoaugment: Learning augmentation strategies from data. In Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 113–123, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                273,
+                887,
+                325
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "DeVries, T. and Taylor, G. W. Improved regularization of convolutional neural networks with cutout. arXiv preprint arXiv:1708.04552, 2017."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                337,
+                887,
+                375
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Doersch, C. and Zisserman, A. Multi-task self-supervised visual learning. In Proceedings of the IEEE International Conference on Computer Vision, pp. 2051–2060, 2017."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                388,
+                885,
+                426
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Doersch, C., Gupta, A., and Efros, A. A. Unsupervised visual representation learning by context prediction. In Proceedings of the IEEE International Conference on Computer Vision, pp. 1422–1430, 2015."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                438,
+                887,
+                489
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Donahue, J. and Simonyan, K. Large scale adversarial representation learning. In Advances in Neural Information Processing Systems, pp. 10541–10551, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                501,
+                887,
+                540
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Donahue, J., Jia, Y., Vinyals, O., Hoffman, J., Zhang, N., Tzeng, E., and Darrell, T. Decaf: A deep convolutional activation feature for generic visual recognition. In International Conference on Machine Learning, pp. 647–655, 2014."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                551,
+                887,
+                604
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Dosovitskiy, A., Springenberg, J. T., Riedmiller, M., and Brox, T. Discriminative unsupervised feature learning with convolutional neural networks. In Advances in neural information processing systems, pp. 766–774, 2014."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                614,
+                887,
+                666
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Everingham, M., Van Gool, L., Williams, C. K., Winn, J., and Zisserman, A. The pascal visual object classes (voc) challenge. International Journal of Computer Vision, 88(2):303–338, 2010."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                676,
+                888,
+                715
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Fei-Fei, L., Fergus, R., and Perona, P. Learning generative visual models from few training examples: An incremental bayesian approach tested on 101 object categories. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Workshop on Generative-Model Based Vision, 2004."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                727,
+                887,
+                792
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Gidaris, S., Singh, P., and Komodakis, N. Unsupervised representation learning by predicting image rotations. arXiv preprint arXiv:1803.07728, 2018."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                803,
+                887,
+                842
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., Courville, A., and Bengio, Y. Generative adversarial nets. In Advances in neural information processing systems, pp. 2672–2680, 2014."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                854,
+                887,
+                905
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    }
+                ]
+            },
+            "bbox": [
+                253,
+                56,
+                718,
+                71
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Goyal, P., Dollár, P., Girshick, R., Noordhuis, P., Wesolowski, L., Kyrola, A., Tulloch, A., Jia, Y., and He, K. Accurate, large minibatch sgd: Training imagenet in 1 hour. arXiv preprint arXiv:1706.02677, 2017."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                85,
+                475,
+                137
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Hadsell, R., Chopra, S., and LeCun, Y. Dimensionality reduction by learning an invariant mapping. In 2006 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR'06), volume 2, pp. 1735–1742. IEEE, 2006."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                146,
+                475,
+                198
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "He, K., Zhang, X., Ren, S., and Sun, J. Deep residual learning for image recognition. In Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 770–778, 2016."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                205,
+                475,
+                247
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "He, K., Fan, H., Wu, Y., Xie, S., and Girshick, R. Momentum contrast for unsupervised visual representation learning. arXiv preprint arXiv:1911.05722, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                253,
+                475,
+                294
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Hénaff, O. J., Razavi, A., Doersch, C., Eslami, S., and Oord, A. v. d. Data-efficient image recognition with contrastive predictive coding. arXiv preprint arXiv:1905.09272, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                301,
+                475,
+                342
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Hinton, G. E., Osindero, S., and Teh, Y.-W. A fast learning algorithm for deep belief nets. Neural computation, 18(7):1527-1554, 2006."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                349,
+                477,
+                388
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Hjelm, R. D., Fedorov, A., Lavoie-Marchildon, S., Grewal, K., Bachman, P., Trischler, A., and Bengio, Y. Learning deep representations by mutual information estimation and maximization. arXiv preprint arXiv:1808.06670, 2018."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                398,
+                477,
+                450
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Howard, A. G. Some improvements on deep convolutional neural network based image classification. arXiv preprint arXiv:1312.5402, 2013."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                459,
+                475,
+                497
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Ioffe, S. and Szegedy, C. Batch normalization: Accelerating deep network training by reducing internal covariate shift. arXiv preprint arXiv:1502.03167, 2015."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                506,
+                475,
+                545
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Ji, X., Henriques, J. F., and Vedaldi, A. Invariant information clustering for unsupervised image classification and segmentation. In Proceedings of the IEEE International Conference on Computer Vision, pp. 9865–9874, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                554,
+                475,
+                606
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Kingma, D. P. and Welling, M. Auto-encoding variational bayes. arXiv preprint arXiv:1312.6114, 2013."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                614,
+                475,
+                642
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Kolesnikov, A., Zhai, X., and Beyer, L. Revisiting self-supervised visual representation learning. In Proceedings of the IEEE conference on Computer Vision and Pattern Recognition, pp. 1920–1929, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                648,
+                475,
+                700
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Kornblith, S., Shlens, J., and Le, Q. V. Do better ImageNet models transfer better? In Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 2661–2671, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                710,
+                475,
+                750
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Krause, J., Deng, J., Stark, M., and Fei-Fei, L. Collecting a large-scale dataset of fine-grained cars. In Second Workshop on Fine-Grained Visual Categorization, 2013."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                758,
+                475,
+                797
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Krizhevsky, A. and Hinton, G. Learning multiple layers of features from tiny images. Technical report, University of Toronto, 2009. URL https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                806,
+                475,
+                858
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Krizhevsky, A., Sutskever, I., and Hinton, G. E. Imagenet classification with deep convolutional neural networks. In Advances in neural information processing systems, pp. 1097–1105, 2012."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                866,
+                475,
+                906
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Loshchilov, I. and Hutter, F. Sgdr: Stochastic gradient descent with warm restarts. arXiv preprint arXiv:1608.03983, 2016."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                85,
+                887,
+                113
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Maaten, L. v. d. and Hinton, G. Visualizing data using t-sne. Journal of machine learning research, 9(Nov):2579–2605, 2008."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                119,
+                888,
+                148
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Maji, S., Kannala, J., Rahtu, E., Blaschko, M., and Vedaldi, A. Fine-grained visual classification of aircraft. Technical report, 2013."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                154,
+                888,
+                194
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Mikolov, T., Chen, K., Corrado, G., and Dean, J. Efficient estimation of word representations in vector space. arXiv preprint arXiv:1301.3781, 2013."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                500,
+                202,
+                888,
+                241
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Misra, I. and van der Maaten, L. Self-supervised learning of pretext-invariant representations. arXiv preprint arXiv:1912.01991, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                250,
+                888,
+                287
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Nilsback, M.-E. and Zisserman, A. Automated flower classification over a large number of classes. In Computer Vision, Graphics & Image Processing, 2008. ICVGIP'08. Sixth Indian Conference on, pp. 722–729. IEEE, 2008."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                296,
+                887,
+                349
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Noroozi, M. and Favaro, P. Unsupervised learning of visual representations by solving jigsaw puzzles. In European Conference on Computer Vision, pp. 69–84. Springer, 2016."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                356,
+                888,
+                396
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Oord, A. v. d., Li, Y., and Vinyals, O. Representation learning with contrastive predictive coding. arXiv preprint arXiv:1807.03748, 2018."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                404,
+                888,
+                441
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Parkhi, O. M., Vedaldi, A., Zisserman, A., and Jawahar, C. Cats and dogs. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 3498–3505. IEEE, 2012."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                450,
+                887,
+                489
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Russakovsky, O., Deng, J., Su, H., Krause, J., Satheesh, S., Ma, S., Huang, Z., Karpathy, A., Khosla, A., Bernstein, M., et al. Imagenet large scale visual recognition challenge. International journal of computer vision, 115(3):211–252, 2015."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                498,
+                888,
+                550
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Schroff, F., Kalenichenko, D., and Philbin, J. Facenet: A unified embedding for face recognition and clustering. In Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 815–823, 2015."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                556,
+                888,
+                609
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Simonyan, K. and Zisserman, A. Very deep convolutional networks for large-scale image recognition. arXiv preprint arXiv:1409.1556, 2014."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                617,
+                888,
+                656
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Sohn, K. Improved deep metric learning with multi-class n-pair loss objective. In Advances in neural information processing systems, pp. 1857–1865, 2016."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                664,
+                888,
+                704
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Sohn, K., Berthelot, D., Li, C.-L., Zhang, Z., Carlini, N., Cubuk, E. D., Kurakin, A., Zhang, H., and Raffel, C. Fixmatch: Simplifying semi-supervised learning with consistency and confidence. arXiv preprint arXiv:2001.07685, 2020."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                712,
+                888,
+                763
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Szegedy, C., Liu, W., Jia, Y., Sermanet, P., Reed, S., Anguelov, D., Erhan, D., Vanhoucke, V., and Rabinovich, A. Going deeper with convolutions. In Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 1–9, 2015."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                771,
+                888,
+                824
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Tian, Y., Krishnan, D., and Isola, P. Contrastive multiview coding. arXiv preprint arXiv:1906.05849, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                830,
+                888,
+                858
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Tschannen, M., Djolonga, J., Rubenstein, P. K., Gelly, S., and Lucic, M. On mutual information maximization for representation learning. arXiv preprint arXiv:1907.13625, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                498,
+                866,
+                888,
+                905
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    }
+                ]
+            },
+            "bbox": [
+                253,
+                56,
+                720,
+                71
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Wu, Z., Xiong, Y., Yu, S. X., and Lin, D. Unsupervised feature learning via non-parametric instance discrimination. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pp. 3733–3742, 2018."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                88,
+                85,
+                475,
+                138
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Xiao, J., Hays, J., Ehinger, K. A., Oliva, A., and Torralba, A. Sun database: Large-scale scene recognition from abbey to zoo. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 3485–3492. IEEE, 2010."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                88,
+                146,
+                473,
+                198
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Xie, Q., Dai, Z., Hovy, E., Luong, M.-T., and Le, Q. V. Unsupervised data augmentation. arXiv preprint arXiv:1904.12848, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                207,
+                475,
+                244
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Ye, M., Zhang, X., Yuen, P. C., and Chang, S.-F. Unsupervised embedding learning via invariant and spreading instance feature. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pp. 6210–6219, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                88,
+                253,
+                475,
+                306
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "You, Y., Gitman, I., and Ginsburg, B. Large batch training of convolutional networks. arXiv preprint arXiv:1708.03888, 2017."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                315,
+                475,
+                340
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Zhai, X., Oliver, A., Kolesnikov, A., and Beyer, L. S41: Self-supervised semi-supervised learning. In The IEEE International Conference on Computer Vision (ICCV), October 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                349,
+                475,
+                388
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Zhang, R., Isola, P., and Efros, A. A. Colorful image colorization. In European conference on computer vision, pp. 649–666. Springer, 2016."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                398,
+                475,
+                436
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Zhuang, C., Zhai, A. L., and Yamins, D. Local aggregation for unsupervised learning of visual embeddings. In Proceedings of the IEEE International Conference on Computer Vision, pp. 6002–6012, 2019."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                86,
+                445,
+                475,
+                494
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "A Simple Framework for Contrastive Learning of Visual Representations"
+                    }
+                ]
+            },
+            "bbox": [
+                254,
+                56,
+                718,
+                71
+            ]
+        }
+    ]
+]

@@ -1,0 +1,855 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 8
+            },
+            {
+              "x": 270,
+              "y": 8
+            },
+            {
+              "x": 270,
+              "y": 46
+            },
+            {
+              "x": 12,
+              "y": 46
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Hyperparameters"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 8
+            },
+            {
+              "x": 462,
+              "y": 8
+            },
+            {
+              "x": 462,
+              "y": 46
+            },
+            {
+              "x": 270,
+              "y": 46
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "NYUv2 depth"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 8
+            },
+            {
+              "x": 643,
+              "y": 8
+            },
+            {
+              "x": 643,
+              "y": 46
+            },
+            {
+              "x": 462,
+              "y": 46
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Taskonomy tasks"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 46
+            },
+            {
+              "x": 270,
+              "y": 46
+            },
+            {
+              "x": 270,
+              "y": 81
+            },
+            {
+              "x": 12,
+              "y": 81
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Optimizer"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 46
+            },
+            {
+              "x": 462,
+              "y": 46
+            },
+            {
+              "x": 462,
+              "y": 81
+            },
+            {
+              "x": 270,
+              "y": 81
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 46
+            },
+            {
+              "x": 643,
+              "y": 46
+            },
+            {
+              "x": 643,
+              "y": 81
+            },
+            {
+              "x": 462,
+              "y": 81
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "AdamW[55]"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 81
+            },
+            {
+              "x": 270,
+              "y": 81
+            },
+            {
+              "x": 270,
+              "y": 198
+            },
+            {
+              "x": 12,
+              "y": 198
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Learning rate\nLayer-wise Ir decay [20]\nWeight decay\nAdamβ"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 81
+            },
+            {
+              "x": 462,
+              "y": 81
+            },
+            {
+              "x": 462,
+              "y": 198
+            },
+            {
+              "x": 270,
+              "y": 198
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "1e-4\nle-4"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 81
+            },
+            {
+              "x": 643,
+              "y": 81
+            },
+            {
+              "x": 643,
+              "y": 198
+            },
+            {
+              "x": 462,
+              "y": 198
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "3e-4\n0.75\n5e-2\n(0.9,0.999)"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 198
+            },
+            {
+              "x": 270,
+              "y": 198
+            },
+            {
+              "x": 270,
+              "y": 227
+            },
+            {
+              "x": 12,
+              "y": 228
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "Batch size"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 198
+            },
+            {
+              "x": 462,
+              "y": 198
+            },
+            {
+              "x": 462,
+              "y": 227
+            },
+            {
+              "x": 270,
+              "y": 227
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "128"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 198
+            },
+            {
+              "x": 643,
+              "y": 198
+            },
+            {
+              "x": 643,
+              "y": 226
+            },
+            {
+              "x": 462,
+              "y": 227
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "32"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 228
+            },
+            {
+              "x": 270,
+              "y": 227
+            },
+            {
+              "x": 270,
+              "y": 256
+            },
+            {
+              "x": 12,
+              "y": 256
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "Learning rate sched."
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 227
+            },
+            {
+              "x": 462,
+              "y": 227
+            },
+            {
+              "x": 462,
+              "y": 255
+            },
+            {
+              "x": 270,
+              "y": 256
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 227
+            },
+            {
+              "x": 643,
+              "y": 226
+            },
+            {
+              "x": 643,
+              "y": 255
+            },
+            {
+              "x": 462,
+              "y": 255
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "Cosine decay [54]"
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 256
+            },
+            {
+              "x": 270,
+              "y": 256
+            },
+            {
+              "x": 270,
+              "y": 313
+            },
+            {
+              "x": 12,
+              "y": 316
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "Training epochs\nWarmup learning rate"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 256
+            },
+            {
+              "x": 462,
+              "y": 255
+            },
+            {
+              "x": 462,
+              "y": 313
+            },
+            {
+              "x": 270,
+              "y": 313
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "2000"
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 255
+            },
+            {
+              "x": 643,
+              "y": 255
+            },
+            {
+              "x": 643,
+              "y": 312
+            },
+            {
+              "x": 462,
+              "y": 313
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": "100\n1e-6"
+        },
+        {
+          "col_end": 1,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 316
+            },
+            {
+              "x": 270,
+              "y": 313
+            },
+            {
+              "x": 270,
+              "y": 349
+            },
+            {
+              "x": 12,
+              "y": 349
+            }
+          ],
+          "row_start": 6,
+          "col_start": 0,
+          "words": "Warmup epochs"
+        },
+        {
+          "col_end": 2,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 313
+            },
+            {
+              "x": 462,
+              "y": 313
+            },
+            {
+              "x": 462,
+              "y": 349
+            },
+            {
+              "x": 270,
+              "y": 349
+            }
+          ],
+          "row_start": 6,
+          "col_start": 1,
+          "words": "100"
+        },
+        {
+          "col_end": 3,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 313
+            },
+            {
+              "x": 643,
+              "y": 312
+            },
+            {
+              "x": 643,
+              "y": 349
+            },
+            {
+              "x": 462,
+              "y": 349
+            }
+          ],
+          "row_start": 6,
+          "col_start": 2,
+          "words": "5"
+        },
+        {
+          "col_end": 1,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 349
+            },
+            {
+              "x": 270,
+              "y": 349
+            },
+            {
+              "x": 270,
+              "y": 384
+            },
+            {
+              "x": 12,
+              "y": 385
+            }
+          ],
+          "row_start": 7,
+          "col_start": 0,
+          "words": "Input resolution"
+        },
+        {
+          "col_end": 2,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 349
+            },
+            {
+              "x": 462,
+              "y": 349
+            },
+            {
+              "x": 462,
+              "y": 384
+            },
+            {
+              "x": 270,
+              "y": 384
+            }
+          ],
+          "row_start": 7,
+          "col_start": 1,
+          "words": "256×256"
+        },
+        {
+          "col_end": 3,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 349
+            },
+            {
+              "x": 643,
+              "y": 349
+            },
+            {
+              "x": 643,
+              "y": 384
+            },
+            {
+              "x": 462,
+              "y": 384
+            }
+          ],
+          "row_start": 7,
+          "col_start": 2,
+          "words": "384×384"
+        },
+        {
+          "col_end": 1,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 385
+            },
+            {
+              "x": 270,
+              "y": 384
+            },
+            {
+              "x": 270,
+              "y": 414
+            },
+            {
+              "x": 11,
+              "y": 414
+            }
+          ],
+          "row_start": 8,
+          "col_start": 0,
+          "words": "RandomCrop"
+        },
+        {
+          "col_end": 2,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 384
+            },
+            {
+              "x": 462,
+              "y": 384
+            },
+            {
+              "x": 462,
+              "y": 413
+            },
+            {
+              "x": 270,
+              "y": 414
+            }
+          ],
+          "row_start": 8,
+          "col_start": 1,
+          "words": "√"
+        },
+        {
+          "col_end": 3,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 384
+            },
+            {
+              "x": 643,
+              "y": 384
+            },
+            {
+              "x": 643,
+              "y": 413
+            },
+            {
+              "x": 462,
+              "y": 413
+            }
+          ],
+          "row_start": 8,
+          "col_start": 2,
+          "words": "×"
+        },
+        {
+          "col_end": 1,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 414
+            },
+            {
+              "x": 270,
+              "y": 414
+            },
+            {
+              "x": 270,
+              "y": 442
+            },
+            {
+              "x": 11,
+              "y": 443
+            }
+          ],
+          "row_start": 9,
+          "col_start": 0,
+          "words": "Color jitter"
+        },
+        {
+          "col_end": 2,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 414
+            },
+            {
+              "x": 462,
+              "y": 413
+            },
+            {
+              "x": 462,
+              "y": 442
+            },
+            {
+              "x": 270,
+              "y": 442
+            }
+          ],
+          "row_start": 9,
+          "col_start": 1,
+          "words": "√"
+        },
+        {
+          "col_end": 3,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 413
+            },
+            {
+              "x": 643,
+              "y": 413
+            },
+            {
+              "x": 643,
+              "y": 442
+            },
+            {
+              "x": 462,
+              "y": 442
+            }
+          ],
+          "row_start": 9,
+          "col_start": 2,
+          "words": "x"
+        },
+        {
+          "col_end": 1,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 443
+            },
+            {
+              "x": 270,
+              "y": 442
+            },
+            {
+              "x": 270,
+              "y": 472
+            },
+            {
+              "x": 11,
+              "y": 472
+            }
+          ],
+          "row_start": 10,
+          "col_start": 0,
+          "words": "Drop path [40]"
+        },
+        {
+          "col_end": 2,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 442
+            },
+            {
+              "x": 462,
+              "y": 442
+            },
+            {
+              "x": 462,
+              "y": 472
+            },
+            {
+              "x": 270,
+              "y": 472
+            }
+          ],
+          "row_start": 10,
+          "col_start": 1,
+          "words": "x"
+        },
+        {
+          "col_end": 3,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 442
+            },
+            {
+              "x": 643,
+              "y": 442
+            },
+            {
+              "x": 643,
+              "y": 471
+            },
+            {
+              "x": 462,
+              "y": 472
+            }
+          ],
+          "row_start": 10,
+          "col_start": 2,
+          "words": "0.1"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 11,
+          "y": 8
+        },
+        {
+          "x": 643,
+          "y": 8
+        },
+        {
+          "x": 643,
+          "y": 472
+        },
+        {
+          "x": 11,
+          "y": 472
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079048371385326633
+}

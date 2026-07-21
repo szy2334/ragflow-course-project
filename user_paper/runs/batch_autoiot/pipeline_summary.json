@@ -1,0 +1,10 @@
+{
+  "run_name": "batch_autoiot",
+  "pdf": "D:\\JIXUN\\document_pdf\\AutoIOT.pdf",
+  "run_root": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_autoiot",
+  "mineru_clean_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_autoiot\\01_mineru_clean",
+  "ocr_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_autoiot\\02_baidu_ocr",
+  "chunks_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_autoiot\\03_chunks",
+  "ragflow_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_autoiot\\04_ragflow",
+  "completed_at": "2026-07-20T03:24:16.099802+00:00"
+}

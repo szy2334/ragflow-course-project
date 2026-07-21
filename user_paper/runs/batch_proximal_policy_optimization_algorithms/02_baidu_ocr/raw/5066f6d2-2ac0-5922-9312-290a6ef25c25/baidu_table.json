@@ -1,0 +1,480 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 14
+            },
+            {
+              "x": 454,
+              "y": 15
+            },
+            {
+              "x": 454,
+              "y": 47
+            },
+            {
+              "x": 16,
+              "y": 46
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Hyperparameter"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 454,
+              "y": 15
+            },
+            {
+              "x": 855,
+              "y": 16
+            },
+            {
+              "x": 855,
+              "y": 47
+            },
+            {
+              "x": 454,
+              "y": 47
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Value"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 46
+            },
+            {
+              "x": 454,
+              "y": 47
+            },
+            {
+              "x": 454,
+              "y": 83
+            },
+            {
+              "x": 16,
+              "y": 82
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Horizon(T)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 454,
+              "y": 47
+            },
+            {
+              "x": 855,
+              "y": 47
+            },
+            {
+              "x": 855,
+              "y": 84
+            },
+            {
+              "x": 454,
+              "y": 83
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "512"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 82
+            },
+            {
+              "x": 454,
+              "y": 83
+            },
+            {
+              "x": 454,
+              "y": 118
+            },
+            {
+              "x": 16,
+              "y": 117
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Adam stepsize"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 454,
+              "y": 83
+            },
+            {
+              "x": 855,
+              "y": 84
+            },
+            {
+              "x": 855,
+              "y": 118
+            },
+            {
+              "x": 454,
+              "y": 118
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "*"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 117
+            },
+            {
+              "x": 454,
+              "y": 118
+            },
+            {
+              "x": 454,
+              "y": 154
+            },
+            {
+              "x": 16,
+              "y": 153
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "Num.epochs"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 454,
+              "y": 118
+            },
+            {
+              "x": 855,
+              "y": 118
+            },
+            {
+              "x": 855,
+              "y": 154
+            },
+            {
+              "x": 454,
+              "y": 154
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "15"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 153
+            },
+            {
+              "x": 454,
+              "y": 154
+            },
+            {
+              "x": 455,
+              "y": 189
+            },
+            {
+              "x": 16,
+              "y": 189
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "Minibatch size"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 454,
+              "y": 154
+            },
+            {
+              "x": 855,
+              "y": 154
+            },
+            {
+              "x": 855,
+              "y": 189
+            },
+            {
+              "x": 455,
+              "y": 189
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "4096"
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 189
+            },
+            {
+              "x": 455,
+              "y": 189
+            },
+            {
+              "x": 455,
+              "y": 226
+            },
+            {
+              "x": 16,
+              "y": 226
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "Discount(7)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 455,
+              "y": 189
+            },
+            {
+              "x": 855,
+              "y": 189
+            },
+            {
+              "x": 855,
+              "y": 226
+            },
+            {
+              "x": 455,
+              "y": 226
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "0.99"
+        },
+        {
+          "col_end": 1,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 226
+            },
+            {
+              "x": 455,
+              "y": 226
+            },
+            {
+              "x": 455,
+              "y": 261
+            },
+            {
+              "x": 16,
+              "y": 261
+            }
+          ],
+          "row_start": 6,
+          "col_start": 0,
+          "words": "GAE parameter(A)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 455,
+              "y": 226
+            },
+            {
+              "x": 855,
+              "y": 226
+            },
+            {
+              "x": 855,
+              "y": 260
+            },
+            {
+              "x": 455,
+              "y": 261
+            }
+          ],
+          "row_start": 6,
+          "col_start": 1,
+          "words": "0.95"
+        },
+        {
+          "col_end": 1,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 261
+            },
+            {
+              "x": 455,
+              "y": 261
+            },
+            {
+              "x": 455,
+              "y": 298
+            },
+            {
+              "x": 16,
+              "y": 298
+            }
+          ],
+          "row_start": 7,
+          "col_start": 0,
+          "words": "Number of actors"
+        },
+        {
+          "col_end": 2,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 455,
+              "y": 261
+            },
+            {
+              "x": 855,
+              "y": 260
+            },
+            {
+              "x": 855,
+              "y": 298
+            },
+            {
+              "x": 455,
+              "y": 298
+            }
+          ],
+          "row_start": 7,
+          "col_start": 1,
+          "words": "32(locomotion), 128 (flagrun)"
+        },
+        {
+          "col_end": 1,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 298
+            },
+            {
+              "x": 455,
+              "y": 298
+            },
+            {
+              "x": 455,
+              "y": 325
+            },
+            {
+              "x": 17,
+              "y": 325
+            }
+          ],
+          "row_start": 8,
+          "col_start": 0,
+          "words": "Log stdev. of action distribution"
+        },
+        {
+          "col_end": 2,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 455,
+              "y": 298
+            },
+            {
+              "x": 855,
+              "y": 298
+            },
+            {
+              "x": 855,
+              "y": 325
+            },
+            {
+              "x": 455,
+              "y": 325
+            }
+          ],
+          "row_start": 8,
+          "col_start": 1,
+          "words": "LinearAnneal(-0.7,-1.6)"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 16,
+          "y": 14
+        },
+        {
+          "x": 855,
+          "y": 14
+        },
+        {
+          "x": 855,
+          "y": 325
+        },
+        {
+          "x": 16,
+          "y": 325
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079049386417931219
+}

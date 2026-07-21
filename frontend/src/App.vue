@@ -12,7 +12,7 @@ const isPublic = computed(() => route.path === '/login' || route.path === '/regi
 
 const primaryNav = [
   { to: '/papers', label: '读论文', icon: FileSearch },
-  { to: '/review', label: '审论文', icon: Scale },
+  { to: '/review', label: '格式审查', icon: Scale },
 ]
 const adminNav = [
   { to: '/admin/models', label: '模型配置', icon: Settings2 },
@@ -67,7 +67,7 @@ function logout() { auth.logout(); router.push('/login') }
         </button>
         <button v-if="route.path !== '/papers'" class="back-link" @click="router.back()"><ChevronLeft :size="18" /> 返回</button>
         <div class="topbar-spacer" />
-        <div class="privacy-note"><MessageSquareText :size="15" /> 本地论文 + 固定参考库</div>
+        <div class="privacy-note"><MessageSquareText :size="15" /> 阅读仅检索本地论文</div>
       </header>
       <RouterView />
     </main>

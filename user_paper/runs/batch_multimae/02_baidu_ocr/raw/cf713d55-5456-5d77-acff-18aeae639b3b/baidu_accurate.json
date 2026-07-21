@@ -1,0 +1,223 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9997864962,
+        "min": 0.999450624,
+        "variance": 4.61104861e-08
+      },
+      "words": "RGBinput"
+    },
+    {
+      "probability": {
+        "average": 0.9998804927,
+        "min": 0.9994837046,
+        "variance": 3.967316431e-08
+      },
+      "words": "Depth"
+    },
+    {
+      "probability": {
+        "average": 0.9997394085,
+        "min": 0.9982796907,
+        "variance": 3.087632194e-07
+      },
+      "words": "Semantic"
+    },
+    {
+      "probability": {
+        "average": 0.9999372363,
+        "min": 0.9996167421,
+        "variance": 1.22584467e-08
+      },
+      "words": "prediction"
+    },
+    {
+      "probability": {
+        "average": 0.9999224544,
+        "min": 0.9997833371,
+        "variance": 6.007164099e-09
+      },
+      "words": "prediction"
+    },
+    {
+      "probability": {
+        "average": 0.9966583252,
+        "min": 0.9637508392,
+        "variance": 0.0001082932358
+      },
+      "words": "Depth input"
+    },
+    {
+      "probability": {
+        "average": 0.9995889664,
+        "min": 0.9992227554,
+        "variance": 7.335666652e-08
+      },
+      "words": "RGB"
+    },
+    {
+      "probability": {
+        "average": 0.9997758865,
+        "min": 0.9985411167,
+        "variance": 2.218532984e-07
+      },
+      "words": "Semantic"
+    },
+    {
+      "probability": {
+        "average": 0.9994847775,
+        "min": 0.9964606166,
+        "variance": 1.318718205e-06
+      },
+      "words": "Semantic"
+    },
+    {
+      "probability": {
+        "average": 0.9995572567,
+        "min": 0.9990648627,
+        "variance": 1.304742341e-07
+      },
+      "words": "RGB"
+    },
+    {
+      "probability": {
+        "average": 0.9999433756,
+        "min": 0.9997772574,
+        "variance": 7.046708994e-09
+      },
+      "words": "Depth"
+    },
+    {
+      "probability": {
+        "average": 0.9999458194,
+        "min": 0.9997716546,
+        "variance": 5.108710344e-09
+      },
+      "words": "prediction"
+    },
+    {
+      "probability": {
+        "average": 0.9999648333,
+        "min": 0.9998546839,
+        "variance": 2.523259379e-09
+      },
+      "words": "prediction"
+    },
+    {
+      "probability": {
+        "average": 0.9996908307,
+        "min": 0.9991381168,
+        "variance": 7.761246223e-08
+      },
+      "words": "input"
+    },
+    {
+      "probability": {
+        "average": 0.9999511838,
+        "min": 0.9998236299,
+        "variance": 3.395729475e-09
+      },
+      "words": "prediction"
+    },
+    {
+      "probability": {
+        "average": 0.9999054074,
+        "min": 0.9993304014,
+        "variance": 3.799186743e-08
+      },
+      "words": "prediction"
+    },
+    {
+      "probability": {
+        "average": 0.9992102385,
+        "min": 0.9992102385,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9991177917,
+        "min": 0.9991177917,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9994395375,
+        "min": 0.9994395375,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9991233945,
+        "min": 0.9991233945,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9991416931,
+        "min": 0.9991416931,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9993359447,
+        "min": 0.9993359447,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9992666841,
+        "min": 0.9992666841,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9993761182,
+        "min": 0.9993761182,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9994408488,
+        "min": 0.9994408488,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9991288781,
+        "min": 0.9991288781,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9996052384,
+        "min": 0.9996052384,
+        "variance": 0
+      },
+      "words": "→"
+    }
+  ],
+  "words_result_num": 27,
+  "direction": 0,
+  "log_id": 2079048353771965938
+}

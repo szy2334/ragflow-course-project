@@ -1,0 +1,191 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.6449295282,
+        "min": 0.09971074015,
+        "variance": 0.1891761422
+      },
+      "words": "(%)ejed uealo"
+    },
+    {
+      "probability": {
+        "average": 0.9999293685,
+        "min": 0.9998651743,
+        "variance": 4.120895625e-09
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9992747903,
+        "min": 0.9939976931,
+        "variance": 3.482033662e-06
+      },
+      "words": "CIFAR-100"
+    },
+    {
+      "probability": {
+        "average": 0.9999603033,
+        "min": 0.9999328852,
+        "variance": 7.517542144e-10
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9999005198,
+        "min": 0.9996277094,
+        "variance": 1.652712278e-08
+      },
+      "words": "SUN397"
+    },
+    {
+      "probability": {
+        "average": 0.999630928,
+        "min": 0.9992153645,
+        "variance": 8.635507243e-08
+      },
+      "words": "SUN"
+    },
+    {
+      "probability": {
+        "average": 0.9823241234,
+        "min": 0.9823241234,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9960206151,
+        "min": 0.9474776387,
+        "variance": 0.0001691133366
+      },
+      "words": "ImageNet Sketch"
+    },
+    {
+      "probability": {
+        "average": 0.9901445508,
+        "min": 0.9705271721,
+        "variance": 0.0001924211392
+      },
+      "words": "-10"
+    },
+    {
+      "probability": {
+        "average": 0.9182935357,
+        "min": 0.7550240755,
+        "variance": 0.01332846377
+      },
+      "words": "-20"
+    },
+    {
+      "probability": {
+        "average": 0.7815436125,
+        "min": 0.7815436125,
+        "variance": 0
+      },
+      "words": "-"
+    },
+    {
+      "probability": {
+        "average": 0.9996723533,
+        "min": 0.997615099,
+        "variance": 4.056754506e-07
+      },
+      "words": "Kinetics-700"
+    },
+    {
+      "probability": {
+        "average": 0.9994695783,
+        "min": 0.9986104965,
+        "variance": 3.692524899e-07
+      },
+      "words": "0.0"
+    },
+    {
+      "probability": {
+        "average": 0.9953680634,
+        "min": 0.9863348007,
+        "variance": 4.08052183e-05
+      },
+      "words": "2.5"
+    },
+    {
+      "probability": {
+        "average": 0.9981567264,
+        "min": 0.9946067929,
+        "variance": 6.301877875e-06
+      },
+      "words": "5.0"
+    },
+    {
+      "probability": {
+        "average": 0.9952394366,
+        "min": 0.9859483242,
+        "variance": 4.316582636e-05
+      },
+      "words": "7.5"
+    },
+    {
+      "probability": {
+        "average": 0.9996222258,
+        "min": 0.998541832,
+        "variance": 3.892387781e-07
+      },
+      "words": "10.0"
+    },
+    {
+      "probability": {
+        "average": 0.9995535612,
+        "min": 0.9982740879,
+        "variance": 5.45836599e-07
+      },
+      "words": "12.5"
+    },
+    {
+      "probability": {
+        "average": 0.9995586872,
+        "min": 0.9983084202,
+        "variance": 5.213735221e-07
+      },
+      "words": "15.0"
+    },
+    {
+      "probability": {
+        "average": 0.9992381334,
+        "min": 0.9970309734,
+        "variance": 1.62398544e-06
+      },
+      "words": "17.5"
+    },
+    {
+      "probability": {
+        "average": 0.9990785122,
+        "min": 0.9964504242,
+        "variance": 2.303547035e-06
+      },
+      "words": "20.0"
+    },
+    {
+      "probability": {
+        "average": 0.9995524883,
+        "min": 0.9982806444,
+        "variance": 5.397222367e-07
+      },
+      "words": "22.5"
+    },
+    {
+      "probability": {
+        "average": 0.999316752,
+        "min": 0.9960856438,
+        "variance": 1.219186515e-06
+      },
+      "words": "Detected Data Overlap(%)"
+    }
+  ],
+  "words_result_num": 23,
+  "direction": 0,
+  "log_id": 2079046621044862090
+}

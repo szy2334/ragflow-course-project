@@ -1,0 +1,174 @@
+{
+  "file_name": "9b467027b824b28ca3a7d385ec04104058b4a8fea381cc1e98467a4114620d1f.jpg",
+  "file_id": "file-mN52AWaZCHvOKRcn8ZWguy5dsZpTBrUX",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "nlqXv6-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "nlqXv6-layout-1",
+          "text": "",
+          "position": [
+            6,
+            8,
+            662,
+            854
+          ],
+          "polygon": [
+            [
+              6,
+              8
+            ],
+            [
+              6,
+              369
+            ],
+            [
+              6,
+              374
+            ],
+            [
+              6,
+              687
+            ],
+            [
+              47,
+              865
+            ],
+            [
+              661,
+              865
+            ],
+            [
+              667,
+              148
+            ],
+            [
+              667,
+              8
+            ]
+          ],
+          "type": "image",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "nlqXv6-layout-2",
+          "text": "",
+          "position": [
+            757,
+            0,
+            603,
+            844
+          ],
+          "polygon": [
+            [
+              757,
+              -5
+            ],
+            [
+              1360,
+              -5
+            ],
+            [
+              1360,
+              844
+            ],
+            [
+              757,
+              844
+            ]
+          ],
+          "type": "image",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "nlqXv6-layout-3",
+          "text": "Figure 4: Code generation with user intervention",
+          "position": [
+            751,
+            842,
+            617,
+            20
+          ],
+          "polygon": [
+            [
+              751,
+              842
+            ],
+            [
+              751,
+              861
+            ],
+            [
+              1368,
+              861
+            ],
+            [
+              1368,
+              842
+            ]
+          ],
+          "type": "figure_title",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        }
+      ],
+      "images": [
+        {
+          "layout_id": "nlqXv6-layout-1",
+          "image_title_id": null,
+          "position": [
+            6,
+            8,
+            662,
+            854
+          ],
+          "content_layouts": [],
+          "data": "",
+          "data_url": "<temporary-url-redacted>",
+          "image_description": ""
+        },
+        {
+          "layout_id": "nlqXv6-layout-2",
+          "image_title_id": null,
+          "position": [
+            757,
+            0,
+            603,
+            844
+          ],
+          "content_layouts": [],
+          "data": "",
+          "data_url": "<temporary-url-redacted>",
+          "image_description": ""
+        }
+      ],
+      "inner_images": {},
+      "tables": [],
+      "text": "Figure 4: Code generation with user intervention",
+      "markdown": "<div style=\"text-align: center;\"><img src=\"<temporary-url-redacted>\" alt=\"Image\" width=\"48%\" /></div>\n\n\n<div style=\"text-align: center;\"><img src=\"<temporary-url-redacted>\" alt=\"Image\" width=\"44%\" /></div>\n\n\n<div style=\"text-align: center;\">Figure 4: Code generation with user intervention</div>\n",
+      "meta": {
+        "page_width": 1368,
+        "page_height": 862
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

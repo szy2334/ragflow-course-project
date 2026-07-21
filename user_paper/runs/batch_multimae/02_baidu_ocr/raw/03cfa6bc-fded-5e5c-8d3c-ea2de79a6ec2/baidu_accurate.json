@@ -1,0 +1,143 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9650866985,
+        "min": 0.6179573536,
+        "variance": 0.01084142178
+      },
+      "words": "pos emb. + modality emb."
+    },
+    {
+      "probability": {
+        "average": 0.9983625412,
+        "min": 0.9930730462,
+        "variance": 4.523976713e-06
+      },
+      "words": "MultiMAE"
+    },
+    {
+      "probability": {
+        "average": 0.9993357062,
+        "min": 0.9965458512,
+        "variance": 1.567110644e-06
+      },
+      "words": "Linear"
+    },
+    {
+      "probability": {
+        "average": 0.9684004784,
+        "min": 0.7831482887,
+        "variance": 0.005720161833
+      },
+      "words": "Norm. &"
+    },
+    {
+      "probability": {
+        "average": 0.9996244311,
+        "min": 0.9980975986,
+        "variance": 4.709297912e-07
+      },
+      "words": "Linear"
+    },
+    {
+      "probability": {
+        "average": 0.9985057116,
+        "min": 0.9906752706,
+        "variance": 1.024233188e-05
+      },
+      "words": "encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9883705378,
+        "min": 0.952057898,
+        "variance": 0.0003321640543
+      },
+      "words": "proj."
+    },
+    {
+      "probability": {
+        "average": 0.4921267033,
+        "min": 0.3245388567,
+        "variance": 0.02808568999
+      },
+      "words": "⊕→"
+    },
+    {
+      "probability": {
+        "average": 0.9994704127,
+        "min": 0.9985225797,
+        "variance": 2.566249862e-07
+      },
+      "words": "Norm."
+    },
+    {
+      "probability": {
+        "average": 0.9996865988,
+        "min": 0.9985116124,
+        "variance": 1.740257147e-07
+      },
+      "words": "Transformer"
+    },
+    {
+      "probability": {
+        "average": 0.9960482121,
+        "min": 0.9895051122,
+        "variance": 1.71688207e-05
+      },
+      "words": "cross-"
+    },
+    {
+      "probability": {
+        "average": 0.9974029064,
+        "min": 0.996499896,
+        "variance": 5.825784797e-07
+      },
+      "words": "&MLP"
+    },
+    {
+      "probability": {
+        "average": 0.9999725819,
+        "min": 0.9999337196,
+        "variance": 3.688348515e-10
+      },
+      "words": "attention"
+    },
+    {
+      "probability": {
+        "average": 0.9990948439,
+        "min": 0.9933928847,
+        "variance": 4.081519819e-06
+      },
+      "words": "block(x2)"
+    },
+    {
+      "probability": {
+        "average": 0.9288574457,
+        "min": 0.5088064671,
+        "variance": 0.02940793522
+      },
+      "words": "proj. &"
+    },
+    {
+      "probability": {
+        "average": 0.9999079704,
+        "min": 0.999563992,
+        "variance": 2.017014289e-08
+      },
+      "words": "reshape"
+    },
+    {
+      "probability": {
+        "average": 0.9952777624,
+        "min": 0.9226753116,
+        "variance": 0.0002652591502
+      },
+      "words": "pos emb.+modality emb."
+    }
+  ],
+  "words_result_num": 17,
+  "direction": 0,
+  "log_id": 2079048358372363575
+}

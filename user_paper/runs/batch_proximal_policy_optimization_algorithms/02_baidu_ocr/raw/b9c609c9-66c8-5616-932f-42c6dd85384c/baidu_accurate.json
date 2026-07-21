@@ -1,0 +1,47 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9991259575,
+        "min": 0.9974340796,
+        "variance": 1.431191777e-06
+      },
+      "words": "A<0"
+    },
+    {
+      "probability": {
+        "average": 0.9958316684,
+        "min": 0.9958316684,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.8499982357,
+        "min": 0.42165187,
+        "variance": 0.06116560847
+      },
+      "words": "1-61"
+    },
+    {
+      "probability": {
+        "average": 0.8812166452,
+        "min": 0.8812166452,
+        "variance": 0
+      },
+      "words": "r"
+    },
+    {
+      "probability": {
+        "average": 0.9993637204,
+        "min": 0.998184979,
+        "variance": 3.852655936e-07
+      },
+      "words": "LCLIP"
+    }
+  ],
+  "words_result_num": 5,
+  "direction": 0,
+  "log_id": 2079049354260601056
+}

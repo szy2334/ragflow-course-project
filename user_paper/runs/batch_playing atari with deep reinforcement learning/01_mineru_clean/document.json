@@ -1,0 +1,23 @@
+{
+  "schema_version": "paper_document_v1",
+  "paper_id": "5788542e-4bbb-5492-b9d7-230a75971766",
+  "paper_version_id": "74c55878-1cf0-5fc9-84e0-3e9692541a40",
+  "file_name": "Playing Atari with Deep Reinforcement Learning.pdf",
+  "file_path": "D:\\JIXUN\\document_pdf\\Playing Atari with Deep Reinforcement Learning.pdf",
+  "file_sha256": "8db04120cace173151c77e0faa6f3eaa4207009da66b9417597dc70bfee56d9c",
+  "title": "Playing Atari with Deep Reinforcement Learning",
+  "parser_name": "mineru",
+  "parser_version": "3.4.0",
+  "cleaning_version": "user_paper_pipeline_v1",
+  "mineru_export_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_playing atari with deep reinforcement learning\\01_mineru_clean\\raw_mineru\\extracted",
+  "mineru_metadata": {
+    "backend": "hybrid",
+    "effort": "medium",
+    "ocr_enabled": true,
+    "version": "3.4.0"
+  },
+  "block_count": 109,
+  "media_count": 8,
+  "recovered_references": 0,
+  "created_at": "2026-07-20T03:41:56.877596+00:00"
+}

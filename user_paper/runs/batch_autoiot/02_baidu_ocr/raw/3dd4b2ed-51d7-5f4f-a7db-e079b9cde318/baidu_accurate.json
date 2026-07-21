@@ -1,0 +1,151 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9998850226,
+        "min": 0.9998743534,
+        "variance": 1.13832499e-10
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.9999637604,
+        "min": 0.9999552965,
+        "variance": 7.163691862e-11
+      },
+      "words": "18"
+    },
+    {
+      "probability": {
+        "average": 0.9996263385,
+        "min": 0.9993830919,
+        "variance": 5.916888668e-08
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.9996874332,
+        "min": 0.9995797276,
+        "variance": 1.160049479e-08
+      },
+      "words": "15"
+    },
+    {
+      "probability": {
+        "average": 0.9999659061,
+        "min": 0.999961257,
+        "variance": 2.161471002e-11
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9999553561,
+        "min": 0.9999265671,
+        "variance": 8.288090214e-10
+      },
+      "words": "12"
+    },
+    {
+      "probability": {
+        "average": 0.1116288304,
+        "min": 0.1116288304,
+        "variance": 0
+      },
+      "words": "NSa"
+    },
+    {
+      "probability": {
+        "average": 0.9997580051,
+        "min": 0.9995682836,
+        "variance": 3.600558784e-08
+      },
+      "words": "45"
+    },
+    {
+      "probability": {
+        "average": 0.9925442338,
+        "min": 0.9483600855,
+        "variance": 0.0003253761388
+      },
+      "words": "ECG ESR"
+    },
+    {
+      "probability": {
+        "average": 0.9997674823,
+        "min": 0.9997674823,
+        "variance": 0
+      },
+      "words": "9"
+    },
+    {
+      "probability": {
+        "average": 0.9998958111,
+        "min": 0.9998131394,
+        "variance": 6.829674604e-09
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9994130135,
+        "min": 0.9974844456,
+        "variance": 5.495416531e-07
+      },
+      "words": "mmWave ESR"
+    },
+    {
+      "probability": {
+        "average": 0.9999461174,
+        "min": 0.9999461174,
+        "variance": 0
+      },
+      "words": "6"
+    },
+    {
+      "probability": {
+        "average": 0.999835372,
+        "min": 0.9997763038,
+        "variance": 3.492575118e-09
+      },
+      "words": "15"
+    },
+    {
+      "probability": {
+        "average": 0.98288697,
+        "min": 0.8824709058,
+        "variance": 0.001680836198
+      },
+      "words": "ECG AIR"
+    },
+    {
+      "probability": {
+        "average": 0.9996495247,
+        "min": 0.9996495247,
+        "variance": 0
+      },
+      "words": "3"
+    },
+    {
+      "probability": {
+        "average": 0.9985316992,
+        "min": 0.9904212952,
+        "variance": 7.979348084e-06
+      },
+      "words": "mmWave AIR"
+    },
+    {
+      "probability": {
+        "average": 0.9251761436,
+        "min": 0.7374483943,
+        "variance": 0.005057330709
+      },
+      "words": "AutoIOT w/o B. w/o O. w/o D. w/o I."
+    }
+  ],
+  "words_result_num": 18,
+  "direction": 0,
+  "log_id": 2079044370633907976
+}

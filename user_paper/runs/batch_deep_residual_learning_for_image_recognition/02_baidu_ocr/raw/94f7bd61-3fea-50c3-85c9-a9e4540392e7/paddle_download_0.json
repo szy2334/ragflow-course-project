@@ -1,0 +1,61 @@
+{
+  "file_name": "50a389677fffe0ecfcbddfd4fd9882f9aa14970586a2ae2bb4b0974b9487dc6e.jpg",
+  "file_id": "file-y10aaZaRJHE2z3NmyzJ847537J5O2nX5",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "AjBECV-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "AjBECV-layout-1",
+          "text": "iter. (1e4) | residual-110 (%) | residual-1202 (%)\n2.5 | 7.0 | 8.5\n3.0 | 7.0 | 8.0\n3.5 | 7.0 | 8.2\n4.0 | 7.0 | 8.0\n4.5 | 6.9 | 8.3\n5.0 | 6.8 | 8.0\n5.5 | 6.8 | 8.0\n6.0 | 6.8 | 7.9\n6.5 | 6.8 | 7.8",
+          "position": [
+            6,
+            0,
+            219,
+            281
+          ],
+          "polygon": [
+            [
+              6,
+              0
+            ],
+            [
+              225,
+              0
+            ],
+            [
+              225,
+              281
+            ],
+            [
+              6,
+              281
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>iter. (1e4)</th><th style='text-align: center;'>residual-110 (%)</th><th style='text-align: center;'>residual-1202 (%)</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>2.5</td><td style='text-align: center;'>7.0</td><td style='text-align: center;'>8.5</td></tr>\n    <tr><td style='text-align: center;'>3.0</td><td style='text-align: center;'>7.0</td><td style='text-align: center;'>8.0</td></tr>\n    <tr><td style='text-align: center;'>3.5</td><td style='text-align: center;'>7.0</td><td style='text-align: center;'>8.2</td></tr>\n    <tr><td style='text-align: center;'>4.0</td><td style='text-align: center;'>7.0</td><td style='text-align: center;'>8.0</td></tr>\n    <tr><td style='text-align: center;'>4.5</td><td style='text-align: center;'>6.9</td><td style='text-align: center;'>8.3</td></tr>\n    <tr><td style='text-align: center;'>5.0</td><td style='text-align: center;'>6.8</td><td style='text-align: center;'>8.0</td></tr>\n    <tr><td style='text-align: center;'>5.5</td><td style='text-align: center;'>6.8</td><td style='text-align: center;'>8.0</td></tr>\n    <tr><td style='text-align: center;'>6.0</td><td style='text-align: center;'>6.8</td><td style='text-align: center;'>7.9</td></tr>\n    <tr><td style='text-align: center;'>6.5</td><td style='text-align: center;'>6.8</td><td style='text-align: center;'>7.8</td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "iter. (1e4) | residual-110 (%) | residual-1202 (%)\n2.5 | 7.0 | 8.5\n3.0 | 7.0 | 8.0\n3.5 | 7.0 | 8.2\n4.0 | 7.0 | 8.0\n4.5 | 6.9 | 8.3\n5.0 | 6.8 | 8.0\n5.5 | 6.8 | 8.0\n6.0 | 6.8 | 7.9\n6.5 | 6.8 | 7.8",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>iter. (1e4)</th><th style='text-align: center;'>residual-110 (%)</th><th style='text-align: center;'>residual-1202 (%)</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>2.5</td><td style='text-align: center;'>7.0</td><td style='text-align: center;'>8.5</td></tr>\n    <tr><td style='text-align: center;'>3.0</td><td style='text-align: center;'>7.0</td><td style='text-align: center;'>8.0</td></tr>\n    <tr><td style='text-align: center;'>3.5</td><td style='text-align: center;'>7.0</td><td style='text-align: center;'>8.2</td></tr>\n    <tr><td style='text-align: center;'>4.0</td><td style='text-align: center;'>7.0</td><td style='text-align: center;'>8.0</td></tr>\n    <tr><td style='text-align: center;'>4.5</td><td style='text-align: center;'>6.9</td><td style='text-align: center;'>8.3</td></tr>\n    <tr><td style='text-align: center;'>5.0</td><td style='text-align: center;'>6.8</td><td style='text-align: center;'>8.0</td></tr>\n    <tr><td style='text-align: center;'>5.5</td><td style='text-align: center;'>6.8</td><td style='text-align: center;'>8.0</td></tr>\n    <tr><td style='text-align: center;'>6.0</td><td style='text-align: center;'>6.8</td><td style='text-align: center;'>7.9</td></tr>\n    <tr><td style='text-align: center;'>6.5</td><td style='text-align: center;'>6.8</td><td style='text-align: center;'>7.8</td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 229,
+        "page_height": 281
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

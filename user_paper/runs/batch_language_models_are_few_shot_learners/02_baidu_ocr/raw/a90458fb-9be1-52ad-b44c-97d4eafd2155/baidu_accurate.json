@@ -1,0 +1,151 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9993019104,
+        "min": 0.990547359,
+        "variance": 3.879410542e-06
+      },
+      "words": "In-Context Learning on SuperGLUE"
+    },
+    {
+      "probability": {
+        "average": 0.9978511333,
+        "min": 0.9667579532,
+        "variance": 5.421561946e-05
+      },
+      "words": "Few-shot GPT-3 175B"
+    },
+    {
+      "probability": {
+        "average": 0.9998304844,
+        "min": 0.9997441173,
+        "variance": 7.464430851e-09
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.9983795285,
+        "min": 0.9929773211,
+        "variance": 7.306945008e-06
+      },
+      "words": "Human"
+    },
+    {
+      "probability": {
+        "average": 0.9995833635,
+        "min": 0.9988264441,
+        "variance": 1.620811787e-07
+      },
+      "words": "Fine-tuned SOTA"
+    },
+    {
+      "probability": {
+        "average": 0.9999155998,
+        "min": 0.9998905659,
+        "variance": 6.266986929e-10
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9995930791,
+        "min": 0.9981274009,
+        "variance": 3.265377586e-07
+      },
+      "words": "Fine-tuned BERT++"
+    },
+    {
+      "probability": {
+        "average": 0.9998810291,
+        "min": 0.9998075366,
+        "variance": 5.405533798e-09
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9995530248,
+        "min": 0.9959836006,
+        "variance": 8.167737064e-07
+      },
+      "words": "Fine-tuned BERT Large"
+    },
+    {
+      "probability": {
+        "average": 0.9999587536,
+        "min": 0.9999359846,
+        "variance": 5.184261909e-10
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9999372363,
+        "min": 0.9998891354,
+        "variance": 2.313701231e-09
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9969078898,
+        "min": 0.9587157965,
+        "variance": 0.0001050086794
+      },
+      "words": "Random Guessing"
+    },
+    {
+      "probability": {
+        "average": 0.9998795986,
+        "min": 0.9997646213,
+        "variance": 1.322664822e-08
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.999968648,
+        "min": 0.9998841286,
+        "variance": 1.833481589e-09
+      },
+      "words": "01234"
+    },
+    {
+      "probability": {
+        "average": 0.9998724461,
+        "min": 0.9998724461,
+        "variance": 0
+      },
+      "words": "8"
+    },
+    {
+      "probability": {
+        "average": 0.999946177,
+        "min": 0.9999326468,
+        "variance": 1.830677832e-10
+      },
+      "words": "16"
+    },
+    {
+      "probability": {
+        "average": 0.9999731183,
+        "min": 0.9999592304,
+        "variance": 1.928732729e-10
+      },
+      "words": "32"
+    },
+    {
+      "probability": {
+        "average": 0.9849068522,
+        "min": 0.5121328235,
+        "variance": 0.006985301618
+      },
+      "words": "Number of Examples in Context (K)"
+    }
+  ],
+  "words_result_num": 18,
+  "direction": 0,
+  "log_id": 2079046613948932118
+}

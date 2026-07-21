@@ -1,0 +1,191 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.99996984,
+        "min": 0.9999470711,
+        "variance": 5.184261909e-10
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9739699364,
+        "min": 0.8195111752,
+        "variance": 0.003976363223
+      },
+      "words": "RN50x64"
+    },
+    {
+      "probability": {
+        "average": 0.9999097586,
+        "min": 0.9998958111,
+        "variance": 1.945323902e-10
+      },
+      "words": "65"
+    },
+    {
+      "probability": {
+        "average": 0.9989929199,
+        "min": 0.9935731292,
+        "variance": 4.89700551e-06
+      },
+      "words": "5 point"
+    },
+    {
+      "probability": {
+        "average": 0.9999780059,
+        "min": 0.9998496771,
+        "variance": 1.695722784e-09
+      },
+      "words": "improvement"
+    },
+    {
+      "probability": {
+        "average": 0.6482475996,
+        "min": 0.0625474602,
+        "variance": 0.186943531
+      },
+      "words": "(%)103s a6ejaAv"
+    },
+    {
+      "probability": {
+        "average": 0.9999468327,
+        "min": 0.9999192953,
+        "variance": 7.583054185e-10
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9687330127,
+        "min": 0.7831178308,
+        "variance": 0.005742295645
+      },
+      "words": "RN50x16"
+    },
+    {
+      "probability": {
+        "average": 0.9944915771,
+        "min": 0.9362953305,
+        "variance": 0.0002301336353
+      },
+      "words": "4X efficiency gain."
+    },
+    {
+      "probability": {
+        "average": 0.9998304844,
+        "min": 0.999761045,
+        "variance": 4.825972511e-09
+      },
+      "words": "55"
+    },
+    {
+      "probability": {
+        "average": 0.9611902237,
+        "min": 0.7714660168,
+        "variance": 0.007200248539
+      },
+      "words": "RN50x4"
+    },
+    {
+      "probability": {
+        "average": 0.9999101162,
+        "min": 0.9998378754,
+        "variance": 5.218737442e-09
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9994971156,
+        "min": 0.9988196492,
+        "variance": 1.434110288e-07
+      },
+      "words": "RN101"
+    },
+    {
+      "probability": {
+        "average": 0.9975461364,
+        "min": 0.9914827347,
+        "variance": 1.232105024e-05
+      },
+      "words": "RN50"
+    },
+    {
+      "probability": {
+        "average": 0.9999026656,
+        "min": 0.9977924824,
+        "variance": 1.404362138e-07
+      },
+      "words": "Prompt engineering and ensembling"
+    },
+    {
+      "probability": {
+        "average": 0.9851218462,
+        "min": 0.5885840654,
+        "variance": 0.004381750245
+      },
+      "words": "Contextless class names (Li et al. 2017)"
+    },
+    {
+      "probability": {
+        "average": 0.9999072552,
+        "min": 0.9998486042,
+        "variance": 3.439936336e-09
+      },
+      "words": "45"
+    },
+    {
+      "probability": {
+        "average": 0.9996191859,
+        "min": 0.9990376234,
+        "variance": 1.735644446e-07
+      },
+      "words": "6.1"
+    },
+    {
+      "probability": {
+        "average": 0.9957876205,
+        "min": 0.9876515865,
+        "variance": 3.309778185e-05
+      },
+      "words": "9.9"
+    },
+    {
+      "probability": {
+        "average": 0.998858273,
+        "min": 0.9955160022,
+        "variance": 3.723807367e-06
+      },
+      "words": "21.5"
+    },
+    {
+      "probability": {
+        "average": 0.9994981289,
+        "min": 0.9981127977,
+        "variance": 6.410558626e-07
+      },
+      "words": "75.3"
+    },
+    {
+      "probability": {
+        "average": 0.9995743036,
+        "min": 0.9979053736,
+        "variance": 6.963285273e-07
+      },
+      "words": "265.9"
+    },
+    {
+      "probability": {
+        "average": 0.9959385395,
+        "min": 0.97069484,
+        "variance": 6.038597712e-05
+      },
+      "words": "Model GFLOPs"
+    }
+  ],
+  "words_result_num": 23,
+  "direction": 0,
+  "log_id": 2079046557842145889
+}

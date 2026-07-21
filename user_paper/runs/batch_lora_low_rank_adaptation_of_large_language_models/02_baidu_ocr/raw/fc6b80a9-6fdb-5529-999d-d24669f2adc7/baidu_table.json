@@ -1,0 +1,2230 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 6
+            },
+            {
+              "x": 188,
+              "y": 6
+            },
+            {
+              "x": 188,
+              "y": 48
+            },
+            {
+              "x": 9,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Method"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 188,
+              "y": 6
+            },
+            {
+              "x": 369,
+              "y": 6
+            },
+            {
+              "x": 369,
+              "y": 48
+            },
+            {
+              "x": 188,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Dataset"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 369,
+              "y": 6
+            },
+            {
+              "x": 464,
+              "y": 6
+            },
+            {
+              "x": 464,
+              "y": 48
+            },
+            {
+              "x": 369,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 464,
+              "y": 6
+            },
+            {
+              "x": 554,
+              "y": 6
+            },
+            {
+              "x": 554,
+              "y": 48
+            },
+            {
+              "x": 464,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "MNLI SST-2 MRPC CoLA QNLI QQP RTE STS-B"
+        },
+        {
+          "col_end": 5,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 554,
+              "y": 6
+            },
+            {
+              "x": 649,
+              "y": 6
+            },
+            {
+              "x": 649,
+              "y": 48
+            },
+            {
+              "x": 554,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 4,
+          "words": ""
+        },
+        {
+          "col_end": 6,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 649,
+              "y": 6
+            },
+            {
+              "x": 745,
+              "y": 6
+            },
+            {
+              "x": 745,
+              "y": 48
+            },
+            {
+              "x": 649,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 5,
+          "words": ""
+        },
+        {
+          "col_end": 7,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 745,
+              "y": 6
+            },
+            {
+              "x": 829,
+              "y": 6
+            },
+            {
+              "x": 829,
+              "y": 48
+            },
+            {
+              "x": 745,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 6,
+          "words": ""
+        },
+        {
+          "col_end": 8,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 829,
+              "y": 6
+            },
+            {
+              "x": 915,
+              "y": 6
+            },
+            {
+              "x": 915,
+              "y": 48
+            },
+            {
+              "x": 829,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 7,
+          "words": ""
+        },
+        {
+          "col_end": 9,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 915,
+              "y": 6
+            },
+            {
+              "x": 1004,
+              "y": 6
+            },
+            {
+              "x": 1004,
+              "y": 48
+            },
+            {
+              "x": 915,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 8,
+          "words": ""
+        },
+        {
+          "col_end": 10,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 1004,
+              "y": 6
+            },
+            {
+              "x": 1088,
+              "y": 6
+            },
+            {
+              "x": 1088,
+              "y": 48
+            },
+            {
+              "x": 1004,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 9,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 48
+            },
+            {
+              "x": 188,
+              "y": 48
+            },
+            {
+              "x": 188,
+              "y": 145
+            },
+            {
+              "x": 9,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": ""
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 188,
+              "y": 48
+            },
+            {
+              "x": 369,
+              "y": 48
+            },
+            {
+              "x": 369,
+              "y": 145
+            },
+            {
+              "x": 188,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "Optimizer\nWarmup Ratio\nLR Schedule"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 369,
+              "y": 48
+            },
+            {
+              "x": 464,
+              "y": 48
+            },
+            {
+              "x": 464,
+              "y": 145
+            },
+            {
+              "x": 369,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 464,
+              "y": 48
+            },
+            {
+              "x": 554,
+              "y": 48
+            },
+            {
+              "x": 554,
+              "y": 145
+            },
+            {
+              "x": 464,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": ""
+        },
+        {
+          "col_end": 5,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 554,
+              "y": 48
+            },
+            {
+              "x": 649,
+              "y": 48
+            },
+            {
+              "x": 649,
+              "y": 145
+            },
+            {
+              "x": 554,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 4,
+          "words": ""
+        },
+        {
+          "col_end": 7,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 648,
+              "y": 47
+            },
+            {
+              "x": 828,
+              "y": 47
+            },
+            {
+              "x": 828,
+              "y": 145
+            },
+            {
+              "x": 649,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 5,
+          "words": "AdamW\n0.06\nLinear"
+        },
+        {
+          "col_end": 8,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 829,
+              "y": 48
+            },
+            {
+              "x": 915,
+              "y": 48
+            },
+            {
+              "x": 916,
+              "y": 145
+            },
+            {
+              "x": 829,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 7,
+          "words": ""
+        },
+        {
+          "col_end": 10,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 915,
+              "y": 47
+            },
+            {
+              "x": 1088,
+              "y": 47
+            },
+            {
+              "x": 1088,
+              "y": 145
+            },
+            {
+              "x": 915,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 8,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 145
+            },
+            {
+              "x": 188,
+              "y": 145
+            },
+            {
+              "x": 188,
+              "y": 326
+            },
+            {
+              "x": 9,
+              "y": 326
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "RoBERTa base\nLoRA"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 188,
+              "y": 145
+            },
+            {
+              "x": 369,
+              "y": 145
+            },
+            {
+              "x": 369,
+              "y": 326
+            },
+            {
+              "x": 188,
+              "y": 326
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "Batch Size\n# Epochs\nLearning Rate\nLoRA Config.\nLoRA a\nMax Seq. Len."
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 369,
+              "y": 145
+            },
+            {
+              "x": 464,
+              "y": 145
+            },
+            {
+              "x": 464,
+              "y": 326
+            },
+            {
+              "x": 369,
+              "y": 326
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "16\n30\n5E-04"
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 464,
+              "y": 145
+            },
+            {
+              "x": 554,
+              "y": 145
+            },
+            {
+              "x": 554,
+              "y": 326
+            },
+            {
+              "x": 464,
+              "y": 326
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "16\n60\n5E-04"
+        },
+        {
+          "col_end": 5,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 554,
+              "y": 145
+            },
+            {
+              "x": 649,
+              "y": 145
+            },
+            {
+              "x": 649,
+              "y": 326
+            },
+            {
+              "x": 554,
+              "y": 326
+            }
+          ],
+          "row_start": 2,
+          "col_start": 4,
+          "words": "16\n30\n4E-04"
+        },
+        {
+          "col_end": 6,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 649,
+              "y": 145
+            },
+            {
+              "x": 745,
+              "y": 145
+            },
+            {
+              "x": 745,
+              "y": 326
+            },
+            {
+              "x": 649,
+              "y": 326
+            }
+          ],
+          "row_start": 2,
+          "col_start": 5,
+          "words": "32\n80\n4E-04\nTq=rv=8\n8\n512"
+        },
+        {
+          "col_end": 7,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 745,
+              "y": 145
+            },
+            {
+              "x": 829,
+              "y": 145
+            },
+            {
+              "x": 829,
+              "y": 326
+            },
+            {
+              "x": 745,
+              "y": 326
+            }
+          ],
+          "row_start": 2,
+          "col_start": 6,
+          "words": "32\n25\n4E-04"
+        },
+        {
+          "col_end": 8,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 829,
+              "y": 145
+            },
+            {
+              "x": 916,
+              "y": 145
+            },
+            {
+              "x": 915,
+              "y": 326
+            },
+            {
+              "x": 829,
+              "y": 326
+            }
+          ],
+          "row_start": 2,
+          "col_start": 7,
+          "words": "16\n25\n5E-04"
+        },
+        {
+          "col_end": 9,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 916,
+              "y": 145
+            },
+            {
+              "x": 1004,
+              "y": 145
+            },
+            {
+              "x": 1004,
+              "y": 326
+            },
+            {
+              "x": 915,
+              "y": 326
+            }
+          ],
+          "row_start": 2,
+          "col_start": 8,
+          "words": "32\n80\n5E-04"
+        },
+        {
+          "col_end": 10,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 1004,
+              "y": 145
+            },
+            {
+              "x": 1088,
+              "y": 145
+            },
+            {
+              "x": 1088,
+              "y": 326
+            },
+            {
+              "x": 1004,
+              "y": 326
+            }
+          ],
+          "row_start": 2,
+          "col_start": 9,
+          "words": "16\n40\n4E-04"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 326
+            },
+            {
+              "x": 188,
+              "y": 326
+            },
+            {
+              "x": 188,
+              "y": 506
+            },
+            {
+              "x": 9,
+              "y": 506
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "RoBERTa large\nLoRA"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 188,
+              "y": 326
+            },
+            {
+              "x": 369,
+              "y": 326
+            },
+            {
+              "x": 369,
+              "y": 506
+            },
+            {
+              "x": 188,
+              "y": 506
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "Batch Size\n#Epochs\nLearning Rate\nLoRA Config.\nLoRA a\nMax Seq. Len."
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 369,
+              "y": 326
+            },
+            {
+              "x": 464,
+              "y": 326
+            },
+            {
+              "x": 464,
+              "y": 506
+            },
+            {
+              "x": 369,
+              "y": 506
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "4\n10\n3E-04\n128"
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 464,
+              "y": 326
+            },
+            {
+              "x": 554,
+              "y": 326
+            },
+            {
+              "x": 554,
+              "y": 507
+            },
+            {
+              "x": 464,
+              "y": 506
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "4\n10\n4E-04\n128"
+        },
+        {
+          "col_end": 5,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 554,
+              "y": 326
+            },
+            {
+              "x": 649,
+              "y": 326
+            },
+            {
+              "x": 649,
+              "y": 506
+            },
+            {
+              "x": 554,
+              "y": 507
+            }
+          ],
+          "row_start": 3,
+          "col_start": 4,
+          "words": "4\n20\n3E-04\n512"
+        },
+        {
+          "col_end": 6,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 649,
+              "y": 326
+            },
+            {
+              "x": 745,
+              "y": 326
+            },
+            {
+              "x": 745,
+              "y": 506
+            },
+            {
+              "x": 649,
+              "y": 506
+            }
+          ],
+          "row_start": 3,
+          "col_start": 5,
+          "words": "4\n20\n2E-04\nTq=Tv=8\n16\n128"
+        },
+        {
+          "col_end": 7,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 745,
+              "y": 326
+            },
+            {
+              "x": 829,
+              "y": 326
+            },
+            {
+              "x": 829,
+              "y": 506
+            },
+            {
+              "x": 745,
+              "y": 506
+            }
+          ],
+          "row_start": 3,
+          "col_start": 6,
+          "words": "4\n10\n2E-04\n512"
+        },
+        {
+          "col_end": 8,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 829,
+              "y": 326
+            },
+            {
+              "x": 915,
+              "y": 326
+            },
+            {
+              "x": 916,
+              "y": 506
+            },
+            {
+              "x": 829,
+              "y": 506
+            }
+          ],
+          "row_start": 3,
+          "col_start": 7,
+          "words": "4\n20\n3E-04\n512"
+        },
+        {
+          "col_end": 9,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 915,
+              "y": 326
+            },
+            {
+              "x": 1004,
+              "y": 326
+            },
+            {
+              "x": 1004,
+              "y": 506
+            },
+            {
+              "x": 916,
+              "y": 506
+            }
+          ],
+          "row_start": 3,
+          "col_start": 8,
+          "words": "8\n20\n4E-04\n512"
+        },
+        {
+          "col_end": 10,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 1004,
+              "y": 326
+            },
+            {
+              "x": 1088,
+              "y": 326
+            },
+            {
+              "x": 1088,
+              "y": 506
+            },
+            {
+              "x": 1004,
+              "y": 506
+            }
+          ],
+          "row_start": 3,
+          "col_start": 9,
+          "words": "8\n30\n2E-04\n512"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 506
+            },
+            {
+              "x": 188,
+              "y": 506
+            },
+            {
+              "x": 188,
+              "y": 686
+            },
+            {
+              "x": 9,
+              "y": 686
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "RoBERTa large\nLoRAt"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 188,
+              "y": 506
+            },
+            {
+              "x": 369,
+              "y": 506
+            },
+            {
+              "x": 369,
+              "y": 686
+            },
+            {
+              "x": 188,
+              "y": 686
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "Batch Size\n#Epochs\nLearning Rate\nLoRA Config.\nLoRA a\nMax Seq. Len."
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 369,
+              "y": 506
+            },
+            {
+              "x": 464,
+              "y": 506
+            },
+            {
+              "x": 464,
+              "y": 686
+            },
+            {
+              "x": 369,
+              "y": 686
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "10\n3E-04"
+        },
+        {
+          "col_end": 4,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 464,
+              "y": 506
+            },
+            {
+              "x": 554,
+              "y": 507
+            },
+            {
+              "x": 554,
+              "y": 686
+            },
+            {
+              "x": 464,
+              "y": 686
+            }
+          ],
+          "row_start": 4,
+          "col_start": 3,
+          "words": "10\n4E-04"
+        },
+        {
+          "col_end": 5,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 554,
+              "y": 507
+            },
+            {
+              "x": 649,
+              "y": 506
+            },
+            {
+              "x": 649,
+              "y": 686
+            },
+            {
+              "x": 554,
+              "y": 686
+            }
+          ],
+          "row_start": 4,
+          "col_start": 4,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 6,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 649,
+              "y": 506
+            },
+            {
+              "x": 745,
+              "y": 506
+            },
+            {
+              "x": 745,
+              "y": 686
+            },
+            {
+              "x": 649,
+              "y": 686
+            }
+          ],
+          "row_start": 4,
+          "col_start": 5,
+          "words": "4\n20\n2E-04\nrq=rv=8\n16\n128"
+        },
+        {
+          "col_end": 7,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 745,
+              "y": 506
+            },
+            {
+              "x": 829,
+              "y": 506
+            },
+            {
+              "x": 829,
+              "y": 686
+            },
+            {
+              "x": 745,
+              "y": 686
+            }
+          ],
+          "row_start": 4,
+          "col_start": 6,
+          "words": "10\n2E-04"
+        },
+        {
+          "col_end": 8,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 829,
+              "y": 506
+            },
+            {
+              "x": 916,
+              "y": 506
+            },
+            {
+              "x": 915,
+              "y": 686
+            },
+            {
+              "x": 829,
+              "y": 686
+            }
+          ],
+          "row_start": 4,
+          "col_start": 7,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 9,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 916,
+              "y": 506
+            },
+            {
+              "x": 1004,
+              "y": 506
+            },
+            {
+              "x": 1004,
+              "y": 686
+            },
+            {
+              "x": 915,
+              "y": 686
+            }
+          ],
+          "row_start": 4,
+          "col_start": 8,
+          "words": "20\n4E-04"
+        },
+        {
+          "col_end": 10,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 1004,
+              "y": 506
+            },
+            {
+              "x": 1088,
+              "y": 506
+            },
+            {
+              "x": 1088,
+              "y": 686
+            },
+            {
+              "x": 1004,
+              "y": 686
+            }
+          ],
+          "row_start": 4,
+          "col_start": 9,
+          "words": "10\n2E-04"
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 686
+            },
+            {
+              "x": 188,
+              "y": 686
+            },
+            {
+              "x": 188,
+              "y": 838
+            },
+            {
+              "x": 9,
+              "y": 839
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "RoBERTa large\nAdptP(3M)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 188,
+              "y": 686
+            },
+            {
+              "x": 369,
+              "y": 686
+            },
+            {
+              "x": 369,
+              "y": 839
+            },
+            {
+              "x": 188,
+              "y": 838
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "Batch Size\n# Epochs\nLearning Rate\nBottleneck r\nMax Seq. Len."
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 369,
+              "y": 686
+            },
+            {
+              "x": 464,
+              "y": 686
+            },
+            {
+              "x": 464,
+              "y": 838
+            },
+            {
+              "x": 369,
+              "y": 839
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": "10\n3E-05"
+        },
+        {
+          "col_end": 4,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 464,
+              "y": 686
+            },
+            {
+              "x": 554,
+              "y": 686
+            },
+            {
+              "x": 554,
+              "y": 839
+            },
+            {
+              "x": 464,
+              "y": 838
+            }
+          ],
+          "row_start": 5,
+          "col_start": 3,
+          "words": "20\n3E-05"
+        },
+        {
+          "col_end": 5,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 554,
+              "y": 686
+            },
+            {
+              "x": 649,
+              "y": 686
+            },
+            {
+              "x": 649,
+              "y": 838
+            },
+            {
+              "x": 554,
+              "y": 839
+            }
+          ],
+          "row_start": 5,
+          "col_start": 4,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 6,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 649,
+              "y": 686
+            },
+            {
+              "x": 745,
+              "y": 686
+            },
+            {
+              "x": 745,
+              "y": 839
+            },
+            {
+              "x": 649,
+              "y": 838
+            }
+          ],
+          "row_start": 5,
+          "col_start": 5,
+          "words": "32\n20\n3E-04\n64\n128"
+        },
+        {
+          "col_end": 7,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 745,
+              "y": 686
+            },
+            {
+              "x": 829,
+              "y": 686
+            },
+            {
+              "x": 829,
+              "y": 839
+            },
+            {
+              "x": 745,
+              "y": 839
+            }
+          ],
+          "row_start": 5,
+          "col_start": 6,
+          "words": "10\n3E-04"
+        },
+        {
+          "col_end": 8,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 829,
+              "y": 686
+            },
+            {
+              "x": 915,
+              "y": 686
+            },
+            {
+              "x": 915,
+              "y": 839
+            },
+            {
+              "x": 829,
+              "y": 839
+            }
+          ],
+          "row_start": 5,
+          "col_start": 7,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 9,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 915,
+              "y": 686
+            },
+            {
+              "x": 1004,
+              "y": 686
+            },
+            {
+              "x": 1004,
+              "y": 838
+            },
+            {
+              "x": 915,
+              "y": 839
+            }
+          ],
+          "row_start": 5,
+          "col_start": 8,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 10,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 1004,
+              "y": 686
+            },
+            {
+              "x": 1088,
+              "y": 686
+            },
+            {
+              "x": 1088,
+              "y": 838
+            },
+            {
+              "x": 1004,
+              "y": 838
+            }
+          ],
+          "row_start": 5,
+          "col_start": 9,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 1,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 839
+            },
+            {
+              "x": 188,
+              "y": 838
+            },
+            {
+              "x": 188,
+              "y": 990
+            },
+            {
+              "x": 9,
+              "y": 990
+            }
+          ],
+          "row_start": 6,
+          "col_start": 0,
+          "words": "RoBERTa large\nAdptP(0.8M)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 188,
+              "y": 838
+            },
+            {
+              "x": 369,
+              "y": 839
+            },
+            {
+              "x": 369,
+              "y": 990
+            },
+            {
+              "x": 188,
+              "y": 990
+            }
+          ],
+          "row_start": 6,
+          "col_start": 1,
+          "words": "Batch Size\n#Epochs\nLearning Rate\nBottleneck r\nMax Seq. Len."
+        },
+        {
+          "col_end": 3,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 369,
+              "y": 839
+            },
+            {
+              "x": 464,
+              "y": 838
+            },
+            {
+              "x": 464,
+              "y": 990
+            },
+            {
+              "x": 369,
+              "y": 990
+            }
+          ],
+          "row_start": 6,
+          "col_start": 2,
+          "words": "5\n3E-04"
+        },
+        {
+          "col_end": 4,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 464,
+              "y": 838
+            },
+            {
+              "x": 554,
+              "y": 839
+            },
+            {
+              "x": 554,
+              "y": 990
+            },
+            {
+              "x": 464,
+              "y": 990
+            }
+          ],
+          "row_start": 6,
+          "col_start": 3,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 5,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 554,
+              "y": 839
+            },
+            {
+              "x": 649,
+              "y": 838
+            },
+            {
+              "x": 649,
+              "y": 990
+            },
+            {
+              "x": 554,
+              "y": 990
+            }
+          ],
+          "row_start": 6,
+          "col_start": 4,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 6,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 649,
+              "y": 838
+            },
+            {
+              "x": 745,
+              "y": 839
+            },
+            {
+              "x": 745,
+              "y": 990
+            },
+            {
+              "x": 649,
+              "y": 990
+            }
+          ],
+          "row_start": 6,
+          "col_start": 5,
+          "words": "32\n20\n3E-04\n16\n128"
+        },
+        {
+          "col_end": 7,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 745,
+              "y": 839
+            },
+            {
+              "x": 829,
+              "y": 839
+            },
+            {
+              "x": 829,
+              "y": 990
+            },
+            {
+              "x": 745,
+              "y": 990
+            }
+          ],
+          "row_start": 6,
+          "col_start": 6,
+          "words": "10\n3E-04"
+        },
+        {
+          "col_end": 8,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 829,
+              "y": 839
+            },
+            {
+              "x": 915,
+              "y": 839
+            },
+            {
+              "x": 915,
+              "y": 990
+            },
+            {
+              "x": 829,
+              "y": 990
+            }
+          ],
+          "row_start": 6,
+          "col_start": 7,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 9,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 915,
+              "y": 839
+            },
+            {
+              "x": 1004,
+              "y": 838
+            },
+            {
+              "x": 1004,
+              "y": 990
+            },
+            {
+              "x": 915,
+              "y": 990
+            }
+          ],
+          "row_start": 6,
+          "col_start": 8,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 10,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 1004,
+              "y": 838
+            },
+            {
+              "x": 1088,
+              "y": 838
+            },
+            {
+              "x": 1088,
+              "y": 990
+            },
+            {
+              "x": 1004,
+              "y": 990
+            }
+          ],
+          "row_start": 6,
+          "col_start": 9,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 1,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 990
+            },
+            {
+              "x": 188,
+              "y": 990
+            },
+            {
+              "x": 188,
+              "y": 1143
+            },
+            {
+              "x": 9,
+              "y": 1143
+            }
+          ],
+          "row_start": 7,
+          "col_start": 0,
+          "words": "RoBERTa large\nAdptH(6M)↑"
+        },
+        {
+          "col_end": 2,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 188,
+              "y": 990
+            },
+            {
+              "x": 369,
+              "y": 990
+            },
+            {
+              "x": 369,
+              "y": 1143
+            },
+            {
+              "x": 188,
+              "y": 1143
+            }
+          ],
+          "row_start": 7,
+          "col_start": 1,
+          "words": "Batch Size\n#Epochs\nLearning Rate\nBottleneck r\nMax Seq. Len."
+        },
+        {
+          "col_end": 3,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 369,
+              "y": 990
+            },
+            {
+              "x": 464,
+              "y": 990
+            },
+            {
+              "x": 464,
+              "y": 1143
+            },
+            {
+              "x": 369,
+              "y": 1143
+            }
+          ],
+          "row_start": 7,
+          "col_start": 2,
+          "words": "10\n3E-05"
+        },
+        {
+          "col_end": 4,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 464,
+              "y": 990
+            },
+            {
+              "x": 554,
+              "y": 990
+            },
+            {
+              "x": 554,
+              "y": 1143
+            },
+            {
+              "x": 464,
+              "y": 1143
+            }
+          ],
+          "row_start": 7,
+          "col_start": 3,
+          "words": "5\n3E-04"
+        },
+        {
+          "col_end": 5,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 554,
+              "y": 990
+            },
+            {
+              "x": 649,
+              "y": 990
+            },
+            {
+              "x": 649,
+              "y": 1143
+            },
+            {
+              "x": 554,
+              "y": 1143
+            }
+          ],
+          "row_start": 7,
+          "col_start": 4,
+          "words": "10\n3E-04"
+        },
+        {
+          "col_end": 6,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 649,
+              "y": 990
+            },
+            {
+              "x": 745,
+              "y": 990
+            },
+            {
+              "x": 745,
+              "y": 1143
+            },
+            {
+              "x": 649,
+              "y": 1143
+            }
+          ],
+          "row_start": 7,
+          "col_start": 5,
+          "words": "32\n10\n3E-04\n64\n128"
+        },
+        {
+          "col_end": 7,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 745,
+              "y": 990
+            },
+            {
+              "x": 829,
+              "y": 990
+            },
+            {
+              "x": 829,
+              "y": 1143
+            },
+            {
+              "x": 745,
+              "y": 1143
+            }
+          ],
+          "row_start": 7,
+          "col_start": 6,
+          "words": "5\n3E-04"
+        },
+        {
+          "col_end": 8,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 829,
+              "y": 990
+            },
+            {
+              "x": 915,
+              "y": 990
+            },
+            {
+              "x": 915,
+              "y": 1143
+            },
+            {
+              "x": 829,
+              "y": 1143
+            }
+          ],
+          "row_start": 7,
+          "col_start": 7,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 9,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 915,
+              "y": 990
+            },
+            {
+              "x": 1004,
+              "y": 990
+            },
+            {
+              "x": 1004,
+              "y": 1143
+            },
+            {
+              "x": 915,
+              "y": 1143
+            }
+          ],
+          "row_start": 7,
+          "col_start": 8,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 10,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 1004,
+              "y": 990
+            },
+            {
+              "x": 1088,
+              "y": 990
+            },
+            {
+              "x": 1088,
+              "y": 1143
+            },
+            {
+              "x": 1004,
+              "y": 1143
+            }
+          ],
+          "row_start": 7,
+          "col_start": 9,
+          "words": "10\n3E-04"
+        },
+        {
+          "col_end": 1,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 1143
+            },
+            {
+              "x": 188,
+              "y": 1143
+            },
+            {
+              "x": 188,
+              "y": 1293
+            },
+            {
+              "x": 9,
+              "y": 1294
+            }
+          ],
+          "row_start": 8,
+          "col_start": 0,
+          "words": "RoBERTa large\nAdptH(0.8M)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 188,
+              "y": 1143
+            },
+            {
+              "x": 369,
+              "y": 1143
+            },
+            {
+              "x": 369,
+              "y": 1292
+            },
+            {
+              "x": 188,
+              "y": 1293
+            }
+          ],
+          "row_start": 8,
+          "col_start": 1,
+          "words": "Batch Size\n# Epochs\nLearning Rate\nBottleneck r\nMax Seq. Len."
+        },
+        {
+          "col_end": 3,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 369,
+              "y": 1143
+            },
+            {
+              "x": 464,
+              "y": 1143
+            },
+            {
+              "x": 464,
+              "y": 1292
+            },
+            {
+              "x": 369,
+              "y": 1292
+            }
+          ],
+          "row_start": 8,
+          "col_start": 2,
+          "words": "10\n3E-04"
+        },
+        {
+          "col_end": 4,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 464,
+              "y": 1143
+            },
+            {
+              "x": 554,
+              "y": 1143
+            },
+            {
+              "x": 554,
+              "y": 1291
+            },
+            {
+              "x": 464,
+              "y": 1292
+            }
+          ],
+          "row_start": 8,
+          "col_start": 3,
+          "words": "5\n3E-04"
+        },
+        {
+          "col_end": 5,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 554,
+              "y": 1143
+            },
+            {
+              "x": 649,
+              "y": 1143
+            },
+            {
+              "x": 649,
+              "y": 1290
+            },
+            {
+              "x": 554,
+              "y": 1291
+            }
+          ],
+          "row_start": 8,
+          "col_start": 4,
+          "words": "10\n3E-04"
+        },
+        {
+          "col_end": 6,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 649,
+              "y": 1143
+            },
+            {
+              "x": 745,
+              "y": 1143
+            },
+            {
+              "x": 745,
+              "y": 1290
+            },
+            {
+              "x": 649,
+              "y": 1290
+            }
+          ],
+          "row_start": 8,
+          "col_start": 5,
+          "words": "32\n10\n3E-04\n8\n128"
+        },
+        {
+          "col_end": 7,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 745,
+              "y": 1143
+            },
+            {
+              "x": 829,
+              "y": 1143
+            },
+            {
+              "x": 829,
+              "y": 1289
+            },
+            {
+              "x": 745,
+              "y": 1290
+            }
+          ],
+          "row_start": 8,
+          "col_start": 6,
+          "words": "5\n3E-04"
+        },
+        {
+          "col_end": 8,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 829,
+              "y": 1143
+            },
+            {
+              "x": 915,
+              "y": 1143
+            },
+            {
+              "x": 915,
+              "y": 1289
+            },
+            {
+              "x": 829,
+              "y": 1289
+            }
+          ],
+          "row_start": 8,
+          "col_start": 7,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 9,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 915,
+              "y": 1143
+            },
+            {
+              "x": 1004,
+              "y": 1143
+            },
+            {
+              "x": 1004,
+              "y": 1288
+            },
+            {
+              "x": 915,
+              "y": 1289
+            }
+          ],
+          "row_start": 8,
+          "col_start": 8,
+          "words": "20\n3E-04"
+        },
+        {
+          "col_end": 10,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 1004,
+              "y": 1143
+            },
+            {
+              "x": 1088,
+              "y": 1143
+            },
+            {
+              "x": 1088,
+              "y": 1288
+            },
+            {
+              "x": 1004,
+              "y": 1288
+            }
+          ],
+          "row_start": 8,
+          "col_start": 9,
+          "words": "10\n3E-04"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 9,
+          "y": 6
+        },
+        {
+          "x": 1088,
+          "y": 6
+        },
+        {
+          "x": 1088,
+          "y": 1294
+        },
+        {
+          "x": 9,
+          "y": 1294
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079048131750773499
+}

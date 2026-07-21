@@ -1,0 +1,61 @@
+{
+  "file_name": "d2b4ac845ec58ad91a1b59862c15e1d7e1f03e7003beab018ff8cb1011825dc1.jpg",
+  "file_id": "file-TvvWub9ASnY5QwPgYiRZ3vccxwfvI5tk",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "V3iZyg-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "V3iZyg-layout-1",
+          "text": "(1)",
+          "position": [
+            4,
+            6,
+            199,
+            84
+          ],
+          "polygon": [
+            [
+              4,
+              6
+            ],
+            [
+              203,
+              6
+            ],
+            [
+              203,
+              90
+            ],
+            [
+              4,
+              90
+            ]
+          ],
+          "type": "vertical_text",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "(1)",
+      "markdown": "(1)",
+      "meta": {
+        "page_width": 203,
+        "page_height": 101
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

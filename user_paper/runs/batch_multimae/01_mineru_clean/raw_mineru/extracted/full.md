@@ -1,0 +1,563 @@
+# MultiMAE: Multi-modal Multi-task Masked Autoencoders
+
+Roman Bachmann\* David Mizrahi\* Andrei Atanov Amir Zamir Swiss Federal Institute of Technology Lausanne (EPFL)
+
+https://multimae.epfl.ch
+
+![](images/475eb4fab2768c2047952f5cd7e18fa22af2971aac0e84ea22ef77b4014bbb68.jpg)  
+Figure 1. MultiMAE pre-training objective. We randomly select 1/6 of all $16 \times 16$ image patches from multiple modalities and learn to reconstruct the remaining 5/6 masked patches from them. The figure shows validation examples from ImageNet, where masked inputs (left), predictions (middle), and non-masked images (right) for RGB (top), depth (middle), and semantic segmentation (bottom) are provided. Since we do not compute a loss on non-masked patches, we overlay the input patches on the predictions.
+
+## Abstract
+
+We propose a pre-training strategy called Multi-modal Multi-task Masked Autoencoders (MultiMAE). It differs from standard Masked Autoencoding in two key aspects: I) it can optionally accept additional modalities of information in the input besides the RGB image (hence “multi-modal”), and II) its training objective accordingly includes predicting multiple outputs besides the RGB image (hence “multi-task”).
+
+We make use of masking (across image patches and input modalities) to make training MultiMAE tractable as well as to ensure cross-modality predictive coding is indeed learned by the network. We show this pre-training strategy leads to a flexible, simple, and efficient framework with improved transfer results to downstream tasks. In particular, the same exact pre-trained network can be flexibly used when additional information besides RGB images is available or when no information other than RGB is available – in all configurations yielding competitive to or significantly better results than the baselines. To avoid needing training datasets with multiple modalities and tasks, we train
+
+MultiMAE entirely using pseudo labeling, which makes the framework widely applicable to any RGB dataset.
+
+The experiments are performed on multiple transfer tasks (image classification, semantic segmentation, depth estimation) and datasets (ImageNet, ADE20K, Taskonomy, Hypersim, NYUv2). The results show an intriguingly impressive capability by the model in cross-modal/task predictive coding and transfer. Code, pre-trained models, and interactive visualizations are available at https://multimae.epfl.ch.
+
+## 1. Introduction
+
+Masked Autoencoders (MAEs) $[35]$ have recently been demonstrated to be a powerful, yet conceptually simple and efficient, self-supervised pre-training strategy for Vision Transformers $[26]$ (ViTs). Their training objective is to mask-out a high number of patches in an input image and to predict the missing regions. To that end, only the small number of non-masked patches are first processed using a Transformer encoder $[85]$ , and then decoded with a light-weight Transformer that reconstructs the original image. To solve this task sufficiently well, it is assumed $[35]$ that the network needs to learn representations that capture more than just low-level image statistics.
+
+So far, however, the MAE pre-training objective has been limited to a single modality, namely RGB images, and does not make use of any other modalities that are optionally present. In practice, often more than only a single modality of information is available, either through sensing (e.g., a depth sensor) or pseudo labeling (e.g., a powerful pretrained depth estimation network). Multi-modality is also argued to be employed by biological organisms to develop resilience and better representations $[21, 22, 74]$ . As we demonstrate in our experiments, making use of such optionally present modalities has the potential to greatly improve the performance of downstream tasks, compared to using only RGB images.
+
+Besides multi-modality (i.e., different inputs), multitaskness (i.e., different outputs) is an important aspect, as it has been shown that there is usually no single pre-training objective that transfers best to all possible downstream tasks $[58,70,99]$ . Instead, pre-training with a diverse set of tasks $[11,83]$ has been observed to improve the performance on downstream tasks $[31,80]$ and potentially learn a better representation. In general, modifying the training objectives is a powerful way to steer what representation the model will learn.
+
+In this paper, we present Multi-modal Multi-task Masked Autoencoders (MultiMAE), a simple and effective method to make masked autoencoding include multiple modalities and tasks (see Fig. 2). In particular, in our current instantiation of this general method, we study adding dense scene depth to capture geometric information, as well as segmentation maps to include information about the semantic content of the scene. We created a multi-task dataset by pseudo labeling these tasks on ImageNet-1K [23, 31]. This has the advantage that in order to train a MultiMAE, one only requires a large unstructured RGB dataset without annotations and only off-the-shelf neural networks to perform the pseudo labeling.
+
+To train MultiMAE, we randomly sample a small set of patches from different input modalities, and encode them using a Transformer encoder. MultiMAE's objective is then to reconstruct the masked-out patches of all tasks using task-specific decoders. Figure 1 shows example predictions for the multi-task masked reconstruction that MultiMAE performs. MultiMAE has to learn not only the original MAE objective (within-RGB in-painting), but also to reconstruct any task from any input modality (cross-modal prediction) all from a very sparse set of input patches. The first objective leads to learning spatial predictive coding while the second one leads to cross-modal predictive coding.
+
+## 2. Related Work
+
+Masked image prediction consists of learning useful representations by learning to reconstruct images corrupted by masking. This approach was pioneered with denoising autoencoders $[86]$ and context encoders $[64]$ . With the introduction of Vision Transformers (ViT) $[26]$ and motivated by the success of BERT $[24]$ in NLP, many recent works propose a variety of masked image prediction methods for pre-training vision models in a self-supervised way, using reconstruction targets such as pixels $[6, 16, 26, 29, 35, 93]$ , discrete tokens $[9, 103]$ , and (deep) features $[8, 88]$ . These methods scale very well and achieve strong results on various downstream tasks including motor control $[91]$ . In particular, the masked autoencoder (MAE) $[35]$ approach accelerates pre-training by using an asymmetric architecture consisting of a large encoder that operates only on unmasked patches followed by a lightweight decoder that reconstructs the masked patches from the latent representation and mask tokens. Our approach leverages the efficiency of the MAE approach and extends it to multi-modal and multitask settings.
+
+Multi-modal learning involves building models capable of relating information from multiple sources. It can either involve training separate encoders or one unified architecture (e.g., a Transformer $[85]$ ) to operate on modalities such as images and text $[4, 14, 18, 39, 42–45, 56, 57, 76, 79, 94]$ , video and audio $[5, 41, 60, 62]$ , video, text and audio $[3]$ , and depth, images and video $[32]$ . Our work proposes a simple approach to pre-train Transformers on multiple dense visual modalities and produce strong cross-modal interaction. Unlike most prior work which assumes that all modalities are available during inference, our approach is designed to perform well on any subset of the pre-training modalities.
+
+Related to MultiMAE are several works that perform multi-modal autoencoding $[61,72,77,78,89]$ . Our approach differs from them in that we use a more flexible architecture and perform masked autoencoding to learn cross-modal predictive coding among optional inputs (as demonstrated in Fig. 1).
+
+Multi-task learning consists of training models to predict multiple output domains from a single input $[13, 28, 46]$ . In computer vision, the input is usually an RGB image. A common approach for multi-task learning is to use a single encoder to learn a shared representation followed by multiple task-specific decoders $[31, 84]$ . These methods differ from our approach as we use multiple tasks in both the input and the output along with masking.
+
+In addition, many works study the importance of task diversity to improve transfer performance $[31,58,70,82,99]$ . These works argue that learning from one task alone is insufficient and that a set of tasks can more effectively cover the many possible downstream tasks in vision. Our pretraining method operates on multiple tasks to learn more general representations capable of covering multiple downstream tasks.
+
+![](images/6d24a43a613f44199593e951b7956baa5ac053516a5cf51581d716d2ebed4038.jpg)  
+Figure 2. (Left) MultiMAE pre-training: A small subset of randomly sampled patches from multiple modalities (e.g., RGB, depth, and semantic segmentation) is linearly projected to tokens with a fixed dimension and encoded using a Transformer. Task-specific decoders reconstruct the masked-out patches by first performing a cross-attention step from queries to the encoded tokens, followed by a shallow Transformer. The queries consist of mask tokens (in gray), with the task-specific encoded tokens added at their respective positions. (Right) Fine-tuning: By pre-training on multiple modalities, MultiMAE lends itself to fine-tuning on single-modal and multi-modal downstream tasks. No masking is performed at transfer time.
+
+Self-training is a technique to incorporate unlabeled data into a supervised learning setting $[48, 69, 71, 96]$ . It is one of the earliest approaches to semi-supervised learning. Self-training methods use a supervised model to generate pseudo labels on unlabeled data and then train a student model on the pseudo labeled data. These approaches have been applied to a variety of vision tasks such as image classification $[65, 92, 95]$ , object detection $[104]$ , and segmentation $[15, 104]$ . Most recently, multi-task self-training (MuST) $[31]$ uses specialized teachers to create a multi-task pseudo labeled dataset and then trains a multi-task student model on this dataset to learn general feature representations. Our method also relies on pseudo labeling to produce a large-scale multi-task dataset. However, unlike prior work, pseudo labels are not only used as output targets but also as masked input modalities.
+
+## 3. Method Description
+
+In this Section, we describe the Multi-modal Multi-task Masked Autoencoder (MultiMAE) architecture (illustrated in Fig. 2), as well as the pre-training strategy in more detail. We first give an architectural overview of both the multi-modal encoder (Sec. 3.1) and multi-task decoders (Sec. 3.2). We then describe our multi-modal token sampling strategy (Sec. 3.3) and introduce the pseudo labeled tasks we use for pre-training (Sec. 3.4). Finally, we display the most important pre-training details (Sec. 3.5).
+
+## 3.1. Multi-modal encoder
+
+Our multi-modal Transformer encoder is a ViT [26], but with patch projection layers for each additional input modality. Specifically, $16 \times 16$ patches of each modality are projected to tokens with the correct Transformer dimension using a different linear projection for each modality. Projected patches are concatenated into a sequence of tokens and given as input to the same Transformer encoder. We also add an additional global token with a learned embedding, similar to the class-token used in ViT. Due to the architectural similarities to ViT, MultiMAE pre-trained weights can directly be used in a standard single-modal ViT by loading only the desired input projection and ignoring the others.
+
+Positional, modality and class embeddings. Since all our modalities have a 2D structure, we add 2D sine-cosine positional embeddings $[17,35]$ after the linear projection. We do not explicitly add any modality-specific embeddings, since the bias term in each linear projection can act as such. In order to perform the semantic segmentation patch projection, we first replace each class index with learned 64-dimensional class embeddings.
+
+Low computational complexity. Just as in the RGB-only MAE [35], we only pass the small randomly sampled subset of all tokens to the Transformer encoder as part of the masked autoencoding objective. This is in contrast to the masked autoencoding approaches of SiT [2], BeiT [9] and SimMIM [93], that encode both the masked and visible tokens. Due to the quadratic complexity of standard selfattention as a function of the number of tokens, encoding only the random subset of visible tokens becomes increasingly important as the number of input modalities grows. Indeed, the speedup and reduction in memory are significant and crucial in enabling MultiMAE's multi-modal pretraining with three dense input modalities. A comparison of the pre-training time with and without masked tokens is given in the Appendix (Sec. G).
+
+## 3.2. Decoders
+
+To reconstruct the masked-out tokens from the visible tokens, we use a separate decoder for each task. The input to each decoder is the full set of visible tokens from the respective task it is reconstructing. As in MAE $[35]$ , these visible tokens are decoded jointly with a set of mask tokens, which serve as placeholders for the decoders to write the reconstructed patches (as shown in Fig. 2). To integrate information from the encoded tokens of other modalities, we add a single cross-attention layer in each decoder using these tokens as queries and all the encoded tokens as keys / values. Sine-cosine positional embeddings and learned modality embeddings are added to the tokens before this step. This is then followed by a small MLP and Transformer blocks. Following MAE, we compute the losses only on the masked tokens.
+
+As each task requires its own decoder, the computational cost of decoders scales linearly with the number of tasks. To keep pre-training efficient, we use shallow decoders (a single cross-attention layer and MLP, followed by two Transformer blocks) with a low dimensionality (256 dimensional). Compared to the encoder, these decoders add little to the overall computational cost, and as He et al. $[35]$ show, they perform similarly to deeper decoders on ImageNet-1K fine-tuning.
+
+## 3.3. Multi-modal masking strategies
+
+For masked autoencoding to work well, a large percentage of tokens needs to be masked-out. He et al. [35] showed that the choice of mask sampling strategy can have a large impact on transfer performance. More specifically for MultiMAE and generally learning multi-task representations, masking across different modalities ensures the model develops predictive coding across different modalities besides different spatial patches. For efficiency and simplicity, we choose a constant number of visible tokens for all our experiments, which we fix at 98. This corresponds to $1/6$ of all tokens when using three modalities of dimensions $224 \times 224$ pixels and a patch size of $16 \times 16$ . Adapting the MAE mask sampling strategy by selecting the visible tokens uniformly from all tokens would result in most modalities being represented to similar degrees. Cases where one or more modalities have very few or no samples would be very rare. We propose a multi-modal token sampling strategy that allows for a more diverse sampling approach. It can be broken down into two steps: First, selecting the number of tokens per modality, and second, randomly sampling the set of tokens for each modality.
+
+Number of tokens per modality. We select the proportion of tokens per modality $\lambda$ by sampling from a symmetric Dirichlet distribution ( $\lambda_{RGB}, \lambda_{D}, \lambda_{S}$ ) $\sim$ Dir( $\alpha$ ), where $\lambda_{RGB} + \lambda_{D} + \lambda_{S} = 1, \lambda \geq 0$ . The sampling is controlled by the concentration parameter $\alpha > 0$ . When $\alpha = 1$ , the symmetric Dirichlet distribution is equivalent to a uniform distribution over the simplex (i.e., it is uniform over all points in its support). Smaller values ( $\alpha << 1$ ) result in a sampling behavior where most of the tokens will be sampled from a single modality, while larger values ( $\alpha >> 1$ ) result in an increasingly similar number of tokens to be sampled from each modality. As a design decision, we do not bias the sampling towards certain modalities (as we use a symmetric Dirichlet), since we want to be agnostic to the choice of downstream input modalities and tasks that users might want to consider. For simplicity and better representation of any possible sampled mask, we use a concentration parameter $\alpha = 1$ for all of our experiments. Random masks sampled using $\alpha = 1$ are shown in Figure 3, and an ablation on the choice of concentration parameter is given in the Appendix (Sec. C).
+
+Sampling tokens. From each modality, we sample the number of tokens, as specified by the above Dirichlet sampling step, uniformly at random without replacement. Uniform sampling has been shown to work well for masked autoencoders, compared to less random alternatives $[35]$ .
+
+## 3.4. Pseudo labeled multi-task training dataset
+
+We pre-train MultiMAE with three tasks that we pseudo label on ImageNet-1K $[23]$ . Pseudo labeling has the advantage that we do not need a large multi-task dataset with aligned task images. Instead, having access to a good set of pre-trained neural networks for the tasks we want to train on can be effective. Pseudo labeling scales to RGB datasets of arbitrary size and is a one-time pre-processing step. Compared to the cost of training, this step is computationally cheap and fast if parallelized.
+
+Taskonomy $[99]$ demonstrated computationally that common vision tasks cluster into three main categories, namely low-level, geometric, and semantic tasks. To have a coverage over such a space of vision tasks, we choose one representative task from each of these three clusters. We note that except for object detection and classification, these are the same pseudo labeled tasks that are used in MuST $[31]$ . In the following, we will describe them in more detail.
+
+RGB and per-patch standardized RGB. We use RGB images due to their abundance and since RGB-only masked autoencoding is shown to be a powerful pre-training task.
+
+![](images/3d4fcdb1610e7efb72c83f6c01f61be7d4981ffa934c014c9a76de485c43c879.jpg)  
+Figure 3. MultiMAE predictions for several randomly sampled masks. For each ImageNet validation image, we randomly sample three masks using Dirichlet concentration parameter $\alpha = 1$ . Only 1/6 of total patches are left unmasked. Even when very few tokens from one modality are visible, the resulting predictions are relatively stable and plausible due to cross-modal interaction. More examples are shown in the Appendix and on our website.
+
+He et al. [35] study both predicting standard RGB patches, as well as per-patch standardized RGB patches. They find that predicting standardized patches slightly improves transfer performance. Since MultiMAE is naturally a multitask model, we add both versions as separate decoder heads to get the representational benefits of predicting standardized patches, and to get a version that we can visualize better. Note that we only add the per-patch standardized version as an output task, and not as an input modality. For both RGB versions, we follow MAE and compute the MSE loss between the ground truth and predicted pixels. In the rest of the paper, we will refer to the RGB and per-patch standardized RGB output tasks simply as RGB.
+
+Scene depth. Depth is a key task informative about scene geometry. As with RGB, but unlike semantic segmentation, sensors exist to capture this modality, making it possible to use depth as an optional extra input for downstream tasks. To pseudo label depth, we use a DPT-Hybrid $[66]$ that was trained on Omnidata $[27]$ . Since monocular depth estimation is an inherently ill-posed task due to scale and shift ambiguity, we standardize the depth values in a robust way by ignoring the top and bottom 10% of values $[97]$ . In addition, using standardized depth values as inputs allows us to use other depth images that might have different depth ranges and scales, without needing to match them to the Omnidata depth parameterization. We use the L1 loss for depth.
+
+Semantic segmentation. Lastly, we use a Mask2Former [19] with a Swin-S [52] backbone trained on COCO [51] to pseudo label semantic segmentation maps on ImageNet. For that, we extract 133 semantic classes by taking the argmax of the network predictions. Unlike RGB and depth, the main purpose of this task is to improve performance on downstream tasks, rather than using it as an input modality (though we show results using pseudo-labeled semantic inputs in Table 3). Since we use a network that was pre-trained on COCO, we do not evaluate semantic segmentation transfers on that dataset. For this task, we use the cross-entropy loss.
+
+## 3.5. Pre-training details
+
+All our MultiMAE experiments use a ViT-B [26] with a patch size of $16 \times 16$ pixels. We pre-train the models for either 400 epochs (only for transfer ablation study in Sec. 4.4) or 1600 epochs (for best results and to be comparable to the MAE baseline) on 1.28M ImageNet images. We use the AdamW [55] optimizer with base learning rate 1e-4 and weight decay 0.05. We warm up training for 40 epochs, starting from learning rate 1e-6, and decay it to 0 over the course of training using cosine decay [54]. We set the batch size to a total of 2048 and train the models using 8 A100 GPUs with automatic mixed precision enabled. Our data augmentations are straightforward. We randomly crop the images, setting the random scale between 0.2 and 1.0 and the random aspect ratio between 0.75 and 1.33, after which we resize the crops to $224 \times 224$ pixels and apply a random horizontal flip with probability 0.5. Additional pre-training details can be found in the Appendix (Sec. A).
+
+## 4. Experiments
+
+Optimizing the pre-training objective of MultiMAE is successful as apparent in the various results shown in the main paper, the appendix, and the interactive visualizations shown on our website. In this section we provide a transfer study to measure the effectiveness of MultiMAE pre-training compared to relevant baselines. This section is organized in the following manner: After introducing the downstream tasks and datasets (Sec. 4.1), we show transfer results for the case where the only available input modality is RGB (Sec. 4.2). Then, we show that MultiMAE can significantly improve downstream performance if other modalities like depth are either available as ground truth (sensor), or can be cheaply pseudo labeled (Sec. 4.3). We follow up with an ablation on the influence of pre-training tasks on the downstream performance (Sec. 4.4), and finally we visually demonstrate that MultiMAE integrates and exchanges information across modalities (Sec. 4.5).
+
+## 4.1. Transfer tasks and datasets
+
+We perform downstream transfers on a variety of semantic and dense regression tasks. For all transfers, we replace the pre-trained decoders by randomly initialized task-specific heads, and train them along with the pre-trained encoder. In the following, we give an overview over all tasks and datasets used in our transfer experiments. Exact training details are presented in the Appendix (Sec. B).
+
+Classification. We evaluate our models and baselines by fine-tuning them on the supervised ImageNet-1K $[23]$ 1000-way object classification task. We fine-tune our models for 100 epochs on the entire ImageNet-1K train split (1.28M images) and report the top-1 validation accuracy.
+
+Semantic segmentation. We further evaluate our models on semantic segmentation tasks on the ADE20K [102] (20'210 training images and 150 classes), NYUv2 [73] (795 training images and 40 classes), and Hypersim [68] (51'674 training images and 40 classes) datasets. NYUv2 and Hypersim contain ground-truth depth maps that allow us to evaluate semantic segmentation with RGB and depth as input modalities. For all datasets, we report the mean intersection over union (mIoU) metric. On ADE20K and Hypersim, we report it on the validation split, while on NYUv2, we show the test set mIoU.
+
+Dense regression tasks. Finally, we study how our models transfer to geometric tasks, such as surface normals, depth and reshading, as well as tasks extracted from RGB images, such as keypoint or edge detection. For depth estimation, we use NYUv2 (795 training and 655 test images), while for all other tasks we train transfers on a subset of the Taskonomy dataset [99] (800 training images). As performance metrics, we report $\delta_{1}$ on the NYUv2 test set, showing the percentage of pixels $p$ with error $\max\{\frac{\hat{y}_p}{y_p},\frac{y_p}{\hat{y}_p}\}$ less than
+
+1.25 [25], while on Taskonomy we report L1 losses on the tiny-split test set.
+
+In the tables, classification, semantic segmentation, and depth estimation are denoted by (C), (S), and (D), respectively.
+
+## 4.2. Transfers with RGB-only
+
+In this section, we show our transfer results when fine-tuning using only the RGB modality as input.
+
+Baselines. For this setting, we compare MultiMAE with various ViT-B models, namely DeiT [81] (without distillation) representing an ImageNet-supervised baseline, MoCov3 [17], DINO [12], and MAE [35]. All these models are pre-trained on ImageNet-1K. We use the official weights for DeiT, MoCo-v3, and DINO, and reproduce MAE using the official PyTorch [63] codebase following the setting specified in [35] (i.e., decoder of depth 8 and width 512, per-patch standardized pixel loss, 1600 pre-training epochs, $75\%$ mask ratio). In the Appendix (Sec. F), we compare the transfer performance of this MAE model to one with a shallower and narrower decoder (depth 2 and width 256), closer to the one used for MultiMAE.
+
+We report the results in Table 1. We find that MultiMAE performs best on all tasks, matching MAE's performance on ImageNet-1K classification and ADE20K semantic segmentation, and outperforming it on all other tasks and datasets. These results show the effectiveness of MultiMAE as a pre-training strategy: it retains the benefits of MAE when RGB is the only fine-tuning modality but can also accept other modalities, as shown next.
+
+## 4.3. Transfers with multiple modalities
+
+Since MultiMAE was pre-trained on RGB, depth, and semantic segmentation, it can optionally accept any of those modalities as input during transfer learning should they be available. In this set of experiments, we study on three semantic segmentation downstream tasks how much MultiMAE can benefit from using additional modalities during transfer. Often, ground truth depth maps are not available for a given downstream dataset and for that reason, we perform additional transfers using pseudo labeled depth. As there are several datasets that do in fact contain aligned RGB and depth images (e.g., Hypersim, NYUv2, Taskonomy, etc.) and since sensors exist that can measure depth, we consider it as a more realistic input modality compared to semantic segmentation. Since our model was trained with semantic segmentation as an input modality, we perform additional experiments using pseudo labeled semantic segmentation maps as inputs.
+
+All multi-modal transfers are performed by concatenating the projected patches of all modalities into a single sequence (i.e., no masking is performed here). Using more than two modalities during transfer quickly becomes computationally expensive, since without masking, our method now scales with the full number of modalities and tokens. For performing multi-modal transfers with the standard MAE, we train a new input projection for the additional modalities while fine-tuning. Further training details can be found in the Appendix (Sec. B).
+
+<table><tr><td>Method</td><td>IN-1K (C)</td><td>ADE20K (S)</td><td>Hypersim (S)</td><td>NYUv2 (S)</td><td>NYUv2 (D)</td></tr><tr><td>Supervised [81]</td><td>81.8</td><td>45.8</td><td>33.9</td><td>50.1</td><td>80.7</td></tr><tr><td>DINO [12]</td><td>83.1</td><td>44.6</td><td>32.5</td><td>47.9</td><td>81.3</td></tr><tr><td>MoCo-v3 [17]</td><td>82.8</td><td>43.7</td><td>31.7</td><td>46.6</td><td>80.9</td></tr><tr><td>MAE [35]</td><td>83.3</td><td>46.2</td><td>36.5</td><td>50.8</td><td>85.1</td></tr><tr><td>MultiMAE</td><td>83.3</td><td>46.2</td><td>37.0</td><td>52.0</td><td>86.4</td></tr></table>
+
+Table 1. Fine-tuning with RGB-only. We report the top-1 accuracy ( $\uparrow$ ) on ImageNet-1K (IN-1K) [23] classification (C), mIoU ( $\uparrow$ ) on ADE20K [102], Hypersim [68], and NYUv2 [73] semantic segmentation (S), as well as $\delta_{1}$ accuracy ( $\uparrow$ ) on NYUv2 depth (D). Text in bold and underline indicates the first and second-best results, respectively. All methods are pre-trained on ImageNet-1K (with pseudo labels for MultiMAE).
+
+<table><tr><td rowspan="2">Method</td><td colspan="3">Hypersim (S)</td><td colspan="3">NYUv2 (S)</td></tr><tr><td>RGB</td><td>D</td><td>RGB-D</td><td>RGB</td><td>D</td><td>RGB-D</td></tr><tr><td>MAE</td><td>36.5</td><td>32.5</td><td>36.9</td><td>50.8</td><td>23.4</td><td>49.3</td></tr><tr><td>MultiMAE</td><td>37.0</td><td>38.5</td><td>47.6</td><td>52.0</td><td>41.4</td><td>56.0</td></tr></table>
+
+Table 2. Fine-tuning with RGB and ground truth depth. We report semantic segmentation transfer results from combinations of RGB and depth, measured in mIoU (↑). MultiMAE can effectively leverage additional modalities such as depth, while MAE cannot. Text in gray indicates a modality that the model was not pre-trained on.
+
+<table><tr><td rowspan="2">Method</td><td colspan="5">ADE20K (S)</td><td colspan="5">Hypersim (S)</td><td colspan="5">NYUv2 (S)</td></tr><tr><td>RGB</td><td>pD</td><td>RGB-pD</td><td>RGB-pS</td><td>RGB-pD-pS</td><td>RGB</td><td>pD</td><td>RGB-pD</td><td>RGB-pS</td><td>RGB-pD-pS</td><td>RGB</td><td>pD</td><td>RGB-pD</td><td>RGB-pS</td><td>RGB-pD-pS</td></tr><tr><td>MAE</td><td>46.2</td><td>20.0</td><td>46.3</td><td>46.2</td><td>46.3</td><td>36.5</td><td>21.0</td><td>36.9</td><td>37.7</td><td>37.3</td><td>50.1</td><td>23.8</td><td>49.1</td><td>50.1</td><td>49.3</td></tr><tr><td>MultiMAE</td><td>46.2</td><td>34.4</td><td>46.8</td><td>45.7</td><td>47.1</td><td>37.0</td><td>30.6</td><td>37.9</td><td>38.4</td><td>40.1</td><td>52.0</td><td>39.9</td><td>53.6</td><td>53.5</td><td>54.0</td></tr></table>
+
+Table 3. Fine-tuning with RGB and pseudo labels. Semantic segmentation transfer results using pseudo labeled depth and semantic segmentation maps, measured in mIoU ( $\uparrow$ ). MultiMAE benefits much more than MAE from pseudo labeled modalities as input. Text in gray indicates a modality that the model was not pre-trained on.
+
+Transfers using sensory depth. First, we consider that we have access to an aligned RGB-D dataset, like NYUv2 or Hypersim. We treat depth in the exact same way as during pre-training, i.e., pre-process it by standardizing it in a robust manner $[97]$ . Because ground-truth depth maps might contain invalid measurements, we further set all these masked-out values to 0.
+
+Table 2 shows RGB-D transfer results on Hypersim and NYUv2. Compared to the RGB-only results in Table 1, we see a substantial increase in performance when ground truth depth is available for MultiMAE. The standard MAE on the other hand is not able to sufficiently make use of the additional depth, since it was only trained on RGB images. We observe a similar story when evaluating transfers from depth-only, in that MultiMAE works well, even when no RGB information is available, while MAE does not. On Hypersim, MultiMAE depth-only transfer is even able to surpass MultiMAE RGB-only transfer, and, as expected, RGB-D works better than either RGB or depth alone.
+
+Transfers with pseudo labels. In case ground truth modalities are not available, we can pseudo label them in the same way we did for pre-training. To pseudo label depth, we use the same Omnidata DPT-Hybrid model that we used for pre-training on both ADE20K and NYUv2. On Hypersim, we use a MiDaS [67] DPT-Hybrid, since the Omnidata depth model was partially trained on this dataset. For semantic segmentation pseudo labels, we use the same COCO Mask2Former model as in pre-training.
+
+As shown in Table 3, MultiMAE can use pseudo labeled depth or semantic segmentation to boost performance beyond the RGB-only setting, although the gain is smaller than using real depth. Moreover, performance can further be improved by adding both of these pseudo labeled modalities to the input. This setting performs the best out of all settings involving pseudo labels.
+
+## 4.4. Influence of pre-training task choices and masking on transfer performance
+
+How does the choice of MultiMAE pre-training tasks affect downstream transfer performance? In this subsection, we aim to address this question by performing transfers from MultiMAE models that were pre-trained with RGB-D, RGB-S, or RGB-D-S. We further compare MultiMAE against MAE, single-task, and multi-task baselines.
+
+All experiments are performed on ViT-B models that were pre-trained for 400 epochs. We transfer the pre-trained models to ImageNet, NYUv2 segmentation, as well as nine dense regression tasks on Taskonomy. On Taskonomy, we report the ranking of different pre-trained models, averaged over all nine tasks. Detailed per-task results on Taskonomy can be found in the Appendix (Sec. D).
+
+Masked multi-modal pre-training. This experiment studies the influence that the choice of pre-training modalities has, when the input and output modalities are the same in MultiMAE pre-training. The transfer results are displayed in Table 4a. The RGB-S model performs best on ImageNet classification and NYUv2 semantic segmentation, whereas the RGB-D-S model has the best average rank on Taskonomy. The slight increase in performance of RGB-S on ImageNet and semantic segmentation compared to RGB-D-S comes at the cost of reduced flexibility, as models that were not pre-trained on depth can not as easily and effectively use it to boost performance (see Sec. 4.3).
+
+<table><tr><td>Method</td><td>IN-1K (C)</td><td>NYUv2 (S)</td><td>NYUv2 (D)</td><td>Taskonomy (D)</td></tr><tr><td>MAE (D2)</td><td>83.0</td><td>44.0</td><td>81.3</td><td>3.8</td></tr><tr><td>RGB-D</td><td>82.8</td><td>45.8</td><td>83.3</td><td>2.1</td></tr><tr><td>RGB-S</td><td>83.2</td><td>51.6</td><td>85.5</td><td>2.6</td></tr><tr><td>RGB-D-S</td><td>83.0</td><td>50.6</td><td>85.4</td><td>1.5</td></tr></table>
+
+(a) Impact of additional modalities. Transfer results of several MultiMAE models pre-trained on different input modalities / target tasks, compared against MAE (single-modal baseline). D2 = MAE pre-trained with a decoder of depth 2 and width 256, comparable in size to the decoders of MultiMAE
+
+<table><tr><td>Method</td><td>IN-1K (C)</td><td>NYUv2 (S)</td><td>NYUv2 (D)</td><td>Taskonomy (D)</td></tr><tr><td>RGB→D</td><td>82.7</td><td>44.0</td><td>87.1</td><td>1.6</td></tr><tr><td>RGB→S</td><td>82.5</td><td>46.8</td><td>82.9</td><td>4.0</td></tr><tr><td>RGB→D-S</td><td>82.8</td><td>48.6</td><td>84.6</td><td>2.9</td></tr><tr><td>MultiMAE</td><td>83.0</td><td>50.6</td><td>85.4</td><td>1.5</td></tr></table>
+
+(b) Comparison to non-masked pre-training. We compare standard single-task and multi-task baselines pre-trained using non-masked RGB inputs against the RGB-D-S MultiMAE. The RGB→D-S model is conceptually similar to MuST using depth and semantic segmentation as target tasks.
+
+Table 4. Ablation experiments. We study the impact of additional modalities in Table 4a, and compare MultiMAE to non-masked pre-training in Table 4b. All models are pre-trained for 400 epochs. We report the top-1 accuracy ( $\uparrow$ ) on ImageNet-1K (IN-1K) [23] classification (C), mIoU ( $\uparrow$ ) on NYUv2 [73] semantic segmentation (S), $\delta_{1}$ accuracy ( $\uparrow$ ) on NYUv2 depth (D) and avg. rank $\downarrow$ on Taskonomy [99]. While some specialized pre-trained models perform better at certain downstream tasks, they perform poorly at others. MultiMAE pre-trained with RGB, depth and semantic segmentation is a more generalist model that does well at transferring to a range of downstream tasks.  
+![](images/c9e9b86a5256262d8605cc87595e9a38ea42677f25c759df118a355e6f41ca97.jpg)  
+Figure 4. Single-modal predictions. We visualize MultiMAE cross-modal predictions on ImageNet-1K validation images. Only a single, full modality is used as input. The predictions remain plausible despite the absence of input patches from other modalities.
+
+Comparison to non-masked pre-training. We further compare MultiMAE against standard single-task and multi-task baselines, that were pre-trained with RGB as the only input modality and without applying any masking. Since we train on pseudo labels, the RGB→D-S multi-task model is conceptually similar to a MuST [31] model using depth and semantic segmentation targets. The transfer results are detailed in Table 4b. On nearly all categories, MultiMAE outperforms the supervised baselines.
+
+To summarize, the results in this section show that using all modalities to pre-train a MultiMAE results in a more generalist model that does well at transferring to a range of downstream tasks. We find that there are some specialized pre-trained models that perform better at certain downstream tasks (e.g., models pre-trained with depth perform better at transferring to geometric tasks), but they will perform poorly at others. This is supported by previous findings $[58, 70, 99]$ showing that there is usually no single visual pre-training task that transfers well to any arbitrary other task, and instead, a set is required.
+
+## 4.5. Cross-modal exchange of information
+
+In this section, we explore visually how MultiMAE predicts the three pre-training tasks by changing the inputs it receives. Figures 1 and 3 already showcased how MultiMAE is able to reconstruct images from various randomly sampled input patches. Here, we will further show non-masked cross-modal predictions, and will also give examples on how MultiMAE predictions change when we change certain details about the inputs.
+
+![](images/dfb25bebcd4fc24175ebcd641228d1e58346ead8600bb176c4f8a170eda836c7.jpg)  
+Figure 5. Demonstration of cross-modal interaction. The input is the full depth, only two RGB patches, and no semantic segmentation. By editing the hue of a single input patch, the color of the lizard (left) and oranges (right) changes, while keeping the background constant. More interactive examples are available on our website.
+
+![](images/eaec4d57eea34cd6781880f7aa69eae3bdfcef5c0ff5fac98f5b66501b14cb1d.jpg)  
+Figure 6. MultiMAE predictions for a varying number of visible patches. The predictions are plausible even when given half the number of patches seen during pre-training, and the reconstruction quality improves as the number of visible patches increases. An interactive visualization is available on our website.
+
+Single-modal predictions. Figure 4 displays several examples of cross-modal prediction without any masking. We show examples where, from one single modality, the two remaining ones are predicted. We note here that even though the number of patches we input to the model is $2 \times$ higher than what was seen during training, the model still predicts very reasonable results despite the distribution shift. The robustness of the model with respect to masking ratios far from the training mask ratio is also apparent in Figure 6.
+
+Demonstration of cross-modal interaction. We demonstrate in Figure 5 how MultiMAE predicts completely different but plausible RGB images when given a full depth image and three edited versions of the same two RGB input patches (no semantic segmentation maps are given as inputs). We keep one RGB patch the same, while changing the hue of another patch (part of a lizard for the first image, part of an orange for the second). We can see how MultiMAE recovers all the details in the image from the full depth input, but paints the entire lizard / oranges in the colors given in the modified patch. All the while, the background does not change. This suggests an intriguingly good representation is learned by the model as it extends the colors to the right segments without any segmentation provided in the input. More interactive examples can be seen on our website.
+
+## 5. Discussion
+
+We presented Multi-modal Multi-task Masked Autoencoders (MultiMAE), an effective and simple pre-training strategy for Vision Transformers. MultiMAE encodes a small random subset of visible tokens from multiple modalities and is trained to reconstruct the missing ones. By encoding only a fixed number of non-masked tokens, we can keep the bulk of the computation in the Transformer encoder constant, while only the shallow task-specific decoders scale with the number of tasks. Masking (across image patches and input modalities) ensures the network learns to perform predictive coding across different modalities, besides across different spatial patches. The experiments showed intriguing capabilities of MultiMAE at cross-modal coding and demonstrated this pre-training strategy can result in notable gains in transfer performance when additional input modalities are optionally available, either as ground truth or pseudo labels.
+
+In the following, we briefly discuss some limitations to our approach and present exciting future directions:
+
+Scaling pre-training modalities. We pre-trained MultiMAE on a set of three visual modalities, chosen to cover a large fraction of common vision problems based on prior studies $[99]$ . It is, however, conceivable that our method can benefit from a rather straightforward inclusion of a more diverse set of modalities and tasks, such as videos, text, bounding boxes, sparse depth, feature maps, and more. In addition to providing more ways to use optional modalities as inputs, scaling up the number of pre-training modalities could have further transfer benefits by covering a larger space of useful vision problems and enabling more complex cross-modal predictive coding.
+
+Scaling pre-training datasets. For pragmatic reasons and enabling comparison with prior works, we trained all of our models on pseudo labeled ImageNet-1K, but there is no reason to limit ourselves to a (classification) dataset of this size. Since we use pseudo labels, any dataset that is used for RGB-only self-supervised learning can be considered for training MultiMAE. Our method further benefits from any future improvements in model architectures, training strategy and supervised datasets that can be used to improve the quality of pseudo labels.
+
+Probabilistic or generative modeling. Similar to standard autoencoders and MAE $[35]$ , we simply compute a pixelwise L1 or L2 loss on the reconstructed tokens. It is unsurprising then that ambiguous masked regions are often predicted in a blurry manner due to the inherent ambiguity in the problem when multiple outputs are plausible. While He et al. $[35]$ showed that improving the visual fidelity of MAE predictions might not necessarily result in better representations for downstream learning, it is conceivable that modeling the multi-modal output distribution may learn better representations.
+
+Masking strategies. Lastly, we used a simple approach of sampling random tokens from each modality in an unbiased way. While this worked well for MultiMAE training, it does not have to be the optimal choice for learning a transferable representation. It will be an interesting direction to explore biasing the masking towards certain modalities and/or spatial locations.
+
+## Acknowledgments
+
+We thank Stefan Stepanovic and Alexander Sax for their help and insightful discussions.
+
+## References
+
+[1] Martín Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen, Craig Citro, Greg S. Corrado, Andy Davis, Jeffrey Dean, Matthieu Devin, Sanjay Ghemawat, Ian Goodfellow, Andrew Harp, Geoffrey Irving, Michael Isard, Yangqing Jia, Rafal Jozefowicz, Lukasz Kaiser, Manjunath Kudlur, Josh Levenberg, Dandelion Mané, Rajat Monga, Sherry Moore, Derek Murray, Chris Olah, Mike Schuster, Jonathon Shlens, Benoit Steiner, Ilya Sutskever, Kunal Talwar, Paul Tucker, Vincent Vanhoucke, Vijay Vasudevan, Fernanda Viégas, Oriol Vinyals, Pete Warden, Martin Wattenberg, Martin Wicke, Yuan Yu, and Xiaoqiang Zheng. TensorFlow: Large-scale machine learning on heterogeneous systems, 2015. Software available from tensorflow.org. 19
+
+[2] Sara Atito Ali Ahmed, Muhammad Awais, and Josef Kittler. Sit: Self-supervised vision transformer. ArXiv, abs/2104.03602, 2021. 3
+
+[3] Hassan Akbari, Liangzhe Yuan, Rui Qian, Wei-Hong Chuang, Shih-Fu Chang, Yin Cui, and Boqing Gong. Vatt: Transformers for multimodal self-supervised learning from raw video, audio and text. Advances in Neural Information Processing Systems, 34, 2021. 2
+
+[4] Jean-Baptiste Alayrac, Adria Recasens, Rosalia Schneider, Relja Arandjelović, Jason Ramapuram, Jeffrey De Fauw, Lucas Smaira, Sander Dieleman, and Andrew Zisserman. Self-supervised multimodal versatile networks. Advances in Neural Information Processing Systems, 33:25–37, 2020. 2
+
+[5] Relja Arandjelovic and Andrew Zisserman. Look, listen and learn. In Proceedings of the IEEE International Conference on Computer Vision, pages 609–617, 2017. 2
+
+[6] Sara Atito, Muhammad Awais, and Josef Kittler. Sit: Self-supervised vision transformer. arXiv preprint arXiv:2104.03602, 2021. 2
+
+[7] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization. arXiv preprint arXiv:1607.06450, 2016. 15
+
+[8] Alexei Baevski, Wei-Ning Hsu, Qiantong Xu, Arun Babu, Jiatao Gu, and Michael Auli. Data2vec: A general framework for self-supervised learning in speech, vision and language. arXiv preprint arXiv:2202.03555, 2022. 2
+
+[9] Hangbo Bao, Li Dong, and Furu Wei. Beit: Bert pretraining of image transformers. ArXiv, abs/2106.08254, 2021. 2, 3, 15, 16
+
+[10] Hangbo Bao, Li Dong, and Furu Wei. BEiT: BERT Pre-Training of Image Transformers. arXiv:2106.08254 [cs], June 2021. arXiv: 2106.08254. 16
+
+[11] Jonathan Baxter. A model of inductive bias learning. J. Artif. Intell. Res., 12:149–198, 2000. 2
+
+[12] Mathilde Caron, Hugo Touvron, Ishan Misra, Herv'e J'egou, Julien Mairal, Piotr Bojanowski, and Armand Joulin. Emerging properties in self-supervised vision transformers. 2021 IEEE/CVF International Conference on Computer Vision (ICCV), pages 9630–9640, 2021. 6, 7, 18
+
+[13] Rich Caruana. Multitask Learning. Machine Learning, 28(1):41–75, July 1997. 2
+
+[14] Lluis Castrejon, Yusuf Aytar, Carl Vondrick, Hamed Pirsiavash, and Antonio Torralba. Learning aligned cross-modal representations from weakly aligned data. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 2940–2949, 2016. 2
+
+[15] Liang-Chieh Chen, Raphael Gontijo Lopes, Bowen Cheng, Maxwell D Collins, Ekin D Cubuk, Barret Zoph, Hartwig Adam, and Jonathon Shlens. Naive-student: Leveraging semi-supervised learning in video sequences for urban scene segmentation. In European Conference on Computer Vision, pages 695–714. Springer, 2020. 3
+
+[16] Mark Chen, Alec Radford, Rewon Child, Jeffrey Wu, Heewoo Jun, David Luan, and Ilya Sutskever. Generative Pretraining From Pixels. In Proceedings of the 37th International Conference on Machine Learning, pages 1691–1703. PMLR, Nov. 2020. ISSN: 2640-3498. 2
+
+[17] Xinlei Chen, Saining Xie, and Kaiming He. An empirical study of training self-supervised vision transformers. 2021
+
+IEEE/CVF International Conference on Computer Vision (ICCV), pages 9620-9629, 2021. 3, 6, 7, 18
+
+[18] Yen-Chun Chen, Linjie Li, Licheng Yu, Ahmed El Kholy, Faisal Ahmed, Zhe Gan, Yu Cheng, and Jingjing Liu. Uniter: Universal image-text representation learning. In European conference on computer vision, pages 104–120. Springer, 2020. 2
+
+[19] Bowen Cheng, Ishan Misra, Alexander G. Schwing, Alexander Kirillov, and Rohit Girdhar. Masked-attention mask transformer for universal image segmentation. ArXiv, abs/2112.01527, 2021. 5
+
+[20] Kevin Clark, Minh-Thang Luong, Quoc V Le, and Christopher D Manning. Electra: Pre-training text encoders as discriminators rather than generators. arXiv preprint arXiv:2003.10555, 2020. 16, 17
+
+[21] Virginia R De Sa. Sensory modality segregation. In NIPS, pages 913-920. Citeseer, 2003. 2
+
+[22] Virginia R De Sa and Dana H Ballard. Category learning through multimodality sensing. Neural Computation, 10(5):1097-1117, 1998. 2
+
+[23] Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, K. Li, and Li Fei-Fei. Imagenet: A large-scale hierarchical image database. In CVPR, 2009. 2, 4, 6, 7, 8, 15, 17, 18, 19
+
+[24] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: Pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805, 2018. 2
+
+[25] Carl Doersch and Andrew Zisserman. Multi-task self-supervised visual learning. In Proceedings of the IEEE International Conference on Computer Vision, pages 2051-2060, 2017. 6
+
+[26] Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, Jakob Uszkoreit, and Neil Houlsby. An image is worth 16x16 words: Transformers for image recognition at scale. ArXiv, abs/2010.11929, 2021. 1, 2, 3, 5
+
+[27] Ainaz Eftekhar, Alexander Sax, Roman Bachmann, Jitendra Malik, and Amir Roshan Zamir. Omnidata: A scalable pipeline for making multi-task mid-level vision datasets from 3d scans. 2021 IEEE/CVF International Conference on Computer Vision (ICCV), pages 10766–10776, 2021. 5
+
+[28] David Eigen and Rob Fergus. Predicting depth, surface normals and semantic labels with a common multi-scale convolutional architecture. In Proceedings of the IEEE international conference on computer vision, pages 2650-2658, 2015. 2
+
+[29] Alaaeldin El-Nouby, Gautier Izacard, Hugo Touvron, Ivan Laptev, Hervé Jegou, and Edouard Grave. Are large-scale datasets necessary for self-supervised pre-training? arXiv preprint arXiv:2112.10740, 2021. 2
+
+[30] Golnaz Ghiasi, Yin Cui, Aravind Srinivas, Rui Qian, Tsung-Yi Lin, Ekin D Cubuk, Quoc V Le, and Barret Zoph. Simple copy-paste is a strong data augmentation method for instance segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 2918–2928, 2021. 17
+
+[31] Golnaz Ghiasi, Barret Zoph, Ekin Dogus Cubuk, Quoc V. Le, and Tsung-Yi Lin. Multi-task self-training for learning general representations. 2021 IEEE/CVF International Conference on Computer Vision (ICCV), pages 8836–8845, 2021. 2, 3, 4, 8
+
+[32] Rohit Girdhar, Mannat Singh, Nikhila Ravi, Laurens van der Maaten, Armand Joulin, and Ishan Misra. Omnivore: A single model for many visual modalities. arXiv preprint arXiv:2201.08377, 2022. 2
+
+[33] Priya Goyal, Piotr Dollár, Ross Girshick, Pieter Noordhuis, Lukasz Wesolowski, Aapo Kyrola, Andrew Tulloch, Yangqing Jia, and Kaiming He. Accurate, large mini-batch sgd: Training imagenet in 1 hour. arXiv preprint arXiv:1706.02677, 2017. 15, 16
+
+[34] Jean-Bastien Grill, Florian Strub, Florent Altché, Corentin Tallec, Pierre Richemond, Elena Buchatskaya, Carl Doersch, Bernardo Avila Pires, Zhaohan Guo, Mohammad Gheshlaghi Azar, et al. Bootstrap your own latent-a new approach to self-supervised learning. Advances in Neural Information Processing Systems, 33:21271–21284, 2020. 17
+
+[35] Kaiming He, Xinlei Chen, Saining Xie, Yanghao Li, Piotr Doll'ar, and Ross B. Girshick. Masked autoencoders are scalable vision learners. ArXiv, abs/2111.06377, 2021. 1, 2, 3, 4, 5, 6, 7, 10, 15, 16, 18, 19
+
+[36] Dan Hendrycks, Steven Basart, Norman Mu, Saurav Kada-vath, Frank Wang, Evan Dorundo, Rahul Desai, Tyler Lixuan Zhu, Samyak Parajuli, Mike Guo, Dawn Xiaodong Song, Jacob Steinhardt, and Justin Gilmer. The many faces of robustness: A critical analysis of out-of-distribution generalization. 2021 IEEE/CVF International Conference on Computer Vision (ICCV), pages 8320–8329, 2021. 18
+
+[37] Dan Hendrycks and Thomas G. Dietterich. Benchmarking neural network robustness to common corruptions and perturbations. ArXiv, abs/1903.12261, 2019. 18
+
+[38] Dan Hendrycks, Kevin Zhao, Steven Basart, Jacob Steinhardt, and Dawn Xiaodong Song. Natural adversarial examples. 2021 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), pages 15257–15266, 2021. 18
+
+[39] Ronghang Hu and Amanpreet Singh. Unit: Multimodal multitask learning with a unified transformer. In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 1439–1449, 2021. 2
+
+[40] Gao Huang, Yu Sun, Zhuang Liu, Daniel Sedra, and Kilian Q Weinberger. Deep networks with stochastic depth. In European conference on computer vision, pages 646–661. Springer, 2016. 16, 17
+
+[41] Andrew Jaegle, Sebastian Borgeaud, Jean-Baptiste Alayrac, Carl Doersch, Catalin Ionescu, David Ding, Skanda Koppula, Daniel Zoran, Andrew Brock, Evan Shelhamer, et al. Perceiver io: A general architecture for structured inputs & outputs. arXiv preprint arXiv:2107.14795, 2021. 2
+
+[42] Lukasz Kaiser, Aidan N Gomez, Noam Shazeer, Ashish Vaswani, Niki Parmar, Llion Jones, and Jakob Uszkoreit. One model to learn them all. arXiv preprint arXiv:1706.05137, 2017. 2
+
+[43] Aishwarya Kamath, Mannat Singh, Yann LeCun, Gabriel Synnaeve, Ishan Misra, and Nicolas Carion. Mdetmodulated detection for end-to-end multi-modal understanding. In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 1780–1790, 2021. 2
+
+[44] Andrej Karpathy and Li Fei-Fei. Deep visual-semantic alignments for generating image descriptions. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 3128–3137, 2015. 2
+
+[45] Wonjae Kim, Bokyung Son, and Ildoo Kim. Vilt: Vision-and-language transformer without convolution or region supervision. In International Conference on Machine Learning, pages 5583–5594. PMLR, 2021. 2
+
+[46] Iasonas Kokkinos. Ubernet: Training a universal convolutional neural network for low-, mid-, and high-level vision using diverse datasets and limited memory. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 6129-6138, 2017. 2
+
+[47] Iro Laina, Christian Rupprecht, Vasileios Belagiannis, Federico Tombari, and Nassir Navab. Deeper depth prediction with fully convolutional residual networks. In 2016 Fourth international conference on 3D vision (3DV), pages 239-248. IEEE, 2016. 17
+
+[48] Dong-Hyun Lee et al. Pseudo-label: The simple and efficient semi-supervised learning method for deep neural networks. In Workshop on challenges in representation learning, ICML, 2013. 3
+
+[49] Yanghao Li, Saining Xie, Xinlei Chen, Piotr Dollar, Kaiming He, and Ross Girshick. Benchmarking Detection Transfer Learning with Vision Transformers. arXiv:2111.11429 [cs], Nov. 2021. arXiv: 2111.11429. 16, 17
+
+[50] Tsung-Yi Lin, Piotr Dollár, Ross Girshick, Kaiming He, Bharath Hariharan, and Serge Belongie. Feature pyramid networks for object detection. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 2117-2125, 2017. 16
+
+[51] Tsung-Yi Lin, Michael Maire, Serge J. Belongie, James Hays, Pietro Perona, Deva Ramanan, Piotr Dollár, and C. Lawrence Zitnick. Microsoft coco: Common objects in context. In ECCV, 2014. 5
+
+[52] Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang, Stephen Lin, and Baining Guo. Swin transformer: Hierarchical vision transformer using shifted windows. In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 10012-10022, 2021. 5
+
+[53] Zhuang Liu, Hanzi Mao, Chao-Yuan Wu, Christoph Feichtenhofer, Trevor Darrell, and Saining Xie. A convnet for the 2020s. arXiv preprint arXiv:2201.03545, 2022. 16
+
+[54] Ilya Loshchilov and Frank Hutter. Sgdr: Stochastic gradient descent with warm restarts. arXiv preprint arXiv:1608.03983, 2016. 5, 16, 17
+
+[55] Ilya Loshchilov and Frank Hutter. Decoupled weight decay regularization. In ICLR, 2019. 5, 16, 17
+
+[56] Jiasen Lu, Dhruv Batra, Devi Parikh, and Stefan Lee. Vilbert: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks. Advances in neural information processing systems, 32, 2019. 2
+
+[57] Jiasen Lu, Vedanuj Goswami, Marcus Rohrbach, Devi Parikh, and Stefan Lee. 12-in-1: Multi-task vision and language representation learning. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 10437–10446, 2020. 2
+
+[58] Thomas Mensink, Jasper R. R. Uijlings, Alina Kuznetsova, Michael Gygli, and Vittorio Ferrari. Factors of influence for transfer learning across diverse appearance domains and task types. IEEE transactions on pattern analysis and machine intelligence, PP, 2021. 2, 8
+
+[59] MMSegmentation Contributors. OpenMMLab Semantic Segmentation Toolbox and Benchmark, 7 2020. 16
+
+[60] Arsha Nagrani, Shan Yang, Anurag Arnab, Aren Jansen, Cordelia Schmid, and Chen Sun. Attention bottlenecks for multimodal fusion. Advances in Neural Information Processing Systems, 34, 2021. 2
+
+[61] Jiquan Ngiam, Aditya Khosla, Mingyu Kim, Juhan Nam, Honglak Lee, and A. Ng. Multimodal deep learning. In ICML, 2011. 2
+
+[62] Andrew Owens and Alexei A Efros. Audio-visual scene analysis with self-supervised multisensory features. In Proceedings of the European Conference on Computer Vision (ECCV), pages 631–648, 2018. 2
+
+[63] Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, Gregory Chanan, Trevor Killeen, Zeming Lin, Natalia Gimelshein, Luca Antiga, Alban Desmaison, Andreas Köpf, Edward Yang, Zach DeVito, Martin Raison, Alykhan Tejani, Sasank Chilamkurthy, Benoit Steiner, Lu Fang, Junjie Bai, and Soumith Chintala. Pytorch: An imperative style, high-performance deep learning library. In NeurIPS, 2019. 6, 19
+
+[64] Deepak Pathak, Philipp Krahenbuhl, Jeff Donahue, Trevor Darrell, and Alexei A Efros. Context encoders: Feature learning by inpainting. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 2536–2544, 2016. 2
+
+[65] Hieu Pham, Zihang Dai, Qizhe Xie, and Quoc V Le. Meta pseudo labels. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 11557-11568, 2021. 3
+
+[66] René Ranftl, Alexey Bochkovskiy, and Vladlen Koltun. Vision transformers for dense prediction. 2021 IEEE/CVF International Conference on Computer Vision (ICCV), pages 12159–12168, 2021. 5, 17
+
+[67] René Ranftl, Katrin Lasinger, David Hafner, Konrad Schindler, and Vladlen Koltun. Towards robust monocular depth estimation: Mixing datasets for zero-shot cross-dataset transfer. IEEE Transactions on Pattern Analysis and Machine Intelligence, 44:1623–1637, 2022. 7
+
+[68] Mike Roberts and Nathan Paczan. Hypersim: A photorealistic synthetic dataset for holistic indoor scene understanding. 2021 IEEE/CVF International Conference on Computer Vision (ICCV), pages 10892-10902, 2021. 6, 7, 16, 17, 19
+
+[69] Chuck Rosenberg, Martial Hebert, and Henry Schneiderman. Semi-supervised self-training of object detection models. In IEEE Workshops on Applications of Computer Vision (WACV/MOTION'05), 2005. 3
+
+[70] Alexander Sax, Bradley Emi, Amir R. Zamir, Leonidas J. Guibas, Silvio Savarese, and Jitendra Malik. Mid-level visual representations improve generalization and sample efficiency for learning visuomotor policies. 2018. 2, 8
+
+[71] H Scudder. Probability of error of some adaptive pattern-recognition machines. IEEE Transactions on Information Theory, 11(3):363-371, 1965. 3
+
+[72] Yuge Shi, N. Siddharth, Brooks Paige, and Philip H. S. Torr. Variational mixture-of-experts autoencoders for multimodal deep generative models. ArXiv, abs/1911.03393, 2019. 2
+
+[73] Nathan Silberman, Derek Hoiem, Pushmeet Kohli, and Rob Fergus. Indoor segmentation and support inference from rgbd images. In ECCV, 2012. 6, 7, 8, 16, 17, 19
+
+[74] Linda Smith and Michael Gasser. The development of embodied cognition: Six lessons from babies. Artificial life, 11(1-2):13–29, 2005. 2
+
+[75] Robin Strudel, Ricardo Garcia, Ivan Laptev, and Cordelia Schmid. Segmenter: Transformer for semantic segmentation. In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 7262–7272, 2021. 16
+
+[76] Weijie Su, Xizhou Zhu, Yue Cao, Bin Li, Lewei Lu, Furu Wei, and Jifeng Dai. Vl-bert: Pre-training of generic visual-linguistic representations. arXiv preprint arXiv:1908.08530, 2019. 2
+
+[77] Thomas M. Sutter, Imant Daunhawer, and Julia E. Vogt. Multimodal generative learning utilizing jensen-shannon-divergence. ArXiv, abs/2006.08242, 2019. 2
+
+[78] Thomas M. Sutter, Imant Daunhawer, and Julia E. Vogt. Generalized multimodal ELBO. CoRR, abs/2105.02470, 2021. 2
+
+[79] Hao Tan and Mohit Bansal. Lxmert: Learning cross-modality encoder representations from transformers. arXiv preprint arXiv:1908.07490, 2019. 2
+
+[80] Yonglong Tian, Yue Wang, Dilip Krishnan, Joshua B. Tenenbaum, and Phillip Isola. Rethinking few-shot image classification: a good embedding is all you need? ArXiv, abs/2003.11539, 2020. 2
+
+[81] Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco Massa, Alexandre Sablayrolles, and Herv'e J'egou. Training data-efficient image transformers & distillation through attention. In ICML, 2021. 6, 7, 18
+
+[82] Nilesh Tripuraneni, Michael Jordan, and Chi Jin. On the theory of transfer learning: The importance of task diversity. Advances in Neural Information Processing Systems, 33:7852–7862, 2020. 2
+
+[83] Nilesh Tripuraneni, Michael I. Jordan, and Chi Jin. On the theory of transfer learning: The importance of task diversity. ArXiv, abs/2006.11650, 2020. 2
+
+[84] Simon Vandenhende, Stamatios Georgoulis, Wouter Van Gansbeke, Marc Proesmans, Dengxin Dai, and Luc Van Gool. Multi-task learning for dense prediction tasks: A survey. IEEE transactions on pattern analysis and machine intelligence, 2021. 2
+
+[85] Ashish Vaswani, Noam M. Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, and Illia Polosukhin. Attention is all you need. ArXiv, abs/1706.03762, 2017. 1, 2
+
+[86] Pascal Vincent, Hugo Larochelle, Isabelle Lajoie, Yoshua Bengio, and Pierre-Antoine Manzagol. Stacked Denoising Autoencoders: Learning Useful Representations in a Deep Network with a Local Denoising Criterion. Journal of Machine Learning Research, 11(110):3371–3408, 2010. 2
+
+[87] Haohan Wang, Songwei Ge, Eric P. Xing, and Zachary Chase Lipton. Learning robust global representations by penalizing local predictive power. In NeurIPS, 2019. 18
+
+[88] Chen Wei, Haoqi Fan, Saining Xie, Chao-Yuan Wu, Alan Yuille, and Christoph Feichtenhofer. Masked feature prediction for self-supervised visual pre-training. arXiv preprint arXiv:2112.09133, 2021. 2
+
+[89] Mike Wu and Noah D. Goodman. Multimodal generative models for scalable weakly-supervised learning. In NeurIPS, 2018. 2
+
+[90] Tete Xiao, Yingcheng Liu, Bolei Zhou, Yuning Jiang, and Jian Sun. Unified perceptual parsing for scene understanding. In Proceedings of the European Conference on Computer Vision (ECCV), pages 418–434, 2018. 16
+
+[91] Tete Xiao, Ilija Radosavovic, Trevor Darrell, and Jitendra Malik. Masked visual pre-training for motor control. arXiv preprint arXiv:2203.06173, 2022. 2
+
+[92] Qizhe Xie, Minh-Thang Luong, Eduard Hovy, and Quoc V Le. Self-training with noisy student improves imagenet classification. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pages 10687-10698, 2020. 3
+
+[93] Zhenda Xie, Zheng Zhang, Yue Cao, Yutong Lin, Jianmin Bao, Zhuliang Yao, Qi Dai, and Han Hu. Simmim: A simple framework for masked image modeling. ArXiv, abs/2111.09886, 2021. 2, 3
+
+[94] Haiyang Xu, Ming Yan, Chenliang Li, Bin Bi, Songfang Huang, Wenming Xiao, and Fei Huang. E2e-vlp: End-to-end vision-language pre-training enhanced by visual learning. arXiv preprint arXiv:2106.01804, 2021. 2
+
+[95] I Zeki Yalniz, Hervé Jégou, Kan Chen, Manohar Paluri, and Dhruv Mahajan. Billion-scale semi-supervised learning for image classification. arXiv preprint arXiv:1905.00546, 2019. 3
+
+[96] David Yarowsky. Unsupervised word sense disambiguation rivaling supervised methods. In ACL, 1995. 3
+
+[97] Wei Yin, Jianming Zhang, Oliver Wang, Simon Niklaus, Long Mai, Simon Chen, and Chunhua Shen. Learning to recover 3d scene shape from a single image. 2021 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), pages 204–213, 2021. 5, 7
+
+[98] Sangdoo Yun, Dongyoon Han, Seong Joon Oh, Sanghyuk Chun, Junsuk Choe, and Youngjoon Yoo. Cutmix: Regularization strategy to train strong classifiers with localizable features. In Proceedings of the IEEE/CVF international conference on computer vision, pages 6023–6032, 2019. 16
+
+[99] Amir R. Zamir, Alexander Sax, William B. Shen, Leonidas J. Guibas, Jitendra Malik, and Silvio Savarese. Taskonomy: Disentangling task transfer learning. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR). IEEE, 2018. 2, 4, 6, 8, 9, 17, 18
+
+[100] Hongyi Zhang, Moustapha Cisse, Yann N Dauphin, and David Lopez-Paz. mixup: Beyond empirical risk minimization. arXiv preprint arXiv:1710.09412, 2017. 16
+
+[101] Sixiao Zheng, Jiachen Lu, Hengshuang Zhao, Xiatian Zhu, Zekun Luo, Yabiao Wang, Yanwei Fu, Jianfeng Feng, Tao Xiang, Philip HS Torr, et al. Rethinking semantic segmentation from a sequence-to-sequence perspective with transformers. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pages 6881–6890, 2021. 16
+
+[102] Bolei Zhou, Hang Zhao, Xavier Puig, Sanja Fidler, Adela Barriuso, and Antonio Torralba. Scene parsing through ade20k dataset. 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pages 5122–5130, 2017. 6, 7, 16, 17, 18, 19
+
+[103] Jinghao Zhou, Chen Wei, Huiyu Wang, Wei Shen, Cihang Xie, Alan Yuille, and Tao Kong. ibot: Image bert pre-training with online tokenizer. arXiv preprint arXiv:2111.07832, 2021. 2, 16
+
+[104] Barret Zoph, Golnaz Ghiasi, Tsung-Yi Lin, Yin Cui, Hanxiao Liu, Ekin Dogus Cubuk, and Quoc Le. Rethinking pretraining and self-training. Advances in neural information processing systems, 33:3833–3845, 2020. 3
+
+# MultiMAE: Multi-modal Multi-task Masked Autoencoders Appendix
+
+Roman Bachmann\* David Mizrahi\* Andrei Atanov Amir Zamir
+Swiss Federal Institute of Technology Lausanne (EPFL)
+
+https://multimae.epfl.ch
+
+## Table of Contents
+
+A Additional pre-training implementation details 15   
+B. Transfer implementation details 15   
+B.1. ImageNet classification fine-tuning setting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . B.2. Semantic segmentation . . . . . . . . . . . . . . . . . . . . . . . . . B.3. NYUv2 depth estimation . . . . . . . . . B.4. Taskonomy dense regression tasks .. 17   
+C. Mask sampling strategies 17   
+D. Detailed Taskonomy transfer results 18   
+E. Robustness evaluation on ImageNet 18   
+F. Comparison of MAE variants 18   
+G. Comparison of pre-training time 19   
+H. Additional visualizations 19
+
+## A. Additional pre-training implementation details
+
+We report the default pre-training setting in Table 5. The learning rate follows the linear scaling rule [33]: $lr = base\_lr \times \text{batchsize}/256$ . The number of non-masked tokens given to the encoder is set to 49 when using a single input modality (mask ratio of 3/4), and 98 when using 2 or 3 modalities (mask ratio of 3/4 and 5/6, respectively). Furthermore, given that the semantic segmentation map consists of 64-dimensional class embeddings, naively projecting each patch to a token is computationally expensive (when flattened, each patch would have a dimension of 16384 and the projection layer would have approx. 12M parameters). To make this projection efficient while keeping the number of segmentation patches constant, we downsample the semantic segmentation input by a factor of 4 and use patches of size $4 \times 4$ .
+
+MultiMAE decoder. We illustrate the MultiMAE decoder in Fig 7. Following MAE [35], each decoder has a linear projection layer to adapt the outputs from the encoder to the decoder dimension. After this linear projection, we add both sine-cosine positional embeddings and learned modality embeddings to the decoder inputs. This is then followed by a cross-attention layer, a MLP, and two Transformer blocks.
+
+![](images/dc7ec1648a0d38a686fec9ce5bcc83f51efea1bbb78c6a3e761fd2095025b88c.jpg)  
+Figure 7. MultiMAE decoders: Tokens from the MultiMAE encoder (see Fig. 2) are first linearly projected to the decoder dimension, after which positional and modality-specific embeddings are added. A cross-attention step integrates information from tokens of other modalities before applying an MLP and two Transformer blocks. Finally, each token is projected and reshaped to form an image. In this illustration, each token expands into four pixels.
+
+## B. Transfer implementation details
+
+## B.1. ImageNet classification fine-tuning setting
+
+For ImageNet-1K [23] classification, we follow the end-to-end fine-tuning procedure from MAE [35] and replace the decoders by an average pooling operation over all encoded tokens, followed by LayerNorm [7] and a linear projection. The default setting is shown in Table 6.
+
+## B.2. Semantic segmentation
+
+The typical approach $[9,35]$ to fine-tuning Vision Transformers for semantic segmentation is not suited for multimodal inputs in two aspects: 1) the segmentation head and 2) the evaluation procedure. We cover these two aspects next and propose a simplified fine-tuning setting for semantic segmentation to overcome these issues.
+
+<table><tr><td>Hyperparameters</td><td>Value</td></tr><tr><td>Optimizer</td><td>AdamW [55]</td></tr><tr><td>Base learning rate [33]</td><td>1e-4</td></tr><tr><td>Weight decay</td><td>0.05</td></tr><tr><td>Adam β</td><td>(0.9, 0.95)</td></tr><tr><td>Batch size</td><td>2048</td></tr><tr><td>Learning rate sched.</td><td>Cosine decay [54]</td></tr><tr><td>Training epochs</td><td>400 or 1600</td></tr><tr><td>Warmup learning rate</td><td>1e-6</td></tr><tr><td>Warmup epochs</td><td>40</td></tr><tr><td>Non-masked tokens</td><td>98</td></tr><tr><td>Sampling α</td><td>1.0</td></tr><tr><td>Task weighting</td><td>None (equal weights)</td></tr><tr><td>Input resolution</td><td>224 × 224</td></tr><tr><td>Augmentation</td><td>RandomResizedCrop</td></tr></table>
+
+Table 5. Default pre-training setting. For ablations, the number of epochs is set to 400. For best results, the number of epochs is set to 1600.
+
+Segmentation head. The UPerNet [90] head used in BEiT [9] and MAE [35] operates on a feature pyramid [50]. While a Vision Transformer operating only on RGB images can be modified to return hierarchical feature maps through the use of deconvolution layers on intermediate features [101], this procedure is not so simple when the input is multi-modal. In contrast, segmentation heads that operate only on the output tokens do not have this issue. One such head is the Segmenter [75], for which tokens are passed through additional Transformer blocks, then reshaped into a feature map and upsampled to full resolution. However, the direct upsampling can result in inprecise segmentation maps and hurt performance. Instead, we propose using a simple segmentation head based on the ConvNeXt architecture [53]. First, we increase the dimensionality D of the output tokens with a linear projection, and then reshape the tokens to form a feature map of size $H/4 \times W/4 \times D/8$ . We then apply 4 ConvNeXt blocks on this feature map before upsampling it to full resolution using bilinear interpolation. We find that this simple ConvNeXt head outperforms Segmenter, as shown in Table 7. To adapt this head to multimodal inputs, we can either select only the output tokens from a single modality (as information from other modalities gets passed to these tokens through self-attention) or concatenate tokens from different modalities. We find that both approaches perform comparably and select the former
+
+<table><tr><td>Hyperparameters</td><td>Value</td></tr><tr><td>Optimizer</td><td>AdamW [55]</td></tr><tr><td>Base learning rate [33]</td><td>5e-4</td></tr><tr><td>Weight decay</td><td>0.05</td></tr><tr><td>Adam β</td><td>(0.9, 0.999)</td></tr><tr><td>Layer-wise lr decay [20]</td><td>0.65</td></tr><tr><td>Batch size</td><td>1024</td></tr><tr><td>Learning rate sched.</td><td>Cosine decay [54]</td></tr><tr><td>Training epochs</td><td>100</td></tr><tr><td>Warmup learning rate</td><td>1e-6</td></tr><tr><td>Warmup epochs</td><td>5</td></tr><tr><td>Input resolution</td><td>224 × 224</td></tr><tr><td>Augmentation</td><td>RandAugment(9, 0.5)</td></tr><tr><td>Label smoothing</td><td>0.1</td></tr><tr><td>Mixup [100]</td><td>0.8</td></tr><tr><td>Cutmix [98]</td><td>1.0</td></tr><tr><td>Drop path [40]</td><td>0.1</td></tr></table>
+
+Table 6. ImageNet-1K classification setting. We follow the fine-tuning settings from MAE [35].
+
+<table><tr><td>Method</td><td>Head</td><td>ADE20K</td><td>Hypersim</td><td>NYUv2</td></tr><tr><td>MultiMAE</td><td>Segmenter-Mask [75]</td><td>46.3</td><td>36.0</td><td>49.0</td></tr><tr><td>MultiMAE</td><td>ConvNeXt</td><td>46.2</td><td>37.0</td><td>52.0</td></tr></table>
+
+Table 7. Comparison of semantic segmentation heads. We report the mIoU ( $\uparrow$ ) on ADE20K [102], Hypersim [68] and NYUv2 [73]. The proposed segmentation head based on the ConvNeXt [53] architecture performs on average slightly better than Segmenter [75].
+
+as it is slightly more efficient.
+
+Evaluation procedure. Vision Transformers are commonly evaluated using the sliding window procedure from MMSegmentation $[59]$ (e.g., $[10, 101, 103]$ ). This procedure involves first resizing the validation images so that the smallest side matches the training resolution $^{*}$ , and then applying a sliding window over the resized image and averaging predictions across windows. However, this procedure is not suitable if the input modalities rely on statistics from the entire image (e.g., standardized depth) or do not have a 2D structure (e.g., object bounding boxes). Therefore, we use a simpler evaluation procedure inspired by $[49]$ , which consists of resizing the image so that the largest side matches the training resolution and padding the smallest side. As the evaluated images have a smaller resolution, this simple procedure results in slightly worse reported performance compared to sliding windows. However, it can be used regardless of the input modalities and thus allows for a more fair comparison of segmentation performance for different
+
+<table><tr><td>Hyperparameters</td><td>ADE20K</td><td>Hypersim</td><td>NYUv2</td></tr><tr><td>Optimizer</td><td></td><td>AdamW [55]</td><td></td></tr><tr><td>Learning rate</td><td></td><td>1e-4</td><td></td></tr><tr><td>Layer-wise lr decay [20]</td><td></td><td>0.75</td><td></td></tr><tr><td>Weight decay</td><td></td><td>0.05</td><td></td></tr><tr><td>Adam β</td><td></td><td>(0.9, 0.999)</td><td></td></tr><tr><td>Batch size</td><td>16</td><td>16</td><td>8</td></tr><tr><td>Learning rate sched.</td><td></td><td>Cosine decay [54]</td><td></td></tr><tr><td>Training epochs</td><td>64</td><td>25</td><td>200</td></tr><tr><td>Warmup learning rate</td><td></td><td>1e-6</td><td></td></tr><tr><td>Warmup epochs</td><td></td><td>1</td><td></td></tr><tr><td>Input resolution</td><td>512 × 512</td><td>512 × 512</td><td>640 × 640</td></tr><tr><td>Augmentation</td><td colspan="3">Large scale jittering (LSJ) [30]</td></tr><tr><td>Color jitter</td><td colspan="3">√</td></tr><tr><td>Drop path [40]</td><td colspan="3">0.1</td></tr></table>
+
+Table 8. Semantic segmentation fine-tuning settings for ADE20K [102], Hypersim [68] and NYUv2 [73].
+
+## modalities.
+
+Training details. The semantic segmentation transfer settings for all three segmentation datasets are shown in Table 8. Following [49], our main augmentation is large scale jittering (LSJ) [30]. We also apply color jittering with the following parameters: brightness=0.4, contrast=0.4, saturation=0.2, hue=0.1, p=0.5.
+
+## B.3. NYUv2 depth estimation
+
+For depth estimation on the NYUv2 dataset. [73], we re-size all images from $640 \times 480$ to $341 \times 256$ . During training, we randomly crop the images to $256 \times 256$ and during testing, we take a central crop of size $256 \times 256$ .
+
+We follow [34, 47] and apply color jittering with the following parameters: brightness=0.1255, contrast=0.4, saturation=0.5, hue=0.2, p=0.5. We also randomly turn the image into gray-scale with probability p=0.3.
+
+We use the DPT [66] head to decode layers [3,6,9,12] of the ViT-B encoder into the dense depth map. For training, we use the reverse Huber loss [47]. Detailed transfer settings are given in Table 9. For evaluation, we measure the $\delta_1$ metric on the test set, showing the percentage of pixels $p$ with error $\max\{\frac{\hat{y}_p}{y_p}, \frac{y_p}{\hat{y}_p}\}$ less than 1.25.
+
+## B.4. Taskonomy dense regression tasks
+
+We transfer to the following eight dense regression tasks from the Taskonomy $[99]$ dataset: Principal curvature, z-buffer depth, texture edges, occlusion edges, 2D keypoints, 3D keypoints, surface normals, and reshading. We train the transfers on a random subset of the Taskonomy-tiny split, selecting 800 training and 200 validation images. The test evaluation is performed on the entire Taskonomy-tiny test split (54514 images), using the checkpoint with the lowest validation loss.
+
+<table><tr><td>Hyperparameters</td><td>NYUv2 depth</td><td>Taskonomy tasks</td></tr><tr><td>Optimizer</td><td colspan="2">AdamW [55]</td></tr><tr><td>Learning rate</td><td>1e-4</td><td>3e-4</td></tr><tr><td>Layer-wise lr decay [20]</td><td colspan="2">0.75</td></tr><tr><td>Weight decay</td><td>1e-4</td><td>5e-2</td></tr><tr><td>Adam β</td><td colspan="2">(0.9, 0.999)</td></tr><tr><td>Batch size</td><td>128</td><td>32</td></tr><tr><td>Learning rate sched.</td><td colspan="2">Cosine decay [54]</td></tr><tr><td>Training epochs</td><td>2000</td><td>100</td></tr><tr><td>Warmup learning rate</td><td colspan="2">1e-6</td></tr><tr><td>Warmup epochs</td><td>100</td><td>5</td></tr><tr><td>Input resolution</td><td>256 × 256</td><td>384 × 384</td></tr><tr><td>RandomCrop</td><td>✓</td><td>✘</td></tr><tr><td>Color jitter</td><td>✓</td><td>✘</td></tr><tr><td>Drop path [40]</td><td>✘</td><td>0.1</td></tr></table>
+
+Table 9. Fine-tuning settings for NYUv2 [73] depth estimation and eight Taskonomy [99] 2D regression tasks.
+
+For training and testing, all images are resized to $384 \times 384$ and we perform no further augmentations. As for NYUv2 [73] depth estimation, we use the DPT [66] head, accessing layers [3,6,9,12] from the ViT-B encoder. All tasks are trained with an L1 loss. Detailed transfer settings are given in Table 9.
+
+## C. Mask sampling strategies
+
+We sample the number of non-masked tokens per modality using a Dirichlet distribution with concentration parameter $\alpha = 1$ . Figure 8 illustrates the sampling behavior under different $\alpha$ values. For simplicity, we picked $\alpha = 1$ for all our experiments in the main paper, which exposes the models to a large diversity of masks. Samples using $\alpha = 1$ include cases where all tokens are sampled from a single modality (very low $\alpha$ ) and MultiMAE has to fully reconstruct the other two, cases where all modalities are equally represented (very high $\alpha$ ), and everything in between.
+
+In Table 10, we show transfer results on ImageNet-1K [23] classification and ADE20K [102] semantic segmentation using MultiMAE models trained with $\alpha \in \{0.2, 0.5, 1.0, \infty\}$ . By $\alpha = \infty$ , we denote always sampling an equal number of tokens from each modality. All models in this table were trained for 400 epochs and do not include the additional per-patch-standardized RGB head (see Sec. 3.4). Setting $\alpha = 1$ performs best on ADE20K, while being close second on ImageNet-1K behind $\alpha = \infty$ . Smaller values of $\alpha$ do not perform better on these two RGB-only downstream tasks, even though during training they were exposed to more samples that contain tokens from only one modality. Biasing the sampling towards modalities that will be used during transfer is an interesting future direction.
+
+![](images/08f3907a008e05d2a43b57c75e944969a37f41d09d8db9c88953b88d2d8d1f9c.jpg)
+
+Figure 8. Multi-modal mask sampling: We sample the proportion of tokens per modality using a symmetric Dirichlet distribution $\mathrm{Dir}(\alpha)$ with concentration parameter $\alpha$ . We illustrate here the sampling behavior for different choices of $\alpha$ values when selecting nine tokens from three modalities. Each row represents one sample of tokens. With small $\alpha$ , most tokens will be sampled from single modalities, while large $\alpha$ values result in equal representation of each modality. Setting $\alpha = 1$ is equivalent to sampling uniformly over the support and results in a more diverse sampling behavior.
+
+<table><tr><td>α</td><td>ImageNet-1K [23]</td><td>ADE20K [102]</td></tr><tr><td>0.2</td><td>82.7</td><td>44.6</td></tr><tr><td>0.5</td><td>82.5</td><td>44.8</td></tr><tr><td>1.0</td><td>82.8</td><td>45.1</td></tr><tr><td>∞</td><td>82.9</td><td>42.9</td></tr></table>
+
+Table 10. Comparison of mask sampling strategies. We report RGB-only transfers to ImageNet-1K [23] classification and ADE20K [102] semantic segmentation using MultiMAEs pretrained with different Dirichlet concentration parameter $\alpha$ . All models were trained for 400 epochs and do not use the additional per-patch-standardized RGB decoder (see Sec. 3.4). By $\alpha = \infty$ we denote always sampling an equal number of visible tokens for each tasks.
+
+## D. Detailed Taskonomy transfer results
+
+Table 4 compared several baselines by their average rank on eight different Taskonomy [99] downstream tasks. In this section, we show per-task results of all these baselines. Table 12 shows detailed results for the ablation on the choice of MultiMAE pre-training tasks, while Table 13 shows results for the comparison to single-task and multi-task baselines.
+
+Out of these eight Taskonomy tasks, the edges and 2D-keypoints task labels were originally created from RGB images, while the other tasks were rendered from the scanned scene mesh. A pre-training scheme that includes depth should thus transfer better to the depth-related tasks, such as surface normals. Indeed, we observe this in Table 12, where MultiMAE pre-trained using depth transfer better than MAE or the RGB-S MultiMAE. Importantly, additionally including semantic segmentation along RGB and depth in the pre-training does not degrade performance on these tasks.
+
+In Table 13, we see that MultiMAE performs similarly to the single-task RGB→D baseline that was trained using full RGB inputs. For the single and multi-task baselines, the right choice of pre-training task(s) is crucial, as for example the RGB→S baselines performs consistently worse than the ones including depth, as well as the MultiMAE RGB-S baseline from Table 12.
+
+## E. Robustness evaluation on ImageNet
+
+We study the robustness of the ImageNet $[23]$ fine-tuned models by evaluating them on four different ImageNet-like validation sets $[36–38, 87]$ that contain various domain-shifts and corruptions, and we show the results in Table 11. To that end, we directly use the models that were fine-tuned on ImageNet-1K classification, and evaluate them without any modifications on the respective robustness evaluation datasets. MultiMAE performs better than all baselines of the same model size (ViT-B) on ImageNet-R and ImageNet-S. It also performs better than MAE on ImageNet-C, but falls behind DINO $[12]$ and MoCo-v3 $[17]$ . On ImageNet-A, MultiMAE performs worse than DINO and MAE, but better than the supervised and MoCo-v3 baselines.
+
+<table><tr><td>Method</td><td>IN-1K ↑</td><td>IN-A ↑</td><td>IN-C ↓</td><td>IN-R ↑</td><td>IN-S ↑</td></tr><tr><td>Supervised [81]</td><td>81.8</td><td>24.2</td><td>49.7</td><td>43.5</td><td>31.4</td></tr><tr><td>DINO [12]</td><td>83.1</td><td>35.5</td><td>45.5</td><td>48.1</td><td>35.4</td></tr><tr><td>MoCo-v3 [17]</td><td>82.8</td><td>33.2</td><td>46.2</td><td>48.4</td><td>35.6</td></tr><tr><td>MAE [35]</td><td>83.3</td><td>35.1</td><td>51.6</td><td>49.3</td><td>35.5</td></tr><tr><td>MultiMAE</td><td>83.3</td><td>33.9</td><td>49.1</td><td>50.5</td><td>37.1</td></tr></table>
+
+Table 11. Robustness evaluation on ImageNet variants from RGB-only. We report the top-1 accuracy on the IN-1K validation split, as well as robustness evaluations on IN-Adversarial [38], IN-Corruption [37] (mean corruption error), IN-Rendition [36], as well as IN-Sketch [87].
+
+## F. Comparison of MAE variants
+
+In Section 4.2, we compare MultiMAE to a pre-trained MAE with a decoder of depth 8, following the best-performing setting described in [35]. However, as our MultiMAE uses shallower and narrower decoders, we also pre-train MAE with a decoder of similar depth (2) and width (256). We compare these two MAE versions in Table 14. We find that while these two models perform comparably on ImageNet-1K classification, as reported in [35], using a deeper decoder leads to a stark increase in performance for all other tasks. Given the benefits of a larger decoder for
+
+<table><tr><td>Method</td><td>Curvature $(\cdot 10^{2})$ </td><td>Depth $(\cdot 10^{2})$ </td><td>Edges $(\cdot 10^{3})$ </td><td>Occlusion $(\cdot 10^{4})$ </td><td>2D-keypoints $(\cdot 10^{4})$ </td><td>3D-keypoints $(\cdot 10^{2})$ </td><td>Normals $(\cdot 10^{2})$ </td><td>Reshading $(\cdot 10)$ </td><td>Average loss $(\cdot 10^{2})$ </td><td>Average rank</td></tr><tr><td>MAE (D2)</td><td>4.455</td><td>3.651</td><td>4.608</td><td>6.237</td><td>2.736</td><td>4.585</td><td>6.189</td><td>1.120</td><td>3.828</td><td>3.75</td></tr><tr><td>RGB-D</td><td>4.249</td><td>3.378</td><td>4.031</td><td>6.608</td><td>2.440</td><td>4.447</td><td>6.094</td><td>1.051</td><td>3.646</td><td>2.125</td></tr><tr><td>RGB-S</td><td>4.276</td><td>3.406</td><td>3.868</td><td>5.939</td><td>2.615</td><td>4.467</td><td>6.139</td><td>1.067</td><td>3.678</td><td>2.625</td></tr><tr><td>RGB-D-S</td><td>4.236</td><td>3.340</td><td>5.290</td><td>5.924</td><td>2.590</td><td>4.432</td><td>6.086</td><td>1.040</td><td>3.639</td><td>1.5</td></tr></table>
+
+Table 12. Taskonomy transfer results using MultiMAE models pre-trained on a varying number of modalities, where the pre-training modalities are the same as the target tasks. Downstream transfers are trained from RGB-only. All models were pre-trained for 400 epochs. We report L1 losses ( $\downarrow$ ) and indicate with bold and underline the best and second-best results, respectively.
+
+<table><tr><td>Method</td><td>Curvature $(\cdot 10^{2})$ </td><td>Depth $(\cdot 10^{2})$ </td><td>Edges $(\cdot 10^{3})$ </td><td>Occlusion $(\cdot 10^{4})$ </td><td>2D-keypoints $(\cdot 10^{4})$ </td><td>3D-keypoints $(\cdot 10^{2})$ </td><td>Normals $(\cdot 10^{2})$ </td><td>Reshading $(\cdot 10)$ </td><td>Average loss $(\cdot 10^{2})$ </td><td>Average rank</td></tr><tr><td>RGB→D</td><td>4.251</td><td>3.222</td><td>7.038</td><td>5.914</td><td>2.790</td><td>4.458</td><td>5.960</td><td>1.013</td><td>3.602</td><td>1.625</td></tr><tr><td>RGB→S</td><td>4.314</td><td>3.666</td><td>7.206</td><td>6.051</td><td>3.029</td><td>4.595</td><td>6.843</td><td>1.155</td><td>3.973</td><td>4</td></tr><tr><td>RGB→D-S</td><td>4.266</td><td>3.465</td><td>6.745</td><td>5.949</td><td>2.899</td><td>4.510</td><td>6.264</td><td>1.080</td><td>3.759</td><td>2.875</td></tr><tr><td>MultiMAE</td><td>4.236</td><td>3.340</td><td>5.290</td><td>5.924</td><td>2.590</td><td>4.432</td><td>6.086</td><td>1.040</td><td>3.639</td><td>1.5</td></tr></table>
+
+Table 13. Taskonomy transfer results comparing pre-trained single-task and multi-task baselines (pre-trained using non-masked RGB-only inputs) against the RGB-D-S MultiMAE. Downstream transfers are trained from RGB-only. All models were pre-trained for 400 epochs. We report L1 losses ( $\downarrow$ ) and indicate with bold and underline the best and second-best results, respectively.  
+MAE, it stands to reason that MultiMAE could also benefit from using wider and deeper decoders, even though that would significantly increase pre-training time.
+
+Furthermore, it has been observed that MAE models pre-trained using the official PyTorch $[63]$ implementation (such as ours) do not exactly match the results of a MAE trained using the original (and unavailable) TensorFlow $[1]$ implementation $^{\dagger}$ . Therefore, we also report results using model weights from the TensorFlow implementation to assess the impact of the codebase on transfer performance. We observe minor differences in transfer performance, with the original TensorFlow implementation slightly outperforming the PyTorch implementation on all tasks.
+
+<table><tr><td>Method</td><td>IN-1K (C)</td><td>ADE20K (S)</td><td>Hypersim (S)</td><td>NYUv2 (S)</td><td>NYUv2 (D)</td></tr><tr><td>MAE (D2, PyTorch)</td><td>83.3</td><td>43.3</td><td>34.1</td><td>46.9</td><td>83.7</td></tr><tr><td>MAE (D8, PyTorch)</td><td>83.3</td><td>46.2</td><td>36.5</td><td>50.1</td><td>85.1</td></tr><tr><td>MAE (D8, TensorFlow)</td><td>83.6</td><td>46.5</td><td>37.1</td><td>50.9</td><td>85.4</td></tr></table>
+
+Table 14. Comparison of MAE variants. We report the top-1 accuracy ( $\uparrow$ ) on ImageNet-1K [23] (IN-1K) classification (C), mIoU ( $\uparrow$ ) on ADE20K [102], Hypersim [68], and NYUv2 [73] semantic segmentation (S), as well as $\delta_{1}$ accuracy ( $\uparrow$ ) on NYUv2 depth (D). Text in bold and underline indicates the first and second-best results, respectively. All models are pre-trained for 1600 epochs. D2 = Decoder of depth 2 and width 256. D8 = Decoder of depth 8 and width 512.
+
+## G. Comparison of pre-training time
+
+We report the pre-training epoch time in Table 15. By using shallow decoders, the training time of MultiMAE is comparable to MAE (with a decoder of depth 8) despite having twice the amount of unmasked tokens and multiple decoders. Note that removing masked tokens from the encoder, as proposed by MAE, is crucial in enabling pre-training on multiple dense modalities.
+
+<table><tr><td>Method</td><td>Encoder</td><td>Num. unmasked</td><td>Epoch time (mins)</td></tr><tr><td>MAE (D2)</td><td>ViT-B</td><td>49</td><td>2.7</td></tr><tr><td>MAE (D8)</td><td>ViT-B</td><td>49</td><td>5.0</td></tr><tr><td>MultiMAE</td><td>ViT-B</td><td>98</td><td>6.0</td></tr><tr><td>MultiMAE, w/ [M]</td><td>ViT-B</td><td>98</td><td>43.3</td></tr></table>
+
+Table 15. Pre-training time comparison. Pre-training epoch time for MAE [35] and MultiMAE on ImageNet-1K [23]. We train with 8 Nvidia A100 GPUs and use PyTorch with automatic mixed precision enabled. D2 = Decoder of depth 2 and width 256. D8 = Decoder of depth 8 and width 512. w/ [M] = Mask tokens also given to the ViT-B encoder.
+
+## H. Additional visualizations
+
+Figure 9 shows more visualizations on ImageNet-1K [23] validation set images. For all examples, 98 visible patches were sampled using Dirichlet concentration parameter $\alpha = 1$ . Figure 10 further shows predictions where we sample three random masks for each image.
+
+![](images/1a8fe2af9fd5883f4213eb9b0c770e23f646a1df76249a15cb8979d31b27d1ec.jpg)  
+Figure 9. MultiMAE predictions on ImageNet-1K validation set samples. 98 visible patches were sampled using Dirichlet concentration parameter $\alpha = 1$ .
+
+![](images/8341772b84caa8f5df60e00a01bb68ffc74b57c211aa138d3aa5af4087d8199a.jpg)  
+Figure 10. MultiMAE predictions on ImageNet-1K validation set samples. 98 visible patches were sampled using Dirichlet concentration parameter $\alpha = 1$ . For each image, we sample three random masks.

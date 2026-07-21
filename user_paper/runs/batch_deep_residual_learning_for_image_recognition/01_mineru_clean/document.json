@@ -1,0 +1,23 @@
+{
+  "schema_version": "paper_document_v1",
+  "paper_id": "921724d3-c3b5-5b30-85a9-497a93018e0f",
+  "paper_version_id": "9a187b1f-f7fb-5ea6-a2d2-bcd59223b092",
+  "file_name": "Deep_Residual_Learning_for_Image_Recognition.pdf",
+  "file_path": "D:\\JIXUN\\document_pdf\\Deep_Residual_Learning_for_Image_Recognition.pdf",
+  "file_sha256": "1e0651b6810ecba34a3dbc5b5b0209226f889004607c1f203540a48d64e5a93a",
+  "title": "Deep Residual Learning for Image Recognition",
+  "parser_name": "mineru",
+  "parser_version": "3.4.0",
+  "cleaning_version": "user_paper_pipeline_v1",
+  "mineru_export_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_deep_residual_learning_for_image_recognition\\01_mineru_clean\\raw_mineru\\extracted",
+  "mineru_metadata": {
+    "backend": "hybrid",
+    "effort": "medium",
+    "ocr_enabled": true,
+    "version": "3.4.0"
+  },
+  "block_count": 226,
+  "media_count": 27,
+  "recovered_references": 0,
+  "created_at": "2026-07-20T03:24:41.748588+00:00"
+}

@@ -1,0 +1,61 @@
+{
+  "file_name": "239e899798dbc2b37ebf23c25f7048828e743be9460ecd59e464673fb839d614.jpg",
+  "file_id": "file-ztL7Fd8dhe9EFJHOyIMLgyfpTsu4n17R",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "V3iZyg-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "V3iZyg-layout-1",
+          "text": "layer index (original) | plain-20 | plain-56 | ResNet-20 | ResNet-56 | ResNet-110\n0 | 2.0 | 2.5 | 3.0 | 1.3 | 3.3\n10 | 1.8 | 1.6 | 1.9 | 0.9 | 1.0\n20 | 1.9 | 2.2 | 2.0 | 1.0 | 0.9\n30 | 1.0 | 1.0 | 1.0 | 0.8 | 1.0\n40 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0\n50 | 0.9 | 0.9 | 0.9 | 0.9 | 0.9\n60 | 0.9 |   | 0.9 | 0.9 | 0.9\n70 | 0.9 |   | 0.9 | 0.9 | 1.0\n80 | 0.9 |   | 0.9 | 0.9 | 0.9\n90 | 0.9 |   | 0.9 | 0.9 | 0.9\n100 | 0.9 |   | 0.9 | 0.9 | 1.0\n110 | 0.9 |   | 0.9 | 0.9 | 1.5",
+          "position": [
+            3,
+            4,
+            598,
+            155
+          ],
+          "polygon": [
+            [
+              3,
+              4
+            ],
+            [
+              604,
+              4
+            ],
+            [
+              604,
+              159
+            ],
+            [
+              3,
+              159
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>layer index (original)</th><th style='text-align: center;'>plain-20</th><th style='text-align: center;'>plain-56</th><th style='text-align: center;'>ResNet-20</th><th style='text-align: center;'>ResNet-56</th><th style='text-align: center;'>ResNet-110</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>0</td><td style='text-align: center;'>2.0</td><td style='text-align: center;'>2.5</td><td style='text-align: center;'>3.0</td><td style='text-align: center;'>1.3</td><td style='text-align: center;'>3.3</td></tr>\n    <tr><td style='text-align: center;'>10</td><td style='text-align: center;'>1.8</td><td style='text-align: center;'>1.6</td><td style='text-align: center;'>1.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>1.0</td></tr>\n    <tr><td style='text-align: center;'>20</td><td style='text-align: center;'>1.9</td><td style='text-align: center;'>2.2</td><td style='text-align: center;'>2.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>0.9</td></tr>\n    <tr><td style='text-align: center;'>30</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>1.0</td></tr>\n    <tr><td style='text-align: center;'>40</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td></tr>\n    <tr><td style='text-align: center;'>50</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td></tr>\n    <tr><td style='text-align: center;'>60</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td></tr>\n    <tr><td style='text-align: center;'>70</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>1.0</td></tr>\n    <tr><td style='text-align: center;'>80</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td></tr>\n    <tr><td style='text-align: center;'>90</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td></tr>\n    <tr><td style='text-align: center;'>100</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>1.0</td></tr>\n    <tr><td style='text-align: center;'>110</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>1.5</td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "layer index (original) | plain-20 | plain-56 | ResNet-20 | ResNet-56 | ResNet-110\n0 | 2.0 | 2.5 | 3.0 | 1.3 | 3.3\n10 | 1.8 | 1.6 | 1.9 | 0.9 | 1.0\n20 | 1.9 | 2.2 | 2.0 | 1.0 | 0.9\n30 | 1.0 | 1.0 | 1.0 | 0.8 | 1.0\n40 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0\n50 | 0.9 | 0.9 | 0.9 | 0.9 | 0.9\n60 | 0.9 |   | 0.9 | 0.9 | 0.9\n70 | 0.9 |   | 0.9 | 0.9 | 1.0\n80 | 0.9 |   | 0.9 | 0.9 | 0.9\n90 | 0.9 |   | 0.9 | 0.9 | 0.9\n100 | 0.9 |   | 0.9 | 0.9 | 1.0\n110 | 0.9 |   | 0.9 | 0.9 | 1.5",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>layer index (original)</th><th style='text-align: center;'>plain-20</th><th style='text-align: center;'>plain-56</th><th style='text-align: center;'>ResNet-20</th><th style='text-align: center;'>ResNet-56</th><th style='text-align: center;'>ResNet-110</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>0</td><td style='text-align: center;'>2.0</td><td style='text-align: center;'>2.5</td><td style='text-align: center;'>3.0</td><td style='text-align: center;'>1.3</td><td style='text-align: center;'>3.3</td></tr>\n    <tr><td style='text-align: center;'>10</td><td style='text-align: center;'>1.8</td><td style='text-align: center;'>1.6</td><td style='text-align: center;'>1.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>1.0</td></tr>\n    <tr><td style='text-align: center;'>20</td><td style='text-align: center;'>1.9</td><td style='text-align: center;'>2.2</td><td style='text-align: center;'>2.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>0.9</td></tr>\n    <tr><td style='text-align: center;'>30</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>1.0</td></tr>\n    <tr><td style='text-align: center;'>40</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td><td style='text-align: center;'>1.0</td></tr>\n    <tr><td style='text-align: center;'>50</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td></tr>\n    <tr><td style='text-align: center;'>60</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td></tr>\n    <tr><td style='text-align: center;'>70</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>1.0</td></tr>\n    <tr><td style='text-align: center;'>80</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td></tr>\n    <tr><td style='text-align: center;'>90</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td></tr>\n    <tr><td style='text-align: center;'>100</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>1.0</td></tr>\n    <tr><td style='text-align: center;'>110</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'></td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>0.9</td><td style='text-align: center;'>1.5</td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 601,
+        "page_height": 159
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

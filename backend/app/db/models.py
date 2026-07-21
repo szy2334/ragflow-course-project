@@ -56,6 +56,8 @@ MESSAGE_STATUSES = (*TASK_STATUSES, "partial")
 TRACE_STATUSES = ("running", "succeeded", "retried", "failed", "skipped")
 ROUTE_TYPES = ("fact", "explain", "review", "score", "follow_up", "out_of_scope")
 SOURCE_TYPES = ("paper", "standard")
+FORMAT_CHECK_RESULTS = ("compliant", "non_compliant", "needs_manual_check", "not_applicable")
+FORMAT_SEVERITIES = ("info", "low", "medium", "high")
 
 
 def _in_check(column: str, values: tuple[str, ...], name: str) -> CheckConstraint:
@@ -649,6 +651,86 @@ class ConfigurationRevision(Base):
 
     __table_args__ = (
         UniqueConstraint("configuration_id", "version", name="uq_config_revision_version"),
+    )
+
+
+class FormatProfile(Base):
+    """A server-controlled manuscript-format standard and its RAGFlow source."""
+
+    __tablename__ = "format_profiles"
+
+    format_profile_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    # A profile key can have multiple immutable versions.  The composite
+    # (profile_key, version) constraint below is the uniqueness boundary.
+    profile_key: Mapped[str] = mapped_column(String(128), index=True)
+    name: Mapped[str] = mapped_column(String(300))
+    version: Mapped[str] = mapped_column(String(128))
+    description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    # Kept server-side only; normal users select a profile ID, never a dataset ID.
+    ragflow_dataset_id: Mapped[str] = mapped_column(String(128))
+    retrieval_query: Mapped[str] = mapped_column(Text)
+    rules_json: Mapped[list[dict[str, Any]]] = mapped_column(JsonValue, default=list)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=utcnow, onupdate=utcnow
+    )
+
+    __table_args__ = (
+        UniqueConstraint("profile_key", "version", name="uq_format_profile_key_version"),
+    )
+
+
+class FormatReview(Base):
+    """A durable format-compliance review of one owned paper."""
+
+    __tablename__ = "format_reviews"
+
+    format_review_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.user_id"), index=True)
+    paper_id: Mapped[str] = mapped_column(ForeignKey("papers.paper_id"), index=True)
+    format_profile_id: Mapped[str] = mapped_column(
+        ForeignKey("format_profiles.format_profile_id"), index=True
+    )
+    selected_rule_ids: Mapped[list[str]] = mapped_column(JsonValue, default=list)
+    profile_snapshot_json: Mapped[dict[str, Any]] = mapped_column(JsonValue)
+    status: Mapped[str] = mapped_column(String(32), default="pending", index=True)
+    summary_markdown: Mapped[str | None] = mapped_column(Text, nullable=True)
+    metrics_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)
+    error_json: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+    __table_args__ = (
+        _in_check("status", TASK_STATUSES, "ck_format_reviews_status"),
+        Index("ix_format_reviews_user_created", "user_id", "created_at"),
+    )
+
+
+class FormatReviewItem(Base):
+    """One rule-level result, including both manuscript and standard evidence."""
+
+    __tablename__ = "format_review_items"
+
+    format_review_item_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    format_review_id: Mapped[str] = mapped_column(
+        ForeignKey("format_reviews.format_review_id", ondelete="CASCADE"), index=True
+    )
+    rule_id: Mapped[str] = mapped_column(String(128))
+    rule_title: Mapped[str] = mapped_column(String(500))
+    result: Mapped[str] = mapped_column(String(32))
+    severity: Mapped[str] = mapped_column(String(16), default="info")
+    finding: Mapped[str] = mapped_column(Text)
+    suggestion: Mapped[str | None] = mapped_column(Text, nullable=True)
+    page_numbers: Mapped[list[int]] = mapped_column(JsonValue, default=list)
+    paper_evidence_json: Mapped[list[dict[str, Any]]] = mapped_column(JsonValue, default=list)
+    standard_evidence_json: Mapped[list[dict[str, Any]]] = mapped_column(JsonValue, default=list)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+    __table_args__ = (
+        UniqueConstraint("format_review_id", "rule_id", name="uq_format_review_rule"),
+        _in_check("result", FORMAT_CHECK_RESULTS, "ck_format_review_item_result"),
+        _in_check("severity", FORMAT_SEVERITIES, "ck_format_review_item_severity"),
     )
 
 

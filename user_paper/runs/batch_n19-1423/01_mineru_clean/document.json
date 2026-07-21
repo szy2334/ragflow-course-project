@@ -1,0 +1,23 @@
+{
+  "schema_version": "paper_document_v1",
+  "paper_id": "ffa29de7-abf6-577f-bcda-0f57ee4acf30",
+  "paper_version_id": "34034758-2ac0-5c61-b029-b2ada1179b51",
+  "file_name": "N19-1423.pdf",
+  "file_path": "D:\\JIXUN\\document_pdf\\N19-1423.pdf",
+  "file_sha256": "987545ffb087f1ece898142c403a516baeabeb70ce19089397fac6f7db12c3d4",
+  "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+  "parser_name": "mineru",
+  "parser_version": "3.4.0",
+  "cleaning_version": "user_paper_pipeline_v1",
+  "mineru_export_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_n19-1423\\01_mineru_clean\\raw_mineru\\extracted",
+  "mineru_metadata": {
+    "backend": "hybrid",
+    "effort": "medium",
+    "ocr_enabled": true,
+    "version": "3.4.0"
+  },
+  "block_count": 275,
+  "media_count": 16,
+  "recovered_references": 0,
+  "created_at": "2026-07-20T03:40:02.467366+00:00"
+}

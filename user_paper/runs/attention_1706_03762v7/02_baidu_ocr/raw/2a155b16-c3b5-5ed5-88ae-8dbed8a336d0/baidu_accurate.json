@@ -1,0 +1,271 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9984169602,
+        "min": 0.9912111163,
+        "variance": 1.039485869e-05
+      },
+      "words": "Output"
+    },
+    {
+      "probability": {
+        "average": 0.9994325638,
+        "min": 0.9979596138,
+        "variance": 3.38397399e-07
+      },
+      "words": "Probabilities"
+    },
+    {
+      "probability": {
+        "average": 0.9994481206,
+        "min": 0.9975383282,
+        "variance": 6.553694334e-07
+      },
+      "words": "Softmax"
+    },
+    {
+      "probability": {
+        "average": 0.9994350076,
+        "min": 0.9986324906,
+        "variance": 3.60630338e-07
+      },
+      "words": "Linear"
+    },
+    {
+      "probability": {
+        "average": 0.9852342606,
+        "min": 0.9226637483,
+        "variance": 0.0008520355332
+      },
+      "words": "Add & Norm"
+    },
+    {
+      "probability": {
+        "average": 0.9999563694,
+        "min": 0.99992311,
+        "variance": 8.533405094e-10
+      },
+      "words": "Feed"
+    },
+    {
+      "probability": {
+        "average": 0.9999590516,
+        "min": 0.9999009371,
+        "variance": 1.110898595e-09
+      },
+      "words": "Forward"
+    },
+    {
+      "probability": {
+        "average": 0.9855043292,
+        "min": 0.9235654473,
+        "variance": 0.0008204509504
+      },
+      "words": "Add & Norm"
+    },
+    {
+      "probability": {
+        "average": 0.975417912,
+        "min": 0.8562669754,
+        "variance": 0.002474218141
+      },
+      "words": "Add & Norm"
+    },
+    {
+      "probability": {
+        "average": 0.9997038841,
+        "min": 0.9984027743,
+        "variance": 2.083684905e-07
+      },
+      "words": "Multi-Head"
+    },
+    {
+      "probability": {
+        "average": 0.9999694824,
+        "min": 0.9999347925,
+        "variance": 5.557829752e-10
+      },
+      "words": "Feed"
+    },
+    {
+      "probability": {
+        "average": 0.9999393821,
+        "min": 0.9997740388,
+        "variance": 3.937336679e-09
+      },
+      "words": "Attention"
+    },
+    {
+      "probability": {
+        "average": 0.9999501109,
+        "min": 0.9998105168,
+        "variance": 3.638402024e-09
+      },
+      "words": "Forward"
+    },
+    {
+      "probability": {
+        "average": 0.8703659177,
+        "min": 0.7419368029,
+        "variance": 0.01649403758
+      },
+      "words": "Nx"
+    },
+    {
+      "probability": {
+        "average": 0.9660152197,
+        "min": 0.8073399663,
+        "variance": 0.004671641625
+      },
+      "words": "Add & Norm"
+    },
+    {
+      "probability": {
+        "average": 0.907689631,
+        "min": 0.8160966039,
+        "variance": 0.008389282972
+      },
+      "words": "Nx"
+    },
+    {
+      "probability": {
+        "average": 0.9869000316,
+        "min": 0.9250684977,
+        "variance": 0.0006885364419
+      },
+      "words": "Add & Norm"
+    },
+    {
+      "probability": {
+        "average": 0.9998447299,
+        "min": 0.9995061159,
+        "variance": 3.603890164e-08
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9996845126,
+        "min": 0.9978948236,
+        "variance": 3.67432051e-07
+      },
+      "words": "Multi-Head"
+    },
+    {
+      "probability": {
+        "average": 0.9996746182,
+        "min": 0.9984613657,
+        "variance": 1.949036061e-07
+      },
+      "words": "Multi-Head"
+    },
+    {
+      "probability": {
+        "average": 0.9999457598,
+        "min": 0.9998232722,
+        "variance": 2.450027514e-09
+      },
+      "words": "Attention"
+    },
+    {
+      "probability": {
+        "average": 0.9999536872,
+        "min": 0.9998327494,
+        "variance": 2.11490403e-09
+      },
+      "words": "Attention"
+    },
+    {
+      "probability": {
+        "average": 0.999538064,
+        "min": 0.9981180429,
+        "variance": 3.093921919e-07
+      },
+      "words": "Positional"
+    },
+    {
+      "probability": {
+        "average": 0.998906374,
+        "min": 0.9920969009,
+        "variance": 5.846745808e-06
+      },
+      "words": "Positiona"
+    },
+    {
+      "probability": {
+        "average": 0.9997873306,
+        "min": 0.9991520643,
+        "variance": 8.734349422e-08
+      },
+      "words": "Encoding"
+    },
+    {
+      "probability": {
+        "average": 0.9996543527,
+        "min": 0.9985039234,
+        "variance": 2.506708086e-07
+      },
+      "words": "Encoding"
+    },
+    {
+      "probability": {
+        "average": 0.9920780063,
+        "min": 0.960742414,
+        "variance": 0.0002454805945
+      },
+      "words": "Input"
+    },
+    {
+      "probability": {
+        "average": 0.9996700883,
+        "min": 0.9983073473,
+        "variance": 3.737317229e-07
+      },
+      "words": "Output"
+    },
+    {
+      "probability": {
+        "average": 0.9999657869,
+        "min": 0.9998555183,
+        "variance": 2.992625925e-09
+      },
+      "words": "Embedding"
+    },
+    {
+      "probability": {
+        "average": 0.9999696016,
+        "min": 0.9998494387,
+        "variance": 2.346812078e-09
+      },
+      "words": "Embedding"
+    },
+    {
+      "probability": {
+        "average": 0.9953766465,
+        "min": 0.974148035,
+        "variance": 9.041342855e-05
+      },
+      "words": "Inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9994086623,
+        "min": 0.9973390698,
+        "variance": 8.891871062e-07
+      },
+      "words": "Outputs"
+    },
+    {
+      "probability": {
+        "average": 0.9983401895,
+        "min": 0.9793351889,
+        "variance": 2.668474735e-05
+      },
+      "words": "(shifted right)"
+    }
+  ],
+  "words_result_num": 33,
+  "direction": 0,
+  "log_id": 2079037611356228034
+}

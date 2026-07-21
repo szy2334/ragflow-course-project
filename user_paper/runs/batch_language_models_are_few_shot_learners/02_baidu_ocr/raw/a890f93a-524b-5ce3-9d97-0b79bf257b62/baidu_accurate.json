@@ -1,0 +1,239 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9908823371,
+        "min": 0.7136255503,
+        "variance": 0.001749541494
+      },
+      "words": "Context → Helsinki is the capital and largest city of Finland. It is in the region"
+    },
+    {
+      "probability": {
+        "average": 0.9981324673,
+        "min": 0.9685756564,
+        "variance": 3.151106648e-05
+      },
+      "words": "of Uusimaa, in southern Finland, on the shore of the Gulf of Finland."
+    },
+    {
+      "probability": {
+        "average": 0.998611331,
+        "min": 0.9610673189,
+        "variance": 2.509024307e-05
+      },
+      "words": "Helsinki has a population of, an urban population of, and a metropolitan"
+    },
+    {
+      "probability": {
+        "average": 0.9991381168,
+        "min": 0.981908679,
+        "variance": 4.511025054e-06
+      },
+      "words": "population of over 1.4 million, making it the most populous municipality"
+    },
+    {
+      "probability": {
+        "average": 0.9986789227,
+        "min": 0.9689868093,
+        "variance": 1.813533527e-05
+      },
+      "words": "and urban area in Finland. Helsinki is some north of Tallinn, Estonia,"
+    },
+    {
+      "probability": {
+        "average": 0.9972696304,
+        "min": 0.9507231712,
+        "variance": 5.787294504e-05
+      },
+      "words": "east of Stockholm, Sweden, and west of Saint Petersburg, Russia. Helsinki"
+    },
+    {
+      "probability": {
+        "average": 0.9997143745,
+        "min": 0.997626245,
+        "variance": 1.463005503e-07
+      },
+      "words": "has close historical connections with these three cities."
+    },
+    {
+      "probability": {
+        "average": 0.9989346862,
+        "min": 0.9546296,
+        "variance": 2.737692193e-05
+      },
+      "words": "The Helsinki metropolitan area includes the urban core of Helsinki, Espoo,"
+    },
+    {
+      "probability": {
+        "average": 0.9972196817,
+        "min": 0.9367471337,
+        "variance": 8.638847066e-05
+      },
+      "words": "Vantaa, Kauniainen, and surrounding commuter towns. It is the world's"
+    },
+    {
+      "probability": {
+        "average": 0.9993462563,
+        "min": 0.9784634709,
+        "variance": 6.372576991e-06
+      },
+      "words": "northernmost metro area of over one million people, and the city is the"
+    },
+    {
+      "probability": {
+        "average": 0.9991285801,
+        "min": 0.96971488,
+        "variance": 1.384304869e-05
+      },
+      "words": "northernmost capital of an EU member state. The Helsinki metropolitan"
+    },
+    {
+      "probability": {
+        "average": 0.9997362494,
+        "min": 0.9971459508,
+        "variance": 2.132754418e-07
+      },
+      "words": "area is the third largest metropolitan area in the Nordic countries"
+    },
+    {
+      "probability": {
+        "average": 0.999124527,
+        "min": 0.9761666656,
+        "variance": 8.500654076e-06
+      },
+      "words": "after Stockholm and Copenhagen, and the City of Helsinki is the third"
+    },
+    {
+      "probability": {
+        "average": 0.9983839393,
+        "min": 0.960414052,
+        "variance": 2.362475971e-05
+      },
+      "words": "largest after Stockholm and Oslo. Helsinki is Finland's major political,"
+    },
+    {
+      "probability": {
+        "average": 0.9975259304,
+        "min": 0.9204496145,
+        "variance": 0.0001189521936
+      },
+      "words": "educational, financial, cultural, and research center as well as one of"
+    },
+    {
+      "probability": {
+        "average": 0.9981665611,
+        "min": 0.9568625093,
+        "variance": 3.756103615e-05
+      },
+      "words": "northern Europe's major cities. Approximately 75% of foreign companies"
+    },
+    {
+      "probability": {
+        "average": 0.9988739491,
+        "min": 0.9509777427,
+        "variance": 3.313650814e-05
+      },
+      "words": "that operate in Finland have settled in the Helsinki region. The nearby"
+    },
+    {
+      "probability": {
+        "average": 0.9993234873,
+        "min": 0.9823300242,
+        "variance": 4.403661933e-06
+      },
+      "words": "municipality of Vantaa is the location of Helsinki Airport, with frequent"
+    },
+    {
+      "probability": {
+        "average": 0.9995618463,
+        "min": 0.9945428371,
+        "variance": 6.424737649e-07
+      },
+      "words": "service to various destinations in Europe and Asia."
+    },
+    {
+      "probability": {
+        "average": 0.9984331727,
+        "min": 0.9627643228,
+        "variance": 2.588115422e-05
+      },
+      "words": "Q: what is the most populous municipality in Finland?"
+    },
+    {
+      "probability": {
+        "average": 0.9997564554,
+        "min": 0.999424696,
+        "variance": 3.346890765e-08
+      },
+      "words": "A:Helsinki"
+    },
+    {
+      "probability": {
+        "average": 0.9974780679,
+        "min": 0.9302236438,
+        "variance": 0.0001560050587
+      },
+      "words": "Q: how many people live there?"
+    },
+    {
+      "probability": {
+        "average": 0.9933538437,
+        "min": 0.754342854,
+        "variance": 0.001503576874
+      },
+      "words": "A: 1.4 million in the metropolitan area"
+    },
+    {
+      "probability": {
+        "average": 0.9975540638,
+        "min": 0.8644607663,
+        "variance": 0.0002538383706
+      },
+      "words": "Q: what percent of the foreign companies that operate in Finland are in"
+    },
+    {
+      "probability": {
+        "average": 0.9999701381,
+        "min": 0.9998662472,
+        "variance": 1.457159282e-09
+      },
+      "words": "Helsinki?"
+    },
+    {
+      "probability": {
+        "average": 0.9998624921,
+        "min": 0.9995830655,
+        "variance": 2.373983854e-08
+      },
+      "words": "A:75%"
+    },
+    {
+      "probability": {
+        "average": 0.9986637831,
+        "min": 0.9664139152,
+        "variance": 2.19995618e-05
+      },
+      "words": "Q: what towns are a part of the metropolitan area?"
+    },
+    {
+      "probability": {
+        "average": 0.9896578789,
+        "min": 0.9809330702,
+        "variance": 7.612228364e-05
+      },
+      "words": "A:"
+    },
+    {
+      "probability": {
+        "average": 0.9873517156,
+        "min": 0.6856246591,
+        "variance": 0.001996841514
+      },
+      "words": "Target Completion → Helsinki, Espoo, Vantaa, Kauniainen, and surrounding commuter towns"
+    }
+  ],
+  "words_result_num": 29,
+  "direction": 0,
+  "log_id": 2079046694135395179
+}

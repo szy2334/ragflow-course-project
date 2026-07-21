@@ -1,0 +1,23 @@
+{
+  "schema_version": "paper_document_v1",
+  "paper_id": "45991218-b241-56e9-841d-3699af4e42cf",
+  "paper_version_id": "f6dc97c3-6ad8-547b-8df1-f0feaa9389a4",
+  "file_name": "Denoising Diffusion Probabilistic Models.pdf",
+  "file_path": "D:\\JIXUN\\document_pdf\\Denoising Diffusion Probabilistic Models.pdf",
+  "file_sha256": "aee5e07a802e8dfd2a386374c94fd61d1d056cb7e1e0fec4f28e8120ff5d8505",
+  "title": "Denoising Diffusion Probabilistic Models",
+  "parser_name": "mineru",
+  "parser_version": "3.4.0",
+  "cleaning_version": "user_paper_pipeline_v1",
+  "mineru_export_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_denoising diffusion probabilistic models\\01_mineru_clean\\raw_mineru\\extracted",
+  "mineru_metadata": {
+    "backend": "hybrid",
+    "effort": "medium",
+    "ocr_enabled": true,
+    "version": "3.4.0"
+  },
+  "block_count": 253,
+  "media_count": 28,
+  "recovered_references": 0,
+  "created_at": "2026-07-20T03:29:35.508413+00:00"
+}

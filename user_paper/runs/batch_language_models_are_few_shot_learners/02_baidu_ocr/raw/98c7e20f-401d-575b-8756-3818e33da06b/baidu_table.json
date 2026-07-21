@@ -1,0 +1,77 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 9
+            },
+            {
+              "x": 1286,
+              "y": 9
+            },
+            {
+              "x": 1287,
+              "y": 322
+            },
+            {
+              "x": 11,
+              "y": 330
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Context\n→\nFinal Exam with Answer Key\nInstructions: Please carefully read the following passages. For each\npassage, you must identify which noun the pronoun marked in *bold* refers\nto.\n=====\nPassage: Mr. Moncrieff visited Chester's luxurious New York apartment,\nthinking that it belonged to his son Edward. The result was that Mr.\nMoncrieff has decided to cancel Edward's allowance on the ground that\nhe no longer requires *his* financial support.\nQuestion: In the passage above, what does the pronoun \"*his*\" refer to?\nAnswer:"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 11,
+          "y": 9
+        },
+        {
+          "x": 1287,
+          "y": 9
+        },
+        {
+          "x": 1287,
+          "y": 330
+        },
+        {
+          "x": 11,
+          "y": 330
+        }
+      ],
+      "footer": [
+        {
+          "location": [
+            {
+              "x": 20,
+              "y": 335
+            },
+            {
+              "x": 498,
+              "y": 335
+            },
+            {
+              "x": 498,
+              "y": 362
+            },
+            {
+              "x": 20,
+              "y": 362
+            }
+          ],
+          "words": "Target Completion → mr. moncrieff"
+        }
+      ]
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079046737138506114
+}

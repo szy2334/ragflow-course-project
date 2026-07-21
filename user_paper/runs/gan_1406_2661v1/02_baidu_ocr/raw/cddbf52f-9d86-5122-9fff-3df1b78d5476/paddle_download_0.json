@@ -1,0 +1,61 @@
+{
+  "file_name": "46aa5f5487c4a8e77b2c4970a71f252decc01cbe6071f46ab2b7498c438ba1c2.jpg",
+  "file_id": "file-ov1i6V6SInmOY5RsL3dr2qeGpDH7c0Sj",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "Mfc9fO-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "Mfc9fO-layout-1",
+          "text": "Category | Value\nBlue | 100\nOrange | 100\nGreen | 100\nPurple | 100\nRed | 100\nBrown | 100\nTeal | 100\nDark Blue | 100\nLight Blue | 100\nDark Purple | 100\nIndigo | 100\nPurple-Blue | 100\nPurple-Green | 100\nPurple-Brown | 100",
+          "position": [
+            3,
+            6,
+            201,
+            85
+          ],
+          "polygon": [
+            [
+              3,
+              6
+            ],
+            [
+              204,
+              6
+            ],
+            [
+              204,
+              91
+            ],
+            [
+              3,
+              91
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>Category</th><th style='text-align: center;'>Value</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>Blue</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Orange</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Green</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Purple</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Red</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Brown</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Teal</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Dark Blue</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Light Blue</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Dark Purple</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Indigo</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Purple-Blue</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Purple-Green</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Purple-Brown</td><td style='text-align: center;'>100</td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "Category | Value\nBlue | 100\nOrange | 100\nGreen | 100\nPurple | 100\nRed | 100\nBrown | 100\nTeal | 100\nDark Blue | 100\nLight Blue | 100\nDark Purple | 100\nIndigo | 100\nPurple-Blue | 100\nPurple-Green | 100\nPurple-Brown | 100",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>Category</th><th style='text-align: center;'>Value</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>Blue</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Orange</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Green</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Purple</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Red</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Brown</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Teal</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Dark Blue</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Light Blue</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Dark Purple</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Indigo</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Purple-Blue</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Purple-Green</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>Purple-Brown</td><td style='text-align: center;'>100</td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 204,
+        "page_height": 98
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

@@ -1,0 +1,23 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.7273669243,
+        "min": 0.7273669243,
+        "variance": 0
+      },
+      "words": "米"
+    },
+    {
+      "probability": {
+        "average": 0.7903544307,
+        "min": 0.7903544307,
+        "variance": 0
+      },
+      "words": "是"
+    }
+  ],
+  "words_result_num": 2,
+  "direction": 0,
+  "log_id": 2079049370449350876
+}

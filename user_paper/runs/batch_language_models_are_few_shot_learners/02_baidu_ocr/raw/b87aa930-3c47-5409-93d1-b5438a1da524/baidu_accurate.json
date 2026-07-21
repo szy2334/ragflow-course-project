@@ -1,0 +1,175 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9978834987,
+        "min": 0.9821679592,
+        "variance": 2.781404146e-05
+      },
+      "words": "PhysicalQA"
+    },
+    {
+      "probability": {
+        "average": 0.9992930293,
+        "min": 0.9967165589,
+        "variance": 1.660209819e-06
+      },
+      "words": "Human"
+    },
+    {
+      "probability": {
+        "average": 0.9975863695,
+        "min": 0.983453989,
+        "variance": 2.710963417e-05
+      },
+      "words": "Zero-Shot"
+    },
+    {
+      "probability": {
+        "average": 0.9998303652,
+        "min": 0.9997598529,
+        "variance": 4.96778263e-09
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.9966551661,
+        "min": 0.9769127369,
+        "variance": 5.689148747e-05
+      },
+      "words": "One-Shot"
+    },
+    {
+      "probability": {
+        "average": 0.9997886419,
+        "min": 0.9988521338,
+        "variance": 1.002316239e-07
+      },
+      "words": "Few-Shot(K=50)"
+    },
+    {
+      "probability": {
+        "average": 0.9997588396,
+        "min": 0.9997114539,
+        "variance": 2.245403863e-09
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9996941686,
+        "min": 0.9988553524,
+        "variance": 9.196871531e-08
+      },
+      "words": "Fine-tuned SOTA"
+    },
+    {
+      "probability": {
+        "average": 0.9999418259,
+        "min": 0.9999034405,
+        "variance": 1.47343826e-09
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9999492764,
+        "min": 0.9999068975,
+        "variance": 1.795971372e-09
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9999097586,
+        "min": 0.9998605251,
+        "variance": 2.423931278e-09
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9991868138,
+        "min": 0.9895493984,
+        "variance": 6.726580978e-06
+      },
+      "words": "Random Guessing"
+    },
+    {
+      "probability": {
+        "average": 0.9989930987,
+        "min": 0.9970422387,
+        "variance": 1.293381956e-06
+      },
+      "words": "0.1B"
+    },
+    {
+      "probability": {
+        "average": 0.9942754507,
+        "min": 0.9784093499,
+        "variance": 8.397647616e-05
+      },
+      "words": "0.4B"
+    },
+    {
+      "probability": {
+        "average": 0.9971063137,
+        "min": 0.9900141954,
+        "variance": 1.682046968e-05
+      },
+      "words": "0.8B"
+    },
+    {
+      "probability": {
+        "average": 0.9980634451,
+        "min": 0.9929948449,
+        "variance": 8.593426173e-06
+      },
+      "words": "1.3B"
+    },
+    {
+      "probability": {
+        "average": 0.9969516993,
+        "min": 0.9881854057,
+        "variance": 2.563224916e-05
+      },
+      "words": "2.6B"
+    },
+    {
+      "probability": {
+        "average": 0.9963172674,
+        "min": 0.9862724543,
+        "variance": 3.372733772e-05
+      },
+      "words": "6.7B"
+    },
+    {
+      "probability": {
+        "average": 0.9999235272,
+        "min": 0.9998019338,
+        "variance": 7.395387858e-09
+      },
+      "words": "13B"
+    },
+    {
+      "probability": {
+        "average": 0.9997799993,
+        "min": 0.9991752505,
+        "variance": 1.219457317e-07
+      },
+      "words": "175B"
+    },
+    {
+      "probability": {
+        "average": 0.9997577667,
+        "min": 0.9979870319,
+        "variance": 1.579456494e-07
+      },
+      "words": "Parameters in LM(Billions)"
+    }
+  ],
+  "words_result_num": 21,
+  "direction": 0,
+  "log_id": 2079046590930515287
+}

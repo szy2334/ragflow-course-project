@@ -1,0 +1,61 @@
+{
+  "file_name": "f65c3a43994be72a2da9187e88b7a428b96af1be93d22e46877a848f38e51c3c.jpg",
+  "file_id": "file-dLlyL9aHYDcaowWxVviOHL27U3qkx4jE",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "c9fOXf-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "c9fOXf-layout-1",
+          "text": "x | Blue Line | Red Line\n0 | 0 | 100\n10 | 0 | 100\n20 | 0 | 100\n30 | 0 | 100\n40 | 10 | 100\n50 | 50 | 100\n60 | 90 | 100\n70 | 100 | 100\n80 | 90 | 100\n90 | 60 | 100\n100 | 30 | 100\n110 | 10 | 100\n120 | 0 | 100\n130 | 0 | 100\n140 | 0 | 100\n150 | 0 | 100",
+          "position": [
+            3,
+            3,
+            221,
+            273
+          ],
+          "polygon": [
+            [
+              3,
+              3
+            ],
+            [
+              224,
+              3
+            ],
+            [
+              224,
+              276
+            ],
+            [
+              3,
+              276
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>x</th><th style='text-align: center;'>Blue Line</th><th style='text-align: center;'>Red Line</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>0</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>10</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>20</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>30</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>40</td><td style='text-align: center;'>10</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>50</td><td style='text-align: center;'>50</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>60</td><td style='text-align: center;'>90</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>70</td><td style='text-align: center;'>100</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>80</td><td style='text-align: center;'>90</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>90</td><td style='text-align: center;'>60</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>100</td><td style='text-align: center;'>30</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>110</td><td style='text-align: center;'>10</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>120</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>130</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>140</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>150</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "x | Blue Line | Red Line\n0 | 0 | 100\n10 | 0 | 100\n20 | 0 | 100\n30 | 0 | 100\n40 | 10 | 100\n50 | 50 | 100\n60 | 90 | 100\n70 | 100 | 100\n80 | 90 | 100\n90 | 60 | 100\n100 | 30 | 100\n110 | 10 | 100\n120 | 0 | 100\n130 | 0 | 100\n140 | 0 | 100\n150 | 0 | 100",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>x</th><th style='text-align: center;'>Blue Line</th><th style='text-align: center;'>Red Line</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>0</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>10</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>20</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>30</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>40</td><td style='text-align: center;'>10</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>50</td><td style='text-align: center;'>50</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>60</td><td style='text-align: center;'>90</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>70</td><td style='text-align: center;'>100</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>80</td><td style='text-align: center;'>90</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>90</td><td style='text-align: center;'>60</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>100</td><td style='text-align: center;'>30</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>110</td><td style='text-align: center;'>10</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>120</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>130</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>140</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n    <tr><td style='text-align: center;'>150</td><td style='text-align: center;'>0</td><td style='text-align: center;'>100</td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 224,
+        "page_height": 282
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

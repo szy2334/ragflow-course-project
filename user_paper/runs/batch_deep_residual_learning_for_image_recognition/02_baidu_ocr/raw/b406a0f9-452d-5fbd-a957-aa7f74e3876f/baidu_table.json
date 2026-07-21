@@ -1,0 +1,780 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 2,
+              "y": 0
+            },
+            {
+              "x": 192,
+              "y": 0
+            },
+            {
+              "x": 192,
+              "y": 34
+            },
+            {
+              "x": 3,
+              "y": 34
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "model"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 192,
+              "y": 0
+            },
+            {
+              "x": 320,
+              "y": 0
+            },
+            {
+              "x": 320,
+              "y": 34
+            },
+            {
+              "x": 192,
+              "y": 34
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "top-1 err."
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 320,
+              "y": 0
+            },
+            {
+              "x": 436,
+              "y": 0
+            },
+            {
+              "x": 436,
+              "y": 34
+            },
+            {
+              "x": 320,
+              "y": 34
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "top-5 err."
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 3,
+              "y": 34
+            },
+            {
+              "x": 192,
+              "y": 34
+            },
+            {
+              "x": 192,
+              "y": 66
+            },
+            {
+              "x": 3,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "VGG-16[41]"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 192,
+              "y": 34
+            },
+            {
+              "x": 320,
+              "y": 34
+            },
+            {
+              "x": 320,
+              "y": 66
+            },
+            {
+              "x": 192,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "28.07"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 320,
+              "y": 34
+            },
+            {
+              "x": 436,
+              "y": 34
+            },
+            {
+              "x": 436,
+              "y": 66
+            },
+            {
+              "x": 320,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "9.33"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 3,
+              "y": 66
+            },
+            {
+              "x": 192,
+              "y": 66
+            },
+            {
+              "x": 192,
+              "y": 141
+            },
+            {
+              "x": 3,
+              "y": 141
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "GoogLeNet [44]\nPReLU-net[13]"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 192,
+              "y": 66
+            },
+            {
+              "x": 320,
+              "y": 66
+            },
+            {
+              "x": 320,
+              "y": 141
+            },
+            {
+              "x": 192,
+              "y": 141
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "24.27"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 320,
+              "y": 66
+            },
+            {
+              "x": 436,
+              "y": 66
+            },
+            {
+              "x": 436,
+              "y": 141
+            },
+            {
+              "x": 320,
+              "y": 141
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "9.15\n7.38"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 3,
+              "y": 141
+            },
+            {
+              "x": 192,
+              "y": 141
+            },
+            {
+              "x": 192,
+              "y": 175
+            },
+            {
+              "x": 3,
+              "y": 175
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "plain-34"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 192,
+              "y": 141
+            },
+            {
+              "x": 320,
+              "y": 141
+            },
+            {
+              "x": 320,
+              "y": 175
+            },
+            {
+              "x": 192,
+              "y": 175
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "28.54"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 320,
+              "y": 141
+            },
+            {
+              "x": 436,
+              "y": 141
+            },
+            {
+              "x": 435,
+              "y": 175
+            },
+            {
+              "x": 320,
+              "y": 175
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "10.02"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 3,
+              "y": 175
+            },
+            {
+              "x": 192,
+              "y": 175
+            },
+            {
+              "x": 192,
+              "y": 208
+            },
+            {
+              "x": 3,
+              "y": 208
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "ResNet-34 A"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 192,
+              "y": 175
+            },
+            {
+              "x": 320,
+              "y": 175
+            },
+            {
+              "x": 320,
+              "y": 208
+            },
+            {
+              "x": 192,
+              "y": 208
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "25.03"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 320,
+              "y": 175
+            },
+            {
+              "x": 435,
+              "y": 175
+            },
+            {
+              "x": 435,
+              "y": 208
+            },
+            {
+              "x": 320,
+              "y": 208
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "7.76"
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 3,
+              "y": 208
+            },
+            {
+              "x": 192,
+              "y": 208
+            },
+            {
+              "x": 192,
+              "y": 242
+            },
+            {
+              "x": 3,
+              "y": 242
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "ResNet-34 B"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 192,
+              "y": 208
+            },
+            {
+              "x": 320,
+              "y": 208
+            },
+            {
+              "x": 320,
+              "y": 242
+            },
+            {
+              "x": 192,
+              "y": 242
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "24.52"
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 320,
+              "y": 208
+            },
+            {
+              "x": 435,
+              "y": 208
+            },
+            {
+              "x": 435,
+              "y": 242
+            },
+            {
+              "x": 320,
+              "y": 242
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": "7.46"
+        },
+        {
+          "col_end": 1,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 3,
+              "y": 242
+            },
+            {
+              "x": 192,
+              "y": 242
+            },
+            {
+              "x": 192,
+              "y": 277
+            },
+            {
+              "x": 3,
+              "y": 277
+            }
+          ],
+          "row_start": 6,
+          "col_start": 0,
+          "words": "ResNet-34 C"
+        },
+        {
+          "col_end": 2,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 192,
+              "y": 242
+            },
+            {
+              "x": 320,
+              "y": 242
+            },
+            {
+              "x": 320,
+              "y": 277
+            },
+            {
+              "x": 192,
+              "y": 277
+            }
+          ],
+          "row_start": 6,
+          "col_start": 1,
+          "words": "24.19"
+        },
+        {
+          "col_end": 3,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 320,
+              "y": 242
+            },
+            {
+              "x": 435,
+              "y": 242
+            },
+            {
+              "x": 435,
+              "y": 277
+            },
+            {
+              "x": 320,
+              "y": 277
+            }
+          ],
+          "row_start": 6,
+          "col_start": 2,
+          "words": "7.40"
+        },
+        {
+          "col_end": 1,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 3,
+              "y": 277
+            },
+            {
+              "x": 192,
+              "y": 277
+            },
+            {
+              "x": 192,
+              "y": 309
+            },
+            {
+              "x": 3,
+              "y": 309
+            }
+          ],
+          "row_start": 7,
+          "col_start": 0,
+          "words": "ResNet-50"
+        },
+        {
+          "col_end": 2,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 192,
+              "y": 277
+            },
+            {
+              "x": 320,
+              "y": 277
+            },
+            {
+              "x": 320,
+              "y": 309
+            },
+            {
+              "x": 192,
+              "y": 309
+            }
+          ],
+          "row_start": 7,
+          "col_start": 1,
+          "words": "22.85"
+        },
+        {
+          "col_end": 3,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 320,
+              "y": 277
+            },
+            {
+              "x": 435,
+              "y": 277
+            },
+            {
+              "x": 435,
+              "y": 309
+            },
+            {
+              "x": 320,
+              "y": 309
+            }
+          ],
+          "row_start": 7,
+          "col_start": 2,
+          "words": "6.71"
+        },
+        {
+          "col_end": 1,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 3,
+              "y": 309
+            },
+            {
+              "x": 192,
+              "y": 309
+            },
+            {
+              "x": 192,
+              "y": 342
+            },
+            {
+              "x": 3,
+              "y": 342
+            }
+          ],
+          "row_start": 8,
+          "col_start": 0,
+          "words": "ResNet-101"
+        },
+        {
+          "col_end": 2,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 192,
+              "y": 309
+            },
+            {
+              "x": 320,
+              "y": 309
+            },
+            {
+              "x": 320,
+              "y": 342
+            },
+            {
+              "x": 192,
+              "y": 342
+            }
+          ],
+          "row_start": 8,
+          "col_start": 1,
+          "words": "21.75"
+        },
+        {
+          "col_end": 3,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 320,
+              "y": 309
+            },
+            {
+              "x": 435,
+              "y": 309
+            },
+            {
+              "x": 435,
+              "y": 342
+            },
+            {
+              "x": 320,
+              "y": 342
+            }
+          ],
+          "row_start": 8,
+          "col_start": 2,
+          "words": "6.05"
+        },
+        {
+          "col_end": 1,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 3,
+              "y": 342
+            },
+            {
+              "x": 192,
+              "y": 342
+            },
+            {
+              "x": 192,
+              "y": 371
+            },
+            {
+              "x": 3,
+              "y": 371
+            }
+          ],
+          "row_start": 9,
+          "col_start": 0,
+          "words": "ResNet-152"
+        },
+        {
+          "col_end": 2,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 192,
+              "y": 342
+            },
+            {
+              "x": 320,
+              "y": 342
+            },
+            {
+              "x": 320,
+              "y": 371
+            },
+            {
+              "x": 192,
+              "y": 371
+            }
+          ],
+          "row_start": 9,
+          "col_start": 1,
+          "words": "21.43"
+        },
+        {
+          "col_end": 3,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 320,
+              "y": 342
+            },
+            {
+              "x": 435,
+              "y": 342
+            },
+            {
+              "x": 435,
+              "y": 371
+            },
+            {
+              "x": 320,
+              "y": 371
+            }
+          ],
+          "row_start": 9,
+          "col_start": 2,
+          "words": "5.71"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 2,
+          "y": 0
+        },
+        {
+          "x": 436,
+          "y": 0
+        },
+        {
+          "x": 436,
+          "y": 371
+        },
+        {
+          "x": 2,
+          "y": 371
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079044889483446390
+}

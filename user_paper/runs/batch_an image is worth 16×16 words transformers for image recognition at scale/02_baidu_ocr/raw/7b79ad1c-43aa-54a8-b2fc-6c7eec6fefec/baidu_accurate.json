@@ -1,0 +1,55 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9931461811,
+        "min": 0.9248430133,
+        "variance": 0.0003090373357
+      },
+      "words": "VIVI-Ex-100%(R50x3)"
+    },
+    {
+      "probability": {
+        "average": 0.9998322725,
+        "min": 0.9998021722,
+        "variance": 9.042384619e-10
+      },
+      "words": "88"
+    },
+    {
+      "probability": {
+        "average": 0.9999368191,
+        "min": 0.9999017715,
+        "variance": 1.228329438e-09
+      },
+      "words": "85"
+    },
+    {
+      "probability": {
+        "average": 0.9999767542,
+        "min": 0.9999657869,
+        "variance": 1.202806743e-10
+      },
+      "words": "82"
+    },
+    {
+      "probability": {
+        "average": 0.9999583364,
+        "min": 0.9999456406,
+        "variance": 1.611830669e-10
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9970507622,
+        "min": 0.9618144631,
+        "variance": 6.721107638e-05
+      },
+      "words": "Specialized(4 tasks)"
+    }
+  ],
+  "words_result_num": 6,
+  "direction": 0,
+  "log_id": 2079043194835288498
+}

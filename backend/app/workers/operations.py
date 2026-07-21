@@ -10,24 +10,24 @@ import zipfile
 from datetime import UTC, datetime
 from pathlib import Path
 
-import httpx
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from app.core.config import Settings
 from app.db.models import (
+    FormatReview,
     IngestionQualityReport,
     MediaObjectRecord,
     Paper,
     PaperChunk,
     ParsedBlockRecord,
-    RagMapping,
     ReadingReport,
     ReportExport,
     TaskRecord,
 )
 from app.runtime.adapters import task_view
 from app.runtime.redis_store import RedisRuntime
+from app.workers.format_review import FormatReviewFailure, execute_format_review
 
 
 class OperationFailure(Exception):
@@ -70,9 +70,13 @@ class OperationsTaskExecutor:
                 await self._export_report(task_id)
             elif task_type == "evaluation":
                 await self._evaluate(task_id)
+            elif task_type == "format_review":
+                await self._format_review(task_id)
             else:
                 raise OperationFailure("TASK_TYPE_UNSUPPORTED", "不支持的后台任务类型。", retryable=False)
         except OperationFailure as exc:
+            await self._fail(task_id, exc.code, exc.message, exc.retryable)
+        except FormatReviewFailure as exc:
             await self._fail(task_id, exc.code, exc.message, exc.retryable)
         except Exception:
             await self._fail(task_id, "OPERATION_FAILED", "后台任务未能完成，请稍后重试。", True)
@@ -81,15 +85,11 @@ class OperationsTaskExecutor:
         async with self._sessions() as session:
             task = await _task(session, task_id)
             paper = await _paper(session, task.resource_id)
-            task.stage, task.progress = "cleaning_ragflow", 0.2
+            task.stage, task.progress = "cleaning_storage", 0.2
             paper.deletion_requested_at = paper.deletion_requested_at or datetime.now(UTC)
-            mappings = list(
-                (await session.scalars(select(RagMapping).where(RagMapping.paper_id == paper.paper_id))).all()
-            )
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
             file_path = Path(paper.file_path)
-        await self._delete_ragflow_documents(mappings)
         async with self._sessions() as session:
             task = await _task(session, task_id)
             paper = await _paper(session, task.resource_id)
@@ -100,7 +100,6 @@ class OperationsTaskExecutor:
                 file_path.unlink(missing_ok=True)
             except OSError as exc:
                 raise OperationFailure("OBJECT_STORAGE_CLEANUP_FAILED", "论文原文件清理失败。") from exc
-            await session.execute(delete(RagMapping).where(RagMapping.paper_id == paper.paper_id))
             await session.execute(delete(PaperChunk).where(PaperChunk.paper_id == paper.paper_id))
             await session.execute(delete(MediaObjectRecord).where(MediaObjectRecord.paper_id == paper.paper_id))
             await session.execute(delete(ParsedBlockRecord).where(ParsedBlockRecord.paper_id == paper.paper_id))
@@ -117,26 +116,6 @@ class OperationsTaskExecutor:
             task.result_json = {"paper_id": paper.paper_id, "deleted_at": paper.deleted_at.isoformat()}
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
-
-    async def _delete_ragflow_documents(self, mappings: list[RagMapping]) -> None:
-        documents = {(item.dataset_id, item.document_id) for item in mappings}
-        if not documents:
-            return
-        if not self._settings.ragflow_base_url or not self._settings.ragflow_api_key:
-            raise OperationFailure("RAGFLOW_UNAVAILABLE", "论文知识库服务不可用，暂不能删除论文。")
-        headers = {"Authorization": f"Bearer {self._settings.ragflow_api_key.get_secret_value()}"}
-        try:
-            async with httpx.AsyncClient(timeout=30) as client:
-                for dataset_id, document_id in documents:
-                    response = await client.delete(
-                        self._settings.ragflow_base_url.rstrip("/")
-                        + f"/api/v1/datasets/{dataset_id}/documents/{document_id}",
-                        headers=headers,
-                    )
-                    if response.status_code not in {200, 202, 204, 404}:
-                        response.raise_for_status()
-        except httpx.HTTPError as exc:
-            raise OperationFailure("RAGFLOW_CLEANUP_FAILED", "论文知识库清理失败。") from exc
 
     async def _build_report(self, task_id: str) -> None:
         async with self._sessions() as session:
@@ -258,6 +237,9 @@ class OperationsTaskExecutor:
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
 
+    async def _format_review(self, task_id: str) -> None:
+        await execute_format_review(self._settings, self._sessions, self._redis, task_id)
+
     async def _fail(self, task_id: str, code: str, message: str, retryable: bool) -> None:
         async with self._sessions() as session:
             task = await session.get(TaskRecord, task_id)
@@ -273,6 +255,12 @@ class OperationsTaskExecutor:
                 export = await session.scalar(select(ReportExport).where(ReportExport.task_id == task_id))
                 if export is not None:
                     export.status = "failed"
+            if task.task_type == "format_review" and task.resource_id:
+                review = await session.get(FormatReview, task.resource_id)
+                if review is not None:
+                    review.status = "failed"
+                    review.error_json = {"code": code, "message": message, "retryable": retryable}
+                    review.completed_at = task.completed_at
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
 

@@ -1,0 +1,10 @@
+{
+  "run_name": "batch_learning transferable visual models from natural language supervision",
+  "pdf": "D:\\JIXUN\\document_pdf\\Learning Transferable Visual Models From Natural Language Supervision.pdf",
+  "run_root": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_learning transferable visual models from natural language supervision",
+  "mineru_clean_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_learning transferable visual models from natural language supervision\\01_mineru_clean",
+  "ocr_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_learning transferable visual models from natural language supervision\\02_baidu_ocr",
+  "chunks_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_learning transferable visual models from natural language supervision\\03_chunks",
+  "ragflow_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_learning transferable visual models from natural language supervision\\04_ragflow",
+  "completed_at": "2026-07-20T03:37:01.207693+00:00"
+}

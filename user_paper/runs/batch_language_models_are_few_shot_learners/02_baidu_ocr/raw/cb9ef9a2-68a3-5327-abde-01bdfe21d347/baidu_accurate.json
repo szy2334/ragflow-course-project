@@ -1,0 +1,247 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9999468923,
+        "min": 0.999851346,
+        "variance": 4.579347124e-09
+      },
+      "words": "30%"
+    },
+    {
+      "probability": {
+        "average": 0.998534441,
+        "min": 0.984613061,
+        "variance": 1.765741399e-05
+      },
+      "words": "eval on only"
+    },
+    {
+      "probability": {
+        "average": 0.99976331,
+        "min": 0.9987818599,
+        "variance": 1.219549404e-07
+      },
+      "words": "clean data"
+    },
+    {
+      "probability": {
+        "average": 0.9614343643,
+        "min": 0.8668678403,
+        "variance": 0.003046438098
+      },
+      "words": "QuAC"
+    },
+    {
+      "probability": {
+        "average": 0.9999539256,
+        "min": 0.9998733997,
+        "variance": 3.25789884e-09
+      },
+      "words": "20%"
+    },
+    {
+      "probability": {
+        "average": 0.9998673201,
+        "min": 0.9992534518,
+        "variance": 4.4115815e-08
+      },
+      "words": "did better"
+    },
+    {
+      "probability": {
+        "average": 0.5909818411,
+        "min": 0.04456736892,
+        "variance": 0.1922918409
+      },
+      "words": "aouewJojad u!abueyo uao1ad"
+    },
+    {
+      "probability": {
+        "average": 0.9998113513,
+        "min": 0.9996739626,
+        "variance": 1.181675913e-08
+      },
+      "words": "10%"
+    },
+    {
+      "probability": {
+        "average": 0.996067822,
+        "min": 0.9527143836,
+        "variance": 0.0001309643994
+      },
+      "words": "Symbol Insertion"
+    },
+    {
+      "probability": {
+        "average": 0.9993789196,
+        "min": 0.9990441203,
+        "variance": 1.120905608e-07
+      },
+      "words": "0%"
+    },
+    {
+      "probability": {
+        "average": 0.9379111528,
+        "min": 0.5868071318,
+        "variance": 0.02057036199
+      },
+      "words": "SQuADv2"
+    },
+    {
+      "probability": {
+        "average": 0.9996654987,
+        "min": 0.9983843565,
+        "variance": 2.531337771e-07
+      },
+      "words": "Winograd"
+    },
+    {
+      "probability": {
+        "average": 0.9960286021,
+        "min": 0.9855576158,
+        "variance": 3.65885171e-05
+      },
+      "words": "PIQA"
+    },
+    {
+      "probability": {
+        "average": 0.9996627569,
+        "min": 0.9992295504,
+        "variance": 7.293181881e-08
+      },
+      "words": "-10%"
+    },
+    {
+      "probability": {
+        "average": 0.9949325919,
+        "min": 0.9666773081,
+        "variance": 9.449819481e-05
+      },
+      "words": "WMT16 en->de"
+    },
+    {
+      "probability": {
+        "average": 0.9999496937,
+        "min": 0.9998482466,
+        "variance": 1.800875338e-09
+      },
+      "words": "Anagrams2"
+    },
+    {
+      "probability": {
+        "average": 0.9938318133,
+        "min": 0.9627679586,
+        "variance": 0.0001545279811
+      },
+      "words": "WMT16 de->en"
+    },
+    {
+      "probability": {
+        "average": 0.951282382,
+        "min": 0.514331162,
+        "variance": 0.02121410891
+      },
+      "words": "Anagrams 1"
+    },
+    {
+      "probability": {
+        "average": 0.9997195601,
+        "min": 0.9994599223,
+        "variance": 6.19644922e-08
+      },
+      "words": "-20%"
+    },
+    {
+      "probability": {
+        "average": 0.9985308647,
+        "min": 0.9948549271,
+        "variance": 4.507649919e-06
+      },
+      "words": "DROP"
+    },
+    {
+      "probability": {
+        "average": 0.9995400906,
+        "min": 0.9981550574,
+        "variance": 3.153980401e-07
+      },
+      "words": "eval on all data"
+    },
+    {
+      "probability": {
+        "average": 0.9996062517,
+        "min": 0.997676909,
+        "variance": 5.033967341e-07
+      },
+      "words": "Reversed Words"
+    },
+    {
+      "probability": {
+        "average": 0.9875719547,
+        "min": 0.7910693884,
+        "variance": 0.002413427457
+      },
+      "words": "(including dirty)"
+    },
+    {
+      "probability": {
+        "average": 0.9982994199,
+        "min": 0.9842113853,
+        "variance": 2.209667218e-05
+      },
+      "words": "did better"
+    },
+    {
+      "probability": {
+        "average": 0.9996762872,
+        "min": 0.9993707538,
+        "variance": 8.4238863e-08
+      },
+      "words": "-30%"
+    },
+    {
+      "probability": {
+        "average": 0.9996353388,
+        "min": 0.9995223284,
+        "variance": 1.27780897e-08
+      },
+      "words": "0%"
+    },
+    {
+      "probability": {
+        "average": 0.9999651909,
+        "min": 0.9999085665,
+        "variance": 1.625556023e-09
+      },
+      "words": "25%"
+    },
+    {
+      "probability": {
+        "average": 0.9999628067,
+        "min": 0.9999094009,
+        "variance": 1.433444141e-09
+      },
+      "words": "50%"
+    },
+    {
+      "probability": {
+        "average": 0.9999730587,
+        "min": 0.999933362,
+        "variance": 7.940741398e-10
+      },
+      "words": "75%"
+    },
+    {
+      "probability": {
+        "average": 0.9996471405,
+        "min": 0.999412775,
+        "variance": 3.250685054e-08
+      },
+      "words": "100%"
+    }
+  ],
+  "words_result_num": 30,
+  "direction": 0,
+  "log_id": 2079046638206345406
+}

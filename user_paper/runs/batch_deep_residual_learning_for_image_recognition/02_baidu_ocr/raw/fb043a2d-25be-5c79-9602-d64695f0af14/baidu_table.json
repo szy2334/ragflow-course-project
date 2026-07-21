@@ -1,0 +1,855 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 7,
+              "y": 8
+            },
+            {
+              "x": 360,
+              "y": 9
+            },
+            {
+              "x": 360,
+              "y": 41
+            },
+            {
+              "x": 8,
+              "y": 41
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "method"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 9
+            },
+            {
+              "x": 486,
+              "y": 9
+            },
+            {
+              "x": 486,
+              "y": 41
+            },
+            {
+              "x": 360,
+              "y": 41
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "top-l err."
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 486,
+              "y": 9
+            },
+            {
+              "x": 596,
+              "y": 9
+            },
+            {
+              "x": 596,
+              "y": 41
+            },
+            {
+              "x": 486,
+              "y": 41
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "top-5 err."
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 8,
+              "y": 41
+            },
+            {
+              "x": 360,
+              "y": 41
+            },
+            {
+              "x": 360,
+              "y": 73
+            },
+            {
+              "x": 8,
+              "y": 74
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "VGG [41](ILSVRC'14)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 41
+            },
+            {
+              "x": 486,
+              "y": 41
+            },
+            {
+              "x": 486,
+              "y": 73
+            },
+            {
+              "x": 360,
+              "y": 73
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 486,
+              "y": 41
+            },
+            {
+              "x": 596,
+              "y": 41
+            },
+            {
+              "x": 596,
+              "y": 73
+            },
+            {
+              "x": 486,
+              "y": 73
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "8.43↑"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 8,
+              "y": 74
+            },
+            {
+              "x": 360,
+              "y": 73
+            },
+            {
+              "x": 360,
+              "y": 109
+            },
+            {
+              "x": 8,
+              "y": 109
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "GoogLeNet [44](ILSVRC'14)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 73
+            },
+            {
+              "x": 486,
+              "y": 73
+            },
+            {
+              "x": 486,
+              "y": 109
+            },
+            {
+              "x": 360,
+              "y": 109
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 486,
+              "y": 73
+            },
+            {
+              "x": 596,
+              "y": 73
+            },
+            {
+              "x": 596,
+              "y": 109
+            },
+            {
+              "x": 486,
+              "y": 109
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "7.89"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 8,
+              "y": 109
+            },
+            {
+              "x": 360,
+              "y": 109
+            },
+            {
+              "x": 360,
+              "y": 142
+            },
+            {
+              "x": 9,
+              "y": 142
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "VGG [41](v5)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 109
+            },
+            {
+              "x": 486,
+              "y": 109
+            },
+            {
+              "x": 486,
+              "y": 142
+            },
+            {
+              "x": 360,
+              "y": 142
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "24.4"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 486,
+              "y": 109
+            },
+            {
+              "x": 596,
+              "y": 109
+            },
+            {
+              "x": 596,
+              "y": 142
+            },
+            {
+              "x": 486,
+              "y": 142
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "7.1"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 142
+            },
+            {
+              "x": 360,
+              "y": 142
+            },
+            {
+              "x": 360,
+              "y": 175
+            },
+            {
+              "x": 9,
+              "y": 175
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "PReLU-net[13]"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 142
+            },
+            {
+              "x": 486,
+              "y": 142
+            },
+            {
+              "x": 486,
+              "y": 175
+            },
+            {
+              "x": 360,
+              "y": 175
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "21.59"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 486,
+              "y": 142
+            },
+            {
+              "x": 596,
+              "y": 142
+            },
+            {
+              "x": 596,
+              "y": 175
+            },
+            {
+              "x": 486,
+              "y": 175
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "5.71"
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 175
+            },
+            {
+              "x": 360,
+              "y": 175
+            },
+            {
+              "x": 360,
+              "y": 211
+            },
+            {
+              "x": 9,
+              "y": 211
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "BN-inception[16]"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 175
+            },
+            {
+              "x": 486,
+              "y": 175
+            },
+            {
+              "x": 486,
+              "y": 211
+            },
+            {
+              "x": 360,
+              "y": 211
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "21.99"
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 486,
+              "y": 175
+            },
+            {
+              "x": 596,
+              "y": 175
+            },
+            {
+              "x": 596,
+              "y": 211
+            },
+            {
+              "x": 486,
+              "y": 211
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": "5.81"
+        },
+        {
+          "col_end": 1,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 211
+            },
+            {
+              "x": 360,
+              "y": 211
+            },
+            {
+              "x": 360,
+              "y": 243
+            },
+            {
+              "x": 10,
+              "y": 243
+            }
+          ],
+          "row_start": 6,
+          "col_start": 0,
+          "words": "ResNet-34 B"
+        },
+        {
+          "col_end": 2,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 211
+            },
+            {
+              "x": 486,
+              "y": 211
+            },
+            {
+              "x": 487,
+              "y": 243
+            },
+            {
+              "x": 360,
+              "y": 243
+            }
+          ],
+          "row_start": 6,
+          "col_start": 1,
+          "words": "21.84"
+        },
+        {
+          "col_end": 3,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 486,
+              "y": 211
+            },
+            {
+              "x": 596,
+              "y": 211
+            },
+            {
+              "x": 596,
+              "y": 243
+            },
+            {
+              "x": 487,
+              "y": 243
+            }
+          ],
+          "row_start": 6,
+          "col_start": 2,
+          "words": "5.71"
+        },
+        {
+          "col_end": 1,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 243
+            },
+            {
+              "x": 360,
+              "y": 243
+            },
+            {
+              "x": 360,
+              "y": 276
+            },
+            {
+              "x": 10,
+              "y": 276
+            }
+          ],
+          "row_start": 7,
+          "col_start": 0,
+          "words": "ResNet-34 C"
+        },
+        {
+          "col_end": 2,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 243
+            },
+            {
+              "x": 487,
+              "y": 243
+            },
+            {
+              "x": 487,
+              "y": 276
+            },
+            {
+              "x": 360,
+              "y": 276
+            }
+          ],
+          "row_start": 7,
+          "col_start": 1,
+          "words": "21.53"
+        },
+        {
+          "col_end": 3,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 487,
+              "y": 243
+            },
+            {
+              "x": 596,
+              "y": 243
+            },
+            {
+              "x": 596,
+              "y": 276
+            },
+            {
+              "x": 487,
+              "y": 276
+            }
+          ],
+          "row_start": 7,
+          "col_start": 2,
+          "words": "5.60"
+        },
+        {
+          "col_end": 1,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 276
+            },
+            {
+              "x": 360,
+              "y": 276
+            },
+            {
+              "x": 360,
+              "y": 311
+            },
+            {
+              "x": 10,
+              "y": 311
+            }
+          ],
+          "row_start": 8,
+          "col_start": 0,
+          "words": "ResNet-50"
+        },
+        {
+          "col_end": 2,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 276
+            },
+            {
+              "x": 487,
+              "y": 276
+            },
+            {
+              "x": 487,
+              "y": 311
+            },
+            {
+              "x": 360,
+              "y": 311
+            }
+          ],
+          "row_start": 8,
+          "col_start": 1,
+          "words": "20.74"
+        },
+        {
+          "col_end": 3,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 487,
+              "y": 276
+            },
+            {
+              "x": 596,
+              "y": 276
+            },
+            {
+              "x": 596,
+              "y": 311
+            },
+            {
+              "x": 487,
+              "y": 311
+            }
+          ],
+          "row_start": 8,
+          "col_start": 2,
+          "words": "5.25"
+        },
+        {
+          "col_end": 1,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 311
+            },
+            {
+              "x": 360,
+              "y": 311
+            },
+            {
+              "x": 360,
+              "y": 344
+            },
+            {
+              "x": 10,
+              "y": 344
+            }
+          ],
+          "row_start": 9,
+          "col_start": 0,
+          "words": "ResNet-101"
+        },
+        {
+          "col_end": 2,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 311
+            },
+            {
+              "x": 487,
+              "y": 311
+            },
+            {
+              "x": 487,
+              "y": 344
+            },
+            {
+              "x": 360,
+              "y": 344
+            }
+          ],
+          "row_start": 9,
+          "col_start": 1,
+          "words": "19.87"
+        },
+        {
+          "col_end": 3,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 487,
+              "y": 311
+            },
+            {
+              "x": 596,
+              "y": 311
+            },
+            {
+              "x": 596,
+              "y": 344
+            },
+            {
+              "x": 487,
+              "y": 344
+            }
+          ],
+          "row_start": 9,
+          "col_start": 2,
+          "words": "4.60"
+        },
+        {
+          "col_end": 1,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 344
+            },
+            {
+              "x": 360,
+              "y": 344
+            },
+            {
+              "x": 360,
+              "y": 373
+            },
+            {
+              "x": 11,
+              "y": 373
+            }
+          ],
+          "row_start": 10,
+          "col_start": 0,
+          "words": "ResNet-152"
+        },
+        {
+          "col_end": 2,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 360,
+              "y": 344
+            },
+            {
+              "x": 487,
+              "y": 344
+            },
+            {
+              "x": 487,
+              "y": 373
+            },
+            {
+              "x": 360,
+              "y": 373
+            }
+          ],
+          "row_start": 10,
+          "col_start": 1,
+          "words": "19.38"
+        },
+        {
+          "col_end": 3,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 487,
+              "y": 344
+            },
+            {
+              "x": 596,
+              "y": 344
+            },
+            {
+              "x": 596,
+              "y": 373
+            },
+            {
+              "x": 487,
+              "y": 373
+            }
+          ],
+          "row_start": 10,
+          "col_start": 2,
+          "words": "4.49"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 7,
+          "y": 8
+        },
+        {
+          "x": 596,
+          "y": 8
+        },
+        {
+          "x": 596,
+          "y": 373
+        },
+        {
+          "x": 7,
+          "y": 373
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079044891329369114
+}

@@ -30,7 +30,6 @@ class LoginInput(ApiModel):
 class SessionCreateInput(ApiModel):
     title: str | None = Field(default=None, max_length=300)
     paper_ids: list[str] = Field(min_length=1, max_length=10)
-    knowledge_base_id: str | None = Field(default=None, max_length=128)
 
 
 class SessionUpdateInput(ApiModel):
@@ -40,7 +39,6 @@ class SessionUpdateInput(ApiModel):
 class QuestionInput(ApiModel):
     question: str = Field(min_length=1, max_length=8000)
     paper_ids: list[str] | None = Field(default=None, max_length=10)
-    knowledge_base_id: str | None = Field(default=None, max_length=128)
     stream: bool = True
 
 
@@ -94,6 +92,30 @@ class EvaluationInput(ApiModel):
     model_config_id: str | None = Field(default=None, max_length=128)
     sample_limit: int | None = Field(default=None, ge=1, le=10_000)
     random_seed: int | None = None
+
+
+class FormatReviewInput(ApiModel):
+    paper_id: str = Field(min_length=1, max_length=36)
+    format_profile_id: str = Field(min_length=1, max_length=36)
+    rule_ids: list[str] = Field(default_factory=list, max_length=50)
+
+    @field_validator("rule_ids")
+    @classmethod
+    def unique_rule_ids(cls, value: list[str]) -> list[str]:
+        if len(value) != len(set(value)):
+            raise ValueError("rule_ids must be unique")
+        return value
+
+
+class FormatProfileUpsertInput(ApiModel):
+    profile_key: str = Field(min_length=1, max_length=128)
+    name: str = Field(min_length=1, max_length=300)
+    version: str = Field(min_length=1, max_length=128)
+    description: str | None = Field(default=None, max_length=4000)
+    ragflow_dataset_id: str = Field(min_length=1, max_length=128)
+    retrieval_query: str = Field(min_length=1, max_length=4000)
+    rules: list[dict[str, str]] = Field(min_length=1, max_length=50)
+    is_active: bool = True
 
 
 class ConfigUpdateInput(ApiModel):

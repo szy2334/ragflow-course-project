@@ -1,0 +1,455 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 7
+            },
+            {
+              "x": 149,
+              "y": 7
+            },
+            {
+              "x": 149,
+              "y": 35
+            },
+            {
+              "x": 6,
+              "y": 35
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "References"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 7
+            },
+            {
+              "x": 446,
+              "y": 7
+            },
+            {
+              "x": 446,
+              "y": 35
+            },
+            {
+              "x": 149,
+              "y": 35
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Research question"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 446,
+              "y": 7
+            },
+            {
+              "x": 887,
+              "y": 7
+            },
+            {
+              "x": 887,
+              "y": 35
+            },
+            {
+              "x": 446,
+              "y": 35
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Research method"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 887,
+              "y": 7
+            },
+            {
+              "x": 1249,
+              "y": 7
+            },
+            {
+              "x": 1249,
+              "y": 35
+            },
+            {
+              "x": 887,
+              "y": 35
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "Key finding"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 34
+            },
+            {
+              "x": 1248,
+              "y": 35
+            },
+            {
+              "x": 1248,
+              "y": 88
+            },
+            {
+              "x": 5,
+              "y": 88
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Cultural and Cognitive Understanding with LLMs"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 88
+            },
+            {
+              "x": 149,
+              "y": 88
+            },
+            {
+              "x": 149,
+              "y": 218
+            },
+            {
+              "x": 6,
+              "y": 218
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Atari et al.\n(2023)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 88
+            },
+            {
+              "x": 446,
+              "y": 88
+            },
+            {
+              "x": 446,
+              "y": 218
+            },
+            {
+              "x": 149,
+              "y": 218
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "Do LLMs exhibit biases\ntoward WEIRD (Western,\nEducated, Industrialized,\nRich, Democratic)societies in\npsychological tasks?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 446,
+              "y": 88
+            },
+            {
+              "x": 887,
+              "y": 88
+            },
+            {
+              "x": 887,
+              "y": 218
+            },
+            {
+              "x": 446,
+              "y": 218
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "LLMs'responses on psychological measures\nwere compared to cross-cultural human data."
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 887,
+              "y": 88
+            },
+            {
+              "x": 1248,
+              "y": 88
+            },
+            {
+              "x": 1248,
+              "y": 218
+            },
+            {
+              "x": 887,
+              "y": 218
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "LLMs closely align with WEIRD\ncognitive patterns but show declining\naccuracy with non-WEIRD\npopulations(r=-0.70), revealing a\nWEIRD bias."
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 218
+            },
+            {
+              "x": 149,
+              "y": 218
+            },
+            {
+              "x": 149,
+              "y": 348
+            },
+            {
+              "x": 6,
+              "y": 348
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "Jin et al.\n(2023)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 218
+            },
+            {
+              "x": 446,
+              "y": 218
+            },
+            {
+              "x": 446,
+              "y": 348
+            },
+            {
+              "x": 149,
+              "y": 348
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "Does GPT exhibit cultural\ncognitive traits aligned with\nEastern or Western thinking?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 446,
+              "y": 218
+            },
+            {
+              "x": 887,
+              "y": 218
+            },
+            {
+              "x": 887,
+              "y": 348
+            },
+            {
+              "x": 446,
+              "y": 348
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "GPT was evaluated using cognitive and value\njudgment scales."
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 887,
+              "y": 218
+            },
+            {
+              "x": 1248,
+              "y": 218
+            },
+            {
+              "x": 1248,
+              "y": 348
+            },
+            {
+              "x": 887,
+              "y": 348
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "GPT leans towards Eastern holistic\nthinking in cognitive tasks but shows\nno cultural bias in value judgments,\nlikely influenced by its training data\nand methods."
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 348
+            },
+            {
+              "x": 149,
+              "y": 348
+            },
+            {
+              "x": 149,
+              "y": 503
+            },
+            {
+              "x": 6,
+              "y": 503
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "Schaaff et al.\n(2023)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 348
+            },
+            {
+              "x": 446,
+              "y": 348
+            },
+            {
+              "x": 446,
+              "y": 503
+            },
+            {
+              "x": 149,
+              "y": 503
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "How empathetic is GPT\ncompared to humans?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 446,
+              "y": 348
+            },
+            {
+              "x": 887,
+              "y": 348
+            },
+            {
+              "x": 887,
+              "y": 503
+            },
+            {
+              "x": 446,
+              "y": 503
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "GPT's empathy was evaluated through\nemotion recognition tasks, conversational\nanalysis, and five empathy-related\nquestionnaires."
+        },
+        {
+          "col_end": 4,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 887,
+              "y": 348
+            },
+            {
+              "x": 1248,
+              "y": 348
+            },
+            {
+              "x": 1248,
+              "y": 503
+            },
+            {
+              "x": 887,
+              "y": 503
+            }
+          ],
+          "row_start": 4,
+          "col_start": 3,
+          "words": "GPT accurately identified emotions in\n91.7% of cases, showed parallel\nemotions in 70.7%， and scored below\naverage humans but above individuals\nwith Asperger syndrome on empathy\nmeasures."
+        }
+      ],
+      "table_location": [
+        {
+          "x": 5,
+          "y": 7
+        },
+        {
+          "x": 1249,
+          "y": 7
+        },
+        {
+          "x": 1249,
+          "y": 503
+        },
+        {
+          "x": 5,
+          "y": 503
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079042609678471162
+}

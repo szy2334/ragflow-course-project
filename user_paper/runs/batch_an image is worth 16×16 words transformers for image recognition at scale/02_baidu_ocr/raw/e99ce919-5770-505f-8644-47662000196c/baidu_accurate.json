@@ -1,0 +1,127 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9976944327,
+        "min": 0.9934133887,
+        "variance": 9.164570656e-06
+      },
+      "words": "0.8"
+    },
+    {
+      "probability": {
+        "average": 0.9993149638,
+        "min": 0.9983993173,
+        "variance": 4.363584196e-07
+      },
+      "words": "0.7"
+    },
+    {
+      "probability": {
+        "average": 0.9972843528,
+        "min": 0.9922123551,
+        "variance": 8.729995898e-06
+      },
+      "words": "Models"
+    },
+    {
+      "probability": {
+        "average": 0.9957497716,
+        "min": 0.9877104163,
+        "variance": 3.233124517e-05
+      },
+      "words": "0.6"
+    },
+    {
+      "probability": {
+        "average": 0.732213676,
+        "min": 0.4819535017,
+        "variance": 0.0446834527
+      },
+      "words": "All"
+    },
+    {
+      "probability": {
+        "average": 0.9997640848,
+        "min": 0.9990897179,
+        "variance": 1.147177926e-07
+      },
+      "words": "Depth"
+    },
+    {
+      "probability": {
+        "average": 0.9974004626,
+        "min": 0.993619144,
+        "variance": 7.27575889e-06
+      },
+      "words": "0.5"
+    },
+    {
+      "probability": {
+        "average": 0.9977401495,
+        "min": 0.9801089168,
+        "variance": 3.481088424e-05
+      },
+      "words": "Patch size"
+    },
+    {
+      "probability": {
+        "average": 0.998919189,
+        "min": 0.9968917966,
+        "variance": 1.505643581e-06
+      },
+      "words": "Width MLP"
+    },
+    {
+      "probability": {
+        "average": 0.9980195165,
+        "min": 0.9904702902,
+        "variance": 1.424943457e-05
+      },
+      "words": "Width"
+    },
+    {
+      "probability": {
+        "average": 0.9986609817,
+        "min": 0.9963538647,
+        "variance": 2.676341637e-06
+      },
+      "words": "0.4"
+    },
+    {
+      "probability": {
+        "average": 0.7635000348,
+        "min": 0.7635000348,
+        "variance": 0
+      },
+      "words": "x"
+    },
+    {
+      "probability": {
+        "average": 0.9966823459,
+        "min": 0.9910072684,
+        "variance": 1.618608803e-05
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9973556995,
+        "min": 0.9936955571,
+        "variance": 6.948592727e-06
+      },
+      "words": "101"
+    },
+    {
+      "probability": {
+        "average": 0.9998527765,
+        "min": 0.9989651442,
+        "variance": 6.668923902e-08
+      },
+      "words": "Relative Compute"
+    }
+  ],
+  "words_result_num": 15,
+  "direction": 0,
+  "log_id": 2079043479362129456
+}

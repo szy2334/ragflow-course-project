@@ -1,0 +1,199 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9985534549,
+        "min": 0.9953391552,
+        "variance": 1.420158128e-06
+      },
+      "words": "Diffused source"
+    },
+    {
+      "probability": {
+        "average": 0.9930849075,
+        "min": 0.9592318535,
+        "variance": 0.0002292138961
+      },
+      "words": "Source"
+    },
+    {
+      "probability": {
+        "average": 0.9963843226,
+        "min": 0.9895818233,
+        "variance": 1.614614848e-05
+      },
+      "words": "Rec."
+    },
+    {
+      "probability": {
+        "average": 0.9208475947,
+        "min": 0.6054454446,
+        "variance": 0.02486964688
+      },
+      "words": "λ=0.1"
+    },
+    {
+      "probability": {
+        "average": 0.9764021039,
+        "min": 0.8840093017,
+        "variance": 0.002134317067
+      },
+      "words": "A=0.2"
+    },
+    {
+      "probability": {
+        "average": 0.9586024284,
+        "min": 0.7949936986,
+        "variance": 0.006692185067
+      },
+      "words": "A=0.3"
+    },
+    {
+      "probability": {
+        "average": 0.8798381686,
+        "min": 0.4007861614,
+        "variance": 0.05737289786
+      },
+      "words": "A=0.4"
+    },
+    {
+      "probability": {
+        "average": 0.9061053991,
+        "min": 0.5312891006,
+        "variance": 0.03512184322
+      },
+      "words": "A=0.5"
+    },
+    {
+      "probability": {
+        "average": 0.8888478279,
+        "min": 0.4454047978,
+        "variance": 0.04916045442
+      },
+      "words": "λ=0.6"
+    },
+    {
+      "probability": {
+        "average": 0.9105734825,
+        "min": 0.5547296405,
+        "variance": 0.03165631741
+      },
+      "words": "A=0.7"
+    },
+    {
+      "probability": {
+        "average": 0.9196997881,
+        "min": 0.5994644165,
+        "variance": 0.02563768625
+      },
+      "words": "A=0.8"
+    },
+    {
+      "probability": {
+        "average": 0.9338638186,
+        "min": 0.6707418561,
+        "variance": 0.01730833948
+      },
+      "words": "A=0.9"
+    },
+    {
+      "probability": {
+        "average": 0.99604249,
+        "min": 0.9909215569,
+        "variance": 1.183364111e-05
+      },
+      "words": "Rec."
+    },
+    {
+      "probability": {
+        "average": 0.9898073673,
+        "min": 0.9407347441,
+        "variance": 0.0004817316949
+      },
+      "words": "Source"
+    },
+    {
+      "probability": {
+        "average": 0.8096981645,
+        "min": 0.8096981645,
+        "variance": 0
+      },
+      "words": "。"
+    },
+    {
+      "probability": {
+        "average": 0.7701523304,
+        "min": 0.3526159525,
+        "variance": 0.05658323318
+      },
+      "words": "x1~q(x1x0)"
+    },
+    {
+      "probability": {
+        "average": 0.9998705387,
+        "min": 0.9996297359,
+        "variance": 1.258874072e-08
+      },
+      "words": "Denoised"
+    },
+    {
+      "probability": {
+        "average": 0.9999047518,
+        "min": 0.9996614456,
+        "variance": 6.327975477e-09
+      },
+      "words": "interpolation"
+    },
+    {
+      "probability": {
+        "average": 0.9677191973,
+        "min": 0.838717103,
+        "variance": 0.004160384182
+      },
+      "words": "Image"
+    },
+    {
+      "probability": {
+        "average": 0.9998315573,
+        "min": 0.9991420507,
+        "variance": 7.022981663e-08
+      },
+      "words": "manifold"
+    },
+    {
+      "probability": {
+        "average": 0.9970180392,
+        "min": 0.9882086515,
+        "variance": 9.87133626e-06
+      },
+      "words": "Pixel-space"
+    },
+    {
+      "probability": {
+        "average": 0.9826974869,
+        "min": 0.9492149353,
+        "variance": 0.000469535531
+      },
+      "words": "Source x"
+    },
+    {
+      "probability": {
+        "average": 0.9504829049,
+        "min": 0.7616817355,
+        "variance": 0.005792032462
+      },
+      "words": "Source xo"
+    },
+    {
+      "probability": {
+        "average": 0.9998925924,
+        "min": 0.9996958971,
+        "variance": 5.446565865e-09
+      },
+      "words": "interpolation"
+    }
+  ],
+  "words_result_num": 24,
+  "direction": 0,
+  "log_id": 2079046083501255362
+}

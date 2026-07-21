@@ -110,6 +110,60 @@ async def test_invalid_json_is_repaired_only_once(model_snapshot):
 
 
 @pytest.mark.asyncio
+async def test_markdown_fenced_json_is_accepted_without_a_repair(model_snapshot):
+    calls = 0
+
+    def handler(request):
+        nonlocal calls
+        calls += 1
+        return response(f"```json\n{valid_route_json()}\n```")
+
+    client = OpenAICompatibleClient("secret", transport=httpx.MockTransport(handler))
+    result = await client.invoke_structured(
+        [ChatMessage(role="user", content="Return JSON")], RouteDecision, model_snapshot
+    )
+
+
+def stream_response(content):
+    payload = "\n\n".join(
+        [
+            "data: "
+            + json.dumps({"choices": [{"delta": {"content": content}}]}),
+            "data: [DONE]",
+        ]
+    )
+    return httpx.Response(200, text=payload, headers={"content-type": "text/event-stream"})
+
+    assert result.output.effective_route_type == "fact"
+    assert calls == 1
+
+
+@pytest.mark.asyncio
+async def test_structured_stream_forwards_model_content(model_snapshot):
+    bodies = []
+    streamed: list[str] = []
+
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        return stream_response(valid_route_json())
+
+    async def collect(content: str) -> None:
+        streamed.append(content)
+
+    client = OpenAICompatibleClient("secret", transport=httpx.MockTransport(handler))
+    result = await client.invoke_structured_stream(
+        [ChatMessage(role="user", content="Return JSON")],
+        RouteDecision,
+        model_snapshot,
+        collect,
+    )
+
+    assert result.output.effective_route_type == "fact"
+    assert "".join(streamed) == valid_route_json()
+    assert bodies[0]["stream"] is True
+
+
+@pytest.mark.asyncio
 async def test_base_url_already_ending_in_v1_is_not_duplicated(model_snapshot):
     urls = []
 

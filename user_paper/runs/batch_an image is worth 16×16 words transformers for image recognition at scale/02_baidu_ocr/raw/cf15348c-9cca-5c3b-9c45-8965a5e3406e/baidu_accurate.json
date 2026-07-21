@@ -1,0 +1,127 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9999194741,
+        "min": 0.9998618364,
+        "variance": 3.322103481e-09
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9999153018,
+        "min": 0.9999058247,
+        "variance": 8.981615451e-11
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9994870424,
+        "min": 0.9991580248,
+        "variance": 1.082722179e-07
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9998096228,
+        "min": 0.9996678829,
+        "variance": 2.009018374e-08
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9949373007,
+        "min": 0.9756989479,
+        "variance": 5.940995834e-05
+      },
+      "words": "ViT-L/16"
+    },
+    {
+      "probability": {
+        "average": 0.9966667295,
+        "min": 0.9904605746,
+        "variance": 1.201474788e-05
+      },
+      "words": "ViT-B/32"
+    },
+    {
+      "probability": {
+        "average": 0.9979343414,
+        "min": 0.9911549091,
+        "variance": 5.307149422e-06
+      },
+      "words": "ResNet50x1(BiT)"
+    },
+    {
+      "probability": {
+        "average": 0.9933246374,
+        "min": 0.9749968648,
+        "variance": 7.10076929e-05
+      },
+      "words": "ViT-L/32"
+    },
+    {
+      "probability": {
+        "average": 0.9964541793,
+        "min": 0.9604215622,
+        "variance": 6.041560482e-05
+      },
+      "words": "ViT-b/32ResNet152x2(BiT)"
+    },
+    {
+      "probability": {
+        "average": 0.9997276664,
+        "min": 0.9995013475,
+        "variance": 5.122021562e-08
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9973933697,
+        "min": 0.9935061932,
+        "variance": 7.611779438e-06
+      },
+      "words": "10M"
+    },
+    {
+      "probability": {
+        "average": 0.9988698363,
+        "min": 0.9968155026,
+        "variance": 2.113091568e-06
+      },
+      "words": "30M"
+    },
+    {
+      "probability": {
+        "average": 0.9988515973,
+        "min": 0.9955279231,
+        "variance": 3.682403985e-06
+      },
+      "words": "100M"
+    },
+    {
+      "probability": {
+        "average": 0.9993046522,
+        "min": 0.9975525737,
+        "variance": 1.030259796e-06
+      },
+      "words": "300M"
+    },
+    {
+      "probability": {
+        "average": 0.9997669458,
+        "min": 0.9972963929,
+        "variance": 2.505707357e-07
+      },
+      "words": "Number of JFT pre-training samples"
+    }
+  ],
+  "words_result_num": 15,
+  "direction": 0,
+  "log_id": 2079043236662704974
+}

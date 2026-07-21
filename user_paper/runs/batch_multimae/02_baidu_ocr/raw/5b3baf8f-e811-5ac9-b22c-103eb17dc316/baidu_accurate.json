@@ -1,0 +1,127 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9984969497,
+        "min": 0.9910469651,
+        "variance": 8.501867342e-06
+      },
+      "words": "Original"
+    },
+    {
+      "probability": {
+        "average": 0.9993979931,
+        "min": 0.9966362715,
+        "variance": 1.529641736e-06
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9994927049,
+        "min": 0.9947187901,
+        "variance": 2.282073183e-06
+      },
+      "words": "Predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9989318252,
+        "min": 0.9940177202,
+        "variance": 4.845073363e-06
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9994819164,
+        "min": 0.994551599,
+        "variance": 2.433066584e-06
+      },
+      "words": "Predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9994940162,
+        "min": 0.9972244501,
+        "variance": 1.034512934e-06
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9997364879,
+        "min": 0.9989631176,
+        "variance": 1.293097398e-07
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9997829795,
+        "min": 0.9991561174,
+        "variance": 8.238909999e-08
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9998168945,
+        "min": 0.999252975,
+        "variance": 6.588781076e-08
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9996165633,
+        "min": 0.9962342381,
+        "variance": 1.150918138e-06
+      },
+      "words": "Predictions"
+    },
+    {
+      "probability": {
+        "average": 0.4813788235,
+        "min": 0.4813788235,
+        "variance": 0
+      },
+      "words": "oquewas"
+    },
+    {
+      "probability": {
+        "average": 0.9981027246,
+        "min": 0.9875346422,
+        "variance": 1.45139602e-05
+      },
+      "words": "1/12(~8%)"
+    },
+    {
+      "probability": {
+        "average": 0.9994651079,
+        "min": 0.9968572855,
+        "variance": 9.552903748e-07
+      },
+      "words": "1/6(~17%)"
+    },
+    {
+      "probability": {
+        "average": 0.9910373688,
+        "min": 0.9226527214,
+        "variance": 0.0005850681337
+      },
+      "words": "1/3(~33%)"
+    },
+    {
+      "probability": {
+        "average": 0.9995772243,
+        "min": 0.9974340796,
+        "variance": 5.321305707e-07
+      },
+      "words": "(training density)"
+    }
+  ],
+  "words_result_num": 15,
+  "direction": 0,
+  "log_id": 2079048358299624971
+}

@@ -1,0 +1,87 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9994493127,
+        "min": 0.9994493127,
+        "variance": 0
+      },
+      "words": "h"
+    },
+    {
+      "probability": {
+        "average": 0.7620508075,
+        "min": 0.7620508075,
+        "variance": 0
+      },
+      "words": "十"
+    },
+    {
+      "probability": {
+        "average": 0.9997287989,
+        "min": 0.9981520772,
+        "variance": 2.771453183e-07
+      },
+      "words": "Pretrained"
+    },
+    {
+      "probability": {
+        "average": 0.9984243512,
+        "min": 0.9971375465,
+        "variance": 8.504782159e-07
+      },
+      "words": "B=0"
+    },
+    {
+      "probability": {
+        "average": 0.9993523359,
+        "min": 0.9962313771,
+        "variance": 1.656059908e-06
+      },
+      "words": "Weights"
+    },
+    {
+      "probability": {
+        "average": 0.8021216989,
+        "min": 0.8021216989,
+        "variance": 0
+      },
+      "words": "r"
+    },
+    {
+      "probability": {
+        "average": 0.9714396596,
+        "min": 0.9293695688,
+        "variance": 0.0004945874098
+      },
+      "words": "W∈Rdxd"
+    },
+    {
+      "probability": {
+        "average": 0.9288244247,
+        "min": 0.5128035545,
+        "variance": 0.02200360969
+      },
+      "words": "A=N(0,o2)"
+    },
+    {
+      "probability": {
+        "average": 0.9979401231,
+        "min": 0.9979401231,
+        "variance": 0
+      },
+      "words": "d"
+    },
+    {
+      "probability": {
+        "average": 0.8893020153,
+        "min": 0.8893020153,
+        "variance": 0
+      },
+      "words": "X"
+    }
+  ],
+  "words_result_num": 10,
+  "direction": 0,
+  "log_id": 2079048105576870824
+}

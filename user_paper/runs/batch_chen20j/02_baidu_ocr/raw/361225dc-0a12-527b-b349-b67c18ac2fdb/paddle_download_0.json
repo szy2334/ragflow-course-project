@@ -1,0 +1,192 @@
+{
+  "file_name": "c88d6073c0a8d527b976267432a383a6769c387950eb3c62529d84799f852b20.jpg",
+  "file_id": "file-fv0XsfenViZGdnLVChj7YDdKIKBE8ZRU",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "b64pW5-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "b64pW5-layout-1",
+          "text": "",
+          "position": [
+            14,
+            7,
+            230,
+            225
+          ],
+          "polygon": [
+            [
+              14,
+              7
+            ],
+            [
+              244,
+              7
+            ],
+            [
+              244,
+              232
+            ],
+            [
+              14,
+              232
+            ]
+          ],
+          "type": "image",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "b64pW5-layout-2",
+          "text": "(a) Global and local views.",
+          "position": [
+            0,
+            246,
+            264,
+            29
+          ],
+          "polygon": [
+            [
+              0,
+              246
+            ],
+            [
+              262,
+              245
+            ],
+            [
+              263,
+              273
+            ],
+            [
+              0,
+              274
+            ]
+          ],
+          "type": "figure_title",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "b64pW5-layout-3",
+          "text": "",
+          "position": [
+            331,
+            7,
+            229,
+            225
+          ],
+          "polygon": [
+            [
+              331,
+              7
+            ],
+            [
+              560,
+              7
+            ],
+            [
+              560,
+              232
+            ],
+            [
+              331,
+              232
+            ]
+          ],
+          "type": "image",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "b64pW5-layout-4",
+          "text": "(b) Adjacent views.",
+          "position": [
+            345,
+            246,
+            200,
+            28
+          ],
+          "polygon": [
+            [
+              345,
+              246
+            ],
+            [
+              545,
+              246
+            ],
+            [
+              545,
+              274
+            ],
+            [
+              345,
+              274
+            ]
+          ],
+          "type": "figure_title",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        }
+      ],
+      "images": [
+        {
+          "layout_id": "b64pW5-layout-1",
+          "image_title_id": null,
+          "position": [
+            14,
+            7,
+            230,
+            225
+          ],
+          "content_layouts": [],
+          "data": "",
+          "data_url": "<temporary-url-redacted>",
+          "image_description": ""
+        },
+        {
+          "layout_id": "b64pW5-layout-3",
+          "image_title_id": null,
+          "position": [
+            331,
+            7,
+            229,
+            225
+          ],
+          "content_layouts": [],
+          "data": "",
+          "data_url": "<temporary-url-redacted>",
+          "image_description": ""
+        }
+      ],
+      "inner_images": {},
+      "tables": [],
+      "text": "(a) Global and local views.(b) Adjacent views.",
+      "markdown": "<div style=\"text-align: center;\"><img src=\"<temporary-url-redacted>\" alt=\"Image\" width=\"40%\" /></div>\n\n\n<div style=\"text-align: center;\">(a) Global and local views.</div>\n\n\n<div style=\"text-align: center;\"><img src=\"<temporary-url-redacted>\" alt=\"Image\" width=\"40%\" /></div>\n\n\n<div style=\"text-align: center;\">(b) Adjacent views.</div>\n",
+      "meta": {
+        "page_width": 562,
+        "page_height": 276
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

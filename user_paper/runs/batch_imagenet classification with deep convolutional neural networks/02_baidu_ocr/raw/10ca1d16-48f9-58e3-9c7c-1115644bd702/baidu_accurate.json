@@ -1,0 +1,191 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.99921,
+        "min": 0.9919672608,
+        "variance": 3.399549769e-06
+      },
+      "words": "Validation Set Error"
+    },
+    {
+      "probability": {
+        "average": 0.9999037981,
+        "min": 0.9998413324,
+        "variance": 3.901959644e-09
+      },
+      "words": "46"
+    },
+    {
+      "probability": {
+        "average": 0.9990451932,
+        "min": 0.9899522662,
+        "variance": 4.440024895e-06
+      },
+      "words": "15 frames 3 layers 2000 units"
+    },
+    {
+      "probability": {
+        "average": 0.6902634501,
+        "min": 0.4658022821,
+        "variance": 0.02043603733
+      },
+      "words": "一一一一"
+    },
+    {
+      "probability": {
+        "average": 0.9990904331,
+        "min": 0.9937189817,
+        "variance": 2.473861969e-06
+      },
+      "words": "15 frames 3 layers 4000 units"
+    },
+    {
+      "probability": {
+        "average": 0.9999688268,
+        "min": 0.9999579191,
+        "variance": 1.189768284e-10
+      },
+      "words": "44"
+    },
+    {
+      "probability": {
+        "average": 0.9987401366,
+        "min": 0.9901140928,
+        "variance": 5.052894721e-06
+      },
+      "words": "31 frames 3 layers 4000 units"
+    },
+    {
+      "probability": {
+        "average": 0.9991099834,
+        "min": 0.9897067547,
+        "variance": 3.950720838e-06
+      },
+      "words": "31 frames 4 layers 4000 units"
+    },
+    {
+      "probability": {
+        "average": 0.9999620318,
+        "min": 0.9999437332,
+        "variance": 3.348397115e-10
+      },
+      "words": "42"
+    },
+    {
+      "probability": {
+        "average": 0.9998830557,
+        "min": 0.9997853637,
+        "variance": 9.549554036e-09
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9999301434,
+        "min": 0.9999200106,
+        "variance": 1.026734253e-10
+      },
+      "words": "38"
+    },
+    {
+      "probability": {
+        "average": 0.9998162985,
+        "min": 0.9997346997,
+        "variance": 6.663222862e-09
+      },
+      "words": "36"
+    },
+    {
+      "probability": {
+        "average": 0.9996725917,
+        "min": 0.9978455305,
+        "variance": 2.439225568e-07
+      },
+      "words": "finetuning without dropout"
+    },
+    {
+      "probability": {
+        "average": 0.9998950958,
+        "min": 0.9998649359,
+        "variance": 9.096225995e-10
+      },
+      "words": "34"
+    },
+    {
+      "probability": {
+        "average": 0.9997287393,
+        "min": 0.998886168,
+        "variance": 6.950345011e-08
+      },
+      "words": "finetuning with dropout"
+    },
+    {
+      "probability": {
+        "average": 0.9999562502,
+        "min": 0.9999541044,
+        "variance": 4.604316928e-12
+      },
+      "words": "32"
+    },
+    {
+      "probability": {
+        "average": 0.9998756647,
+        "min": 0.999782145,
+        "variance": 8.740359547e-09
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.994969666,
+        "min": 0.994969666,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9999669194,
+        "min": 0.9999409914,
+        "variance": 6.722622459e-10
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9999249578,
+        "min": 0.9998861551,
+        "variance": 2.021137702e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9999278188,
+        "min": 0.9998552799,
+        "variance": 2.640958341e-09
+      },
+      "words": "150"
+    },
+    {
+      "probability": {
+        "average": 0.9998152852,
+        "min": 0.9996993542,
+        "variance": 1.46347432e-08
+      },
+      "words": "200"
+    },
+    {
+      "probability": {
+        "average": 0.9992186427,
+        "min": 0.9979566336,
+        "variance": 5.450182812e-07
+      },
+      "words": "Epochs"
+    }
+  ],
+  "words_result_num": 23,
+  "direction": 0,
+  "log_id": 2079046058220053688
+}

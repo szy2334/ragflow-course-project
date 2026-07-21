@@ -1,0 +1,223 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9901787043,
+        "min": 0.8110846877,
+        "variance": 0.001607398037
+      },
+      "words": "RoboschoolHumanoid-v0"
+    },
+    {
+      "probability": {
+        "average": 0.9918205142,
+        "min": 0.7886599302,
+        "variance": 0.001530317008
+      },
+      "words": "RoboschoolHumanoidFlagrun-v0"
+    },
+    {
+      "probability": {
+        "average": 0.9937936068,
+        "min": 0.8120899796,
+        "variance": 0.001002230099
+      },
+      "words": "RoboschoolHumanoidFlagrunHarder-v0"
+    },
+    {
+      "probability": {
+        "average": 0.9999855757,
+        "min": 0.9999605417,
+        "variance": 2.496598484e-10
+      },
+      "words": "2500"
+    },
+    {
+      "probability": {
+        "average": 0.9999778867,
+        "min": 0.9999556541,
+        "variance": 2.534754628e-10
+      },
+      "words": "4000"
+    },
+    {
+      "probability": {
+        "average": 0.9999847412,
+        "min": 0.9999642372,
+        "variance": 1.815898543e-10
+      },
+      "words": "3000"
+    },
+    {
+      "probability": {
+        "average": 0.9999837875,
+        "min": 0.9999643564,
+        "variance": 1.897895174e-10
+      },
+      "words": "2000"
+    },
+    {
+      "probability": {
+        "average": 0.9999785423,
+        "min": 0.9999550581,
+        "variance": 2.573656843e-10
+      },
+      "words": "3000"
+    },
+    {
+      "probability": {
+        "average": 0.9999912977,
+        "min": 0.9999781847,
+        "variance": 6.771827543e-11
+      },
+      "words": "1500"
+    },
+    {
+      "probability": {
+        "average": 0.999984622,
+        "min": 0.9999690056,
+        "variance": 1.560387375e-10
+      },
+      "words": "2000"
+    },
+    {
+      "probability": {
+        "average": 0.9999724627,
+        "min": 0.9999530315,
+        "variance": 3.422329087e-10
+      },
+      "words": "2000"
+    },
+    {
+      "probability": {
+        "average": 0.9997207522,
+        "min": 0.9995492101,
+        "variance": 1.31610145e-08
+      },
+      "words": "1000"
+    },
+    {
+      "probability": {
+        "average": 0.9995355606,
+        "min": 0.999299407,
+        "variance": 4.545292853e-08
+      },
+      "words": "1000"
+    },
+    {
+      "probability": {
+        "average": 0.9991532564,
+        "min": 0.9987822175,
+        "variance": 1.520287469e-07
+      },
+      "words": "1000"
+    },
+    {
+      "probability": {
+        "average": 0.9999844432,
+        "min": 0.999972105,
+        "variance": 9.957427244e-11
+      },
+      "words": "500"
+    },
+    {
+      "probability": {
+        "average": 0.9970049262,
+        "min": 0.9970049262,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9985103011,
+        "min": 0.9985103011,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9992057681,
+        "min": 0.9992057681,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9993768334,
+        "min": 0.9993768334,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9996590018,
+        "min": 0.9992861152,
+        "variance": 8.412151686e-08
+      },
+      "words": "50M"
+    },
+    {
+      "probability": {
+        "average": 0.9984442592,
+        "min": 0.9984442592,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9998478293,
+        "min": 0.9995234013,
+        "variance": 3.67153028e-08
+      },
+      "words": "100M"
+    },
+    {
+      "probability": {
+        "average": 0.9967717528,
+        "min": 0.9967717528,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9998561144,
+        "min": 0.9994983673,
+        "variance": 4.299616663e-08
+      },
+      "words": "100M"
+    },
+    {
+      "probability": {
+        "average": 0.9995985627,
+        "min": 0.9982492924,
+        "variance": 2.948901283e-07
+      },
+      "words": "Timestep"
+    },
+    {
+      "probability": {
+        "average": 0.9996369481,
+        "min": 0.9983888865,
+        "variance": 2.429669905e-07
+      },
+      "words": "Timestep"
+    },
+    {
+      "probability": {
+        "average": 0.9997873306,
+        "min": 0.999029398,
+        "variance": 8.657005424e-08
+      },
+      "words": "Timestep"
+    }
+  ],
+  "words_result_num": 27,
+  "direction": 0,
+  "log_id": 2079049368859513462
+}

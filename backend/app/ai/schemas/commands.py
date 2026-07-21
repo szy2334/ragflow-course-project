@@ -1,5 +1,7 @@
 """Commands accepted from the authenticated API/task layer."""
 
+from typing import Literal
+
 from pydantic import Field, field_validator
 
 from .answer import AgentResult, AnswerView
@@ -8,6 +10,7 @@ from .config import ConfigurationSnapshot
 
 
 class StartQaWorkflowCommand(StrictModel):
+    workflow_kind: Literal["reading"] = "reading"
     request_id: str = Field(min_length=1)
     correlation_id: str = Field(min_length=1)
     task_id: str = Field(min_length=1)

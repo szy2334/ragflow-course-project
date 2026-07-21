@@ -1,0 +1,455 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 9
+            },
+            {
+              "x": 536,
+              "y": 8
+            },
+            {
+              "x": 536,
+              "y": 44
+            },
+            {
+              "x": 12,
+              "y": 44
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Algorithm 1 Training"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 536,
+              "y": 9
+            },
+            {
+              "x": 1090,
+              "y": 8
+            },
+            {
+              "x": 1090,
+              "y": 44
+            },
+            {
+              "x": 536,
+              "y": 44
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Algorithm 2 Sampling"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 13,
+              "y": 45
+            },
+            {
+              "x": 53,
+              "y": 45
+            },
+            {
+              "x": 53,
+              "y": 85
+            },
+            {
+              "x": 13,
+              "y": 85
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "1:repeat"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 53,
+              "y": 45
+            },
+            {
+              "x": 536,
+              "y": 44
+            },
+            {
+              "x": 536,
+              "y": 85
+            },
+            {
+              "x": 53,
+              "y": 85
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 536,
+              "y": 44
+            },
+            {
+              "x": 1090,
+              "y": 44
+            },
+            {
+              "x": 1090,
+              "y": 85
+            },
+            {
+              "x": 536,
+              "y": 85
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "1:xT~N(0,I)"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 13,
+              "y": 85
+            },
+            {
+              "x": 53,
+              "y": 85
+            },
+            {
+              "x": 53,
+              "y": 115
+            },
+            {
+              "x": 13,
+              "y": 115
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "2:xo~q(xo)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 53,
+              "y": 85
+            },
+            {
+              "x": 536,
+              "y": 85
+            },
+            {
+              "x": 536,
+              "y": 115
+            },
+            {
+              "x": 53,
+              "y": 115
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 536,
+              "y": 85
+            },
+            {
+              "x": 1090,
+              "y": 85
+            },
+            {
+              "x": 1090,
+              "y": 115
+            },
+            {
+              "x": 536,
+              "y": 115
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "2: for t =T,..., 1 do"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 13,
+              "y": 115
+            },
+            {
+              "x": 53,
+              "y": 115
+            },
+            {
+              "x": 53,
+              "y": 154
+            },
+            {
+              "x": 13,
+              "y": 157
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "3: t~Uniform({1,...,T})\n4:∈~N(0,I)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 53,
+              "y": 115
+            },
+            {
+              "x": 536,
+              "y": 115
+            },
+            {
+              "x": 536,
+              "y": 149
+            },
+            {
+              "x": 53,
+              "y": 154
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 536,
+              "y": 115
+            },
+            {
+              "x": 1090,
+              "y": 115
+            },
+            {
+              "x": 1089,
+              "y": 145
+            },
+            {
+              "x": 536,
+              "y": 149
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "3: z~N(0,I) if t > 1，else z=0"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 13,
+              "y": 157
+            },
+            {
+              "x": 53,
+              "y": 154
+            },
+            {
+              "x": 53,
+              "y": 192
+            },
+            {
+              "x": 13,
+              "y": 193
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "5: Take gradient descent step on"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 53,
+              "y": 154
+            },
+            {
+              "x": 536,
+              "y": 149
+            },
+            {
+              "x": 536,
+              "y": 190
+            },
+            {
+              "x": 53,
+              "y": 192
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 536,
+              "y": 149
+            },
+            {
+              "x": 1089,
+              "y": 145
+            },
+            {
+              "x": 1089,
+              "y": 188
+            },
+            {
+              "x": 536,
+              "y": 190
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "4:x1-1=(x1E0(x1,t))+0(z"
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 13,
+              "y": 193
+            },
+            {
+              "x": 53,
+              "y": 192
+            },
+            {
+              "x": 53,
+              "y": 248
+            },
+            {
+              "x": 13,
+              "y": 249
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "6: until converged"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 53,
+              "y": 192
+            },
+            {
+              "x": 536,
+              "y": 190
+            },
+            {
+              "x": 536,
+              "y": 246
+            },
+            {
+              "x": 53,
+              "y": 248
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "o|E-Eo(√ātxo+√1-āte,t)||2"
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 536,
+              "y": 190
+            },
+            {
+              "x": 1089,
+              "y": 188
+            },
+            {
+              "x": 1090,
+              "y": 244
+            },
+            {
+              "x": 536,
+              "y": 246
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": "5:end for\n6: return xo"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 12,
+          "y": 8
+        },
+        {
+          "x": 1090,
+          "y": 8
+        },
+        {
+          "x": 1090,
+          "y": 249
+        },
+        {
+          "x": 12,
+          "y": 249
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079046038295562055
+}

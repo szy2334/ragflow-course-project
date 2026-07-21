@@ -87,6 +87,31 @@ class WorkflowNodes:
             conversation_summary=state.get("conversation_summary", ""),
             configuration=command.configuration,
         )
+        # The reading product is intentionally non-evaluative.  Format review
+        # has its own task and must not be entered through natural-language QA.
+        if (
+            command.workflow_kind == "reading"
+            and decision.effective_route_type in {"review", "score"}
+        ):
+            warning = "evaluation intent was handled as non-evaluative paper reading"
+            decision = RouteDecision(
+                initial_route_type="fact",
+                effective_route_type="fact",
+                standalone_question=decision.standalone_question,
+                review_dimensions=[],
+                needs_public_kb=False,
+                confidence=decision.confidence,
+                warnings=[
+                    *decision.warnings,
+                    warning,
+                ],
+            )
+            result = result.model_copy(
+                update={
+                    "summary": "evaluation intent was converted to paper reading",
+                    "warnings": [*result.warnings, warning],
+                }
+            )
         await self._check_cancelled(command)
         warnings = [*state.get("warnings", []), *decision.warnings]
         await self._trace(
@@ -350,7 +375,7 @@ class WorkflowNodes:
     async def synthesize(self, state: ReviewGraphState) -> dict[str, Any]:
         command = _command(state)
         route = _route(state)
-        started = await self._begin(state, "synthesizing", "正在汇总已核验证据")
+        started = await self._begin(state, "synthesizing", "正在生成回答并核验引用")
         previous = (
             AnswerDraft.model_validate(state["draft_answer"]) if state.get("draft_answer") else None
         )
@@ -359,8 +384,15 @@ class WorkflowNodes:
             if state.get("validation")
             else None
         )
+        streamed_deltas = False
+
+        async def emit_answer_delta(delta: str) -> None:
+            nonlocal streamed_deltas
+            streamed_deltas = True
+            await self._events.emit("delta", {"delta": delta})
+
         try:
-            draft, result = await self._with_model_timeout(
+            draft, result, streamed = await self._with_model_timeout(
                 command.configuration,
                 self._controller.synthesize(
                     original_question=command.original_question,
@@ -384,9 +416,21 @@ class WorkflowNodes:
                     configuration=command.configuration,
                     previous_draft=previous,
                     validation_errors=validation.errors if validation else [],
+                    on_answer_delta=emit_answer_delta,
                 ),
             )
+            streamed_deltas = streamed_deltas or streamed
             await self._check_cancelled(command)
+            # Workflow-level safeguards (notably an evaluation request being
+            # converted to reading) must remain visible in the final answer,
+            # even when the model does not repeat them in its draft.
+            draft = draft.model_copy(
+                update={
+                    "warnings": list(
+                        dict.fromkeys([*state.get("warnings", []), *draft.warnings])
+                    )
+                }
+            )
         except Exception as exc:
             if isinstance(exc, WorkflowCancelled):
                 raise
@@ -409,6 +453,7 @@ class WorkflowNodes:
             "agent_results": [*state.get("agent_results", []), result.model_dump(mode="json")],
             "error_code": None,
             "error_message": None,
+            "answer_streamed": streamed_deltas,
             "sequence": self._events.sequence,
         }
 
@@ -552,11 +597,12 @@ class WorkflowNodes:
                     "warnings": state.get("warnings", []),
                 },
             )
-        for offset in range(0, len(answer.answer), self._policy.delta_chunk_size):
-            await self._events.emit(
-                "delta",
-                {"delta": answer.answer[offset : offset + self._policy.delta_chunk_size]},
-            )
+        if not state.get("answer_streamed"):
+            for offset in range(0, len(answer.answer), self._policy.delta_chunk_size):
+                await self._events.emit(
+                    "delta",
+                    {"delta": answer.answer[offset : offset + self._policy.delta_chunk_size]},
+                )
         await self._events.emit("final", {"answer": answer.model_dump(mode="json")})
         await self._trace(command, "finalize", started, "succeeded")
         return {

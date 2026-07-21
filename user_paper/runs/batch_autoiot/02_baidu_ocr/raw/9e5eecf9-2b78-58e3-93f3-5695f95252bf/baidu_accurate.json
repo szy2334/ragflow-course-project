@@ -1,0 +1,127 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.976526618,
+        "min": 0.976526618,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9998438358,
+        "min": 0.9997432828,
+        "variance": 1.01169082e-08
+      },
+      "words": "95"
+    },
+    {
+      "probability": {
+        "average": 0.5911958814,
+        "min": 0.320340842,
+        "variance": 0.04381856695
+      },
+      "words": ":3Y"
+    },
+    {
+      "probability": {
+        "average": 0.9997777343,
+        "min": 0.9997573495,
+        "variance": 4.155396027e-10
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.9996864796,
+        "min": 0.9996757507,
+        "variance": 1.151079232e-10
+      },
+      "words": "85"
+    },
+    {
+      "probability": {
+        "average": 0.8813359737,
+        "min": 0.8399765491,
+        "variance": 0.001710604411
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9998817444,
+        "min": 0.9998168349,
+        "variance": 4.21710844e-09
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.5720467567,
+        "min": 0.3322378993,
+        "variance": 0.05750828981
+      },
+      "words": "a之"
+    },
+    {
+      "probability": {
+        "average": 0.999920547,
+        "min": 0.9998780489,
+        "variance": 1.8060895e-09
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.9988288879,
+        "min": 0.9973040819,
+        "variance": 1.177272338e-06
+      },
+      "words": "IMU"
+    },
+    {
+      "probability": {
+        "average": 0.9998959899,
+        "min": 0.9998328686,
+        "variance": 3.984300889e-09
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9973212481,
+        "min": 0.9967316389,
+        "variance": 3.476740744e-07
+      },
+      "words": "mm"
+    },
+    {
+      "probability": {
+        "average": 0.9931589961,
+        "min": 0.976947546,
+        "variance": 8.761161735e-05
+      },
+      "words": "Wave"
+    },
+    {
+      "probability": {
+        "average": 0.9418251514,
+        "min": 0.6043710709,
+        "variance": 0.01097617857
+      },
+      "words": "A. N. 1D. Bi. C. L. A. 18 34 50 101152"
+    },
+    {
+      "probability": {
+        "average": 0.9988744259,
+        "min": 0.9953887463,
+        "variance": 1.770513904e-06
+      },
+      "words": "Baselines"
+    }
+  ],
+  "words_result_num": 15,
+  "direction": 0,
+  "log_id": 2079044244870783460
+}

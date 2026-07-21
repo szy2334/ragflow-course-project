@@ -1,0 +1,159 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9985449314,
+        "min": 0.987819314,
+        "variance": 1.439214157e-05
+      },
+      "words": "Knowledge"
+    },
+    {
+      "probability": {
+        "average": 0.9983448386,
+        "min": 0.9878410697,
+        "variance": 1.376391629e-05
+      },
+      "words": "Various Sensors"
+    },
+    {
+      "probability": {
+        "average": 0.9997245073,
+        "min": 0.9982638955,
+        "variance": 3.08579871e-07
+      },
+      "words": "Database"
+    },
+    {
+      "probability": {
+        "average": 0.9662467837,
+        "min": 0.9342081547,
+        "variance": 0.0005303170183
+      },
+      "words": "IMU"
+    },
+    {
+      "probability": {
+        "average": 0.9989123344,
+        "min": 0.9946294427,
+        "variance": 3.759658966e-06
+      },
+      "words": "Online"
+    },
+    {
+      "probability": {
+        "average": 0.9995247722,
+        "min": 0.9965316653,
+        "variance": 1.13573094e-06
+      },
+      "words": "Searching"
+    },
+    {
+      "probability": {
+        "average": 0.9985774755,
+        "min": 0.9731981754,
+        "variance": 3.091482358e-05
+      },
+      "words": "Pre-collected Datasets"
+    },
+    {
+      "probability": {
+        "average": 0.9979493618,
+        "min": 0.9705703855,
+        "variance": 3.435663166e-05
+      },
+      "words": "Response: It looks like you've"
+    },
+    {
+      "probability": {
+        "average": 0.9994994998,
+        "min": 0.9954830408,
+        "variance": 1.180683626e-06
+      },
+      "words": "A sudden change in IMU"
+    },
+    {
+      "probability": {
+        "average": 0.9991875291,
+        "min": 0.9989387393,
+        "variance": 7.342732289e-08
+      },
+      "words": "LLM"
+    },
+    {
+      "probability": {
+        "average": 0.999417007,
+        "min": 0.9949277639,
+        "variance": 1.347496436e-06
+      },
+      "words": "taken a hard fall."
+    },
+    {
+      "probability": {
+        "average": 0.9993262887,
+        "min": 0.9884980321,
+        "variance": 5.684080406e-06
+      },
+      "words": "data from a smartwatch"
+    },
+    {
+      "probability": {
+        "average": 0.9998806715,
+        "min": 0.9994003773,
+        "variance": 1.337376254e-08
+      },
+      "words": "implies that the user falls."
+    },
+    {
+      "probability": {
+        "average": 0.9998431206,
+        "min": 0.9992867112,
+        "variance": 3.617931199e-08
+      },
+      "words": "Falling is very dangerous for"
+    },
+    {
+      "probability": {
+        "average": 0.9999114275,
+        "min": 0.9996602535,
+        "variance": 1.212321976e-08
+      },
+      "words": "Emergency"
+    },
+    {
+      "probability": {
+        "average": 0.9997152686,
+        "min": 0.9985539317,
+        "variance": 1.925392468e-07
+      },
+      "words": "elder people."
+    },
+    {
+      "probability": {
+        "average": 0.9976192117,
+        "min": 0.9966887832,
+        "variance": 1.769415576e-06
+      },
+      "words": "Call"
+    },
+    {
+      "probability": {
+        "average": 0.9994661808,
+        "min": 0.9966309667,
+        "variance": 1.164828745e-06
+      },
+      "words": "Location"
+    },
+    {
+      "probability": {
+        "average": 0.9987809062,
+        "min": 0.9946718812,
+        "variance": 3.645573997e-06
+      },
+      "words": "First Aid"
+    }
+  ],
+  "words_result_num": 19,
+  "direction": 0,
+  "log_id": 2079044106486182918
+}

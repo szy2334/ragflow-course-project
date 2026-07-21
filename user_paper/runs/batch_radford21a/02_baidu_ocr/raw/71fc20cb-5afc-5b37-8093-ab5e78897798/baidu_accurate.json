@@ -1,0 +1,503 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9894835353,
+        "min": 0.8452989459,
+        "variance": 0.001237485791
+      },
+      "words": "ImageNet Zero-Shot"
+    },
+    {
+      "probability": {
+        "average": 0.9999416471,
+        "min": 0.9998829365,
+        "variance": 2.07078088e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9996669888,
+        "min": 0.9976899624,
+        "variance": 4.488489651e-07
+      },
+      "words": "Dataset Examples"
+    },
+    {
+      "probability": {
+        "average": 0.9973782301,
+        "min": 0.9842274785,
+        "variance": 2.45338797e-05
+      },
+      "words": "ResNet101"
+    },
+    {
+      "probability": {
+        "average": 0.9952687621,
+        "min": 0.9817997217,
+        "variance": 6.048926662e-05
+      },
+      "words": "CLIP"
+    },
+    {
+      "probability": {
+        "average": 0.9761564136,
+        "min": 0.8661925793,
+        "variance": 0.002425786341
+      },
+      "words": "△Score"
+    },
+    {
+      "probability": {
+        "average": 0.9163663983,
+        "min": 0.9118585587,
+        "variance": 2.032061821e-05
+      },
+      "words": "--"
+    },
+    {
+      "probability": {
+        "average": 0.9643206,
+        "min": 0.5003179908,
+        "variance": 0.01267094444
+      },
+      "words": "Ideal robust model (y=x)"
+    },
+    {
+      "probability": {
+        "average": 0.9999523759,
+        "min": 0.9999297857,
+        "variance": 5.103153455e-10
+      },
+      "words": "95"
+    },
+    {
+      "probability": {
+        "average": 0.9872807264,
+        "min": 0.9058287144,
+        "variance": 0.0006450383225
+      },
+      "words": "Zero-Shot CLIP"
+    },
+    {
+      "probability": {
+        "average": 0.6545367241,
+        "min": 0.6545367241,
+        "variance": 0
+      },
+      "words": ")"
+    },
+    {
+      "probability": {
+        "average": 0.9973584414,
+        "min": 0.9502432942,
+        "variance": 9.04894041e-05
+      },
+      "words": "Standard ImageNet training"
+    },
+    {
+      "probability": {
+        "average": 0.9999588132,
+        "min": 0.9999313354,
+        "variance": 7.550262637e-10
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.9996373057,
+        "min": 0.9981313348,
+        "variance": 1.255668991e-07
+      },
+      "words": "Exisiting robustness techniques"
+    },
+    {
+      "probability": {
+        "average": 0.9892519116,
+        "min": 0.935128212,
+        "variance": 0.0004631678166
+      },
+      "words": "ImageNet"
+    },
+    {
+      "probability": {
+        "average": 0.999515295,
+        "min": 0.9981406927,
+        "variance": 6.299826509e-07
+      },
+      "words": "76.2"
+    },
+    {
+      "probability": {
+        "average": 0.9994704723,
+        "min": 0.997982502,
+        "variance": 7.382244576e-07
+      },
+      "words": "76.2"
+    },
+    {
+      "probability": {
+        "average": 0.9995591044,
+        "min": 0.9994939566,
+        "variance": 4.244245844e-09
+      },
+      "words": "0%"
+    },
+    {
+      "probability": {
+        "average": 0.9999353886,
+        "min": 0.9999123812,
+        "variance": 5.293401273e-10
+      },
+      "words": "85"
+    },
+    {
+      "probability": {
+        "average": 0.9999778867,
+        "min": 0.9999699593,
+        "variance": 6.284395226e-11
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9999765754,
+        "min": 0.9999629259,
+        "variance": 1.86307858e-10
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.9893711209,
+        "min": 0.9152637124,
+        "variance": 0.0006393904914
+      },
+      "words": "ImageNetV2"
+    },
+    {
+      "probability": {
+        "average": 0.9990136623,
+        "min": 0.9962020516,
+        "variance": 2.636021691e-06
+      },
+      "words": "64.3"
+    },
+    {
+      "probability": {
+        "average": 0.9993498325,
+        "min": 0.9988296628,
+        "variance": 1.655960347e-07
+      },
+      "words": "70.1"
+    },
+    {
+      "probability": {
+        "average": 0.9978557825,
+        "min": 0.9893066287,
+        "variance": 1.827207052e-05
+      },
+      "words": "+5.8%"
+    },
+    {
+      "probability": {
+        "average": 0.9999657273,
+        "min": 0.9999452829,
+        "variance": 4.179732116e-10
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.999972403,
+        "min": 0.9999707937,
+        "variance": 2.589928272e-12
+      },
+      "words": "65"
+    },
+    {
+      "probability": {
+        "average": 0.999966681,
+        "min": 0.9999451637,
+        "variance": 4.629931993e-10
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9895871282,
+        "min": 0.9069536924,
+        "variance": 0.000763256452
+      },
+      "words": "ImageNet-R"
+    },
+    {
+      "probability": {
+        "average": 0.9991921186,
+        "min": 0.996922195,
+        "variance": 1.718125418e-06
+      },
+      "words": "37.7"
+    },
+    {
+      "probability": {
+        "average": 0.9976120591,
+        "min": 0.9909015894,
+        "variance": 1.501287443e-05
+      },
+      "words": "88.9"
+    },
+    {
+      "probability": {
+        "average": 0.9995658994,
+        "min": 0.9974492192,
+        "variance": 8.961848721e-07
+      },
+      "words": "+51.2%"
+    },
+    {
+      "probability": {
+        "average": 0.9999582767,
+        "min": 0.9999465942,
+        "variance": 1.364810487e-10
+      },
+      "words": "55"
+    },
+    {
+      "probability": {
+        "average": 0.9999714494,
+        "min": 0.9999513626,
+        "variance": 4.034781398e-10
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9971210957,
+        "min": 0.9778493643,
+        "variance": 4.692903894e-05
+      },
+      "words": "ObjectNet"
+    },
+    {
+      "probability": {
+        "average": 0.9989374876,
+        "min": 0.9958164096,
+        "variance": 3.247145969e-06
+      },
+      "words": "32.6"
+    },
+    {
+      "probability": {
+        "average": 0.9984279871,
+        "min": 0.9939860106,
+        "variance": 6.578918146e-06
+      },
+      "words": "72.3"
+    },
+    {
+      "probability": {
+        "average": 0.9997480512,
+        "min": 0.9985112548,
+        "variance": 3.059392668e-07
+      },
+      "words": "+39.7%"
+    },
+    {
+      "probability": {
+        "average": 0.9999530315,
+        "min": 0.9999257326,
+        "variance": 7.452314321e-10
+      },
+      "words": "45"
+    },
+    {
+      "probability": {
+        "average": 0.9999523163,
+        "min": 0.9999066591,
+        "variance": 2.084576067e-09
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9999287724,
+        "min": 0.9999265671,
+        "variance": 4.863665026e-12
+      },
+      "words": "35"
+    },
+    {
+      "probability": {
+        "average": 0.9823784232,
+        "min": 0.900757134,
+        "variance": 0.001136032864
+      },
+      "words": "ImageNet"
+    },
+    {
+      "probability": {
+        "average": 0.9981524944,
+        "min": 0.9927448034,
+        "variance": 9.74856539e-06
+      },
+      "words": "25.2"
+    },
+    {
+      "probability": {
+        "average": 0.9990730286,
+        "min": 0.9964840412,
+        "variance": 2.236667569e-06
+      },
+      "words": "60.2"
+    },
+    {
+      "probability": {
+        "average": 0.9995518327,
+        "min": 0.9973549843,
+        "variance": 9.652870858e-07
+      },
+      "words": "+35.0%"
+    },
+    {
+      "probability": {
+        "average": 0.9999274611,
+        "min": 0.9998856783,
+        "variance": 1.745807054e-09
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9983778,
+        "min": 0.9911597371,
+        "variance": 1.044811779e-05
+      },
+      "words": "Sketch"
+    },
+    {
+      "probability": {
+        "average": 0.9999710917,
+        "min": 0.9999499321,
+        "variance": 4.477307414e-10
+      },
+      "words": "25"
+    },
+    {
+      "probability": {
+        "average": 0.9999466538,
+        "min": 0.9998965263,
+        "variance": 2.512766883e-09
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9710699916,
+        "min": 0.9132754207,
+        "variance": 0.001670101774
+      },
+      "words": "2.7"
+    },
+    {
+      "probability": {
+        "average": 0.9982536435,
+        "min": 0.9948763251,
+        "variance": 4.097154033e-06
+      },
+      "words": "77.1"
+    },
+    {
+      "probability": {
+        "average": 0.9993512034,
+        "min": 0.9961323738,
+        "variance": 2.072256848e-06
+      },
+      "words": "+74.4%"
+    },
+    {
+      "probability": {
+        "average": 0.9999776483,
+        "min": 0.99997437,
+        "variance": 1.074695888e-11
+      },
+      "words": "65"
+    },
+    {
+      "probability": {
+        "average": 0.9999709725,
+        "min": 0.9999529123,
+        "variance": 3.261710901e-10
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9999542236,
+        "min": 0.9999387264,
+        "variance": 2.401634447e-10
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.999980092,
+        "min": 0.9999729395,
+        "variance": 5.115907697e-11
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9999314547,
+        "min": 0.9999166727,
+        "variance": 2.185061021e-10
+      },
+      "words": "85"
+    },
+    {
+      "probability": {
+        "average": 0.9999358058,
+        "min": 0.9998859167,
+        "variance": 2.488921069e-09
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.99995327,
+        "min": 0.9999347925,
+        "variance": 3.414157845e-10
+      },
+      "words": "95"
+    },
+    {
+      "probability": {
+        "average": 0.9999458194,
+        "min": 0.9998905659,
+        "variance": 1.816056083e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9920328259,
+        "min": 0.9304659963,
+        "variance": 0.0004257833934
+      },
+      "words": "ImageNet-A"
+    },
+    {
+      "probability": {
+        "average": 0.9871448278,
+        "min": 0.5971937776,
+        "variance": 0.003709667828
+      },
+      "words": "Average on class subsampled ImageNet (top-1,%)"
+    }
+  ],
+  "words_result_num": 62,
+  "direction": 0,
+  "log_id": 2079049397088353894
+}

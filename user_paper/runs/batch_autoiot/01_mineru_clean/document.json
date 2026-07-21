@@ -1,0 +1,23 @@
+{
+  "schema_version": "paper_document_v1",
+  "paper_id": "fb4d40c1-e630-5d8c-8025-23d66380f30f",
+  "paper_version_id": "534142f2-20bb-592f-b26f-4b88b49069c9",
+  "file_name": "AutoIOT.pdf",
+  "file_path": "D:\\JIXUN\\document_pdf\\AutoIOT.pdf",
+  "file_sha256": "30122f548522afa6ea890481c542c9c5837573e778f17bc5acade346f831a928",
+  "title": "AutoIOT: LLM-Driven Automated Natural Language Programming for AIoT Applications",
+  "parser_name": "mineru",
+  "parser_version": "3.4.0",
+  "cleaning_version": "user_paper_pipeline_v1",
+  "mineru_export_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_autoiot\\01_mineru_clean\\raw_mineru\\extracted",
+  "mineru_metadata": {
+    "backend": "hybrid",
+    "effort": "medium",
+    "ocr_enabled": true,
+    "version": "3.4.0"
+  },
+  "block_count": 279,
+  "media_count": 25,
+  "recovered_references": 0,
+  "created_at": "2026-07-20T03:21:56.440803+00:00"
+}

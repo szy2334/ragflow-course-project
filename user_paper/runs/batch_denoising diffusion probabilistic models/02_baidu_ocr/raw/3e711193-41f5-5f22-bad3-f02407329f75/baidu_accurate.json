@@ -1,0 +1,39 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.6923074126,
+        "min": 0.3581182957,
+        "variance": 0.05414197966
+      },
+      "words": "Firrs w> bod"
+    },
+    {
+      "probability": {
+        "average": 0.5775486827,
+        "min": 0.3027475178,
+        "variance": 0.03849629685
+      },
+      "words": "VIIrM UOUJON"
+    },
+    {
+      "probability": {
+        "average": 0.7982706428,
+        "min": 0.3823623955,
+        "variance": 0.0327212289
+      },
+      "words": "sove ad arm thdi"
+    },
+    {
+      "probability": {
+        "average": 0.9026824832,
+        "min": 0.4533532262,
+        "variance": 0.01737701707
+      },
+      "words": "chiool!Hix I tloc dn"
+    }
+  ],
+  "words_result_num": 4,
+  "direction": 0,
+  "log_id": 2079046122409526877
+}

@@ -15,8 +15,14 @@ from app.ai.schemas import (
 from app.core.config import Settings
 from app.db.base import Base, build_engine
 from app.db.models import ChatMessage, ChatSession, Citation, TaskRecord, User, WorkflowRun
-from app.runtime.adapters import SqlAlchemyAnswerPersistence
+from app.runtime.adapters import SqlAlchemyAnswerPersistence, _evidence_content_type
 from app.runtime.redis_store import RedisRuntime
+
+
+def test_second_clean_content_types_normalize_to_public_evidence_contract():
+    assert _evidence_content_type("abstract") == "text"
+    assert _evidence_content_type("chart") == "figure"
+    assert _evidence_content_type("table") == "table"
 
 
 @pytest.mark.asyncio
@@ -54,7 +60,7 @@ async def test_persistence_adapter_commits_answer_before_terminal_event(tmp_path
                 TaskRecord(
                     task_id="task-1",
                     user_id="user-1",
-                    task_type="qa_workflow",
+                    task_type="reading_workflow",
                     status="running",
                     stage="finalizing",
                     message_id="message-1",

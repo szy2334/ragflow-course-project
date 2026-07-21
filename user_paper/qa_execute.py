@@ -16,14 +16,7 @@ from typing import Any
 
 import requests
 
-from pipeline_common import (
-    config_bool,
-    config_path_value,
-    config_value,
-    load_user_paper_config,
-    utc_now,
-    write_json,
-)
+from pipeline_common import config_bool, config_value, load_user_paper_config, utc_now, write_json
 
 
 load_user_paper_config()
@@ -97,7 +90,8 @@ class RagflowRetrievalClient:
 
 
 def configured_path(name: str) -> Path | None:
-    return config_path_value(name)
+    value = config_value(name)
+    return Path(value).expanduser() if value else None
 
 
 def parse_csv_values(value: str | None) -> list[str]:

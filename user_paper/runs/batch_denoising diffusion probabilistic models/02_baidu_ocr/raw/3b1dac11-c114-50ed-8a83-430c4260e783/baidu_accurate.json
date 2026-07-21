@@ -1,0 +1,47 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9484459162,
+        "min": 0.7539973855,
+        "variance": 0.004633037373
+      },
+      "words": "Share x1000"
+    },
+    {
+      "probability": {
+        "average": 0.8479915857,
+        "min": 0.5489105582,
+        "variance": 0.03241816163
+      },
+      "words": "Share x75o"
+    },
+    {
+      "probability": {
+        "average": 0.9327820539,
+        "min": 0.806040585,
+        "variance": 0.005222438835
+      },
+      "words": "Share x500"
+    },
+    {
+      "probability": {
+        "average": 0.937628746,
+        "min": 0.7684479356,
+        "variance": 0.005210339092
+      },
+      "words": "Sharex250"
+    },
+    {
+      "probability": {
+        "average": 0.9776033759,
+        "min": 0.8963625431,
+        "variance": 0.001236259704
+      },
+      "words": "Share x"
+    }
+  ],
+  "words_result_num": 5,
+  "direction": 0,
+  "log_id": 2079046077605198043
+}

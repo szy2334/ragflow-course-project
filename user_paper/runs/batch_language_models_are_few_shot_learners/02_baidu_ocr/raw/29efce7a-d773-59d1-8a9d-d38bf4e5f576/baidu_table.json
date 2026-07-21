@@ -1,0 +1,180 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 3
+            },
+            {
+              "x": 242,
+              "y": 3
+            },
+            {
+              "x": 241,
+              "y": 48
+            },
+            {
+              "x": 4,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Setting"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 242,
+              "y": 3
+            },
+            {
+              "x": 325,
+              "y": 2
+            },
+            {
+              "x": 325,
+              "y": 48
+            },
+            {
+              "x": 241,
+              "y": 48
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "PTB"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 48
+            },
+            {
+              "x": 241,
+              "y": 48
+            },
+            {
+              "x": 241,
+              "y": 84
+            },
+            {
+              "x": 4,
+              "y": 84
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "SOTA(Zero-Shot)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 241,
+              "y": 48
+            },
+            {
+              "x": 325,
+              "y": 48
+            },
+            {
+              "x": 325,
+              "y": 84
+            },
+            {
+              "x": 241,
+              "y": 84
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "35.8"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 84
+            },
+            {
+              "x": 241,
+              "y": 84
+            },
+            {
+              "x": 241,
+              "y": 109
+            },
+            {
+              "x": 4,
+              "y": 108
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "GPT-3 Zero-Shot"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 241,
+              "y": 84
+            },
+            {
+              "x": 325,
+              "y": 84
+            },
+            {
+              "x": 325,
+              "y": 109
+            },
+            {
+              "x": 241,
+              "y": 109
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "20.5"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 4,
+          "y": 2
+        },
+        {
+          "x": 325,
+          "y": 2
+        },
+        {
+          "x": 325,
+          "y": 109
+        },
+        {
+          "x": 4,
+          "y": 109
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079046573694620764
+}

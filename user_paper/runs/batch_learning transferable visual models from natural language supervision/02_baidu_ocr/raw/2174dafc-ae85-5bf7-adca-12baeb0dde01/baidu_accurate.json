@@ -1,0 +1,247 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9998533726,
+        "min": 0.9995145798,
+        "variance": 3.93108408e-08
+      },
+      "words": "0.75"
+    },
+    {
+      "probability": {
+        "average": 0.99969244,
+        "min": 0.9983055592,
+        "variance": 3.128200774e-07
+      },
+      "words": "Birdsnap"
+    },
+    {
+      "probability": {
+        "average": 0.9947909713,
+        "min": 0.9733728766,
+        "variance": 9.258530918e-05
+      },
+      "words": "p<1e-3"
+    },
+    {
+      "probability": {
+        "average": 0.9989767075,
+        "min": 0.9913241863,
+        "variance": 7.324965281e-06
+      },
+      "words": "CIFAR-100"
+    },
+    {
+      "probability": {
+        "average": 0.9996058345,
+        "min": 0.9990677238,
+        "variance": 1.401549383e-07
+      },
+      "words": "p<0.05"
+    },
+    {
+      "probability": {
+        "average": 0.9991739392,
+        "min": 0.9976391792,
+        "variance": 1.17790978e-06
+      },
+      "words": "0.5"
+    },
+    {
+      "probability": {
+        "average": 0.9141299725,
+        "min": 0.9141299725,
+        "variance": 0
+      },
+      "words": "○"
+    },
+    {
+      "probability": {
+        "average": 0.9997041821,
+        "min": 0.9990134239,
+        "variance": 1.276247446e-07
+      },
+      "words": "p>0.05"
+    },
+    {
+      "probability": {
+        "average": 0.9998896718,
+        "min": 0.9996008277,
+        "variance": 1.921698356e-08
+      },
+      "words": "FER2013"
+    },
+    {
+      "probability": {
+        "average": 0.3044153154,
+        "min": 0.004640717991,
+        "variance": 0.05052469298
+      },
+      "words": "depano ol ang abueyo koeunoov 1ejano"
+    },
+    {
+      "probability": {
+        "average": 0.9999559522,
+        "min": 0.9998325109,
+        "variance": 3.569708751e-09
+      },
+      "words": "SUN397"
+    },
+    {
+      "probability": {
+        "average": 0.9998455048,
+        "min": 0.9998012185,
+        "variance": 1.573635444e-09
+      },
+      "words": "SUN"
+    },
+    {
+      "probability": {
+        "average": 0.9997154474,
+        "min": 0.9990093708,
+        "variance": 1.686016162e-07
+      },
+      "words": "0.25"
+    },
+    {
+      "probability": {
+        "average": 0.9995848536,
+        "min": 0.997733593,
+        "variance": 4.3065819e-07
+      },
+      "words": "Stanford Cars"
+    },
+    {
+      "probability": {
+        "average": 0.9999431372,
+        "min": 0.9996237755,
+        "variance": 1.209177736e-08
+      },
+      "words": "Country211"
+    },
+    {
+      "probability": {
+        "average": 0.9989725351,
+        "min": 0.9989725351,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.994378686,
+        "min": 0.9724749923,
+        "variance": 0.0001199639664
+      },
+      "words": "-0.25"
+    },
+    {
+      "probability": {
+        "average": 0.9982805848,
+        "min": 0.9968414307,
+        "variance": 1.820052262e-06
+      },
+      "words": "-0.5"
+    },
+    {
+      "probability": {
+        "average": 0.999402523,
+        "min": 0.9974845648,
+        "variance": 9.305566095e-07
+      },
+      "words": "-0.75"
+    },
+    {
+      "probability": {
+        "average": 0.9993492961,
+        "min": 0.9981153011,
+        "variance": 7.614134461e-07
+      },
+      "words": "0.0"
+    },
+    {
+      "probability": {
+        "average": 0.9984229207,
+        "min": 0.995339632,
+        "variance": 4.754046131e-06
+      },
+      "words": "2.5"
+    },
+    {
+      "probability": {
+        "average": 0.9983044267,
+        "min": 0.9949483871,
+        "variance": 5.631647582e-06
+      },
+      "words": "5.0"
+    },
+    {
+      "probability": {
+        "average": 0.9937331676,
+        "min": 0.9813327789,
+        "variance": 7.688490587e-05
+      },
+      "words": "7.5"
+    },
+    {
+      "probability": {
+        "average": 0.9996541142,
+        "min": 0.9986704588,
+        "variance": 3.226156764e-07
+      },
+      "words": "10.0"
+    },
+    {
+      "probability": {
+        "average": 0.9990469813,
+        "min": 0.9962446094,
+        "variance": 2.617833616e-06
+      },
+      "words": "12.5"
+    },
+    {
+      "probability": {
+        "average": 0.9992067814,
+        "min": 0.9969257712,
+        "variance": 1.734808393e-06
+      },
+      "words": "15.0"
+    },
+    {
+      "probability": {
+        "average": 0.9989097118,
+        "min": 0.9956781268,
+        "variance": 3.480993882e-06
+      },
+      "words": "17.5"
+    },
+    {
+      "probability": {
+        "average": 0.9993741512,
+        "min": 0.9976161718,
+        "variance": 1.031662578e-06
+      },
+      "words": "20.0"
+    },
+    {
+      "probability": {
+        "average": 0.999281466,
+        "min": 0.9971888661,
+        "variance": 1.460007752e-06
+      },
+      "words": "22.5"
+    },
+    {
+      "probability": {
+        "average": 0.9994372725,
+        "min": 0.9968214035,
+        "variance": 6.944085271e-07
+      },
+      "words": "Detected Data Overlap(%)"
+    }
+  ],
+  "words_result_num": 30,
+  "direction": 0,
+  "log_id": 2079046623250541541
+}

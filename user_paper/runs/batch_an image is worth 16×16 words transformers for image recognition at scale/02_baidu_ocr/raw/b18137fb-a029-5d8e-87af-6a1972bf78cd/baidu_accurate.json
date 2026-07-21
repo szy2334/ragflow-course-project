@@ -1,0 +1,127 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9971241355,
+        "min": 0.9866133332,
+        "variance": 1.51453487e-05
+      },
+      "words": "AxialViT-B/16"
+    },
+    {
+      "probability": {
+        "average": 0.9965204,
+        "min": 0.9831479788,
+        "variance": 4.470843851e-05
+      },
+      "words": "0.650"
+    },
+    {
+      "probability": {
+        "average": 0.9974246025,
+        "min": 0.991912365,
+        "variance": 7.331540473e-06
+      },
+      "words": "ViT-B/16"
+    },
+    {
+      "probability": {
+        "average": 0.9988402128,
+        "min": 0.9944850802,
+        "variance": 4.742565125e-06
+      },
+      "words": "0.625"
+    },
+    {
+      "probability": {
+        "average": 0.9958324432,
+        "min": 0.9796259999,
+        "variance": 6.566745287e-05
+      },
+      "words": "0.600"
+    },
+    {
+      "probability": {
+        "average": 0.9918881059,
+        "min": 0.9629712105,
+        "variance": 0.0001192042764
+      },
+      "words": "AxialViT-B/32"
+    },
+    {
+      "probability": {
+        "average": 0.9960882068,
+        "min": 0.982281208,
+        "variance": 4.772291868e-05
+      },
+      "words": "0.575"
+    },
+    {
+      "probability": {
+        "average": 0.9740413427,
+        "min": 0.8956962228,
+        "variance": 0.001044808771
+      },
+      "words": "ViT-B/32"
+    },
+    {
+      "probability": {
+        "average": 0.9937648773,
+        "min": 0.945266068,
+        "variance": 0.0002067515888
+      },
+      "words": "AxialResNet50"
+    },
+    {
+      "probability": {
+        "average": 0.9946625829,
+        "min": 0.9746106267,
+        "variance": 0.0001005225931
+      },
+      "words": "0.550"
+    },
+    {
+      "probability": {
+        "average": 0.995932579,
+        "min": 0.980355382,
+        "variance": 6.066726201e-05
+      },
+      "words": "0.525"
+    },
+    {
+      "probability": {
+        "average": 0.9944257736,
+        "min": 0.9731272459,
+        "variance": 0.0001134191843
+      },
+      "words": "0.500"
+    },
+    {
+      "probability": {
+        "average": 0.9938752055,
+        "min": 0.9629621506,
+        "variance": 0.0001401507761
+      },
+      "words": "ResNet50"
+    },
+    {
+      "probability": {
+        "average": 0.9849184155,
+        "min": 0.9616174102,
+        "variance": 0.0002714698494
+      },
+      "words": "102"
+    },
+    {
+      "probability": {
+        "average": 0.998205483,
+        "min": 0.9836945534,
+        "variance": 1.1017014e-05
+      },
+      "words": "Total compute [exaFLOPs]"
+    }
+  ],
+  "words_result_num": 15,
+  "direction": 0,
+  "log_id": 2079043693037212953
+}

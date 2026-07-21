@@ -1,0 +1,207 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9996119142,
+        "min": 0.9968603849,
+        "variance": 5.252061328e-07
+      },
+      "words": "Translation(Multi-BLEU)"
+    },
+    {
+      "probability": {
+        "average": 0.9998735189,
+        "min": 0.9997535348,
+        "variance": 1.440334962e-08
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9999346137,
+        "min": 0.9998967648,
+        "variance": 1.432542973e-09
+      },
+      "words": "35"
+    },
+    {
+      "probability": {
+        "average": 0.9999427795,
+        "min": 0.9998890162,
+        "variance": 2.89050206e-09
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9999559522,
+        "min": 0.9999235868,
+        "variance": 1.047514075e-09
+      },
+      "words": "25"
+    },
+    {
+      "probability": {
+        "average": 0.9999236465,
+        "min": 0.999851346,
+        "variance": 5.227352773e-09
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9996112585,
+        "min": 0.9995629191,
+        "variance": 2.339577421e-09
+      },
+      "words": "15"
+    },
+    {
+      "probability": {
+        "average": 0.999584496,
+        "min": 0.9964485168,
+        "variance": 8.006778103e-07
+      },
+      "words": "French->English"
+    },
+    {
+      "probability": {
+        "average": 0.9995671511,
+        "min": 0.996931076,
+        "variance": 6.610915193e-07
+      },
+      "words": "English->French"
+    },
+    {
+      "probability": {
+        "average": 0.9994538426,
+        "min": 0.999332726,
+        "variance": 1.466924004e-08
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9995520115,
+        "min": 0.9966499209,
+        "variance": 7.572826348e-07
+      },
+      "words": "German->English"
+    },
+    {
+      "probability": {
+        "average": 0.998680234,
+        "min": 0.9851632714,
+        "variance": 1.358279042e-05
+      },
+      "words": "English->German"
+    },
+    {
+      "probability": {
+        "average": 0.9999690056,
+        "min": 0.9999690056,
+        "variance": 0
+      },
+      "words": "5"
+    },
+    {
+      "probability": {
+        "average": 0.8265748024,
+        "min": 0.7602140903,
+        "variance": 0.003159492509
+      },
+      "words": "—。—"
+    },
+    {
+      "probability": {
+        "average": 0.9995824099,
+        "min": 0.9941499233,
+        "variance": 1.857014809e-06
+      },
+      "words": "Romanian->English"
+    },
+    {
+      "probability": {
+        "average": 0.999687314,
+        "min": 0.9968750477,
+        "variance": 5.509907623e-07
+      },
+      "words": "English->Romanian"
+    },
+    {
+      "probability": {
+        "average": 0.9949957132,
+        "min": 0.9949957132,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9993157387,
+        "min": 0.9990113974,
+        "variance": 1.261713294e-07
+      },
+      "words": "0.1B"
+    },
+    {
+      "probability": {
+        "average": 0.9994159937,
+        "min": 0.9989010096,
+        "variance": 1.822624256e-07
+      },
+      "words": "0.4B"
+    },
+    {
+      "probability": {
+        "average": 0.9992381334,
+        "min": 0.9983668923,
+        "variance": 3.55168396e-07
+      },
+      "words": "0.8B"
+    },
+    {
+      "probability": {
+        "average": 0.9977719784,
+        "min": 0.9950705767,
+        "variance": 4.494969744e-06
+      },
+      "words": "1.3B"
+    },
+    {
+      "probability": {
+        "average": 0.9983712435,
+        "min": 0.9960344434,
+        "variance": 2.821130693e-06
+      },
+      "words": "2.6B"
+    },
+    {
+      "probability": {
+        "average": 0.9993881583,
+        "min": 0.9983354211,
+        "variance": 4.624387202e-07
+      },
+      "words": "6.7B13B"
+    },
+    {
+      "probability": {
+        "average": 0.9990975261,
+        "min": 0.9965460896,
+        "variance": 2.170322659e-06
+      },
+      "words": "175B"
+    },
+    {
+      "probability": {
+        "average": 0.9996188879,
+        "min": 0.9975343943,
+        "variance": 2.896010187e-07
+      },
+      "words": "Parameters in LM(Billions)"
+    }
+  ],
+  "words_result_num": 25,
+  "direction": 0,
+  "log_id": 2079046586243082967
+}

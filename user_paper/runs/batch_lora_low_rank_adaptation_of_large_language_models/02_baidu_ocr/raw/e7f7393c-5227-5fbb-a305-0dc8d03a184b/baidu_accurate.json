@@ -1,0 +1,215 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9968986511,
+        "min": 0.9907144308,
+        "variance": 7.536704743e-06
+      },
+      "words": "WikiSQL"
+    },
+    {
+      "probability": {
+        "average": 0.9997615218,
+        "min": 0.9991393089,
+        "variance": 1.299906103e-07
+      },
+      "words": "0.75"
+    },
+    {
+      "probability": {
+        "average": 0.8502025604,
+        "min": 0.6359452605,
+        "variance": 0.01699646562
+      },
+      "words": "***="
+    },
+    {
+      "probability": {
+        "average": 0.9997416735,
+        "min": 0.9990817308,
+        "variance": 1.454265686e-07
+      },
+      "words": "0.70"
+    },
+    {
+      "probability": {
+        "average": 0.9991164207,
+        "min": 0.9947868586,
+        "variance": 3.74915021e-06
+      },
+      "words": "Method"
+    },
+    {
+      "probability": {
+        "average": 0.9997599125,
+        "min": 0.9991397858,
+        "variance": 1.290614762e-07
+      },
+      "words": "0.65"
+    },
+    {
+      "probability": {
+        "average": 0.9989472628,
+        "min": 0.994461596,
+        "variance": 3.813073135e-06
+      },
+      "words": "Fine-Tune"
+    },
+    {
+      "probability": {
+        "average": 0.9104385972,
+        "min": 0.9104385972,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9864761829,
+        "min": 0.9864761829,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9993486404,
+        "min": 0.997199893,
+        "variance": 8.203978723e-07
+      },
+      "words": "PrefixEmbed"
+    },
+    {
+      "probability": {
+        "average": 0.9997299314,
+        "min": 0.9990045428,
+        "variance": 1.754951739e-07
+      },
+      "words": "0.60"
+    },
+    {
+      "probability": {
+        "average": 0.9989140034,
+        "min": 0.9989140034,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.998476088,
+        "min": 0.988466382,
+        "variance": 1.19650831e-05
+      },
+      "words": "PrefixLayer"
+    },
+    {
+      "probability": {
+        "average": 0.9926105142,
+        "min": 0.9926105142,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9129058719,
+        "min": 0.9129058719,
+        "variance": 0
+      },
+      "words": "×"
+    },
+    {
+      "probability": {
+        "average": 0.9995989799,
+        "min": 0.9965421557,
+        "variance": 1.057180611e-06
+      },
+      "words": "Adapter(H)"
+    },
+    {
+      "probability": {
+        "average": 0.9998396635,
+        "min": 0.9994646907,
+        "variance": 4.800454789e-08
+      },
+      "words": "0.55"
+    },
+    {
+      "probability": {
+        "average": 0.9892085195,
+        "min": 0.9892085195,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9532256722,
+        "min": 0.81630373,
+        "variance": 0.006249208003
+      },
+      "words": "LoRA"
+    },
+    {
+      "probability": {
+        "average": 0.9999750853,
+        "min": 0.9999750853,
+        "variance": 0
+      },
+      "words": "6"
+    },
+    {
+      "probability": {
+        "average": 0.9999388456,
+        "min": 0.9999388456,
+        "variance": 0
+      },
+      "words": "7"
+    },
+    {
+      "probability": {
+        "average": 0.9997665286,
+        "min": 0.9997665286,
+        "variance": 0
+      },
+      "words": "8"
+    },
+    {
+      "probability": {
+        "average": 0.99895823,
+        "min": 0.99895823,
+        "variance": 0
+      },
+      "words": "9"
+    },
+    {
+      "probability": {
+        "average": 0.9998481274,
+        "min": 0.9997271895,
+        "variance": 1.461875065e-08
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9998813868,
+        "min": 0.9998242259,
+        "variance": 3.263957993e-09
+      },
+      "words": "11"
+    },
+    {
+      "probability": {
+        "average": 0.9664702415,
+        "min": 0.5885275006,
+        "variance": 0.01048014313
+      },
+      "words": "log10 # Trainable Parameters"
+    }
+  ],
+  "words_result_num": 26,
+  "direction": 0,
+  "log_id": 2079048115846078756
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "paper_document_v1",
+  "paper_id": "444b6425-ff27-521c-bc90-6eba3dcbd47e",
+  "paper_version_id": "a6216b06-c8a5-5be0-aa05-c963cedddaed",
+  "file_name": "multimae.pdf",
+  "file_path": "D:\\JIXUN\\document_pdf\\multimae.pdf",
+  "file_sha256": "33a00ee150e39a88f60585a2b6b5f173c0937f1f16e1948c96289fb574d7ef6a",
+  "title": "MultiMAE: Multi-modal Multi-task Masked Autoencoders",
+  "parser_name": "mineru",
+  "parser_version": "3.4.0",
+  "cleaning_version": "user_paper_pipeline_v1",
+  "mineru_export_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_multimae\\01_mineru_clean\\raw_mineru\\extracted",
+  "mineru_metadata": {
+    "backend": "hybrid",
+    "effort": "medium",
+    "ocr_enabled": true,
+    "version": "3.4.0"
+  },
+  "block_count": 295,
+  "media_count": 26,
+  "recovered_references": 0,
+  "created_at": "2026-07-20T03:38:45.500223+00:00"
+}

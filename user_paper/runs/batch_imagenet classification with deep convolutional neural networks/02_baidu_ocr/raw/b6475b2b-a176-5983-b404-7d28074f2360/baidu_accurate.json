@@ -1,0 +1,103 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9936595559,
+        "min": 0.9936595559,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9999008179,
+        "min": 0.9998090863,
+        "variance": 8.420146358e-09
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9999340177,
+        "min": 0.9998886585,
+        "variance": 1.547972972e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9999483228,
+        "min": 0.999900341,
+        "variance": 1.188495191e-09
+      },
+      "words": "150"
+    },
+    {
+      "probability": {
+        "average": 0.9998216629,
+        "min": 0.999691844,
+        "variance": 1.597462251e-08
+      },
+      "words": "200"
+    },
+    {
+      "probability": {
+        "average": 0.9999289513,
+        "min": 0.9998499155,
+        "variance": 3.324909015e-09
+      },
+      "words": "250"
+    },
+    {
+      "probability": {
+        "average": 0.9928731918,
+        "min": 0.9928731918,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9998428822,
+        "min": 0.9997034669,
+        "variance": 1.942830785e-08
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9998605251,
+        "min": 0.9997758269,
+        "variance": 8.0973237e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9999465346,
+        "min": 0.9998739958,
+        "variance": 2.645818453e-09
+      },
+      "words": "150"
+    },
+    {
+      "probability": {
+        "average": 0.9998514652,
+        "min": 0.9997666478,
+        "variance": 9.893661002e-09
+      },
+      "words": "200"
+    },
+    {
+      "probability": {
+        "average": 0.9999201298,
+        "min": 0.9998000264,
+        "variance": 7.214401965e-09
+      },
+      "words": "250"
+    }
+  ],
+  "words_result_num": 12,
+  "direction": 0,
+  "log_id": 2079046049963220016
+}

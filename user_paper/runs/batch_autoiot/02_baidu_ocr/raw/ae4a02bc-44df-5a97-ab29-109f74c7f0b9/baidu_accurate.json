@@ -1,0 +1,183 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9932263494,
+        "min": 0.9124005437,
+        "variance": 0.0003212920274
+      },
+      "words": "Leming Shen, Qiang Yang, Yuanqing Zheng, Mo Li"
+    },
+    {
+      "probability": {
+        "average": 0.9997459054,
+        "min": 0.9987252355,
+        "variance": 1.701278052e-07
+      },
+      "words": "User problem"
+    },
+    {
+      "probability": {
+        "average": 0.9997286201,
+        "min": 0.9986183643,
+        "variance": 1.878735674e-07
+      },
+      "words": "User problem"
+    },
+    {
+      "probability": {
+        "average": 0.9997347593,
+        "min": 0.9980760813,
+        "variance": 2.719093004e-07
+      },
+      "words": "User problem+"
+    },
+    {
+      "probability": {
+        "average": 0.9996678233,
+        "min": 0.9980686307,
+        "variance": 3.394945054e-07
+      },
+      "words": "User problem"
+    },
+    {
+      "probability": {
+        "average": 0.9941448569,
+        "min": 0.9941448569,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9998553991,
+        "min": 0.9992330074,
+        "variance": 6.415113063e-08
+      },
+      "words": "The target"
+    },
+    {
+      "probability": {
+        "average": 0.9988971353,
+        "min": 0.9928648472,
+        "variance": 4.721555342e-06
+      },
+      "words": "Make the code"
+    },
+    {
+      "probability": {
+        "average": 0.9966444373,
+        "min": 0.964497149,
+        "variance": 0.0001033656736
+      },
+      "words": "platform is"
+    },
+    {
+      "probability": {
+        "average": 0.9698857069,
+        "min": 0.795286417,
+        "variance": 0.005081428681
+      },
+      "words": "AutolOT"
+    },
+    {
+      "probability": {
+        "average": 0.9998660684,
+        "min": 0.9985690117,
+        "variance": 1.30359382e-07
+      },
+      "words": "more efficient"
+    },
+    {
+      "probability": {
+        "average": 0.9993233085,
+        "min": 0.9948233366,
+        "variance": 2.127414746e-06
+      },
+      "words": "Jetson Nano"
+    },
+    {
+      "probability": {
+        "average": 0.9711349607,
+        "min": 0.8048932552,
+        "variance": 0.004607028794
+      },
+      "words": "AutolOT"
+    },
+    {
+      "probability": {
+        "average": 0.9993941188,
+        "min": 0.9952534437,
+        "variance": 1.423466529e-06
+      },
+      "words": "torch.tensor(da"
+    },
+    {
+      "probability": {
+        "average": 0.9985251427,
+        "min": 0.9860805273,
+        "variance": 1.134413378e-05
+      },
+      "words": "torch.tensor(data"
+    },
+    {
+      "probability": {
+        "average": 0.9985969663,
+        "min": 0.988650918,
+        "variance": 9.303693332e-06
+      },
+      "words": "model.half()"
+    },
+    {
+      "probability": {
+        "average": 0.9904370904,
+        "min": 0.9404086471,
+        "variance": 0.0003959641035
+      },
+      "words": "ta).to(\"cuda\")"
+    },
+    {
+      "probability": {
+        "average": 0.9997484684,
+        "min": 0.998121202,
+        "variance": 2.097760046e-07
+      },
+      "words": ",device=\"cuda\")"
+    },
+    {
+      "probability": {
+        "average": 0.996732533,
+        "min": 0.970726192,
+        "variance": 6.354457582e-05
+      },
+      "words": "model.eval()"
+    },
+    {
+      "probability": {
+        "average": 0.9971607327,
+        "min": 0.9747914672,
+        "variance": 4.690325295e-05
+      },
+      "words": "model.eval()"
+    },
+    {
+      "probability": {
+        "average": 0.9993448853,
+        "min": 0.9919674993,
+        "variance": 3.073040261e-06
+      },
+      "words": "(a)Runtime efficiency optimization"
+    },
+    {
+      "probability": {
+        "average": 0.9996660352,
+        "min": 0.9966586828,
+        "variance": 4.393058077e-07
+      },
+      "words": "(b)Tailored for target platform"
+    }
+  ],
+  "words_result_num": 22,
+  "direction": 0,
+  "log_id": 2079044441364312349
+}

@@ -1,0 +1,61 @@
+{
+  "file_name": "e8134dcc5a0da21b71ac882fe7f7753da2ec2ce77e413c06a800a302e9e4e1bb.jpg",
+  "file_id": "file-2hvMAseb22LBSE0K1Bj0QTe3KBMQDktc",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "S9AZb0-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "S9AZb0-layout-1",
+          "text": "1st transformation | Crop | 2nd transformation (Crop) | 2nd transformation (Cutout) | 2nd transformation (Color) | 2nd transformation (Sobel) | 2nd transformation (Noise) | 2nd transformation (Blur) | Rotate | Average\nCrop | 33.1 | 33.9 | 56.3 | 46.0 | 39.9 | 35.0 | 30.2 | 39.2 | 39.2\nCutout | 32.2 | 25.6 | 33.9 | 40.0 | 26.5 | 25.2 | 22.4 | 29.4 | 29.4\nColor | 55.8 | 35.5 | 18.8 | 21.0 | 11.4 | 16.5 | 20.8 | 25.7 | 25.7\nSobel | 46.2 | 40.6 | 20.9 | 4.0 | 9.3 | 6.2 | 4.2 | 18.8 | 18.8\nNoise | 38.8 | 25.8 | 7.5 | 7.6 | 9.8 | 9.8 | 9.6 | 15.5 | 15.5\nBlur | 35.1 | 25.2 | 16.6 | 5.8 | 9.7 | 2.6 | 6.7 | 14.5 | 14.5\nRotate | 30.0 | 22.5 | 20.7 | 4.3 | 9.7 | 6.5 | 2.6 | 13.8 | 13.8",
+          "position": [
+            2,
+            1,
+            609,
+            394
+          ],
+          "polygon": [
+            [
+              2,
+              1
+            ],
+            [
+              611,
+              1
+            ],
+            [
+              611,
+              396
+            ],
+            [
+              2,
+              396
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>1st transformation</th><th style='text-align: center;'>Crop</th><th style='text-align: center;'>2nd transformation (Crop)</th><th style='text-align: center;'>2nd transformation (Cutout)</th><th style='text-align: center;'>2nd transformation (Color)</th><th style='text-align: center;'>2nd transformation (Sobel)</th><th style='text-align: center;'>2nd transformation (Noise)</th><th style='text-align: center;'>2nd transformation (Blur)</th><th style='text-align: center;'>Rotate</th><th style='text-align: center;'>Average</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>Crop</td><td style='text-align: center;'>33.1</td><td style='text-align: center;'>33.9</td><td style='text-align: center;'>56.3</td><td style='text-align: center;'>46.0</td><td style='text-align: center;'>39.9</td><td style='text-align: center;'>35.0</td><td style='text-align: center;'>30.2</td><td style='text-align: center;'>39.2</td><td style='text-align: center;'>39.2</td></tr>\n    <tr><td style='text-align: center;'>Cutout</td><td style='text-align: center;'>32.2</td><td style='text-align: center;'>25.6</td><td style='text-align: center;'>33.9</td><td style='text-align: center;'>40.0</td><td style='text-align: center;'>26.5</td><td style='text-align: center;'>25.2</td><td style='text-align: center;'>22.4</td><td style='text-align: center;'>29.4</td><td style='text-align: center;'>29.4</td></tr>\n    <tr><td style='text-align: center;'>Color</td><td style='text-align: center;'>55.8</td><td style='text-align: center;'>35.5</td><td style='text-align: center;'>18.8</td><td style='text-align: center;'>21.0</td><td style='text-align: center;'>11.4</td><td style='text-align: center;'>16.5</td><td style='text-align: center;'>20.8</td><td style='text-align: center;'>25.7</td><td style='text-align: center;'>25.7</td></tr>\n    <tr><td style='text-align: center;'>Sobel</td><td style='text-align: center;'>46.2</td><td style='text-align: center;'>40.6</td><td style='text-align: center;'>20.9</td><td style='text-align: center;'>4.0</td><td style='text-align: center;'>9.3</td><td style='text-align: center;'>6.2</td><td style='text-align: center;'>4.2</td><td style='text-align: center;'>18.8</td><td style='text-align: center;'>18.8</td></tr>\n    <tr><td style='text-align: center;'>Noise</td><td style='text-align: center;'>38.8</td><td style='text-align: center;'>25.8</td><td style='text-align: center;'>7.5</td><td style='text-align: center;'>7.6</td><td style='text-align: center;'>9.8</td><td style='text-align: center;'>9.8</td><td style='text-align: center;'>9.6</td><td style='text-align: center;'>15.5</td><td style='text-align: center;'>15.5</td></tr>\n    <tr><td style='text-align: center;'>Blur</td><td style='text-align: center;'>35.1</td><td style='text-align: center;'>25.2</td><td style='text-align: center;'>16.6</td><td style='text-align: center;'>5.8</td><td style='text-align: center;'>9.7</td><td style='text-align: center;'>2.6</td><td style='text-align: center;'>6.7</td><td style='text-align: center;'>14.5</td><td style='text-align: center;'>14.5</td></tr>\n    <tr><td style='text-align: center;'>Rotate</td><td style='text-align: center;'>30.0</td><td style='text-align: center;'>22.5</td><td style='text-align: center;'>20.7</td><td style='text-align: center;'>4.3</td><td style='text-align: center;'>9.7</td><td style='text-align: center;'>6.5</td><td style='text-align: center;'>2.6</td><td style='text-align: center;'>13.8</td><td style='text-align: center;'>13.8</td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "1st transformation | Crop | 2nd transformation (Crop) | 2nd transformation (Cutout) | 2nd transformation (Color) | 2nd transformation (Sobel) | 2nd transformation (Noise) | 2nd transformation (Blur) | Rotate | Average\nCrop | 33.1 | 33.9 | 56.3 | 46.0 | 39.9 | 35.0 | 30.2 | 39.2 | 39.2\nCutout | 32.2 | 25.6 | 33.9 | 40.0 | 26.5 | 25.2 | 22.4 | 29.4 | 29.4\nColor | 55.8 | 35.5 | 18.8 | 21.0 | 11.4 | 16.5 | 20.8 | 25.7 | 25.7\nSobel | 46.2 | 40.6 | 20.9 | 4.0 | 9.3 | 6.2 | 4.2 | 18.8 | 18.8\nNoise | 38.8 | 25.8 | 7.5 | 7.6 | 9.8 | 9.8 | 9.6 | 15.5 | 15.5\nBlur | 35.1 | 25.2 | 16.6 | 5.8 | 9.7 | 2.6 | 6.7 | 14.5 | 14.5\nRotate | 30.0 | 22.5 | 20.7 | 4.3 | 9.7 | 6.5 | 2.6 | 13.8 | 13.8",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>1st transformation</th><th style='text-align: center;'>Crop</th><th style='text-align: center;'>2nd transformation (Crop)</th><th style='text-align: center;'>2nd transformation (Cutout)</th><th style='text-align: center;'>2nd transformation (Color)</th><th style='text-align: center;'>2nd transformation (Sobel)</th><th style='text-align: center;'>2nd transformation (Noise)</th><th style='text-align: center;'>2nd transformation (Blur)</th><th style='text-align: center;'>Rotate</th><th style='text-align: center;'>Average</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>Crop</td><td style='text-align: center;'>33.1</td><td style='text-align: center;'>33.9</td><td style='text-align: center;'>56.3</td><td style='text-align: center;'>46.0</td><td style='text-align: center;'>39.9</td><td style='text-align: center;'>35.0</td><td style='text-align: center;'>30.2</td><td style='text-align: center;'>39.2</td><td style='text-align: center;'>39.2</td></tr>\n    <tr><td style='text-align: center;'>Cutout</td><td style='text-align: center;'>32.2</td><td style='text-align: center;'>25.6</td><td style='text-align: center;'>33.9</td><td style='text-align: center;'>40.0</td><td style='text-align: center;'>26.5</td><td style='text-align: center;'>25.2</td><td style='text-align: center;'>22.4</td><td style='text-align: center;'>29.4</td><td style='text-align: center;'>29.4</td></tr>\n    <tr><td style='text-align: center;'>Color</td><td style='text-align: center;'>55.8</td><td style='text-align: center;'>35.5</td><td style='text-align: center;'>18.8</td><td style='text-align: center;'>21.0</td><td style='text-align: center;'>11.4</td><td style='text-align: center;'>16.5</td><td style='text-align: center;'>20.8</td><td style='text-align: center;'>25.7</td><td style='text-align: center;'>25.7</td></tr>\n    <tr><td style='text-align: center;'>Sobel</td><td style='text-align: center;'>46.2</td><td style='text-align: center;'>40.6</td><td style='text-align: center;'>20.9</td><td style='text-align: center;'>4.0</td><td style='text-align: center;'>9.3</td><td style='text-align: center;'>6.2</td><td style='text-align: center;'>4.2</td><td style='text-align: center;'>18.8</td><td style='text-align: center;'>18.8</td></tr>\n    <tr><td style='text-align: center;'>Noise</td><td style='text-align: center;'>38.8</td><td style='text-align: center;'>25.8</td><td style='text-align: center;'>7.5</td><td style='text-align: center;'>7.6</td><td style='text-align: center;'>9.8</td><td style='text-align: center;'>9.8</td><td style='text-align: center;'>9.6</td><td style='text-align: center;'>15.5</td><td style='text-align: center;'>15.5</td></tr>\n    <tr><td style='text-align: center;'>Blur</td><td style='text-align: center;'>35.1</td><td style='text-align: center;'>25.2</td><td style='text-align: center;'>16.6</td><td style='text-align: center;'>5.8</td><td style='text-align: center;'>9.7</td><td style='text-align: center;'>2.6</td><td style='text-align: center;'>6.7</td><td style='text-align: center;'>14.5</td><td style='text-align: center;'>14.5</td></tr>\n    <tr><td style='text-align: center;'>Rotate</td><td style='text-align: center;'>30.0</td><td style='text-align: center;'>22.5</td><td style='text-align: center;'>20.7</td><td style='text-align: center;'>4.3</td><td style='text-align: center;'>9.7</td><td style='text-align: center;'>6.5</td><td style='text-align: center;'>2.6</td><td style='text-align: center;'>13.8</td><td style='text-align: center;'>13.8</td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 687,
+        "page_height": 395
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

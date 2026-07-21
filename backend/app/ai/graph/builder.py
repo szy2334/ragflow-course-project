@@ -20,9 +20,6 @@ def build_workflow_graph(
     graph.add_node("route", nodes.route)
     graph.add_node("paper_retrieve", nodes.paper_retrieve)
     graph.add_node("paper_understand", nodes.paper_understand)
-    graph.add_node("standard_retrieve", nodes.standard_retrieve)
-    graph.add_node("review_a", nodes.review_a)
-    graph.add_node("review_b", nodes.review_b)
     graph.add_node("synthesize", nodes.synthesize)
     graph.add_node("validate", nodes.validate)
     graph.add_node("safe_refusal", nodes.safe_refusal)
@@ -43,19 +40,8 @@ def build_workflow_graph(
     graph.add_conditional_edges(
         "paper_understand",
         _after_understanding,
-        {
-            "refuse": "safe_refusal",
-            "standards": "standard_retrieve",
-            "synthesize": "synthesize",
-        },
+        {"refuse": "safe_refusal", "synthesize": "synthesize"},
     )
-    graph.add_conditional_edges(
-        "standard_retrieve",
-        _after_standards,
-        {"review": "review_a", "synthesize": "synthesize", "refuse": "safe_refusal"},
-    )
-    graph.add_edge("review_a", "review_b")
-    graph.add_edge("review_b", "synthesize")
     graph.add_conditional_edges(
         "synthesize",
         _after_synthesis,
@@ -83,15 +69,6 @@ def _after_required_step(state: ReviewGraphState) -> str:
 def _after_understanding(state: ReviewGraphState) -> str:
     if state.get("error_code"):
         return "refuse"
-    return "standards"
-
-
-def _after_standards(state: ReviewGraphState) -> str:
-    if state.get("error_code"):
-        return "refuse"
-    route = RouteDecision.model_validate(state["route_decision"])
-    if route.effective_route_type in {"review", "score"} and not state.get("skip_reviews"):
-        return "review"
     return "synthesize"
 
 

@@ -1,0 +1,11 @@
+{
+  "stage": "baidu_ocr",
+  "objects": 13,
+  "success": 13,
+  "partial": 0,
+  "failed": 0,
+  "skipped": 0,
+  "skip_vl": true,
+  "strict_specialized": true,
+  "output_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_proximal_policy_optimization_algorithms\\02_baidu_ocr"
+}

@@ -1,0 +1,191 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9986923337,
+        "min": 0.9942733645,
+        "variance": 4.583172085e-06
+      },
+      "words": "Input Prompt"
+    },
+    {
+      "probability": {
+        "average": 0.9995418191,
+        "min": 0.9946590066,
+        "variance": 1.705593604e-06
+      },
+      "words": "Encapsulated Prompt"
+    },
+    {
+      "probability": {
+        "average": 0.9996575713,
+        "min": 0.9986730814,
+        "variance": 1.855030831e-07
+      },
+      "words": "Actions:"
+    },
+    {
+      "probability": {
+        "average": 0.9990763068,
+        "min": 0.9950659275,
+        "variance": 3.23585391e-06
+      },
+      "words": "Search"
+    },
+    {
+      "probability": {
+        "average": 0.9999206066,
+        "min": 0.9992480874,
+        "variance": 2.582664749e-08
+      },
+      "words": "Search for definitions"
+    },
+    {
+      "probability": {
+        "average": 0.998526752,
+        "min": 0.9904272556,
+        "variance": 6.994107935e-06
+      },
+      "words": "Accessible Tool List"
+    },
+    {
+      "probability": {
+        "average": 0.9990640879,
+        "min": 0.9902117848,
+        "variance": 5.584716291e-06
+      },
+      "words": "of ECG data from"
+    },
+    {
+      "probability": {
+        "average": 0.9976399541,
+        "min": 0.9840430617,
+        "variance": 1.961763337e-05
+      },
+      "words": "Mapping Table"
+    },
+    {
+      "probability": {
+        "average": 0.9933223724,
+        "min": 0.98080796,
+        "variance": 7.830569666e-05
+      },
+      "words": "LLM"
+    },
+    {
+      "probability": {
+        "average": 0.9771744609,
+        "min": 0.8500961065,
+        "variance": 0.002700490411
+      },
+      "words": "& Store"
+    },
+    {
+      "probability": {
+        "average": 0.9996660352,
+        "min": 0.9961966276,
+        "variance": 8.013795991e-07
+      },
+      "words": "Wikipedia and store"
+    },
+    {
+      "probability": {
+        "average": 0.9972074032,
+        "min": 0.9757948518,
+        "variance": 4.252884901e-05
+      },
+      "words": "Original Prompt"
+    },
+    {
+      "probability": {
+        "average": 0.9999297261,
+        "min": 0.9997282624,
+        "variance": 4.093540173e-09
+      },
+      "words": "the retrieved content"
+    },
+    {
+      "probability": {
+        "average": 0.99476403,
+        "min": 0.9662824273,
+        "variance": 0.0001353671832
+      },
+      "words": "Target."
+    },
+    {
+      "probability": {
+        "average": 0.9992628694,
+        "min": 0.9918457866,
+        "variance": 5.002968464e-06
+      },
+      "words": "Intermediate"
+    },
+    {
+      "probability": {
+        "average": 0.9993264079,
+        "min": 0.9953581691,
+        "variance": 1.715271765e-06
+      },
+      "words": "in a local database."
+    },
+    {
+      "probability": {
+        "average": 0.9986556172,
+        "min": 0.9962021708,
+        "variance": 1.887661369e-06
+      },
+      "words": "Results"
+    },
+    {
+      "probability": {
+        "average": 0.9966655374,
+        "min": 0.9747899771,
+        "variance": 6.097681398e-05
+      },
+      "words": "LangChain"
+    },
+    {
+      "probability": {
+        "average": 0.9884660244,
+        "min": 0.8709638119,
+        "variance": 0.001164403511
+      },
+      "words": "AutolOT Agent"
+    },
+    {
+      "probability": {
+        "average": 0.9979839921,
+        "min": 0.9882205725,
+        "variance": 1.906585021e-05
+      },
+      "words": "Output"
+    },
+    {
+      "probability": {
+        "average": 0.9994297028,
+        "min": 0.9952740669,
+        "variance": 1.516267048e-06
+      },
+      "words": "Final Response"
+    },
+    {
+      "probability": {
+        "average": 0.9967198372,
+        "min": 0.9810219407,
+        "variance": 4.93109801e-05
+      },
+      "words": "Parser"
+    },
+    {
+      "probability": {
+        "average": 0.9985604882,
+        "min": 0.9828611612,
+        "variance": 1.773292206e-05
+      },
+      "words": "Available Tools"
+    }
+  ],
+  "words_result_num": 23,
+  "direction": 0,
+  "log_id": 2079044156524845879
+}

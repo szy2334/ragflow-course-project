@@ -1,0 +1,10 @@
+{
+  "run_name": "batch_lora_low_rank_adaptation_of_large_language_models",
+  "pdf": "D:\\JIXUN\\document_pdf\\LoRA_Low_Rank_Adaptation_of_Large_Language_Models.pdf",
+  "run_root": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_lora_low_rank_adaptation_of_large_language_models",
+  "mineru_clean_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_lora_low_rank_adaptation_of_large_language_models\\01_mineru_clean",
+  "ocr_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_lora_low_rank_adaptation_of_large_language_models\\02_baidu_ocr",
+  "chunks_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_lora_low_rank_adaptation_of_large_language_models\\03_chunks",
+  "ragflow_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_lora_low_rank_adaptation_of_large_language_models\\04_ragflow",
+  "completed_at": "2026-07-20T03:40:02.049025+00:00"
+}

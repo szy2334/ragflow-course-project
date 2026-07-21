@@ -1,0 +1,61 @@
+{
+  "file_name": "436ac09a5319fedb4322c249227ce3e414e483466fe301c8da337e3130347a83.jpg",
+  "file_id": "file-RXTZVhdmGKXwVpGYwJM2yDcOkJ6lqsND",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "Mfc9fO-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "Mfc9fO-layout-1",
+          "text": "Relative Compute | All | Depth | Patch size | Width MLP | Width\n0.3 | 0.23 |   |   |   |  \n0.4 |   | 0.14 | 0.29 |   | 0.32\n0.6 |   | 0.30 | 0.36 |   |  \n0.8 |   |   |   | 0.40 | 0.40\n1.0 | 0.44 | 0.44 | 0.44 | 0.44 | 0.44\n2.0 | 0.49 | 0.53 | 0.49 | 0.48 | 0.47\n4.0 | 0.52 | 0.58 | 0.53 | 0.53 | 0.49\n8.0 | 0.62 | 0.61 |   |   |  ",
+          "position": [
+            0,
+            3,
+            509,
+            339
+          ],
+          "polygon": [
+            [
+              0,
+              3
+            ],
+            [
+              509,
+              3
+            ],
+            [
+              509,
+              342
+            ],
+            [
+              0,
+              342
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>Relative Compute</th><th style='text-align: center;'>All</th><th style='text-align: center;'>Depth</th><th style='text-align: center;'>Patch size</th><th style='text-align: center;'>Width MLP</th><th style='text-align: center;'>Width</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>0.3</td><td style='text-align: center;'>0.23</td><td style='text-align: center;'></td><td style='text-align: center;'></td><td style='text-align: center;'></td><td style='text-align: center;'></td></tr>\n    <tr><td style='text-align: center;'>0.4</td><td style='text-align: center;'></td><td style='text-align: center;'>0.14</td><td style='text-align: center;'>0.29</td><td style='text-align: center;'></td><td style='text-align: center;'>0.32</td></tr>\n    <tr><td style='text-align: center;'>0.6</td><td style='text-align: center;'></td><td style='text-align: center;'>0.30</td><td style='text-align: center;'>0.36</td><td style='text-align: center;'></td><td style='text-align: center;'></td></tr>\n    <tr><td style='text-align: center;'>0.8</td><td style='text-align: center;'></td><td style='text-align: center;'></td><td style='text-align: center;'></td><td style='text-align: center;'>0.40</td><td style='text-align: center;'>0.40</td></tr>\n    <tr><td style='text-align: center;'>1.0</td><td style='text-align: center;'>0.44</td><td style='text-align: center;'>0.44</td><td style='text-align: center;'>0.44</td><td style='text-align: center;'>0.44</td><td style='text-align: center;'>0.44</td></tr>\n    <tr><td style='text-align: center;'>2.0</td><td style='text-align: center;'>0.49</td><td style='text-align: center;'>0.53</td><td style='text-align: center;'>0.49</td><td style='text-align: center;'>0.48</td><td style='text-align: center;'>0.47</td></tr>\n    <tr><td style='text-align: center;'>4.0</td><td style='text-align: center;'>0.52</td><td style='text-align: center;'>0.58</td><td style='text-align: center;'>0.53</td><td style='text-align: center;'>0.53</td><td style='text-align: center;'>0.49</td></tr>\n    <tr><td style='text-align: center;'>8.0</td><td style='text-align: center;'>0.62</td><td style='text-align: center;'>0.61</td><td style='text-align: center;'></td><td style='text-align: center;'></td><td style='text-align: center;'></td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "Relative Compute | All | Depth | Patch size | Width MLP | Width\n0.3 | 0.23 |   |   |   |  \n0.4 |   | 0.14 | 0.29 |   | 0.32\n0.6 |   | 0.30 | 0.36 |   |  \n0.8 |   |   |   | 0.40 | 0.40\n1.0 | 0.44 | 0.44 | 0.44 | 0.44 | 0.44\n2.0 | 0.49 | 0.53 | 0.49 | 0.48 | 0.47\n4.0 | 0.52 | 0.58 | 0.53 | 0.53 | 0.49\n8.0 | 0.62 | 0.61 |   |   |  ",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>Relative Compute</th><th style='text-align: center;'>All</th><th style='text-align: center;'>Depth</th><th style='text-align: center;'>Patch size</th><th style='text-align: center;'>Width MLP</th><th style='text-align: center;'>Width</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>0.3</td><td style='text-align: center;'>0.23</td><td style='text-align: center;'></td><td style='text-align: center;'></td><td style='text-align: center;'></td><td style='text-align: center;'></td></tr>\n    <tr><td style='text-align: center;'>0.4</td><td style='text-align: center;'></td><td style='text-align: center;'>0.14</td><td style='text-align: center;'>0.29</td><td style='text-align: center;'></td><td style='text-align: center;'>0.32</td></tr>\n    <tr><td style='text-align: center;'>0.6</td><td style='text-align: center;'></td><td style='text-align: center;'>0.30</td><td style='text-align: center;'>0.36</td><td style='text-align: center;'></td><td style='text-align: center;'></td></tr>\n    <tr><td style='text-align: center;'>0.8</td><td style='text-align: center;'></td><td style='text-align: center;'></td><td style='text-align: center;'></td><td style='text-align: center;'>0.40</td><td style='text-align: center;'>0.40</td></tr>\n    <tr><td style='text-align: center;'>1.0</td><td style='text-align: center;'>0.44</td><td style='text-align: center;'>0.44</td><td style='text-align: center;'>0.44</td><td style='text-align: center;'>0.44</td><td style='text-align: center;'>0.44</td></tr>\n    <tr><td style='text-align: center;'>2.0</td><td style='text-align: center;'>0.49</td><td style='text-align: center;'>0.53</td><td style='text-align: center;'>0.49</td><td style='text-align: center;'>0.48</td><td style='text-align: center;'>0.47</td></tr>\n    <tr><td style='text-align: center;'>4.0</td><td style='text-align: center;'>0.52</td><td style='text-align: center;'>0.58</td><td style='text-align: center;'>0.53</td><td style='text-align: center;'>0.53</td><td style='text-align: center;'>0.49</td></tr>\n    <tr><td style='text-align: center;'>8.0</td><td style='text-align: center;'>0.62</td><td style='text-align: center;'>0.61</td><td style='text-align: center;'></td><td style='text-align: center;'></td><td style='text-align: center;'></td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 509,
+        "page_height": 343
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

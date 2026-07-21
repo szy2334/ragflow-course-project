@@ -1,0 +1,295 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9524435401,
+        "min": 0.4783430398,
+        "variance": 0.0224771481
+      },
+      "words": "xSupervised"
+    },
+    {
+      "probability": {
+        "average": 0.9998912811,
+        "min": 0.9998912811,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.9958177805,
+        "min": 0.9613770843,
+        "variance": 0.0001318491995
+      },
+      "words": "SimCLR(4x)"
+    },
+    {
+      "probability": {
+        "average": 0.9998204708,
+        "min": 0.9997549653,
+        "variance": 4.287068478e-09
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.9999200106,
+        "min": 0.9999200106,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.9969044924,
+        "min": 0.9715876579,
+        "variance": 7.123345858e-05
+      },
+      "words": "SimCLR(2x)"
+    },
+    {
+      "probability": {
+        "average": 0.9168866873,
+        "min": 0.461627394,
+        "variance": 0.03129383549
+      },
+      "words": "OCPCv2-L"
+    },
+    {
+      "probability": {
+        "average": 0.9999251962,
+        "min": 0.9998787642,
+        "variance": 2.155932322e-09
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.8834213018,
+        "min": 0.8834213018,
+        "variance": 0
+      },
+      "words": "-"
+    },
+    {
+      "probability": {
+        "average": 0.9998426437,
+        "min": 0.9998426437,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.9993081093,
+        "min": 0.9985699654,
+        "variance": 1.845470905e-07
+      },
+      "words": "SimCLR"
+    },
+    {
+      "probability": {
+        "average": 0.992331624,
+        "min": 0.977047205,
+        "variance": 7.836269651e-05
+      },
+      "words": "MoCo(4x)"
+    },
+    {
+      "probability": {
+        "average": 0.9970035553,
+        "min": 0.9948516488,
+        "variance": 3.139821274e-06
+      },
+      "words": "CMC"
+    },
+    {
+      "probability": {
+        "average": 0.9024226665,
+        "min": 0.5788062811,
+        "variance": 0.02559035271
+      },
+      "words": "OPIRL-c2x"
+    },
+    {
+      "probability": {
+        "average": 0.9994729757,
+        "min": 0.9978499413,
+        "variance": 6.618435009e-07
+      },
+      "words": "AMDIM"
+    },
+    {
+      "probability": {
+        "average": 0.9999039173,
+        "min": 0.9998766184,
+        "variance": 7.452314321e-10
+      },
+      "words": "65"
+    },
+    {
+      "probability": {
+        "average": 0.9390817285,
+        "min": 0.4668843746,
+        "variance": 0.02788061276
+      },
+      "words": "oMoCo(2x)"
+    },
+    {
+      "probability": {
+        "average": 0.945786953,
+        "min": 0.7583708167,
+        "variance": 0.008807931095
+      },
+      "words": "CPCv2"
+    },
+    {
+      "probability": {
+        "average": 0.9954612255,
+        "min": 0.9782432318,
+        "variance": 4.166342478e-05
+      },
+      "words": "PIRL-ens."
+    },
+    {
+      "probability": {
+        "average": 0.9973418713,
+        "min": 0.9936409593,
+        "variance": 5.268912446e-06
+      },
+      "words": "PIRL"
+    },
+    {
+      "probability": {
+        "average": 0.982609868,
+        "min": 0.9663794041,
+        "variance": 0.0001415894367
+      },
+      "words": "MoCo"
+    },
+    {
+      "probability": {
+        "average": 0.9797642827,
+        "min": 0.8200268149,
+        "variance": 0.003189575393
+      },
+      "words": "oBigBiGAN"
+    },
+    {
+      "probability": {
+        "average": 0.9999209642,
+        "min": 0.9998605251,
+        "variance": 3.652885994e-09
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.8735064864,
+        "min": 0.8735064864,
+        "variance": 0
+      },
+      "words": "-"
+    },
+    {
+      "probability": {
+        "average": 0.9983738661,
+        "min": 0.9981101751,
+        "variance": 6.951719911e-08
+      },
+      "words": "LA"
+    },
+    {
+      "probability": {
+        "average": 0.9996687174,
+        "min": 0.9995717406,
+        "variance": 9.404491408e-09
+      },
+      "words": "55"
+    },
+    {
+      "probability": {
+        "average": 0.9192201495,
+        "min": 0.9192201495,
+        "variance": 0
+      },
+      "words": "-"
+    },
+    {
+      "probability": {
+        "average": 0.9850909114,
+        "min": 0.8676124215,
+        "variance": 0.00172539195
+      },
+      "words": "oRotation"
+    },
+    {
+      "probability": {
+        "average": 0.9843027592,
+        "min": 0.8906582594,
+        "variance": 0.001184448018
+      },
+      "words": "oInstDisc"
+    },
+    {
+      "probability": {
+        "average": 0.9999647737,
+        "min": 0.9999397993,
+        "variance": 6.237179662e-10
+      },
+      "words": "25"
+    },
+    {
+      "probability": {
+        "average": 0.9999022484,
+        "min": 0.9998418093,
+        "variance": 3.652885994e-09
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9998877645,
+        "min": 0.9998352528,
+        "variance": 2.552396294e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9999343753,
+        "min": 0.9998729229,
+        "variance": 2.619357842e-09
+      },
+      "words": "200"
+    },
+    {
+      "probability": {
+        "average": 0.9999056458,
+        "min": 0.9998445511,
+        "variance": 4.478744042e-09
+      },
+      "words": "400"
+    },
+    {
+      "probability": {
+        "average": 0.9999882579,
+        "min": 0.9999866486,
+        "variance": 1.490955471e-12
+      },
+      "words": "626"
+    },
+    {
+      "probability": {
+        "average": 0.9845000505,
+        "min": 0.5232895017,
+        "variance": 0.007090548985
+      },
+      "words": "Number of Parameters (Millions)"
+    }
+  ],
+  "words_result_num": 36,
+  "direction": 0,
+  "log_id": 2079044801524243077
+}

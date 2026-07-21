@@ -1,0 +1,180 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 7,
+              "y": 10
+            },
+            {
+              "x": 298,
+              "y": 10
+            },
+            {
+              "x": 298,
+              "y": 46
+            },
+            {
+              "x": 7,
+              "y": 45
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Hyperparameter"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 298,
+              "y": 10
+            },
+            {
+              "x": 510,
+              "y": 10
+            },
+            {
+              "x": 510,
+              "y": 46
+            },
+            {
+              "x": 298,
+              "y": 46
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Value"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 7,
+              "y": 45
+            },
+            {
+              "x": 298,
+              "y": 46
+            },
+            {
+              "x": 298,
+              "y": 79
+            },
+            {
+              "x": 7,
+              "y": 79
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Horizon (T)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 298,
+              "y": 46
+            },
+            {
+              "x": 510,
+              "y": 46
+            },
+            {
+              "x": 511,
+              "y": 79
+            },
+            {
+              "x": 298,
+              "y": 79
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "128"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 7,
+              "y": 79
+            },
+            {
+              "x": 298,
+              "y": 79
+            },
+            {
+              "x": 298,
+              "y": 400
+            },
+            {
+              "x": 8,
+              "y": 400
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Adam stepsize\nNum.epochs\nMinibatch size\nDiscount(7)\nGAE parameter(λ)\nNumber of actors\nClipping parameter \nVF coeff. c1(9)\nEntropy coeff. c2(9)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 298,
+              "y": 79
+            },
+            {
+              "x": 511,
+              "y": 79
+            },
+            {
+              "x": 511,
+              "y": 398
+            },
+            {
+              "x": 298,
+              "y": 400
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "2.5×10-4×α\n3\n32×8\n0.99\n0.95\n8\n0.1×α\n1\n0.01"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 7,
+          "y": 10
+        },
+        {
+          "x": 511,
+          "y": 10
+        },
+        {
+          "x": 511,
+          "y": 400
+        },
+        {
+          "x": 7,
+          "y": 400
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079049389283912486
+}

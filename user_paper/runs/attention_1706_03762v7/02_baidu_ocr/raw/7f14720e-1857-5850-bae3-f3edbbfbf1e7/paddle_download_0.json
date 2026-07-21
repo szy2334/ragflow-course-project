@@ -1,0 +1,128 @@
+{
+  "file_name": "7dcdda7abedff5b46ce6514129a18bdbd68cba3f4ae468270f0ee66d696cfe7a.jpg",
+  "file_id": "file-OLe0KO7dGeAaRUtawDOoXBhoqljHsgO8",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "ZbE2yu-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "ZbE2yu-layout-1",
+          "text": "<table><tr><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;EOS&gt; &lt;pad&gt;</td><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td></tr></table>",
+          "position": [
+            3,
+            1,
+            1065,
+            1211
+          ],
+          "polygon": [
+            [
+              3,
+              1
+            ],
+            [
+              1071,
+              1
+            ],
+            [
+              1071,
+              1213
+            ],
+            [
+              3,
+              1213
+            ]
+          ],
+          "type": "table",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [
+        {
+          "layout_id": "ZbE2yu-layout-1",
+          "markdown": "| The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion <EOS> <pad> | The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion <pad> | The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion <pad> | The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion <pad> |\n| --- | --- | --- | --- |\n",
+          "table_html": "<table><tr><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;EOS&gt; &lt;pad&gt;</td><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td></tr></table>",
+          "table_title_id": null,
+          "position": null,
+          "cells": [
+            {
+              "layout_id": "ZbE2yu-layout-1-0",
+              "text": "The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion <EOS> <pad>",
+              "position": null,
+              "polygon": null,
+              "type": "text",
+              "sub_type": "",
+              "parent": "",
+              "children": [],
+              "span_boxes": null,
+              "table_html": ""
+            },
+            {
+              "layout_id": "ZbE2yu-layout-1-1",
+              "text": "The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion <pad>",
+              "position": null,
+              "polygon": null,
+              "type": "text",
+              "sub_type": "",
+              "parent": "",
+              "children": [],
+              "span_boxes": null,
+              "table_html": ""
+            },
+            {
+              "layout_id": "ZbE2yu-layout-1-2",
+              "text": "The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion <pad>",
+              "position": null,
+              "polygon": null,
+              "type": "text",
+              "sub_type": "",
+              "parent": "",
+              "children": [],
+              "span_boxes": null,
+              "table_html": ""
+            },
+            {
+              "layout_id": "ZbE2yu-layout-1-3",
+              "text": "The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion <pad>",
+              "position": null,
+              "polygon": null,
+              "type": "text",
+              "sub_type": "",
+              "parent": "",
+              "children": [],
+              "span_boxes": null,
+              "table_html": ""
+            }
+          ],
+          "matrix": [
+            [
+              0,
+              1,
+              2,
+              3
+            ]
+          ],
+          "merge_table": null
+        }
+      ],
+      "text": "<table><tr><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;EOS&gt; &lt;pad&gt;</td><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td><td>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td></tr></table>",
+      "markdown": "\n<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;EOS&gt; &lt;pad&gt;</td><td style='text-align: center; word-wrap: break-word;'>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td><td style='text-align: center; word-wrap: break-word;'>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td><td style='text-align: center; word-wrap: break-word;'>The Law will never be perfect, but its application should be just this, is what we are missing, in my opinion &lt;pad&gt;</td></tr></table>",
+      "meta": {
+        "page_width": 1068,
+        "page_height": 1212
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

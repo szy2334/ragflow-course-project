@@ -126,6 +126,15 @@ class RagflowClient:
             data = data[0]
         return str(data["id"])
 
+    def delete_documents(self, dataset_id: str, document_ids: list[str]) -> None:
+        if not document_ids:
+            return
+        self.request(
+            "DELETE",
+            f"/datasets/{dataset_id}/documents",
+            json_body={"ids": document_ids},
+        )
+
     def update_document(
         self, dataset_id: str, document_id: str, meta_fields: dict[str, Any]
     ) -> None:
@@ -215,6 +224,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--timeout", type=float, default=300.0)
     parser.add_argument("--retries", type=int, default=5)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--replace-document",
+        action="store_true",
+        help="Delete the previously imported document for this paper before importing fresh chunks.",
+    )
     return parser.parse_args()
 
 
@@ -270,6 +284,16 @@ def main() -> int:
         "SELECT ragflow_document_id,status FROM documents WHERE paper_version_id=?",
         (paper_version_id,),
     ).fetchone()
+    if existing_document is not None and args.replace_document:
+        client.delete_documents(dataset_id, [str(existing_document[0])])
+        # State directories are paper-specific, so clearing these rows cannot
+        # affect another paper's document in the same RAGFlow dataset.
+        connection.execute("DELETE FROM chunks")
+        connection.execute(
+            "DELETE FROM documents WHERE paper_version_id=?", (paper_version_id,)
+        )
+        connection.commit()
+        existing_document = None
     if existing_document is None:
         ragflow_document_id = client.create_empty_document(
             dataset_id, str(manifest["document_name"])
@@ -352,8 +376,14 @@ def main() -> int:
                 connection.commit()
                 print(f"RAGFlow chunk {index}/{len(chunks)} failed: {exc}", file=sys.stderr)
                 continue
+        # This file is also the stable hand-off from the ingestion pipeline to
+        # the asynchronous AI retrieval adapter.  Keep enough provenance here
+        # to rebuild an EvidenceItem after RAGFlow returns only a chunk ID and
+        # content.  No secret or full chunk text is written to the mapping.
         mapping.append(
             {
+                "schema_version": "user_paper_ragflow_mapping_v2",
+                "user_id": args.user_id,
                 "source_chunk_id": source_chunk_id,
                 "ragflow_chunk_id": ragflow_chunk_id,
                 "paper_id": manifest["paper_id"],
@@ -363,6 +393,13 @@ def main() -> int:
                 "source_ref": metadata.get("source_ref"),
                 "content_type": metadata.get("content_type"),
                 "content_role": metadata.get("content_role"),
+                "section": metadata.get("section"),
+                "section_path": metadata.get("section_path"),
+                "page_start": metadata.get("page_start"),
+                "page_end": metadata.get("page_end"),
+                "object_id": metadata.get("object_id"),
+                "parent_chunk_id": metadata.get("parent_chunk_id"),
+                "quality_flags": metadata.get("quality_flags") or [],
             }
         )
         if index % 20 == 0 or index == len(chunks):
@@ -374,9 +411,11 @@ def main() -> int:
 
     write_jsonl(args.state_dir / "chunk_mapping.jsonl", mapping)
     summary = {
+        "mapping_schema_version": "user_paper_ragflow_mapping_v2",
         "dataset_id": dataset_id,
         "dataset_name": args.dataset_name,
         "document_id": ragflow_document_id,
+        "user_id": args.user_id,
         "paper_id": manifest["paper_id"],
         "paper_version_id": paper_version_id,
         "expected_chunks": len(chunks),

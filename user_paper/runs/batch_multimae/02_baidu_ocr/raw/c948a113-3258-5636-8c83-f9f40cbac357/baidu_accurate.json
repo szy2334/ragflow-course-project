@@ -1,0 +1,263 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9988334179,
+        "min": 0.9780114889,
+        "variance": 2.177985152e-05
+      },
+      "words": "MultiMAE pre-training"
+    },
+    {
+      "probability": {
+        "average": 0.9975399971,
+        "min": 0.9705294371,
+        "variance": 5.927814709e-05
+      },
+      "words": "Single-modal fine-tuning"
+    },
+    {
+      "probability": {
+        "average": 0.9733298421,
+        "min": 0.6074740291,
+        "variance": 0.009562843479
+      },
+      "words": "Original images"
+    },
+    {
+      "probability": {
+        "average": 0.999781549,
+        "min": 0.9981560111,
+        "variance": 2.139160244e-07
+      },
+      "words": "Selected input patches"
+    },
+    {
+      "probability": {
+        "average": 0.9987408519,
+        "min": 0.9848432541,
+        "variance": 1.513084135e-05
+      },
+      "words": "Masked targets"
+    },
+    {
+      "probability": {
+        "average": 0.9990047216,
+        "min": 0.9900480509,
+        "variance": 8.050128599e-06
+      },
+      "words": "Pre-trained"
+    },
+    {
+      "probability": {
+        "average": 0.9982390404,
+        "min": 0.9932697415,
+        "variance": 5.080502888e-06
+      },
+      "words": "Linear"
+    },
+    {
+      "probability": {
+        "average": 0.9979370236,
+        "min": 0.9936264753,
+        "variance": 4.792452273e-06
+      },
+      "words": "Task-"
+    },
+    {
+      "probability": {
+        "average": 0.9992862344,
+        "min": 0.9987072945,
+        "variance": 1.583070741e-07
+      },
+      "words": "Decoder"
+    },
+    {
+      "probability": {
+        "average": 0.9981172085,
+        "min": 0.9903123379,
+        "variance": 9.106186553e-06
+      },
+      "words": "MultiMAE"
+    },
+    {
+      "probability": {
+        "average": 0.8394554853,
+        "min": 0.8394554853,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.9682267308,
+        "min": 0.8535932302,
+        "variance": 0.00329011376
+      },
+      "words": "proj."
+    },
+    {
+      "probability": {
+        "average": 0.9481772184,
+        "min": 0.6743243933,
+        "variance": 0.0112647377
+      },
+      "words": "specific"
+    },
+    {
+      "probability": {
+        "average": 0.9995045066,
+        "min": 0.9970910549,
+        "variance": 9.742554994e-07
+      },
+      "words": "encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9978606105,
+        "min": 0.9886698723,
+        "variance": 1.45711183e-05
+      },
+      "words": "head(s)"
+    },
+    {
+      "probability": {
+        "average": 0.9980856776,
+        "min": 0.9774670005,
+        "variance": 3.399177149e-05
+      },
+      "words": "Multi-modal fine-tuning"
+    },
+    {
+      "probability": {
+        "average": 0.351987958,
+        "min": 0.351987958,
+        "variance": 0
+      },
+      "words": "ydaa"
+    },
+    {
+      "probability": {
+        "average": 0.9965599179,
+        "min": 0.9856040478,
+        "variance": 2.750071144e-05
+      },
+      "words": "Linear"
+    },
+    {
+      "probability": {
+        "average": 0.9997682571,
+        "min": 0.9990955591,
+        "variance": 8.95044252e-08
+      },
+      "words": "Transformer"
+    },
+    {
+      "probability": {
+        "average": 0.9990984201,
+        "min": 0.9950045943,
+        "variance": 2.854950026e-06
+      },
+      "words": "Decoder"
+    },
+    {
+      "probability": {
+        "average": 0.9870105982,
+        "min": 0.9468449354,
+        "variance": 0.0004090602451
+      },
+      "words": "proj."
+    },
+    {
+      "probability": {
+        "average": 0.9996493459,
+        "min": 0.9983335137,
+        "variance": 2.984254763e-07
+      },
+      "words": "encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9992204309,
+        "min": 0.9929528832,
+        "variance": 4.004500624e-06
+      },
+      "words": "Pre-trained"
+    },
+    {
+      "probability": {
+        "average": 0.9968364835,
+        "min": 0.9878715277,
+        "variance": 2.016794497e-05
+      },
+      "words": "Task-"
+    },
+    {
+      "probability": {
+        "average": 0.998028338,
+        "min": 0.9890881777,
+        "variance": 1.182708093e-05
+      },
+      "words": "MultiMAE"
+    },
+    {
+      "probability": {
+        "average": 0.9324673414,
+        "min": 0.5354352593,
+        "variance": 0.02294082008
+      },
+      "words": "specific"
+    },
+    {
+      "probability": {
+        "average": 0.9997421503,
+        "min": 0.9989709854,
+        "variance": 1.09404418e-07
+      },
+      "words": "encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9973349571,
+        "min": 0.9867924452,
+        "variance": 1.954048457e-05
+      },
+      "words": "head(s)"
+    },
+    {
+      "probability": {
+        "average": 0.3349659145,
+        "min": 0.3349659145,
+        "variance": 0
+      },
+      "words": "oquewas"
+    },
+    {
+      "probability": {
+        "average": 0.9969496131,
+        "min": 0.9888898134,
+        "variance": 1.742698259e-05
+      },
+      "words": "Linear"
+    },
+    {
+      "probability": {
+        "average": 0.9994664788,
+        "min": 0.9975862503,
+        "variance": 6.491085855e-07
+      },
+      "words": "Decoder"
+    },
+    {
+      "probability": {
+        "average": 0.9972859621,
+        "min": 0.9880372286,
+        "variance": 2.141928599e-05
+      },
+      "words": "proj."
+    }
+  ],
+  "words_result_num": 32,
+  "direction": 0,
+  "log_id": 2079048340258019234
+}

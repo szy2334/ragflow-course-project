@@ -1,0 +1,480 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 6
+            },
+            {
+              "x": 142,
+              "y": 6
+            },
+            {
+              "x": 142,
+              "y": 73
+            },
+            {
+              "x": 12,
+              "y": 72
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Methods"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 142,
+              "y": 6
+            },
+            {
+              "x": 213,
+              "y": 6
+            },
+            {
+              "x": 213,
+              "y": 73
+            },
+            {
+              "x": 142,
+              "y": 73
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "1/8"
+        },
+        {
+          "col_end": 6,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 213,
+              "y": 6
+            },
+            {
+              "x": 549,
+              "y": 6
+            },
+            {
+              "x": 549,
+              "y": 72
+            },
+            {
+              "x": 213,
+              "y": 72
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Color distortion strength\n1/4\n1/2\n1\n1(+Blur)"
+        },
+        {
+          "col_end": 7,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 549,
+              "y": 6
+            },
+            {
+              "x": 661,
+              "y": 6
+            },
+            {
+              "x": 661,
+              "y": 72
+            },
+            {
+              "x": 549,
+              "y": 72
+            }
+          ],
+          "row_start": 0,
+          "col_start": 6,
+          "words": "AutoAug"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 72
+            },
+            {
+              "x": 142,
+              "y": 73
+            },
+            {
+              "x": 142,
+              "y": 106
+            },
+            {
+              "x": 14,
+              "y": 106
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "SimCLR"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 142,
+              "y": 73
+            },
+            {
+              "x": 213,
+              "y": 73
+            },
+            {
+              "x": 213,
+              "y": 106
+            },
+            {
+              "x": 142,
+              "y": 106
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "59.6"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 213,
+              "y": 73
+            },
+            {
+              "x": 287,
+              "y": 73
+            },
+            {
+              "x": 287,
+              "y": 106
+            },
+            {
+              "x": 213,
+              "y": 106
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "61.0"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 287,
+              "y": 73
+            },
+            {
+              "x": 357,
+              "y": 72
+            },
+            {
+              "x": 357,
+              "y": 106
+            },
+            {
+              "x": 287,
+              "y": 106
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": "62.6"
+        },
+        {
+          "col_end": 5,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 357,
+              "y": 72
+            },
+            {
+              "x": 428,
+              "y": 72
+            },
+            {
+              "x": 428,
+              "y": 106
+            },
+            {
+              "x": 357,
+              "y": 106
+            }
+          ],
+          "row_start": 1,
+          "col_start": 4,
+          "words": "63.2"
+        },
+        {
+          "col_end": 6,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 428,
+              "y": 72
+            },
+            {
+              "x": 549,
+              "y": 72
+            },
+            {
+              "x": 549,
+              "y": 106
+            },
+            {
+              "x": 428,
+              "y": 106
+            }
+          ],
+          "row_start": 1,
+          "col_start": 5,
+          "words": "64.5"
+        },
+        {
+          "col_end": 7,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 549,
+              "y": 72
+            },
+            {
+              "x": 661,
+              "y": 72
+            },
+            {
+              "x": 661,
+              "y": 106
+            },
+            {
+              "x": 549,
+              "y": 106
+            }
+          ],
+          "row_start": 1,
+          "col_start": 6,
+          "words": "61.1"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 14,
+              "y": 106
+            },
+            {
+              "x": 142,
+              "y": 106
+            },
+            {
+              "x": 142,
+              "y": 135
+            },
+            {
+              "x": 16,
+              "y": 135
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Supervised"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 142,
+              "y": 106
+            },
+            {
+              "x": 213,
+              "y": 106
+            },
+            {
+              "x": 213,
+              "y": 135
+            },
+            {
+              "x": 142,
+              "y": 135
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "77.0"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 213,
+              "y": 106
+            },
+            {
+              "x": 287,
+              "y": 106
+            },
+            {
+              "x": 287,
+              "y": 135
+            },
+            {
+              "x": 213,
+              "y": 135
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "76.7"
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 287,
+              "y": 106
+            },
+            {
+              "x": 357,
+              "y": 106
+            },
+            {
+              "x": 357,
+              "y": 135
+            },
+            {
+              "x": 287,
+              "y": 135
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "76.5"
+        },
+        {
+          "col_end": 5,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 357,
+              "y": 106
+            },
+            {
+              "x": 428,
+              "y": 106
+            },
+            {
+              "x": 428,
+              "y": 135
+            },
+            {
+              "x": 357,
+              "y": 135
+            }
+          ],
+          "row_start": 2,
+          "col_start": 4,
+          "words": "75.7"
+        },
+        {
+          "col_end": 6,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 428,
+              "y": 106
+            },
+            {
+              "x": 549,
+              "y": 106
+            },
+            {
+              "x": 549,
+              "y": 135
+            },
+            {
+              "x": 428,
+              "y": 135
+            }
+          ],
+          "row_start": 2,
+          "col_start": 5,
+          "words": "75.4"
+        },
+        {
+          "col_end": 7,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 549,
+              "y": 106
+            },
+            {
+              "x": 661,
+              "y": 106
+            },
+            {
+              "x": 662,
+              "y": 135
+            },
+            {
+              "x": 549,
+              "y": 135
+            }
+          ],
+          "row_start": 2,
+          "col_start": 6,
+          "words": "77.1"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 9,
+          "y": 6
+        },
+        {
+          "x": 662,
+          "y": 6
+        },
+        {
+          "x": 662,
+          "y": 135
+        },
+        {
+          "x": 9,
+          "y": 135
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079045014879086866
+}

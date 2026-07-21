@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { AlertTriangle, BookOpen, CheckCircle2, ChevronRight, CircleStop, MessageCircleQuestion, Plus, SearchCheck, Send, Sparkles, X } from 'lucide-vue-next'
 import EvidenceCard from '@/components/EvidenceCard.vue'
 import AnswerContext from '@/components/AnswerContext.vue'
@@ -13,7 +13,6 @@ import type { AnswerDetailView, ChatSessionView, EvidenceItem } from '@/api/cont
 import { useWorkspaceStore } from '@/stores/workspace'
 
 const props = defineProps<{ sessionId: string }>()
-const route = useRoute()
 const router = useRouter()
 const workspace = useWorkspaceStore()
 const question = ref('')
@@ -28,12 +27,15 @@ const session = computed<ChatSessionView | undefined>(() => workspace.sessions.f
 const messages = computed(() => workspace.messagesBySession[props.sessionId] ?? [])
 const papers = computed(() => Object.values(workspace.papersById))
 const activeWorkflow = computed(() => activeTaskId.value ? workspace.workflows[activeTaskId.value] : null)
-const activeEvidences = computed(() => activeWorkflow.value?.completedAnswer?.evidences ?? activeWorkflow.value?.evidences ?? detail.value?.answer.evidences ?? [])
-const activeClaims = computed(() => activeWorkflow.value?.completedAnswer?.claims ?? detail.value?.answer.claims ?? [])
-const displayedAnswer = computed(() => activeWorkflow.value?.completedAnswer ?? detail.value?.answer ?? null)
-const reviewMode = computed(() => route.query.mode === 'review')
-const workspaceLabel = computed(() => reviewMode.value ? '论文审阅工作台' : '论文阅读工作台')
-const questionPlaceholder = computed(() => reviewMode.value ? '例如：这篇论文的实验设计是否足以支持结论？' : '例如：这个方法的核心创新是什么？')
+const latestStoredAnswer = computed(() => {
+  const completedMessage = [...messages.value].reverse().find((message) => message.answer)
+  return completedMessage?.answer ?? null
+})
+const activeEvidences = computed(() => activeWorkflow.value?.completedAnswer?.evidences ?? activeWorkflow.value?.evidences ?? detail.value?.answer.evidences ?? latestStoredAnswer.value?.evidences ?? [])
+const activeClaims = computed(() => activeWorkflow.value?.completedAnswer?.claims ?? detail.value?.answer.claims ?? latestStoredAnswer.value?.claims ?? [])
+const displayedAnswer = computed(() => activeWorkflow.value?.completedAnswer ?? detail.value?.answer ?? latestStoredAnswer.value)
+const workspaceLabel = '论文阅读工作台'
+const questionPlaceholder = '例如：这个方法的核心创新是什么？'
 
 async function load() {
   error.value = ''
@@ -102,14 +104,15 @@ onMounted(load)
     </aside>
 
     <main class="reading-center">
-      <header class="reader-titlebar"><div><p class="eyebrow">{{ workspaceLabel }}</p><h2>{{ reviewMode ? '原文结论与参考论文对照' : '原文与参考证据一同阅读' }}</h2></div><div class="scope-summary"><BookOpen :size="16" /><span>{{ selectedPaperIds.length }} 篇已选论文</span></div></header>
+      <header class="reader-titlebar"><div><p class="eyebrow">{{ workspaceLabel }}</p><h2>基于本地论文证据的阅读与问答</h2></div><div class="scope-summary"><BookOpen :size="16" /><span>{{ selectedPaperIds.length }} 篇已选论文</span></div></header>
       <p v-if="error" class="inline-error reader-error" role="alert">{{ error }}</p>
       <div ref="chatScroll" class="message-stream">
-        <div v-if="!messages.length && !activeWorkflow" class="chat-empty"><Sparkles :size="29" /><h3>{{ reviewMode ? '开始一次论文审阅' : '从论文中开始一个问题' }}</h3><p>{{ reviewMode ? '聚焦研究设计、实验充分性和结论边界。' : '聚焦研究问题、方法、实验与结论。' }}</p></div>
+        <div v-if="!messages.length && !activeWorkflow" class="chat-empty"><Sparkles :size="29" /><h3>从论文中开始一个问题</h3><p>聚焦研究问题、方法、实验与结论，并查看对应原文证据。</p></div>
         <article v-for="message in messages" :key="message.message_id" class="message" :class="message.role"><div class="message-avatar">{{ message.role === 'user' ? '你' : '知' }}</div><div class="message-body"><div class="message-meta"><span>{{ message.role === 'user' ? '你的问题' : '知阅助手' }}</span><span>{{ new Date(message.created_at).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) }}</span></div><p v-if="message.role === 'user'">{{ message.content }}</p><MarkdownContent v-else-if="message.content" :content="message.content" /><div v-else-if="message.task_id === activeTaskId" class="answer-pending"><span class="dot-loader"><i /><i /><i /></span>正在等待已核验的答案…</div><button v-if="message.role === 'assistant' && message.content" class="inspect-link" @click="inspectMessage(message.message_id)">查看引用与执行记录</button></div></article>
         <article v-if="activeWorkflow" class="message assistant live-answer"><div class="message-avatar">知</div><div class="message-body"><div class="message-meta"><span>知阅助手 · 实时回答</span><StatusPill :status="activeWorkflow.completedAnswer ? 'succeeded' : activeWorkflow.error ? 'failed' : 'running'" /></div><MarkdownContent v-if="activeWorkflow.text" :content="activeWorkflow.text" /><div v-else class="answer-pending"><span class="dot-loader"><i /><i /><i /></span>{{ activeWorkflow.phase }}</div><p v-if="activeWorkflow.completedAnswer?.is_refusal" class="refusal-note"><AlertTriangle :size="16" />{{ activeWorkflow.completedAnswer.refusal_reason || '现有论文证据不足，系统没有使用外部常识补答。' }}</p><p v-if="activeWorkflow.error" class="inline-error">{{ activeWorkflow.error }}</p></div></article>
       </div>
-      <form class="question-box" @submit.prevent="submit"><textarea v-model="question" rows="2" :disabled="sending" :placeholder="questionPlaceholder" @keydown.ctrl.enter="submit" /><div class="question-actions"><span class="shortcut-hint">{{ reviewMode ? '将检索固定参考论文库' : '将检索固定参考论文库' }}</span><span class="shortcut-hint">Ctrl + Enter 发送</span><button v-if="activeWorkflow && !activeWorkflow.completedAnswer && !activeWorkflow.error" type="button" class="stop-button" @click="stop"><CircleStop :size="17" />停止</button><button type="submit" class="send-button" :disabled="sending || !question.trim()"><Send :size="18" /><span>{{ sending ? '提交中' : '发送' }}</span></button></div></form>
+      <form class="question-box" @submit.prevent="submit"><textarea v-model="question" rows="2" :disabled="sending" :placeholder="questionPlaceholder" @keydown.ctrl.enter="submit" /><div class="question-actions"><span class="shortcut-hint">只检索当前选择的本地论文</span><span class="shortcut-hint">Ctrl + Enter 发送</span><button v-if="activeWorkflow && !activeWorkflow.completedAnswer && !activeWorkflow.error" type="button" class="stop-button" @click="stop"><CircleStop :size="17" />停止</button><button type="submit" class="send-button" :disabled="sending || !question.trim()"><Send :size="18" /><span>{{ sending ? '提交中' : '发送' }}</span></button></div></form>
+      <article v-if="!activeWorkflow && displayedAnswer" class="message assistant persisted-answer"><div class="message-avatar">知</div><div class="message-body"><div class="message-meta"><span>知阅助手</span><span>{{ new Date(displayedAnswer.completed_at).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) }}</span></div><MarkdownContent :content="displayedAnswer.answer" /><button class="inspect-link" @click="inspectMessage(displayedAnswer.message_id)">查看引用与执行记录</button></div></article>
     </main>
 
     <aside class="reading-right">

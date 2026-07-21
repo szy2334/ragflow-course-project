@@ -1,0 +1,76 @@
+{
+  "file_name": "3fc73f23b5d8402df236f9c4cbe4c3ebff3438c363dfffd83aa89df598a3e492.jpg",
+  "file_id": "file-h5piUkdo7oUAEhLyOd5xMS7X2sL2QjDw",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "AjBECV-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "AjBECV-layout-1",
+          "text": "",
+          "position": [
+            3,
+            2,
+            465,
+            412
+          ],
+          "polygon": [
+            [
+              3,
+              2
+            ],
+            [
+              468,
+              2
+            ],
+            [
+              468,
+              414
+            ],
+            [
+              3,
+              414
+            ]
+          ],
+          "type": "image",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        }
+      ],
+      "images": [
+        {
+          "layout_id": "AjBECV-layout-1",
+          "image_title_id": null,
+          "position": [
+            3,
+            2,
+            465,
+            412
+          ],
+          "content_layouts": [],
+          "data": "",
+          "data_url": "<temporary-url-redacted>",
+          "image_description": ""
+        }
+      ],
+      "inner_images": {},
+      "tables": [],
+      "text": "",
+      "markdown": "<div style=\"text-align: center;\"><img src=\"<temporary-url-redacted>\" alt=\"Image\" width=\"99%\" /></div>\n",
+      "meta": {
+        "page_width": 468,
+        "page_height": 420
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

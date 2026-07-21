@@ -1,0 +1,143 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.8183671832,
+        "min": 0.3741278946,
+        "variance": 0.03323268518
+      },
+      "words": "layer mdex (ongmal)"
+    },
+    {
+      "probability": {
+        "average": 0.9997939467,
+        "min": 0.9997939467,
+        "variance": 0
+      },
+      "words": "3"
+    },
+    {
+      "probability": {
+        "average": 0.9996342063,
+        "min": 0.9990513921,
+        "variance": 9.387733257e-08
+      },
+      "words": "plain-20"
+    },
+    {
+      "probability": {
+        "average": 0.9993881583,
+        "min": 0.9973498583,
+        "variance": 6.53147481e-07
+      },
+      "words": "plain-56"
+    },
+    {
+      "probability": {
+        "average": 0.9977200031,
+        "min": 0.9914078116,
+        "variance": 7.770233424e-06
+      },
+      "words": "ResNet-20"
+    },
+    {
+      "probability": {
+        "average": 0.9379273057,
+        "min": 0.9379273057,
+        "variance": 0
+      },
+      "words": "号"
+    },
+    {
+      "probability": {
+        "average": 0.9997465014,
+        "min": 0.9997465014,
+        "variance": 0
+      },
+      "words": "2"
+    },
+    {
+      "probability": {
+        "average": 0.9974978566,
+        "min": 0.989391923,
+        "variance": 1.254350627e-05
+      },
+      "words": "ResNet-56"
+    },
+    {
+      "probability": {
+        "average": 0.996040225,
+        "min": 0.9853876233,
+        "variance": 1.548710134e-05
+      },
+      "words": "ResNet-110"
+    },
+    {
+      "probability": {
+        "average": 0.9944662452,
+        "min": 0.9944662452,
+        "variance": 0
+      },
+      "words": "1"
+    },
+    {
+      "probability": {
+        "average": 0.9982081652,
+        "min": 0.9982081652,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9998458624,
+        "min": 0.9997145534,
+        "variance": 1.723423715e-08
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9996748567,
+        "min": 0.9993948936,
+        "variance": 7.837928706e-08
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9998723269,
+        "min": 0.9998350143,
+        "variance": 1.392223226e-09
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9994511008,
+        "min": 0.9994039536,
+        "variance": 2.222865447e-09
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9995619655,
+        "min": 0.9992812276,
+        "variance": 4.109361385e-08
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9884761572,
+        "min": 0.6459922791,
+        "variance": 0.003667683341
+      },
+      "words": "laver index (sorted by magnitude)"
+    }
+  ],
+  "words_result_num": 17,
+  "direction": 0,
+  "log_id": 2079044969778466493
+}

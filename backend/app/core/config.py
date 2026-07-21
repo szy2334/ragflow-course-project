@@ -6,8 +6,9 @@ in-memory event store, while production requires PostgreSQL and Redis.
 
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
-from pydantic import SecretStr, field_validator
+from pydantic import AliasChoices, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -26,24 +27,38 @@ class Settings(BaseSettings):
     cors_origins: list[str] = ["http://localhost:5173"]
     max_upload_mb: int = 50
     object_storage_path: Path = Path("./var/uploads")
+    # Read-only source for preprocessed reference-paper artifacts.  Keep it
+    # separate from user uploads, which remain ownership-scoped above.
+    user_paper_root: Path | None = None
     ragflow_base_url: str | None = None
     ragflow_api_key: SecretStr | None = None
-    ragflow_reference_dataset_id: str | None = None
-    # Backward compatibility for deployments configured before user PDFs stopped being indexed.
-    ragflow_user_dataset_id: str | None = None
-    ragflow_public_dataset_id: str | None = None
     mineru_base_url: str | None = None
-    mineru_api_key: SecretStr | None = None
+    # MinerU names this credential MINERU_TOKEN; accept the legacy API-key
+    # spelling as well so deployments do not need to duplicate a secret.
+    mineru_api_key: SecretStr | None = Field(
+        default=None, validation_alias=AliasChoices("MINERU_TOKEN", "MINERU_API_KEY")
+    )
     baidu_ocr_base_url: str | None = None
     baidu_ocr_api_key: SecretStr | None = None
+    baidu_ocr_secret_key: SecretStr | None = None
+    baidu_ocr_token_url: str = "https://aip.baidubce.com/oauth/2.0/token"
+    baidu_ocr_accurate_url: str = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"
+    baidu_ocr_table_url: str = "https://aip.baidubce.com/rest/2.0/ocr/v1/table"
+    baidu_ocr_paddle_task_url: str = (
+        "https://aip.baidubce.com/rest/2.0/brain/online/v2/paddle-vl-parser/task"
+    )
+    baidu_ocr_paddle_query_url: str = (
+        "https://aip.baidubce.com/rest/2.0/brain/online/v2/paddle-vl-parser/task/query"
+    )
     llm_base_url: str | None = None
     llm_api_key: SecretStr | None = None
     llm_model: str = ""
+    llm_timeout_seconds: float = Field(default=120.0, gt=0, le=300)
+    llm_structured_mode: Literal["json_schema", "json_object"] = "json_schema"
     model_config_version: str = "env-v1"
     graph_version: str = "1.0"
     prompt_version: str = "v1"
     schema_version: str = "v1"
-    standard_version: str | None = None
 
     @field_validator("cors_origins", mode="before")
     @classmethod
@@ -57,8 +72,10 @@ class Settings(BaseSettings):
         return self.app_env.lower() in {"production", "prod"}
 
     @property
-    def ragflow_reference_dataset(self) -> str | None:
-        return self.ragflow_reference_dataset_id or self.ragflow_user_dataset_id
+    def user_paper_runs_path(self) -> Path | None:
+        if self.user_paper_root is None:
+            return None
+        return self.user_paper_root.resolve() / "runs"
 
     def validate_runtime(self) -> None:
         if self.is_production and not self.database_url.startswith("postgresql+"):

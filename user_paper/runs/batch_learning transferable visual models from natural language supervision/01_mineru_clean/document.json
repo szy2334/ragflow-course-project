@@ -1,0 +1,23 @@
+{
+  "schema_version": "paper_document_v1",
+  "paper_id": "67d77cb6-0d9c-5469-8cdf-319fe8ad9365",
+  "paper_version_id": "c75749a1-588b-57be-b6f5-b500c36f9782",
+  "file_name": "Learning Transferable Visual Models From Natural Language Supervision.pdf",
+  "file_path": "D:\\JIXUN\\document_pdf\\Learning Transferable Visual Models From Natural Language Supervision.pdf",
+  "file_sha256": "6478b6e571a7d6fcd846d8ef77bfd60c285f1986abb8f475eedc43de403074f5",
+  "title": "Learning Transferable Visual Models From Natural Language Supervision",
+  "parser_name": "mineru",
+  "parser_version": "3.4.0",
+  "cleaning_version": "user_paper_pipeline_v1",
+  "mineru_export_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_learning transferable visual models from natural language supervision\\01_mineru_clean\\raw_mineru\\extracted",
+  "mineru_metadata": {
+    "backend": "hybrid",
+    "effort": "medium",
+    "ocr_enabled": true,
+    "version": "3.4.0"
+  },
+  "block_count": 629,
+  "media_count": 45,
+  "recovered_references": 0,
+  "created_at": "2026-07-20T03:31:38.975524+00:00"
+}

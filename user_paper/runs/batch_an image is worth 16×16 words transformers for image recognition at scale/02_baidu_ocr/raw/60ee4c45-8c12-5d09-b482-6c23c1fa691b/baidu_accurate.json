@@ -1,0 +1,207 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9991899729,
+        "min": 0.9932437539,
+        "variance": 2.257544338e-06
+      },
+      "words": "Vision Transformer(ViT)"
+    },
+    {
+      "probability": {
+        "average": 0.9992382526,
+        "min": 0.9901149273,
+        "variance": 4.708347205e-06
+      },
+      "words": "Transformer Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9989001155,
+        "min": 0.9971932769,
+        "variance": 1.233768444e-06
+      },
+      "words": "Class"
+    },
+    {
+      "probability": {
+        "average": 0.8034948111,
+        "min": 0.6072804332,
+        "variance": 0.03850008175
+      },
+      "words": "Lx"
+    },
+    {
+      "probability": {
+        "average": 0.9993053079,
+        "min": 0.9987735152,
+        "variance": 1.280922106e-07
+      },
+      "words": "Bird"
+    },
+    {
+      "probability": {
+        "average": 0.9996523857,
+        "min": 0.9995036125,
+        "variance": 1.219631596e-08
+      },
+      "words": "MLP"
+    },
+    {
+      "probability": {
+        "average": 0.9951987863,
+        "min": 0.9951987863,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9986042976,
+        "min": 0.9974092841,
+        "variance": 9.952940445e-07
+      },
+      "words": "Ball"
+    },
+    {
+      "probability": {
+        "average": 0.9995166659,
+        "min": 0.9982315898,
+        "variance": 5.505084459e-07
+      },
+      "words": "Head"
+    },
+    {
+      "probability": {
+        "average": 0.9988193512,
+        "min": 0.9982129335,
+        "variance": 4.036639041e-07
+      },
+      "words": "Car"
+    },
+    {
+      "probability": {
+        "average": 0.999499619,
+        "min": 0.9993422627,
+        "variance": 3.939715398e-08
+      },
+      "words": "MLP"
+    },
+    {
+      "probability": {
+        "average": 0.999676466,
+        "min": 0.9990673661,
+        "variance": 1.282982112e-07
+      },
+      "words": "Norm"
+    },
+    {
+      "probability": {
+        "average": 0.9997118711,
+        "min": 0.9964466691,
+        "variance": 6.404166015e-07
+      },
+      "words": "Transformer Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9943954945,
+        "min": 0.9943954945,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9989471436,
+        "min": 0.9934790134,
+        "variance": 4.099488706e-06
+      },
+      "words": "Patch+Position"
+    },
+    {
+      "probability": {
+        "average": 0.9992551804,
+        "min": 0.9948790073,
+        "variance": 2.305059525e-06
+      },
+      "words": "Multi-Head"
+    },
+    {
+      "probability": {
+        "average": 0.9997625351,
+        "min": 0.9980822802,
+        "variance": 3.53002946e-07
+      },
+      "words": "Embedding"
+    },
+    {
+      "probability": {
+        "average": 0.9939252734,
+        "min": 0.9939252734,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9989498854,
+        "min": 0.991086781,
+        "variance": 7.732303857e-06
+      },
+      "words": "Attention"
+    },
+    {
+      "probability": {
+        "average": 0.9985086322,
+        "min": 0.9822744131,
+        "variance": 1.789886664e-05
+      },
+      "words": "*Extra learnable"
+    },
+    {
+      "probability": {
+        "average": 0.9994668365,
+        "min": 0.9971741438,
+        "variance": 7.446653285e-07
+      },
+      "words": "[class]embedding"
+    },
+    {
+      "probability": {
+        "average": 0.9997652769,
+        "min": 0.9960641265,
+        "variance": 3.89855245e-07
+      },
+      "words": "Linear Projection of Flattened Patches"
+    },
+    {
+      "probability": {
+        "average": 0.9996623993,
+        "min": 0.9989913106,
+        "variance": 1.548218904e-07
+      },
+      "words": "Norm"
+    },
+    {
+      "probability": {
+        "average": 0.9984534979,
+        "min": 0.9877530336,
+        "variance": 1.6357606e-05
+      },
+      "words": "Embedded"
+    },
+    {
+      "probability": {
+        "average": 0.9993391037,
+        "min": 0.9961367249,
+        "variance": 1.740885978e-06
+      },
+      "words": "Patches"
+    }
+  ],
+  "words_result_num": 25,
+  "direction": 0,
+  "log_id": 2079043148647093720
+}

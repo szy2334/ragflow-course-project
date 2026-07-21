@@ -1,0 +1,23 @@
+{
+  "schema_version": "paper_document_v1",
+  "paper_id": "9a50f82e-1a23-5e3d-bbe2-609425b16941",
+  "paper_version_id": "6385c6fc-9606-512a-a395-3f92dc1d8651",
+  "file_name": "chen20j.pdf",
+  "file_path": "D:\\JIXUN\\document_pdf\\chen20j.pdf",
+  "file_sha256": "cc620e511bafe8b4b11ca3415f6d7bcf127a05818087bfa49905de3a2e50bc2d",
+  "title": "A Simple Framework for Contrastive Learning of Visual Representations",
+  "parser_name": "mineru",
+  "parser_version": "3.4.0",
+  "cleaning_version": "user_paper_pipeline_v1",
+  "mineru_export_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_chen20j\\01_mineru_clean\\raw_mineru\\extracted",
+  "mineru_metadata": {
+    "backend": "hybrid",
+    "effort": "medium",
+    "ocr_enabled": true,
+    "version": "3.4.0"
+  },
+  "block_count": 184,
+  "media_count": 27,
+  "recovered_references": 0,
+  "created_at": "2026-07-20T03:24:41.744599+00:00"
+}

@@ -1,0 +1,191 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9983410835,
+        "min": 0.9891154766,
+        "variance": 1.250343939e-05
+      },
+      "words": "Original"
+    },
+    {
+      "probability": {
+        "average": 0.9997885823,
+        "min": 0.9987911582,
+        "variance": 1.992930265e-07
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9998757839,
+        "min": 0.9989197254,
+        "variance": 9.177276183e-08
+      },
+      "words": "Predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9993767738,
+        "min": 0.9964446425,
+        "variance": 1.723127411e-06
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9998366833,
+        "min": 0.9991220832,
+        "variance": 8.41363601e-08
+      },
+      "words": "Predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9995205998,
+        "min": 0.9972403049,
+        "variance": 1.041301971e-06
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9998479486,
+        "min": 0.9987276196,
+        "variance": 1.261446272e-07
+      },
+      "words": "Predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9978160262,
+        "min": 0.9853377342,
+        "variance": 2.269376637e-05
+      },
+      "words": "Original"
+    },
+    {
+      "probability": {
+        "average": 0.9994294643,
+        "min": 0.9967854023,
+        "variance": 1.402555995e-06
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9998207092,
+        "min": 0.9983937144,
+        "variance": 2.041943787e-07
+      },
+      "words": "Predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9996015429,
+        "min": 0.9977663755,
+        "variance": 6.760365068e-07
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9998584986,
+        "min": 0.998829782,
+        "variance": 1.063841353e-07
+      },
+      "words": "Predictions"
+    },
+    {
+      "probability": {
+        "average": 0.999587059,
+        "min": 0.9976160526,
+        "variance": 7.777389328e-07
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9998115301,
+        "min": 0.9983920455,
+        "variance": 2.026367696e-07
+      },
+      "words": "Predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9996851087,
+        "min": 0.9984160662,
+        "variance": 3.247417624e-07
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9997200966,
+        "min": 0.9985848665,
+        "variance": 2.603452742e-07
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9996557236,
+        "min": 0.9982481003,
+        "variance": 4.003854883e-07
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.999535501,
+        "min": 0.9978287816,
+        "variance": 6.012621157e-07
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9998357892,
+        "min": 0.9992066026,
+        "variance": 8.0016612e-08
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9998746514,
+        "min": 0.9994226694,
+        "variance": 4.180682822e-08
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.07935288548,
+        "min": 0.07935288548,
+        "variance": 0
+      },
+      "words": "yada0"
+    },
+    {
+      "probability": {
+        "average": 0.6170346737,
+        "min": 0.6170346737,
+        "variance": 0
+      },
+      "words": "oquewas"
+    },
+    {
+      "probability": {
+        "average": 0.5237168074,
+        "min": 0.5237168074,
+        "variance": 0
+      },
+      "words": "oquewas"
+    }
+  ],
+  "words_result_num": 23,
+  "direction": 0,
+  "log_id": 2079048343208903846
+}

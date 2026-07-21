@@ -1,0 +1,255 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 6
+            },
+            {
+              "x": 175,
+              "y": 6
+            },
+            {
+              "x": 175,
+              "y": 39
+            },
+            {
+              "x": 5,
+              "y": 39
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "training data"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 175,
+              "y": 6
+            },
+            {
+              "x": 344,
+              "y": 6
+            },
+            {
+              "x": 344,
+              "y": 39
+            },
+            {
+              "x": 175,
+              "y": 39
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "07+12"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 344,
+              "y": 6
+            },
+            {
+              "x": 506,
+              "y": 6
+            },
+            {
+              "x": 506,
+              "y": 39
+            },
+            {
+              "x": 344,
+              "y": 39
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "07++12"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 39
+            },
+            {
+              "x": 175,
+              "y": 39
+            },
+            {
+              "x": 175,
+              "y": 73
+            },
+            {
+              "x": 5,
+              "y": 73
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "test data"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 175,
+              "y": 39
+            },
+            {
+              "x": 344,
+              "y": 39
+            },
+            {
+              "x": 344,
+              "y": 73
+            },
+            {
+              "x": 175,
+              "y": 73
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "VOC 07 test"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 344,
+              "y": 39
+            },
+            {
+              "x": 506,
+              "y": 39
+            },
+            {
+              "x": 506,
+              "y": 73
+            },
+            {
+              "x": 344,
+              "y": 73
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "VOC 12 test"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 73
+            },
+            {
+              "x": 175,
+              "y": 73
+            },
+            {
+              "x": 175,
+              "y": 133
+            },
+            {
+              "x": 5,
+              "y": 133
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "VGG-16\nResNet-101"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 175,
+              "y": 73
+            },
+            {
+              "x": 344,
+              "y": 73
+            },
+            {
+              "x": 344,
+              "y": 133
+            },
+            {
+              "x": 175,
+              "y": 133
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "73.2\n76.4"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 344,
+              "y": 73
+            },
+            {
+              "x": 506,
+              "y": 73
+            },
+            {
+              "x": 506,
+              "y": 134
+            },
+            {
+              "x": 344,
+              "y": 133
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "70.4\n73.8"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 5,
+          "y": 6
+        },
+        {
+          "x": 506,
+          "y": 6
+        },
+        {
+          "x": 506,
+          "y": 134
+        },
+        {
+          "x": 5,
+          "y": 134
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079044982598368003
+}

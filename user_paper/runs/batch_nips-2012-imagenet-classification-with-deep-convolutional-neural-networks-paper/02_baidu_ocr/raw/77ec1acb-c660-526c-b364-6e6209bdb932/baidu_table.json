@@ -1,0 +1,630 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 8
+            },
+            {
+              "x": 211,
+              "y": 8
+            },
+            {
+              "x": 211,
+              "y": 42
+            },
+            {
+              "x": 4,
+              "y": 42
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Model"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 211,
+              "y": 8
+            },
+            {
+              "x": 374,
+              "y": 8
+            },
+            {
+              "x": 374,
+              "y": 42
+            },
+            {
+              "x": 211,
+              "y": 42
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Top-1(val)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 374,
+              "y": 8
+            },
+            {
+              "x": 535,
+              "y": 8
+            },
+            {
+              "x": 535,
+              "y": 42
+            },
+            {
+              "x": 374,
+              "y": 42
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Top-5(val)"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 535,
+              "y": 8
+            },
+            {
+              "x": 698,
+              "y": 8
+            },
+            {
+              "x": 698,
+              "y": 42
+            },
+            {
+              "x": 535,
+              "y": 42
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "Top-5(test)"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 42
+            },
+            {
+              "x": 211,
+              "y": 42
+            },
+            {
+              "x": 211,
+              "y": 76
+            },
+            {
+              "x": 4,
+              "y": 76
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "SIFT + FVs [7]"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 211,
+              "y": 42
+            },
+            {
+              "x": 374,
+              "y": 42
+            },
+            {
+              "x": 374,
+              "y": 76
+            },
+            {
+              "x": 211,
+              "y": 76
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 374,
+              "y": 42
+            },
+            {
+              "x": 535,
+              "y": 42
+            },
+            {
+              "x": 535,
+              "y": 76
+            },
+            {
+              "x": 374,
+              "y": 76
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 535,
+              "y": 42
+            },
+            {
+              "x": 698,
+              "y": 42
+            },
+            {
+              "x": 698,
+              "y": 76
+            },
+            {
+              "x": 535,
+              "y": 76
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": "26.2%"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 76
+            },
+            {
+              "x": 211,
+              "y": 76
+            },
+            {
+              "x": 211,
+              "y": 108
+            },
+            {
+              "x": 4,
+              "y": 108
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "1 CNN"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 211,
+              "y": 76
+            },
+            {
+              "x": 374,
+              "y": 76
+            },
+            {
+              "x": 374,
+              "y": 108
+            },
+            {
+              "x": 211,
+              "y": 108
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "40.7%"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 374,
+              "y": 76
+            },
+            {
+              "x": 535,
+              "y": 76
+            },
+            {
+              "x": 535,
+              "y": 108
+            },
+            {
+              "x": 374,
+              "y": 108
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "18.2%"
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 535,
+              "y": 76
+            },
+            {
+              "x": 698,
+              "y": 76
+            },
+            {
+              "x": 698,
+              "y": 108
+            },
+            {
+              "x": 535,
+              "y": 108
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 108
+            },
+            {
+              "x": 211,
+              "y": 108
+            },
+            {
+              "x": 211,
+              "y": 140
+            },
+            {
+              "x": 4,
+              "y": 140
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "5 CNNs"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 211,
+              "y": 108
+            },
+            {
+              "x": 374,
+              "y": 108
+            },
+            {
+              "x": 374,
+              "y": 140
+            },
+            {
+              "x": 211,
+              "y": 140
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "38.1%"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 374,
+              "y": 108
+            },
+            {
+              "x": 535,
+              "y": 108
+            },
+            {
+              "x": 535,
+              "y": 140
+            },
+            {
+              "x": 374,
+              "y": 140
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "16.4%"
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 535,
+              "y": 108
+            },
+            {
+              "x": 698,
+              "y": 108
+            },
+            {
+              "x": 698,
+              "y": 140
+            },
+            {
+              "x": 535,
+              "y": 140
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "16.4%"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 140
+            },
+            {
+              "x": 211,
+              "y": 140
+            },
+            {
+              "x": 211,
+              "y": 171
+            },
+            {
+              "x": 4,
+              "y": 171
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "1 CNN*"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 211,
+              "y": 140
+            },
+            {
+              "x": 374,
+              "y": 140
+            },
+            {
+              "x": 374,
+              "y": 171
+            },
+            {
+              "x": 211,
+              "y": 171
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "39.0%"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 374,
+              "y": 140
+            },
+            {
+              "x": 535,
+              "y": 140
+            },
+            {
+              "x": 535,
+              "y": 171
+            },
+            {
+              "x": 374,
+              "y": 171
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "16.6%"
+        },
+        {
+          "col_end": 4,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 535,
+              "y": 140
+            },
+            {
+              "x": 698,
+              "y": 140
+            },
+            {
+              "x": 698,
+              "y": 171
+            },
+            {
+              "x": 535,
+              "y": 171
+            }
+          ],
+          "row_start": 4,
+          "col_start": 3,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 171
+            },
+            {
+              "x": 211,
+              "y": 171
+            },
+            {
+              "x": 211,
+              "y": 200
+            },
+            {
+              "x": 4,
+              "y": 200
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "7 CNNs*"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 211,
+              "y": 171
+            },
+            {
+              "x": 374,
+              "y": 171
+            },
+            {
+              "x": 374,
+              "y": 201
+            },
+            {
+              "x": 211,
+              "y": 200
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "36.7%"
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 374,
+              "y": 171
+            },
+            {
+              "x": 535,
+              "y": 171
+            },
+            {
+              "x": 535,
+              "y": 201
+            },
+            {
+              "x": 374,
+              "y": 201
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": "15.4%"
+        },
+        {
+          "col_end": 4,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 535,
+              "y": 171
+            },
+            {
+              "x": 698,
+              "y": 171
+            },
+            {
+              "x": 698,
+              "y": 201
+            },
+            {
+              "x": 535,
+              "y": 201
+            }
+          ],
+          "row_start": 5,
+          "col_start": 3,
+          "words": "15.3%"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 4,
+          "y": 8
+        },
+        {
+          "x": 698,
+          "y": 8
+        },
+        {
+          "x": 698,
+          "y": 201
+        },
+        {
+          "x": 4,
+          "y": 201
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079049152733481494
+}

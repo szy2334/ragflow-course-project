@@ -190,7 +190,7 @@ class SqlAlchemyAnswerPersistence(AnswerPersistencePort):
 
 
 class RagFlowRetrievalPort:
-    """Local user-paper evidence plus on-demand fixed RAGFlow reference retrieval."""
+    """Local user-paper retrieval for the non-evaluative reading workflow."""
 
     def __init__(self, settings: Settings, sessions: async_sessionmaker[AsyncSession]) -> None:
         self._settings = settings
@@ -251,7 +251,11 @@ class RagFlowRetrievalPort:
                 paper_id=item.paper_id,
                 document_id=f"local:{item.paper_id}",
                 chunk_id=item.chunk_id,
-                content_type=item.content_type,
+                # second_clean preserves finer source types (for example
+                # ``abstract`` and ``chart``), while the public evidence
+                # contract uses a compact stable enum.  Normalize at this
+                # boundary and keep the original type in metadata.
+                content_type=_evidence_content_type(item.content_type),
                 quote=item.content,
                 section_title=item.section_title or None,
                 page_number=item.page_number,
@@ -260,33 +264,20 @@ class RagFlowRetrievalPort:
                 content_role=item.content_role,
                 object_id=item.object_id,
                 parent_chunk_id=item.parent_chunk_id,
-                metadata=item.metadata_json,
+                metadata={
+                    **(item.metadata_json or {}),
+                    "source_content_type": item.content_type,
+                },
             )
             for index, item in enumerate(ranked[:limit], start=1)
         ]
         return EvidenceSet(items=items, query=request.standalone_question, relaxed=request.relaxed)
 
     async def retrieve_standards(self, request: RetrieveStandardsRequest) -> EvidenceSet:
-        dataset_id = self._settings.ragflow_reference_dataset
-        if not dataset_id:
-            return EvidenceSet(
-                items=[],
-                query=request.standalone_question,
-                warnings=["reference paper knowledge base is not configured"],
-            )
-        raw = await self._retrieve(request.standalone_question, [dataset_id], [], False)
-        items = self._normalize(raw, source_type="standard", paper_by_document={})
-        for item in items:
-            item.metadata.update(
-                {
-                    "knowledge_base": "user_paper",
-                    "evidence_role": "reference_paper",
-                    "name": item.metadata.get("name") or item.section_title or "参考论文",
-                }
-            )
         return EvidenceSet(
-            items=items,
+            items=[],
             query=request.standalone_question,
+            warnings=["reading workflow does not retrieve format standards"],
         )
 
     async def _retrieve(
@@ -301,9 +292,10 @@ class RagFlowRetrievalPort:
             "top_k": 12 if relaxed else 6,
         }
         headers = {"Authorization": f"Bearer {self._settings.ragflow_api_key.get_secret_value()}"}
-        url = self._settings.ragflow_base_url.rstrip("/") + "/api/v1/retrieval"
+        url = _ragflow_endpoint(self._settings.ragflow_base_url, "retrieval")
         try:
-            async with httpx.AsyncClient(timeout=20) as client:
+            # Local RAGFlow must bypass a machine-level HTTP proxy.
+            async with httpx.AsyncClient(timeout=20, trust_env=False) as client:
                 response = await client.post(url, json=payload, headers=headers)
                 response.raise_for_status()
                 body = response.json()
@@ -324,17 +316,7 @@ class RagFlowRetrievalPort:
             content = str(chunk.get("content") or chunk.get("text") or "").strip()
             if not document_id or not content:
                 continue
-            content_type = str(metadata.get("content_type") or "text")
-            if content_type not in {
-                "text",
-                "figure",
-                "figure_caption",
-                "table",
-                "formula",
-                "metadata",
-                "reference",
-            }:
-                content_type = "text"
+            content_type = _evidence_content_type(str(metadata.get("content_type") or "text"))
             score = chunk.get("score", chunk.get("similarity", 0.0))
             try:
                 score = max(float(score), 0.0)
@@ -376,6 +358,18 @@ def _positive_int(value: Any) -> int | None:
         return None
 
 
+def _evidence_content_type(value: str) -> str:
+    """Map second-clean detail types onto the stable public evidence enum."""
+
+    if value in {"text", "figure", "figure_caption", "table", "formula", "metadata", "reference"}:
+        return value
+    if value in {"image", "chart"}:
+        return "figure"
+    # ``abstract``, ``heading`` and parser-specific prose are still text for
+    # retrieval purposes; their richer original type stays in metadata.
+    return "text"
+
+
 def _local_relevance(content: str, question: str) -> float:
     latin_terms = set(re.findall(r"[a-z0-9_]{2,}", question.lower()))
     chinese_terms = set(re.findall(r"[\u4e00-\u9fff]", question))
@@ -402,6 +396,15 @@ def _stage_progress(stage: str) -> float:
         "completed": 1.0,
     }
     return stages.get(stage, 0.0)
+
+
+def _ragflow_endpoint(base_url: str, resource: str) -> str:
+    """Accept either a RAGFlow host root or an already versioned API root."""
+
+    root = base_url.rstrip("/")
+    if not root.endswith("/api/v1"):
+        root = f"{root}/api/v1"
+    return f"{root}/{resource.lstrip('/')}"
 
 
 def task_view(task: TaskRecord) -> dict[str, Any]:

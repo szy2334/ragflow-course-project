@@ -1,0 +1,1605 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 14,
+              "y": 9
+            },
+            {
+              "x": 285,
+              "y": 9
+            },
+            {
+              "x": 285,
+              "y": 104
+            },
+            {
+              "x": 14,
+              "y": 104
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Method"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 285,
+              "y": 9
+            },
+            {
+              "x": 476,
+              "y": 9
+            },
+            {
+              "x": 476,
+              "y": 104
+            },
+            {
+              "x": 285,
+              "y": 104
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Architecture"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 475,
+              "y": 8
+            },
+            {
+              "x": 634,
+              "y": 8
+            },
+            {
+              "x": 634,
+              "y": 103
+            },
+            {
+              "x": 475,
+              "y": 103
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Label fraction\n1%\n10%\nTop 5"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 14,
+              "y": 104
+            },
+            {
+              "x": 285,
+              "y": 104
+            },
+            {
+              "x": 285,
+              "y": 145
+            },
+            {
+              "x": 15,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Supervised baseline"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 285,
+              "y": 104
+            },
+            {
+              "x": 476,
+              "y": 104
+            },
+            {
+              "x": 476,
+              "y": 145
+            },
+            {
+              "x": 285,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "ResNet-50"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 476,
+              "y": 104
+            },
+            {
+              "x": 560,
+              "y": 104
+            },
+            {
+              "x": 560,
+              "y": 145
+            },
+            {
+              "x": 476,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "48.4"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 560,
+              "y": 104
+            },
+            {
+              "x": 634,
+              "y": 104
+            },
+            {
+              "x": 634,
+              "y": 145
+            },
+            {
+              "x": 560,
+              "y": 145
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": "80.4"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 15,
+              "y": 145
+            },
+            {
+              "x": 285,
+              "y": 145
+            },
+            {
+              "x": 285,
+              "y": 178
+            },
+            {
+              "x": 15,
+              "y": 178
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Methods using other label-"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 285,
+              "y": 145
+            },
+            {
+              "x": 476,
+              "y": 145
+            },
+            {
+              "x": 476,
+              "y": 178
+            },
+            {
+              "x": 285,
+              "y": 178
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "propagation:"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 476,
+              "y": 145
+            },
+            {
+              "x": 560,
+              "y": 145
+            },
+            {
+              "x": 560,
+              "y": 178
+            },
+            {
+              "x": 476,
+              "y": 178
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 560,
+              "y": 145
+            },
+            {
+              "x": 634,
+              "y": 145
+            },
+            {
+              "x": 634,
+              "y": 178
+            },
+            {
+              "x": 560,
+              "y": 178
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 15,
+              "y": 178
+            },
+            {
+              "x": 285,
+              "y": 178
+            },
+            {
+              "x": 285,
+              "y": 206
+            },
+            {
+              "x": 16,
+              "y": 206
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "Pseudo-label"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 285,
+              "y": 178
+            },
+            {
+              "x": 476,
+              "y": 178
+            },
+            {
+              "x": 476,
+              "y": 206
+            },
+            {
+              "x": 285,
+              "y": 206
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "ResNet-50"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 476,
+              "y": 178
+            },
+            {
+              "x": 560,
+              "y": 178
+            },
+            {
+              "x": 561,
+              "y": 206
+            },
+            {
+              "x": 476,
+              "y": 206
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "51.6"
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 560,
+              "y": 178
+            },
+            {
+              "x": 634,
+              "y": 178
+            },
+            {
+              "x": 634,
+              "y": 206
+            },
+            {
+              "x": 561,
+              "y": 206
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "82.4"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 206
+            },
+            {
+              "x": 285,
+              "y": 206
+            },
+            {
+              "x": 285,
+              "y": 234
+            },
+            {
+              "x": 16,
+              "y": 234
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "VAT+Entropy Min."
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 285,
+              "y": 206
+            },
+            {
+              "x": 476,
+              "y": 206
+            },
+            {
+              "x": 476,
+              "y": 234
+            },
+            {
+              "x": 285,
+              "y": 234
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "ResNet-50"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 476,
+              "y": 206
+            },
+            {
+              "x": 561,
+              "y": 206
+            },
+            {
+              "x": 561,
+              "y": 234
+            },
+            {
+              "x": 476,
+              "y": 234
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "47.0"
+        },
+        {
+          "col_end": 4,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 206
+            },
+            {
+              "x": 634,
+              "y": 206
+            },
+            {
+              "x": 634,
+              "y": 234
+            },
+            {
+              "x": 561,
+              "y": 234
+            }
+          ],
+          "row_start": 4,
+          "col_start": 3,
+          "words": "83.4"
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 234
+            },
+            {
+              "x": 285,
+              "y": 234
+            },
+            {
+              "x": 286,
+              "y": 262
+            },
+            {
+              "x": 16,
+              "y": 262
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "UDA(w. RandAug)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 285,
+              "y": 234
+            },
+            {
+              "x": 476,
+              "y": 234
+            },
+            {
+              "x": 476,
+              "y": 262
+            },
+            {
+              "x": 286,
+              "y": 262
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "ResNet-50"
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 476,
+              "y": 234
+            },
+            {
+              "x": 561,
+              "y": 234
+            },
+            {
+              "x": 561,
+              "y": 262
+            },
+            {
+              "x": 476,
+              "y": 262
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 234
+            },
+            {
+              "x": 634,
+              "y": 234
+            },
+            {
+              "x": 634,
+              "y": 262
+            },
+            {
+              "x": 561,
+              "y": 262
+            }
+          ],
+          "row_start": 5,
+          "col_start": 3,
+          "words": "88.5"
+        },
+        {
+          "col_end": 1,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 16,
+              "y": 262
+            },
+            {
+              "x": 286,
+              "y": 262
+            },
+            {
+              "x": 286,
+              "y": 289
+            },
+            {
+              "x": 17,
+              "y": 289
+            }
+          ],
+          "row_start": 6,
+          "col_start": 0,
+          "words": "FixMatch(w. RandAug)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 286,
+              "y": 262
+            },
+            {
+              "x": 476,
+              "y": 262
+            },
+            {
+              "x": 476,
+              "y": 289
+            },
+            {
+              "x": 286,
+              "y": 289
+            }
+          ],
+          "row_start": 6,
+          "col_start": 1,
+          "words": "ResNet-50"
+        },
+        {
+          "col_end": 3,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 476,
+              "y": 262
+            },
+            {
+              "x": 561,
+              "y": 262
+            },
+            {
+              "x": 561,
+              "y": 289
+            },
+            {
+              "x": 476,
+              "y": 289
+            }
+          ],
+          "row_start": 6,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 262
+            },
+            {
+              "x": 634,
+              "y": 262
+            },
+            {
+              "x": 634,
+              "y": 289
+            },
+            {
+              "x": 561,
+              "y": 289
+            }
+          ],
+          "row_start": 6,
+          "col_start": 3,
+          "words": "89.1"
+        },
+        {
+          "col_end": 1,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 17,
+              "y": 289
+            },
+            {
+              "x": 286,
+              "y": 289
+            },
+            {
+              "x": 286,
+              "y": 324
+            },
+            {
+              "x": 17,
+              "y": 324
+            }
+          ],
+          "row_start": 7,
+          "col_start": 0,
+          "words": "S4L(Rot+VAT+En. M.)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 286,
+              "y": 289
+            },
+            {
+              "x": 476,
+              "y": 289
+            },
+            {
+              "x": 476,
+              "y": 324
+            },
+            {
+              "x": 286,
+              "y": 324
+            }
+          ],
+          "row_start": 7,
+          "col_start": 1,
+          "words": "ResNet-50(4×)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 476,
+              "y": 289
+            },
+            {
+              "x": 561,
+              "y": 289
+            },
+            {
+              "x": 561,
+              "y": 324
+            },
+            {
+              "x": 476,
+              "y": 324
+            }
+          ],
+          "row_start": 7,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 289
+            },
+            {
+              "x": 634,
+              "y": 289
+            },
+            {
+              "x": 634,
+              "y": 324
+            },
+            {
+              "x": 561,
+              "y": 324
+            }
+          ],
+          "row_start": 7,
+          "col_start": 3,
+          "words": "91.2"
+        },
+        {
+          "col_end": 1,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 17,
+              "y": 324
+            },
+            {
+              "x": 286,
+              "y": 324
+            },
+            {
+              "x": 286,
+              "y": 359
+            },
+            {
+              "x": 17,
+              "y": 359
+            }
+          ],
+          "row_start": 8,
+          "col_start": 0,
+          "words": "Methods using representation learning only:"
+        },
+        {
+          "col_end": 2,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 286,
+              "y": 324
+            },
+            {
+              "x": 476,
+              "y": 324
+            },
+            {
+              "x": 477,
+              "y": 359
+            },
+            {
+              "x": 286,
+              "y": 359
+            }
+          ],
+          "row_start": 8,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 476,
+              "y": 324
+            },
+            {
+              "x": 561,
+              "y": 324
+            },
+            {
+              "x": 561,
+              "y": 359
+            },
+            {
+              "x": 477,
+              "y": 359
+            }
+          ],
+          "row_start": 8,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 324
+            },
+            {
+              "x": 634,
+              "y": 324
+            },
+            {
+              "x": 634,
+              "y": 359
+            },
+            {
+              "x": 561,
+              "y": 359
+            }
+          ],
+          "row_start": 8,
+          "col_start": 3,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 17,
+              "y": 359
+            },
+            {
+              "x": 286,
+              "y": 359
+            },
+            {
+              "x": 286,
+              "y": 386
+            },
+            {
+              "x": 18,
+              "y": 386
+            }
+          ],
+          "row_start": 9,
+          "col_start": 0,
+          "words": "InstDisc"
+        },
+        {
+          "col_end": 2,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 286,
+              "y": 359
+            },
+            {
+              "x": 477,
+              "y": 359
+            },
+            {
+              "x": 477,
+              "y": 386
+            },
+            {
+              "x": 286,
+              "y": 386
+            }
+          ],
+          "row_start": 9,
+          "col_start": 1,
+          "words": "ResNet-50"
+        },
+        {
+          "col_end": 3,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 477,
+              "y": 359
+            },
+            {
+              "x": 561,
+              "y": 359
+            },
+            {
+              "x": 561,
+              "y": 386
+            },
+            {
+              "x": 477,
+              "y": 386
+            }
+          ],
+          "row_start": 9,
+          "col_start": 2,
+          "words": "39.2"
+        },
+        {
+          "col_end": 4,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 359
+            },
+            {
+              "x": 634,
+              "y": 359
+            },
+            {
+              "x": 634,
+              "y": 386
+            },
+            {
+              "x": 561,
+              "y": 386
+            }
+          ],
+          "row_start": 9,
+          "col_start": 3,
+          "words": "77.4"
+        },
+        {
+          "col_end": 1,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 18,
+              "y": 386
+            },
+            {
+              "x": 286,
+              "y": 386
+            },
+            {
+              "x": 286,
+              "y": 414
+            },
+            {
+              "x": 18,
+              "y": 414
+            }
+          ],
+          "row_start": 10,
+          "col_start": 0,
+          "words": "BigBiGAN"
+        },
+        {
+          "col_end": 2,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 286,
+              "y": 386
+            },
+            {
+              "x": 477,
+              "y": 386
+            },
+            {
+              "x": 477,
+              "y": 414
+            },
+            {
+              "x": 286,
+              "y": 414
+            }
+          ],
+          "row_start": 10,
+          "col_start": 1,
+          "words": "RevNet-50(4×)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 477,
+              "y": 386
+            },
+            {
+              "x": 561,
+              "y": 386
+            },
+            {
+              "x": 561,
+              "y": 414
+            },
+            {
+              "x": 477,
+              "y": 414
+            }
+          ],
+          "row_start": 10,
+          "col_start": 2,
+          "words": "55.2"
+        },
+        {
+          "col_end": 4,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 386
+            },
+            {
+              "x": 634,
+              "y": 386
+            },
+            {
+              "x": 634,
+              "y": 414
+            },
+            {
+              "x": 561,
+              "y": 414
+            }
+          ],
+          "row_start": 10,
+          "col_start": 3,
+          "words": "78.8"
+        },
+        {
+          "col_end": 1,
+          "row_end": 12,
+          "cell_location": [
+            {
+              "x": 18,
+              "y": 414
+            },
+            {
+              "x": 286,
+              "y": 414
+            },
+            {
+              "x": 286,
+              "y": 441
+            },
+            {
+              "x": 18,
+              "y": 441
+            }
+          ],
+          "row_start": 11,
+          "col_start": 0,
+          "words": "PIRL"
+        },
+        {
+          "col_end": 2,
+          "row_end": 12,
+          "cell_location": [
+            {
+              "x": 286,
+              "y": 414
+            },
+            {
+              "x": 477,
+              "y": 414
+            },
+            {
+              "x": 477,
+              "y": 441
+            },
+            {
+              "x": 286,
+              "y": 441
+            }
+          ],
+          "row_start": 11,
+          "col_start": 1,
+          "words": "ResNet-50"
+        },
+        {
+          "col_end": 3,
+          "row_end": 12,
+          "cell_location": [
+            {
+              "x": 477,
+              "y": 414
+            },
+            {
+              "x": 561,
+              "y": 414
+            },
+            {
+              "x": 561,
+              "y": 441
+            },
+            {
+              "x": 477,
+              "y": 441
+            }
+          ],
+          "row_start": 11,
+          "col_start": 2,
+          "words": "57.2"
+        },
+        {
+          "col_end": 4,
+          "row_end": 12,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 414
+            },
+            {
+              "x": 634,
+              "y": 414
+            },
+            {
+              "x": 634,
+              "y": 441
+            },
+            {
+              "x": 561,
+              "y": 441
+            }
+          ],
+          "row_start": 11,
+          "col_start": 3,
+          "words": "83.8"
+        },
+        {
+          "col_end": 1,
+          "row_end": 13,
+          "cell_location": [
+            {
+              "x": 18,
+              "y": 441
+            },
+            {
+              "x": 286,
+              "y": 441
+            },
+            {
+              "x": 286,
+              "y": 469
+            },
+            {
+              "x": 18,
+              "y": 469
+            }
+          ],
+          "row_start": 12,
+          "col_start": 0,
+          "words": "CPC v2"
+        },
+        {
+          "col_end": 2,
+          "row_end": 13,
+          "cell_location": [
+            {
+              "x": 286,
+              "y": 441
+            },
+            {
+              "x": 477,
+              "y": 441
+            },
+            {
+              "x": 477,
+              "y": 469
+            },
+            {
+              "x": 286,
+              "y": 469
+            }
+          ],
+          "row_start": 12,
+          "col_start": 1,
+          "words": "ResNet-161(*)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 13,
+          "cell_location": [
+            {
+              "x": 477,
+              "y": 441
+            },
+            {
+              "x": 561,
+              "y": 441
+            },
+            {
+              "x": 561,
+              "y": 469
+            },
+            {
+              "x": 477,
+              "y": 469
+            }
+          ],
+          "row_start": 12,
+          "col_start": 2,
+          "words": "77.9"
+        },
+        {
+          "col_end": 4,
+          "row_end": 13,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 441
+            },
+            {
+              "x": 634,
+              "y": 441
+            },
+            {
+              "x": 634,
+              "y": 469
+            },
+            {
+              "x": 561,
+              "y": 469
+            }
+          ],
+          "row_start": 12,
+          "col_start": 3,
+          "words": "91.2"
+        },
+        {
+          "col_end": 1,
+          "row_end": 14,
+          "cell_location": [
+            {
+              "x": 18,
+              "y": 469
+            },
+            {
+              "x": 286,
+              "y": 469
+            },
+            {
+              "x": 286,
+              "y": 497
+            },
+            {
+              "x": 18,
+              "y": 497
+            }
+          ],
+          "row_start": 13,
+          "col_start": 0,
+          "words": "SimCLR(ours)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 14,
+          "cell_location": [
+            {
+              "x": 286,
+              "y": 469
+            },
+            {
+              "x": 477,
+              "y": 469
+            },
+            {
+              "x": 477,
+              "y": 497
+            },
+            {
+              "x": 286,
+              "y": 497
+            }
+          ],
+          "row_start": 13,
+          "col_start": 1,
+          "words": "ResNet-50"
+        },
+        {
+          "col_end": 3,
+          "row_end": 14,
+          "cell_location": [
+            {
+              "x": 477,
+              "y": 469
+            },
+            {
+              "x": 561,
+              "y": 469
+            },
+            {
+              "x": 561,
+              "y": 497
+            },
+            {
+              "x": 477,
+              "y": 497
+            }
+          ],
+          "row_start": 13,
+          "col_start": 2,
+          "words": "75.5"
+        },
+        {
+          "col_end": 4,
+          "row_end": 14,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 469
+            },
+            {
+              "x": 634,
+              "y": 469
+            },
+            {
+              "x": 634,
+              "y": 497
+            },
+            {
+              "x": 561,
+              "y": 497
+            }
+          ],
+          "row_start": 13,
+          "col_start": 3,
+          "words": "87.8"
+        },
+        {
+          "col_end": 1,
+          "row_end": 15,
+          "cell_location": [
+            {
+              "x": 18,
+              "y": 497
+            },
+            {
+              "x": 286,
+              "y": 497
+            },
+            {
+              "x": 286,
+              "y": 524
+            },
+            {
+              "x": 19,
+              "y": 524
+            }
+          ],
+          "row_start": 14,
+          "col_start": 0,
+          "words": "SimCLR(ours)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 15,
+          "cell_location": [
+            {
+              "x": 286,
+              "y": 497
+            },
+            {
+              "x": 477,
+              "y": 497
+            },
+            {
+              "x": 477,
+              "y": 524
+            },
+            {
+              "x": 286,
+              "y": 524
+            }
+          ],
+          "row_start": 14,
+          "col_start": 1,
+          "words": "ResNet-50(2×)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 15,
+          "cell_location": [
+            {
+              "x": 477,
+              "y": 497
+            },
+            {
+              "x": 561,
+              "y": 497
+            },
+            {
+              "x": 561,
+              "y": 524
+            },
+            {
+              "x": 477,
+              "y": 524
+            }
+          ],
+          "row_start": 14,
+          "col_start": 2,
+          "words": "83.0"
+        },
+        {
+          "col_end": 4,
+          "row_end": 15,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 497
+            },
+            {
+              "x": 634,
+              "y": 497
+            },
+            {
+              "x": 634,
+              "y": 524
+            },
+            {
+              "x": 561,
+              "y": 524
+            }
+          ],
+          "row_start": 14,
+          "col_start": 3,
+          "words": "91.2"
+        },
+        {
+          "col_end": 1,
+          "row_end": 16,
+          "cell_location": [
+            {
+              "x": 19,
+              "y": 524
+            },
+            {
+              "x": 286,
+              "y": 524
+            },
+            {
+              "x": 286,
+              "y": 547
+            },
+            {
+              "x": 19,
+              "y": 547
+            }
+          ],
+          "row_start": 15,
+          "col_start": 0,
+          "words": "SimCLR(ours)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 16,
+          "cell_location": [
+            {
+              "x": 286,
+              "y": 524
+            },
+            {
+              "x": 477,
+              "y": 524
+            },
+            {
+              "x": 477,
+              "y": 547
+            },
+            {
+              "x": 286,
+              "y": 547
+            }
+          ],
+          "row_start": 15,
+          "col_start": 1,
+          "words": "ResNet-50(4×)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 16,
+          "cell_location": [
+            {
+              "x": 477,
+              "y": 524
+            },
+            {
+              "x": 561,
+              "y": 524
+            },
+            {
+              "x": 561,
+              "y": 547
+            },
+            {
+              "x": 477,
+              "y": 547
+            }
+          ],
+          "row_start": 15,
+          "col_start": 2,
+          "words": "85.8"
+        },
+        {
+          "col_end": 4,
+          "row_end": 16,
+          "cell_location": [
+            {
+              "x": 561,
+              "y": 524
+            },
+            {
+              "x": 634,
+              "y": 524
+            },
+            {
+              "x": 634,
+              "y": 547
+            },
+            {
+              "x": 561,
+              "y": 547
+            }
+          ],
+          "row_start": 15,
+          "col_start": 3,
+          "words": "92.6"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 14,
+          "y": 8
+        },
+        {
+          "x": 634,
+          "y": 8
+        },
+        {
+          "x": 634,
+          "y": 547
+        },
+        {
+          "x": 14,
+          "y": 547
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079045130306263599
+}

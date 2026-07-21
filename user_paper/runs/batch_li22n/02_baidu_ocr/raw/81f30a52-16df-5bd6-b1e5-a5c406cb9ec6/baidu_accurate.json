@@ -1,0 +1,303 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9963403344,
+        "min": 0.9599642158,
+        "variance": 9.541145118e-05
+      },
+      "words": "Model Pretraining"
+    },
+    {
+      "probability": {
+        "average": 0.9989571571,
+        "min": 0.986759007,
+        "variance": 1.028570114e-05
+      },
+      "words": "Dataset Bootstrapping"
+    },
+    {
+      "probability": {
+        "average": 0.9987165332,
+        "min": 0.9970518351,
+        "variance": 1.426292897e-06
+      },
+      "words": "To model"
+    },
+    {
+      "probability": {
+        "average": 0.997985363,
+        "min": 0.9900797606,
+        "variance": 1.268224969e-05
+      },
+      "words": "Filter"
+    },
+    {
+      "probability": {
+        "average": 0.9996407628,
+        "min": 0.9985126853,
+        "variance": 3.02949303e-07
+      },
+      "words": "Filtering"
+    },
+    {
+      "probability": {
+        "average": 0.9069609642,
+        "min": 0.5338217616,
+        "variance": 0.01632397622
+      },
+      "words": "D={(Iw,Tw)}+{(In,Tn)}"
+    },
+    {
+      "probability": {
+        "average": 0.9962033033,
+        "min": 0.9433174729,
+        "variance": 0.000199779548
+      },
+      "words": "(Image-grounded"
+    },
+    {
+      "probability": {
+        "average": 0.9069473743,
+        "min": 0.4959703982,
+        "variance": 0.01713644527
+      },
+      "words": "{(Iw,Tw)}+{(Iw,Ts)}"
+    },
+    {
+      "probability": {
+        "average": 0.9988769889,
+        "min": 0.9954112172,
+        "variance": 2.363796511e-06
+      },
+      "words": "To data"
+    },
+    {
+      "probability": {
+        "average": 0.9997714162,
+        "min": 0.9993786812,
+        "variance": 4.102291129e-08
+      },
+      "words": "Text Encoder)"
+    },
+    {
+      "probability": {
+        "average": 0.9976329803,
+        "min": 0.9791591167,
+        "variance": 4.266323231e-05
+      },
+      "words": "Pre-train"
+    },
+    {
+      "probability": {
+        "average": 0.9722933769,
+        "min": 0.6773487926,
+        "variance": 0.006797025912
+      },
+      "words": "Iw: web images"
+    },
+    {
+      "probability": {
+        "average": 0.9979468584,
+        "min": 0.9882431626,
+        "variance": 1.328544477e-05
+      },
+      "words": "ITC&ITM finetune"
+    },
+    {
+      "probability": {
+        "average": 0.8968858719,
+        "min": 0.5071868896,
+        "variance": 0.02154191397
+      },
+      "words": "{(Iw,Tw)}"
+    },
+    {
+      "probability": {
+        "average": 0.9511768222,
+        "min": 0.6005197167,
+        "variance": 0.01448577642
+      },
+      "words": "Ih: human-annotated"
+    },
+    {
+      "probability": {
+        "average": 0.9242649078,
+        "min": 0.6551116705,
+        "variance": 0.01010564715
+      },
+      "words": "D={(Iw,Tw)}+{(Iw,T3)}"
+    },
+    {
+      "probability": {
+        "average": 0.9997275472,
+        "min": 0.9989720583,
+        "variance": 1.29079254e-07
+      },
+      "words": "images"
+    },
+    {
+      "probability": {
+        "average": 0.9996420741,
+        "min": 0.9971755743,
+        "variance": 4.617830598e-07
+      },
+      "words": "Multimodal Mixture of"
+    },
+    {
+      "probability": {
+        "average": 0.9050017595,
+        "min": 0.5753554702,
+        "variance": 0.02076165564
+      },
+      "words": "{(In,Th)}"
+    },
+    {
+      "probability": {
+        "average": 0.931081295,
+        "min": 0.7004144788,
+        "variance": 0.008802862838
+      },
+      "words": "+{(In,Th)}"
+    },
+    {
+      "probability": {
+        "average": 0.999689281,
+        "min": 0.996421814,
+        "variance": 7.762970995e-07
+      },
+      "words": "Encoder-Decoder"
+    },
+    {
+      "probability": {
+        "average": 0.9820998311,
+        "min": 0.8756209612,
+        "variance": 0.001280678436
+      },
+      "words": "Tw: web texts"
+    },
+    {
+      "probability": {
+        "average": 0.9997739792,
+        "min": 0.9989964366,
+        "variance": 1.196896022e-07
+      },
+      "words": "LM finetune"
+    },
+    {
+      "probability": {
+        "average": 0.7487986088,
+        "min": 0.7487986088,
+        "variance": 0
+      },
+      "words": "↓"
+    },
+    {
+      "probability": {
+        "average": 0.8397105932,
+        "min": 0.48233217,
+        "variance": 0.04271641001
+      },
+      "words": "{1w}"
+    },
+    {
+      "probability": {
+        "average": 0.990939796,
+        "min": 0.8879463077,
+        "variance": 0.000774703105
+      },
+      "words": "T: filtered web texts"
+    },
+    {
+      "probability": {
+        "average": 0.9980797768,
+        "min": 0.9745395184,
+        "variance": 3.543224011e-05
+      },
+      "words": "T:synthetic texts"
+    },
+    {
+      "probability": {
+        "average": 0.975957334,
+        "min": 0.5043776035,
+        "variance": 0.0111203501
+      },
+      "words": "T: filtered synthetic"
+    },
+    {
+      "probability": {
+        "average": 0.9995182753,
+        "min": 0.9975213408,
+        "variance": 6.813746722e-07
+      },
+      "words": "Captioner"
+    },
+    {
+      "probability": {
+        "average": 0.8553786278,
+        "min": 0.3043674827,
+        "variance": 0.0430652611
+      },
+      "words": "{(Iw,Ts)}"
+    },
+    {
+      "probability": {
+        "average": 0.999602139,
+        "min": 0.998535037,
+        "variance": 2.891047757e-07
+      },
+      "words": "texts"
+    },
+    {
+      "probability": {
+        "average": 0.999384284,
+        "min": 0.9958524704,
+        "variance": 1.186150939e-06
+      },
+      "words": "Downstream Tasks"
+    },
+    {
+      "probability": {
+        "average": 0.9962509274,
+        "min": 0.9443038702,
+        "variance": 0.0001927515987
+      },
+      "words": "(Image-grounded"
+    },
+    {
+      "probability": {
+        "average": 0.9997612238,
+        "min": 0.9986246824,
+        "variance": 1.464265864e-07
+      },
+      "words": "Text Decoder)"
+    },
+    {
+      "probability": {
+        "average": 0.9994438887,
+        "min": 0.9949592352,
+        "variance": 2.238693469e-06
+      },
+      "words": "Captioning"
+    },
+    {
+      "probability": {
+        "average": 0.977005899,
+        "min": 0.780956924,
+        "variance": 0.00421409728
+      },
+      "words": "Th: human-annotated"
+    },
+    {
+      "probability": {
+        "average": 0.998965621,
+        "min": 0.9955518842,
+        "variance": 2.93073208e-06
+      },
+      "words": "texts"
+    }
+  ],
+  "words_result_num": 37,
+  "direction": 0,
+  "log_id": 2079047909585703092
+}

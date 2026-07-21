@@ -1,0 +1,463 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9996942282,
+        "min": 0.9955326319,
+        "variance": 7.434678082e-07
+      },
+      "words": "Terminology Determination"
+    },
+    {
+      "probability": {
+        "average": 0.9990216494,
+        "min": 0.9858432412,
+        "variance": 9.633983609e-06
+      },
+      "words": "Terminology Searching"
+    },
+    {
+      "probability": {
+        "average": 0.9988927841,
+        "min": 0.9884950519,
+        "variance": 7.41539634e-06
+      },
+      "words": "Algorithm Outline Generation"
+    },
+    {
+      "probability": {
+        "average": 0.9996630549,
+        "min": 0.9949131012,
+        "variance": 9.54310508e-07
+      },
+      "words": "Detailed Design Generation"
+    },
+    {
+      "probability": {
+        "average": 0.9458723664,
+        "min": 0.5732367039,
+        "variance": 0.01877068356
+      },
+      "words": "* User Problem *"
+    },
+    {
+      "probability": {
+        "average": 0.9487848878,
+        "min": 0.6053684354,
+        "variance": 0.01655122079
+      },
+      "words": "* User Problem *"
+    },
+    {
+      "probability": {
+        "average": 0.9501514435,
+        "min": 0.5885543227,
+        "variance": 0.01561324485
+      },
+      "words": "* User Problem *"
+    },
+    {
+      "probability": {
+        "average": 0.9552671313,
+        "min": 0.647619009,
+        "variance": 0.01234816946
+      },
+      "words": "* User Problem *"
+    },
+    {
+      "probability": {
+        "average": 0.9976765513,
+        "min": 0.9859076142,
+        "variance": 8.591204278e-06
+      },
+      "words": "<user_input>{.}</user_input>"
+    },
+    {
+      "probability": {
+        "average": 0.9927738309,
+        "min": 0.9199266434,
+        "variance": 0.0002231877443
+      },
+      "words": "<user_input>{.}</user_input>"
+    },
+    {
+      "probability": {
+        "average": 0.9905959368,
+        "min": 0.8928158879,
+        "variance": 0.0004422792408
+      },
+      "words": "<user_input>{.}</user_input>"
+    },
+    {
+      "probability": {
+        "average": 0.9972612262,
+        "min": 0.9783248305,
+        "variance": 1.737457569e-05
+      },
+      "words": "<user_input>{.}</user_input>"
+    },
+    {
+      "probability": {
+        "average": 0.9553256035,
+        "min": 0.5981442928,
+        "variance": 0.01268193685
+      },
+      "words": "* Motivation *"
+    },
+    {
+      "probability": {
+        "average": 0.933781743,
+        "min": 0.6689002514,
+        "variance": 0.01597046107
+      },
+      "words": "* Target *"
+    },
+    {
+      "probability": {
+        "average": 0.9358761907,
+        "min": 0.6353405118,
+        "variance": 0.01505490951
+      },
+      "words": "* Target *"
+    },
+    {
+      "probability": {
+        "average": 0.929561317,
+        "min": 0.6098583937,
+        "variance": 0.01903894357
+      },
+      "words": "* Target *"
+    },
+    {
+      "probability": {
+        "average": 0.998057425,
+        "min": 0.9441184998,
+        "variance": 8.69646683e-05
+      },
+      "words": "I need to understand the meaning of"
+    },
+    {
+      "probability": {
+        "average": 0.9997800589,
+        "min": 0.9986327291,
+        "variance": 8.982931377e-08
+      },
+      "words": "Use the web search tool to search for"
+    },
+    {
+      "probability": {
+        "average": 0.9998934269,
+        "min": 0.9986237288,
+        "variance": 5.79467283e-08
+      },
+      "words": "Based on the background information"
+    },
+    {
+      "probability": {
+        "average": 0.9997823238,
+        "min": 0.9962272644,
+        "variance": 4.61240063e-07
+      },
+      "words": "Please elaborate on each step with"
+    },
+    {
+      "probability": {
+        "average": 0.998788476,
+        "min": 0.9852300286,
+        "variance": 1.259382316e-05
+      },
+      "words": "some concepts in the user's problem"
+    },
+    {
+      "probability": {
+        "average": 0.9997758865,
+        "min": 0.9965714216,
+        "variance": 4.732948184e-07
+      },
+      "words": "precise definition or description of"
+    },
+    {
+      "probability": {
+        "average": 0.9998358488,
+        "min": 0.9980977178,
+        "variance": 1.481422771e-07
+      },
+      "words": "in the context documents,please"
+    },
+    {
+      "probability": {
+        "average": 0.9996908903,
+        "min": 0.9938336611,
+        "variance": 1.048936838e-06
+      },
+      "words": "detailed technologies or algorithms."
+    },
+    {
+      "probability": {
+        "average": 0.999714911,
+        "min": 0.9971975088,
+        "variance": 4.255127806e-07
+      },
+      "words": "to gain some background knowledge."
+    },
+    {
+      "probability": {
+        "average": 0.9983789325,
+        "min": 0.9853508472,
+        "variance": 1.386061194e-05
+      },
+      "words": "{terminology}."
+    },
+    {
+      "probability": {
+        "average": 0.9997797012,
+        "min": 0.9966033697,
+        "variance": 3.413336742e-07
+      },
+      "words": "provide an algorithm outline step by"
+    },
+    {
+      "probability": {
+        "average": 0.9280263186,
+        "min": 0.6568137407,
+        "variance": 0.01615684107
+      },
+      "words": "* Rules *"
+    },
+    {
+      "probability": {
+        "average": 0.9559174776,
+        "min": 0.7396345139,
+        "variance": 0.007397154812
+      },
+      "words": "* Target *"
+    },
+    {
+      "probability": {
+        "average": 0.9341862798,
+        "min": 0.6988570094,
+        "variance": 0.01362462714
+      },
+      "words": "* Rules *"
+    },
+    {
+      "probability": {
+        "average": 0.9818741083,
+        "min": 0.5015608668,
+        "variance": 0.008544707671
+      },
+      "words": "- Do not modify the outline."
+    },
+    {
+      "probability": {
+        "average": 0.999204278,
+        "min": 0.9889681935,
+        "variance": 5.208108178e-06
+      },
+      "words": "Based on the user's problem,please"
+    },
+    {
+      "probability": {
+        "average": 0.9904678464,
+        "min": 0.8361893296,
+        "variance": 0.001174845267
+      },
+      "words": "-Wikipedia is preferred."
+    },
+    {
+      "probability": {
+        "average": 0.9990670085,
+        "min": 0.9861236811,
+        "variance": 7.519036444e-06
+      },
+      "words": "step to solve the user's problem."
+    },
+    {
+      "probability": {
+        "average": 0.9956814647,
+        "min": 0.9840182662,
+        "variance": 2.619472434e-05
+      },
+      "words": "*Rules*"
+    },
+    {
+      "probability": {
+        "average": 0.9996955991,
+        "min": 0.9981545806,
+        "variance": 1.837749437e-07
+      },
+      "words": "-Use the web search tool."
+    },
+    {
+      "probability": {
+        "average": 0.9997909665,
+        "min": 0.9980888963,
+        "variance": 1.887488281e-07
+      },
+      "words": "determine a list of terminologies that"
+    },
+    {
+      "probability": {
+        "average": 0.9997560978,
+        "min": 0.997374773,
+        "variance": 2.735293947e-07
+      },
+      "words": "-Filter out the contents that are"
+    },
+    {
+      "probability": {
+        "average": 0.9997528791,
+        "min": 0.9979802966,
+        "variance": 1.95932472e-07
+      },
+      "words": "-Filter out irrelevant content."
+    },
+    {
+      "probability": {
+        "average": 0.9967997074,
+        "min": 0.9294016957,
+        "variance": 0.0001440912602
+      },
+      "words": "I need to search online. Please only"
+    },
+    {
+      "probability": {
+        "average": 0.9997233152,
+        "min": 0.9955646992,
+        "variance": 7.246022733e-07
+      },
+      "words": "irrelevant to the problem."
+    },
+    {
+      "probability": {
+        "average": 0.9996954203,
+        "min": 0.9974228144,
+        "variance": 3.04636643e-07
+      },
+      "words": "-Use the web search tool multiple"
+    },
+    {
+      "probability": {
+        "average": 0.9995734692,
+        "min": 0.9986817241,
+        "variance": 2.001726642e-07
+      },
+      "words": "times."
+    },
+    {
+      "probability": {
+        "average": 0.9724392295,
+        "min": 0.5171554089,
+        "variance": 0.01219448354
+      },
+      "words": "*Response Format *"
+    },
+    {
+      "probability": {
+        "average": 0.9996562004,
+        "min": 0.9984171391,
+        "variance": 1.353436119e-07
+      },
+      "words": "output a list of terminologies."
+    },
+    {
+      "probability": {
+        "average": 0.9996426702,
+        "min": 0.9981028438,
+        "variance": 2.775725534e-07
+      },
+      "words": "-Do not provide algorithms or"
+    },
+    {
+      "probability": {
+        "average": 0.9998660684,
+        "min": 0.9980371594,
+        "variance": 1.600128741e-07
+      },
+      "words": "implementation details."
+    },
+    {
+      "probability": {
+        "average": 0.9997694492,
+        "min": 0.9958962202,
+        "variance": 5.16638238e-07
+      },
+      "words": "-Analyze the retrieved information"
+    },
+    {
+      "probability": {
+        "average": 0.984772265,
+        "min": 0.7911381125,
+        "variance": 0.002682644874
+      },
+      "words": "Step 1： [title]"
+    },
+    {
+      "probability": {
+        "average": 0.954957962,
+        "min": 0.5743832588,
+        "variance": 0.01633310318
+      },
+      "words": "* Response Format *"
+    },
+    {
+      "probability": {
+        "average": 0.9772129059,
+        "min": 0.6094043255,
+        "variance": 0.007964638062
+      },
+      "words": "*Response Format *"
+    },
+    {
+      "probability": {
+        "average": 0.9998939633,
+        "min": 0.99931252,
+        "variance": 2.166993518e-08
+      },
+      "words": "and filter out irrelevant contents."
+    },
+    {
+      "probability": {
+        "average": 0.9449253082,
+        "min": 0.8773276806,
+        "variance": 0.001663953764
+      },
+      "words": "-XXX"
+    },
+    {
+      "probability": {
+        "average": 0.9953241348,
+        "min": 0.9575943351,
+        "variance": 0.0001245730236
+      },
+      "words": "term1,term2,."
+    },
+    {
+      "probability": {
+        "average": 0.9248355031,
+        "min": 0.5511087179,
+        "variance": 0.01837226376
+      },
+      "words": "URL1, URL2, .."
+    },
+    {
+      "probability": {
+        "average": 0.9997421503,
+        "min": 0.9986125231,
+        "variance": 1.981301097e-07
+      },
+      "words": "-Refer to the context."
+    },
+    {
+      "probability": {
+        "average": 0.9422340393,
+        "min": 0.515766561,
+        "variance": 0.01846781559
+      },
+      "words": "Step 2： xxx"
+    }
+  ],
+  "words_result_num": 57,
+  "direction": 0,
+  "log_id": 2079044170616756867
+}

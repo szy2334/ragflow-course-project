@@ -1,0 +1,555 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 7
+            },
+            {
+              "x": 242,
+              "y": 7
+            },
+            {
+              "x": 243,
+              "y": 49
+            },
+            {
+              "x": 5,
+              "y": 50
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "System"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 242,
+              "y": 7
+            },
+            {
+              "x": 324,
+              "y": 7
+            },
+            {
+              "x": 324,
+              "y": 49
+            },
+            {
+              "x": 243,
+              "y": 49
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 324,
+              "y": 7
+            },
+            {
+              "x": 380,
+              "y": 7
+            },
+            {
+              "x": 380,
+              "y": 49
+            },
+            {
+              "x": 324,
+              "y": 49
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Dev Test"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 50
+            },
+            {
+              "x": 243,
+              "y": 49
+            },
+            {
+              "x": 243,
+              "y": 84
+            },
+            {
+              "x": 5,
+              "y": 84
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "ESIM+GloVe"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 243,
+              "y": 49
+            },
+            {
+              "x": 324,
+              "y": 49
+            },
+            {
+              "x": 324,
+              "y": 84
+            },
+            {
+              "x": 243,
+              "y": 84
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "51.9"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 324,
+              "y": 49
+            },
+            {
+              "x": 380,
+              "y": 49
+            },
+            {
+              "x": 380,
+              "y": 84
+            },
+            {
+              "x": 324,
+              "y": 84
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "52.7"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 84
+            },
+            {
+              "x": 243,
+              "y": 84
+            },
+            {
+              "x": 243,
+              "y": 148
+            },
+            {
+              "x": 5,
+              "y": 147
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "ESIM+ELMo\nOpenAI GPT"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 243,
+              "y": 84
+            },
+            {
+              "x": 324,
+              "y": 84
+            },
+            {
+              "x": 324,
+              "y": 148
+            },
+            {
+              "x": 243,
+              "y": 148
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 324,
+              "y": 84
+            },
+            {
+              "x": 380,
+              "y": 84
+            },
+            {
+              "x": 380,
+              "y": 148
+            },
+            {
+              "x": 324,
+              "y": 148
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "59.159.2\n78.0"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 147
+            },
+            {
+              "x": 243,
+              "y": 148
+            },
+            {
+              "x": 244,
+              "y": 182
+            },
+            {
+              "x": 5,
+              "y": 182
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "BERTBASE"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 243,
+              "y": 148
+            },
+            {
+              "x": 324,
+              "y": 148
+            },
+            {
+              "x": 324,
+              "y": 182
+            },
+            {
+              "x": 244,
+              "y": 182
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "81.6"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 324,
+              "y": 148
+            },
+            {
+              "x": 380,
+              "y": 148
+            },
+            {
+              "x": 380,
+              "y": 182
+            },
+            {
+              "x": 324,
+              "y": 182
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "-"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 182
+            },
+            {
+              "x": 244,
+              "y": 182
+            },
+            {
+              "x": 243,
+              "y": 218
+            },
+            {
+              "x": 5,
+              "y": 218
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "BERTLARGE"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 244,
+              "y": 182
+            },
+            {
+              "x": 324,
+              "y": 182
+            },
+            {
+              "x": 324,
+              "y": 218
+            },
+            {
+              "x": 243,
+              "y": 218
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 324,
+              "y": 182
+            },
+            {
+              "x": 380,
+              "y": 182
+            },
+            {
+              "x": 380,
+              "y": 218
+            },
+            {
+              "x": 324,
+              "y": 218
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "86.686.3"
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 218
+            },
+            {
+              "x": 243,
+              "y": 218
+            },
+            {
+              "x": 244,
+              "y": 255
+            },
+            {
+              "x": 5,
+              "y": 255
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "Human(expert)t"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 243,
+              "y": 218
+            },
+            {
+              "x": 324,
+              "y": 218
+            },
+            {
+              "x": 324,
+              "y": 256
+            },
+            {
+              "x": 244,
+              "y": 255
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 324,
+              "y": 218
+            },
+            {
+              "x": 380,
+              "y": 218
+            },
+            {
+              "x": 380,
+              "y": 256
+            },
+            {
+              "x": 324,
+              "y": 256
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": "85.0"
+        },
+        {
+          "col_end": 1,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 255
+            },
+            {
+              "x": 244,
+              "y": 255
+            },
+            {
+              "x": 244,
+              "y": 285
+            },
+            {
+              "x": 5,
+              "y": 284
+            }
+          ],
+          "row_start": 6,
+          "col_start": 0,
+          "words": "Human(5 annotations)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 244,
+              "y": 255
+            },
+            {
+              "x": 324,
+              "y": 256
+            },
+            {
+              "x": 324,
+              "y": 285
+            },
+            {
+              "x": 244,
+              "y": 285
+            }
+          ],
+          "row_start": 6,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 324,
+              "y": 256
+            },
+            {
+              "x": 380,
+              "y": 256
+            },
+            {
+              "x": 380,
+              "y": 285
+            },
+            {
+              "x": 324,
+              "y": 285
+            }
+          ],
+          "row_start": 6,
+          "col_start": 2,
+          "words": "88.0"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 5,
+          "y": 7
+        },
+        {
+          "x": 380,
+          "y": 7
+        },
+        {
+          "x": 380,
+          "y": 285
+        },
+        {
+          "x": 5,
+          "y": 285
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079042244489252726
+}

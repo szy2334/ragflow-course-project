@@ -1,0 +1,37 @@
+{
+  "status": "PARTIAL",
+  "critical_errors": [],
+  "paper_id": "24ef9fd0-f826-5d0d-9bfc-b788d3fb9751",
+  "paper_version_id": "53901cb6-cdfc-59af-9d8e-1ffa044abb89",
+  "total_chunks": 230,
+  "indexable_chunks": 211,
+  "parent_chunks": 19,
+  "chunk_types": {
+    "metadata": 1,
+    "text": 199,
+    "abstract": 1,
+    "figure": 1,
+    "table": 28
+  },
+  "chunk_roles": {
+    "paper_metadata": 1,
+    "section_parent": 19,
+    "paragraph": 27,
+    "abstract": 1,
+    "figure_derived": 1,
+    "table_overview": 13,
+    "table_rows": 15,
+    "reference_entry": 153
+  },
+  "quality_flags": {
+    "missing_caption": 6,
+    "missing_image": 6,
+    "table_content_missing": 6
+  },
+  "media_objects": 14,
+  "ocr_results": 14,
+  "ocr_failures": 0,
+  "ocr_partials": 0,
+  "mineru_repairs": {},
+  "generated_at": "2026-07-20T03:16:04.297243+00:00"
+}

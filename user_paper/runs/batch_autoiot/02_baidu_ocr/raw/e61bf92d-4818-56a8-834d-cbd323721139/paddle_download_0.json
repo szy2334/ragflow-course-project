@@ -1,0 +1,61 @@
+{
+  "file_name": "eea3f3355efa6b7a403ef04dbab1c4fc386eccb6c9e0c7b4c31b9dd70483b4f8.jpg",
+  "file_id": "file-NusGtq5X5H2UASYSWUe81s5gQiC4sIHg",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "xgq60c-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "xgq60c-layout-1",
+          "text": "  | Accuracy (%) | Synthesis Time (min)\n1 | 93.9 | 25.8\n2+3 | 95.3 | 33.8\n4+5 | 96.5 | 31.0\n3~5 | 97.9 | 35.0\n2~5 | 98.5 | 37.2",
+          "position": [
+            5,
+            3,
+            307,
+            159
+          ],
+          "polygon": [
+            [
+              5,
+              3
+            ],
+            [
+              313,
+              3
+            ],
+            [
+              313,
+              162
+            ],
+            [
+              5,
+              162
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'></th><th style='text-align: center;'>Accuracy (%)</th><th style='text-align: center;'>Synthesis Time (min)</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>1</td><td style='text-align: center;'>93.9</td><td style='text-align: center;'>25.8</td></tr>\n    <tr><td style='text-align: center;'>2+3</td><td style='text-align: center;'>95.3</td><td style='text-align: center;'>33.8</td></tr>\n    <tr><td style='text-align: center;'>4+5</td><td style='text-align: center;'>96.5</td><td style='text-align: center;'>31.0</td></tr>\n    <tr><td style='text-align: center;'>3~5</td><td style='text-align: center;'>97.9</td><td style='text-align: center;'>35.0</td></tr>\n    <tr><td style='text-align: center;'>2~5</td><td style='text-align: center;'>98.5</td><td style='text-align: center;'>37.2</td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "  | Accuracy (%) | Synthesis Time (min)\n1 | 93.9 | 25.8\n2+3 | 95.3 | 33.8\n4+5 | 96.5 | 31.0\n3~5 | 97.9 | 35.0\n2~5 | 98.5 | 37.2",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'></th><th style='text-align: center;'>Accuracy (%)</th><th style='text-align: center;'>Synthesis Time (min)</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>1</td><td style='text-align: center;'>93.9</td><td style='text-align: center;'>25.8</td></tr>\n    <tr><td style='text-align: center;'>2+3</td><td style='text-align: center;'>95.3</td><td style='text-align: center;'>33.8</td></tr>\n    <tr><td style='text-align: center;'>4+5</td><td style='text-align: center;'>96.5</td><td style='text-align: center;'>31.0</td></tr>\n    <tr><td style='text-align: center;'>3~5</td><td style='text-align: center;'>97.9</td><td style='text-align: center;'>35.0</td></tr>\n    <tr><td style='text-align: center;'>2~5</td><td style='text-align: center;'>98.5</td><td style='text-align: center;'>37.2</td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 312,
+        "page_height": 165
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

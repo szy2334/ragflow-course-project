@@ -1,0 +1,2230 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 12
+            },
+            {
+              "x": 114,
+              "y": 12
+            },
+            {
+              "x": 114,
+              "y": 36
+            },
+            {
+              "x": 11,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "system"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 114,
+              "y": 12
+            },
+            {
+              "x": 220,
+              "y": 12
+            },
+            {
+              "x": 221,
+              "y": 36
+            },
+            {
+              "x": 114,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "net"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 220,
+              "y": 12
+            },
+            {
+              "x": 367,
+              "y": 12
+            },
+            {
+              "x": 367,
+              "y": 36
+            },
+            {
+              "x": 221,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "data"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 367,
+              "y": 12
+            },
+            {
+              "x": 424,
+              "y": 12
+            },
+            {
+              "x": 424,
+              "y": 36
+            },
+            {
+              "x": 367,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "mAP"
+        },
+        {
+          "col_end": 5,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 424,
+              "y": 12
+            },
+            {
+              "x": 479,
+              "y": 11
+            },
+            {
+              "x": 479,
+              "y": 36
+            },
+            {
+              "x": 424,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 4,
+          "words": "areo"
+        },
+        {
+          "col_end": 6,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 11
+            },
+            {
+              "x": 520,
+              "y": 11
+            },
+            {
+              "x": 520,
+              "y": 36
+            },
+            {
+              "x": 479,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 5,
+          "words": "bike"
+        },
+        {
+          "col_end": 7,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 520,
+              "y": 11
+            },
+            {
+              "x": 570,
+              "y": 11
+            },
+            {
+              "x": 570,
+              "y": 36
+            },
+            {
+              "x": 520,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 6,
+          "words": "bird"
+        },
+        {
+          "col_end": 8,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 570,
+              "y": 11
+            },
+            {
+              "x": 595,
+              "y": 11
+            },
+            {
+              "x": 596,
+              "y": 36
+            },
+            {
+              "x": 570,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 7,
+          "words": "boat"
+        },
+        {
+          "col_end": 9,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 595,
+              "y": 11
+            },
+            {
+              "x": 671,
+              "y": 12
+            },
+            {
+              "x": 671,
+              "y": 36
+            },
+            {
+              "x": 596,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 8,
+          "words": "bottle"
+        },
+        {
+          "col_end": 10,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 671,
+              "y": 12
+            },
+            {
+              "x": 763,
+              "y": 11
+            },
+            {
+              "x": 763,
+              "y": 36
+            },
+            {
+              "x": 671,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 9,
+          "words": "bus\ncar"
+        },
+        {
+          "col_end": 11,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 763,
+              "y": 11
+            },
+            {
+              "x": 816,
+              "y": 12
+            },
+            {
+              "x": 816,
+              "y": 36
+            },
+            {
+              "x": 763,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 10,
+          "words": "cat"
+        },
+        {
+          "col_end": 12,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 816,
+              "y": 12
+            },
+            {
+              "x": 849,
+              "y": 11
+            },
+            {
+              "x": 850,
+              "y": 36
+            },
+            {
+              "x": 816,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 11,
+          "words": "chair"
+        },
+        {
+          "col_end": 13,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 849,
+              "y": 11
+            },
+            {
+              "x": 901,
+              "y": 11
+            },
+            {
+              "x": 901,
+              "y": 36
+            },
+            {
+              "x": 850,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 12,
+          "words": "cow"
+        },
+        {
+          "col_end": 14,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 901,
+              "y": 11
+            },
+            {
+              "x": 948,
+              "y": 11
+            },
+            {
+              "x": 948,
+              "y": 36
+            },
+            {
+              "x": 901,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 13,
+          "words": "table"
+        },
+        {
+          "col_end": 15,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 948,
+              "y": 11
+            },
+            {
+              "x": 998,
+              "y": 11
+            },
+            {
+              "x": 998,
+              "y": 36
+            },
+            {
+              "x": 948,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 14,
+          "words": "dog"
+        },
+        {
+          "col_end": 16,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 998,
+              "y": 11
+            },
+            {
+              "x": 1057,
+              "y": 11
+            },
+            {
+              "x": 1057,
+              "y": 36
+            },
+            {
+              "x": 998,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 15,
+          "words": "horse"
+        },
+        {
+          "col_end": 17,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 1057,
+              "y": 11
+            },
+            {
+              "x": 1090,
+              "y": 11
+            },
+            {
+              "x": 1091,
+              "y": 36
+            },
+            {
+              "x": 1057,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 16,
+          "words": "mbike"
+        },
+        {
+          "col_end": 18,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 1090,
+              "y": 11
+            },
+            {
+              "x": 1133,
+              "y": 11
+            },
+            {
+              "x": 1133,
+              "y": 36
+            },
+            {
+              "x": 1091,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 17,
+          "words": "person"
+        },
+        {
+          "col_end": 19,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 1133,
+              "y": 11
+            },
+            {
+              "x": 1181,
+              "y": 11
+            },
+            {
+              "x": 1181,
+              "y": 36
+            },
+            {
+              "x": 1133,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 18,
+          "words": "plant"
+        },
+        {
+          "col_end": 20,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 1181,
+              "y": 11
+            },
+            {
+              "x": 1234,
+              "y": 12
+            },
+            {
+              "x": 1235,
+              "y": 36
+            },
+            {
+              "x": 1181,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 19,
+          "words": "sheep"
+        },
+        {
+          "col_end": 21,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 1234,
+              "y": 12
+            },
+            {
+              "x": 1281,
+              "y": 11
+            },
+            {
+              "x": 1281,
+              "y": 36
+            },
+            {
+              "x": 1235,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 20,
+          "words": "sofa"
+        },
+        {
+          "col_end": 22,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 1281,
+              "y": 11
+            },
+            {
+              "x": 1361,
+              "y": 12
+            },
+            {
+              "x": 1361,
+              "y": 36
+            },
+            {
+              "x": 1281,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 21,
+          "words": "train\ntv"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 36
+            },
+            {
+              "x": 114,
+              "y": 36
+            },
+            {
+              "x": 115,
+              "y": 66
+            },
+            {
+              "x": 11,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "baseline"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 114,
+              "y": 36
+            },
+            {
+              "x": 221,
+              "y": 36
+            },
+            {
+              "x": 221,
+              "y": 66
+            },
+            {
+              "x": 115,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "VGG-16"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 221,
+              "y": 36
+            },
+            {
+              "x": 367,
+              "y": 36
+            },
+            {
+              "x": 367,
+              "y": 66
+            },
+            {
+              "x": 221,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "07+12"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 367,
+              "y": 36
+            },
+            {
+              "x": 424,
+              "y": 36
+            },
+            {
+              "x": 424,
+              "y": 66
+            },
+            {
+              "x": 367,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": "73.2"
+        },
+        {
+          "col_end": 5,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 424,
+              "y": 36
+            },
+            {
+              "x": 479,
+              "y": 36
+            },
+            {
+              "x": 479,
+              "y": 66
+            },
+            {
+              "x": 424,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 4,
+          "words": "76.5"
+        },
+        {
+          "col_end": 6,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 36
+            },
+            {
+              "x": 520,
+              "y": 36
+            },
+            {
+              "x": 521,
+              "y": 66
+            },
+            {
+              "x": 479,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 5,
+          "words": "79.0"
+        },
+        {
+          "col_end": 7,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 520,
+              "y": 36
+            },
+            {
+              "x": 570,
+              "y": 36
+            },
+            {
+              "x": 570,
+              "y": 66
+            },
+            {
+              "x": 521,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 6,
+          "words": "70.9"
+        },
+        {
+          "col_end": 8,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 570,
+              "y": 36
+            },
+            {
+              "x": 596,
+              "y": 36
+            },
+            {
+              "x": 597,
+              "y": 66
+            },
+            {
+              "x": 570,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 7,
+          "words": "65.5"
+        },
+        {
+          "col_end": 9,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 596,
+              "y": 36
+            },
+            {
+              "x": 671,
+              "y": 36
+            },
+            {
+              "x": 671,
+              "y": 66
+            },
+            {
+              "x": 597,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 8,
+          "words": "52.1"
+        },
+        {
+          "col_end": 10,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 671,
+              "y": 36
+            },
+            {
+              "x": 763,
+              "y": 36
+            },
+            {
+              "x": 763,
+              "y": 66
+            },
+            {
+              "x": 671,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 9,
+          "words": "83.1\n84.7"
+        },
+        {
+          "col_end": 11,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 763,
+              "y": 36
+            },
+            {
+              "x": 816,
+              "y": 36
+            },
+            {
+              "x": 816,
+              "y": 66
+            },
+            {
+              "x": 763,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 10,
+          "words": "86.4"
+        },
+        {
+          "col_end": 12,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 816,
+              "y": 36
+            },
+            {
+              "x": 850,
+              "y": 36
+            },
+            {
+              "x": 850,
+              "y": 66
+            },
+            {
+              "x": 816,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 11,
+          "words": "52.0"
+        },
+        {
+          "col_end": 13,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 850,
+              "y": 36
+            },
+            {
+              "x": 901,
+              "y": 36
+            },
+            {
+              "x": 902,
+              "y": 66
+            },
+            {
+              "x": 850,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 12,
+          "words": "81.9"
+        },
+        {
+          "col_end": 14,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 901,
+              "y": 36
+            },
+            {
+              "x": 948,
+              "y": 36
+            },
+            {
+              "x": 948,
+              "y": 66
+            },
+            {
+              "x": 902,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 13,
+          "words": "65.7"
+        },
+        {
+          "col_end": 15,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 948,
+              "y": 36
+            },
+            {
+              "x": 998,
+              "y": 36
+            },
+            {
+              "x": 998,
+              "y": 66
+            },
+            {
+              "x": 948,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 14,
+          "words": "84.8"
+        },
+        {
+          "col_end": 16,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 998,
+              "y": 36
+            },
+            {
+              "x": 1057,
+              "y": 36
+            },
+            {
+              "x": 1058,
+              "y": 66
+            },
+            {
+              "x": 998,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 15,
+          "words": "84.6"
+        },
+        {
+          "col_end": 17,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 1057,
+              "y": 36
+            },
+            {
+              "x": 1091,
+              "y": 36
+            },
+            {
+              "x": 1091,
+              "y": 66
+            },
+            {
+              "x": 1058,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 16,
+          "words": "77.5"
+        },
+        {
+          "col_end": 18,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 1091,
+              "y": 36
+            },
+            {
+              "x": 1133,
+              "y": 36
+            },
+            {
+              "x": 1134,
+              "y": 66
+            },
+            {
+              "x": 1091,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 17,
+          "words": "76.7"
+        },
+        {
+          "col_end": 19,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 1133,
+              "y": 36
+            },
+            {
+              "x": 1181,
+              "y": 36
+            },
+            {
+              "x": 1181,
+              "y": 66
+            },
+            {
+              "x": 1134,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 18,
+          "words": "38.8"
+        },
+        {
+          "col_end": 20,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 1181,
+              "y": 36
+            },
+            {
+              "x": 1235,
+              "y": 36
+            },
+            {
+              "x": 1236,
+              "y": 66
+            },
+            {
+              "x": 1181,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 19,
+          "words": "73.6"
+        },
+        {
+          "col_end": 21,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 1235,
+              "y": 36
+            },
+            {
+              "x": 1281,
+              "y": 36
+            },
+            {
+              "x": 1281,
+              "y": 66
+            },
+            {
+              "x": 1236,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 20,
+          "words": "73.9"
+        },
+        {
+          "col_end": 22,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 1281,
+              "y": 36
+            },
+            {
+              "x": 1361,
+              "y": 36
+            },
+            {
+              "x": 1361,
+              "y": 66
+            },
+            {
+              "x": 1281,
+              "y": 66
+            }
+          ],
+          "row_start": 1,
+          "col_start": 21,
+          "words": "83.0\n72.6"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 66
+            },
+            {
+              "x": 115,
+              "y": 66
+            },
+            {
+              "x": 115,
+              "y": 95
+            },
+            {
+              "x": 11,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "baseline"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 115,
+              "y": 66
+            },
+            {
+              "x": 221,
+              "y": 66
+            },
+            {
+              "x": 221,
+              "y": 95
+            },
+            {
+              "x": 115,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "ResNet-101"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 221,
+              "y": 66
+            },
+            {
+              "x": 367,
+              "y": 66
+            },
+            {
+              "x": 367,
+              "y": 95
+            },
+            {
+              "x": 221,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "07+12"
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 367,
+              "y": 66
+            },
+            {
+              "x": 424,
+              "y": 66
+            },
+            {
+              "x": 424,
+              "y": 95
+            },
+            {
+              "x": 367,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "76.4"
+        },
+        {
+          "col_end": 5,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 424,
+              "y": 66
+            },
+            {
+              "x": 479,
+              "y": 66
+            },
+            {
+              "x": 479,
+              "y": 95
+            },
+            {
+              "x": 424,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 4,
+          "words": "79.8"
+        },
+        {
+          "col_end": 6,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 66
+            },
+            {
+              "x": 521,
+              "y": 66
+            },
+            {
+              "x": 521,
+              "y": 95
+            },
+            {
+              "x": 479,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 5,
+          "words": "80.7"
+        },
+        {
+          "col_end": 7,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 521,
+              "y": 66
+            },
+            {
+              "x": 570,
+              "y": 66
+            },
+            {
+              "x": 570,
+              "y": 95
+            },
+            {
+              "x": 521,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 6,
+          "words": "76.2"
+        },
+        {
+          "col_end": 8,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 570,
+              "y": 66
+            },
+            {
+              "x": 597,
+              "y": 66
+            },
+            {
+              "x": 598,
+              "y": 95
+            },
+            {
+              "x": 570,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 7,
+          "words": "68.3"
+        },
+        {
+          "col_end": 9,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 597,
+              "y": 66
+            },
+            {
+              "x": 671,
+              "y": 66
+            },
+            {
+              "x": 671,
+              "y": 95
+            },
+            {
+              "x": 598,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 8,
+          "words": "55.9"
+        },
+        {
+          "col_end": 10,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 671,
+              "y": 66
+            },
+            {
+              "x": 763,
+              "y": 66
+            },
+            {
+              "x": 763,
+              "y": 95
+            },
+            {
+              "x": 671,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 9,
+          "words": "85.1\n85.3"
+        },
+        {
+          "col_end": 11,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 763,
+              "y": 66
+            },
+            {
+              "x": 816,
+              "y": 66
+            },
+            {
+              "x": 816,
+              "y": 95
+            },
+            {
+              "x": 763,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 10,
+          "words": "89.8"
+        },
+        {
+          "col_end": 12,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 816,
+              "y": 66
+            },
+            {
+              "x": 850,
+              "y": 66
+            },
+            {
+              "x": 850,
+              "y": 95
+            },
+            {
+              "x": 816,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 11,
+          "words": "56.7"
+        },
+        {
+          "col_end": 13,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 850,
+              "y": 66
+            },
+            {
+              "x": 902,
+              "y": 66
+            },
+            {
+              "x": 902,
+              "y": 95
+            },
+            {
+              "x": 850,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 12,
+          "words": "87.8"
+        },
+        {
+          "col_end": 14,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 902,
+              "y": 66
+            },
+            {
+              "x": 948,
+              "y": 66
+            },
+            {
+              "x": 948,
+              "y": 95
+            },
+            {
+              "x": 902,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 13,
+          "words": "69.4"
+        },
+        {
+          "col_end": 15,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 948,
+              "y": 66
+            },
+            {
+              "x": 998,
+              "y": 66
+            },
+            {
+              "x": 998,
+              "y": 95
+            },
+            {
+              "x": 948,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 14,
+          "words": "88.3"
+        },
+        {
+          "col_end": 16,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 998,
+              "y": 66
+            },
+            {
+              "x": 1058,
+              "y": 66
+            },
+            {
+              "x": 1058,
+              "y": 95
+            },
+            {
+              "x": 998,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 15,
+          "words": "88.9"
+        },
+        {
+          "col_end": 17,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 1058,
+              "y": 66
+            },
+            {
+              "x": 1091,
+              "y": 66
+            },
+            {
+              "x": 1091,
+              "y": 95
+            },
+            {
+              "x": 1058,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 16,
+          "words": "80.9"
+        },
+        {
+          "col_end": 18,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 1091,
+              "y": 66
+            },
+            {
+              "x": 1134,
+              "y": 66
+            },
+            {
+              "x": 1134,
+              "y": 95
+            },
+            {
+              "x": 1091,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 17,
+          "words": "78.4"
+        },
+        {
+          "col_end": 19,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 1134,
+              "y": 66
+            },
+            {
+              "x": 1181,
+              "y": 66
+            },
+            {
+              "x": 1182,
+              "y": 95
+            },
+            {
+              "x": 1134,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 18,
+          "words": "41.7"
+        },
+        {
+          "col_end": 20,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 1181,
+              "y": 66
+            },
+            {
+              "x": 1236,
+              "y": 66
+            },
+            {
+              "x": 1236,
+              "y": 95
+            },
+            {
+              "x": 1182,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 19,
+          "words": "78.6"
+        },
+        {
+          "col_end": 21,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 1236,
+              "y": 66
+            },
+            {
+              "x": 1281,
+              "y": 66
+            },
+            {
+              "x": 1281,
+              "y": 95
+            },
+            {
+              "x": 1236,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 20,
+          "words": "79.8"
+        },
+        {
+          "col_end": 22,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 1281,
+              "y": 66
+            },
+            {
+              "x": 1361,
+              "y": 66
+            },
+            {
+              "x": 1361,
+              "y": 95
+            },
+            {
+              "x": 1281,
+              "y": 95
+            }
+          ],
+          "row_start": 2,
+          "col_start": 21,
+          "words": "85.372.0"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 95
+            },
+            {
+              "x": 115,
+              "y": 95
+            },
+            {
+              "x": 115,
+              "y": 119
+            },
+            {
+              "x": 11,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "baseline+++"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 115,
+              "y": 95
+            },
+            {
+              "x": 221,
+              "y": 95
+            },
+            {
+              "x": 221,
+              "y": 119
+            },
+            {
+              "x": 115,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "ResNet-101"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 221,
+              "y": 95
+            },
+            {
+              "x": 367,
+              "y": 95
+            },
+            {
+              "x": 367,
+              "y": 119
+            },
+            {
+              "x": 221,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "COCO+07+12"
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 367,
+              "y": 95
+            },
+            {
+              "x": 424,
+              "y": 95
+            },
+            {
+              "x": 424,
+              "y": 119
+            },
+            {
+              "x": 367,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "85.6"
+        },
+        {
+          "col_end": 5,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 424,
+              "y": 95
+            },
+            {
+              "x": 479,
+              "y": 95
+            },
+            {
+              "x": 479,
+              "y": 119
+            },
+            {
+              "x": 424,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 4,
+          "words": "90.0"
+        },
+        {
+          "col_end": 6,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 479,
+              "y": 95
+            },
+            {
+              "x": 521,
+              "y": 95
+            },
+            {
+              "x": 521,
+              "y": 119
+            },
+            {
+              "x": 479,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 5,
+          "words": "89.6"
+        },
+        {
+          "col_end": 7,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 521,
+              "y": 95
+            },
+            {
+              "x": 570,
+              "y": 95
+            },
+            {
+              "x": 570,
+              "y": 119
+            },
+            {
+              "x": 521,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 6,
+          "words": "87.8"
+        },
+        {
+          "col_end": 8,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 570,
+              "y": 95
+            },
+            {
+              "x": 598,
+              "y": 95
+            },
+            {
+              "x": 599,
+              "y": 119
+            },
+            {
+              "x": 570,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 7,
+          "words": "80.8"
+        },
+        {
+          "col_end": 9,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 598,
+              "y": 95
+            },
+            {
+              "x": 671,
+              "y": 95
+            },
+            {
+              "x": 671,
+              "y": 119
+            },
+            {
+              "x": 599,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 8,
+          "words": "76.1"
+        },
+        {
+          "col_end": 10,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 671,
+              "y": 95
+            },
+            {
+              "x": 763,
+              "y": 95
+            },
+            {
+              "x": 763,
+              "y": 119
+            },
+            {
+              "x": 671,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 9,
+          "words": "89.9\n89.9"
+        },
+        {
+          "col_end": 11,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 763,
+              "y": 95
+            },
+            {
+              "x": 816,
+              "y": 95
+            },
+            {
+              "x": 817,
+              "y": 119
+            },
+            {
+              "x": 763,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 10,
+          "words": "89.6"
+        },
+        {
+          "col_end": 12,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 816,
+              "y": 95
+            },
+            {
+              "x": 850,
+              "y": 95
+            },
+            {
+              "x": 851,
+              "y": 119
+            },
+            {
+              "x": 817,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 11,
+          "words": "75.5"
+        },
+        {
+          "col_end": 13,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 850,
+              "y": 95
+            },
+            {
+              "x": 902,
+              "y": 95
+            },
+            {
+              "x": 902,
+              "y": 119
+            },
+            {
+              "x": 851,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 12,
+          "words": "90.0"
+        },
+        {
+          "col_end": 14,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 902,
+              "y": 95
+            },
+            {
+              "x": 948,
+              "y": 95
+            },
+            {
+              "x": 949,
+              "y": 119
+            },
+            {
+              "x": 902,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 13,
+          "words": "80.7"
+        },
+        {
+          "col_end": 15,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 948,
+              "y": 95
+            },
+            {
+              "x": 998,
+              "y": 95
+            },
+            {
+              "x": 999,
+              "y": 118
+            },
+            {
+              "x": 949,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 14,
+          "words": "89.6"
+        },
+        {
+          "col_end": 16,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 998,
+              "y": 95
+            },
+            {
+              "x": 1058,
+              "y": 95
+            },
+            {
+              "x": 1058,
+              "y": 119
+            },
+            {
+              "x": 999,
+              "y": 118
+            }
+          ],
+          "row_start": 3,
+          "col_start": 15,
+          "words": ""
+        },
+        {
+          "col_end": 17,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 1058,
+              "y": 95
+            },
+            {
+              "x": 1091,
+              "y": 95
+            },
+            {
+              "x": 1092,
+              "y": 119
+            },
+            {
+              "x": 1058,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 16,
+          "words": "89.1"
+        },
+        {
+          "col_end": 18,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 1091,
+              "y": 95
+            },
+            {
+              "x": 1134,
+              "y": 95
+            },
+            {
+              "x": 1135,
+              "y": 119
+            },
+            {
+              "x": 1092,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 17,
+          "words": "88.7"
+        },
+        {
+          "col_end": 19,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 1134,
+              "y": 95
+            },
+            {
+              "x": 1182,
+              "y": 95
+            },
+            {
+              "x": 1182,
+              "y": 119
+            },
+            {
+              "x": 1135,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 18,
+          "words": "65.4"
+        },
+        {
+          "col_end": 20,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 1182,
+              "y": 95
+            },
+            {
+              "x": 1236,
+              "y": 95
+            },
+            {
+              "x": 1237,
+              "y": 119
+            },
+            {
+              "x": 1182,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 19,
+          "words": "88.1"
+        },
+        {
+          "col_end": 21,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 1236,
+              "y": 95
+            },
+            {
+              "x": 1281,
+              "y": 95
+            },
+            {
+              "x": 1281,
+              "y": 118
+            },
+            {
+              "x": 1237,
+              "y": 119
+            }
+          ],
+          "row_start": 3,
+          "col_start": 20,
+          "words": "85.6"
+        },
+        {
+          "col_end": 22,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 1281,
+              "y": 95
+            },
+            {
+              "x": 1361,
+              "y": 95
+            },
+            {
+              "x": 1361,
+              "y": 119
+            },
+            {
+              "x": 1281,
+              "y": 118
+            }
+          ],
+          "row_start": 3,
+          "col_start": 21,
+          "words": "89.086.8"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 11,
+          "y": 11
+        },
+        {
+          "x": 1361,
+          "y": 11
+        },
+        {
+          "x": 1361,
+          "y": 119
+        },
+        {
+          "x": 11,
+          "y": 119
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079044991182760794
+}

@@ -1,0 +1,180 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 4
+            },
+            {
+              "x": 245,
+              "y": 4
+            },
+            {
+              "x": 245,
+              "y": 50
+            },
+            {
+              "x": 5,
+              "y": 50
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Method"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 245,
+              "y": 4
+            },
+            {
+              "x": 546,
+              "y": 4
+            },
+            {
+              "x": 546,
+              "y": 51
+            },
+            {
+              "x": 245,
+              "y": 50
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "MNLI-m(Val. Acc./%)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 546,
+              "y": 4
+            },
+            {
+              "x": 775,
+              "y": 4
+            },
+            {
+              "x": 775,
+              "y": 51
+            },
+            {
+              "x": 546,
+              "y": 51
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "RTE(Val. Acc./%)"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 50
+            },
+            {
+              "x": 245,
+              "y": 50
+            },
+            {
+              "x": 245,
+              "y": 118
+            },
+            {
+              "x": 5,
+              "y": 117
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "GPT-3 Few-Shot\nGPT-3 Fine-Tuned"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 245,
+              "y": 50
+            },
+            {
+              "x": 546,
+              "y": 51
+            },
+            {
+              "x": 547,
+              "y": 119
+            },
+            {
+              "x": 245,
+              "y": 118
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "40.6\n89.5"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 546,
+              "y": 51
+            },
+            {
+              "x": 775,
+              "y": 51
+            },
+            {
+              "x": 775,
+              "y": 119
+            },
+            {
+              "x": 547,
+              "y": 119
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "69.0\n85.4"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 5,
+          "y": 4
+        },
+        {
+          "x": 775,
+          "y": 4
+        },
+        {
+          "x": 775,
+          "y": 119
+        },
+        {
+          "x": 5,
+          "y": 119
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079048126036489870
+}

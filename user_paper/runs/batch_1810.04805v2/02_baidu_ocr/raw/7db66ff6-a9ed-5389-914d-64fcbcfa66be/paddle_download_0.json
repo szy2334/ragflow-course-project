@@ -1,0 +1,204 @@
+{
+  "file_name": "69d0f2f67a67fbc01772dab68d1b9c4d3a4f30a5b9c0127fe74af0cdaece2d56.jpg",
+  "file_id": "file-cnttwD5SdHM7RRoqDnVNR8enuii6COLW",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "AZb0b6-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "AZb0b6-layout-1",
+          "text": "",
+          "position": [
+            20,
+            14,
+            498,
+            492
+          ],
+          "polygon": [
+            [
+              20,
+              14
+            ],
+            [
+              518,
+              14
+            ],
+            [
+              518,
+              506
+            ],
+            [
+              20,
+              506
+            ]
+          ],
+          "type": "image",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "AZb0b6-layout-2",
+          "text": "Pre-training",
+          "position": [
+            180,
+            469,
+            168,
+            34
+          ],
+          "polygon": [
+            [
+              180,
+              469
+            ],
+            [
+              180,
+              502
+            ],
+            [
+              347,
+              502
+            ],
+            [
+              347,
+              472
+            ],
+            [
+              310,
+              469
+            ]
+          ],
+          "type": "figure_title",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "AZb0b6-layout-3",
+          "text": "",
+          "position": [
+            569,
+            0,
+            674,
+            469
+          ],
+          "polygon": [
+            [
+              569,
+              -3
+            ],
+            [
+              1243,
+              -3
+            ],
+            [
+              1243,
+              469
+            ],
+            [
+              569,
+              469
+            ]
+          ],
+          "type": "image",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        },
+        {
+          "layout_id": "AZb0b6-layout-4",
+          "text": "Fine-Tuning",
+          "position": [
+            874,
+            468,
+            171,
+            35
+          ],
+          "polygon": [
+            [
+              874,
+              468
+            ],
+            [
+              874,
+              500
+            ],
+            [
+              881,
+              502
+            ],
+            [
+              1044,
+              502
+            ],
+            [
+              1044,
+              471
+            ],
+            [
+              1025,
+              468
+            ]
+          ],
+          "type": "figure_title",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        }
+      ],
+      "images": [
+        {
+          "layout_id": "AZb0b6-layout-1",
+          "image_title_id": null,
+          "position": [
+            20,
+            14,
+            498,
+            492
+          ],
+          "content_layouts": [],
+          "data": "",
+          "data_url": "<temporary-url-redacted>",
+          "image_description": ""
+        },
+        {
+          "layout_id": "AZb0b6-layout-3",
+          "image_title_id": null,
+          "position": [
+            569,
+            0,
+            674,
+            469
+          ],
+          "content_layouts": [],
+          "data": "",
+          "data_url": "<temporary-url-redacted>",
+          "image_description": ""
+        }
+      ],
+      "inner_images": {},
+      "tables": [],
+      "text": "Pre-trainingFine-Tuning",
+      "markdown": "<div style=\"text-align: center;\"><img src=\"<temporary-url-redacted>\" alt=\"Image\" width=\"39%\" /></div>\n\n\n<div style=\"text-align: center;\">Pre-training</div>\n\n\n<div style=\"text-align: center;\"><img src=\"<temporary-url-redacted>\" alt=\"Image\" width=\"54%\" /></div>\n\n\n<div style=\"text-align: center;\">Fine-Tuning</div>\n",
+      "meta": {
+        "page_width": 1248,
+        "page_height": 506
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

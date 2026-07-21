@@ -1,0 +1,17 @@
+{
+  "mapping_schema_version": "user_paper_ragflow_mapping_v2",
+  "dataset_id": "4bfbda0883e611f1baf5534cb6e5572c",
+  "dataset_name": "user_papers_private_rerun",
+  "document_id": "2ea9cd9a83e911f1baf5534cb6e5572c",
+  "user_id": "local-user",
+  "paper_id": "f32022bc-cf8a-50cb-a463-a1b31e24aa9c",
+  "paper_version_id": "91a52149-428a-5eaf-8e34-162cfd57666e",
+  "expected_chunks": 114,
+  "mapped_chunks": 114,
+  "imported_this_run": 114,
+  "resumed": 0,
+  "failures": 0,
+  "quality_status": "READY",
+  "state_db": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_1810.04805v2\\04_ragflow\\import_state.sqlite",
+  "completed_at": "2026-07-20T03:15:38.493333+00:00"
+}

@@ -1,0 +1,231 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9997313023,
+        "min": 0.9991944432,
+        "variance": 9.724500671e-08
+      },
+      "words": "70.0"
+    },
+    {
+      "probability": {
+        "average": 0.9991115928,
+        "min": 0.99686414,
+        "variance": 1.701017368e-06
+      },
+      "words": "67.5"
+    },
+    {
+      "probability": {
+        "average": 0.9995861053,
+        "min": 0.9984908104,
+        "variance": 4.002901619e-07
+      },
+      "words": "65.0"
+    },
+    {
+      "probability": {
+        "average": 0.9993073344,
+        "min": 0.9975531697,
+        "variance": 1.036464937e-06
+      },
+      "words": "62.5"
+    },
+    {
+      "probability": {
+        "average": 0.7554899454,
+        "min": 0.7101275325,
+        "variance": 0.00205774582
+      },
+      "words": "I dol"
+    },
+    {
+      "probability": {
+        "average": 0.9997618198,
+        "min": 0.9991762042,
+        "variance": 1.146201924e-07
+      },
+      "words": "60.0"
+    },
+    {
+      "probability": {
+        "average": 0.999227643,
+        "min": 0.9958885312,
+        "variance": 1.831193913e-06
+      },
+      "words": "Batch size"
+    },
+    {
+      "probability": {
+        "average": 0.9983725548,
+        "min": 0.9939125776,
+        "variance": 6.639138519e-06
+      },
+      "words": "57.5"
+    },
+    {
+      "probability": {
+        "average": 0.9999844432,
+        "min": 0.9999747276,
+        "variance": 5.997335961e-11
+      },
+      "words": "256"
+    },
+    {
+      "probability": {
+        "average": 0.9999659657,
+        "min": 0.9999634027,
+        "variance": 6.180537419e-12
+      },
+      "words": "512"
+    },
+    {
+      "probability": {
+        "average": 0.9989733696,
+        "min": 0.9961230159,
+        "variance": 2.709405408e-06
+      },
+      "words": "55.0"
+    },
+    {
+      "probability": {
+        "average": 0.9999821186,
+        "min": 0.9999625683,
+        "variance": 1.754578705e-10
+      },
+      "words": "1024"
+    },
+    {
+      "probability": {
+        "average": 0.9999723434,
+        "min": 0.9999479055,
+        "variance": 3.098641344e-10
+      },
+      "words": "2048"
+    },
+    {
+      "probability": {
+        "average": 0.9985295534,
+        "min": 0.9944483042,
+        "variance": 5.556840279e-06
+      },
+      "words": "52.5"
+    },
+    {
+      "probability": {
+        "average": 0.9999455214,
+        "min": 0.9999076128,
+        "variance": 1.103806824e-09
+      },
+      "words": "4096"
+    },
+    {
+      "probability": {
+        "average": 0.9999873638,
+        "min": 0.9999799728,
+        "variance": 2.13482565e-11
+      },
+      "words": "8192"
+    },
+    {
+      "probability": {
+        "average": 0.9994561672,
+        "min": 0.9979556799,
+        "variance": 7.509283932e-07
+      },
+      "words": "50.0"
+    },
+    {
+      "probability": {
+        "average": 0.9999690056,
+        "min": 0.9999456406,
+        "variance": 4.006182053e-10
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9999664426,
+        "min": 0.9999351501,
+        "variance": 6.680463405e-10
+      },
+      "words": "200"
+    },
+    {
+      "probability": {
+        "average": 0.9999690056,
+        "min": 0.9999543428,
+        "variance": 2.847334313e-10
+      },
+      "words": "300"
+    },
+    {
+      "probability": {
+        "average": 0.9999107718,
+        "min": 0.9998508692,
+        "variance": 3.926027059e-09
+      },
+      "words": "400"
+    },
+    {
+      "probability": {
+        "average": 0.9999678135,
+        "min": 0.9999531507,
+        "variance": 2.918625341e-10
+      },
+      "words": "500"
+    },
+    {
+      "probability": {
+        "average": 0.9999637008,
+        "min": 0.9999452829,
+        "variance": 2.746899097e-10
+      },
+      "words": "600"
+    },
+    {
+      "probability": {
+        "average": 0.999964416,
+        "min": 0.9999451637,
+        "variance": 4.147899801e-10
+      },
+      "words": "700"
+    },
+    {
+      "probability": {
+        "average": 0.9999685884,
+        "min": 0.9999568462,
+        "variance": 1.511123032e-10
+      },
+      "words": "800"
+    },
+    {
+      "probability": {
+        "average": 0.9999659061,
+        "min": 0.9999531507,
+        "variance": 3.163620477e-10
+      },
+      "words": "900"
+    },
+    {
+      "probability": {
+        "average": 0.9999755621,
+        "min": 0.9999603033,
+        "variance": 1.342783662e-10
+      },
+      "words": "1000"
+    },
+    {
+      "probability": {
+        "average": 0.999943912,
+        "min": 0.9996286631,
+        "variance": 7.459605378e-09
+      },
+      "words": "Training epochs"
+    }
+  ],
+  "words_result_num": 28,
+  "direction": 0,
+  "log_id": 2079045064941631757
+}

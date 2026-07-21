@@ -1,0 +1,311 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9900345802,
+        "min": 0.8883238435,
+        "variance": 0.0007564354455
+      },
+      "words": "Social & Cultural"
+    },
+    {
+      "probability": {
+        "average": 0.9998819828,
+        "min": 0.9986491799,
+        "variance": 9.928186273e-08
+      },
+      "words": "Literature review"
+    },
+    {
+      "probability": {
+        "average": 0.9932476282,
+        "min": 0.9275009632,
+        "variance": 0.0004323483445
+      },
+      "words": "Education &"
+    },
+    {
+      "probability": {
+        "average": 0.9938941002,
+        "min": 0.9280869961,
+        "variance": 0.0002887805167
+      },
+      "words": "Social interacton"
+    },
+    {
+      "probability": {
+        "average": 0.9988376498,
+        "min": 0.9811306,
+        "variance": 1.204288856e-05
+      },
+      "words": "Social Band: human behavior in"
+    },
+    {
+      "probability": {
+        "average": 0.9999421835,
+        "min": 0.9996084571,
+        "variance": 1.197300836e-08
+      },
+      "words": "Development"
+    },
+    {
+      "probability": {
+        "average": 0.995788455,
+        "min": 0.8590756059,
+        "variance": 0.000549916469
+      },
+      "words": "social interaction, hours or longer"
+    },
+    {
+      "probability": {
+        "average": 0.9987848997,
+        "min": 0.9942301512,
+        "variance": 2.114178869e-06
+      },
+      "words": "Emotion recognition"
+    },
+    {
+      "probability": {
+        "average": 0.9998312593,
+        "min": 0.9971401691,
+        "variance": 3.756740057e-07
+      },
+      "words": "Hypothesis generation"
+    },
+    {
+      "probability": {
+        "average": 0.9970976114,
+        "min": 0.9837676287,
+        "variance": 2.23556508e-05
+      },
+      "words": "Creativity"
+    },
+    {
+      "probability": {
+        "average": 0.9370250702,
+        "min": 0.6884490252,
+        "variance": 0.01544759423
+      },
+      "words": "LLMs:"
+    },
+    {
+      "probability": {
+        "average": 0.9780380726,
+        "min": 0.6916235685,
+        "variance": 0.005084113218
+      },
+      "words": "Clinic & Counseling"
+    },
+    {
+      "probability": {
+        "average": 0.9989400506,
+        "min": 0.9946981668,
+        "variance": 1.937159823e-06
+      },
+      "words": "simulate human"
+    },
+    {
+      "probability": {
+        "average": 0.9997012615,
+        "min": 0.9964506626,
+        "variance": 6.519386488e-07
+      },
+      "words": "Experimental design"
+    },
+    {
+      "probability": {
+        "average": 0.9740812778,
+        "min": 0.8572657704,
+        "variance": 0.002309615957
+      },
+      "words": "behavior&"
+    },
+    {
+      "probability": {
+        "average": 0.9962422848,
+        "min": 0.9263341427,
+        "variance": 0.0002330249117
+      },
+      "words": "Rational Band: complex"
+    },
+    {
+      "probability": {
+        "average": 0.9975602627,
+        "min": 0.9832671285,
+        "variance": 2.570877768e-05
+      },
+      "words": "reaction."
+    },
+    {
+      "probability": {
+        "average": 0.998952806,
+        "min": 0.9968794584,
+        "variance": 8.165915801e-07
+      },
+      "words": "Decision"
+    },
+    {
+      "probability": {
+        "average": 0.9909508824,
+        "min": 0.6871830821,
+        "variance": 0.002714025555
+      },
+      "words": "cognitive activities, mins to hours"
+    },
+    {
+      "probability": {
+        "average": 0.9997957945,
+        "min": 0.9971796274,
+        "variance": 3.560599566e-07
+      },
+      "words": "Experimental subjects"
+    },
+    {
+      "probability": {
+        "average": 0.9996088743,
+        "min": 0.9988340735,
+        "variance": 1.036376958e-07
+      },
+      "words": "Reasoning"
+    },
+    {
+      "probability": {
+        "average": 0.9974115491,
+        "min": 0.9825368524,
+        "variance": 1.929818063e-05
+      },
+      "words": "Problem solving"
+    },
+    {
+      "probability": {
+        "average": 0.999825716,
+        "min": 0.9988773465,
+        "variance": 1.012309312e-07
+      },
+      "words": "Data analysis"
+    },
+    {
+      "probability": {
+        "average": 0.9955539107,
+        "min": 0.869028151,
+        "variance": 0.0005337900366
+      },
+      "words": "Cognitive Band: basic cognitive"
+    },
+    {
+      "probability": {
+        "average": 0.9835076332,
+        "min": 0.7922280431,
+        "variance": 0.002614616184
+      },
+      "words": "Cognition & Behavior"
+    },
+    {
+      "probability": {
+        "average": 0.9980043769,
+        "min": 0.9779978395,
+        "variance": 2.393082104e-05
+      },
+      "words": "processes, around 1 sec to 1 min"
+    },
+    {
+      "probability": {
+        "average": 0.9990800619,
+        "min": 0.994276464,
+        "variance": 2.723401394e-06
+      },
+      "words": "Perception"
+    },
+    {
+      "probability": {
+        "average": 0.9995785952,
+        "min": 0.9965652823,
+        "variance": 8.64022752e-07
+      },
+      "words": "Promoting Scholarly"
+    },
+    {
+      "probability": {
+        "average": 0.9983540773,
+        "min": 0.9790549278,
+        "variance": 3.103834752e-05
+      },
+      "words": "Communication"
+    },
+    {
+      "probability": {
+        "average": 0.9959640503,
+        "min": 0.8785526752,
+        "variance": 0.0004317246494
+      },
+      "words": "Biological Band: basic biological"
+    },
+    {
+      "probability": {
+        "average": 0.9954764247,
+        "min": 0.87971735,
+        "variance": 0.0004648028116
+      },
+      "words": "& physiological processes,from"
+    },
+    {
+      "probability": {
+        "average": 0.9968619943,
+        "min": 0.9670613408,
+        "variance": 6.236991612e-05
+      },
+      "words": "1 millisec to 1 sec"
+    },
+    {
+      "probability": {
+        "average": 0.9997246265,
+        "min": 0.9959387779,
+        "variance": 7.84925021e-07
+      },
+      "words": "Psychological domains"
+    },
+    {
+      "probability": {
+        "average": 0.9997670054,
+        "min": 0.9974840879,
+        "variance": 2.908590488e-07
+      },
+      "words": "LLMs'emergent properties"
+    },
+    {
+      "probability": {
+        "average": 0.9997287989,
+        "min": 0.9984982014,
+        "variance": 2.204527476e-07
+      },
+      "words": "Research tools"
+    },
+    {
+      "probability": {
+        "average": 0.9938763976,
+        "min": 0.9873865247,
+        "variance": 2.15381242e-05
+      },
+      "words": "(a)"
+    },
+    {
+      "probability": {
+        "average": 0.991130352,
+        "min": 0.9874550104,
+        "variance": 9.308542758e-06
+      },
+      "words": "(b)"
+    },
+    {
+      "probability": {
+        "average": 0.9553873539,
+        "min": 0.8794478178,
+        "variance": 0.002887775889
+      },
+      "words": "(c)"
+    }
+  ],
+  "words_result_num": 38,
+  "direction": 0,
+  "log_id": 2079042523799211707
+}

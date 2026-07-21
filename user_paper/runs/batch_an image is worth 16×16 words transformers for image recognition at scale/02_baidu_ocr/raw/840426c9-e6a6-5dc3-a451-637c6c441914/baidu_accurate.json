@@ -1,0 +1,239 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9851620793,
+        "min": 0.9232287407,
+        "variance": 0.000661833561
+      },
+      "words": "ViT-L16"
+    },
+    {
+      "probability": {
+        "average": 0.9766514301,
+        "min": 0.6896725297,
+        "variance": 0.004709829111
+      },
+      "words": "7 epochs, LR=0.0004, WD=0.1"
+    },
+    {
+      "probability": {
+        "average": 0.9994809031,
+        "min": 0.9994809031,
+        "variance": 0
+      },
+      "words": "1"
+    },
+    {
+      "probability": {
+        "average": 0.9997659326,
+        "min": 0.9997659326,
+        "variance": 0
+      },
+      "words": "2"
+    },
+    {
+      "probability": {
+        "average": 0.9989972711,
+        "min": 0.9989972711,
+        "variance": 0
+      },
+      "words": "3"
+    },
+    {
+      "probability": {
+        "average": 0.9999238253,
+        "min": 0.9999238253,
+        "variance": 0
+      },
+      "words": "4"
+    },
+    {
+      "probability": {
+        "average": 0.9998919964,
+        "min": 0.9998919964,
+        "variance": 0
+      },
+      "words": "5"
+    },
+    {
+      "probability": {
+        "average": 0.9999032021,
+        "min": 0.9999032021,
+        "variance": 0
+      },
+      "words": "6"
+    },
+    {
+      "probability": {
+        "average": 0.9997628331,
+        "min": 0.9997628331,
+        "variance": 0
+      },
+      "words": "9"
+    },
+    {
+      "probability": {
+        "average": 0.9998314381,
+        "min": 0.9997087121,
+        "variance": 1.505434888e-08
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9995192289,
+        "min": 0.9991875291,
+        "variance": 1.100050184e-07
+      },
+      "words": "11"
+    },
+    {
+      "probability": {
+        "average": 0.9999485612,
+        "min": 0.9999396801,
+        "variance": 7.887379638e-11
+      },
+      "words": "12"
+    },
+    {
+      "probability": {
+        "average": 0.9997472763,
+        "min": 0.9995982051,
+        "variance": 2.223111473e-08
+      },
+      "words": "13"
+    },
+    {
+      "probability": {
+        "average": 0.9999189377,
+        "min": 0.9999161959,
+        "variance": 7.517542144e-12
+      },
+      "words": "14"
+    },
+    {
+      "probability": {
+        "average": 0.9962512851,
+        "min": 0.9962512851,
+        "variance": 0
+      },
+      "words": "1"
+    },
+    {
+      "probability": {
+        "average": 0.9999650717,
+        "min": 0.9999650717,
+        "variance": 0
+      },
+      "words": "2"
+    },
+    {
+      "probability": {
+        "average": 0.9995025396,
+        "min": 0.9995025396,
+        "variance": 0
+      },
+      "words": "3"
+    },
+    {
+      "probability": {
+        "average": 0.9999508858,
+        "min": 0.9999508858,
+        "variance": 0
+      },
+      "words": "4"
+    },
+    {
+      "probability": {
+        "average": 0.9999005795,
+        "min": 0.9999005795,
+        "variance": 0
+      },
+      "words": "5"
+    },
+    {
+      "probability": {
+        "average": 0.9998177886,
+        "min": 0.9998177886,
+        "variance": 0
+      },
+      "words": "6"
+    },
+    {
+      "probability": {
+        "average": 0.9998524189,
+        "min": 0.9998524189,
+        "variance": 0
+      },
+      "words": "7"
+    },
+    {
+      "probability": {
+        "average": 0.9997624755,
+        "min": 0.9997624755,
+        "variance": 0
+      },
+      "words": "8"
+    },
+    {
+      "probability": {
+        "average": 0.9990513921,
+        "min": 0.9990513921,
+        "variance": 0
+      },
+      "words": "9"
+    },
+    {
+      "probability": {
+        "average": 0.9998489618,
+        "min": 0.999735415,
+        "variance": 1.288612062e-08
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9996696711,
+        "min": 0.9994350076,
+        "variance": 5.505296485e-08
+      },
+      "words": "11"
+    },
+    {
+      "probability": {
+        "average": 0.9999576211,
+        "min": 0.9999537468,
+        "variance": 1.501021529e-11
+      },
+      "words": "12"
+    },
+    {
+      "probability": {
+        "average": 0.9998775721,
+        "min": 0.9998167157,
+        "variance": 3.707123497e-09
+      },
+      "words": "13"
+    },
+    {
+      "probability": {
+        "average": 0.9999171495,
+        "min": 0.9999064207,
+        "variance": 1.151079232e-10
+      },
+      "words": "14"
+    },
+    {
+      "probability": {
+        "average": 0.9984378815,
+        "min": 0.980322659,
+        "variance": 2.026244147e-05
+      },
+      "words": "Input patch column"
+    }
+  ],
+  "words_result_num": 29,
+  "direction": 0,
+  "log_id": 2079043537401244787
+}

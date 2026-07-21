@@ -1,0 +1,355 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 8
+            },
+            {
+              "x": 151,
+              "y": 8
+            },
+            {
+              "x": 151,
+              "y": 36
+            },
+            {
+              "x": 4,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "References"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 151,
+              "y": 8
+            },
+            {
+              "x": 462,
+              "y": 8
+            },
+            {
+              "x": 462,
+              "y": 36
+            },
+            {
+              "x": 151,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Research question"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 8
+            },
+            {
+              "x": 862,
+              "y": 8
+            },
+            {
+              "x": 862,
+              "y": 36
+            },
+            {
+              "x": 462,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Research method"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 862,
+              "y": 8
+            },
+            {
+              "x": 1247,
+              "y": 9
+            },
+            {
+              "x": 1247,
+              "y": 36
+            },
+            {
+              "x": 862,
+              "y": 36
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "Key finding"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 3,
+              "y": 35
+            },
+            {
+              "x": 1247,
+              "y": 36
+            },
+            {
+              "x": 1247,
+              "y": 115
+            },
+            {
+              "x": 3,
+              "y": 114
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Developmental Research with LLMs"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 114
+            },
+            {
+              "x": 151,
+              "y": 114
+            },
+            {
+              "x": 151,
+              "y": 246
+            },
+            {
+              "x": 4,
+              "y": 246
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Kosinski\n(2024)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 151,
+              "y": 114
+            },
+            {
+              "x": 462,
+              "y": 115
+            },
+            {
+              "x": 462,
+              "y": 246
+            },
+            {
+              "x": 151,
+              "y": 246
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "Can LLMs demonstrate theory\nof mind(ToM) abilities?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 115
+            },
+            {
+              "x": 862,
+              "y": 115
+            },
+            {
+              "x": 862,
+              "y": 246
+            },
+            {
+              "x": 462,
+              "y": 246
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "Eleven different LLMs were tested on 40\nfalse-belief tasks, requiring success in\neight related scenarios per task.\nPerformance was compared across model\nversions."
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 862,
+              "y": 115
+            },
+            {
+              "x": 1247,
+              "y": 115
+            },
+            {
+              "x": 1247,
+              "y": 246
+            },
+            {
+              "x": 862,
+              "y": 246
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "GPT-4 achieved 75% accuracy,\ncomparable to 6-year-old children, while\nolder models performed significantly\nworse."
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 4,
+              "y": 246
+            },
+            {
+              "x": 151,
+              "y": 246
+            },
+            {
+              "x": 151,
+              "y": 371
+            },
+            {
+              "x": 4,
+              "y": 371
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "Vzorinab et\nal.(2024)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 151,
+              "y": 246
+            },
+            {
+              "x": 462,
+              "y": 246
+            },
+            {
+              "x": 462,
+              "y": 371
+            },
+            {
+              "x": 151,
+              "y": 371
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "How does GPT-4's emotional\nintelligence align with\ndevelopmental patterns in\nhuman emotional reasoning?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 462,
+              "y": 246
+            },
+            {
+              "x": 862,
+              "y": 246
+            },
+            {
+              "x": 862,
+              "y": 372
+            },
+            {
+              "x": 462,
+              "y": 371
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "GPT-4 was evaluated using the Mayer-\nSalovey-Caruso Emotional Intelligence\nTest (MSCEIT) through text-based\nprompts."
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 862,
+              "y": 246
+            },
+            {
+              "x": 1247,
+              "y": 246
+            },
+            {
+              "x": 1247,
+              "y": 372
+            },
+            {
+              "x": 862,
+              "y": 372
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "GPT-4 excels in understanding and\nmanaging emotions but shows limited\nreflective analysis, resembling early\ndevelopmental stages in human\nemotional reasoning."
+        }
+      ],
+      "table_location": [
+        {
+          "x": 3,
+          "y": 8
+        },
+        {
+          "x": 1247,
+          "y": 8
+        },
+        {
+          "x": 1247,
+          "y": 372
+        },
+        {
+          "x": 3,
+          "y": 372
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079042607282432888
+}

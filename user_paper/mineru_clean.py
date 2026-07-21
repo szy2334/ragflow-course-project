@@ -43,6 +43,8 @@ class MineruClient:
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
         self.session = requests.Session()
+        # MinerU traffic is direct; bypass a machine-level proxy that can close API polls.
+        self.session.trust_env = False
         self.session.headers.update(
             {"Authorization": f"Bearer {token}", "Accept": "application/json"}
         )
@@ -67,7 +69,7 @@ class MineruClient:
                     "is_ocr": True,
                 }
             ],
-            "model_version": "pipeline",
+            "model_version": "vlm",
             "enable_formula": True,
             "enable_table": True,
         }
@@ -91,7 +93,7 @@ class MineruClient:
 
     def upload_file(self, upload_url: str, pdf_path: Path) -> None:
         with pdf_path.open("rb") as handle:
-            response = requests.put(upload_url, data=handle, timeout=self.timeout)
+            response = self.session.put(upload_url, data=handle, timeout=self.timeout)
         response.raise_for_status()
 
     def wait_result(
@@ -139,7 +141,7 @@ class MineruClient:
     def download_and_extract(self, zip_url: str, target_dir: Path) -> Path:
         target_dir.mkdir(parents=True, exist_ok=True)
         zip_path = target_dir / "mineru_result.zip"
-        with requests.get(zip_url, stream=True, timeout=self.timeout) as response:
+        with self.session.get(zip_url, stream=True, timeout=self.timeout) as response:
             response.raise_for_status()
             with zip_path.open("wb") as handle:
                 for block in response.iter_content(1024 * 1024):

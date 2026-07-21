@@ -1,0 +1,330 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 11
+            },
+            {
+              "x": 373,
+              "y": 10
+            },
+            {
+              "x": 373,
+              "y": 45
+            },
+            {
+              "x": 9,
+              "y": 45
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": ""
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 373,
+              "y": 10
+            },
+            {
+              "x": 472,
+              "y": 10
+            },
+            {
+              "x": 472,
+              "y": 45
+            },
+            {
+              "x": 373,
+              "y": 45
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "val2"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 472,
+              "y": 10
+            },
+            {
+              "x": 561,
+              "y": 9
+            },
+            {
+              "x": 561,
+              "y": 45
+            },
+            {
+              "x": 472,
+              "y": 45
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "test"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 45
+            },
+            {
+              "x": 373,
+              "y": 45
+            },
+            {
+              "x": 373,
+              "y": 83
+            },
+            {
+              "x": 9,
+              "y": 83
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "GoogLeNet [44](ILSVRC'14)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 373,
+              "y": 45
+            },
+            {
+              "x": 472,
+              "y": 45
+            },
+            {
+              "x": 472,
+              "y": 83
+            },
+            {
+              "x": 373,
+              "y": 83
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 472,
+              "y": 45
+            },
+            {
+              "x": 561,
+              "y": 45
+            },
+            {
+              "x": 561,
+              "y": 83
+            },
+            {
+              "x": 472,
+              "y": 83
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "43.9"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 83
+            },
+            {
+              "x": 373,
+              "y": 83
+            },
+            {
+              "x": 373,
+              "y": 120
+            },
+            {
+              "x": 9,
+              "y": 120
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "our single model (ILSVRC'15)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 373,
+              "y": 83
+            },
+            {
+              "x": 472,
+              "y": 83
+            },
+            {
+              "x": 472,
+              "y": 120
+            },
+            {
+              "x": 373,
+              "y": 120
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "60.5"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 472,
+              "y": 83
+            },
+            {
+              "x": 561,
+              "y": 83
+            },
+            {
+              "x": 561,
+              "y": 120
+            },
+            {
+              "x": 472,
+              "y": 120
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "58.8"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 9,
+              "y": 120
+            },
+            {
+              "x": 373,
+              "y": 120
+            },
+            {
+              "x": 373,
+              "y": 153
+            },
+            {
+              "x": 9,
+              "y": 152
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "our ensemble(ILSVRC'15)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 373,
+              "y": 120
+            },
+            {
+              "x": 472,
+              "y": 120
+            },
+            {
+              "x": 472,
+              "y": 153
+            },
+            {
+              "x": 373,
+              "y": 153
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "63.6"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 472,
+              "y": 120
+            },
+            {
+              "x": 561,
+              "y": 120
+            },
+            {
+              "x": 561,
+              "y": 153
+            },
+            {
+              "x": 472,
+              "y": 153
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "62.1"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 9,
+          "y": 9
+        },
+        {
+          "x": 561,
+          "y": 9
+        },
+        {
+          "x": 561,
+          "y": 153
+        },
+        {
+          "x": 9,
+          "y": 153
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079044995266218968
+}

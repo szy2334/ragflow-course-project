@@ -1,0 +1,159 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9998874664,
+        "min": 0.9998444319,
+        "variance": 1.851972797e-09
+      },
+      "words": "84"
+    },
+    {
+      "probability": {
+        "average": 0.9586209059,
+        "min": 0.9586209059,
+        "variance": 0
+      },
+      "words": "A"
+    },
+    {
+      "probability": {
+        "average": 0.9999511242,
+        "min": 0.9999171495,
+        "variance": 1.154276674e-09
+      },
+      "words": "82"
+    },
+    {
+      "probability": {
+        "average": 0.977085948,
+        "min": 0.977085948,
+        "variance": 0
+      },
+      "words": "A"
+    },
+    {
+      "probability": {
+        "average": 0.9791007042,
+        "min": 0.9791007042,
+        "variance": 0
+      },
+      "words": "×"
+    },
+    {
+      "probability": {
+        "average": 0.8932910562,
+        "min": 0.8932910562,
+        "variance": 0
+      },
+      "words": "×"
+    },
+    {
+      "probability": {
+        "average": 0.7977384925,
+        "min": 0.7977384925,
+        "variance": 0
+      },
+      "words": "×"
+    },
+    {
+      "probability": {
+        "average": 0.9998134375,
+        "min": 0.9997733235,
+        "variance": 1.611519806e-09
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9999079108,
+        "min": 0.9998701811,
+        "variance": 1.423533291e-09
+      },
+      "words": "78"
+    },
+    {
+      "probability": {
+        "average": 0.9586185813,
+        "min": 0.5905832052,
+        "variance": 0.01122171152
+      },
+      "words": "A-BERTBASE (Masked LM)"
+    },
+    {
+      "probability": {
+        "average": 0.9999760389,
+        "min": 0.9999629259,
+        "variance": 1.719513421e-10
+      },
+      "words": "76"
+    },
+    {
+      "probability": {
+        "average": 0.9738268852,
+        "min": 0.9738268852,
+        "variance": 0
+      },
+      "words": "×"
+    },
+    {
+      "probability": {
+        "average": 0.9968121648,
+        "min": 0.9501160383,
+        "variance": 0.0001031974243
+      },
+      "words": "BERTBASE(Left-to-Right)"
+    },
+    {
+      "probability": {
+        "average": 0.9999659657,
+        "min": 0.9999408722,
+        "variance": 5.518489554e-10
+      },
+      "words": "200"
+    },
+    {
+      "probability": {
+        "average": 0.9999721646,
+        "min": 0.9999511242,
+        "variance": 3.671078164e-10
+      },
+      "words": "400"
+    },
+    {
+      "probability": {
+        "average": 0.9999706149,
+        "min": 0.9999572039,
+        "variance": 3.388282155e-10
+      },
+      "words": "600"
+    },
+    {
+      "probability": {
+        "average": 0.9998853207,
+        "min": 0.9998139739,
+        "variance": 4.08241041e-09
+      },
+      "words": "800"
+    },
+    {
+      "probability": {
+        "average": 0.9992303848,
+        "min": 0.9966713786,
+        "variance": 1.638708454e-06
+      },
+      "words": "1,000"
+    },
+    {
+      "probability": {
+        "average": 0.9997881651,
+        "min": 0.9976658821,
+        "variance": 1.966855052e-07
+      },
+      "words": "Pre-training Steps(Thousands)"
+    }
+  ],
+  "words_result_num": 19,
+  "direction": 0,
+  "log_id": 2079048697806840741
+}

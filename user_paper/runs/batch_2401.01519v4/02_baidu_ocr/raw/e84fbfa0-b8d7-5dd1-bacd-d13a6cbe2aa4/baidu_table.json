@@ -1,0 +1,980 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 6
+            },
+            {
+              "x": 149,
+              "y": 6
+            },
+            {
+              "x": 149,
+              "y": 43
+            },
+            {
+              "x": 6,
+              "y": 43
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Reference"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 6
+            },
+            {
+              "x": 497,
+              "y": 6
+            },
+            {
+              "x": 497,
+              "y": 43
+            },
+            {
+              "x": 149,
+              "y": 43
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Research Question"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 497,
+              "y": 6
+            },
+            {
+              "x": 853,
+              "y": 6
+            },
+            {
+              "x": 853,
+              "y": 43
+            },
+            {
+              "x": 497,
+              "y": 43
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Research method"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 853,
+              "y": 6
+            },
+            {
+              "x": 1247,
+              "y": 6
+            },
+            {
+              "x": 1247,
+              "y": 43
+            },
+            {
+              "x": 853,
+              "y": 43
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "Key finding"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 42
+            },
+            {
+              "x": 1246,
+              "y": 42
+            },
+            {
+              "x": 1246,
+              "y": 94
+            },
+            {
+              "x": 5,
+              "y": 94
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Human-like Cognitive Abilities"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 94
+            },
+            {
+              "x": 149,
+              "y": 94
+            },
+            {
+              "x": 149,
+              "y": 224
+            },
+            {
+              "x": 6,
+              "y": 224
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Binz and\nSchulz\n(2023b)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 94
+            },
+            {
+              "x": 497,
+              "y": 94
+            },
+            {
+              "x": 497,
+              "y": 224
+            },
+            {
+              "x": 149,
+              "y": 224
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "How does GPT-3 perform on\ncognitive psychology tasks,\nincluding\ndecision-making,\ninformation search, and causal\nreasoning?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 497,
+              "y": 94
+            },
+            {
+              "x": 853,
+              "y": 94
+            },
+            {
+              "x": 853,
+              "y": 224
+            },
+            {
+              "x": 497,
+              "y": 224
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "GPT-3 was tested using canonical\ncognitive psychology experiments\nand compared to human\nperformance."
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 853,
+              "y": 94
+            },
+            {
+              "x": 1247,
+              "y": 94
+            },
+            {
+              "x": 1247,
+              "y": 224
+            },
+            {
+              "x": 853,
+              "y": 224
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "GPT-3 excels in decision-making and\nreinforcement learning but struggles with\ntask perturbations, directed exploration,\nand causal reasoning."
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 224
+            },
+            {
+              "x": 149,
+              "y": 224
+            },
+            {
+              "x": 149,
+              "y": 378
+            },
+            {
+              "x": 6,
+              "y": 378
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "Stevenson et\nal.(2022)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 224
+            },
+            {
+              "x": 497,
+              "y": 224
+            },
+            {
+              "x": 497,
+              "y": 378
+            },
+            {
+              "x": 149,
+              "y": 378
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "Can GPT-3 generate creative\nsolutions comparable to humans in\nGuilford's Alternative Uses Test\n(AUT)?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 497,
+              "y": 224
+            },
+            {
+              "x": 853,
+              "y": 224
+            },
+            {
+              "x": 853,
+              "y": 378
+            },
+            {
+              "x": 497,
+              "y": 378
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "GPT-3's responses to AUT were\nevaluated for originality, usefulness,\nsurprise, and flexibility, using expert\nratings and semantic distance\nanalysis, and compared with human\ndata."
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 853,
+              "y": 224
+            },
+            {
+              "x": 1247,
+              "y": 224
+            },
+            {
+              "x": 1247,
+              "y": 378
+            },
+            {
+              "x": 853,
+              "y": 378
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "Humans currently outperform GPT-3 in\ncreativity, but GPT-3 shows potential to\nclose the gap in future, raising questions\nabout AI creativity and its evaluation."
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 378
+            },
+            {
+              "x": 149,
+              "y": 378
+            },
+            {
+              "x": 149,
+              "y": 558
+            },
+            {
+              "x": 5,
+              "y": 558
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "Marjieh et\nal.(2023)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 378
+            },
+            {
+              "x": 497,
+              "y": 378
+            },
+            {
+              "x": 497,
+              "y": 558
+            },
+            {
+              "x": 149,
+              "y": 558
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "Can LLMs recover perceptual\ninformation from language, and\nhow do they reflect cross-linguistic\nvariations?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 497,
+              "y": 378
+            },
+            {
+              "x": 853,
+              "y": 378
+            },
+            {
+              "x": 853,
+              "y": 558
+            },
+            {
+              "x": 497,
+              "y": 558
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "GPT-3, GPT-3.5, GPT-4 were tested\non six psychophysical datasets and a\nmultilingual color-naming task to\ncompare their outputs with human\nperceptual data."
+        },
+        {
+          "col_end": 4,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 853,
+              "y": 378
+            },
+            {
+              "x": 1247,
+              "y": 378
+            },
+            {
+              "x": 1247,
+              "y": 558
+            },
+            {
+              "x": 853,
+              "y": 558
+            }
+          ],
+          "row_start": 4,
+          "col_start": 3,
+          "words": "LLMs like GPT-4 align closely with\nhuman perceptual data, recover\nrepresentations such as the color wheel,\nand reflect cross-linguistic perceptual\nvariations, demonstrating their ability to\nextract perceptual information from\nlanguage."
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 558
+            },
+            {
+              "x": 149,
+              "y": 558
+            },
+            {
+              "x": 149,
+              "y": 764
+            },
+            {
+              "x": 6,
+              "y": 764
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "Loconte et\nal.(2023)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 558
+            },
+            {
+              "x": 497,
+              "y": 558
+            },
+            {
+              "x": 497,
+              "y": 765
+            },
+            {
+              "x": 149,
+              "y": 764
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "How do various LLMs perform on\nneuropsychological tests assessing\nprefrontal functions compared to\nhuman cognitive abilities?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 497,
+              "y": 558
+            },
+            {
+              "x": 853,
+              "y": 558
+            },
+            {
+              "x": 853,
+              "y": 764
+            },
+            {
+              "x": 497,
+              "y": 765
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": "GPT-3.5, GPT-4,were evaluated on\ntasks related to planning, semantic\nunderstanding, and Theory of Mind."
+        },
+        {
+          "col_end": 4,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 853,
+              "y": 558
+            },
+            {
+              "x": 1247,
+              "y": 558
+            },
+            {
+              "x": 1247,
+              "y": 765
+            },
+            {
+              "x": 853,
+              "y": 764
+            }
+          ],
+          "row_start": 5,
+          "col_start": 3,
+          "words": "Findings indicate that GPT-4 generally\nmeets normative human standards,\nwhereas Claude2, and Llama2 show\nvariable and often limited abilities,\nparticularly in planning and Theory of\nMind, underscoring the challenges in\nmimicking complex human cognitive\nfunctions."
+        },
+        {
+          "col_end": 1,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 764
+            },
+            {
+              "x": 149,
+              "y": 764
+            },
+            {
+              "x": 149,
+              "y": 919
+            },
+            {
+              "x": 5,
+              "y": 919
+            }
+          ],
+          "row_start": 6,
+          "col_start": 0,
+          "words": "Dhingra et\nal.(2023)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 764
+            },
+            {
+              "x": 497,
+              "y": 765
+            },
+            {
+              "x": 497,
+              "y": 920
+            },
+            {
+              "x": 149,
+              "y": 919
+            }
+          ],
+          "row_start": 6,
+          "col_start": 1,
+          "words": "How does GPT-4 perform on\ncognitive psychology tasks\ncompared to prior state-of-the-art\nmodels?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 497,
+              "y": 765
+            },
+            {
+              "x": 853,
+              "y": 764
+            },
+            {
+              "x": 853,
+              "y": 919
+            },
+            {
+              "x": 497,
+              "y": 920
+            }
+          ],
+          "row_start": 6,
+          "col_start": 2,
+          "words": "GPT-4 was evaluated on cognitive\npsychology\ndatasets\n(CommonsenseQA, SuperGLUE,\nMATH, HANS) to analyze its\nintegration of cognitive processes\nwith contextual information."
+        },
+        {
+          "col_end": 4,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 853,
+              "y": 764
+            },
+            {
+              "x": 1247,
+              "y": 765
+            },
+            {
+              "x": 1247,
+              "y": 920
+            },
+            {
+              "x": 853,
+              "y": 919
+            }
+          ],
+          "row_start": 6,
+          "col_start": 3,
+          "words": "GPT-4 demonstrates high accuracy on\ncognitive psychology tasks, surpassing\nprior models, and showcases significant\npotential to bridge human and machine\nreasoning."
+        },
+        {
+          "col_end": 1,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 919
+            },
+            {
+              "x": 149,
+              "y": 919
+            },
+            {
+              "x": 149,
+              "y": 1073
+            },
+            {
+              "x": 5,
+              "y": 1073
+            }
+          ],
+          "row_start": 7,
+          "col_start": 0,
+          "words": "Hagendorff\n(2024)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 919
+            },
+            {
+              "x": 497,
+              "y": 920
+            },
+            {
+              "x": 497,
+              "y": 1073
+            },
+            {
+              "x": 149,
+              "y": 1073
+            }
+          ],
+          "row_start": 7,
+          "col_start": 1,
+          "words": "Can modern LLMs understand and\napply deception strategies?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 497,
+              "y": 920
+            },
+            {
+              "x": 853,
+              "y": 919
+            },
+            {
+              "x": 853,
+              "y": 1073
+            },
+            {
+              "x": 497,
+              "y": 1073
+            }
+          ],
+          "row_start": 7,
+          "col_start": 2,
+          "words": "Experiments tested LLMs on\ninducing false beliefs, using chain-\nof-thought reasoning, and displaying\nMachiavellian behavior in simple\nand complex deception scenarios."
+        },
+        {
+          "col_end": 4,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 853,
+              "y": 919
+            },
+            {
+              "x": 1247,
+              "y": 920
+            },
+            {
+              "x": 1247,
+              "y": 1073
+            },
+            {
+              "x": 853,
+              "y": 1073
+            }
+          ],
+          "row_start": 7,
+          "col_start": 3,
+          "words": "GPT-4 demonstrates advanced deceptive\nbehavior, succeeding in 99.16% of simple\nand 71.46% of complex scenarios,\nhighlighting the emergence of\nsophisticated deception abilities absent in\nearlier models."
+        },
+        {
+          "col_end": 4,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 1073
+            },
+            {
+              "x": 1246,
+              "y": 1073
+            },
+            {
+              "x": 1246,
+              "y": 1126
+            },
+            {
+              "x": 5,
+              "y": 1126
+            }
+          ],
+          "row_start": 8,
+          "col_start": 0,
+          "words": "Experimental Methodologies for Cognitive Research Using LLMs"
+        },
+        {
+          "col_end": 1,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 1126
+            },
+            {
+              "x": 149,
+              "y": 1126
+            },
+            {
+              "x": 149,
+              "y": 1230
+            },
+            {
+              "x": 5,
+              "y": 1230
+            }
+          ],
+          "row_start": 9,
+          "col_start": 0,
+          "words": "Binz and\nSchulz\n(2023a)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 1126
+            },
+            {
+              "x": 497,
+              "y": 1126
+            },
+            {
+              "x": 497,
+              "y": 1230
+            },
+            {
+              "x": 149,
+              "y": 1230
+            }
+          ],
+          "row_start": 9,
+          "col_start": 1,
+          "words": "Can fine-tuned Mata's LLaMA\naccurately model human behavior?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 497,
+              "y": 1126
+            },
+            {
+              "x": 853,
+              "y": 1126
+            },
+            {
+              "x": 853,
+              "y": 1230
+            },
+            {
+              "x": 497,
+              "y": 1230
+            }
+          ],
+          "row_start": 9,
+          "col_start": 2,
+          "words": "LLaMA was fine-tuned on\npsychological experiment data and\ntested on decision-making tasks and\nunseen behaviors."
+        },
+        {
+          "col_end": 4,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 853,
+              "y": 1126
+            },
+            {
+              "x": 1247,
+              "y": 1126
+            },
+            {
+              "x": 1247,
+              "y": 1230
+            },
+            {
+              "x": 853,
+              "y": 1230
+            }
+          ],
+          "row_start": 9,
+          "col_start": 3,
+          "words": "Fine-tuned LLaMA outperforms\ntraditional cognitive models, accurately\nmodel individual behavior, and predict\nunseen human responses."
+        },
+        {
+          "col_end": 1,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 5,
+              "y": 1230
+            },
+            {
+              "x": 149,
+              "y": 1230
+            },
+            {
+              "x": 149,
+              "y": 1406
+            },
+            {
+              "x": 5,
+              "y": 1406
+            }
+          ],
+          "row_start": 10,
+          "col_start": 0,
+          "words": "Dubey et al.\n(2024)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 149,
+              "y": 1230
+            },
+            {
+              "x": 497,
+              "y": 1230
+            },
+            {
+              "x": 497,
+              "y": 1406
+            },
+            {
+              "x": 149,
+              "y": 1406
+            }
+          ],
+          "row_start": 10,
+          "col_start": 1,
+          "words": "How can generative AI tools be\nutilized to streamline the creation of\nexperimental stimuli in\npsychological research and\ninfluence public attitudes toward\nsustainable policies?"
+        },
+        {
+          "col_end": 3,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 497,
+              "y": 1230
+            },
+            {
+              "x": 853,
+              "y": 1230
+            },
+            {
+              "x": 853,
+              "y": 1406
+            },
+            {
+              "x": 497,
+              "y": 1406
+            }
+          ],
+          "row_start": 10,
+          "col_start": 2,
+          "words": "DALL-E 2 was employed to generate\nrealistic visual stimuli of car-free\nurban environments, which were\nthen presented to participants to\nmeasure attitudes toward sustainable\npolicies."
+        },
+        {
+          "col_end": 4,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 853,
+              "y": 1230
+            },
+            {
+              "x": 1247,
+              "y": 1230
+            },
+            {
+              "x": 1247,
+              "y": 1406
+            },
+            {
+              "x": 853,
+              "y": 1406
+            }
+          ],
+          "row_start": 10,
+          "col_start": 3,
+          "words": "By using DALL-E 2， the study\ndemonstrated that generative AI tools can\nenhance the design process of\nexperimental stimuli, offering greater\ncontrol, diversity, and scalability, thereby\neffectively influencing participants'\nattitudes."
+        }
+      ],
+      "table_location": [
+        {
+          "x": 5,
+          "y": 6
+        },
+        {
+          "x": 1247,
+          "y": 6
+        },
+        {
+          "x": 1247,
+          "y": 1406
+        },
+        {
+          "x": 5,
+          "y": 1406
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079042595180870218
+}

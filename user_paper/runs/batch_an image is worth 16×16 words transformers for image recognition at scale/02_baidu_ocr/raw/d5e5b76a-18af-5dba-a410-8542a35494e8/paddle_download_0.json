@@ -1,0 +1,61 @@
+{
+  "file_name": "1afa925192b01ee31559e6065688ebc62ee53b5243ddced5dd6c2f3c45e997ae.jpg",
+  "file_id": "file-LGZzc24DR0sE0Ab6DU24BCg5blWxKd2y",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "clNZQv-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "clNZQv-layout-1",
+          "text": "Input patch row | 1 | 2 | 3 | 4 | 5 | 6 | 7\n1 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n2 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n3 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n4 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n5 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n6 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n7 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8",
+          "position": [
+            8,
+            10,
+            318,
+            287
+          ],
+          "polygon": [
+            [
+              8,
+              10
+            ],
+            [
+              326,
+              10
+            ],
+            [
+              326,
+              297
+            ],
+            [
+              8,
+              297
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>Input patch row</th><th style='text-align: center;'>1</th><th style='text-align: center;'>2</th><th style='text-align: center;'>3</th><th style='text-align: center;'>4</th><th style='text-align: center;'>5</th><th style='text-align: center;'>6</th><th style='text-align: center;'>7</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>1</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>2</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>3</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>4</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>5</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>6</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>7</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "Input patch row | 1 | 2 | 3 | 4 | 5 | 6 | 7\n1 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n2 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n3 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n4 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n5 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n6 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8\n7 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8 | 0.8",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>Input patch row</th><th style='text-align: center;'>1</th><th style='text-align: center;'>2</th><th style='text-align: center;'>3</th><th style='text-align: center;'>4</th><th style='text-align: center;'>5</th><th style='text-align: center;'>6</th><th style='text-align: center;'>7</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>1</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>2</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>3</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>4</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>5</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>6</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n    <tr><td style='text-align: center;'>7</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td><td style='text-align: center;'>0.8</td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 331,
+        "page_height": 301
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

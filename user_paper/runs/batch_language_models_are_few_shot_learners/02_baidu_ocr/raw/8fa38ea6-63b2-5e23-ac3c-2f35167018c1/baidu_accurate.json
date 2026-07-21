@@ -1,0 +1,135 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9452162981,
+        "min": 0.6098710299,
+        "variance": 0.01468870882
+      },
+      "words": "Context → Title: The Blitz"
+    },
+    {
+      "probability": {
+        "average": 0.9983887076,
+        "min": 0.965338707,
+        "variance": 3.116726293e-05
+      },
+      "words": "Background: From the German point of view, March 1941 saw an improvement."
+    },
+    {
+      "probability": {
+        "average": 0.998806715,
+        "min": 0.9628000259,
+        "variance": 2.079566912e-05
+      },
+      "words": "The Luftwaffe flew 4,000 sorties that month, including 12 major and"
+    },
+    {
+      "probability": {
+        "average": 0.9984537959,
+        "min": 0.9664041996,
+        "variance": 3.100355752e-05
+      },
+      "words": "three heavy attacks. The electronic war intensified but the Luftwaffe"
+    },
+    {
+      "probability": {
+        "average": 0.9988407493,
+        "min": 0.975784421,
+        "variance": 8.736522432e-06
+      },
+      "words": "flew major inland missions only on moonlit nights. Ports were easier to"
+    },
+    {
+      "probability": {
+        "average": 0.997885704,
+        "min": 0.9292004704,
+        "variance": 8.252559201e-05
+      },
+      "words": "find and made better targets. To confuse the British, radio silence was"
+    },
+    {
+      "probability": {
+        "average": 0.9976158142,
+        "min": 0.9254818559,
+        "variance": 8.675819117e-05
+      },
+      "words": "observed until the bombs fell. X- and Y-Gerat beams were placed over"
+    },
+    {
+      "probability": {
+        "average": 0.9994356632,
+        "min": 0.9907543659,
+        "variance": 1.764761805e-06
+      },
+      "words": "false targets and switched only at the last minute. Rapid frequency"
+    },
+    {
+      "probability": {
+        "average": 0.9987125397,
+        "min": 0.9451963305,
+        "variance": 4.132624963e-05
+      },
+      "words": "changes were introduced for X-Gerat, whose wider band of frequencies and"
+    },
+    {
+      "probability": {
+        "average": 0.9995415211,
+        "min": 0.9949215055,
+        "variance": 4.590843332e-07
+      },
+      "words": "greater tactical flexibility ensured it remained effective at a time when"
+    },
+    {
+      "probability": {
+        "average": 0.9992716908,
+        "min": 0.985499382,
+        "variance": 4.274032563e-06
+      },
+      "words": "British selective jamming was degrading the effectiveness of Y-Gerat."
+    },
+    {
+      "probability": {
+        "average": 0.9986069798,
+        "min": 0.9547584653,
+        "variance": 4.386754517e-05
+      },
+      "words": "Q: How many sorties were flown in March 1941？"
+    },
+    {
+      "probability": {
+        "average": 0.9997249842,
+        "min": 0.9992827773,
+        "variance": 5.47392851e-08
+      },
+      "words": "A:4,000"
+    },
+    {
+      "probability": {
+        "average": 0.9977713823,
+        "min": 0.9296981692,
+        "variance": 0.0001070179642
+      },
+      "words": "Q: When did the Luftwaffe fly inland missions?"
+    },
+    {
+      "probability": {
+        "average": 0.9838495255,
+        "min": 0.9708303213,
+        "variance": 0.0001695004466
+      },
+      "words": "A:"
+    },
+    {
+      "probability": {
+        "average": 0.9821043611,
+        "min": 0.6566818357,
+        "variance": 0.004426790867
+      },
+      "words": "Target Completion → only on moonlit nights"
+    }
+  ],
+  "words_result_num": 16,
+  "direction": 0,
+  "log_id": 2079046721586988347
+}

@@ -1,0 +1,119 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9992665052,
+        "min": 0.9976524711,
+        "variance": 8.890895629e-07
+      },
+      "words": "0.75"
+    },
+    {
+      "probability": {
+        "average": 0.9946491718,
+        "min": 0.985575676,
+        "variance": 4.134878327e-05
+      },
+      "words": "0.5"
+    },
+    {
+      "probability": {
+        "average": 0.9983306527,
+        "min": 0.9948034883,
+        "variance": 4.344381068e-06
+      },
+      "words": "0.25"
+    },
+    {
+      "probability": {
+        "average": 0.9958708882,
+        "min": 0.9958708882,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9949660897,
+        "min": 0.9949660897,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9999859333,
+        "min": 0.9999859333,
+        "variance": 0
+      },
+      "words": "5"
+    },
+    {
+      "probability": {
+        "average": 0.9997028112,
+        "min": 0.9996421337,
+        "variance": 3.678147564e-09
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9994519949,
+        "min": 0.9993015528,
+        "variance": 2.264180132e-08
+      },
+      "words": "15"
+    },
+    {
+      "probability": {
+        "average": 0.9999397993,
+        "min": 0.9998897314,
+        "variance": 2.506794772e-09
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9999533296,
+        "min": 0.9999123812,
+        "variance": 1.676770722e-09
+      },
+      "words": "25"
+    },
+    {
+      "probability": {
+        "average": 0.9998594522,
+        "min": 0.9997279048,
+        "variance": 1.731257449e-08
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9998242259,
+        "min": 0.999689579,
+        "variance": 1.812978567e-08
+      },
+      "words": "35"
+    },
+    {
+      "probability": {
+        "average": 0.9998527765,
+        "min": 0.999727428,
+        "variance": 1.571973662e-08
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9996836782,
+        "min": 0.9994726777,
+        "variance": 3.107543378e-08
+      },
+      "words": "Epochs"
+    }
+  ],
+  "words_result_num": 14,
+  "direction": 0,
+  "log_id": 2079049144204147432
+}

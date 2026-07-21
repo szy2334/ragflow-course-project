@@ -1,0 +1,175 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9994968772,
+        "min": 0.9948935509,
+        "variance": 1.268560595e-06
+      },
+      "words": "Validation Set Cross Entropy"
+    },
+    {
+      "probability": {
+        "average": 0.9954783916,
+        "min": 0.9867864847,
+        "variance": 3.778290557e-05
+      },
+      "words": "4.0"
+    },
+    {
+      "probability": {
+        "average": 0.9979364276,
+        "min": 0.9753479958,
+        "variance": 2.717499592e-05
+      },
+      "words": "15 frames 3 layers 2000 units"
+    },
+    {
+      "probability": {
+        "average": 0.6068496704,
+        "min": 0.4592034817,
+        "variance": 0.02179938927
+      },
+      "words": "一二"
+    },
+    {
+      "probability": {
+        "average": 0.9993252754,
+        "min": 0.9951192141,
+        "variance": 1.405142257e-06
+      },
+      "words": "15 frames 3 layers 4000 units"
+    },
+    {
+      "probability": {
+        "average": 0.9992996454,
+        "min": 0.9945167899,
+        "variance": 1.37944005e-06
+      },
+      "words": "31 frames 3 layers 4000 units"
+    },
+    {
+      "probability": {
+        "average": 0.9962063432,
+        "min": 0.9892365336,
+        "variance": 2.429044252e-05
+      },
+      "words": "3.5"
+    },
+    {
+      "probability": {
+        "average": 0.9990614653,
+        "min": 0.9913464189,
+        "variance": 3.376177801e-06
+      },
+      "words": "31 frames 4 layers 4000 units"
+    },
+    {
+      "probability": {
+        "average": 0.9973992705,
+        "min": 0.9925082326,
+        "variance": 1.196201902e-05
+      },
+      "words": "3.0"
+    },
+    {
+      "probability": {
+        "average": 0.9965283871,
+        "min": 0.9899038076,
+        "variance": 2.194737135e-05
+      },
+      "words": "2.5"
+    },
+    {
+      "probability": {
+        "average": 0.9982592463,
+        "min": 0.9949545264,
+        "variance": 5.463489288e-06
+      },
+      "words": "2.0"
+    },
+    {
+      "probability": {
+        "average": 0.9996019602,
+        "min": 0.9963871241,
+        "variance": 5.760895192e-07
+      },
+      "words": "finetuning without dropout"
+    },
+    {
+      "probability": {
+        "average": 0.9926398396,
+        "min": 0.9783531427,
+        "variance": 0.000102055179
+      },
+      "words": "1.5"
+    },
+    {
+      "probability": {
+        "average": 0.9996876121,
+        "min": 0.9975558519,
+        "variance": 2.452007379e-07
+      },
+      "words": "finetuning with dropout"
+    },
+    {
+      "probability": {
+        "average": 0.9977568984,
+        "min": 0.9934855103,
+        "variance": 9.122507436e-06
+      },
+      "words": "1.0"
+    },
+    {
+      "probability": {
+        "average": 0.8718927503,
+        "min": 0.5439775586,
+        "variance": 0.03595191985
+      },
+      "words": "0.50"
+    },
+    {
+      "probability": {
+        "average": 0.9999636412,
+        "min": 0.9999346733,
+        "variance": 8.391367601e-10
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9997603297,
+        "min": 0.9996752739,
+        "variance": 1.372505576e-08
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9998624921,
+        "min": 0.9996942282,
+        "variance": 1.41646348e-08
+      },
+      "words": "150"
+    },
+    {
+      "probability": {
+        "average": 0.9998464584,
+        "min": 0.9997528195,
+        "variance": 1.108881786e-08
+      },
+      "words": "200"
+    },
+    {
+      "probability": {
+        "average": 0.9991461635,
+        "min": 0.9980309606,
+        "variance": 4.645220599e-07
+      },
+      "words": "Epochs"
+    }
+  ],
+  "words_result_num": 21,
+  "direction": 0,
+  "log_id": 2079046062261941501
+}

@@ -31,6 +31,8 @@ from app.api.schemas import (
     EvaluationInput,
     ExportInput,
     FeedbackInput,
+    FormatProfileUpsertInput,
+    FormatReviewInput,
     LoginInput,
     PaperRetryInput,
     QuestionInput,
@@ -54,6 +56,9 @@ from app.db.models import (
     ConfigurationRevision,
     ConfigurationVersion,
     Feedback,
+    FormatProfile,
+    FormatReview,
+    FormatReviewItem,
     Paper,
     PaperChunk,
     PaperVersion,
@@ -75,10 +80,43 @@ from app.services.idempotency import replay_or_raise, request_fingerprint, save_
 router = APIRouter()
 
 
+_REFERENCE_PAPER_FILE_TYPES = {
+    ".csv",
+    ".jpeg",
+    ".jpg",
+    ".json",
+    ".jsonl",
+    ".md",
+    ".pdf",
+    ".png",
+    ".svg",
+    ".txt",
+    ".webp",
+}
+
+
 def _page(page: int, page_size: int) -> tuple[int, int]:
     if page < 1 or page_size < 1 or page_size > 100:
         raise ApiError(422, "VALIDATION_ERROR", "page 和 page_size 超出允许范围。")
     return page, page_size
+
+
+def _reference_paper_runs_root(request: Request) -> Path:
+    root = request.app.state.settings.user_paper_runs_path
+    if root is None:
+        raise ApiError(503, "REFERENCE_PAPERS_UNAVAILABLE", "参考论文目录尚未配置。")
+    if not root.is_dir():
+        raise ApiError(503, "REFERENCE_PAPERS_UNAVAILABLE", "参考论文目录不可用。")
+    return root
+
+
+def _reference_paper_file(runs_root: Path, relative_path: str) -> Path:
+    candidate = (runs_root / relative_path).resolve()
+    if not candidate.is_relative_to(runs_root) or not candidate.is_file():
+        raise ApiError(404, "REFERENCE_PAPER_FILE_NOT_FOUND", "参考论文文件不存在。")
+    if candidate.suffix.lower() not in _REFERENCE_PAPER_FILE_TYPES:
+        raise ApiError(403, "REFERENCE_PAPER_FILE_FORBIDDEN", "不允许访问该类型的参考论文文件。")
+    return candidate
 
 
 def _accepted(task: TaskRecord, *, message_id: str | None = None) -> dict[str, object]:
@@ -118,6 +156,59 @@ def _report_view(report: ReadingReport) -> dict[str, object]:
         "evidence_ids": report.evidence_ids,
         "created_at": report.created_at,
         "completed_at": report.completed_at,
+    }
+
+
+def _format_profile_view(profile: FormatProfile, *, include_dataset: bool = False) -> dict[str, object]:
+    data: dict[str, object] = {
+        "format_profile_id": profile.format_profile_id,
+        "profile_key": profile.profile_key,
+        "name": profile.name,
+        "version": profile.version,
+        "description": profile.description,
+        "rules": profile.rules_json,
+        "is_active": profile.is_active,
+        "created_at": profile.created_at,
+        "updated_at": profile.updated_at,
+    }
+    if include_dataset:
+        data["ragflow_dataset_id"] = profile.ragflow_dataset_id
+        data["retrieval_query"] = profile.retrieval_query
+    return data
+
+
+def _format_review_item_view(item: FormatReviewItem) -> dict[str, object]:
+    return {
+        "rule_id": item.rule_id,
+        "rule_title": item.rule_title,
+        "result": item.result,
+        "severity": item.severity,
+        "finding": item.finding,
+        "suggestion": item.suggestion,
+        "page_numbers": item.page_numbers,
+        "paper_evidences": item.paper_evidence_json,
+        "standard_evidences": item.standard_evidence_json,
+    }
+
+
+def _format_review_view(review: FormatReview, items: list[FormatReviewItem]) -> dict[str, object]:
+    snapshot = review.profile_snapshot_json
+    return {
+        "format_review_id": review.format_review_id,
+        "paper_id": review.paper_id,
+        "format_profile": {
+            "format_profile_id": review.format_profile_id,
+            "profile_key": snapshot.get("profile_key"),
+            "name": snapshot.get("name"),
+            "version": snapshot.get("version"),
+        },
+        "selected_rule_ids": review.selected_rule_ids,
+        "status": review.status,
+        "summary_markdown": review.summary_markdown,
+        "items": [_format_review_item_view(item) for item in items],
+        "error": review.error_json,
+        "created_at": review.created_at,
+        "completed_at": review.completed_at,
     }
 
 
@@ -444,6 +535,37 @@ async def health(request: Request, session: AsyncSession = Depends(get_session))
     )
 
 
+@router.get("/reference-papers/runs")
+async def list_reference_paper_runs(
+    request: Request,
+    user: User = Depends(current_user),
+):
+    """List the imported reference-paper runs available to signed-in users."""
+    del user
+    runs_root = _reference_paper_runs_root(request)
+    runs = [
+        {
+            "name": item.name,
+            "file_count": sum(1 for child in item.rglob("*") if child.is_file()),
+        }
+        for item in sorted(runs_root.iterdir(), key=lambda candidate: candidate.name.casefold())
+        if item.is_dir()
+    ]
+    return envelope({"items": runs}, request.state.request_id)
+
+
+@router.get("/reference-papers/runs/{relative_path:path}")
+async def get_reference_paper_file(
+    relative_path: str,
+    request: Request,
+    user: User = Depends(current_user),
+):
+    """Serve a safe, read-only artifact from the configured reference-paper runs."""
+    del user
+    path = _reference_paper_file(_reference_paper_runs_root(request), relative_path)
+    return FileResponse(path, filename=path.name, content_disposition_type="inline")
+
+
 @router.post("/papers")
 async def upload_papers(
     request: Request,
@@ -631,12 +753,21 @@ async def get_paper(
 @router.get("/papers/{paper_id}/file")
 async def get_paper_file(
     paper_id: str,
+    request: Request,
     disposition: str = "inline",
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_session),
 ):
     paper = await _owned_paper(session, user.user_id, paper_id)
-    path = Path(paper.file_path)
+    stored_path = Path(paper.file_path)
+    if stored_path.is_absolute():
+        path = stored_path
+    else:
+        storage_root = request.app.state.settings.object_storage_path
+        try:
+            path = storage_root.resolve() / stored_path.relative_to(storage_root)
+        except ValueError:
+            path = (Path.cwd() / stored_path).resolve()
     if not path.is_file():
         raise ApiError(404, "PAPER_FILE_NOT_FOUND", "论文原文件不存在。")
     return FileResponse(
@@ -670,6 +801,7 @@ async def list_sections(
     chunks = await session.scalars(
         select(PaperChunk)
         .where(PaperChunk.paper_id == paper_id, version_filter)
+        .order_by(PaperChunk.page_number, PaperChunk.chunk_id)
         .offset((page - 1) * page_size)
         .limit(page_size)
     )
@@ -684,6 +816,8 @@ async def list_sections(
             "page_start": item.page_number,
             "page_end": item.page_end,
             "text": item.content,
+            "content_type": item.content_type,
+            "content_role": item.content_role,
         }
         for index, item in enumerate(chunks, start=(page - 1) * page_size + 1)
     ]
@@ -795,6 +929,135 @@ async def delete_paper(
     return _json(202, data, request_id)
 
 
+@router.get("/format-profiles")
+async def list_format_profiles(
+    request: Request,
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    del user
+    profiles = list(
+        (
+            await session.scalars(
+                select(FormatProfile)
+                .where(FormatProfile.is_active.is_(True))
+                .order_by(FormatProfile.name, FormatProfile.version.desc())
+            )
+        ).all()
+    )
+    return envelope(
+        {"items": [_format_profile_view(item) for item in profiles]}, request.state.request_id
+    )
+
+
+@router.post("/format-reviews")
+async def create_format_review(
+    body: FormatReviewInput,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    paper = await _owned_paper(session, user.user_id, body.paper_id)
+    if paper.status != "ready":
+        raise ApiError(409, "PAPER_NOT_READY", "论文尚未完成解析和理解。")
+    profile = await session.get(FormatProfile, body.format_profile_id)
+    if profile is None or not profile.is_active:
+        raise ApiError(404, "FORMAT_PROFILE_NOT_FOUND", "所选格式规范不可用。")
+    available_rules = {
+        str(item.get("rule_id"))
+        for item in profile.rules_json
+        if isinstance(item, dict) and item.get("rule_id")
+    }
+    selected_rule_ids = body.rule_ids or sorted(available_rules)
+    if not selected_rule_ids or not set(selected_rule_ids).issubset(available_rules):
+        raise ApiError(422, "FORMAT_RULES_INVALID", "所选规则不属于该格式规范。")
+    fingerprint = request_fingerprint(body.model_dump(mode="json"))
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(202, replay, request_id)
+    selected_rules = [
+        item for item in profile.rules_json if str(item.get("rule_id")) in set(selected_rule_ids)
+    ]
+    review = FormatReview(
+        user_id=user.user_id,
+        paper_id=paper.paper_id,
+        format_profile_id=profile.format_profile_id,
+        selected_rule_ids=selected_rule_ids,
+        profile_snapshot_json={
+            "profile_key": profile.profile_key,
+            "name": profile.name,
+            "version": profile.version,
+            "ragflow_dataset_id": profile.ragflow_dataset_id,
+            "retrieval_query": profile.retrieval_query,
+            "rules": selected_rules,
+        },
+    )
+    session.add(review)
+    await session.flush()
+    task = TaskRecord(
+        user_id=user.user_id,
+        task_type="format_review",
+        resource_id=review.format_review_id,
+        status="pending",
+        stage="queued",
+        request_id=request_id,
+        correlation_id=new_id(),
+    )
+    session.add(task)
+    await session.flush()
+    data = _accepted(task)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=202,
+        response=data,
+    )
+    await session.commit()
+    await request.app.state.redis.set_task_state(task.task_id, task_view(task))
+    request.app.state.operations_executor.submit(task.task_id)
+    return _json(202, data, request_id)
+
+
+@router.get("/format-reviews/{format_review_id}")
+async def get_format_review(
+    format_review_id: str,
+    request: Request,
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    review = await session.scalar(
+        select(FormatReview).where(
+            FormatReview.format_review_id == format_review_id,
+            FormatReview.user_id == user.user_id,
+        )
+    )
+    if review is None:
+        raise ApiError(404, "FORMAT_REVIEW_NOT_FOUND", "格式审查结果不存在。")
+    items = list(
+        (
+            await session.scalars(
+                select(FormatReviewItem)
+                .where(FormatReviewItem.format_review_id == review.format_review_id)
+                .order_by(FormatReviewItem.rule_id)
+            )
+        ).all()
+    )
+    return envelope(_format_review_view(review, items), request.state.request_id)
+
+
 @router.post("/papers/{paper_id}/analyses/{kind}")
 async def create_analysis(
     paper_id: str,
@@ -806,7 +1069,7 @@ async def create_analysis(
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_session),
 ):
-    if kind not in {"summary", "method", "experiment", "critical-review"}:
+    if kind not in {"summary", "method", "experiment"}:
         raise ApiError(422, "VALIDATION_ERROR", "不支持的论文分析类型。")
     await _ready_papers(session, user_id=user.user_id, paper_ids=[paper_id])
     fingerprint = request_fingerprint({"kind": kind, **body.model_dump(mode="json")})
@@ -822,9 +1085,8 @@ async def create_analysis(
         return _json(202, replay, request_id)
     default_questions = {
         "summary": "请基于论文原文给出结构化阅读摘要，并标注关键证据。",
-        "method": "请分析论文的方法设计、假设与局限，并标注原文证据。",
-        "experiment": "请分析论文的实验设计、结果与证据充分性。",
-        "critical-review": "请对论文进行平衡的同行评审，给出优点、问题和证据。",
+        "method": "请概述论文原文描述的方法设计、关键假设和实现流程，并标注原文证据。",
+        "experiment": "请概述论文原文报告的实验设计、数据集、对比设置和结果，不评价其充分性。",
     }
     task, message, command = await _create_internal_workflow(
         session,
@@ -1116,7 +1378,7 @@ async def create_session(
         user_id=user.user_id,
         title=body.title or "未命名会话",
         paper_ids=body.paper_ids,
-        knowledge_base_id=body.knowledge_base_id,
+        knowledge_base_id=None,
     )
     session.add(item)
     await session.flush()
@@ -1309,7 +1571,7 @@ async def ask_question(
     task = TaskRecord(
         task_id=task_id,
         user_id=user.user_id,
-        task_type="qa_workflow",
+        task_type="reading_workflow",
         status="pending",
         stage="queued",
         message_id=message_id,
@@ -1405,9 +1667,9 @@ async def answer_detail(
                 "workflow_run_id": run.workflow_run_id if run else None,
                 "task_id": message.task_id,
                 "session_id": message.session_id,
-                "task_type": task.task_type if task else "qa_workflow",
+                "task_type": task.task_type if task else "reading_workflow",
                 "status": task.status if task else "succeeded",
-                "planned_agents": ["controller", "paper_understanding", "review_a", "review_b"],
+                "planned_agents": ["controller", "paper_understanding", "synthesis"],
                 "confidence": message.confidence,
                 "started_at": run.started_at if run else None,
                 "completed_at": run.completed_at if run else None,
@@ -1862,10 +2124,11 @@ async def _admin_dataset_items(session: AsyncSession, request: Request) -> list[
         .order_by(RagMapping.dataset_id)
     )
     counts = {str(dataset_id): int(count) for dataset_id, count in rows}
-    settings = request.app.state.settings
+    del request
+    profiles = list((await session.scalars(select(FormatProfile))).all())
     configured = {
-        settings.ragflow_reference_dataset: "user_paper 参考论文库",
-        settings.ragflow_public_dataset_id: "公共评审知识库",
+        profile.ragflow_dataset_id: f"格式规范：{profile.name} · {profile.version}"
+        for profile in profiles
     }
     for dataset_id in configured:
         if dataset_id:
@@ -1881,6 +2144,91 @@ async def _admin_dataset_items(session: AsyncSession, request: Request) -> list[
         }
         for dataset_id, count in counts.items()
     ]
+
+
+def _validated_format_rules(rules: list[dict[str, str]]) -> list[dict[str, str]]:
+    normalized: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for item in rules:
+        rule_id = str(item.get("rule_id") or "").strip()
+        title = str(item.get("title") or "").strip()
+        description = str(item.get("description") or "").strip()
+        if not rule_id or not title or not description or rule_id in seen:
+            raise ApiError(422, "FORMAT_RULES_INVALID", "每条格式规则必须包含唯一 ID、标题和说明。")
+        seen.add(rule_id)
+        normalized.append({"rule_id": rule_id, "title": title, "description": description})
+    return normalized
+
+
+@router.get("/admin/format-profiles")
+async def list_admin_format_profiles(
+    request: Request,
+    _: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    profiles = list(
+        (await session.scalars(select(FormatProfile).order_by(FormatProfile.name))).all()
+    )
+    return envelope(
+        {"items": [_format_profile_view(item, include_dataset=True) for item in profiles]},
+        request.state.request_id,
+    )
+
+
+@router.post("/admin/format-profiles")
+async def create_format_profile(
+    body: FormatProfileUpsertInput,
+    request: Request,
+    request_id: str = Depends(require_request_id),
+    idempotency_key: str = Depends(require_idempotency_key),
+    user: User = Depends(require_admin),
+    session: AsyncSession = Depends(get_session),
+):
+    rules = _validated_format_rules(body.rules)
+    fingerprint = request_fingerprint(body.model_dump(mode="json"))
+    replay = await replay_or_raise(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+    )
+    if replay is not None:
+        return _json(201, replay, request_id)
+    existing = await session.scalar(
+        select(FormatProfile).where(
+            FormatProfile.profile_key == body.profile_key,
+            FormatProfile.version == body.version,
+        )
+    )
+    if existing is not None:
+        raise ApiError(409, "FORMAT_PROFILE_VERSION_EXISTS", "该格式规范版本已存在，请创建新版本。")
+    profile = FormatProfile(
+        profile_key=body.profile_key,
+        name=body.name,
+        version=body.version,
+        description=body.description,
+        ragflow_dataset_id=body.ragflow_dataset_id,
+        retrieval_query=body.retrieval_query,
+        rules_json=rules,
+        is_active=body.is_active,
+    )
+    session.add(profile)
+    await session.flush()
+    data = _format_profile_view(profile, include_dataset=True)
+    save_response(
+        session,
+        user_id=user.user_id,
+        key=idempotency_key,
+        method="POST",
+        path=request.url.path,
+        fingerprint=fingerprint,
+        status_code=201,
+        response=data,
+    )
+    await session.commit()
+    return _json(201, data, request_id)
 
 
 @router.get("/admin/knowledge-bases")
@@ -2044,7 +2392,7 @@ async def metrics_overview(
     workflow_tasks = [
         task
         for task in tasks
-        if task.task_type == "qa_workflow"
+        if task.task_type == "reading_workflow"
         or task.task_type.startswith("paper_analysis:")
         or task.task_type == "paper_comparison"
     ]

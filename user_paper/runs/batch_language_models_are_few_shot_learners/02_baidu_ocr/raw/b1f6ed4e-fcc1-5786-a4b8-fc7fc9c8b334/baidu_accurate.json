@@ -1,0 +1,295 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9744580984,
+        "min": 0.5368414521,
+        "variance": 0.008019413799
+      },
+      "words": "Context → TITLE: William Perry (American football)- Professional career"
+    },
+    {
+      "probability": {
+        "average": 0.9964298606,
+        "min": 0.8438048959,
+        "variance": 0.0003606571991
+      },
+      "words": "PARAGRAPH: In 1985， he was selected in the first round of the 1985 NFL"
+    },
+    {
+      "probability": {
+        "average": 0.998935461,
+        "min": 0.9755408168,
+        "variance": 8.668754162e-06
+      },
+      "words": "Draft by the Chicago Bears; he had been hand-picked by coach Mike Ditka."
+    },
+    {
+      "probability": {
+        "average": 0.997821331,
+        "min": 0.938680768,
+        "variance": 9.426655015e-05
+      },
+      "words": "However, defensive coordinator Buddy Ryan, who had a highly acrimonious"
+    },
+    {
+      "probability": {
+        "average": 0.9965548515,
+        "min": 0.9330016971,
+        "variance": 0.0001033606823
+      },
+      "words": "relationship with Ditka, called Perry a \"wasted draft-pick\". Perry"
+    },
+    {
+      "probability": {
+        "average": 0.9995359778,
+        "min": 0.9950659275,
+        "variance": 4.929628972e-07
+      },
+      "words": "soon became a pawn in the political power struggle between Ditka and"
+    },
+    {
+      "probability": {
+        "average": 0.996709466,
+        "min": 0.95503968,
+        "variance": 8.93806864e-05
+      },
+      "words": "Ryan. Perry's \"Refrigerator\" nickname followed him into the NFL and he"
+    },
+    {
+      "probability": {
+        "average": 0.9983017445,
+        "min": 0.9267392159,
+        "variance": 7.590902533e-05
+      },
+      "words": "quickly became a favorite of the Chicago Bears fans. Teammates called"
+    },
+    {
+      "probability": {
+        "average": 0.9940061569,
+        "min": 0.8553571105,
+        "variance": 0.0004408542591
+      },
+      "words": "him \"Biscuit,\" as in \"one biscuit shy of 350 pounds.\" While Ryan refused"
+    },
+    {
+      "probability": {
+        "average": 0.9990801811,
+        "min": 0.9828230739,
+        "variance": 4.591335255e-06
+      },
+      "words": "to play Perry, Ditka decided to use Perry as a fullback when the team was"
+    },
+    {
+      "probability": {
+        "average": 0.9950411916,
+        "min": 0.7782328129,
+        "variance": 0.0007312481757
+      },
+      "words": "near the opponents' goal line or in fourth and short situations, either"
+    },
+    {
+      "probability": {
+        "average": 0.9994427562,
+        "min": 0.9955912828,
+        "variance": 5.586339284e-07
+      },
+      "words": "as a ball carrier or a lead blocker for star running back Walter Payton."
+    },
+    {
+      "probability": {
+        "average": 0.9996569753,
+        "min": 0.9961063266,
+        "variance": 2.399366679e-07
+      },
+      "words": "Ditka stated the inspiration for using Perry as a fullback came to him"
+    },
+    {
+      "probability": {
+        "average": 0.998565793,
+        "min": 0.9465249777,
+        "variance": 4.287356569e-05
+      },
+      "words": "during five-yard sprint exercises. During his rookie season, Perry"
+    },
+    {
+      "probability": {
+        "average": 0.9983065128,
+        "min": 0.9336848855,
+        "variance": 6.426971959e-05
+      },
+      "words": "rushed for two touchdowns and caught a pass for one. Perry even had"
+    },
+    {
+      "probability": {
+        "average": 0.9991871119,
+        "min": 0.9840527773,
+        "variance": 4.024347163e-06
+      },
+      "words": "the opportunity to run the ball during Super Bowl XX, as a nod to his"
+    },
+    {
+      "probability": {
+        "average": 0.999050498,
+        "min": 0.9700193405,
+        "variance": 1.294651429e-05
+      },
+      "words": "popularity and contributions to the team's success. The first time he"
+    },
+    {
+      "probability": {
+        "average": 0.9985502362,
+        "min": 0.9250341058,
+        "variance": 7.419240865e-05
+      },
+      "words": "got the ball, he was tackled for a one-yard loss while attempting to throw"
+    },
+    {
+      "probability": {
+        "average": 0.9985866547,
+        "min": 0.9404784441,
+        "variance": 4.805730714e-05
+      },
+      "words": "his first NFL pass on a halfback option play. The second time he got the"
+    },
+    {
+      "probability": {
+        "average": 0.9952310324,
+        "min": 0.7989076376,
+        "variance": 0.0005979178241
+      },
+      "words": "ball, he scored a touchdown (running over Patriots linebacker Larry McGrew"
+    },
+    {
+      "probability": {
+        "average": 0.9986404181,
+        "min": 0.9506523609,
+        "variance": 3.476337224e-05
+      },
+      "words": "in the process). About halfway through his rookie season, Ryan finally"
+    },
+    {
+      "probability": {
+        "average": 0.9992204309,
+        "min": 0.9874600172,
+        "variance": 3.369326805e-06
+      },
+      "words": "began to play Perry, who soon proved that he was a capable defensive"
+    },
+    {
+      "probability": {
+        "average": 0.9994055629,
+        "min": 0.9859685898,
+        "variance": 2.900092113e-06
+      },
+      "words": "lineman. His Super Bowl ring size is the largest of any professional"
+    },
+    {
+      "probability": {
+        "average": 0.9980250597,
+        "min": 0.9282541871,
+        "variance": 7.311576337e-05
+      },
+      "words": "football player in the history of the event. His ring size is 25， while"
+    },
+    {
+      "probability": {
+        "average": 0.9994136691,
+        "min": 0.9919726849,
+        "variance": 1.169203529e-06
+      },
+      "words": "the ring size for the average adult male is between 10 and 12. Perry went"
+    },
+    {
+      "probability": {
+        "average": 0.9983549714,
+        "min": 0.9428460598,
+        "variance": 5.073353532e-05
+      },
+      "words": "on to play for ten years in the NFL, retiring after the 1994 season. In"
+    },
+    {
+      "probability": {
+        "average": 0.9987434745,
+        "min": 0.9680449367,
+        "variance": 2.717981988e-05
+      },
+      "words": "his ten years as a pro, he regularly struggled with his weight, which"
+    },
+    {
+      "probability": {
+        "average": 0.9986988306,
+        "min": 0.962823987,
+        "variance": 2.24442083e-05
+      },
+      "words": "hampered his performance at times. He played in 138 games, recording"
+    },
+    {
+      "probability": {
+        "average": 0.9988399148,
+        "min": 0.9745955467,
+        "variance": 1.023010009e-05
+      },
+      "words": "29.5 sacks and five fumble recoveries, which he returned for a total of"
+    },
+    {
+      "probability": {
+        "average": 0.9993105531,
+        "min": 0.9931921363,
+        "variance": 9.055589203e-07
+      },
+      "words": "71 yards. In his offensive career he ran five yards for two touchdowns,"
+    },
+    {
+      "probability": {
+        "average": 0.9994237423,
+        "min": 0.9900125265,
+        "variance": 1.595876824e-06
+      },
+      "words": "and had one reception for another touchdown. Perry later attempted a"
+    },
+    {
+      "probability": {
+        "average": 0.9986464381,
+        "min": 0.9360402226,
+        "variance": 5.519687329e-05
+      },
+      "words": "comeback, playing an unremarkable 1996 season with the London Monarchs of"
+    },
+    {
+      "probability": {
+        "average": 0.9992457032,
+        "min": 0.9926435351,
+        "variance": 2.071077233e-06
+      },
+      "words": "the World League of American Football(later NFL Europa)."
+    },
+    {
+      "probability": {
+        "average": 0.9985444546,
+        "min": 0.970833838,
+        "variance": 2.835597115e-05
+      },
+      "words": "Q: what team did he play for?"
+    },
+    {
+      "probability": {
+        "average": 0.9895832539,
+        "min": 0.9823661447,
+        "variance": 5.208709626e-05
+      },
+      "words": "A:"
+    },
+    {
+      "probability": {
+        "average": 0.9835617542,
+        "min": 0.7506966591,
+        "variance": 0.003119431203
+      },
+      "words": "Target Completion → the Chicago Bears"
+    }
+  ],
+  "words_result_num": 36,
+  "direction": 0,
+  "log_id": 2079046715650072283
+}

@@ -1,0 +1,87 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9602906108,
+        "min": 0.6434414387,
+        "variance": 0.009903876111
+      },
+      "words": "Tw: “from bridge"
+    },
+    {
+      "probability": {
+        "average": 0.9755380154,
+        "min": 0.7681357265,
+        "variance": 0.003909782041
+      },
+      "words": "Tw: \"in front of a house"
+    },
+    {
+      "probability": {
+        "average": 0.9998325706,
+        "min": 0.9994708896,
+        "variance": 1.989489995e-08
+      },
+      "words": "near my house"
+    },
+    {
+      "probability": {
+        "average": 0.9991902113,
+        "min": 0.9890317321,
+        "variance": 5.607372259e-06
+      },
+      "words": "door in Reichenfels,"
+    },
+    {
+      "probability": {
+        "average": 0.9339902997,
+        "min": 0.4748057723,
+        "variance": 0.03012158349
+      },
+      "words": "Austria”"
+    },
+    {
+      "probability": {
+        "average": 0.9726845026,
+        "min": 0.6472715735,
+        "variance": 0.006596944295
+      },
+      "words": "T: \"a flock of birds"
+    },
+    {
+      "probability": {
+        "average": 0.9994598627,
+        "min": 0.9957211018,
+        "variance": 1.014234385e-06
+      },
+      "words": "flying over a lake at"
+    },
+    {
+      "probability": {
+        "average": 0.9756164551,
+        "min": 0.5655945539,
+        "variance": 0.007852967829
+      },
+      "words": "T: \"a potted plant sitting"
+    },
+    {
+      "probability": {
+        "average": 0.9941197038,
+        "min": 0.9589820504,
+        "variance": 0.0002057763922
+      },
+      "words": "sunset”"
+    },
+    {
+      "probability": {
+        "average": 0.9885478616,
+        "min": 0.7060370445,
+        "variance": 0.003192556789
+      },
+      "words": "on top of a pile of rocks\""
+    }
+  ],
+  "words_result_num": 10,
+  "direction": 0,
+  "log_id": 2079047915050421598
+}

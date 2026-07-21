@@ -1,0 +1,255 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9974413514,
+        "min": 0.9927958846,
+        "variance": 5.950514151e-06
+      },
+      "words": "Top labels,"
+    },
+    {
+      "probability": {
+        "average": 0.999868989,
+        "min": 0.9988874793,
+        "variance": 8.895543147e-08
+      },
+      "words": "images of men"
+    },
+    {
+      "probability": {
+        "average": 0.9975152016,
+        "min": 0.9931359291,
+        "variance": 9.62566628e-06
+      },
+      "words": "man"
+    },
+    {
+      "probability": {
+        "average": 0.9995729327,
+        "min": 0.999215126,
+        "variance": 6.002127861e-08
+      },
+      "words": "male"
+    },
+    {
+      "probability": {
+        "average": 0.9995014071,
+        "min": 0.9989753962,
+        "variance": 1.055863663e-07
+      },
+      "words": "face"
+    },
+    {
+      "probability": {
+        "average": 0.9994470477,
+        "min": 0.9975122213,
+        "variance": 7.579074008e-07
+      },
+      "words": "player"
+    },
+    {
+      "probability": {
+        "average": 0.9985740781,
+        "min": 0.9969375134,
+        "variance": 1.226096742e-06
+      },
+      "words": "black"
+    },
+    {
+      "probability": {
+        "average": 0.9998728037,
+        "min": 0.9997913241,
+        "variance": 3.374393209e-09
+      },
+      "words": "head"
+    },
+    {
+      "probability": {
+        "average": 0.9995779991,
+        "min": 0.9968912005,
+        "variance": 5.818657769e-07
+      },
+      "words": "facial expression"
+    },
+    {
+      "probability": {
+        "average": 0.9989854097,
+        "min": 0.9973560572,
+        "variance": 1.161519549e-06
+      },
+      "words": "suit"
+    },
+    {
+      "probability": {
+        "average": 0.9999184608,
+        "min": 0.9998394251,
+        "variance": 2.575365032e-09
+      },
+      "words": "photo"
+    },
+    {
+      "probability": {
+        "average": 0.9997377396,
+        "min": 0.9965580106,
+        "variance": 6.778694228e-07
+      },
+      "words": "military officer"
+    },
+    {
+      "probability": {
+        "average": 0.9993084669,
+        "min": 0.9974703789,
+        "variance": 9.188429999e-07
+      },
+      "words": "walking"
+    },
+    {
+      "probability": {
+        "average": 0.9999651909,
+        "min": 0.9999035597,
+        "variance": 1.167505537e-09
+      },
+      "words": "photograph"
+    },
+    {
+      "probability": {
+        "average": 0.9986886978,
+        "min": 0.9937468767,
+        "variance": 6.105718967e-06
+      },
+      "words": "elder"
+    },
+    {
+      "probability": {
+        "average": 0.9988226295,
+        "min": 0.9963133931,
+        "variance": 2.339754928e-06
+      },
+      "words": "display"
+    },
+    {
+      "probability": {
+        "average": 0.9988182187,
+        "min": 0.9968981743,
+        "variance": 1.84620319e-06
+      },
+      "words": "tie"
+    },
+    {
+      "probability": {
+        "average": 0.9989381433,
+        "min": 0.9930793643,
+        "variance": 5.035610229e-06
+      },
+      "words": "shoulder"
+    },
+    {
+      "probability": {
+        "average": 0.9998031855,
+        "min": 0.9995142221,
+        "variance": 2.244290975e-08
+      },
+      "words": "frown"
+    },
+    {
+      "probability": {
+        "average": 0.9989411831,
+        "min": 0.9979735017,
+        "variance": 5.680101935e-07
+      },
+      "words": "kid"
+    },
+    {
+      "probability": {
+        "average": 0.9997683167,
+        "min": 0.999227643,
+        "variance": 5.98665153e-08
+      },
+      "words": "necktie"
+    },
+    {
+      "probability": {
+        "average": 0.9983333349,
+        "min": 0.9928076267,
+        "variance": 7.777010978e-06
+      },
+      "words": "Women"
+    },
+    {
+      "probability": {
+        "average": 0.9991705418,
+        "min": 0.9979590178,
+        "variance": 7.189117355e-07
+      },
+      "words": "yellow"
+    },
+    {
+      "probability": {
+        "average": 0.9993552566,
+        "min": 0.9988507032,
+        "variance": 1.465354131e-07
+      },
+      "words": "Men"
+    },
+    {
+      "probability": {
+        "average": 0.9839954972,
+        "min": 0.9839954972,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9999285936,
+        "min": 0.9998810291,
+        "variance": 2.262382282e-09
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9999029636,
+        "min": 0.9998189807,
+        "variance": 7.048130968e-09
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9998209476,
+        "min": 0.9997990727,
+        "variance": 4.772093831e-10
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9996106625,
+        "min": 0.9993889332,
+        "variance": 4.916387297e-08
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.999971211,
+        "min": 0.9999533892,
+        "variance": 3.631761558e-10
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9995376468,
+        "min": 0.9948161244,
+        "variance": 2.028590416e-06
+      },
+      "words": "Frequency(%)"
+    }
+  ],
+  "words_result_num": 31,
+  "direction": 0,
+  "log_id": 2079046646790206177
+}

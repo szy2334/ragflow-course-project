@@ -1,0 +1,103 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9748282433,
+        "min": 0.5482696295,
+        "variance": 0.01011829823
+      },
+      "words": "“blue sky bakery in"
+    },
+    {
+      "probability": {
+        "average": 0.9960565567,
+        "min": 0.9550531507,
+        "variance": 0.0001529980364
+      },
+      "words": "sunset park\""
+    },
+    {
+      "probability": {
+        "average": 0.9971138239,
+        "min": 0.9971138239,
+        "variance": 0
+      },
+      "words": "×"
+    },
+    {
+      "probability": {
+        "average": 0.9972127676,
+        "min": 0.9903167486,
+        "variance": 1.586623512e-05
+      },
+      "words": "Filt"
+    },
+    {
+      "probability": {
+        "average": 0.9798505306,
+        "min": 0.7067148685,
+        "variance": 0.005332894623
+      },
+      "words": "“chocolate cake"
+    },
+    {
+      "probability": {
+        "average": 0.9999315143,
+        "min": 0.9997480512,
+        "variance": 4.33869296e-09
+      },
+      "words": "with cream frosting"
+    },
+    {
+      "probability": {
+        "average": 0.9937810898,
+        "min": 0.9837529659,
+        "variance": 5.029904059e-05
+      },
+      "words": "Cap"
+    },
+    {
+      "probability": {
+        "average": 0.9632492065,
+        "min": 0.9437187314,
+        "variance": 0.0003814382944
+      },
+      "words": ")>"
+    },
+    {
+      "probability": {
+        "average": 0.9987798333,
+        "min": 0.9843127728,
+        "variance": 1.744154724e-05
+      },
+      "words": "and chocolate"
+    },
+    {
+      "probability": {
+        "average": 0.7877580523,
+        "min": 0.597271502,
+        "variance": 0.03628512472
+      },
+      "words": "(√"
+    },
+    {
+      "probability": {
+        "average": 0.9965931177,
+        "min": 0.9884479642,
+        "variance": 2.215407221e-05
+      },
+      "words": "Filt"
+    },
+    {
+      "probability": {
+        "average": 0.9938408136,
+        "min": 0.9169974923,
+        "variance": 0.0003819204867
+      },
+      "words": "sprinkles on top\""
+    }
+  ],
+  "words_result_num": 12,
+  "direction": 0,
+  "log_id": 2079047902590478147
+}

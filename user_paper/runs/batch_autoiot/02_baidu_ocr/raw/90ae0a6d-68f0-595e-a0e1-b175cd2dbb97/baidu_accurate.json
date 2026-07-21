@@ -1,0 +1,127 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9998546243,
+        "min": 0.9997600913,
+        "variance": 7.622378284e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9991512895,
+        "min": 0.9956224561,
+        "variance": 1.804384283e-06
+      },
+      "words": "Accuracy"
+    },
+    {
+      "probability": {
+        "average": 0.9996386766,
+        "min": 0.9986858964,
+        "variance": 3.030154971e-07
+      },
+      "words": "6.00"
+    },
+    {
+      "probability": {
+        "average": 0.9994545579,
+        "min": 0.9989948869,
+        "variance": 1.218944732e-07
+      },
+      "words": "MAE"
+    },
+    {
+      "probability": {
+        "average": 0.9999726415,
+        "min": 0.9999574423,
+        "variance": 2.31015207e-10
+      },
+      "words": "95"
+    },
+    {
+      "probability": {
+        "average": 0.9995586872,
+        "min": 0.9986435771,
+        "variance": 2.795774208e-07
+      },
+      "words": "5.75"
+    },
+    {
+      "probability": {
+        "average": 0.9999576211,
+        "min": 0.999946475,
+        "variance": 1.242348446e-10
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.9976066351,
+        "min": 0.9918002486,
+        "variance": 1.124253049e-05
+      },
+      "words": "5.50"
+    },
+    {
+      "probability": {
+        "average": 0.1840399057,
+        "min": 0.1840399057,
+        "variance": 0
+      },
+      "words": "aVI"
+    },
+    {
+      "probability": {
+        "average": 0.9999368787,
+        "min": 0.9999269247,
+        "variance": 9.908163179e-11
+      },
+      "words": "85"
+    },
+    {
+      "probability": {
+        "average": 0.9988673329,
+        "min": 0.9959328771,
+        "variance": 2.872695632e-06
+      },
+      "words": "5.25"
+    },
+    {
+      "probability": {
+        "average": 0.9999639392,
+        "min": 0.99995327,
+        "variance": 1.13832499e-10
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9996802807,
+        "min": 0.9991154075,
+        "variance": 1.088716672e-07
+      },
+      "words": "5.00"
+    },
+    {
+      "probability": {
+        "average": 0.9644731879,
+        "min": 0.8440150023,
+        "variance": 0.003329400672
+      },
+      "words": "4 3.5 C. A. L. G."
+    },
+    {
+      "probability": {
+        "average": 0.996747613,
+        "min": 0.9593366981,
+        "variance": 0.0001078155692
+      },
+      "words": "Different LLMs"
+    }
+  ],
+  "words_result_num": 15,
+  "direction": 0,
+  "log_id": 2079044344712807546
+}

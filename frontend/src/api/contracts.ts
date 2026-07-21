@@ -7,10 +7,10 @@ export type TaskStatus = 'pending' | 'running' | 'succeeded' | 'failed' | 'cance
 export type PaperStatus = 'uploaded' | 'mineru_parsing' | 'ocr_processing' | 'cleaning' | 'quality_check' | 'understanding' | 'indexing' | 'ready' | 'failed'
 export type IndexStatus = 'not_indexed' | 'pending' | 'running' | 'succeeded' | 'failed' | 'cancelled' | 'stale'
 export type ClaimVerdict = 'supported' | 'refuted' | 'insufficient_evidence' | 'conflicting_evidence'
-export type RouteType = 'fact' | 'explain' | 'review' | 'score' | 'follow_up' | 'out_of_scope'
+export type RouteType = 'fact' | 'explain' | 'follow_up' | 'out_of_scope'
 export type FeedbackType = 'like' | 'dislike' | 'issue'
-export type AgentName = 'coordinator' | 'retrieval' | 'method_analysis' | 'experiment_analysis' | 'critical_review' | 'evidence_verification' | 'synthesis'
-export type EventType = 'status' | 'delta' | 'citation' | 'review_summary' | 'final' | 'error'
+export type AgentName = 'controller' | 'paper_understanding' | 'synthesis'
+export type EventType = 'status' | 'delta' | 'citation' | 'final' | 'error'
 
 export interface ApiResponse<T> {
   code: string
@@ -46,25 +46,30 @@ export interface PaperView {
   status: PaperStatus; parse_progress: number; index_status: IndexStatus; quality_status?: 'pending' | 'ready' | 'failed' | null; understanding: PaperUnderstanding | null; failure?: PaperFailure | null; active_index_version: number | null
   created_at: string; updated_at: string
 }
-export interface PaperUnderstanding { answerable: boolean; paper_summary: string; missing_information: string[]; facts: Array<{ claim: string; evidence_ids: string[]; evidence_status: 'explicit' | 'directly_inferred' | 'missing'; confidence: number }> }
+export interface PaperUnderstanding {
+  status?: 'ready' | 'unavailable'
+  answerable?: boolean
+  paper_summary?: string | null
+  missing_information?: string[]
+  facts?: Array<{ claim: string; evidence_ids: string[]; evidence_status: 'explicit' | 'directly_inferred' | 'missing'; confidence: number }>
+  reason?: string
+  message?: string
+}
 export interface PaperUploadItem { paper_id: string; file_name: string; status: PaperStatus; task_id: string }
 export interface PaperUploadBatchView { items: PaperUploadItem[] }
-export interface PaperSectionView { section_id: string; paper_id: string; parent_section_id: string | null; section_title: string; section_level: number; section_order: number; page_start: number; page_end: number; text: string }
-export interface ChatSessionView { session_id: string; user_id: string; title: string; paper_ids: string[]; knowledge_base_id: string | null; last_message_at: string | null; created_at: string }
-export interface ChatMessageView { message_id: string; session_id: string; role: 'user' | 'assistant' | 'system'; content: string; task_id: string | null; status: TaskStatus | null; confidence: number | null; created_at: string }
+export interface PaperSectionView { section_id: string; paper_id: string; parent_section_id: string | null; section_title: string; section_level: number; section_order: number; page_start: number; page_end: number; text: string; content_type: string; content_role: string }
+export interface ChatSessionView { session_id: string; user_id: string; title: string; paper_ids: string[]; last_message_at: string | null; created_at: string }
+export interface ChatMessageView { message_id: string; session_id: string; role: 'user' | 'assistant' | 'system'; content: string; task_id: string | null; status: TaskStatus | null; confidence: number | null; answer?: AnswerView | null; created_at: string }
 
 export interface EvidenceItem {
-  evidence_id: string; source_type: 'paper' | 'standard'; paper_id: string | null; chunk_id: string; paper_title: string; section_title: string; page_number: number
-  paragraph_index: number; quote: string; retrieval_score: number; rerank_score: number | null; source_uri: string
-  content_type: 'text' | 'figure' | 'table' | 'figure_caption' | 'formula' | 'metadata' | 'reference'; standard_name?: string | null; standard_version?: string | null; metadata?: Record<string, unknown>; bbox: number[] | null
+  evidence_id: string; source_type: 'paper'; paper_id: string; document_id: string; chunk_id: string; section_title: string | null; page_number: number | null
+  quote: string; retrieval_score: number; source_uri: string
+  content_type: 'text' | 'figure' | 'table' | 'figure_caption' | 'formula' | 'metadata' | 'reference'; content_role?: string | null; object_id?: string | null; parent_chunk_id?: string | null; metadata?: Record<string, unknown>
 }
 export interface Claim { claim_id: string; text: string; verdict: ClaimVerdict; confidence: number; evidence_ids: string[]; reason: string }
 export interface AgentMetrics { latency_ms: number; input_tokens: number; output_tokens: number; model_config_id: string | null; retry_count: number; estimated_cost?: string | null; currency?: string | null }
 export interface AgentResult { agent_name: AgentName; status: TaskStatus; summary: string; claims: Claim[]; evidence_ids: string[]; confidence: number; warnings: string[]; metrics: AgentMetrics }
-export interface ScoreView { dimension: string; value: number; scale: number; standard_evidence_ids: string[] }
-export interface ReviewOpinion { reviewer: 'review_a' | 'review_b'; position: 'critical' | 'supportive' | 'mixed'; summary: string; confidence: number; evidence_ids: string[] }
-export interface StandardReference { evidence_id: string; name: string; version: string }
-export interface AnswerView { message_id: string; session_id: string; task_id: string; route_type?: RouteType; answer: string; claims: Claim[]; evidences: EvidenceItem[]; confidence: number; score?: ScoreView | null; review_opinions?: ReviewOpinion[]; standards?: StandardReference[]; is_refusal: boolean; refusal_reason: string | null; warnings: string[]; completed_at: string }
+export interface AnswerView { message_id: string; session_id: string; task_id: string; route_type?: RouteType; answer: string; claims: Claim[]; evidences: EvidenceItem[]; confidence: number; is_refusal: boolean; refusal_reason: string | null; warnings: string[]; completed_at: string }
 export interface WorkflowRunView { workflow_run_id: string; task_id: string; session_id: string | null; task_type: string; status: TaskStatus; planned_agents: AgentName[]; confidence: number | null; started_at: string | null; completed_at: string | null; metrics: AgentMetrics }
 export interface AnswerDetailView { answer: AnswerView; workflow_run: WorkflowRunView; agent_results: AgentResult[] }
 
@@ -73,6 +78,10 @@ export interface StreamEvent {
   data: Record<string, unknown>
 }
 export interface ReadingReportView { report_id: string; user_id: string; title: string; paper_ids: string[]; status: TaskStatus; content_markdown: string | null; claims: Claim[]; evidence_ids: string[]; created_at: string; completed_at: string | null }
+export interface FormatRule { rule_id: string; title: string; description: string }
+export interface FormatProfileView { format_profile_id: string; profile_key: string; name: string; version: string; description: string | null; rules: FormatRule[]; is_active: boolean; created_at: string; updated_at: string }
+export interface FormatReviewItemView { rule_id: string; rule_title: string; result: 'compliant' | 'non_compliant' | 'needs_manual_check' | 'not_applicable'; severity: 'info' | 'low' | 'medium' | 'high'; finding: string; suggestion: string | null; page_numbers: number[]; paper_evidences: Array<Record<string, unknown>>; standard_evidences: Array<Record<string, unknown>> }
+export interface FormatReviewView { format_review_id: string; paper_id: string; format_profile: Pick<FormatProfileView, 'format_profile_id' | 'profile_key' | 'name' | 'version'>; selected_rule_ids: string[]; status: TaskStatus; summary_markdown: string | null; items: FormatReviewItemView[]; error: { code: string; message: string } | null; created_at: string; completed_at: string | null }
 export interface MetricsOverviewView { request_count: number; question_count: number; token_input: number; token_output: number; estimated_cost: string; latency_p50_ms: number; latency_p95_ms: number; error_rate: number; retrieval_metrics: Record<string, number>; workflow_metrics: Record<string, number>; time_range: Record<string, string> }
 
 export type AdminRecord = Record<string, unknown>

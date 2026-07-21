@@ -1,0 +1,431 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9986816049,
+        "min": 0.9932072759,
+        "variance": 6.002017471e-06
+      },
+      "words": "(a)VQA"
+    },
+    {
+      "probability": {
+        "average": 0.9999538064,
+        "min": 0.9998722076,
+        "variance": 2.080861039e-09
+      },
+      "words": "answer"
+    },
+    {
+      "probability": {
+        "average": 0.9997944236,
+        "min": 0.9997944236,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.981751442,
+        "min": 0.9097167253,
+        "variance": 0.001297300914
+      },
+      "words": "Image"
+    },
+    {
+      "probability": {
+        "average": 0.9999574423,
+        "min": 0.9998701811,
+        "variance": 2.016124157e-09
+      },
+      "words": "Question"
+    },
+    {
+      "probability": {
+        "average": 0.9997937679,
+        "min": 0.9992998838,
+        "variance": 7.951752679e-08
+      },
+      "words": "Answer"
+    },
+    {
+      "probability": {
+        "average": 0.9997652769,
+        "min": 0.9988339543,
+        "variance": 1.531055034e-07
+      },
+      "words": "Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9998986125,
+        "min": 0.9994423985,
+        "variance": 3.506181656e-08
+      },
+      "words": "Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9995422363,
+        "min": 0.9969218373,
+        "variance": 1.144726525e-06
+      },
+      "words": "Decoder"
+    },
+    {
+      "probability": {
+        "average": 0.9833689332,
+        "min": 0.9833689332,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9996917248,
+        "min": 0.9996917248,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.99650383,
+        "min": 0.99650383,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9816383123,
+        "min": 0.9089759588,
+        "variance": 0.001319979085
+      },
+      "words": "Image"
+    },
+    {
+      "probability": {
+        "average": 0.9816324115,
+        "min": 0.8097472191,
+        "variance": 0.00274238619
+      },
+      "words": "“[Encode]+Q”"
+    },
+    {
+      "probability": {
+        "average": 0.9599062204,
+        "min": 0.7167952061,
+        "variance": 0.007786001079
+      },
+      "words": "“[Decode]”"
+    },
+    {
+      "probability": {
+        "average": 0.9993079901,
+        "min": 0.9985945821,
+        "variance": 2.373384831e-07
+      },
+      "words": "(b)NLVR2"
+    },
+    {
+      "probability": {
+        "average": 0.9997723699,
+        "min": 0.9981043339,
+        "variance": 3.134759652e-07
+      },
+      "words": "true/false"
+    },
+    {
+      "probability": {
+        "average": 0.9999051094,
+        "min": 0.9999051094,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9705858827,
+        "min": 0.9705858827,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.8144978285,
+        "min": 0.6298248768,
+        "variance": 0.03410409763
+      },
+      "words": "NX"
+    },
+    {
+      "probability": {
+        "average": 0.9996826053,
+        "min": 0.9972599745,
+        "variance": 5.967405059e-07
+      },
+      "words": "Merge Layer"
+    },
+    {
+      "probability": {
+        "average": 0.9992986917,
+        "min": 0.9992986917,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9989725351,
+        "min": 0.9989725351,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9995223284,
+        "min": 0.9995223284,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9702913165,
+        "min": 0.851775229,
+        "variance": 0.003511516377
+      },
+      "words": "Image"
+    },
+    {
+      "probability": {
+        "average": 0.9989635348,
+        "min": 0.997721374,
+        "variance": 5.293248933e-07
+      },
+      "words": "Cross"
+    },
+    {
+      "probability": {
+        "average": 0.9975798726,
+        "min": 0.9957718253,
+        "variance": 2.341846539e-06
+      },
+      "words": "Cross"
+    },
+    {
+      "probability": {
+        "average": 0.9787460566,
+        "min": 0.8941662312,
+        "variance": 0.001788439578
+      },
+      "words": "Image"
+    },
+    {
+      "probability": {
+        "average": 0.9998339415,
+        "min": 0.999081254,
+        "variance": 9.540083568e-08
+      },
+      "words": "Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9999480844,
+        "min": 0.9998332262,
+        "variance": 2.123942133e-09
+      },
+      "words": "Attention"
+    },
+    {
+      "probability": {
+        "average": 0.9999667406,
+        "min": 0.9998720884,
+        "variance": 1.396491256e-09
+      },
+      "words": "Attention"
+    },
+    {
+      "probability": {
+        "average": 0.99925071,
+        "min": 0.9949186444,
+        "variance": 3.128461003e-06
+      },
+      "words": "Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9999015331,
+        "min": 0.9999015331,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9108952284,
+        "min": 0.9108952284,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9826237559,
+        "min": 0.8787816763,
+        "variance": 0.001797199016
+      },
+      "words": "Image#1"
+    },
+    {
+      "probability": {
+        "average": 0.6954664588,
+        "min": 0.5719270706,
+        "variance": 0.007640931755
+      },
+      "words": "..."
+    },
+    {
+      "probability": {
+        "average": 0.9895213842,
+        "min": 0.9270148873,
+        "variance": 0.0006511816755
+      },
+      "words": "Image#2"
+    },
+    {
+      "probability": {
+        "average": 0.9998956919,
+        "min": 0.9998956919,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9215435386,
+        "min": 0.5398789644,
+        "variance": 0.02591768838
+      },
+      "words": "“[Encode]+ Text\""
+    },
+    {
+      "probability": {
+        "average": 0.9978909492,
+        "min": 0.9914214015,
+        "variance": 1.069392601e-05
+      },
+      "words": "(c)VisDial"
+    },
+    {
+      "probability": {
+        "average": 0.9997864962,
+        "min": 0.9982447624,
+        "variance": 2.683034666e-07
+      },
+      "words": "true/false"
+    },
+    {
+      "probability": {
+        "average": 0.9996358156,
+        "min": 0.9996358156,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9803161621,
+        "min": 0.902096808,
+        "variance": 0.001529576024
+      },
+      "words": "Image"
+    },
+    {
+      "probability": {
+        "average": 0.9979771972,
+        "min": 0.9865983725,
+        "variance": 2.161212979e-05
+      },
+      "words": "Caption"
+    },
+    {
+      "probability": {
+        "average": 0.9994443059,
+        "min": 0.9978506565,
+        "variance": 5.764508728e-07
+      },
+      "words": "Dialog"
+    },
+    {
+      "probability": {
+        "average": 0.9997964501,
+        "min": 0.9989866614,
+        "variance": 1.131026366e-07
+      },
+      "words": "Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.999838233,
+        "min": 0.9993715882,
+        "variance": 4.308402524e-08
+      },
+      "words": "Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9999052882,
+        "min": 0.999546349,
+        "variance": 2.246936148e-08
+      },
+      "words": "Encoder"
+    },
+    {
+      "probability": {
+        "average": 0.9999513626,
+        "min": 0.9999513626,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9999630451,
+        "min": 0.9999630451,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9882705212,
+        "min": 0.9882705212,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.9825780988,
+        "min": 0.9140731096,
+        "variance": 0.001173316268
+      },
+      "words": "Image"
+    },
+    {
+      "probability": {
+        "average": 0.9221073389,
+        "min": 0.5104506016,
+        "variance": 0.02735068649
+      },
+      "words": "“[Encode]+ C\"\"[Encode]+ QA + Dialog History”"
+    }
+  ],
+  "words_result_num": 53,
+  "direction": 0,
+  "log_id": 2079047938986466343
+}

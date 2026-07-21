@@ -1,0 +1,391 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9996888638,
+        "min": 0.9992390871,
+        "variance": 7.64120287e-08
+      },
+      "words": "mite"
+    },
+    {
+      "probability": {
+        "average": 0.9998478293,
+        "min": 0.9993252754,
+        "variance": 4.115605279e-08
+      },
+      "words": "container ship"
+    },
+    {
+      "probability": {
+        "average": 0.9998967648,
+        "min": 0.9989522696,
+        "variance": 7.482960029e-08
+      },
+      "words": "motor scooter"
+    },
+    {
+      "probability": {
+        "average": 0.9490423203,
+        "min": 0.6437482834,
+        "variance": 0.01553407032
+      },
+      "words": "leopard"
+    },
+    {
+      "probability": {
+        "average": 0.9997156262,
+        "min": 0.9993777275,
+        "variance": 4.738136283e-08
+      },
+      "words": "mite"
+    },
+    {
+      "probability": {
+        "average": 0.9997908473,
+        "min": 0.9992221594,
+        "variance": 5.023179028e-08
+      },
+      "words": "container ship"
+    },
+    {
+      "probability": {
+        "average": 1,
+        "min": 1,
+        "variance": 0
+      },
+      "words": "motor scooter"
+    },
+    {
+      "probability": {
+        "average": 0.9701246619,
+        "min": 0.7932386994,
+        "variance": 0.005214973819
+      },
+      "words": "leopard"
+    },
+    {
+      "probability": {
+        "average": 0.997799933,
+        "min": 0.9777866006,
+        "variance": 4.006955351e-05
+      },
+      "words": "black widow"
+    },
+    {
+      "probability": {
+        "average": 0.9742360711,
+        "min": 0.9742360711,
+        "variance": 0
+      },
+      "words": "lifeboat"
+    },
+    {
+      "probability": {
+        "average": 0.9988270998,
+        "min": 0.9949861765,
+        "variance": 2.675973292e-06
+      },
+      "words": "go-kart"
+    },
+    {
+      "probability": {
+        "average": 0.998728931,
+        "min": 0.9934017062,
+        "variance": 5.680894901e-06
+      },
+      "words": "jaguar"
+    },
+    {
+      "probability": {
+        "average": 0.9995216727,
+        "min": 0.9977560639,
+        "variance": 4.25434024e-07
+      },
+      "words": "cockroach"
+    },
+    {
+      "probability": {
+        "average": 0.9997746944,
+        "min": 0.99939394,
+        "variance": 3.945581284e-08
+      },
+      "words": "amphibian"
+    },
+    {
+      "probability": {
+        "average": 0.9998062253,
+        "min": 0.9997041821,
+        "variance": 9.255186839e-09
+      },
+      "words": "moped"
+    },
+    {
+      "probability": {
+        "average": 0.9995165467,
+        "min": 0.9971997738,
+        "variance": 8.967144822e-07
+      },
+      "words": "cheetah"
+    },
+    {
+      "probability": {
+        "average": 0.9958419204,
+        "min": 0.9905350804,
+        "variance": 1.089553643e-05
+      },
+      "words": "tick"
+    },
+    {
+      "probability": {
+        "average": 0.9974788427,
+        "min": 0.9814220667,
+        "variance": 3.697317879e-05
+      },
+      "words": "fireboat"
+    },
+    {
+      "probability": {
+        "average": 0.9955558777,
+        "min": 0.9563570023,
+        "variance": 0.0001707332849
+      },
+      "words": "bumper car"
+    },
+    {
+      "probability": {
+        "average": 0.9993764758,
+        "min": 0.9970357418,
+        "variance": 8.12673477e-07
+      },
+      "words": "snow leopard"
+    },
+    {
+      "probability": {
+        "average": 0.9995568991,
+        "min": 0.9987846017,
+        "variance": 1.261644798e-07
+      },
+      "words": "starfish"
+    },
+    {
+      "probability": {
+        "average": 0.9990210533,
+        "min": 0.995844543,
+        "variance": 1.240720394e-06
+      },
+      "words": "drilling platform"
+    },
+    {
+      "probability": {
+        "average": 0.9973160028,
+        "min": 0.9815703034,
+        "variance": 3.562912389e-05
+      },
+      "words": "golfcart"
+    },
+    {
+      "probability": {
+        "average": 0.9996094108,
+        "min": 0.9980210066,
+        "variance": 2.725015804e-07
+      },
+      "words": "Egyptian cat"
+    },
+    {
+      "probability": {
+        "average": 0.9993038774,
+        "min": 0.9979377389,
+        "variance": 5.059061436e-07
+      },
+      "words": "grille"
+    },
+    {
+      "probability": {
+        "average": 0.9999281168,
+        "min": 0.9997159839,
+        "variance": 7.43604156e-09
+      },
+      "words": "mushroom"
+    },
+    {
+      "probability": {
+        "average": 0.9996628761,
+        "min": 0.9982962012,
+        "variance": 3.748620827e-07
+      },
+      "words": "cherry"
+    },
+    {
+      "probability": {
+        "average": 0.9998200536,
+        "min": 0.9985639453,
+        "variance": 1.394849676e-07
+      },
+      "words": "Madagascar cat"
+    },
+    {
+      "probability": {
+        "average": 0.999810636,
+        "min": 0.9994670749,
+        "variance": 2.475125527e-08
+      },
+      "words": "convertible"
+    },
+    {
+      "probability": {
+        "average": 0.999065578,
+        "min": 0.9971997738,
+        "variance": 8.883231999e-07
+      },
+      "words": "agaric"
+    },
+    {
+      "probability": {
+        "average": 0.998295486,
+        "min": 0.9859602451,
+        "variance": 1.903137127e-05
+      },
+      "words": "dalmatian"
+    },
+    {
+      "probability": {
+        "average": 0.9990871549,
+        "min": 0.994025588,
+        "variance": 2.170322887e-06
+      },
+      "words": "squirrel monkey"
+    },
+    {
+      "probability": {
+        "average": 0.9990211129,
+        "min": 0.9970800281,
+        "variance": 9.621720665e-07
+      },
+      "words": "grille"
+    },
+    {
+      "probability": {
+        "average": 0.999928236,
+        "min": 0.9996583462,
+        "variance": 1.079886935e-08
+      },
+      "words": "mushroom"
+    },
+    {
+      "probability": {
+        "average": 0.9997782707,
+        "min": 0.9995940328,
+        "variance": 1.269874605e-08
+      },
+      "words": "grape"
+    },
+    {
+      "probability": {
+        "average": 0.9996725321,
+        "min": 0.9970888495,
+        "variance": 5.898373843e-07
+      },
+      "words": "spider monkey"
+    },
+    {
+      "probability": {
+        "average": 0.9986485839,
+        "min": 0.9976761937,
+        "variance": 2.430614927e-07
+      },
+      "words": "pickup"
+    },
+    {
+      "probability": {
+        "average": 0.9988910556,
+        "min": 0.9899618626,
+        "variance": 7.409859336e-06
+      },
+      "words": "jelly fungus"
+    },
+    {
+      "probability": {
+        "average": 0.9985839128,
+        "min": 0.9872210622,
+        "variance": 1.435895501e-05
+      },
+      "words": "elderberry"
+    },
+    {
+      "probability": {
+        "average": 0.968954742,
+        "min": 0.8990793228,
+        "variance": 0.00165224378
+      },
+      "words": "titi"
+    },
+    {
+      "probability": {
+        "average": 0.9996939301,
+        "min": 0.9975742698,
+        "variance": 4.524003714e-07
+      },
+      "words": "beach wagon"
+    },
+    {
+      "probability": {
+        "average": 0.9901301861,
+        "min": 0.9011393785,
+        "variance": 0.0007942878292
+      },
+      "words": "gill fungus"
+    },
+    {
+      "probability": {
+        "average": 0.9994356036,
+        "min": 0.9969078898,
+        "variance": 6.340376331e-07
+      },
+      "words": "ffordshire bullterrier"
+    },
+    {
+      "probability": {
+        "average": 0.9791113138,
+        "min": 0.9001390934,
+        "variance": 0.001559723285
+      },
+      "words": "indri"
+    },
+    {
+      "probability": {
+        "average": 0.9993236661,
+        "min": 0.9951515198,
+        "variance": 1.851297952e-06
+      },
+      "words": "fire engine"
+    },
+    {
+      "probability": {
+        "average": 0.9989376068,
+        "min": 0.9922105074,
+        "variance": 3.690530548e-06
+      },
+      "words": "dead-man's-fingers"
+    },
+    {
+      "probability": {
+        "average": 0.9996299148,
+        "min": 0.9983087778,
+        "variance": 2.982767739e-07
+      },
+      "words": "currant"
+    },
+    {
+      "probability": {
+        "average": 0.9995155334,
+        "min": 0.9962381124,
+        "variance": 1.137295044e-06
+      },
+      "words": "howler monkey"
+    }
+  ],
+  "words_result_num": 48,
+  "direction": 0,
+  "log_id": 2079049159232652489
+}

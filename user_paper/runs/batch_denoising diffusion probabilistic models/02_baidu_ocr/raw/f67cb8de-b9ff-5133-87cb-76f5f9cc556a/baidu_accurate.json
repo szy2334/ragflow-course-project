@@ -1,0 +1,79 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9984567761,
+        "min": 0.9857934117,
+        "variance": 1.784678352e-05
+      },
+      "words": "1000 steps"
+    },
+    {
+      "probability": {
+        "average": 0.9647877216,
+        "min": 0.6834281087,
+        "variance": 0.00989541132
+      },
+      "words": "875 steps"
+    },
+    {
+      "probability": {
+        "average": 0.9454262853,
+        "min": 0.5094672441,
+        "variance": 0.02375755273
+      },
+      "words": "750 steps"
+    },
+    {
+      "probability": {
+        "average": 0.9606024623,
+        "min": 0.6456285715,
+        "variance": 0.01240106765
+      },
+      "words": "625 steps"
+    },
+    {
+      "probability": {
+        "average": 0.9705471396,
+        "min": 0.7350889444,
+        "variance": 0.006930066273
+      },
+      "words": "500 steps"
+    },
+    {
+      "probability": {
+        "average": 0.9674250484,
+        "min": 0.7071446776,
+        "variance": 0.008468234912
+      },
+      "words": "375 steps"
+    },
+    {
+      "probability": {
+        "average": 0.9695513248,
+        "min": 0.7262849808,
+        "variance": 0.007397320587
+      },
+      "words": "250 steps"
+    },
+    {
+      "probability": {
+        "average": 0.9857311249,
+        "min": 0.8722965121,
+        "variance": 0.001608445193
+      },
+      "words": "125 steps"
+    },
+    {
+      "probability": {
+        "average": 0.9988840222,
+        "min": 0.9940217137,
+        "variance": 4.767543032e-06
+      },
+      "words": "0steps"
+    }
+  ],
+  "words_result_num": 9,
+  "direction": 0,
+  "log_id": 2079046086339671066
+}

@@ -1,0 +1,167 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9754726887,
+        "min": 0.7561833262,
+        "variance": 0.004424009938
+      },
+      "words": "Full depth input"
+    },
+    {
+      "probability": {
+        "average": 0.9988533258,
+        "min": 0.9763638973,
+        "variance": 1.898568553e-05
+      },
+      "words": "Variants of masked RGB input"
+    },
+    {
+      "probability": {
+        "average": 0.9828910828,
+        "min": 0.8098859787,
+        "variance": 0.002360137179
+      },
+      "words": "Full depth input"
+    },
+    {
+      "probability": {
+        "average": 0.9991809726,
+        "min": 0.9868668318,
+        "variance": 5.991621492e-06
+      },
+      "words": "Variants of masked RGB input"
+    },
+    {
+      "probability": {
+        "average": 0.9368802905,
+        "min": 0.6933436394,
+        "variance": 0.01091249101
+      },
+      "words": "Hue +0°"
+    },
+    {
+      "probability": {
+        "average": 0.9981837273,
+        "min": 0.9870659709,
+        "variance": 1.771812458e-05
+      },
+      "words": "Hue+140°"
+    },
+    {
+      "probability": {
+        "average": 0.9926211238,
+        "min": 0.954190135,
+        "variance": 0.0002470648324
+      },
+      "words": "Hue-50°"
+    },
+    {
+      "probability": {
+        "average": 0.9961900711,
+        "min": 0.9961900711,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9934147596,
+        "min": 0.9934147596,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9204376936,
+        "min": 0.6083378196,
+        "variance": 0.01768165454
+      },
+      "words": "Hue +0°"
+    },
+    {
+      "probability": {
+        "average": 0.9967383146,
+        "min": 0.9751527309,
+        "variance": 6.661823863e-05
+      },
+      "words": "Hue+180°"
+    },
+    {
+      "probability": {
+        "average": 0.9920029044,
+        "min": 0.9485557675,
+        "variance": 0.0003148794349
+      },
+      "words": "Hue-60°"
+    },
+    {
+      "probability": {
+        "average": 0.995102942,
+        "min": 0.923320353,
+        "variance": 0.000322596723
+      },
+      "words": "Original RGBimage"
+    },
+    {
+      "probability": {
+        "average": 0.9064196944,
+        "min": 0.9064196944,
+        "variance": 0
+      },
+      "words": "↓"
+    },
+    {
+      "probability": {
+        "average": 0.9782759547,
+        "min": 0.7470164895,
+        "variance": 0.004059906118
+      },
+      "words": "Original RGB image"
+    },
+    {
+      "probability": {
+        "average": 0.7496253848,
+        "min": 0.7496253848,
+        "variance": 0
+      },
+      "words": "↓"
+    },
+    {
+      "probability": {
+        "average": 0.9996769428,
+        "min": 0.9960398674,
+        "variance": 1.102734473e-06
+      },
+      "words": "for reference"
+    },
+    {
+      "probability": {
+        "average": 0.9994899035,
+        "min": 0.9940621257,
+        "variance": 1.73691808e-06
+      },
+      "words": "MultiMAE predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9998742342,
+        "min": 0.9986977577,
+        "variance": 1.162587822e-07
+      },
+      "words": "for reference"
+    },
+    {
+      "probability": {
+        "average": 0.9994056821,
+        "min": 0.9938365817,
+        "variance": 2.127992957e-06
+      },
+      "words": "MultiMAE predictions"
+    }
+  ],
+  "words_result_num": 20,
+  "direction": 0,
+  "log_id": 2079048355291206351
+}

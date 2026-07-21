@@ -1,0 +1,119 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9998697042,
+        "min": 0.9998576641,
+        "variance": 1.449649289e-10
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.9999392033,
+        "min": 0.9998918772,
+        "variance": 2.239758601e-09
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9996322989,
+        "min": 0.9993202686,
+        "variance": 9.736291418e-08
+      },
+      "words": "25"
+    },
+    {
+      "probability": {
+        "average": 0.837547183,
+        "min": 0.6029673219,
+        "variance": 0.02070003003
+      },
+      "words": "5050"
+    },
+    {
+      "probability": {
+        "average": 0.994561851,
+        "min": 0.9625688791,
+        "variance": 0.0001705982868
+      },
+      "words": "ECG ESR"
+    },
+    {
+      "probability": {
+        "average": 0.9991255999,
+        "min": 0.9967445135,
+        "variance": 8.72150963e-07
+      },
+      "words": "mmWave ESR"
+    },
+    {
+      "probability": {
+        "average": 0.9840345383,
+        "min": 0.8893916011,
+        "variance": 0.001492909738
+      },
+      "words": "ECG AIR"
+    },
+    {
+      "probability": {
+        "average": 0.8990492821,
+        "min": 0.8501908779,
+        "variance": 0.002387146465
+      },
+      "words": "05"
+    },
+    {
+      "probability": {
+        "average": 0.9983347654,
+        "min": 0.9902898669,
+        "variance": 8.053323654e-06
+      },
+      "words": "mmWave AIR"
+    },
+    {
+      "probability": {
+        "average": 0.9999388456,
+        "min": 0.999920249,
+        "variance": 3.458353603e-10
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9997762442,
+        "min": 0.999725163,
+        "variance": 2.609287009e-09
+      },
+      "words": "15"
+    },
+    {
+      "probability": {
+        "average": 0.999889493,
+        "min": 0.999889493,
+        "variance": 0
+      },
+      "words": "5"
+    },
+    {
+      "probability": {
+        "average": 0.9837986827,
+        "min": 0.8933098912,
+        "variance": 0.0013656792
+      },
+      "words": "AutoIOT"
+    },
+    {
+      "probability": {
+        "average": 0.9508767128,
+        "min": 0.5267234445,
+        "variance": 0.00990938209
+      },
+      "words": "w/oB.+O.w/oO.+D.w/oB.+O.+D.w/o all"
+    }
+  ],
+  "words_result_num": 14,
+  "direction": 0,
+  "log_id": 2079044382438729822
+}

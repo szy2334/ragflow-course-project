@@ -1,0 +1,61 @@
+{
+  "file_name": "4829a2184f7be0949a01d1c33a90979c1a2b5e4e877322d25b0f3fca9707068c.jpg",
+  "file_id": "file-gPtfcuaiZbu946pmlrhED9gD2INJZwr9",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "H16wN5-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "H16wN5-layout-1",
+          "text": "  | S4L (R50x1) | Lower Bound (S4L) | Upper Bound (S4L)\nStructured (8 tasks) | 68 | 58 | 64\nNon-�usual (8 tasks) | 52 | 48 | 56",
+          "position": [
+            0,
+            4,
+            227,
+            229
+          ],
+          "polygon": [
+            [
+              -1,
+              4
+            ],
+            [
+              227,
+              4
+            ],
+            [
+              227,
+              233
+            ],
+            [
+              -1,
+              233
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'></th><th style='text-align: center;'>S4L (R50x1)</th><th style='text-align: center;'>Lower Bound (S4L)</th><th style='text-align: center;'>Upper Bound (S4L)</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>Structured (8 tasks)</td><td style='text-align: center;'>68</td><td style='text-align: center;'>58</td><td style='text-align: center;'>64</td></tr>\n    <tr><td style='text-align: center;'>Non-�usual (8 tasks)</td><td style='text-align: center;'>52</td><td style='text-align: center;'>48</td><td style='text-align: center;'>56</td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "  | S4L (R50x1) | Lower Bound (S4L) | Upper Bound (S4L)\nStructured (8 tasks) | 68 | 58 | 64\nNon-�usual (8 tasks) | 52 | 48 | 56",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'></th><th style='text-align: center;'>S4L (R50x1)</th><th style='text-align: center;'>Lower Bound (S4L)</th><th style='text-align: center;'>Upper Bound (S4L)</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>Structured (8 tasks)</td><td style='text-align: center;'>68</td><td style='text-align: center;'>58</td><td style='text-align: center;'>64</td></tr>\n    <tr><td style='text-align: center;'>Non-�usual (8 tasks)</td><td style='text-align: center;'>52</td><td style='text-align: center;'>48</td><td style='text-align: center;'>56</td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 228,
+        "page_height": 237
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

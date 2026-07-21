@@ -10,7 +10,7 @@ const variant = computed(() => {
   return 'muted'
 })
 const text = computed(() => props.label ?? ({
-  uploaded: '已上传', mineru_parsing: 'MinerU 解析中', ocr_processing: '图表 OCR 中', cleaning: '结构化清洗中', quality_check: '质量检查中', understanding: '论文理解中', indexing: '历史索引中', ready: '可阅读',
+  uploaded: '等待处理', mineru_parsing: '版面解析中', ocr_processing: '内容补全中', cleaning: '二次清洗中', quality_check: '入库校验中', understanding: '论文理解中', indexing: '历史迁移中', ready: '可阅读',
   pending: '等待执行', running: '执行中', succeeded: '已完成', failed: '失败', cancelled: '已取消', stale: '需要重建', not_indexed: '未建索引',
 } as Record<string, string>)[props.status] ?? props.status)
 const icon = computed(() => ({ success: Check, danger: props.status === 'cancelled' ? PauseCircle : AlertTriangle, progress: LoaderCircle, muted: props.status === 'pending' ? Clock3 : X }[variant.value]))

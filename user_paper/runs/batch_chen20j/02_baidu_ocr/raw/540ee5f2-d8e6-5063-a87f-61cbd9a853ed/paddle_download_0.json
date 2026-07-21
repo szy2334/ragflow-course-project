@@ -1,0 +1,76 @@
+{
+  "file_name": "a4dd603c480d25589d84a148e9faed73b483a73b4f7f734c832079cf772097f4.jpg",
+  "file_id": "file-CmGo4q444w879VJIgBGTo263vPjjOpD0",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "1Y3HgC-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "1Y3HgC-layout-1",
+          "text": "",
+          "position": [
+            6,
+            1,
+            231,
+            233
+          ],
+          "polygon": [
+            [
+              6,
+              1
+            ],
+            [
+              237,
+              1
+            ],
+            [
+              237,
+              234
+            ],
+            [
+              6,
+              234
+            ]
+          ],
+          "type": "image",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": ""
+        }
+      ],
+      "images": [
+        {
+          "layout_id": "1Y3HgC-layout-1",
+          "image_title_id": null,
+          "position": [
+            6,
+            1,
+            231,
+            233
+          ],
+          "content_layouts": [],
+          "data": "",
+          "data_url": "<temporary-url-redacted>",
+          "image_description": ""
+        }
+      ],
+      "inner_images": {},
+      "tables": [],
+      "text": "",
+      "markdown": "<div style=\"text-align: center;\"><img src=\"<temporary-url-redacted>\" alt=\"Image\" width=\"97%\" /></div>\n",
+      "meta": {
+        "page_width": 237,
+        "page_height": 234
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

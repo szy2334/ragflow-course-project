@@ -11,7 +11,10 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: process.env.VITE_API_ORIGIN ?? 'http://localhost:8000',
+        // On Windows, localhost can resolve to an unrelated IPv6 listener.
+        // The local FastAPI process listens on IPv4, so make the development
+        // proxy deterministic for API calls and PDF blobs alike.
+        target: process.env.VITE_API_ORIGIN ?? 'http://127.0.0.1:8000',
         changeOrigin: true,
       },
     },

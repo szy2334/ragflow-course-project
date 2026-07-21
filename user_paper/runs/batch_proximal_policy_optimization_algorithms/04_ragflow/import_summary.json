@@ -1,0 +1,17 @@
+{
+  "mapping_schema_version": "user_paper_ragflow_mapping_v2",
+  "dataset_id": "4bfbda0883e611f1baf5534cb6e5572c",
+  "dataset_name": "user_papers_private_rerun",
+  "document_id": "1a50490683ed11f1baf5534cb6e5572c",
+  "user_id": "local-user",
+  "paper_id": "8e60db38-85bf-5cd7-8c2b-3e984b5cfb2a",
+  "paper_version_id": "c1519de9-f2f3-5058-914e-08f1cf02ee1d",
+  "expected_chunks": 77,
+  "mapped_chunks": 77,
+  "imported_this_run": 77,
+  "resumed": 0,
+  "failures": 0,
+  "quality_status": "READY",
+  "state_db": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_proximal_policy_optimization_algorithms\\04_ragflow\\import_state.sqlite",
+  "completed_at": "2026-07-20T03:44:02.640284+00:00"
+}

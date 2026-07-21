@@ -1,0 +1,23 @@
+{
+  "schema_version": "paper_document_v1",
+  "paper_id": "a972ef2a-f9d0-5362-ba06-42fca3f86db0",
+  "paper_version_id": "7f76c86f-4a68-5f15-820c-d8228f7d8e1f",
+  "file_name": "li22n.pdf",
+  "file_path": "D:\\JIXUN\\document_pdf\\li22n.pdf",
+  "file_sha256": "d957b2efb56f8b0a5b7bb630c7a93bc045f45c96e86f20e00f4b4e9f3040a2b0",
+  "title": "BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation",
+  "parser_name": "mineru",
+  "parser_version": "3.4.0",
+  "cleaning_version": "user_paper_pipeline_v1",
+  "mineru_export_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_li22n\\01_mineru_clean\\raw_mineru\\extracted",
+  "mineru_metadata": {
+    "backend": "hybrid",
+    "effort": "medium",
+    "ocr_enabled": true,
+    "version": "3.4.0"
+  },
+  "block_count": 192,
+  "media_count": 27,
+  "recovered_references": 0,
+  "created_at": "2026-07-20T03:37:01.616623+00:00"
+}

@@ -1,0 +1,55 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9926087856,
+        "min": 0.9922553301,
+        "variance": 1.249518959e-07
+      },
+      "words": "SU"
+    },
+    {
+      "probability": {
+        "average": 0.9999313354,
+        "min": 0.9998865128,
+        "variance": 2.009073796e-09
+      },
+      "words": "GE"
+    },
+    {
+      "probability": {
+        "average": 0.999866724,
+        "min": 0.9997841716,
+        "variance": 6.819826481e-09
+      },
+      "words": "RC"
+    },
+    {
+      "probability": {
+        "average": 0.9686282277,
+        "min": 0.7814040184,
+        "variance": 0.005842170212
+      },
+      "words": "-Expert"
+    },
+    {
+      "probability": {
+        "average": 0.9976397753,
+        "min": 0.9840334654,
+        "variance": 2.648977897e-05
+      },
+      "words": "Non-exp."
+    },
+    {
+      "probability": {
+        "average": 0.9996767044,
+        "min": 0.9995392561,
+        "variance": 2.040921743e-08
+      },
+      "words": "CDR"
+    }
+  ],
+  "words_result_num": 6,
+  "direction": 0,
+  "log_id": 2079044396389846021
+}

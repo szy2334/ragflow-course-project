@@ -1,0 +1,12 @@
+{
+  "error_code": 0,
+  "error_msg": "success",
+  "log_id": "16302001261123293690582184048637",
+  "result": {
+    "task_id": "task-rqAN5i6j6y2ZBI3FQY7Ygt7SZhTVEBqK",
+    "status": "success",
+    "task_error": null,
+    "parse_result_url": "<downloaded-and-redacted>",
+    "markdown_url": "<downloaded-and-redacted>"
+  }
+}

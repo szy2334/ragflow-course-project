@@ -1,0 +1,55 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9997779131,
+        "min": 0.9997445941,
+        "variance": 1.110155523e-09
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9999870062,
+        "min": 0.9999768734,
+        "variance": 1.026734253e-10
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9999645352,
+        "min": 0.9999352694,
+        "variance": 8.564917664e-10
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9999417663,
+        "min": 0.9998891354,
+        "variance": 2.770011776e-09
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9970709085,
+        "min": 0.9970709085,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9983013868,
+        "min": 0.9737827778,
+        "variance": 3.540197577e-05
+      },
+      "words": "02004006008001,000"
+    }
+  ],
+  "words_result_num": 6,
+  "direction": 0,
+  "log_id": 2079046045526092182
+}

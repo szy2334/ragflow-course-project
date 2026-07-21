@@ -5,7 +5,7 @@
 1. `mineru_clean.py`：调用 MinerU，或读取已有 MinerU 产物，生成稳定的业务 Block 和媒体对象。
 2. `baidu_ocr.py`：按图片、图表、表格调用百度 OCR，并保存原始响应与归一化结果。
 3. `second_clean.py`：生成正文、摘要、公式、表格、图片和参考文献等结构化 Chunk。
-4. `ragflow_import.py`：以 manual Chunk 方式导入 RAGFlow，保存业务 Chunk 与 RAGFlow Chunk 映射。
+4. `ragflow_import.py`：仅为显式维护命令保留；用户论文的阅读索引只写入本地 PostgreSQL，不导入 RAGFlow。
 5. `run_pipeline.py`：串联上述阶段。
 
 ## 一次配置，直接运行
@@ -20,13 +20,13 @@ python .\run_pipeline.py --print-config
 python .\run_pipeline.py
 ```
 
-`.env` 包含 PDF 路径、输出目录、MinerU/百度 OCR/RAGFlow 地址、数据集名称和严格 OCR 开关。命令行参数仍可覆盖 `.env` 中的默认值，例如：
+`.env` 包含 PDF 路径、输出目录、MinerU/百度 OCR/RAGFlow 地址和严格 OCR 开关。默认运行不会将用户论文导入 RAGFlow；只有在维护场景显式设置 `USER_PAPER_IMPORT_RAGFLOW=true` 或传入 `--import-ragflow` 时才会导入。命令行参数仍可覆盖 `.env` 中的默认值，例如：
 
 ```powershell
-python .\run_pipeline.py --pdf .\another-paper.pdf --run-name another-paper
+python .\run_pipeline.py --pdf D:\JIXUN\another-paper.pdf --run-name another-paper
 ```
 
-`--print-config` 只显示配置路径、普通设置和每个凭据是否已配置，绝不会显示密钥内容。`.env` 中的相对路径以该 `.env` 所在的 `user_paper` 目录为基准，因此可从仓库根目录或本目录执行脚本。
+`--print-config` 只显示配置路径、普通设置和每个凭据是否已配置，绝不会显示密钥内容。
 
 `.env` 已被 Git 忽略，禁止提交真实密钥。`.env.example` 仅含字段名和可安全提交的默认值。
 
@@ -67,3 +67,38 @@ python .\qa_baseline.py
 
 `golden.json` 是人工审核后的评测题与预期事实/证据。执行器只生成可复现的检索结果
 `results.json`；评分器在该模式下只判定检索与引用命中，不评判 LLM 答案。
+
+## 与 AI 工作流对接
+
+`ai_retrieval_adapter.py` 是线上问答所用的异步适配器。它读取本流水线导出的
+`04_ragflow/chunk_mapping.jsonl`，根据经过鉴权的 `user_id + paper_ids` 解析 RAGFlow
+的 Dataset/Document，再把 `/retrieval` 的原始 Chunk 转换为 `app.ai` 的 `EvidenceSet`。
+因此，API 层只把 `paper_ids` 传给 AI 工作流，不能接收客户端提供的 RAGFlow ID。
+
+导入器从现在起会在新生成的映射中带上用户、页码、章节、内容类型和对象关系等证据
+溯源字段。已存在的旧映射没有 `user_id`，默认会被适配器拒绝；请重新执行一次导入，
+以生成 `user_paper_ragflow_mapping_v2` 映射。
+
+在后端进程中组装依赖时，创建并注入适配器即可：
+
+```python
+from pathlib import Path
+
+from user_paper.ai_retrieval_adapter import (
+    AsyncRagflowRetrievalClient,
+    JsonlPaperRegistry,
+    RagflowRetrievalAdapter,
+    RagflowRetrievalSettings,
+)
+
+settings = RagflowRetrievalSettings.from_environment()
+client = AsyncRagflowRetrievalClient(settings)
+retrieval = RagflowRetrievalAdapter(
+    JsonlPaperRegistry([Path(r".../04_ragflow/chunk_mapping.jsonl")]),
+    client,
+)
+# WorkflowDependencies(retrieval=retrieval, ...)
+```
+
+该适配器只实现用户论文的 `retrieve_paper()`；`retrieve_standards()` 会明确返回空证据，
+让 AI 工作流按既有规则把评审降级为论文内分析。公共标准库仍应由对应后端模块实现。

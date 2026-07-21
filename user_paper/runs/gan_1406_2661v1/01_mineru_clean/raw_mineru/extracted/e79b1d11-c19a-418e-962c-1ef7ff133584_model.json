@@ -1,0 +1,5661 @@
+[
+    [
+        {
+            "type": "aside_text",
+            "bbox": [
+                0.024,
+                0.269,
+                0.059,
+                0.712
+            ],
+            "angle": 0,
+            "content": "arXiv:1406.2661v1 [stat.ML] 10 Jun 2014"
+        },
+        {
+            "type": "doc_title",
+            "bbox": [
+                0.327,
+                0.135,
+                0.672,
+                0.159
+            ],
+            "angle": 0,
+            "content": "Generative Adversarial Nets"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.193,
+                0.209,
+                0.809,
+                0.281
+            ],
+            "angle": 0,
+            "content": "Ian J. Goodfellow, Jean Pouget-Abadie*, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair,† Aaron Courville, Yoshua Bengio‡\nDépartement d'informatique et de recherche opérationnelle\nUniversité de Montréal\nMontréal, QC H3C 3J7",
+            "merge_prev": false
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.461,
+                0.317,
+                0.539,
+                0.333
+            ],
+            "angle": 0,
+            "content": "Abstract"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.231,
+                0.352,
+                0.768,
+                0.534
+            ],
+            "angle": 0,
+            "content": "We propose a new framework for estimating generative models via an adversarial process, in which we simultaneously train two models: a generative model G that captures the data distribution, and a discriminative model D that estimates the probability that a sample came from the training data rather than G. The training procedure for G is to maximize the probability of D making a mistake. This framework corresponds to a minimax two-player game. In the space of arbitrary functions G and D, a unique solution exists, with G recovering the training data distribution and D equal to  \\( \\frac{1}{2} \\)  everywhere. In the case where G and D are defined by multilayer perceptrons, the entire system can be trained with backpropagation. There is no need for any Markov chains or unrolled approximate inference networks during either training or generation of samples. Experiments demonstrate the potential of the framework through qualitative and quantitative evaluation of the generated samples.",
+            "merge_prev": false
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.174,
+                0.565,
+                0.314,
+                0.581
+            ],
+            "angle": 0,
+            "content": "1 Introduction"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.599,
+                0.827,
+                0.753
+            ],
+            "angle": 0,
+            "content": "The promise of deep learning is to discover rich, hierarchical models  \\( [2] \\)  that represent probability distributions over the kinds of data encountered in artificial intelligence applications, such as natural images, audio waveforms containing speech, and symbols in natural language corpora. So far, the most striking successes in deep learning have involved discriminative models, usually those that map a high-dimensional, rich sensory input to a class label  \\( [14, 22] \\) . These striking successes have primarily been based on the backpropagation and dropout algorithms, using piecewise linear units  \\( [19, 9, 10] \\)  which have a particularly well-behaved gradient. Deep generative models have had less of an impact, due to the difficulty of approximating many intractable probabilistic computations that arise in maximum likelihood estimation and related strategies, and due to difficulty of leveraging the benefits of piecewise linear units in the generative context. We propose a new generative model estimation procedure that sidesteps these difficulties. \\( ^{1} \\)",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.76,
+                0.827,
+                0.857
+            ],
+            "angle": 0,
+            "content": "In the proposed adversarial nets framework, the generative model is pitted against an adversary: a discriminative model that learns to determine whether a sample is from the model distribution or the data distribution. The generative model can be thought of as analogous to a team of counterfeiters, trying to produce fake currency and use it without detection, while the discriminative model is analogous to the police, trying to detect the counterfeit currency. Competition in this game drives both teams to improve their methods until the counterfeits are indistinguishable from the genuine articles.",
+            "merge_prev": false
+        },
+        {
+            "type": "page_footnote",
+            "bbox": [
+                0.191,
+                0.87,
+                0.685,
+                0.883
+            ],
+            "angle": 0,
+            "content": "*Jean Pouget-Abadie is visiting Université de Montréal from Ecole Polytechnique."
+        },
+        {
+            "type": "page_footnote",
+            "bbox": [
+                0.193,
+                0.883,
+                0.731,
+                0.897
+            ],
+            "angle": 0,
+            "content": "\\( ^{\\dagger} \\) Sherjil Ozair is visiting Université de Montréal from Indian Institute of Technology Delhi"
+        },
+        {
+            "type": "page_footnote",
+            "bbox": [
+                0.194,
+                0.897,
+                0.454,
+                0.911
+            ],
+            "angle": 0,
+            "content": "\\( ^{\\ddagger} \\) Yoshua Bengio is a CIFAR Senior Fellow."
+        },
+        {
+            "type": "page_footnote",
+            "bbox": [
+                0.194,
+                0.91,
+                0.823,
+                0.925
+            ],
+            "angle": 0,
+            "content": "\\( ^{1} \\) All code and hyperparameters available at http://www.github.com/goodfeli/adversarial"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.495,
+                0.949,
+                0.504,
+                0.96
+            ],
+            "angle": 0,
+            "content": "1"
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.329,
+                0.137,
+                0.671,
+                0.159
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.196,
+                0.212,
+                0.806,
+                0.224
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.332,
+                0.226,
+                0.671,
+                0.239
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.305,
+                0.24,
+                0.693,
+                0.253
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.424,
+                0.255,
+                0.575,
+                0.266
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.423,
+                0.269,
+                0.575,
+                0.28
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.461,
+                0.316,
+                0.539,
+                0.335
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.235,
+                0.354,
+                0.765,
+                0.365
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.234,
+                0.367,
+                0.765,
+                0.379
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.234,
+                0.382,
+                0.765,
+                0.393
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.234,
+                0.395,
+                0.764,
+                0.406
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.233,
+                0.409,
+                0.765,
+                0.421
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.232,
+                0.422,
+                0.765,
+                0.435
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.234,
+                0.436,
+                0.765,
+                0.448
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.232,
+                0.448,
+                0.767,
+                0.464
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.234,
+                0.465,
+                0.764,
+                0.476
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.234,
+                0.478,
+                0.765,
+                0.49
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.234,
+                0.492,
+                0.765,
+                0.504
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.234,
+                0.506,
+                0.765,
+                0.518
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.234,
+                0.52,
+                0.382,
+                0.532
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.566,
+                0.312,
+                0.581
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.6,
+                0.822,
+                0.613
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.615,
+                0.823,
+                0.626
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.629,
+                0.824,
+                0.64
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.642,
+                0.825,
+                0.655
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.656,
+                0.825,
+                0.669
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.671,
+                0.823,
+                0.682
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.684,
+                0.824,
+                0.697
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.698,
+                0.824,
+                0.71
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.711,
+                0.825,
+                0.725
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.725,
+                0.823,
+                0.737
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.739,
+                0.531,
+                0.751
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.761,
+                0.825,
+                0.772
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.773,
+                0.824,
+                0.786
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.789,
+                0.822,
+                0.8
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.803,
+                0.824,
+                0.814
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.816,
+                0.823,
+                0.829
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.83,
+                0.822,
+                0.841
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.844,
+                0.228,
+                0.855
+            ],
+            "text": "",
+            "score": 1.0
+        }
+    ],
+    [
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.105,
+                0.828,
+                0.204
+            ],
+            "angle": 0,
+            "content": "This framework can yield specific training algorithms for many kinds of model and optimization algorithm. In this article, we explore the special case when the generative model generates samples by passing random noise through a multilayer perceptron, and the discriminative model is also a multilayer perceptron. We refer to this special case as adversarial nets. In this case, we can train both models using only the highly successful backpropagation and dropout algorithms  \\( [17] \\)  and sample from the generative model using only forward propagation. No approximate inference or Markov chains are necessary.",
+            "merge_prev": false
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.172,
+                0.226,
+                0.321,
+                0.243
+            ],
+            "angle": 0,
+            "content": "2 Related work"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.261,
+                0.827,
+                0.374
+            ],
+            "angle": 0,
+            "content": "An alternative to directed graphical models with latent variables are undirected graphical models with latent variables, such as restricted Boltzmann machines (RBMs)  \\( [27, 16] \\) , deep Boltzmann machines (DBMs)  \\( [26] \\)  and their numerous variants. The interactions within such models are represented as the product of unnormalized potential functions, normalized by a global summation/integration over all states of the random variables. This quantity (the partition function) and its gradient are intractable for all but the most trivial instances, although they can be estimated by Markov chain Monte Carlo (MCMC) methods. Mixing poses a significant problem for learning algorithms that rely on MCMC  \\( [3, 5] \\) .",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.379,
+                0.826,
+                0.423
+            ],
+            "angle": 0,
+            "content": "Deep belief networks (DBNs) [16] are hybrid models containing a single undirected layer and several directed layers. While a fast approximate layer-wise training criterion exists, DBNs incur the computational difficulties associated with both undirected and directed models.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.428,
+                0.828,
+                0.583
+            ],
+            "angle": 0,
+            "content": "Alternative criteria that do not approximate or bound the log-likelihood have also been proposed, such as score matching  \\( [18] \\)  and noise-contrastive estimation (NCE)  \\( [13] \\) . Both of these require the learned probability density to be analytically specified up to a normalization constant. Note that in many interesting generative models with several layers of latent variables (such as DBNs and DBMs), it is not even possible to derive a tractable unnormalized probability density. Some models such as denoising auto-encoders  \\( [30] \\)  and contractive autoencoders have learning rules very similar to score matching applied to RBMs. In NCE, as in this work, a discriminative training criterion is employed to fit a generative model. However, rather than fitting a separate discriminative model, the generative model itself is used to discriminate generated data from samples a fixed noise distribution. Because NCE uses a fixed noise distribution, learning slows dramatically after the model has learned even an approximately correct distribution over a small subset of the observed variables.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.587,
+                0.827,
+                0.756
+            ],
+            "angle": 0,
+            "content": "Finally, some techniques do not involve defining a probability distribution explicitly, but rather train a generative machine to draw samples from the desired distribution. This approach has the advantage that such machines can be designed to be trained by back-propagation. Prominent recent work in this area includes the generative stochastic network (GSN) framework  \\( [5] \\) , which extends generalized denoising auto-encoders  \\( [4] \\) : both can be seen as defining a parameterized Markov chain, i.e., one learns the parameters of a machine that performs one step of a generative Markov chain. Compared to GSNs, the adversarial nets framework does not require a Markov chain for sampling. Because adversarial nets do not require feedback loops during generation, they are better able to leverage piecewise linear units  \\( [19, 9, 10] \\) , which improve the performance of backpropagation but have problems with unbounded activation when used in a feedback loop. More recent examples of training a generative machine by back-propagating into it include recent work on auto-encoding variational Bayes  \\( [20] \\)  and stochastic backpropagation  \\( [24] \\) .",
+            "merge_prev": false
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.172,
+                0.779,
+                0.345,
+                0.795
+            ],
+            "angle": 0,
+            "content": "3 Adversarial nets"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.813,
+                0.828,
+                0.926
+            ],
+            "angle": 0,
+            "content": "The adversarial modeling framework is most straightforward to apply when the models are both multilayer perceptrons. To learn the generator's distribution \\( p_g \\) over data \\( x \\), we define a prior on input noise variables \\( p_z(z) \\), then represent a mapping to data space as \\( G(z; \\theta_g) \\), where \\( G \\) is a differentiable function represented by a multilayer perceptron with parameters \\( \\theta_g \\). We also define a second multilayer perceptron \\( D(x; \\theta_d) \\) that outputs a single scalar. \\( D(x) \\) represents the probability that \\( x \\) came from the data rather than \\( p_g \\). We train \\( D \\) to maximize the probability of assigning the correct label to both training examples and samples from \\( G \\). We simultaneously train \\( G \\) to minimize \\( \\log(1 - D(G(z))) \\):",
+            "merge_prev": false
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.494,
+                0.949,
+                0.506,
+                0.96
+            ],
+            "angle": 0,
+            "content": "2"
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.319,
+                0.842,
+                0.359,
+                0.856
+            ],
+            "latex": "",
+            "score": 0.8924
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.578,
+                0.83,
+                0.596,
+                0.843
+            ],
+            "latex": "",
+            "score": 0.8549
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.37,
+                0.869,
+                0.429,
+                0.883
+            ],
+            "latex": "",
+            "score": 0.9243
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.664,
+                0.841,
+                0.722,
+                0.855
+            ],
+            "latex": "",
+            "score": 0.9273
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.425,
+                0.886,
+                0.444,
+                0.898
+            ],
+            "latex": "",
+            "score": 0.8587
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.616,
+                0.869,
+                0.652,
+                0.883
+            ],
+            "latex": "",
+            "score": 0.5879
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.689,
+                0.857,
+                0.707,
+                0.87
+            ],
+            "latex": "",
+            "score": 0.8447
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.174,
+                0.91,
+                0.298,
+                0.925
+            ],
+            "latex": "",
+            "score": 0.8813
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.106,
+                0.824,
+                0.119
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.12,
+                0.824,
+                0.133
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.134,
+                0.825,
+                0.146
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.148,
+                0.824,
+                0.16
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.162,
+                0.824,
+                0.175
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.176,
+                0.824,
+                0.188
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.189,
+                0.366,
+                0.202
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.227,
+                0.318,
+                0.242
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.263,
+                0.823,
+                0.274
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.277,
+                0.823,
+                0.288
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.291,
+                0.823,
+                0.302
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.305,
+                0.823,
+                0.315
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.318,
+                0.824,
+                0.33
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.332,
+                0.822,
+                0.343
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.345,
+                0.823,
+                0.357
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.36,
+                0.422,
+                0.371
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.38,
+                0.824,
+                0.393
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.393,
+                0.824,
+                0.407
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.409,
+                0.69,
+                0.42
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.43,
+                0.822,
+                0.441
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.444,
+                0.824,
+                0.455
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.458,
+                0.824,
+                0.47
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.472,
+                0.824,
+                0.483
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.485,
+                0.824,
+                0.497
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.499,
+                0.823,
+                0.51
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.173,
+                0.513,
+                0.824,
+                0.525
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.527,
+                0.824,
+                0.539
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.541,
+                0.823,
+                0.552
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.555,
+                0.824,
+                0.566
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.569,
+                0.751,
+                0.58
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.59,
+                0.823,
+                0.601
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.604,
+                0.824,
+                0.615
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.618,
+                0.824,
+                0.629
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.632,
+                0.824,
+                0.643
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.645,
+                0.824,
+                0.657
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.659,
+                0.825,
+                0.671
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.673,
+                0.824,
+                0.684
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.687,
+                0.824,
+                0.698
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.701,
+                0.823,
+                0.712
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.714,
+                0.825,
+                0.727
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.728,
+                0.823,
+                0.74
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.742,
+                0.491,
+                0.754
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.173,
+                0.779,
+                0.344,
+                0.795
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.815,
+                0.824,
+                0.826
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.829,
+                0.577,
+                0.841
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.597,
+                0.829,
+                0.824,
+                0.841
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.843,
+                0.318,
+                0.855
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.36,
+                0.844,
+                0.659,
+                0.855
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.723,
+                0.843,
+                0.824,
+                0.855
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.855,
+                0.688,
+                0.87
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.708,
+                0.855,
+                0.825,
+                0.87
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.87,
+                0.369,
+                0.883
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.433,
+                0.871,
+                0.612,
+                0.882
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.654,
+                0.871,
+                0.822,
+                0.883
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.884,
+                0.425,
+                0.897
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.444,
+                0.884,
+                0.824,
+                0.897
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.899,
+                0.823,
+                0.91
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.298,
+                0.913,
+                0.306,
+                0.923
+            ],
+            "text": "",
+            "score": 1.0
+        }
+    ],
+    [
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.105,
+                0.824,
+                0.12
+            ],
+            "angle": 0,
+            "content": "In other words, D and G play the following two-player minimax game with value function  \\( V(G, D) \\) :",
+            "merge_prev": false
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.244,
+                0.141,
+                0.753,
+                0.164
+            ],
+            "angle": 0,
+            "content": "\\min _ {G} \\max _ {D} V (D, G) = \\mathbb {E} _ {\\boldsymbol {x} \\sim p _ {\\mathrm{data}} (\\boldsymbol {x})} [ \\log D (\\boldsymbol {x}) ] + \\mathbb {E} _ {\\boldsymbol {z} \\sim p _ {\\boldsymbol {z}} (\\boldsymbol {z})} [ \\log (1 - D (G (\\boldsymbol {z}))) ].\\tag{1}"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.177,
+                0.827,
+                0.332
+            ],
+            "angle": 0,
+            "content": "In the next section, we present a theoretical analysis of adversarial nets, essentially showing that the training criterion allows one to recover the data generating distribution as G and D are given enough capacity, i.e., in the non-parametric limit. See Figure 1 for a less formal, more pedagogical explanation of the approach. In practice, we must implement the game using an iterative, numerical approach. Optimizing D to completion in the inner loop of training is computationally prohibitive, and on finite datasets would result in overfitting. Instead, we alternate between k steps of optimizing D and one step of optimizing G. This results in D being maintained near its optimal solution, so long as G changes slowly enough. This strategy is analogous to the way that SML/PCD [31, 29] training maintains samples from a Markov chain from one learning step to the next in order to avoid burning in a Markov chain as part of the inner loop of learning. The procedure is formally presented in Algorithm 1.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.337,
+                0.826,
+                0.409
+            ],
+            "angle": 0,
+            "content": "In practice, equation 1 may not provide sufficient gradient for G to learn well. Early in learning, when G is poor, D can reject samples with high confidence because they are clearly different from the training data. In this case,  \\( \\log(1 - D(G(z))) \\)  saturates. Rather than training G to minimize  \\( \\log(1 - D(G(z))) \\)  we can train G to maximize  \\( \\log D(G(z)) \\) . This objective function results in the same fixed point of the dynamics of G and D but provides much stronger gradients early in learning.",
+            "merge_prev": false
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.185,
+                0.435,
+                0.316,
+                0.562
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.244,
+                0.569,
+                0.266,
+                0.583
+            ],
+            "angle": 0,
+            "content": "(a)"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.352,
+                0.435,
+                0.474,
+                0.512
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.354,
+                0.515,
+                0.473,
+                0.56
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.402,
+                0.569,
+                0.425,
+                0.584
+            ],
+            "angle": 0,
+            "content": "(b)"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.511,
+                0.435,
+                0.631,
+                0.512
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.512,
+                0.515,
+                0.632,
+                0.559
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.561,
+                0.569,
+                0.584,
+                0.583
+            ],
+            "angle": 0,
+            "content": "(c)"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.658,
+                0.435,
+                0.816,
+                0.56
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.744,
+                0.569,
+                0.766,
+                0.583
+            ],
+            "angle": 0,
+            "content": "(d)"
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.171,
+                0.597,
+                0.826,
+                0.756
+            ],
+            "angle": 0,
+            "content": "Figure 1: Generative adversarial nets are trained by simultaneously updating the discriminative distribution (D, blue, dashed line) so that it discriminates between samples from the data generating distribution (black, dotted line)  \\( p_{x} \\)  from those of the generative distribution  \\( p_{g} \\)  (G) (green, solid line). The lower horizontal line is the domain from which z is sampled, in this case uniformly. The horizontal line above is part of the domain of x. The upward arrows show how the mapping  \\( \\boldsymbol{x} = G(\\boldsymbol{z}) \\)  imposes the non-uniform distribution  \\( p_{g} \\)  on transformed samples. G contracts in regions of high density and expands in regions of low density of  \\( p_{g} \\) . (a) Consider an adversarial pair near convergence:  \\( p_{g} \\)  is similar to  \\( p_{data} \\)  and D is a partially accurate classifier. (b) In the inner loop of the algorithm D is trained to discriminate samples from data, converging to  \\( D^{*}(\\boldsymbol{x}) = \\frac{p_{\\mathrm{data}}(\\boldsymbol{x})}{p_{\\mathrm{data}}(\\boldsymbol{x}) + p_{g}(\\boldsymbol{x})} \\) . (c) After an update to G, gradient of D has guided  \\( G(\\boldsymbol{z}) \\)  to flow to regions that are more likely to be classified as data. (d) After several steps of training, if G and D have enough capacity, they will reach a point at which both cannot improve because  \\( p_{g} = p_{data} \\) . The discriminator is unable to differentiate between the two distributions, i.e.  \\( D(\\boldsymbol{x}) = \\frac{1}{2} \\) ."
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.172,
+                0.787,
+                0.369,
+                0.803
+            ],
+            "angle": 0,
+            "content": "4 Theoretical Results"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.82,
+                0.826,
+                0.89
+            ],
+            "angle": 0,
+            "content": "The generator G implicitly defines a probability distribution  \\( p_{g} \\)  as the distribution of the samples  \\( G(z) \\)  obtained when  \\( z \\sim p_{z} \\) . Therefore, we would like Algorithm 1 to converge to a good estimator of  \\( p_{data} \\) , if given enough capacity and training time. The results of this section are done in a nonparametric setting, e.g. we represent a model with infinite capacity by studying convergence in the space of probability density functions.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.896,
+                0.826,
+                0.925
+            ],
+            "angle": 0,
+            "content": "We will show in section 4.1 that this minimax game has a global optimum for \\( p_g = p_{\\mathrm{data}} \\). We will then show in section 4.2 that Algorithm 1 optimizes Eq 1, thus obtaining the desired result.",
+            "merge_prev": false
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.494,
+                0.949,
+                0.505,
+                0.961
+            ],
+            "angle": 0,
+            "content": "3"
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.758,
+                0.105,
+                0.82,
+                0.119
+            ],
+            "latex": "",
+            "score": 0.8436
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.227,
+                0.274,
+                0.245,
+                0.288
+            ],
+            "latex": "",
+            "score": 0.4937
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.188,
+                0.378,
+                0.299,
+                0.393
+            ],
+            "latex": "",
+            "score": 0.7204
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.384,
+                0.364,
+                0.507,
+                0.38
+            ],
+            "latex": "",
+            "score": 0.873
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.386,
+                0.379,
+                0.402,
+                0.392
+            ],
+            "latex": "",
+            "score": 0.5307
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.591,
+                0.337,
+                0.608,
+                0.35
+            ],
+            "latex": "",
+            "score": 0.5907
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.514,
+                0.378,
+                0.572,
+                0.393
+            ],
+            "latex": "",
+            "score": 0.7987
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.723,
+                0.365,
+                0.74,
+                0.379
+            ],
+            "latex": "",
+            "score": 0.5148
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.245,
+                0.625,
+                0.263,
+                0.635
+            ],
+            "latex": "",
+            "score": 0.8573
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.175,
+                0.699,
+                0.282,
+                0.717
+            ],
+            "latex": "",
+            "score": 0.9224
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.306,
+                0.66,
+                0.322,
+                0.672
+            ],
+            "latex": "",
+            "score": 0.4573
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.504,
+                0.625,
+                0.521,
+                0.636
+            ],
+            "latex": "",
+            "score": 0.828
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.395,
+                0.7,
+                0.412,
+                0.713
+            ],
+            "latex": "",
+            "score": 0.8084
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.483,
+                0.647,
+                0.554,
+                0.66
+            ],
+            "latex": "",
+            "score": 0.9035
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.461,
+                0.675,
+                0.479,
+                0.686
+            ],
+            "latex": "",
+            "score": 0.8182
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.615,
+                0.672,
+                0.631,
+                0.685
+            ],
+            "latex": "",
+            "score": 0.4677
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.559,
+                0.675,
+                0.585,
+                0.686
+            ],
+            "latex": "",
+            "score": 0.6501
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.565,
+                0.7,
+                0.598,
+                0.713
+            ],
+            "latex": "",
+            "score": 0.7305
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.785,
+                0.65,
+                0.804,
+                0.661
+            ],
+            "latex": "",
+            "score": 0.847
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.781,
+                0.662,
+                0.801,
+                0.674
+            ],
+            "latex": "",
+            "score": 0.7865
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.765,
+                0.685,
+                0.823,
+                0.698
+            ],
+            "latex": "",
+            "score": 0.9078
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.325,
+                0.74,
+                0.389,
+                0.755
+            ],
+            "latex": "",
+            "score": 0.901
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.441,
+                0.73,
+                0.505,
+                0.742
+            ],
+            "latex": "",
+            "score": 0.9176
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.175,
+                0.834,
+                0.211,
+                0.848
+            ],
+            "latex": "",
+            "score": 0.8343
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.192,
+                0.85,
+                0.224,
+                0.862
+            ],
+            "latex": "",
+            "score": 0.7792
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.312,
+                0.836,
+                0.361,
+                0.848
+            ],
+            "latex": "",
+            "score": 0.8927
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.578,
+                0.823,
+                0.597,
+                0.835
+            ],
+            "latex": "",
+            "score": 0.8659
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.691,
+                0.899,
+                0.762,
+                0.911
+            ],
+            "latex": "",
+            "score": 0.922
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.105,
+                0.756,
+                0.12
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.821,
+                0.109,
+                0.824,
+                0.117
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.179,
+                0.824,
+                0.19
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.193,
+                0.824,
+                0.204
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.206,
+                0.823,
+                0.219
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.22,
+                0.825,
+                0.233
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.234,
+                0.823,
+                0.246
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.249,
+                0.823,
+                0.26
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.262,
+                0.824,
+                0.274
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.275,
+                0.226,
+                0.289
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.245,
+                0.275,
+                0.824,
+                0.289
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.29,
+                0.824,
+                0.301
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.304,
+                0.824,
+                0.315
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.318,
+                0.276,
+                0.329
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.339,
+                0.591,
+                0.351
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.608,
+                0.339,
+                0.824,
+                0.351
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.353,
+                0.822,
+                0.364
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.365,
+                0.381,
+                0.378
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.508,
+                0.367,
+                0.722,
+                0.378
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.741,
+                0.367,
+                0.824,
+                0.378
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.172,
+                0.379,
+                0.188,
+                0.392
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.301,
+                0.38,
+                0.385,
+                0.394
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.403,
+                0.38,
+                0.512,
+                0.394
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.573,
+                0.38,
+                0.822,
+                0.391
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.394,
+                0.822,
+                0.406
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.787,
+                0.367,
+                0.802
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.821,
+                0.578,
+                0.833
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.598,
+                0.821,
+                0.824,
+                0.833
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.214,
+                0.835,
+                0.311,
+                0.847
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.361,
+                0.835,
+                0.824,
+                0.847
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.848,
+                0.192,
+                0.861
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.224,
+                0.848,
+                0.824,
+                0.861
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.863,
+                0.822,
+                0.875
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.877,
+                0.424,
+                0.889
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.898,
+                0.689,
+                0.91
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.762,
+                0.898,
+                0.824,
+                0.91
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.912,
+                0.767,
+                0.924
+            ],
+            "text": "",
+            "score": 1.0
+        }
+    ],
+    [
+        {
+            "type": "code",
+            "bbox": [
+                0.173,
+                0.102,
+                0.826,
+                0.429
+            ],
+            "angle": 0,
+            "content": "Algorithm 1 Minibatch stochastic gradient descent training of generative adversarial nets. The number of steps to apply to the discriminator, k, is a hyperparameter. We used k = 1, the least expensive option, in our experiments.\n\nfor number of training iterations do\n    for k steps do\n    • Sample minibatch of m noise samples  \\( \\{z^{(1)},\\ldots,z^{(m)}\\} \\)  from noise prior  \\( p_{g}(z) \\) .\n    • Sample minibatch of m examples  \\( \\{x^{(1)},\\ldots,x^{(m)}\\} \\)  from data generating distribution  \\( p_{\\mathrm{data}}(x) \\) .\n    • Update the discriminator by ascending its stochastic gradient:\n    \\( \\nabla_{\\theta_{d}}\\frac{1}{m}\\sum_{i=1}^{m}\\left[\\log D\\left(\\boldsymbol{x}^{(i)}\\right)+\\log\\left(1-D\\left(G\\left(\\boldsymbol{z}^{(i)}\\right)\\right)\\right)\\right] \\) .\n\nend for\n    • Sample minibatch of m noise samples  \\( \\{z^{(1)},\\ldots,z^{(m)}\\} \\)  from noise prior  \\( p_{g}(z) \\) .\n    • Update the generator by descending its stochastic gradient:\n    \\( \\nabla_{\\theta_{g}}\\frac{1}{m}\\sum_{i=1}^{m}\\log\\left(1-D\\left(G\\left(\\boldsymbol{z}^{(i)}\\right)\\right)\\right) \\) .\n\nend for\nThe gradient-based updates can use any standard gradient-based learning rule. We used momentum in our experiments."
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.172,
+                0.457,
+                0.432,
+                0.474
+            ],
+            "angle": 0,
+            "content": "4.1 Global Optimality of  \\( p_{g} = p_{data} \\)"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.172,
+                0.484,
+                0.65,
+                0.5
+            ],
+            "angle": 0,
+            "content": "We first consider the optimal discriminator D for any given generator G.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.172,
+                0.503,
+                0.567,
+                0.519
+            ],
+            "angle": 0,
+            "content": "Proposition 1. For G fixed, the optimal discriminator D is",
+            "merge_prev": false
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.402,
+                0.526,
+                0.594,
+                0.56
+            ],
+            "angle": 0,
+            "content": "D _ {G} ^ {*} (\\pmb {x}) = \\frac {p _ {d a t a} (\\pmb {x})}{p _ {d a t a} (\\pmb {x}) + p _ {g} (\\pmb {x})}\\tag{2}"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.575,
+                0.825,
+                0.606
+            ],
+            "angle": 0,
+            "content": "Proof. The training criterion for the discriminator D, given any generator G, is to maximize the quantity  \\( V(G, D) \\)",
+            "merge_prev": false
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.265,
+                0.612,
+                0.733,
+                0.679
+            ],
+            "angle": 0,
+            "content": "\\begin{array}{c} V (G, D) = \\int_ {\\boldsymbol {x}} p _ {\\mathrm{data}} (\\boldsymbol {x}) \\log (D (\\boldsymbol {x})) d x + \\int_ {z} p _ {\\boldsymbol {z}} (\\boldsymbol {z}) \\log (1 - D (g (\\boldsymbol {z}))) d z \\\\ = \\int_ {\\boldsymbol {x}} p _ {\\mathrm{data}} (\\boldsymbol {x}) \\log (D (\\boldsymbol {x})) + p _ {g} (\\boldsymbol {x}) \\log (1 - D (\\boldsymbol {x})) d x \\end{array}\\tag{3}"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.172,
+                0.693,
+                0.825,
+                0.74
+            ],
+            "angle": 0,
+            "content": "For any  \\( (a,b)\\in\\mathbb{R}^{2}\\setminus\\{0,0\\} \\) , the function  \\( y\\to a\\log(y)+b\\log(1-y) \\)  achieves its maximum in [0,1] at  \\( \\frac{a}{a+b} \\) . The discriminator does not need to be defined outside of  \\( Supp(p_{\\mathrm{data}})\\cup Supp(p_{g}) \\) , concluding the proof. ☐",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.755,
+                0.825,
+                0.8
+            ],
+            "angle": 0,
+            "content": "Note that the training objective for D can be interpreted as maximizing the log-likelihood for estimating the conditional probability  \\( P(Y = y|x) \\) , where Y indicates whether x comes from  \\( p_{data} \\)  (with y = 1) or from  \\( p_{g} \\)  (with y = 0). The minimax game in Eq. 1 can now be reformulated as:",
+            "merge_prev": false
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.251,
+                0.827,
+                0.745,
+                0.924
+            ],
+            "angle": 0,
+            "content": "\\begin{array}{l} C (G) = \\max _ {D} V (G, D) \\\\ \\qquad = \\mathbb {E} _ {\\boldsymbol {x} \\sim p _ {\\mathrm{data}}} [ \\log D _ {G} ^ {*} (\\boldsymbol {x}) ] + \\mathbb {E} _ {\\boldsymbol {z} \\sim p _ {\\boldsymbol {z}}} [ \\log (1 - D _ {G} ^ {*} (G (\\boldsymbol {z}))) ] \\\\ \\qquad = \\mathbb {E} _ {\\boldsymbol {x} \\sim p _ {\\mathrm{data}}} [ \\log D _ {G} ^ {*} (\\boldsymbol {x}) ] + \\mathbb {E} _ {\\boldsymbol {x} \\sim p _ {g}} [ \\log (1 - D _ {G} ^ {*} (\\boldsymbol {x})) ] \\\\ \\qquad = \\mathbb {E} _ {\\boldsymbol {x} \\sim p _ {\\mathrm{data}}} \\left[ \\log \\frac {p _ {\\mathrm{data}} (\\boldsymbol {x})}{P _ {\\mathrm{data}} (\\boldsymbol {x}) + p _ {g} (\\boldsymbol {x})} \\right] + \\mathbb {E} _ {\\boldsymbol {x} \\sim p _ {g}} \\left[ \\log \\frac {p _ {g} (\\boldsymbol {x})}{p _ {\\mathrm{data}} (\\boldsymbol {x}) + p _ {g} (\\boldsymbol {x})} \\right] \\end{array}\\tag{4}"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.494,
+                0.949,
+                0.506,
+                0.96
+            ],
+            "angle": 0,
+            "content": "4"
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.579,
+                0.118,
+                0.62,
+                0.131
+            ],
+            "latex": "",
+            "score": 0.5737
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.489,
+                0.173,
+                0.601,
+                0.19
+            ],
+            "latex": "",
+            "score": 0.92
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.477,
+                0.19,
+                0.592,
+                0.206
+            ],
+            "latex": "",
+            "score": 0.9076
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.714,
+                0.175,
+                0.755,
+                0.191
+            ],
+            "latex": "",
+            "score": 0.8937
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.223,
+                0.205,
+                0.276,
+                0.22
+            ],
+            "latex": "",
+            "score": 0.8261
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.336,
+                0.242,
+                0.705,
+                0.28
+            ],
+            "latex": "",
+            "score": 0.9302
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.472,
+                0.299,
+                0.585,
+                0.316
+            ],
+            "latex": "",
+            "score": 0.918
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.388,
+                0.337,
+                0.638,
+                0.378
+            ],
+            "latex": "",
+            "score": 0.9122
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.698,
+                0.301,
+                0.738,
+                0.318
+            ],
+            "latex": "",
+            "score": 0.8968
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.36,
+                0.46,
+                0.429,
+                0.474
+            ],
+            "latex": "",
+            "score": 0.8842
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.533,
+                0.504,
+                0.55,
+                0.516
+            ],
+            "latex": "",
+            "score": 0.4743
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.232,
+                0.589,
+                0.292,
+                0.604
+            ],
+            "latex": "",
+            "score": 0.583
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.674,
+                0.576,
+                0.691,
+                0.59
+            ],
+            "latex": "",
+            "score": 0.8287
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.231,
+                0.693,
+                0.365,
+                0.709
+            ],
+            "latex": "",
+            "score": 0.93
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.231,
+                0.709,
+                0.262,
+                0.725
+            ],
+            "latex": "",
+            "score": 0.861
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.458,
+                0.694,
+                0.653,
+                0.709
+            ],
+            "latex": "",
+            "score": 0.7872
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.656,
+                0.708,
+                0.819,
+                0.724
+            ],
+            "latex": "",
+            "score": 0.9073
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.213,
+                0.785,
+                0.258,
+                0.798
+            ],
+            "latex": "",
+            "score": 0.5572
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.313,
+                0.786,
+                0.332,
+                0.799
+            ],
+            "latex": "",
+            "score": 0.6839
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.414,
+                0.77,
+                0.501,
+                0.784
+            ],
+            "latex": "",
+            "score": 0.9154
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.372,
+                0.785,
+                0.417,
+                0.798
+            ],
+            "latex": "",
+            "score": 0.5152
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.555,
+                0.769,
+                0.572,
+                0.784
+            ],
+            "latex": "",
+            "score": 0.4541
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.459,
+                0.359,
+                0.472
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.485,
+                0.649,
+                0.499
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.505,
+                0.532,
+                0.518
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.551,
+                0.505,
+                0.565,
+                0.518
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.577,
+                0.673,
+                0.589
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.692,
+                0.577,
+                0.824,
+                0.589
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.592,
+                0.229,
+                0.605
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.172,
+                0.694,
+                0.229,
+                0.71
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.365,
+                0.695,
+                0.456,
+                0.708
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.658,
+                0.695,
+                0.823,
+                0.707
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.708,
+                0.229,
+                0.723
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.27,
+                0.71,
+                0.652,
+                0.721
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.82,
+                0.716,
+                0.824,
+                0.723
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.725,
+                0.316,
+                0.737
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.809,
+                0.725,
+                0.825,
+                0.737
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.757,
+                0.824,
+                0.77
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.771,
+                0.409,
+                0.784
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.502,
+                0.771,
+                0.554,
+                0.785
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.572,
+                0.771,
+                0.824,
+                0.785
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.785,
+                0.212,
+                0.798
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.258,
+                0.785,
+                0.312,
+                0.797
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.332,
+                0.785,
+                0.371,
+                0.797
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.418,
+                0.785,
+                0.797,
+                0.797
+            ],
+            "text": "",
+            "score": 1.0
+        }
+    ],
+    [
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.104,
+                0.828,
+                0.135
+            ],
+            "angle": 0,
+            "content": "Theorem 1. The global minimum of the virtual training criterion \\( C(G) \\) is achieved if and only if \\( p_g = p_{data} \\). At that point, \\( C(G) \\) achieves the value \\( -\\log 4 \\).",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.15,
+                0.826,
+                0.197
+            ],
+            "angle": 0,
+            "content": "Proof. For  \\( p_{g} = p_{data} \\) ,  \\( D_{G}^{*}(\\boldsymbol{x}) = \\frac{1}{2} \\) , (consider Eq. 2). Hence, by inspecting Eq. 4 at  \\( D_{G}^{*}(\\boldsymbol{x}) = \\frac{1}{2} \\) , we find  \\( C(G) = \\log \\frac{1}{2} + \\log \\frac{1}{2} = -\\log 4 \\) . To see that this is the best possible value of  \\( C(G) \\) , reached only for  \\( p_{g} = p_{data} \\) , observe that",
+            "merge_prev": false
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.344,
+                0.204,
+                0.654,
+                0.22
+            ],
+            "angle": 0,
+            "content": "\\[\n\\mathbb {E} _ {\\boldsymbol {x} \\sim p _ {\\mathrm{data}}} [ - \\log 2 ] + \\mathbb {E} _ {\\boldsymbol {x} \\sim p _ {g}} [ - \\log 2 ] = - \\log 4\n\\]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.172,
+                0.227,
+                0.675,
+                0.243
+            ],
+            "angle": 0,
+            "content": "and that by subtracting this expression from  \\( C(G) = V(D_{G}^{*}, G) \\) , we obtain:",
+            "merge_prev": false
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.261,
+                0.259,
+                0.735,
+                0.293
+            ],
+            "angle": 0,
+            "content": "C (G) = - \\log (4) + K L \\left(p _ {\\text { data }} \\left\\| \\frac {p _ {\\text { data }} + p _ {g}}{2}\\right) + K L \\left(p _ {g} \\left\\| \\frac {p _ {\\text { data }} + p _ {g}}{2}\\right) \\right. \\right.\\tag{5}"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.172,
+                0.303,
+                0.826,
+                0.333
+            ],
+            "angle": 0,
+            "content": "where KL is the Kullback–Leibler divergence. We recognize in the previous expression the Jensen–Shannon divergence between the model's distribution and the data generating process:",
+            "merge_prev": false
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.364,
+                0.352,
+                0.634,
+                0.369
+            ],
+            "angle": 0,
+            "content": "C (G) = - \\log (4) + 2 \\cdot J S D \\left(p _ {\\text { data }} \\| p _ {g}\\right)\\tag{6}"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.38,
+                0.826,
+                0.436
+            ],
+            "angle": 0,
+            "content": "Since the Jensen–Shannon divergence between two distributions is always non-negative and zero only when they are equal, we have shown that  \\( C^{*} = -\\log(4) \\)  is the global minimum of  \\( C(G) \\)  and that the only solution is  \\( p_{g} = p_{data} \\) , i.e., the generative model perfectly replicating the data generating process.",
+            "merge_prev": false
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.172,
+                0.452,
+                0.411,
+                0.468
+            ],
+            "angle": 0,
+            "content": "4.2 Convergence of Algorithm 1"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.479,
+                0.826,
+                0.508
+            ],
+            "angle": 0,
+            "content": "Proposition 2. If G and D have enough capacity, and at each step of Algorithm 1, the discriminator is allowed to reach its optimum given G, and  \\( p_{g} \\)  is updated so as to improve the criterion",
+            "merge_prev": false
+        },
+        {
+            "type": "equation",
+            "bbox": [
+                0.338,
+                0.515,
+                0.659,
+                0.532
+            ],
+            "angle": 0,
+            "content": "\\[\n\\mathbb {E} _ {\\boldsymbol {x} \\sim p _ {d a t a}} [ \\log D _ {G} ^ {*} (\\boldsymbol {x}) ] + \\mathbb {E} _ {\\boldsymbol {x} \\sim p _ {g}} [ \\log (1 - D _ {G} ^ {*} (\\boldsymbol {x})) ]\n\\]"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.172,
+                0.54,
+                0.345,
+                0.555
+            ],
+            "angle": 0,
+            "content": "then  \\( p_{g} \\)  converges to  \\( p_{data} \\)",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.569,
+                0.825,
+                0.669
+            ],
+            "angle": 0,
+            "content": "Proof. Consider \\( V(G, D) = U(p_g, D) \\) as a function of \\( p_g \\) as done in the above criterion. Note that \\( U(p_g, D) \\) is convex in \\( p_g \\). The subderivatives of a supremum of convex functions include the derivative of the function at the point where the maximum is attained. In other words, if \\( f(x) = \\sup_{\\alpha \\in \\mathcal{A}} f_\\alpha(x) \\) and \\( f_\\alpha(x) \\) is convex in \\( x \\) for every \\( \\alpha \\), then \\( \\partial f_\\beta(x) \\in \\partial f \\) if \\( \\beta = \\arg \\sup_{\\alpha \\in \\mathcal{A}} f_\\alpha(x) \\). This is equivalent to computing a gradient descent update for \\( p_g \\) at the optimal \\( D \\) given the corresponding \\( G \\). \\( \\sup_D U(p_g, D) \\) is convex in \\( p_g \\) with a unique global optima as proven in Thm 1, therefore with sufficiently small updates of \\( p_g, p_g \\) converges to \\( p_x \\), concluding the proof.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.683,
+                0.826,
+                0.755
+            ],
+            "angle": 0,
+            "content": "In practice, adversarial nets represent a limited family of  \\( p_{g} \\)  distributions via the function  \\( G(z;\\theta_{g}) \\) , and we optimize  \\( \\theta_{g} \\)  rather than  \\( p_{g} \\)  itself. Using a multilayer perceptron to define G introduces multiple critical points in parameter space. However, the excellent performance of multilayer perceptrons in practice suggests that they are a reasonable model to use despite their lack of theoretical guarantees.",
+            "merge_prev": false
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.172,
+                0.774,
+                0.315,
+                0.791
+            ],
+            "angle": 0,
+            "content": "5 Experiments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.805,
+                0.826,
+                0.891
+            ],
+            "angle": 0,
+            "content": "We trained adversarial nets an a range of datasets including MNIST[23], the Toronto Face Database (TFD) [28], and CIFAR-10 [21]. The generator nets used a mixture of rectifier linear activations [19, 9] and sigmoid activations, while the discriminator net used maxout [10] activations. Dropout [17] was applied in training the discriminator net. While our theoretical framework permits the use of dropout and other noise at intermediate layers of the generator, we used noise as the input to only the bottommost layer of the generator network.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.896,
+                0.826,
+                0.926
+            ],
+            "angle": 0,
+            "content": "We estimate probability of the test set data under  \\( p_{g} \\)  by fitting a Gaussian Parzen window to the samples generated with G and reporting the log-likelihood under this distribution. The  \\( \\sigma \\)  parameter",
+            "merge_prev": false
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.494,
+                0.949,
+                0.506,
+                0.961
+            ],
+            "angle": 0,
+            "content": "5"
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.174,
+                0.121,
+                0.245,
+                0.135
+            ],
+            "latex": "",
+            "score": 0.904
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.615,
+                0.105,
+                0.655,
+                0.119
+            ],
+            "latex": "",
+            "score": 0.6196
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.249,
+                0.151,
+                0.404,
+                0.166
+            ],
+            "latex": "",
+            "score": 0.9448
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.205,
+                0.167,
+                0.427,
+                0.183
+            ],
+            "latex": "",
+            "score": 0.9162
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.23,
+                0.184,
+                0.299,
+                0.196
+            ],
+            "latex": "",
+            "score": 0.9279
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.716,
+                0.15,
+                0.796,
+                0.166
+            ],
+            "latex": "",
+            "score": 0.9393
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.725,
+                0.168,
+                0.764,
+                0.182
+            ],
+            "latex": "",
+            "score": 0.7424
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.465,
+                0.227,
+                0.595,
+                0.242
+            ],
+            "latex": "",
+            "score": 0.9264
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.327,
+                0.409,
+                0.42,
+                0.423
+            ],
+            "latex": "",
+            "score": 0.9193
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.481,
+                0.394,
+                0.581,
+                0.407
+            ],
+            "latex": "",
+            "score": 0.9243
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.756,
+                0.393,
+                0.795,
+                0.408
+            ],
+            "latex": "",
+            "score": 0.7895
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.422,
+                0.494,
+                0.44,
+                0.506
+            ],
+            "latex": "",
+            "score": 0.4918
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.471,
+                0.495,
+                0.488,
+                0.508
+            ],
+            "latex": "",
+            "score": 0.7952
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.206,
+                0.542,
+                0.224,
+                0.554
+            ],
+            "latex": "",
+            "score": 0.8776
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.288,
+                0.57,
+                0.438,
+                0.584
+            ],
+            "latex": "",
+            "score": 0.9461
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.204,
+                0.583,
+                0.266,
+                0.598
+            ],
+            "latex": "",
+            "score": 0.9288
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.355,
+                0.586,
+                0.374,
+                0.598
+            ],
+            "latex": "",
+            "score": 0.8658
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.554,
+                0.572,
+                0.572,
+                0.585
+            ],
+            "latex": "",
+            "score": 0.888
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.174,
+                0.611,
+                0.27,
+                0.627
+            ],
+            "latex": "",
+            "score": 0.9479
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.303,
+                0.611,
+                0.341,
+                0.625
+            ],
+            "latex": "",
+            "score": 0.9144
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.279,
+                0.639,
+                0.38,
+                0.654
+            ],
+            "latex": "",
+            "score": 0.902
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.556,
+                0.61,
+                0.818,
+                0.626
+            ],
+            "latex": "",
+            "score": 0.9195
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.47,
+                0.642,
+                0.488,
+                0.654
+            ],
+            "latex": "",
+            "score": 0.8752
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.59,
+                0.628,
+                0.608,
+                0.64
+            ],
+            "latex": "",
+            "score": 0.8676
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.772,
+                0.598,
+                0.823,
+                0.611
+            ],
+            "latex": "",
+            "score": 0.8755
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.458,
+                0.655,
+                0.499,
+                0.668
+            ],
+            "latex": "",
+            "score": 0.9094
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.587,
+                0.656,
+                0.606,
+                0.667
+            ],
+            "latex": "",
+            "score": 0.873
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.292,
+                0.699,
+                0.31,
+                0.713
+            ],
+            "latex": "",
+            "score": 0.8878
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.391,
+                0.7,
+                0.411,
+                0.713
+            ],
+            "latex": "",
+            "score": 0.8828
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.548,
+                0.687,
+                0.565,
+                0.699
+            ],
+            "latex": "",
+            "score": 0.8849
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.761,
+                0.684,
+                0.819,
+                0.698
+            ],
+            "latex": "",
+            "score": 0.923
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.509,
+                0.9,
+                0.528,
+                0.912
+            ],
+            "latex": "",
+            "score": 0.878
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.105,
+                0.612,
+                0.119
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.657,
+                0.105,
+                0.826,
+                0.119
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.249,
+                0.12,
+                0.557,
+                0.133
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.173,
+                0.152,
+                0.248,
+                0.165
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.404,
+                0.152,
+                0.715,
+                0.165
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.796,
+                0.154,
+                0.825,
+                0.166
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.172,
+                0.166,
+                0.204,
+                0.182
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.428,
+                0.168,
+                0.724,
+                0.181
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.764,
+                0.168,
+                0.825,
+                0.181
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.173,
+                0.183,
+                0.229,
+                0.196
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.299,
+                0.183,
+                0.386,
+                0.195
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.229,
+                0.461,
+                0.24
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.596,
+                0.229,
+                0.672,
+                0.24
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.304,
+                0.824,
+                0.317
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.319,
+                0.737,
+                0.331
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.381,
+                0.824,
+                0.393
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.396,
+                0.479,
+                0.406
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.584,
+                0.395,
+                0.755,
+                0.406
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.795,
+                0.395,
+                0.825,
+                0.407
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.41,
+                0.326,
+                0.42
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.421,
+                0.409,
+                0.824,
+                0.421
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.424,
+                0.229,
+                0.435
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.808,
+                0.422,
+                0.825,
+                0.434
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.454,
+                0.409,
+                0.467
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.48,
+                0.824,
+                0.491
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.495,
+                0.422,
+                0.506
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.441,
+                0.495,
+                0.47,
+                0.506
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.489,
+                0.495,
+                0.756,
+                0.506
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.541,
+                0.343,
+                0.554
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.571,
+                0.285,
+                0.583
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.443,
+                0.57,
+                0.554,
+                0.583
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.572,
+                0.57,
+                0.824,
+                0.583
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.584,
+                0.204,
+                0.597
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.266,
+                0.583,
+                0.354,
+                0.597
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.374,
+                0.583,
+                0.823,
+                0.597
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.6,
+                0.767,
+                0.61
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.272,
+                0.612,
+                0.302,
+                0.625
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.342,
+                0.613,
+                0.555,
+                0.624
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.627,
+                0.589,
+                0.639
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.608,
+                0.627,
+                0.824,
+                0.639
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.641,
+                0.271,
+                0.652
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.384,
+                0.641,
+                0.469,
+                0.652
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.489,
+                0.641,
+                0.823,
+                0.652
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.654,
+                0.457,
+                0.666
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.501,
+                0.655,
+                0.586,
+                0.666
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.607,
+                0.655,
+                0.752,
+                0.666
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.809,
+                0.654,
+                0.824,
+                0.665
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.685,
+                0.547,
+                0.697
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.566,
+                0.685,
+                0.758,
+                0.697
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.699,
+                0.291,
+                0.711
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.311,
+                0.699,
+                0.391,
+                0.711
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.411,
+                0.699,
+                0.824,
+                0.711
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.713,
+                0.824,
+                0.725
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.727,
+                0.824,
+                0.739
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.742,
+                0.249,
+                0.753
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.775,
+                0.312,
+                0.79
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.807,
+                0.824,
+                0.819
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.821,
+                0.824,
+                0.833
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.835,
+                0.822,
+                0.847
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.849,
+                0.825,
+                0.861
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.862,
+                0.822,
+                0.875
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.878,
+                0.482,
+                0.888
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.897,
+                0.509,
+                0.91
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.528,
+                0.897,
+                0.824,
+                0.91
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.911,
+                0.824,
+                0.923
+            ],
+            "text": "",
+            "score": 1.0
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "bbox": [
+                0.345,
+                0.1,
+                0.65,
+                0.174
+            ],
+            "angle": 0,
+            "content": "<table><tr><td>Model</td><td>MNIST</td><td>TFD</td></tr><tr><td>DBN [3]</td><td>138 ± 2</td><td>1909 ± 66</td></tr><tr><td>Stacked CAE [3]</td><td>121 ± 1.6</td><td>2110 ± 50</td></tr><tr><td>Deep GSN [6]</td><td>214 ± 1.1</td><td>1890 ± 29</td></tr><tr><td>Adversarial nets</td><td>225 ± 2</td><td>2057 ± 26</td></tr></table>"
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.17,
+                0.184,
+                0.827,
+                0.251
+            ],
+            "angle": 0,
+            "content": "Table 1: Parzen window-based log-likelihood estimates. The reported numbers on MNIST are the mean log-likelihood of samples on test set, with the standard error of the mean computed across examples. On TFD, we computed the standard error across folds of the dataset, with a different  \\( \\sigma \\)  chosen using the validation set of each fold. On TFD,  \\( \\sigma \\)  was cross validated on each fold and mean log-likelihood on each fold were computed. For MNIST we compare against other models of the real-valued (rather than binary) version of dataset."
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.282,
+                0.828,
+                0.368
+            ],
+            "angle": 0,
+            "content": "of the Gaussians was obtained by cross validation on the validation set. This procedure was introduced in Breuleux et al. [8] and used for various generative models for which the exact likelihood is not tractable [25, 3, 5]. Results are reported in Table 1. This method of estimating the likelihood has somewhat high variance and does not perform well in high dimensional spaces but it is the best method available to our knowledge. Advances in generative models that can sample but not estimate likelihood directly motivate further research into how to evaluate such models.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.372,
+                0.827,
+                0.431
+            ],
+            "angle": 0,
+            "content": "In Figures 2 and 3 we show samples drawn from the generator net after training. While we make no claim that these samples are better than samples generated by existing methods, we believe that these samples are at least competitive with the better generative models in the literature and highlight the potential of the adversarial framework.",
+            "merge_prev": false
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.186,
+                0.451,
+                0.491,
+                0.609
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.33,
+                0.614,
+                0.347,
+                0.628
+            ],
+            "angle": 0,
+            "content": "a)"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.511,
+                0.451,
+                0.817,
+                0.61
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.185,
+                0.628,
+                0.492,
+                0.788
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.33,
+                0.792,
+                0.347,
+                0.805
+            ],
+            "angle": 0,
+            "content": "c)"
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.656,
+                0.614,
+                0.672,
+                0.627
+            ],
+            "angle": 0,
+            "content": "b)"
+        },
+        {
+            "type": "image",
+            "bbox": [
+                0.511,
+                0.628,
+                0.817,
+                0.787
+            ],
+            "angle": 0,
+            "content": null
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.655,
+                0.791,
+                0.672,
+                0.805
+            ],
+            "angle": 0,
+            "content": "d)"
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.171,
+                0.818,
+                0.827,
+                0.909
+            ],
+            "angle": 0,
+            "content": "Figure 2: Visualization of samples from the model. Rightmost column shows the nearest training example of the neighboring sample, in order to demonstrate that the model has not memorized the training set. Samples are fair random draws, not cherry-picked. Unlike most other visualizations of deep generative models, these images show actual samples from the model distributions, not conditional means given samples of hidden units. Moreover, these samples are uncorrelated because the sampling process does not depend on Markov chain mixing. a) MNIST b) TFD c) CIFAR-10 (fully connected model) d) CIFAR-10 (convolutional discriminator and “deconvolutional” generator)"
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.494,
+                0.948,
+                0.506,
+                0.961
+            ],
+            "angle": 0,
+            "content": "6"
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.284,
+                0.824,
+                0.295
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.298,
+                0.824,
+                0.308
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.312,
+                0.824,
+                0.322
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.325,
+                0.824,
+                0.337
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.339,
+                0.824,
+                0.351
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.354,
+                0.686,
+                0.364
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.374,
+                0.825,
+                0.387
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.388,
+                0.825,
+                0.401
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.403,
+                0.822,
+                0.414
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.416,
+                0.429,
+                0.429
+            ],
+            "text": "",
+            "score": 1.0
+        }
+    ],
+    [
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.218,
+                0.104,
+                0.781,
+                0.128
+            ],
+            "angle": 0,
+            "content": "1 1 1 1 5 5 5 5 5 5 7 7 9 9 9 9 1 1 1 1"
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.199,
+                0.143,
+                0.798,
+                0.159
+            ],
+            "angle": 0,
+            "content": "Figure 3: Digits obtained by linearly interpolating between coordinates in z space of the full model."
+        },
+        {
+            "type": "table",
+            "bbox": [
+                0.174,
+                0.169,
+                0.842,
+                0.452
+            ],
+            "angle": 0,
+            "content": "<table><tr><td></td><td>Deep directed graphical models</td><td>Deep undirected graphical models</td><td>Generative autoencoders</td><td>Adversarial models</td></tr><tr><td>Training</td><td>Inference needed during training.</td><td>Inference needed during training. MCMC needed to approximate partition function gradient.</td><td>Enforced tradeoff between mixing and power of reconstruction generation</td><td>Synchronizing the discriminator with the generator. Helvetica.</td></tr><tr><td>Inference</td><td>Learned approximate inference</td><td>Variational inference</td><td>MCMC-based inference</td><td>Learned approximate inference</td></tr><tr><td>Sampling</td><td>No difficulties</td><td>Requires Markov chain</td><td>Requires Markov chain</td><td>No difficulties</td></tr><tr><td>Evaluating p(x)</td><td>Intractable, may be approximated with AIS</td><td>Intractable, may be approximated with AIS</td><td>Not explicitly represented, may be approximated with Parzen density estimation</td><td>Not explicitly represented, may be approximated with Parzen density estimation</td></tr><tr><td>Model design</td><td>Nearly all models incur extreme difficulty</td><td>Careful design needed to ensure multiple properties</td><td>Any differentiable function is theoretically permitted</td><td>Any differentiable function is theoretically permitted</td></tr></table>"
+        },
+        {
+            "type": "image_caption",
+            "bbox": [
+                0.171,
+                0.463,
+                0.826,
+                0.491
+            ],
+            "angle": 0,
+            "content": "Table 2: Challenges in generative modeling: a summary of the difficulties encountered by different approaches to deep generative modeling for each of the major operations involving a model."
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.172,
+                0.515,
+                0.465,
+                0.532
+            ],
+            "angle": 0,
+            "content": "6 Advantages and disadvantages"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.546,
+                0.828,
+                0.674
+            ],
+            "angle": 0,
+            "content": "This new framework comes with advantages and disadvantages relative to previous modeling frameworks. The disadvantages are primarily that there is no explicit representation of  \\( p_{g}(\\boldsymbol{x}) \\) , and that D must be synchronized well with G during training (in particular, G must not be trained too much without updating D, in order to avoid “the Helvetica scenario” in which G collapses too many values of z to the same value of x to have enough diversity to model  \\( p_{data} \\) ), much as the negative chains of a Boltzmann machine must be kept up to date between learning steps. The advantages are that Markov chains are never needed, only backprop is used to obtain gradients, no inference is needed during learning, and a wide variety of functions can be incorporated into the model. Table 2 summarizes the comparison of generative adversarial nets with other generative modeling approaches.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.678,
+                0.828,
+                0.777
+            ],
+            "angle": 0,
+            "content": "The aforementioned advantages are primarily computational. Adversarial models may also gain some statistical advantage from the generator network not being updated directly with data examples, but only with gradients flowing through the discriminator. This means that components of the input are not copied directly into the generator's parameters. Another advantage of adversarial networks is that they can represent very sharp, even degenerate distributions, while methods based on Markov chains require that the distribution be somewhat blurry in order for the chains to be able to mix between modes.",
+            "merge_prev": false
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.172,
+                0.796,
+                0.451,
+                0.813
+            ],
+            "angle": 0,
+            "content": "7 Conclusions and future work"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.172,
+                0.828,
+                0.551,
+                0.844
+            ],
+            "angle": 0,
+            "content": "This framework admits many straightforward extensions:",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.17,
+                0.855,
+                0.827,
+                0.926
+            ],
+            "angle": 0,
+            "content": "1. A conditional generative model  \\( p(\\boldsymbol{x} \\mid \\boldsymbol{c}) \\)  can be obtained by adding c as input to both G and D.\n2. Learned approximate inference can be performed by training an auxiliary network to predict z given x. This is similar to the inference net trained by the wake-sleep algorithm [15] but with the advantage that the inference net may be trained for a fixed generator net after the generator net has finished training.",
+            "merge_prev": false
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.494,
+                0.948,
+                0.505,
+                0.961
+            ],
+            "angle": 0,
+            "content": "7"
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.572,
+                0.603,
+                0.606,
+                0.616
+            ],
+            "latex": "",
+            "score": 0.589
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.704,
+                0.561,
+                0.744,
+                0.575
+            ],
+            "latex": "",
+            "score": 0.7843
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.404,
+                0.855,
+                0.459,
+                0.87
+            ],
+            "latex": "",
+            "score": 0.6944
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.221,
+                0.104,
+                0.779,
+                0.126
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.515,
+                0.462,
+                0.531
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.547,
+                0.824,
+                0.559
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.561,
+                0.704,
+                0.573
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.745,
+                0.562,
+                0.824,
+                0.574
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.575,
+                0.824,
+                0.588
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.59,
+                0.824,
+                0.601
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.603,
+                0.572,
+                0.615
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.606,
+                0.603,
+                0.824,
+                0.615
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.616,
+                0.823,
+                0.628
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.631,
+                0.824,
+                0.643
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.645,
+                0.824,
+                0.657
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.659,
+                0.759,
+                0.671
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.679,
+                0.824,
+                0.692
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.694,
+                0.823,
+                0.705
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.708,
+                0.823,
+                0.72
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.722,
+                0.823,
+                0.733
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.735,
+                0.824,
+                0.748
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.749,
+                0.824,
+                0.76
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.763,
+                0.311,
+                0.774
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.796,
+                0.448,
+                0.813
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.83,
+                0.549,
+                0.842
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.856,
+                0.403,
+                0.869
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.462,
+                0.856,
+                0.818,
+                0.869
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.172,
+                0.87,
+                0.823,
+                0.883
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.194,
+                0.885,
+                0.823,
+                0.896
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.194,
+                0.898,
+                0.824,
+                0.91
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.193,
+                0.912,
+                0.354,
+                0.925
+            ],
+            "text": "",
+            "score": 1.0
+        }
+    ],
+    [
+        {
+            "type": "text",
+            "bbox": [
+                0.169,
+                0.105,
+                0.826,
+                0.147
+            ],
+            "angle": 0,
+            "content": "3. One can approximately model all conditionals \\( p(\\pmb{x}_S \\mid \\pmb{x}_S) \\) where \\( S \\) is a subset of the indices of \\( \\pmb{x} \\) by training a family of conditional models that share parameters. Essentially, one can use adversarial nets to implement a stochastic extension of the deterministic MP-DBM [11].",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.17,
+                0.147,
+                0.825,
+                0.174
+            ],
+            "angle": 0,
+            "content": "4. Semi-supervised learning: features from the discriminator or inference net could improve performance of classifiers when limited labeled data is available.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.169,
+                0.174,
+                0.826,
+                0.204
+            ],
+            "angle": 0,
+            "content": "5. Efficiency improvements: training could be accelerated greatly by dividing better methods for coordinating G and D or determining better distributions to sample z from during training.",
+            "merge_prev": false
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.171,
+                0.214,
+                0.826,
+                0.243
+            ],
+            "angle": 0,
+            "content": "This paper has demonstrated the viability of the adversarial modeling framework, suggesting that these research directions could prove useful.",
+            "merge_prev": false
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.172,
+                0.259,
+                0.307,
+                0.274
+            ],
+            "angle": 0,
+            "content": "Acknowledgments"
+        },
+        {
+            "type": "text",
+            "bbox": [
+                0.17,
+                0.282,
+                0.827,
+                0.396
+            ],
+            "angle": 0,
+            "content": "We would like to acknowledge Patrice Marcotte, Olivier Delalleau, Kyunghyun Cho, Guillaume Alain and Jason Yosinski for helpful discussions. Yann Dauphin shared his Parzen window evaluation code with us. We would like to thank the developers of Pylearn2 [12] and Theano [7, 1], particularly Frédéric Bastien who rushed a Theano feature specifically to benefit this project. Arnaud Bergeron provided much-needed support with LATEX typesetting. We would also like to thank CIFAR, and Canada Research Chairs for funding, and Compute Canada, and Calcul Québec for providing computational resources. Ian Goodfellow is supported by the 2013 Google Fellowship in Deep Learning. Finally, we would like to thank Les Trois Brasseurs for stimulating our creativity.",
+            "merge_prev": false
+        },
+        {
+            "type": "paragraph_title",
+            "bbox": [
+                0.172,
+                0.412,
+                0.271,
+                0.429
+            ],
+            "angle": 0,
+            "content": "References"
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.436,
+                0.826,
+                0.474
+            ],
+            "angle": 0,
+            "content": "[1] Bastien, F., Lamblin, P., Pascanu, R., Bergstra, J., Goodfellow, I. J., Bergeron, A., Bouchard, N., and Bengio, Y. (2012). Theano: new features and speed improvements. Deep Learning and Unsupervised Feature Learning NIPS 2012 Workshop."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.479,
+                0.627,
+                0.493
+            ],
+            "angle": 0,
+            "content": "[2] Bengio, Y. (2009). Learning deep architectures for AI. Now Publishers."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.496,
+                0.825,
+                0.522
+            ],
+            "angle": 0,
+            "content": "[3] Bengio, Y., Mesnil, G., Dauphin, Y., and Rifai, S. (2013a). Better mixing via deep representations. In ICML'13."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.527,
+                0.825,
+                0.553
+            ],
+            "angle": 0,
+            "content": "[4] Bengio, Y., Yao, L., Alain, G., and Vincent, P. (2013b). Generalized denoising auto-encoders as generative models. In NIPS26. Nips Foundation."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.557,
+                0.825,
+                0.584
+            ],
+            "angle": 0,
+            "content": "[5] Bengio, Y., Thibodeau-Laufer, E., and Yosinski, J. (2014a). Deep generative stochastic networks trainable by backprop. In ICML'14."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.588,
+                0.825,
+                0.626
+            ],
+            "angle": 0,
+            "content": "[6] Bengio, Y., Thibodeau-Laufer, E., Alain, G., and Yosinski, J. (2014b). Deep generative stochastic networks trainable by backprop. In Proceedings of the 30th International Conference on Machine Learning (ICML'14)."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.63,
+                0.825,
+                0.67
+            ],
+            "angle": 0,
+            "content": "[7] Bergstra, J., Breuleux, O., Bastien, F., Lamblin, P., Pascanu, R., Desjardins, G., Turian, J., Warde-Farley, D., and Bengio, Y. (2010). Theano: a CPU and GPU math expression compiler. In Proceedings of the Python for Scientific Computing Conference (SciPy). Oral Presentation."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.674,
+                0.825,
+                0.7
+            ],
+            "angle": 0,
+            "content": "[8] Breuleux, O., Bengio, Y., and Vincent, P. (2011). Quickly generating representative samples from an RBM-derived process. Neural Computation, 23(8), 2053–2073."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.703,
+                0.812,
+                0.717
+            ],
+            "angle": 0,
+            "content": "[9] Glorot, X., Bordes, A., and Bengio, Y. (2011). Deep sparse rectifier neural networks. In AISTATS'2011."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.722,
+                0.824,
+                0.748
+            ],
+            "angle": 0,
+            "content": "[10] Goodfellow, I. J., Warde-Farley, D., Mirza, M., Courville, A., and Bengio, Y. (2013a). Maxout networks. In ICML'2013."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.752,
+                0.825,
+                0.778
+            ],
+            "angle": 0,
+            "content": "[11] Goodfellow, I. J., Mirza, M., Courville, A., and Bengio, Y. (2013b). Multi-prediction deep Boltzmann machines. In NIPS'2013."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.782,
+                0.825,
+                0.82
+            ],
+            "angle": 0,
+            "content": "[12] Goodfellow, I. J., Warde-Farley, D., Lamblin, P., Dumoulin, V., Mirza, M., Pascanu, R., Bergstra, J., Bastien, F., and Bengio, Y. (2013c). Pylearn2: a machine learning research library. arXiv preprint arXiv:1308.4214."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.826,
+                0.825,
+                0.851
+            ],
+            "angle": 0,
+            "content": "[13] Gutmann, M. and Hyvarinen, A. (2010). Noise-contrastive estimation: A new estimation principle for unnormalized statistical models. In AISTATS'2010."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.855,
+                0.825,
+                0.895
+            ],
+            "angle": 0,
+            "content": "[14] Hinton, G., Deng, L., Dahl, G. E., Mohamed, A., Jaitly, N., Senior, A., Vanhoucke, V., Nguyen, P., Sainath, T., and Kingsbury, B. (2012a). Deep neural networks for acoustic modeling in speech recognition. IEEE Signal Processing Magazine, 29(6), 82–97."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.899,
+                0.825,
+                0.923
+            ],
+            "angle": 0,
+            "content": "[15] Hinton, G. E., Dayan, P., Frey, B. J., and Neal, R. M. (1995). The wake-sleep algorithm for unsupervised neural networks. Science, 268, 1558–1161."
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.494,
+                0.949,
+                0.506,
+                0.96
+            ],
+            "angle": 0,
+            "content": "8"
+        },
+        {
+            "type": "inline_formula",
+            "bbox": [
+                0.505,
+                0.105,
+                0.588,
+                0.119
+            ],
+            "latex": "",
+            "score": 0.8855
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.172,
+                0.106,
+                0.504,
+                0.119
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.594,
+                0.106,
+                0.824,
+                0.118
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.193,
+                0.12,
+                0.824,
+                0.133
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.195,
+                0.135,
+                0.766,
+                0.145
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.172,
+                0.147,
+                0.824,
+                0.16
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.194,
+                0.161,
+                0.575,
+                0.173
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.173,
+                0.175,
+                0.824,
+                0.187
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.194,
+                0.188,
+                0.785,
+                0.203
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.215,
+                0.824,
+                0.229
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.23,
+                0.464,
+                0.241
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.259,
+                0.305,
+                0.273
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.284,
+                0.824,
+                0.295
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.176,
+                0.298,
+                0.823,
+                0.309
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.312,
+                0.823,
+                0.325
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.325,
+                0.824,
+                0.338
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.34,
+                0.825,
+                0.352
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.353,
+                0.824,
+                0.365
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.174,
+                0.367,
+                0.824,
+                0.38
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.381,
+                0.811,
+                0.393
+            ],
+            "text": "",
+            "score": 1.0
+        },
+        {
+            "type": "ocr_text",
+            "bbox": [
+                0.175,
+                0.414,
+                0.268,
+                0.429
+            ],
+            "text": "",
+            "score": 1.0
+        }
+    ],
+    [
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.105,
+                0.826,
+                0.133
+            ],
+            "angle": 0,
+            "content": "[16] Hinton, G. E., Osindero, S., and Teh, Y. (2006). A fast learning algorithm for deep belief nets. Neural Computation, 18, 1527–1554."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.135,
+                0.825,
+                0.162
+            ],
+            "angle": 0,
+            "content": "[17] Hinton, G. E., Srivastava, N., Krizhevsky, A., Sutskever, I., and Salakhutdinov, R. (2012b). Improving neural networks by preventing co-adaptation of feature detectors. Technical report, arXiv:1207.0580."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.166,
+                0.825,
+                0.193
+            ],
+            "angle": 0,
+            "content": "[18] Hyvärinen, A. (2005). Estimation of non-normalized statistical models using score matching. J. Machine Learning Res., 6."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.196,
+                0.826,
+                0.234
+            ],
+            "angle": 0,
+            "content": "[19] Jarrett, K., Kavukcuoglu, K., Ranzato, M., and LeCun, Y. (2009). What is the best multi-stage architecture for object recognition? In Proc. International Conference on Computer Vision (ICCV'09), pages 2146–2153. IEEE."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.238,
+                0.825,
+                0.266
+            ],
+            "angle": 0,
+            "content": "[20] Kingma, D. P. and Welling, M. (2014). Auto-encoding variational bayes. In Proceedings of the International Conference on Learning Representations (ICLR)."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.269,
+                0.825,
+                0.296
+            ],
+            "angle": 0,
+            "content": "[21] Krizhevsky, A. and Hinton, G. (2009). Learning multiple layers of features from tiny images. Technical report, University of Toronto."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.299,
+                0.826,
+                0.326
+            ],
+            "angle": 0,
+            "content": "[22] Krizhevsky, A., Sutskever, I., and Hinton, G. (2012). ImageNet classification with deep convolutional neural networks. In NIPS'2012."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.33,
+                0.826,
+                0.356
+            ],
+            "angle": 0,
+            "content": "[23] LeCun, Y., Bottou, L., Bengio, Y., and Haffner, P. (1998). Gradient-based learning applied to document recognition. Proceedings of the IEEE, 86(11), 2278–2324."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.36,
+                0.825,
+                0.387
+            ],
+            "angle": 0,
+            "content": "[24] Rezende, D. J., Mohamed, S., and Wierstra, D. (2014). Stochastic backpropagation and approximate inference in deep generative models. Technical report, arXiv:1401.4082."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.39,
+                0.825,
+                0.417
+            ],
+            "angle": 0,
+            "content": "[25] Rifai, S., Bengio, Y., Dauphin, Y., and Vincent, P. (2012). A generative process for sampling contractive auto-encoders. In ICML'12."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.42,
+                0.825,
+                0.446
+            ],
+            "angle": 0,
+            "content": "[26] Salakhutdinov, R. and Hinton, G. E. (2009). Deep Boltzmann machines. In AISTATS'2009, pages 448-455."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.45,
+                0.825,
+                0.49
+            ],
+            "angle": 0,
+            "content": "[27] Smolensky, P. (1986). Information processing in dynamical systems: Foundations of harmony theory. In D. E. Rumelhart and J. L. McClelland, editors, Parallel Distributed Processing, volume 1, chapter 6, pages 194–281. MIT Press, Cambridge."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.492,
+                0.825,
+                0.52
+            ],
+            "angle": 0,
+            "content": "[28] Susskind, J., Anderson, A., and Hinton, G. E. (2010). The Toronto face dataset. Technical Report UTML TR 2010-001, U. Toronto."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.523,
+                0.825,
+                0.55
+            ],
+            "angle": 0,
+            "content": "[29] Tieleman, T. (2008). Training restricted Boltzmann machines using approximations to the likelihood gradient. In W. W. Cohen, A. McCallum, and S. T. Roweis, editors, ICML 2008, pages 1064-1071. ACM."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.175,
+                0.553,
+                0.825,
+                0.58
+            ],
+            "angle": 0,
+            "content": "[30] Vincent, P., Larochelle, H., Bengio, Y., and Manzagol, P.-A. (2008). Extracting and composing robust features with denoising autoencoders. In ICML 2008."
+        },
+        {
+            "type": "ref_text",
+            "bbox": [
+                0.174,
+                0.583,
+                0.825,
+                0.61
+            ],
+            "angle": 0,
+            "content": "[31] Younes, L. (1999). On the convergence of Markovian stochastic algorithms with rapidly decreasing ergodicity rates. Stochastics and Stochastic Reports, 65(3), 177–228."
+        },
+        {
+            "type": "page_number",
+            "bbox": [
+                0.494,
+                0.949,
+                0.506,
+                0.96
+            ],
+            "angle": 0,
+            "content": "9"
+        }
+    ]
+]

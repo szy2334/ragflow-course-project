@@ -1,0 +1,127 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9860166907,
+        "min": 0.683868289,
+        "variance": 0.002527653938
+      },
+      "words": "Context → anli 1： anli 1： Fulton James MacGregor MSP is a Scottish politician"
+    },
+    {
+      "probability": {
+        "average": 0.9907152653,
+        "min": 0.5989305973,
+        "variance": 0.002769648563
+      },
+      "words": "who is a Scottish National Party (SNP) Member of Scottish Parliament"
+    },
+    {
+      "probability": {
+        "average": 0.9993489385,
+        "min": 0.9927813411,
+        "variance": 9.864281765e-07
+      },
+      "words": "for the constituency of Coatbridge and Chryston. MacGregor is currently"
+    },
+    {
+      "probability": {
+        "average": 0.9991382957,
+        "min": 0.979354918,
+        "variance": 7.384186574e-06
+      },
+      "words": "Parliamentary Liaison Officer to Shona Robison, Cabinet Secretary for"
+    },
+    {
+      "probability": {
+        "average": 0.9946191311,
+        "min": 0.8442333937,
+        "variance": 0.0004516666813
+      },
+      "words": "Health & Sport. He also serves on the Justice and Education & Skills"
+    },
+    {
+      "probability": {
+        "average": 0.999304831,
+        "min": 0.9905840158,
+        "variance": 3.260641051e-06
+      },
+      "words": "committees in the Scottish Parliament."
+    },
+    {
+      "probability": {
+        "average": 0.9984055758,
+        "min": 0.9443575144,
+        "variance": 4.445982631e-05
+      },
+      "words": "Question: Fulton James MacGregor is a Scottish politican who is a Liaison"
+    },
+    {
+      "probability": {
+        "average": 0.9967714548,
+        "min": 0.9154788852,
+        "variance": 0.0001790545793
+      },
+      "words": "officer to Shona Robison who he swears is his best friend. True, False, or"
+    },
+    {
+      "probability": {
+        "average": 0.9997608662,
+        "min": 0.9983897209,
+        "variance": 2.703604309e-07
+      },
+      "words": "Neither?"
+    },
+    {
+      "probability": {
+        "average": 0.9590594769,
+        "min": 0.6346766353,
+        "variance": 0.01163629629
+      },
+      "words": "Correct Answer →"
+    },
+    {
+      "probability": {
+        "average": 0.9996584654,
+        "min": 0.9978888631,
+        "variance": 5.227746556e-07
+      },
+      "words": "Neither"
+    },
+    {
+      "probability": {
+        "average": 0.9688344598,
+        "min": 0.6371805668,
+        "variance": 0.008325842209
+      },
+      "words": "Incorrect Answer →"
+    },
+    {
+      "probability": {
+        "average": 0.9993645549,
+        "min": 0.9984556437,
+        "variance": 3.266246438e-07
+      },
+      "words": "True"
+    },
+    {
+      "probability": {
+        "average": 0.9627733231,
+        "min": 0.4819658995,
+        "variance": 0.01469311118
+      },
+      "words": "Incorrect Answer →"
+    },
+    {
+      "probability": {
+        "average": 0.9992925525,
+        "min": 0.9975304008,
+        "variance": 8.173450396e-07
+      },
+      "words": "False"
+    }
+  ],
+  "words_result_num": 15,
+  "direction": 0,
+  "log_id": 2079046691324549222
+}

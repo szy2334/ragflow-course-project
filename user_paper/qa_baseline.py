@@ -15,7 +15,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from pipeline_common import config_bool, config_path_value, config_value, load_user_paper_config
+from pipeline_common import config_bool, config_value, load_user_paper_config
 
 
 load_user_paper_config()
@@ -205,7 +205,8 @@ def render_markdown(report: dict[str, Any]) -> str:
 
 
 def configured_path(name: str) -> Path | None:
-    return config_path_value(name)
+    value = config_value(name)
+    return Path(value).expanduser() if value else None
 
 
 def parse_args() -> argparse.Namespace:

@@ -1,0 +1,655 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 9
+            },
+            {
+              "x": 174,
+              "y": 10
+            },
+            {
+              "x": 174,
+              "y": 86
+            },
+            {
+              "x": 8,
+              "y": 85
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": ""
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 174,
+              "y": 10
+            },
+            {
+              "x": 271,
+              "y": 11
+            },
+            {
+              "x": 271,
+              "y": 86
+            },
+            {
+              "x": 174,
+              "y": 86
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Accuracy"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 271,
+              "y": 11
+            },
+            {
+              "x": 410,
+              "y": 12
+            },
+            {
+              "x": 410,
+              "y": 86
+            },
+            {
+              "x": 271,
+              "y": 86
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Majority Vote\non Full Dataset"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 410,
+              "y": 12
+            },
+            {
+              "x": 521,
+              "y": 12
+            },
+            {
+              "x": 521,
+              "y": 86
+            },
+            {
+              "x": 410,
+              "y": 86
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "Accuracy\non Guesses"
+        },
+        {
+          "col_end": 5,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 521,
+              "y": 12
+            },
+            {
+              "x": 644,
+              "y": 13
+            },
+            {
+              "x": 644,
+              "y": 86
+            },
+            {
+              "x": 521,
+              "y": 86
+            }
+          ],
+          "row_start": 0,
+          "col_start": 4,
+          "words": "Majority Vote\nAccuracy\non Guesses"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 8,
+              "y": 85
+            },
+            {
+              "x": 174,
+              "y": 86
+            },
+            {
+              "x": 174,
+              "y": 114
+            },
+            {
+              "x": 10,
+              "y": 114
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Zero-shot human"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 174,
+              "y": 86
+            },
+            {
+              "x": 271,
+              "y": 86
+            },
+            {
+              "x": 271,
+              "y": 114
+            },
+            {
+              "x": 174,
+              "y": 114
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "53.7"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 271,
+              "y": 86
+            },
+            {
+              "x": 410,
+              "y": 86
+            },
+            {
+              "x": 410,
+              "y": 114
+            },
+            {
+              "x": 271,
+              "y": 114
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "57.0"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 410,
+              "y": 86
+            },
+            {
+              "x": 521,
+              "y": 86
+            },
+            {
+              "x": 521,
+              "y": 114
+            },
+            {
+              "x": 410,
+              "y": 114
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": "69.7"
+        },
+        {
+          "col_end": 5,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 521,
+              "y": 86
+            },
+            {
+              "x": 644,
+              "y": 86
+            },
+            {
+              "x": 644,
+              "y": 115
+            },
+            {
+              "x": 521,
+              "y": 114
+            }
+          ],
+          "row_start": 1,
+          "col_start": 4,
+          "words": "63.9"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 114
+            },
+            {
+              "x": 174,
+              "y": 114
+            },
+            {
+              "x": 174,
+              "y": 137
+            },
+            {
+              "x": 10,
+              "y": 136
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Zero-shot CLIP"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 174,
+              "y": 114
+            },
+            {
+              "x": 271,
+              "y": 114
+            },
+            {
+              "x": 270,
+              "y": 137
+            },
+            {
+              "x": 174,
+              "y": 137
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "93.5"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 271,
+              "y": 114
+            },
+            {
+              "x": 410,
+              "y": 114
+            },
+            {
+              "x": 409,
+              "y": 137
+            },
+            {
+              "x": 270,
+              "y": 137
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "93.5"
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 410,
+              "y": 114
+            },
+            {
+              "x": 521,
+              "y": 114
+            },
+            {
+              "x": 521,
+              "y": 137
+            },
+            {
+              "x": 409,
+              "y": 137
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "93.5"
+        },
+        {
+          "col_end": 5,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 521,
+              "y": 114
+            },
+            {
+              "x": 644,
+              "y": 115
+            },
+            {
+              "x": 644,
+              "y": 137
+            },
+            {
+              "x": 521,
+              "y": 137
+            }
+          ],
+          "row_start": 2,
+          "col_start": 4,
+          "words": "93.5"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 136
+            },
+            {
+              "x": 174,
+              "y": 137
+            },
+            {
+              "x": 174,
+              "y": 158
+            },
+            {
+              "x": 10,
+              "y": 158
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "One-shot human"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 174,
+              "y": 137
+            },
+            {
+              "x": 270,
+              "y": 137
+            },
+            {
+              "x": 270,
+              "y": 159
+            },
+            {
+              "x": 174,
+              "y": 158
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "75.7"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 137
+            },
+            {
+              "x": 409,
+              "y": 137
+            },
+            {
+              "x": 409,
+              "y": 159
+            },
+            {
+              "x": 270,
+              "y": 159
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "80.3"
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 409,
+              "y": 137
+            },
+            {
+              "x": 521,
+              "y": 137
+            },
+            {
+              "x": 521,
+              "y": 159
+            },
+            {
+              "x": 409,
+              "y": 159
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "78.5"
+        },
+        {
+          "col_end": 5,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 521,
+              "y": 137
+            },
+            {
+              "x": 644,
+              "y": 137
+            },
+            {
+              "x": 644,
+              "y": 159
+            },
+            {
+              "x": 521,
+              "y": 159
+            }
+          ],
+          "row_start": 3,
+          "col_start": 4,
+          "words": "81.2"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 158
+            },
+            {
+              "x": 174,
+              "y": 158
+            },
+            {
+              "x": 174,
+              "y": 178
+            },
+            {
+              "x": 10,
+              "y": 178
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "Two-shot human"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 174,
+              "y": 158
+            },
+            {
+              "x": 270,
+              "y": 159
+            },
+            {
+              "x": 270,
+              "y": 178
+            },
+            {
+              "x": 174,
+              "y": 178
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "75.7"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 270,
+              "y": 159
+            },
+            {
+              "x": 409,
+              "y": 159
+            },
+            {
+              "x": 409,
+              "y": 179
+            },
+            {
+              "x": 270,
+              "y": 178
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "85.0"
+        },
+        {
+          "col_end": 4,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 409,
+              "y": 159
+            },
+            {
+              "x": 521,
+              "y": 159
+            },
+            {
+              "x": 521,
+              "y": 179
+            },
+            {
+              "x": 409,
+              "y": 179
+            }
+          ],
+          "row_start": 4,
+          "col_start": 3,
+          "words": "79.2"
+        },
+        {
+          "col_end": 5,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 521,
+              "y": 159
+            },
+            {
+              "x": 644,
+              "y": 159
+            },
+            {
+              "x": 644,
+              "y": 179
+            },
+            {
+              "x": 521,
+              "y": 179
+            }
+          ],
+          "row_start": 4,
+          "col_start": 4,
+          "words": "86.1"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 6,
+          "y": 9
+        },
+        {
+          "x": 644,
+          "y": 9
+        },
+        {
+          "x": 644,
+          "y": 179
+        },
+        {
+          "x": 6,
+          "y": 179
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079046612512436126
+}

@@ -1,0 +1,767 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9993764758,
+        "min": 0.9893183112,
+        "variance": 2.597408866e-06
+      },
+      "words": "Linear probe average over Kornblith et al.'s 12 datasets"
+    },
+    {
+      "probability": {
+        "average": 0.9996979237,
+        "min": 0.9939742684,
+        "variance": 8.664653706e-07
+      },
+      "words": "Linear probe average over all 27 datasets"
+    },
+    {
+      "probability": {
+        "average": 0.9998133183,
+        "min": 0.9997795224,
+        "variance": 1.140145756e-09
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.9990093112,
+        "min": 0.9913663268,
+        "variance": 6.52353765e-06
+      },
+      "words": "L/14@336px"
+    },
+    {
+      "probability": {
+        "average": 0.9987143278,
+        "min": 0.9893434048,
+        "variance": 9.880379366e-06
+      },
+      "words": "L/14@336px"
+    },
+    {
+      "probability": {
+        "average": 0.9988541007,
+        "min": 0.9967824221,
+        "variance": 1.475488261e-06
+      },
+      "words": "L/14"
+    },
+    {
+      "probability": {
+        "average": 0.9997884631,
+        "min": 0.9997884631,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.9998164177,
+        "min": 0.9997859597,
+        "variance": 9.258744882e-10
+      },
+      "words": "85"
+    },
+    {
+      "probability": {
+        "average": 0.998896122,
+        "min": 0.9962953925,
+        "variance": 2.261645022e-06
+      },
+      "words": "L/14"
+    },
+    {
+      "probability": {
+        "average": 0.9944223762,
+        "min": 0.9944223762,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.9819973707,
+        "min": 0.8753818274,
+        "variance": 0.001894559944
+      },
+      "words": "RN50x64"
+    },
+    {
+      "probability": {
+        "average": 0.976829648,
+        "min": 0.8403789997,
+        "variance": 0.003103625728
+      },
+      "words": "RN50x64"
+    },
+    {
+      "probability": {
+        "average": 0.9993422627,
+        "min": 0.9964382648,
+        "variance": 1.691522357e-06
+      },
+      "words": "L2-475"
+    },
+    {
+      "probability": {
+        "average": 0.9986155033,
+        "min": 0.9986155033,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.9991389513,
+        "min": 0.9991389513,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.9998759627,
+        "min": 0.9997312427,
+        "variance": 1.079842793e-08
+      },
+      "words": "L2-800"
+    },
+    {
+      "probability": {
+        "average": 0.9996062517,
+        "min": 0.9986622334,
+        "variance": 2.979052738e-07
+      },
+      "words": "B/16"
+    },
+    {
+      "probability": {
+        "average": 0.9841338396,
+        "min": 0.8961465955,
+        "variance": 0.001290987129
+      },
+      "words": "RN50x16"
+    },
+    {
+      "probability": {
+        "average": 0.9998472929,
+        "min": 0.9998309612,
+        "variance": 2.667235321e-10
+      },
+      "words": "85"
+    },
+    {
+      "probability": {
+        "average": 0.9992171526,
+        "min": 0.9986067414,
+        "variance": 2.015546272e-07
+      },
+      "words": "B7-NS"
+    },
+    {
+      "probability": {
+        "average": 0.9993722439,
+        "min": 0.9979787469,
+        "variance": 6.475852388e-07
+      },
+      "words": "B/16"
+    },
+    {
+      "probability": {
+        "average": 0.9556173682,
+        "min": 0.7038781047,
+        "variance": 0.01056602132
+      },
+      "words": "RN50x16"
+    },
+    {
+      "probability": {
+        "average": 0.996779263,
+        "min": 0.996779263,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.9998474121,
+        "min": 0.9995142221,
+        "variance": 2.689256995e-08
+      },
+      "words": "L2-800"
+    },
+    {
+      "probability": {
+        "average": 0.983712256,
+        "min": 0.9747220278,
+        "variance": 8.082420391e-05
+      },
+      "words": "B8"
+    },
+    {
+      "probability": {
+        "average": 0.9998297691,
+        "min": 0.9997738004,
+        "variance": 3.135840032e-09
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9991819859,
+        "min": 0.9953069091,
+        "variance": 3.004446853e-06
+      },
+      "words": "L2-475"
+    },
+    {
+      "probability": {
+        "average": 0.6240236759,
+        "min": 0.04779928923,
+        "variance": 0.2120974511
+      },
+      "words": "(%)a102s abejaAv"
+    },
+    {
+      "probability": {
+        "average": 0.9417286515,
+        "min": 0.7076611519,
+        "variance": 0.01105835196
+      },
+      "words": "RN50x4"
+    },
+    {
+      "probability": {
+        "average": 0.9244203568,
+        "min": 0.6534482837,
+        "variance": 0.01291837357
+      },
+      "words": "XFixRes"
+    },
+    {
+      "probability": {
+        "average": 0.9485949874,
+        "min": 0.7038164139,
+        "variance": 0.01198451966
+      },
+      "words": "RN50X4"
+    },
+    {
+      "probability": {
+        "average": 0.9994050264,
+        "min": 0.9978532195,
+        "variance": 8.029379615e-07
+      },
+      "words": "B/32"
+    },
+    {
+      "probability": {
+        "average": 0.9112887383,
+        "min": 0.7340493202,
+        "variance": 0.01570690237
+      },
+      "words": "x48"
+    },
+    {
+      "probability": {
+        "average": 0.8718817234,
+        "min": 0.8718817234,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9495651722,
+        "min": 0.6982785463,
+        "variance": 0.01262904052
+      },
+      "words": "R152x3"
+    },
+    {
+      "probability": {
+        "average": 0.9990446568,
+        "min": 0.9964933991,
+        "variance": 2.170141443e-06
+      },
+      "words": "B/32"
+    },
+    {
+      "probability": {
+        "average": 0.9992208481,
+        "min": 0.9981284738,
+        "variance": 4.32189978e-07
+      },
+      "words": "B7-NS"
+    },
+    {
+      "probability": {
+        "average": 0.9984945059,
+        "min": 0.9956132174,
+        "variance": 2.131155043e-06
+      },
+      "words": "RN101"
+    },
+    {
+      "probability": {
+        "average": 0.9537236691,
+        "min": 0.7228505015,
+        "variance": 0.01066049933
+      },
+      "words": "R152x4"
+    },
+    {
+      "probability": {
+        "average": 0.04714160413,
+        "min": 0.03597946465,
+        "variance": 0.0001245933963
+      },
+      "words": "3J03s a6eJaAv"
+    },
+    {
+      "probability": {
+        "average": 0.9962781072,
+        "min": 0.9923940897,
+        "variance": 7.090740837e-06
+      },
+      "words": "RN101"
+    },
+    {
+      "probability": {
+        "average": 0.7744179368,
+        "min": 0.3342836201,
+        "variance": 0.09686136246
+      },
+      "words": "+B8"
+    },
+    {
+      "probability": {
+        "average": 0.9981379509,
+        "min": 0.9929248095,
+        "variance": 5.620584488e-06
+      },
+      "words": "FixRes"
+    },
+    {
+      "probability": {
+        "average": 0.9998255968,
+        "min": 0.9997685552,
+        "variance": 3.250351099e-09
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9608373046,
+        "min": 0.7009189129,
+        "variance": 0.009656347334
+      },
+      "words": "ViT-H/14"
+    },
+    {
+      "probability": {
+        "average": 0.9370066524,
+        "min": 0.6227865219,
+        "variance": 0.01974688098
+      },
+      "words": "R152x3"
+    },
+    {
+      "probability": {
+        "average": 0.9816820621,
+        "min": 0.942173183,
+        "variance": 0.0005214052508
+      },
+      "words": "RN50"
+    },
+    {
+      "probability": {
+        "average": 0.8531146049,
+        "min": 0.5595915914,
+        "variance": 0.04307788238
+      },
+      "words": "X48"
+    },
+    {
+      "probability": {
+        "average": 0.9958057404,
+        "min": 0.9859188795,
+        "variance": 3.265648047e-05
+      },
+      "words": "RN50"
+    },
+    {
+      "probability": {
+        "average": 0.9904393554,
+        "min": 0.9392701983,
+        "variance": 0.0003762206179
+      },
+      "words": "res200x2"
+    },
+    {
+      "probability": {
+        "average": 0.9996597767,
+        "min": 0.9994181395,
+        "variance": 5.838855088e-08
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.9777032733,
+        "min": 0.8671118021,
+        "variance": 0.002446136903
+      },
+      "words": "R152x4"
+    },
+    {
+      "probability": {
+        "average": 0.7208219767,
+        "min": 0.4482747316,
+        "variance": 0.07428202033
+      },
+      "words": "x8"
+    },
+    {
+      "probability": {
+        "average": 0.9390431643,
+        "min": 0.6976670623,
+        "variance": 0.01456570067
+      },
+      "words": "B0-NS"
+    },
+    {
+      "probability": {
+        "average": 0.900642395,
+        "min": 0.3371858597,
+        "variance": 0.04452598095
+      },
+      "words": "ZViT-H/14"
+    },
+    {
+      "probability": {
+        "average": 0.9136903882,
+        "min": 0.5726202726,
+        "variance": 0.02908256277
+      },
+      "words": "BO-NS"
+    },
+    {
+      "probability": {
+        "average": 0.791852951,
+        "min": 0.5607255101,
+        "variance": 0.03059877455
+      },
+      "words": "BOt"
+    },
+    {
+      "probability": {
+        "average": 0.9948989153,
+        "min": 0.9714250565,
+        "variance": 9.34639902e-05
+      },
+      "words": "res50x1"
+    },
+    {
+      "probability": {
+        "average": 0.9922267795,
+        "min": 0.9596580267,
+        "variance": 0.0001922624506
+      },
+      "words": "res50x1"
+    },
+    {
+      "probability": {
+        "average": 0.9321722984,
+        "min": 0.593593955,
+        "variance": 0.02292707376
+      },
+      "words": "R152x4"
+    },
+    {
+      "probability": {
+        "average": 0.7875794768,
+        "min": 0.6061729193,
+        "variance": 0.03290833905
+      },
+      "words": "BO"
+    },
+    {
+      "probability": {
+        "average": 0.9999181628,
+        "min": 0.9998724461,
+        "variance": 2.090022377e-09
+      },
+      "words": "75"
+    },
+    {
+      "probability": {
+        "average": 0.9380536675,
+        "min": 0.6286036968,
+        "variance": 0.01915187202
+      },
+      "words": "R152x4"
+    },
+    {
+      "probability": {
+        "average": 0.9954380393,
+        "min": 0.9790229201,
+        "variance": 4.111937233e-05
+      },
+      "words": "ResNet152"
+    },
+    {
+      "probability": {
+        "average": 0.9715312123,
+        "min": 0.8751639128,
+        "variance": 0.001631727791
+      },
+      "words": "MoCo-v2"
+    },
+    {
+      "probability": {
+        "average": 0.9923157096,
+        "min": 0.9622779489,
+        "variance": 0.000142450619
+      },
+      "words": "ResNet152"
+    },
+    {
+      "probability": {
+        "average": 0.9907251,
+        "min": 0.9541344643,
+        "variance": 0.0002108594053
+      },
+      "words": "ResNet50"
+    },
+    {
+      "probability": {
+        "average": 0.9999518991,
+        "min": 0.9999181032,
+        "variance": 1.142158368e-09
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9955117106,
+        "min": 0.9845593572,
+        "variance": 3.037139322e-05
+      },
+      "words": "ResNet50"
+    },
+    {
+      "probability": {
+        "average": 0.9670826793,
+        "min": 0.9182018042,
+        "variance": 0.0009406017489
+      },
+      "words": "MoCo-v2"
+    },
+    {
+      "probability": {
+        "average": 0.9846389294,
+        "min": 0.9544864297,
+        "variance": 0.0004546079144
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9987213016,
+        "min": 0.9965680838,
+        "variance": 2.32276625e-06
+      },
+      "words": "101"
+    },
+    {
+      "probability": {
+        "average": 0.9993507266,
+        "min": 0.9985806942,
+        "variance": 3.195824263e-07
+      },
+      "words": "102"
+    },
+    {
+      "probability": {
+        "average": 0.9862390161,
+        "min": 0.959176898,
+        "variance": 0.0003661919909
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9993181229,
+        "min": 0.9985205531,
+        "variance": 3.260878145e-07
+      },
+      "words": "101"
+    },
+    {
+      "probability": {
+        "average": 0.9995913506,
+        "min": 0.9991872907,
+        "variance": 9.388779176e-08
+      },
+      "words": "102"
+    },
+    {
+      "probability": {
+        "average": 0.9995819926,
+        "min": 0.9957391024,
+        "variance": 7.358487437e-07
+      },
+      "words": "Forward-pass GFLOPs/image"
+    },
+    {
+      "probability": {
+        "average": 0.9978195429,
+        "min": 0.9514249563,
+        "variance": 8.981006249e-05
+      },
+      "words": "Forward-pass GFLOPs/image"
+    },
+    {
+      "probability": {
+        "average": 0.9535281062,
+        "min": 0.6826090813,
+        "variance": 0.01068401989
+      },
+      "words": "CLIP-ViT"
+    },
+    {
+      "probability": {
+        "average": 0.7448197007,
+        "min": 0.7448197007,
+        "variance": 0
+      },
+      "words": "×"
+    },
+    {
+      "probability": {
+        "average": 0.9999265671,
+        "min": 0.998718977,
+        "variance": 7.683443926e-08
+      },
+      "words": "Instagram-pretrained"
+    },
+    {
+      "probability": {
+        "average": 0.9730923176,
+        "min": 0.592300415,
+        "variance": 0.008629662916
+      },
+      "words": "-ViT(ImageNet-21k)"
+    },
+    {
+      "probability": {
+        "average": 0.9986977577,
+        "min": 0.9986977577,
+        "variance": 0
+      },
+      "words": "☆"
+    },
+    {
+      "probability": {
+        "average": 0.9850200415,
+        "min": 0.9117581248,
+        "variance": 0.0008656484424
+      },
+      "words": "CLIP-ResNet"
+    },
+    {
+      "probability": {
+        "average": 0.7612774968,
+        "min": 0.7612774968,
+        "variance": 0
+      },
+      "words": "→"
+    },
+    {
+      "probability": {
+        "average": 0.961329639,
+        "min": 0.7005293965,
+        "variance": 0.009717484936
+      },
+      "words": "SimCLRv2"
+    },
+    {
+      "probability": {
+        "average": 0.6531412601,
+        "min": 0.5038237572,
+        "variance": 0.02229571715
+      },
+      "words": "▲—"
+    },
+    {
+      "probability": {
+        "average": 0.9969758987,
+        "min": 0.9898980856,
+        "variance": 1.285154303e-05
+      },
+      "words": "BiT-M"
+    },
+    {
+      "probability": {
+        "average": 0.9998725653,
+        "min": 0.998308301,
+        "variance": 1.058166106e-07
+      },
+      "words": "EfficientNet-NoisyStudent"
+    },
+    {
+      "probability": {
+        "average": 0.9997836947,
+        "min": 0.9996520281,
+        "variance": 1.485132017e-08
+      },
+      "words": "BYOL"
+    },
+    {
+      "probability": {
+        "average": 0.9864624739,
+        "min": 0.9637176394,
+        "variance": 0.0001791717659
+      },
+      "words": "BiT-S"
+    },
+    {
+      "probability": {
+        "average": 0.8554090261,
+        "min": 0.8554090261,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9972667098,
+        "min": 0.9687578678,
+        "variance": 7.394108979e-05
+      },
+      "words": "EfficientNet"
+    },
+    {
+      "probability": {
+        "average": 0.9876663685,
+        "min": 0.9784219265,
+        "variance": 6.349760952e-05
+      },
+      "words": "MoCo"
+    },
+    {
+      "probability": {
+        "average": 0.9872131348,
+        "min": 0.9255026579,
+        "variance": 0.0007619966636
+      },
+      "words": "ResNet"
+    }
+  ],
+  "words_result_num": 95,
+  "direction": 0,
+  "log_id": 2079049391156346819
+}

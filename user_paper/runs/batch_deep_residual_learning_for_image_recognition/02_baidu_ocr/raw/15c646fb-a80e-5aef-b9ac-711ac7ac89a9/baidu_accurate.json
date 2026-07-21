@@ -1,0 +1,135 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9997999072,
+        "min": 0.9997999072,
+        "variance": 0
+      },
+      "words": "3"
+    },
+    {
+      "probability": {
+        "average": 0.9992123842,
+        "min": 0.9983410835,
+        "variance": 4.520337598e-07
+      },
+      "words": "plain-20"
+    },
+    {
+      "probability": {
+        "average": 0.9995312691,
+        "min": 0.9985900521,
+        "variance": 2.512763047e-07
+      },
+      "words": "plain-56"
+    },
+    {
+      "probability": {
+        "average": 0.9956101179,
+        "min": 0.9731667638,
+        "variance": 6.761297846e-05
+      },
+      "words": "ResNet-20"
+    },
+    {
+      "probability": {
+        "average": 0.8616424799,
+        "min": 0.8616424799,
+        "variance": 0
+      },
+      "words": "号"
+    },
+    {
+      "probability": {
+        "average": 0.9172999859,
+        "min": 0.8348679543,
+        "variance": 0.006795044988
+      },
+      "words": "2-"
+    },
+    {
+      "probability": {
+        "average": 0.9972483516,
+        "min": 0.9854812026,
+        "variance": 1.903270277e-05
+      },
+      "words": "ResNet-56"
+    },
+    {
+      "probability": {
+        "average": 0.9963658452,
+        "min": 0.9878150225,
+        "variance": 1.817220618e-05
+      },
+      "words": "ResNet-110"
+    },
+    {
+      "probability": {
+        "average": 0.9995059967,
+        "min": 0.9995059967,
+        "variance": 0
+      },
+      "words": "1"
+    },
+    {
+      "probability": {
+        "average": 0.998497963,
+        "min": 0.998497963,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9996142387,
+        "min": 0.999304533,
+        "variance": 9.591764183e-08
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9989783764,
+        "min": 0.9980954528,
+        "variance": 7.795014767e-07
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.99964118,
+        "min": 0.9995324612,
+        "variance": 1.181331477e-08
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9995210767,
+        "min": 0.9994328618,
+        "variance": 7.781864042e-09
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9990795255,
+        "min": 0.9990245104,
+        "variance": 1.523183357e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9629504681,
+        "min": 0.8002480865,
+        "variance": 0.003287080443
+      },
+      "words": "laver indey (original)"
+    }
+  ],
+  "words_result_num": 16,
+  "direction": 0,
+  "log_id": 2079044955211325145
+}

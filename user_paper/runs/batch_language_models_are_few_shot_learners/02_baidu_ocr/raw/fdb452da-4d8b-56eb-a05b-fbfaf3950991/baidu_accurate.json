@@ -1,0 +1,191 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9998237491,
+        "min": 0.9985290766,
+        "variance": 9.719251182e-08
+      },
+      "words": "Sentiment Across Models"
+    },
+    {
+      "probability": {
+        "average": 0.9999517798,
+        "min": 0.9999053478,
+        "variance": 2.155932322e-09
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9990626574,
+        "min": 0.997643292,
+        "variance": 9.537786809e-07
+      },
+      "words": "Asian"
+    },
+    {
+      "probability": {
+        "average": 0.9981065989,
+        "min": 0.9953435063,
+        "variance": 2.490638963e-06
+      },
+      "words": "Black"
+    },
+    {
+      "probability": {
+        "average": 0.9999287724,
+        "min": 0.9998883009,
+        "variance": 1.637946667e-09
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9990139008,
+        "min": 0.9951614738,
+        "variance": 3.710423698e-06
+      },
+      "words": "White"
+    },
+    {
+      "probability": {
+        "average": 0.9986949563,
+        "min": 0.9962762594,
+        "variance": 2.684387482e-06
+      },
+      "words": "Latinx"
+    },
+    {
+      "probability": {
+        "average": 0.9999688864,
+        "min": 0.9999390841,
+        "variance": 8.881784197e-10
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9967797399,
+        "min": 0.9811284542,
+        "variance": 4.89979393e-05
+      },
+      "words": "Indian"
+    },
+    {
+      "probability": {
+        "average": 0.1776953489,
+        "min": 0.05404541269,
+        "variance": 0.01528930757
+      },
+      "words": "aJoos uawnuas"
+    },
+    {
+      "probability": {
+        "average": 0.9998389482,
+        "min": 0.9992761016,
+        "variance": 3.269429172e-08
+      },
+      "words": "Middle eastern"
+    },
+    {
+      "probability": {
+        "average": 0.9999688864,
+        "min": 0.9999508858,
+        "variance": 3.240216984e-10
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9854804873,
+        "min": 0.9854804873,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9998669624,
+        "min": 0.9996540546,
+        "variance": 2.290739509e-08
+      },
+      "words": "-10"
+    },
+    {
+      "probability": {
+        "average": 0.9994065166,
+        "min": 0.998298347,
+        "variance": 6.148583793e-07
+      },
+      "words": "-20"
+    },
+    {
+      "probability": {
+        "average": 0.9996542931,
+        "min": 0.9990175962,
+        "variance": 1.60718983e-07
+      },
+      "words": "350M"
+    },
+    {
+      "probability": {
+        "average": 0.9995965958,
+        "min": 0.9990401864,
+        "variance": 1.691265652e-07
+      },
+      "words": "760M"
+    },
+    {
+      "probability": {
+        "average": 0.9983068705,
+        "min": 0.9938872457,
+        "variance": 6.544314601e-06
+      },
+      "words": "1.3B"
+    },
+    {
+      "probability": {
+        "average": 0.9981938004,
+        "min": 0.9934652448,
+        "variance": 7.502966582e-06
+      },
+      "words": "2.7B"
+    },
+    {
+      "probability": {
+        "average": 0.9981641769,
+        "min": 0.9930972457,
+        "variance": 8.57179748e-06
+      },
+      "words": "6.7B"
+    },
+    {
+      "probability": {
+        "average": 0.9999521375,
+        "min": 0.9998954535,
+        "variance": 1.638391978e-09
+      },
+      "words": "13B"
+    },
+    {
+      "probability": {
+        "average": 0.9996541739,
+        "min": 0.998663187,
+        "variance": 3.27546843e-07
+      },
+      "words": "175B"
+    },
+    {
+      "probability": {
+        "average": 0.987311244,
+        "min": 0.9058099389,
+        "variance": 0.0007844076608
+      },
+      "words": "Model Size"
+    }
+  ],
+  "words_result_num": 23,
+  "direction": 0,
+  "log_id": 2079046641053114961
+}

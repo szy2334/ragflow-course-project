@@ -1,0 +1,405 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 7,
+              "y": 4
+            },
+            {
+              "x": 133,
+              "y": 4
+            },
+            {
+              "x": 133,
+              "y": 46
+            },
+            {
+              "x": 7,
+              "y": 46
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "l2 norm?"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 133,
+              "y": 4
+            },
+            {
+              "x": 208,
+              "y": 4
+            },
+            {
+              "x": 208,
+              "y": 46
+            },
+            {
+              "x": 133,
+              "y": 46
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "T"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 208,
+              "y": 4
+            },
+            {
+              "x": 324,
+              "y": 5
+            },
+            {
+              "x": 323,
+              "y": 46
+            },
+            {
+              "x": 208,
+              "y": 46
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Entropy"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 324,
+              "y": 5
+            },
+            {
+              "x": 516,
+              "y": 4
+            },
+            {
+              "x": 516,
+              "y": 46
+            },
+            {
+              "x": 323,
+              "y": 46
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "Contrastive acc."
+        },
+        {
+          "col_end": 5,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 516,
+              "y": 4
+            },
+            {
+              "x": 605,
+              "y": 4
+            },
+            {
+              "x": 605,
+              "y": 46
+            },
+            {
+              "x": 516,
+              "y": 46
+            }
+          ],
+          "row_start": 0,
+          "col_start": 4,
+          "words": "Top 1"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 7,
+              "y": 46
+            },
+            {
+              "x": 133,
+              "y": 46
+            },
+            {
+              "x": 133,
+              "y": 172
+            },
+            {
+              "x": 6,
+              "y": 172
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "Yes"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 133,
+              "y": 46
+            },
+            {
+              "x": 208,
+              "y": 46
+            },
+            {
+              "x": 208,
+              "y": 172
+            },
+            {
+              "x": 133,
+              "y": 172
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "0.05\n0.1\n0.5\n1"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 208,
+              "y": 46
+            },
+            {
+              "x": 323,
+              "y": 46
+            },
+            {
+              "x": 323,
+              "y": 172
+            },
+            {
+              "x": 208,
+              "y": 172
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "1.0\n4.5\n8.2\n8.3"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 323,
+              "y": 46
+            },
+            {
+              "x": 516,
+              "y": 46
+            },
+            {
+              "x": 516,
+              "y": 172
+            },
+            {
+              "x": 323,
+              "y": 172
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": "90.5\n87.8\n68.2\n59.1"
+        },
+        {
+          "col_end": 5,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 516,
+              "y": 46
+            },
+            {
+              "x": 605,
+              "y": 46
+            },
+            {
+              "x": 605,
+              "y": 172
+            },
+            {
+              "x": 516,
+              "y": 172
+            }
+          ],
+          "row_start": 1,
+          "col_start": 4,
+          "words": "59.7\n64.4\n60.7\n58.0"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 6,
+              "y": 172
+            },
+            {
+              "x": 133,
+              "y": 172
+            },
+            {
+              "x": 132,
+              "y": 234
+            },
+            {
+              "x": 6,
+              "y": 234
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "No"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 133,
+              "y": 172
+            },
+            {
+              "x": 208,
+              "y": 172
+            },
+            {
+              "x": 208,
+              "y": 234
+            },
+            {
+              "x": 132,
+              "y": 234
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "10\n100"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 208,
+              "y": 172
+            },
+            {
+              "x": 323,
+              "y": 172
+            },
+            {
+              "x": 323,
+              "y": 234
+            },
+            {
+              "x": 208,
+              "y": 234
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "0.5\n0.5"
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 323,
+              "y": 172
+            },
+            {
+              "x": 516,
+              "y": 172
+            },
+            {
+              "x": 516,
+              "y": 234
+            },
+            {
+              "x": 323,
+              "y": 234
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "91.7\n92.1"
+        },
+        {
+          "col_end": 5,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 516,
+              "y": 172
+            },
+            {
+              "x": 605,
+              "y": 172
+            },
+            {
+              "x": 605,
+              "y": 234
+            },
+            {
+              "x": 516,
+              "y": 234
+            }
+          ],
+          "row_start": 2,
+          "col_start": 4,
+          "words": "57.2\n57.0"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 6,
+          "y": 4
+        },
+        {
+          "x": 605,
+          "y": 4
+        },
+        {
+          "x": 605,
+          "y": 234
+        },
+        {
+          "x": 6,
+          "y": 234
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079045062055816608
+}

@@ -1,0 +1,61 @@
+{
+  "file_name": "57e3ad00e7c57fe0dc66b468b013f2fcf447ef78a7d2ee01be8b434fe6ef0669.jpg",
+  "file_id": "file-tufzA8806zTAW6zK6ffNISd4leqAy2no",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "TV3iZy-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "TV3iZy-layout-1",
+          "text": "<pad> | 1",
+          "position": [
+            0,
+            0,
+            1078,
+            553
+          ],
+          "polygon": [
+            [
+              0,
+              -6
+            ],
+            [
+              1078,
+              -6
+            ],
+            [
+              1078,
+              553
+            ],
+            [
+              0,
+              553
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'><pad></th><th style='text-align: center;'>1</th></tr></thead>\n  <tbody>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "<pad> | 1",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'><pad></th><th style='text-align: center;'>1</th></tr></thead>\n  <tbody>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 1078,
+        "page_height": 559
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

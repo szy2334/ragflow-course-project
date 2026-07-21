@@ -1,0 +1,271 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9799108505,
+        "min": 0.5420569181,
+        "variance": 0.00537258666
+      },
+      "words": "Context → Q: 'Nude Descending A Staircase'is perhaps the most famous painting by"
+    },
+    {
+      "probability": {
+        "average": 0.9998356104,
+        "min": 0.9984048009,
+        "variance": 8.8024116e-08
+      },
+      "words": "which 20th century artist?"
+    },
+    {
+      "probability": {
+        "average": 0.9838095903,
+        "min": 0.9703761935,
+        "variance": 0.0001804569474
+      },
+      "words": "A:"
+    },
+    {
+      "probability": {
+        "average": 0.9829435945,
+        "min": 0.7915047407,
+        "variance": 0.002652216004
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9984932542,
+        "min": 0.9797534347,
+        "variance": 2.701713129e-05
+      },
+      "words": "MARCEL DUCHAMP"
+    },
+    {
+      "probability": {
+        "average": 0.9821513295,
+        "min": 0.7883551717,
+        "variance": 0.002727743704
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9985368848,
+        "min": 0.9924129844,
+        "variance": 7.513992841e-06
+      },
+      "words": "r mutt"
+    },
+    {
+      "probability": {
+        "average": 0.9894435406,
+        "min": 0.8698204756,
+        "variance": 0.001008458785
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9997324347,
+        "min": 0.9992849231,
+        "variance": 4.523768027e-08
+      },
+      "words": "duchamp"
+    },
+    {
+      "probability": {
+        "average": 0.9871720672,
+        "min": 0.8699653745,
+        "variance": 0.001346293255
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.998896718,
+        "min": 0.9860845208,
+        "variance": 1.273537055e-05
+      },
+      "words": "marcel duchamp"
+    },
+    {
+      "probability": {
+        "average": 0.9681918621,
+        "min": 0.6059983373,
+        "variance": 0.009399565868
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9991685748,
+        "min": 0.9971958399,
+        "variance": 1.035810783e-06
+      },
+      "words": "R.Mutt"
+    },
+    {
+      "probability": {
+        "average": 0.9720288515,
+        "min": 0.6161236763,
+        "variance": 0.008068711497
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9959608316,
+        "min": 0.9522388577,
+        "variance": 0.0001505214896
+      },
+      "words": "Marcel duChamp"
+    },
+    {
+      "probability": {
+        "average": 0.9716871977,
+        "min": 0.6561216116,
+        "variance": 0.007312252186
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9996914268,
+        "min": 0.993471384,
+        "variance": 1.510084076e-06
+      },
+      "words": "Henri-Robert-Marcel Duchamp"
+    },
+    {
+      "probability": {
+        "average": 0.9737500548,
+        "min": 0.7359750867,
+        "variance": 0.005762644112
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.999545753,
+        "min": 0.9971099496,
+        "variance": 6.721717796e-07
+      },
+      "words": "Marcel du Champ"
+    },
+    {
+      "probability": {
+        "average": 0.9883483052,
+        "min": 0.8795213103,
+        "variance": 0.001136761857
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9999182224,
+        "min": 0.999101162,
+        "variance": 3.626336564e-08
+      },
+      "words": "henri robert marcel duchamp"
+    },
+    {
+      "probability": {
+        "average": 0.9783825278,
+        "min": 0.7284692526,
+        "variance": 0.00438348623
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9999057055,
+        "min": 0.9996268749,
+        "variance": 1.255978077e-08
+      },
+      "words": "Duchampian"
+    },
+    {
+      "probability": {
+        "average": 0.9710946083,
+        "min": 0.7018495202,
+        "variance": 0.007086047903
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9997897148,
+        "min": 0.9994624257,
+        "variance": 3.362343293e-08
+      },
+      "words": "Duchamp"
+    },
+    {
+      "probability": {
+        "average": 0.9718696475,
+        "min": 0.6815882325,
+        "variance": 0.006871155929
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9999244809,
+        "min": 0.9998235106,
+        "variance": 4.944646026e-09
+      },
+      "words": "duchampian"
+    },
+    {
+      "probability": {
+        "average": 0.9822978973,
+        "min": 0.8160487413,
+        "variance": 0.002626245376
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9998136163,
+        "min": 0.9989185333,
+        "variance": 1.060756389e-07
+      },
+      "words": "marcel du champ"
+    },
+    {
+      "probability": {
+        "average": 0.981343627,
+        "min": 0.8192527294,
+        "variance": 0.002887531649
+      },
+      "words": "Target Completion →"
+    },
+    {
+      "probability": {
+        "average": 0.9993275404,
+        "min": 0.9956112504,
+        "variance": 2.158246616e-06
+      },
+      "words": "Marcel Duchamp"
+    },
+    {
+      "probability": {
+        "average": 0.9933382869,
+        "min": 0.8847268224,
+        "variance": 0.0006946877111
+      },
+      "words": "Target Completion→"
+    },
+    {
+      "probability": {
+        "average": 0.9996660948,
+        "min": 0.9961292744,
+        "variance": 9.645951877e-07
+      },
+      "words": "MARCEL DUCHAMP"
+    }
+  ],
+  "words_result_num": 33,
+  "direction": 0,
+  "log_id": 2079046745605878195
+}

@@ -1,0 +1,279 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9377741218,
+        "min": 0.5795359015,
+        "variance": 0.01961819269
+      },
+      "words": "Context → Article:"
+    },
+    {
+      "probability": {
+        "average": 0.998696506,
+        "min": 0.9683883786,
+        "variance": 1.636647175e-05
+      },
+      "words": "Mrs. Smith is an unusual teacher. Once she told each student to bring"
+    },
+    {
+      "probability": {
+        "average": 0.9990022779,
+        "min": 0.9914639592,
+        "variance": 3.286493211e-06
+      },
+      "words": "along a few potatoes in plastic bag. On each potato the students had to"
+    },
+    {
+      "probability": {
+        "average": 0.9993895292,
+        "min": 0.9851295948,
+        "variance": 3.226748504e-06
+      },
+      "words": "write a name of a person that they hated And the next day, every child"
+    },
+    {
+      "probability": {
+        "average": 0.9873209596,
+        "min": 0.5170919895,
+        "variance": 0.00496885227
+      },
+      "words": "brought some potatoes. Some had two potatoes; some three; some up to five."
+    },
+    {
+      "probability": {
+        "average": 0.9992224574,
+        "min": 0.9880152345,
+        "variance": 2.420734518e-06
+      },
+      "words": "Mrs. Smith then told the children to carry the bags everywhere they went,"
+    },
+    {
+      "probability": {
+        "average": 0.9974507093,
+        "min": 0.9186754227,
+        "variance": 0.0001016389797
+      },
+      "words": "even to the toilet, for two weeks. As day after day passed, the children"
+    },
+    {
+      "probability": {
+        "average": 0.9996681809,
+        "min": 0.9959821701,
+        "variance": 2.752194916e-07
+      },
+      "words": "started to complain about the awful smell of the rotten potatoes."
+    },
+    {
+      "probability": {
+        "average": 0.9996634722,
+        "min": 0.9984412789,
+        "variance": 9.026972947e-08
+      },
+      "words": "Those children who brought five potatoes began to feel the weight trouble"
+    },
+    {
+      "probability": {
+        "average": 0.9982411861,
+        "min": 0.9493458867,
+        "variance": 4.345380148e-05
+      },
+      "words": "of the bags. After two weeks, the children were happy to hear that the"
+    },
+    {
+      "probability": {
+        "average": 0.9981785417,
+        "min": 0.9538375139,
+        "variance": 3.047760401e-05
+      },
+      "words": "game was finally ended. Mrs. Smith asked,\"How did you feel while carrying"
+    },
+    {
+      "probability": {
+        "average": 0.9980897307,
+        "min": 0.9000549316,
+        "variance": 0.000139583688
+      },
+      "words": "the potatoes for two weeks?\" The children started complaining about the"
+    },
+    {
+      "probability": {
+        "average": 0.9997756481,
+        "min": 0.9985489249,
+        "variance": 1.313763676e-07
+      },
+      "words": "trouble loudly."
+    },
+    {
+      "probability": {
+        "average": 0.998709023,
+        "min": 0.9720804095,
+        "variance": 1.671226346e-05
+      },
+      "words": "Then Mrs. Smith told them why she asked them to play the game. She"
+    },
+    {
+      "probability": {
+        "average": 0.9990822077,
+        "min": 0.9752085209,
+        "variance": 8.017431355e-06
+      },
+      "words": "said,\"This is exactly the situation when you carry your hatred for somebody"
+    },
+    {
+      "probability": {
+        "average": 0.9994477034,
+        "min": 0.9933071733,
+        "variance": 7.715889865e-07
+      },
+      "words": "inside your heart. The terrible smell of the hatred will pollute your"
+    },
+    {
+      "probability": {
+        "average": 0.9992842078,
+        "min": 0.9888849258,
+        "variance": 2.14911347e-06
+      },
+      "words": "heart and you will carry something unnecessary with you all the time. If"
+    },
+    {
+      "probability": {
+        "average": 0.9993417859,
+        "min": 0.9872946143,
+        "variance": 2.56348244e-06
+      },
+      "words": "you cannot stand the smell of the rotten potatoes for just two weeks, can"
+    },
+    {
+      "probability": {
+        "average": 0.9995325804,
+        "min": 0.9979063272,
+        "variance": 1.77120242e-07
+      },
+      "words": "you imagine how heavy it would be to have the hatred in your heart for your"
+    },
+    {
+      "probability": {
+        "average": 0.9985430241,
+        "min": 0.9850126505,
+        "variance": 7.719178939e-06
+      },
+      "words": "lifetime? So throw away any hatred from your heart, and you'll be really"
+    },
+    {
+      "probability": {
+        "average": 0.9978687167,
+        "min": 0.9896190763,
+        "variance": 1.299572523e-05
+      },
+      "words": "happy.\""
+    },
+    {
+      "probability": {
+        "average": 0.9988473058,
+        "min": 0.9603129029,
+        "variance": 2.576341467e-05
+      },
+      "words": "Q: Which of the following is True according to the passage?"
+    },
+    {
+      "probability": {
+        "average": 0.9985460639,
+        "min": 0.9593811631,
+        "variance": 2.478196438e-05
+      },
+      "words": "A: If a kid hated four people,he or she had to carry four potatoes."
+    },
+    {
+      "probability": {
+        "average": 0.9865365624,
+        "min": 0.5406468511,
+        "variance": 0.004311755765
+      },
+      "words": "Q: We can learn from the passage that we should _."
+    },
+    {
+      "probability": {
+        "average": 0.9990340471,
+        "min": 0.9733166099,
+        "variance": 2.205396231e-05
+      },
+      "words": "A: throw away the hatred inside"
+    },
+    {
+      "probability": {
+        "average": 0.987803638,
+        "min": 0.5536834598,
+        "variance": 0.003616380272
+      },
+      "words": "Q: The children complained about _ besides the weight trouble."
+    },
+    {
+      "probability": {
+        "average": 0.990146637,
+        "min": 0.8920786381,
+        "variance": 0.0008779400378
+      },
+      "words": "A: the smell"
+    },
+    {
+      "probability": {
+        "average": 0.9850298762,
+        "min": 0.6274303198,
+        "variance": 0.003307141131
+      },
+      "words": "Q: Mrs. Smith asked her students to write _ on the potatoes."
+    },
+    {
+      "probability": {
+        "average": 0.9849228263,
+        "min": 0.9744788408,
+        "variance": 0.0001090768346
+      },
+      "words": "A:"
+    },
+    {
+      "probability": {
+        "average": 0.9659798741,
+        "min": 0.594242394,
+        "variance": 0.01109660789
+      },
+      "words": "Correct Answer→ names"
+    },
+    {
+      "probability": {
+        "average": 0.9638346434,
+        "min": 0.5708630085,
+        "variance": 0.01143811364
+      },
+      "words": "Incorrect Answer →"
+    },
+    {
+      "probability": {
+        "average": 0.9999373555,
+        "min": 0.9996681213,
+        "variance": 1.218353685e-08
+      },
+      "words": "numbers"
+    },
+    {
+      "probability": {
+        "average": 0.9555843472,
+        "min": 0.6320132613,
+        "variance": 0.01320915762
+      },
+      "words": "Incorrect Answer → time"
+    },
+    {
+      "probability": {
+        "average": 0.9720821381,
+        "min": 0.6490002275,
+        "variance": 0.008466004394
+      },
+      "words": "Incorrect Answer→ places"
+    }
+  ],
+  "words_result_num": 34,
+  "direction": 0,
+  "log_id": 2079046685084341483
+}

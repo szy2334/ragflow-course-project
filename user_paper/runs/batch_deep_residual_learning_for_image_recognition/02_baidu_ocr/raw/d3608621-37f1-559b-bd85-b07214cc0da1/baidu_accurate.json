@@ -1,0 +1,119 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9756824374,
+        "min": 0.9061338902,
+        "variance": 0.001612602733
+      },
+      "words": "64-d"
+    },
+    {
+      "probability": {
+        "average": 0.9996644258,
+        "min": 0.9983448982,
+        "variance": 4.352970677e-07
+      },
+      "words": "256-d"
+    },
+    {
+      "probability": {
+        "average": 0.9962809086,
+        "min": 0.980442822,
+        "variance": 5.114879968e-05
+      },
+      "words": "3x3,64"
+    },
+    {
+      "probability": {
+        "average": 0.9798424244,
+        "min": 0.8908600211,
+        "variance": 0.001598285628
+      },
+      "words": "1x1,64"
+    },
+    {
+      "probability": {
+        "average": 0.9985235333,
+        "min": 0.9959467053,
+        "variance": 2.244713187e-06
+      },
+      "words": "relu"
+    },
+    {
+      "probability": {
+        "average": 0.999115169,
+        "min": 0.998470366,
+        "variance": 2.059689734e-07
+      },
+      "words": "relu"
+    },
+    {
+      "probability": {
+        "average": 0.9957452416,
+        "min": 0.9782226086,
+        "variance": 6.291329191e-05
+      },
+      "words": "3x3,64"
+    },
+    {
+      "probability": {
+        "average": 0.9942827225,
+        "min": 0.9675137997,
+        "variance": 0.0001436738676
+      },
+      "words": "3x3,64"
+    },
+    {
+      "probability": {
+        "average": 0.9986407757,
+        "min": 0.9969947338,
+        "variance": 9.544953627e-07
+      },
+      "words": "relu"
+    },
+    {
+      "probability": {
+        "average": 0.96683532,
+        "min": 0.8147495985,
+        "variance": 0.004082012456
+      },
+      "words": "1x1,256"
+    },
+    {
+      "probability": {
+        "average": 0.9957792759,
+        "min": 0.9957792759,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9952765703,
+        "min": 0.9952765703,
+        "variance": 0
+      },
+      "words": "+"
+    },
+    {
+      "probability": {
+        "average": 0.9990401268,
+        "min": 0.9984357953,
+        "variance": 1.995338152e-07
+      },
+      "words": "relu"
+    },
+    {
+      "probability": {
+        "average": 0.9980039001,
+        "min": 0.9960926175,
+        "variance": 1.822248464e-06
+      },
+      "words": "relu"
+    }
+  ],
+  "words_result_num": 14,
+  "direction": 0,
+  "log_id": 2079044898804288540
+}

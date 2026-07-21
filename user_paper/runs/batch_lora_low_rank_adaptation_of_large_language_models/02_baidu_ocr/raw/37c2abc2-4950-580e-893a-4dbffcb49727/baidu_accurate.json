@@ -1,0 +1,111 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9730175138,
+        "min": 0.5771848559,
+        "variance": 0.01044700388
+      },
+      "words": "MultiNLI-matched"
+    },
+    {
+      "probability": {
+        "average": 0.9996254444,
+        "min": 0.9986796975,
+        "variance": 3.018778045e-07
+      },
+      "words": "0.92"
+    },
+    {
+      "probability": {
+        "average": 0.9971230626,
+        "min": 0.9886519313,
+        "variance": 2.392062197e-05
+      },
+      "words": "0.90"
+    },
+    {
+      "probability": {
+        "average": 0.9983410239,
+        "min": 0.9939061999,
+        "variance": 6.571445283e-06
+      },
+      "words": "0.88"
+    },
+    {
+      "probability": {
+        "average": 0.9992554188,
+        "min": 0.9973362088,
+        "variance": 1.230607154e-06
+      },
+      "words": "0.86"
+    },
+    {
+      "probability": {
+        "average": 0.9996652603,
+        "min": 0.9988982677,
+        "variance": 1.987366716e-07
+      },
+      "words": "0.84"
+    },
+    {
+      "probability": {
+        "average": 0.9999675751,
+        "min": 0.9999675751,
+        "variance": 0
+      },
+      "words": "6"
+    },
+    {
+      "probability": {
+        "average": 0.999928236,
+        "min": 0.999928236,
+        "variance": 0
+      },
+      "words": "7"
+    },
+    {
+      "probability": {
+        "average": 0.9996422529,
+        "min": 0.9996422529,
+        "variance": 0
+      },
+      "words": "8"
+    },
+    {
+      "probability": {
+        "average": 0.9996614456,
+        "min": 0.9996614456,
+        "variance": 0
+      },
+      "words": "9"
+    },
+    {
+      "probability": {
+        "average": 0.9999181628,
+        "min": 0.9998887777,
+        "variance": 8.634835069e-10
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9998897314,
+        "min": 0.9998748302,
+        "variance": 2.220446049e-10
+      },
+      "words": "11"
+    },
+    {
+      "probability": {
+        "average": 0.9869769812,
+        "min": 0.7656654119,
+        "variance": 0.00197999645
+      },
+      "words": "log10 #Trainable Parameters"
+    }
+  ],
+  "words_result_num": 13,
+  "direction": 0,
+  "log_id": 2079048116916455040
+}

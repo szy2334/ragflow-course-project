@@ -1,0 +1,79 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.7099606991,
+        "min": 0.7099606991,
+        "variance": 0
+      },
+      "words": "x"
+    },
+    {
+      "probability": {
+        "average": 0.9993357062,
+        "min": 0.9955800176,
+        "variance": 1.490524937e-06
+      },
+      "words": "weight layer"
+    },
+    {
+      "probability": {
+        "average": 1,
+        "min": 1,
+        "variance": 0
+      },
+      "words": "F(x)"
+    },
+    {
+      "probability": {
+        "average": 0.9994937778,
+        "min": 0.998800993,
+        "variance": 1.922134771e-07
+      },
+      "words": "relu"
+    },
+    {
+      "probability": {
+        "average": 0.9982987046,
+        "min": 0.9813696146,
+        "variance": 2.612079879e-05
+      },
+      "words": "weight layer"
+    },
+    {
+      "probability": {
+        "average": 0.9999485612,
+        "min": 0.9998027682,
+        "variance": 5.380088819e-09
+      },
+      "words": "identity"
+    },
+    {
+      "probability": {
+        "average": 0.9002739787,
+        "min": 0.6910654902,
+        "variance": 0.01992232166
+      },
+      "words": "F(x)+x"
+    },
+    {
+      "probability": {
+        "average": 0.8995267749,
+        "min": 0.8995267749,
+        "variance": 0
+      },
+      "words": "×"
+    },
+    {
+      "probability": {
+        "average": 0.9990552068,
+        "min": 0.9977311492,
+        "variance": 6.401090786e-07
+      },
+      "words": "relu"
+    }
+  ],
+  "words_result_num": 9,
+  "direction": 0,
+  "log_id": 2079044825764648506
+}

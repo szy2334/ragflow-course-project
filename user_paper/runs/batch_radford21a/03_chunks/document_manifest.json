@@ -1,0 +1,19 @@
+{
+  "schema_version": "paper_ragflow_manifest_v1",
+  "paper_id": "1c6237dd-f6d8-5809-bd6d-5f8040be267f",
+  "paper_version_id": "48ffb910-da16-5013-a26c-61119ea6caf7",
+  "document_name": "radford21a.pdf",
+  "title": "Learning Transferable Visual Models From Natural Language Supervision",
+  "file_sha256": "2a4952960f350e50a3a4a847371b80b8aaa09ba82d1c2a8f6b30450e392a1fe4",
+  "chunk_count": 183,
+  "meta_fields": {
+    "paper_id": "1c6237dd-f6d8-5809-bd6d-5f8040be267f",
+    "paper_version_id": "48ffb910-da16-5013-a26c-61119ea6caf7",
+    "file_name": "radford21a.pdf",
+    "file_sha256": "2a4952960f350e50a3a4a847371b80b8aaa09ba82d1c2a8f6b30450e392a1fe4",
+    "parser_version": "3.4.0",
+    "cleaning_version": "paper_second_clean_v2",
+    "schema_version": "paper_chunk_v1"
+  },
+  "created_at": "2026-07-20T03:42:58.932571+00:00"
+}

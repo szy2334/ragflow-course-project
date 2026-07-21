@@ -17,6 +17,7 @@ dependencies = [
   "pydantic>=2,<3",
   "pydantic-settings>=2.7,<3",
   "python-multipart>=0.0.20,<1",
+  "requests>=2.31,<3",
   "redis>=5.2,<6",
   "sqlalchemy[asyncio]>=2.0,<3",
   "asyncpg>=0.30,<1",

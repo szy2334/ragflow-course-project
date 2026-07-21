@@ -1,0 +1,530 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 5
+            },
+            {
+              "x": 300,
+              "y": 5
+            },
+            {
+              "x": 300,
+              "y": 52
+            },
+            {
+              "x": 10,
+              "y": 52
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "Model"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 300,
+              "y": 5
+            },
+            {
+              "x": 389,
+              "y": 5
+            },
+            {
+              "x": 389,
+              "y": 52
+            },
+            {
+              "x": 300,
+              "y": 52
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Race"
+        },
+        {
+          "col_end": 3,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 389,
+              "y": 5
+            },
+            {
+              "x": 494,
+              "y": 5
+            },
+            {
+              "x": 494,
+              "y": 52
+            },
+            {
+              "x": 389,
+              "y": 52
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": "Gender"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 494,
+              "y": 5
+            },
+            {
+              "x": 570,
+              "y": 5
+            },
+            {
+              "x": 570,
+              "y": 52
+            },
+            {
+              "x": 494,
+              "y": 52
+            }
+          ],
+          "row_start": 0,
+          "col_start": 3,
+          "words": "Age"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 52
+            },
+            {
+              "x": 300,
+              "y": 52
+            },
+            {
+              "x": 300,
+              "y": 90
+            },
+            {
+              "x": 10,
+              "y": 90
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": "FairFace Model"
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 300,
+              "y": 52
+            },
+            {
+              "x": 389,
+              "y": 52
+            },
+            {
+              "x": 389,
+              "y": 90
+            },
+            {
+              "x": 300,
+              "y": 90
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "93.7"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 389,
+              "y": 52
+            },
+            {
+              "x": 494,
+              "y": 52
+            },
+            {
+              "x": 494,
+              "y": 90
+            },
+            {
+              "x": 389,
+              "y": 90
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": "94.2"
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 494,
+              "y": 52
+            },
+            {
+              "x": 570,
+              "y": 52
+            },
+            {
+              "x": 570,
+              "y": 90
+            },
+            {
+              "x": 494,
+              "y": 90
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": "59.7"
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 90
+            },
+            {
+              "x": 300,
+              "y": 90
+            },
+            {
+              "x": 300,
+              "y": 124
+            },
+            {
+              "x": 10,
+              "y": 124
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Linear Probe CLIP"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 300,
+              "y": 90
+            },
+            {
+              "x": 389,
+              "y": 90
+            },
+            {
+              "x": 389,
+              "y": 124
+            },
+            {
+              "x": 300,
+              "y": 124
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": "93.4"
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 389,
+              "y": 90
+            },
+            {
+              "x": 494,
+              "y": 90
+            },
+            {
+              "x": 494,
+              "y": 124
+            },
+            {
+              "x": 389,
+              "y": 124
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": "96.5"
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 494,
+              "y": 90
+            },
+            {
+              "x": 570,
+              "y": 90
+            },
+            {
+              "x": 570,
+              "y": 124
+            },
+            {
+              "x": 494,
+              "y": 124
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "63.8"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 124
+            },
+            {
+              "x": 300,
+              "y": 124
+            },
+            {
+              "x": 300,
+              "y": 157
+            },
+            {
+              "x": 10,
+              "y": 157
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "Zero-Shot CLIP"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 300,
+              "y": 124
+            },
+            {
+              "x": 389,
+              "y": 124
+            },
+            {
+              "x": 389,
+              "y": 157
+            },
+            {
+              "x": 300,
+              "y": 157
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": "58.3"
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 389,
+              "y": 124
+            },
+            {
+              "x": 494,
+              "y": 124
+            },
+            {
+              "x": 493,
+              "y": 157
+            },
+            {
+              "x": 389,
+              "y": 157
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": "95.9"
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 494,
+              "y": 124
+            },
+            {
+              "x": 570,
+              "y": 124
+            },
+            {
+              "x": 570,
+              "y": 157
+            },
+            {
+              "x": 493,
+              "y": 157
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "57.1"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 10,
+              "y": 157
+            },
+            {
+              "x": 300,
+              "y": 157
+            },
+            {
+              "x": 300,
+              "y": 189
+            },
+            {
+              "x": 10,
+              "y": 187
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "Linear Probe Instagram"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 300,
+              "y": 157
+            },
+            {
+              "x": 389,
+              "y": 157
+            },
+            {
+              "x": 389,
+              "y": 189
+            },
+            {
+              "x": 300,
+              "y": 189
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "90.8"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 389,
+              "y": 157
+            },
+            {
+              "x": 493,
+              "y": 157
+            },
+            {
+              "x": 493,
+              "y": 189
+            },
+            {
+              "x": 389,
+              "y": 189
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": "93.2"
+        },
+        {
+          "col_end": 4,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 493,
+              "y": 157
+            },
+            {
+              "x": 570,
+              "y": 157
+            },
+            {
+              "x": 570,
+              "y": 189
+            },
+            {
+              "x": 493,
+              "y": 189
+            }
+          ],
+          "row_start": 4,
+          "col_start": 3,
+          "words": "54.2"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 10,
+          "y": 5
+        },
+        {
+          "x": 570,
+          "y": 5
+        },
+        {
+          "x": 570,
+          "y": 189
+        },
+        {
+          "x": 10,
+          "y": 189
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079046622807901474
+}

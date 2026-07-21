@@ -1,0 +1,61 @@
+{
+  "file_name": "30a7b21f7c459a3745727f99665fbb75800fd9e25e4f1558567442eae1a01998.jpg",
+  "file_id": "file-535RfGachHm9KT7lLJIGFO5REv9rxK4o",
+  "pdf_data": "",
+  "pages": [
+    {
+      "page_id": "t2ADHf-page-0",
+      "page_num": 0,
+      "layouts": [
+        {
+          "layout_id": "t2ADHf-layout-1",
+          "text": "Epochs | Accuracy (%) | Time (min)\n0 | 83.9 | 12.2\n1 | 84.4 | 12.4\n2 | 86.0 | 13.0\n3 | 87.2 | 14.0\n4 | 87.8 | 15.5\n5 | 87.9 | 17.5\n6 | 88.0 | 20.0\n7 | 88.5 | 24.0\n8 | 88.6 | 30.0\n9 | 88.0 | 38.0\n10 | 88.4 | 50.0",
+          "position": [
+            1,
+            3,
+            313,
+            180
+          ],
+          "polygon": [
+            [
+              1,
+              3
+            ],
+            [
+              315,
+              3
+            ],
+            [
+              315,
+              183
+            ],
+            [
+              1,
+              183
+            ]
+          ],
+          "type": "chart",
+          "sub_type": "",
+          "parent": "",
+          "children": [],
+          "span_boxes": null,
+          "table_html": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>Epochs</th><th style='text-align: center;'>Accuracy (%)</th><th style='text-align: center;'>Time (min)</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>0</td><td style='text-align: center;'>83.9</td><td style='text-align: center;'>12.2</td></tr>\n    <tr><td style='text-align: center;'>1</td><td style='text-align: center;'>84.4</td><td style='text-align: center;'>12.4</td></tr>\n    <tr><td style='text-align: center;'>2</td><td style='text-align: center;'>86.0</td><td style='text-align: center;'>13.0</td></tr>\n    <tr><td style='text-align: center;'>3</td><td style='text-align: center;'>87.2</td><td style='text-align: center;'>14.0</td></tr>\n    <tr><td style='text-align: center;'>4</td><td style='text-align: center;'>87.8</td><td style='text-align: center;'>15.5</td></tr>\n    <tr><td style='text-align: center;'>5</td><td style='text-align: center;'>87.9</td><td style='text-align: center;'>17.5</td></tr>\n    <tr><td style='text-align: center;'>6</td><td style='text-align: center;'>88.0</td><td style='text-align: center;'>20.0</td></tr>\n    <tr><td style='text-align: center;'>7</td><td style='text-align: center;'>88.5</td><td style='text-align: center;'>24.0</td></tr>\n    <tr><td style='text-align: center;'>8</td><td style='text-align: center;'>88.6</td><td style='text-align: center;'>30.0</td></tr>\n    <tr><td style='text-align: center;'>9</td><td style='text-align: center;'>88.0</td><td style='text-align: center;'>38.0</td></tr>\n    <tr><td style='text-align: center;'>10</td><td style='text-align: center;'>88.4</td><td style='text-align: center;'>50.0</td></tr>\n  </tbody>\n</table>"
+        }
+      ],
+      "images": [],
+      "inner_images": {},
+      "tables": [],
+      "text": "Epochs | Accuracy (%) | Time (min)\n0 | 83.9 | 12.2\n1 | 84.4 | 12.4\n2 | 86.0 | 13.0\n3 | 87.2 | 14.0\n4 | 87.8 | 15.5\n5 | 87.9 | 17.5\n6 | 88.0 | 20.0\n7 | 88.5 | 24.0\n8 | 88.6 | 30.0\n9 | 88.0 | 38.0\n10 | 88.4 | 50.0",
+      "markdown": "<table border=1 style='margin: auto; width: max-content;'>\n  <thead><tr><th style='text-align: center;'>Epochs</th><th style='text-align: center;'>Accuracy (%)</th><th style='text-align: center;'>Time (min)</th></tr></thead>\n  <tbody>\n    <tr><td style='text-align: center;'>0</td><td style='text-align: center;'>83.9</td><td style='text-align: center;'>12.2</td></tr>\n    <tr><td style='text-align: center;'>1</td><td style='text-align: center;'>84.4</td><td style='text-align: center;'>12.4</td></tr>\n    <tr><td style='text-align: center;'>2</td><td style='text-align: center;'>86.0</td><td style='text-align: center;'>13.0</td></tr>\n    <tr><td style='text-align: center;'>3</td><td style='text-align: center;'>87.2</td><td style='text-align: center;'>14.0</td></tr>\n    <tr><td style='text-align: center;'>4</td><td style='text-align: center;'>87.8</td><td style='text-align: center;'>15.5</td></tr>\n    <tr><td style='text-align: center;'>5</td><td style='text-align: center;'>87.9</td><td style='text-align: center;'>17.5</td></tr>\n    <tr><td style='text-align: center;'>6</td><td style='text-align: center;'>88.0</td><td style='text-align: center;'>20.0</td></tr>\n    <tr><td style='text-align: center;'>7</td><td style='text-align: center;'>88.5</td><td style='text-align: center;'>24.0</td></tr>\n    <tr><td style='text-align: center;'>8</td><td style='text-align: center;'>88.6</td><td style='text-align: center;'>30.0</td></tr>\n    <tr><td style='text-align: center;'>9</td><td style='text-align: center;'>88.0</td><td style='text-align: center;'>38.0</td></tr>\n    <tr><td style='text-align: center;'>10</td><td style='text-align: center;'>88.4</td><td style='text-align: center;'>50.0</td></tr>\n  </tbody>\n</table>",
+      "meta": {
+        "page_width": 314,
+        "page_height": 184
+      },
+      "display_size_ratio": 1.0,
+      "snapshot": "",
+      "display_data": "",
+      "pdf_data": ""
+    }
+  ],
+  "chunks": []
+}

@@ -4,16 +4,16 @@
 
 import asyncio
 import hashlib
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-import httpx
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from app.ai.agents import PaperUnderstandingAgent
+from app.ai.errors import ModelTransportError
 from app.ai.llm import OpenAICompatibleClient
 from app.ai.prompts import PromptRepository
 from app.ai.schemas import EvidenceItem
@@ -24,13 +24,19 @@ from app.db.models import (
     Paper,
     PaperChunk,
     PaperIngestionRun,
+    PaperVersion,
     ParsedBlockRecord,
-    RagMapping,
     TaskRecord,
 )
 from app.runtime.adapters import task_view
 from app.runtime.executor import snapshot_from_settings
 from app.runtime.redis_store import RedisRuntime
+from app.workers.external_pipeline import (
+    ExternalPipelineError,
+    parse_mineru_pdf,
+    recognize_baidu_media,
+)
+from app.workers.second_clean_adapter import build_chunks as build_second_clean_chunks
 
 
 class IngestionFailure(Exception):
@@ -49,6 +55,7 @@ class ParsedBlock:
     section_title: str
     content_type: str = "text"
     source_ref: str = ""
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True, slots=True)
@@ -60,6 +67,7 @@ class MediaObject:
     image_url: str | None
     caption: str | None
     required: bool = True
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True, slots=True)
@@ -86,32 +94,33 @@ class MinerUClient:
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
 
-    async def parse(self, file_path: Path) -> ParsedPaper:
-        if not self._settings.mineru_base_url:
+    async def parse(self, file_path: Path, *, paper_id: str, paper_version_id: str) -> ParsedPaper:
+        if not self._settings.mineru_base_url or not self._settings.mineru_api_key:
             raise IngestionFailure("MINERU_UNAVAILABLE", "论文解析服务尚未配置。")
-        headers = _bearer(self._settings.mineru_api_key)
+        artifact_root = (
+            self._settings.object_storage_path.resolve()
+            / paper_id
+            / paper_version_id
+            / "mineru"
+        )
         try:
-            async with httpx.AsyncClient(timeout=180) as client:
-                with file_path.open("rb") as file_handle:
-                    response = await client.post(
-                        self._settings.mineru_base_url.rstrip("/") + "/api/v1/parse",
-                        headers=headers,
-                        files={"file": (file_path.name, file_handle, "application/pdf")},
-                    )
-                response.raise_for_status()
-                body = response.json()
-        except (OSError, httpx.HTTPError, ValueError) as exc:
+            raw_blocks, raw_media = await asyncio.to_thread(
+                parse_mineru_pdf,
+                self._settings,
+                pdf_path=file_path,
+                paper_id=paper_id,
+                paper_version_id=paper_version_id,
+                artifact_root=artifact_root,
+            )
+        except (OSError, ExternalPipelineError) as exc:
             raise IngestionFailure("MINERU_PARSE_FAILED", "论文解析失败，请稍后重试。") from exc
-        data = body.get("data", body) if isinstance(body, dict) else {}
-        raw_blocks = data.get("blocks", []) if isinstance(data, dict) else []
-        raw_media = data.get("media", data.get("objects", [])) if isinstance(data, dict) else []
         blocks = [
-            _block_from_raw(item, index)
+            _block_from_pipeline(item, index)
             for index, item in enumerate(raw_blocks, start=1)
             if isinstance(item, dict)
         ]
         media = [
-            _media_from_raw(item, index)
+            _media_from_pipeline(item, index)
             for index, item in enumerate(raw_media, start=1)
             if isinstance(item, dict)
         ]
@@ -124,110 +133,23 @@ class BaiduSpecializedOcrClient:
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
 
-    async def recognize(self, item: MediaObject) -> str:
+    async def recognize(self, item: MediaObject) -> dict[str, Any]:
         if not item.required:
-            return ""
-        if not self._settings.baidu_ocr_base_url or not self._settings.baidu_ocr_api_key:
+            return {"status": "skipped", "ocr_text": "", "processors": []}
+        if not self._settings.baidu_ocr_api_key or not self._settings.baidu_ocr_secret_key:
             raise IngestionFailure("BAIDU_OCR_SPECIALIZED_FAILED", "专项 OCR 服务尚未配置。")
-        endpoint = "/table-recognition-v2" if item.kind == "table" else "/paddleocr-vl"
-        payload = {
-            "image_url": item.image_url,
-            "object_id": item.object_id,
-            "page_number": item.page_number,
-        }
+        media = dict(item.metadata.get("pipeline_media") or {})
+        media.setdefault("object_id", item.object_id)
+        media.setdefault("object_type", item.kind)
+        media.setdefault("image_path", item.image_url)
+        media.setdefault("page_start", item.page_number)
+        raw_root = self._settings.object_storage_path.resolve() / "ocr" / item.object_id
         try:
-            async with httpx.AsyncClient(timeout=60) as client:
-                response = await client.post(
-                    self._settings.baidu_ocr_base_url.rstrip("/") + endpoint,
-                    headers=_bearer(self._settings.baidu_ocr_api_key),
-                    json=payload,
-                )
-                response.raise_for_status()
-                body = response.json()
-        except (httpx.HTTPError, ValueError) as exc:
+            return await asyncio.to_thread(
+                recognize_baidu_media, self._settings, media, raw_root=raw_root
+            )
+        except ExternalPipelineError as exc:
             raise IngestionFailure("BAIDU_OCR_SPECIALIZED_FAILED", "专项 OCR 识别失败。") from exc
-        data = body.get("data", body) if isinstance(body, dict) else {}
-        text = _ocr_text(data)
-        if not text:
-            raise IngestionFailure("BAIDU_OCR_SPECIALIZED_FAILED", "专项 OCR 未返回可用内容。")
-        return text
-
-
-class RagFlowManualImporter:
-    """Imports already structured chunks and requires a complete mapping response."""
-
-    def __init__(self, settings: Settings) -> None:
-        self._settings = settings
-
-    async def import_chunks(
-        self, paper: Paper, chunks: list[BuiltChunk]
-    ) -> tuple[str, dict[str, str]]:
-        if (
-            not self._settings.ragflow_base_url
-            or not self._settings.ragflow_api_key
-            or not self._settings.ragflow_user_dataset_id
-        ):
-            raise IngestionFailure("RAGFLOW_IMPORT_FAILED", "论文知识库服务尚未配置。")
-        payload = {
-            "name": f"paper-{paper.paper_id}",
-            "chunk_method": "manual",
-            "metadata": {
-                "paper_id": paper.paper_id,
-                "paper_version_id": paper.paper_version_id,
-                "user_id": paper.owner_id,
-                "quality_status": "ready",
-                "file_hash": paper.content_sha256,
-            },
-            "chunks": [
-                {
-                    "id": item.chunk_id,
-                    "content": item.content,
-                    "metadata": {
-                        "paper_id": paper.paper_id,
-                        "paper_version_id": paper.paper_version_id,
-                        "source_chunk_id": item.chunk_id,
-                        "content_type": item.content_type,
-                        "section_title": item.section_title,
-                        "page_number": item.page_number,
-                        "source_ref": item.source_ref,
-                        "object_id": item.object_id,
-                        "parent_chunk_id": item.parent_chunk_id,
-                        "content_sha256": item.content_sha256,
-                        **(item.metadata or {}),
-                    },
-                }
-                for item in chunks
-            ],
-        }
-        url = (
-            self._settings.ragflow_base_url.rstrip("/")
-            + f"/api/v1/datasets/{self._settings.ragflow_user_dataset_id}/documents"
-        )
-        try:
-            async with httpx.AsyncClient(timeout=120) as client:
-                response = await client.post(
-                    url, headers=_bearer(self._settings.ragflow_api_key), json=payload
-                )
-                response.raise_for_status()
-                body = response.json()
-        except (httpx.HTTPError, ValueError) as exc:
-            raise IngestionFailure("RAGFLOW_IMPORT_FAILED", "论文知识库导入失败。") from exc
-        data = body.get("data", body) if isinstance(body, dict) else {}
-        document_id = (
-            str(data.get("document_id") or data.get("id") or "") if isinstance(data, dict) else ""
-        )
-        raw_mappings = data.get("chunk_mappings", []) if isinstance(data, dict) else []
-        mapping: dict[str, str] = {}
-        for item in raw_mappings:
-            if (
-                isinstance(item, dict)
-                and item.get("source_chunk_id")
-                and item.get("ragflow_chunk_id")
-            ):
-                mapping[str(item["source_chunk_id"])] = str(item["ragflow_chunk_id"])
-        if not document_id or set(mapping) != {chunk.chunk_id for chunk in chunks}:
-            raise IngestionFailure("RAGFLOW_IMPORT_INCOMPLETE", "论文知识库映射不完整。")
-        return document_id, mapping
 
 
 class IngestionTaskExecutor:
@@ -297,9 +219,20 @@ class IngestionTaskExecutor:
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
             paper_id, version_id, file_path = paper.paper_id, paper.paper_version_id, Path(paper.file_path)
+            document = {
+                "paper_id": paper.paper_id,
+                "paper_version_id": paper.paper_version_id,
+                "title": paper.title,
+                "file_name": paper.file_name,
+                "file_sha256": paper.content_sha256,
+                "parser_name": "mineru",
+                "parser_version": "mineru-v1",
+            }
 
         if stage == "mineru_parsing" or not await self._has_parse_artifacts(paper_id, version_id):
-            parsed = await MinerUClient(self._settings).parse(file_path)
+            parsed = await MinerUClient(self._settings).parse(
+                file_path, paper_id=paper_id, paper_version_id=version_id
+            )
             await self._store_parse_artifacts(task_id, paper_id, version_id, parsed)
         parsed = await self._load_parsed_artifacts(paper_id, version_id)
 
@@ -308,22 +241,77 @@ class IngestionTaskExecutor:
         parsed = ParsedPaper(blocks=parsed.blocks, media=parsed.media)
 
         await self._set_stage(task_id, paper_id, "cleaning")
-        chunks = _build_chunks(paper_id, parsed, ocr_results)
+        second_clean = build_second_clean_chunks(
+            document=document,
+            blocks=_second_clean_blocks(parsed.blocks),
+            media_objects=_second_clean_media(parsed.media),
+            ocr_by_id=_second_clean_ocr(ocr_results, parsed.media),
+        )
+        chunks = [_chunk_from_second_clean(item) for item in second_clean.chunks]
         await self._store_chunks(paper_id, version_id, chunks)
 
         await self._set_stage(task_id, paper_id, "quality_check")
-        errors = _quality_report(parsed, chunks, ocr_results)
-        await self._store_quality_report(task_id, paper_id, version_id, errors, len(chunks))
-        if errors:
+        await self._store_quality_report(
+            task_id, paper_id, version_id, second_clean.quality_report
+        )
+        if second_clean.blocking_errors:
             raise IngestionFailure(
                 "CHUNK_QUALITY_FAILED", "论文结构化质量检查未通过。", retryable=False
             )
 
         await self._set_stage(task_id, paper_id, "understanding")
-        understanding = await self._understand(paper_id, chunks)
+        # Parsing, OCR, second-clean and local retrieval remain useful without
+        # a generation model.  Record the missing capability explicitly and
+        # mark the document ready for evidence retrieval instead of discarding
+        # already verified chunks.  Answer generation and format judgment keep
+        # their separate MODEL_NOT_CONFIGURED guardrails.
+        if not self._settings.llm_base_url or not self._settings.llm_api_key or not self._settings.llm_model:
+            await self._store_understanding(
+                paper_id,
+                {
+                    "status": "unavailable",
+                    "reason": "MODEL_NOT_CONFIGURED",
+                    "message": "已完成解析、清洗与本地检索；配置生成模型后可生成理解与总结。",
+                },
+            )
+            await self._complete(
+                task_id,
+                paper_id,
+                len(chunks),
+                quality_status=str(second_clean.quality_report["status"]),
+            )
+            return
+        try:
+            understanding = await self._understand(paper_id, chunks)
+        except IngestionFailure as exc:
+            if exc.code != "MODEL_ENDPOINT_UNAVAILABLE":
+                raise
+            # A transiently unreachable generation provider must not discard
+            # already validated local chunks.  The UI can show that the model
+            # summary is unavailable while still allowing reading and search.
+            await self._store_understanding(
+                paper_id,
+                {
+                    "status": "unavailable",
+                    "reason": exc.code,
+                    "message": "论文已完成结构化入库；论文理解模型服务暂不可用，可稍后重试生成摘要。",
+                },
+            )
+            await self._complete(
+                task_id,
+                paper_id,
+                len(chunks),
+                quality_status=str(second_clean.quality_report["status"]),
+            )
+            return
         await self._store_understanding(paper_id, understanding)
 
-        await self._complete(task_id, paper_id, len(chunks))
+        await self._complete(
+            task_id,
+            paper_id,
+            len(chunks),
+            quality_status=str(second_clean.quality_report["status"]),
+        )
 
     async def _understand(self, paper_id: str, chunks: list[BuiltChunk]) -> dict[str, Any]:
         if not self._settings.llm_base_url or not self._settings.llm_api_key or not self._settings.llm_model:
@@ -339,6 +327,11 @@ class IngestionTaskExecutor:
                 evidences=evidences,
                 configuration=snapshot_from_settings(self._settings),
             )
+        except ModelTransportError as exc:
+            raise IngestionFailure(
+                "MODEL_ENDPOINT_UNAVAILABLE",
+                "论文理解模型服务暂不可用，请检查模型服务连接。",
+            ) from exc
         except Exception as exc:
             raise IngestionFailure("PAPER_UNDERSTANDING_FAILED", "论文智能理解失败，请稍后重试。") from exc
         evidence_ids = {item.evidence_id for item in evidences}
@@ -391,7 +384,9 @@ class IngestionTaskExecutor:
                         content_type=block.content_type,
                         section_title=block.section_title,
                         page_number=block.page_number,
+                        bbox_json=block.metadata.get("bbox"),
                         source_ref=block.source_ref,
+                        metadata_json=block.metadata,
                     )
                     for block in parsed.blocks
                 ]
@@ -404,11 +399,13 @@ class IngestionTaskExecutor:
                         object_id=item.object_id,
                         object_type=item.kind,
                         page_number=item.page_number,
+                        bbox_json=item.metadata.get("pdf_bbox"),
                         source_ref=item.source_ref,
                         image_url=item.image_url,
                         image_sha256=_image_hash(item.image_url),
                         caption=item.caption,
                         required=item.required,
+                        raw_response_json={"parser_metadata": item.metadata},
                     )
                     for item in parsed.media
                 ]
@@ -457,6 +454,7 @@ class IngestionTaskExecutor:
                     item.section_title,
                     item.content_type,
                     item.source_ref,
+                    item.metadata_json or {},
                 )
                 for item in blocks
             ],
@@ -469,6 +467,11 @@ class IngestionTaskExecutor:
                     item.image_url,
                     item.caption,
                     item.required,
+                    (
+                        item.raw_response_json.get("parser_metadata", {})
+                        if isinstance(item.raw_response_json, dict)
+                        else {}
+                    ),
                 )
                 for item in media
             ],
@@ -476,7 +479,7 @@ class IngestionTaskExecutor:
 
     async def _run_ocr(
         self, task_id: str, paper_id: str, version_id: str, media: list[MediaObject]
-    ) -> dict[str, str]:
+    ) -> dict[str, dict[str, Any]]:
         async with self._sessions() as session:
             rows = {
                 item.object_id: item
@@ -490,18 +493,19 @@ class IngestionTaskExecutor:
                 ).all()
             }
         client = BaiduSpecializedOcrClient(self._settings)
-        result: dict[str, str] = {}
+        result: dict[str, dict[str, Any]] = {}
         for item in media:
             row = rows[item.object_id]
             if not item.required:
-                result[item.object_id] = row.ocr_text or ""
+                result[item.object_id] = {"status": "skipped", "ocr_text": row.ocr_text or ""}
                 continue
             if row.ocr_status != "success":
                 try:
-                    text = await client.recognize(item)
+                    ocr_result = await client.recognize(item)
                 except IngestionFailure:
                     await self._record_ocr_failure(paper_id, version_id, item.object_id)
                     raise
+                text = _ocr_result_text(ocr_result)
                 async with self._sessions() as session:
                     current = await session.scalar(
                         select(MediaObjectRecord).where(
@@ -512,14 +516,23 @@ class IngestionTaskExecutor:
                     )
                     assert current is not None
                     current.ocr_status, current.ocr_text = "success", text
-                    current.ocr_engine = (
-                        "baidu-table-v2" if item.kind == "table" else "baidu-paddleocr-vl"
-                    )
-                    current.engines_json = [current.ocr_engine]
+                    processors = ocr_result.get("processors")
+                    current.engines_json = [str(value) for value in processors] if isinstance(processors, list) else []
+                    current.ocr_engine = current.engines_json[-1] if current.engines_json else None
+                    current.raw_response_json = {
+                        "parser_metadata": item.metadata,
+                        "normalized_ocr": ocr_result,
+                    }
                     current.failure_json = None
                     await session.commit()
                 row.ocr_status, row.ocr_text = "success", text
-            result[item.object_id] = row.ocr_text or ""
+                result[item.object_id] = ocr_result
+                continue
+            result[item.object_id] = {
+                "status": "success",
+                "ocr_text": row.ocr_text or "",
+                "processors": row.engines_json or [],
+            }
         return result
 
     async def _record_ocr_failure(self, paper_id: str, version_id: str, object_id: str) -> None:
@@ -548,26 +561,24 @@ class IngestionTaskExecutor:
                 )
             )
             session.add_all([_chunk_row(paper_id, version_id, item) for item in chunks])
+            version = await session.get(PaperVersion, version_id)
+            if version is not None and chunks:
+                version.cleaning_version = str(
+                    (chunks[0].metadata or {}).get("cleaning_version")
+                    or version.cleaning_version
+                )
             await session.commit()
 
     async def _store_quality_report(
-        self,
-        task_id: str,
-        paper_id: str,
-        version_id: str,
-        errors: list[str],
-        indexable_chunk_count: int,
+        self, task_id: str, paper_id: str, version_id: str, report: dict[str, Any]
     ) -> None:
         async with self._sessions() as session:
             item = await session.scalar(
                 select(IngestionQualityReport).where(IngestionQualityReport.task_id == task_id)
             )
-            status = "failed" if errors else "ready"
-            payload = {
-                "status": status,
-                "blocking_errors": errors,
-                "indexable_chunks": indexable_chunk_count,
-            }
+            status = str(report["status"])
+            errors = list(report.get("critical_errors") or [])
+            indexable_chunk_count = int(report.get("indexable_chunks") or 0)
             if item is None:
                 session.add(
                     IngestionQualityReport(
@@ -577,21 +588,28 @@ class IngestionTaskExecutor:
                         status=status,
                         indexable_chunk_count=indexable_chunk_count,
                         blocking_error_count=len(errors),
-                        expected_mapping_count=indexable_chunk_count,
-                        report_json=payload,
+                        expected_mapping_count=0,
+                        mapped_chunk_count=0,
+                        mapping_failure_count=0,
+                        report_json=report,
                     )
                 )
             else:
                 item.status = status
                 item.indexable_chunk_count = indexable_chunk_count
                 item.blocking_error_count = len(errors)
-                item.expected_mapping_count = indexable_chunk_count
-                item.report_json = payload
+                item.expected_mapping_count = 0
+                item.mapped_chunk_count = 0
+                item.mapping_failure_count = 0
+                item.report_json = report
             run = await session.scalar(
                 select(PaperIngestionRun).where(PaperIngestionRun.task_id == task_id)
             )
             if run is not None:
                 run.stage, run.quality_status = "quality_check", status
+                run.cleaning_version = str(
+                    report.get("cleaning_version") or run.cleaning_version
+                )
             await session.commit()
 
     async def _set_stage(self, task_id: str, paper_id: str, stage: str) -> None:
@@ -609,43 +627,13 @@ class IngestionTaskExecutor:
             await session.commit()
             await self._redis.set_task_state(task.task_id, task_view(task))
 
-    async def _store_mappings(
-        self,
-        paper_id: str,
-        version_id: str,
-        document_id: str,
-        mappings: dict[str, str],
-        chunks: list[BuiltChunk],
-    ) -> None:
-        async with self._sessions() as session:
-            await session.execute(
-                delete(RagMapping).where(
-                    RagMapping.paper_id == paper_id,
-                    RagMapping.paper_version_id == version_id,
-                )
-            )
-            session.add_all(
-                [
-                    RagMapping(
-                        paper_id=paper_id,
-                        paper_version_id=version_id,
-                        source_chunk_id=chunk.chunk_id,
-                        dataset_id=self._settings.ragflow_user_dataset_id or "",
-                        document_id=document_id,
-                        ragflow_chunk_id=mappings[chunk.chunk_id],
-                        content_sha256=chunk.content_sha256,
-                        status="ready",
-                    )
-                    for chunk in chunks
-                ]
-            )
-            await session.commit()
-
     async def _complete(
         self,
         task_id: str,
         paper_id: str,
         count: int,
+        *,
+        quality_status: str,
     ) -> None:
         async with self._sessions() as session:
             task, paper = await _task_and_paper(session, task_id, paper_id)
@@ -664,7 +652,7 @@ class IngestionTaskExecutor:
                 "ready",
                 1.0,
                 "not_indexed",
-                "ready",
+                quality_status,
             )
             run = await session.scalar(
                 select(PaperIngestionRun).where(PaperIngestionRun.task_id == task_id)
@@ -673,7 +661,7 @@ class IngestionTaskExecutor:
                 run.stage, run.status, run.quality_status, run.completed_at = (
                     "completed",
                     "succeeded",
-                    "ready",
+                    quality_status,
                     task.completed_at,
                 )
             report = await session.scalar(
@@ -736,33 +724,6 @@ async def _task_and_paper(
     return task, paper
 
 
-async def _complete_mapping(
-    session: AsyncSession, paper_id: str, version_id: str, chunks: list[BuiltChunk]
-) -> tuple[str, dict[str, str]] | None:
-    """Reuse only a complete, content-identical mapping from a prior retry."""
-    rows = list(
-        (
-            await session.scalars(
-                select(RagMapping).where(
-                    RagMapping.paper_id == paper_id,
-                    RagMapping.paper_version_id == version_id,
-                    RagMapping.status == "ready",
-                )
-            )
-        ).all()
-    )
-    expected = {item.chunk_id: item.content_sha256 for item in chunks}
-    by_chunk = {item.source_chunk_id: item for item in rows if item.source_chunk_id}
-    if set(by_chunk) != set(expected):
-        return None
-    if any(by_chunk[key].content_sha256 != digest for key, digest in expected.items()):
-        return None
-    documents = {item.document_id for item in by_chunk.values()}
-    if len(documents) != 1 or not all(item.ragflow_chunk_id for item in by_chunk.values()):
-        return None
-    return documents.pop(), {key: str(item.ragflow_chunk_id) for key, item in by_chunk.items()}
-
-
 def _ingestion_stage(value: str) -> str:
     stages = {
         "mineru_parsing",
@@ -792,109 +753,169 @@ def _image_hash(image_url: str | None) -> str | None:
     return hashlib.sha256(image_url.encode("utf-8")).hexdigest()
 
 
-def _block_from_raw(raw: dict[str, Any], index: int) -> ParsedBlock:
+def _block_from_pipeline(raw: dict[str, Any], index: int) -> ParsedBlock:
+    """Keep the complete MinerU record while exposing its common fields to SQL."""
+
     content = str(raw.get("content") or raw.get("text") or "").strip()
-    page = _page(raw.get("page_number") or raw.get("page") or 1)
+    content = str(raw.get("normalized_text") or content).strip()
+    page = _page(raw.get("page_start") or raw.get("page_number") or raw.get("page") or 1)
     source_ref = str(raw.get("source_ref") or f"page:{page}:block:{index}")
-    content_type = str(raw.get("content_type") or "text")
+    section_path = raw.get("section_path") if isinstance(raw.get("section_path"), list) else []
+    section_title = str(section_path[-1]) if section_path else ""
     return ParsedBlock(
-        str(raw.get("id") or f"block-{index}"),
+        str(raw.get("block_id") or raw.get("id") or f"block-{index}"),
         content,
         page,
-        str(raw.get("section_title") or raw.get("section") or ""),
-        content_type if content_type in {"text", "formula", "reference", "metadata"} else "text",
+        section_title or str(raw.get("section_title") or raw.get("section") or ""),
+        str(raw.get("content_type") or "text"),
         source_ref,
+        {"second_clean_block": raw, "bbox": raw.get("bbox")},
     )
 
 
-def _media_from_raw(raw: dict[str, Any], index: int) -> MediaObject:
-    kind = str(raw.get("kind") or raw.get("type") or "figure")
-    if kind not in {"figure", "table"}:
-        kind = "figure"
-    page = _page(raw.get("page_number") or raw.get("page") or 1)
+def _media_from_pipeline(raw: dict[str, Any], index: int) -> MediaObject:
+    kind = str(raw.get("object_type") or raw.get("kind") or raw.get("type") or "image")
+    page = _page(raw.get("page_start") or raw.get("page_number") or raw.get("page") or 1)
+    caption = raw.get("caption")
+    if isinstance(caption, list):
+        caption = " ".join(str(value) for value in caption if str(value).strip()) or None
     return MediaObject(
-        str(raw.get("id") or f"media-{index}"),
+        str(raw.get("object_id") or raw.get("id") or f"media-{index}"),
         kind,
         page,
         str(raw.get("source_ref") or f"page:{page}:media:{index}"),
-        raw.get("image_url") or raw.get("url"),
-        raw.get("caption"),
+        raw.get("image_path") or raw.get("image_url") or raw.get("url"),
+        str(caption) if caption else None,
         bool(raw.get("required", True)),
+        {"pipeline_media": raw, "pdf_bbox": raw.get("pdf_bbox")},
     )
 
 
-def _build_chunks(
-    paper_id: str, parsed: ParsedPaper, ocr_results: dict[str, str]
-) -> list[BuiltChunk]:
-    chunks: list[BuiltChunk] = []
-    text_blocks = [block for block in parsed.blocks if block.content]
-    text_ids = [f"{paper_id}:text:{index}" for index in range(1, len(text_blocks) + 1)]
-    for index, block in enumerate(text_blocks, start=1):
-        chunk_id = f"{paper_id}:text:{index}"
-        content_role = {
-            "formula": "formula",
-            "reference": "reference_entry",
-            "metadata": "metadata",
-        }.get(block.content_type, "paragraph")
-        chunks.append(
-            _built(
-                chunk_id,
-                block.content,
-                block.content_type,
-                block.section_title,
-                block.page_number,
-                block.source_ref,
-                metadata={
-                    "content_role": content_role,
-                    "section_path": [block.section_title] if block.section_title else [],
-                    "prev_chunk_id": text_ids[index - 2] if index > 1 else None,
-                    "next_chunk_id": text_ids[index] if index < len(text_ids) else None,
-                    "retrieval_weight": 0.35 if content_role == "reference_entry" else 1.0,
-                },
-            )
-        )
-    for item in parsed.media:
-        text = ocr_results.get(item.object_id, "")
-        content = "\n".join(part for part in [item.caption or "", text] if part).strip()
-        if not content:
+def _second_clean_blocks(blocks: list[ParsedBlock]) -> list[dict[str, Any]]:
+    """Translate API parser records to second_clean's stable block contract."""
+
+    converted: list[dict[str, Any]] = []
+    for block in blocks:
+        source = block.metadata.get("second_clean_block")
+        if isinstance(source, dict):
+            converted.append(dict(source))
             continue
-        parent_id = f"{paper_id}:{item.kind}:{item.object_id}"
-        chunks.append(
-            _built(
-                parent_id,
-                content,
-                item.kind,
-                item.caption or item.kind,
-                item.page_number,
-                item.source_ref,
-                object_id=item.object_id,
-                metadata={
-                    "content_role": f"{item.kind}_overview",
-                    "section_path": [item.caption] if item.caption else [],
-                },
-            )
+        if block.content_type == "formula":
+            role, indexable = "display_formula", True
+        elif block.content_type == "reference":
+            role, indexable = "reference_entry", True
+        elif block.content_type == "metadata":
+            role, indexable = "metadata", False
+        else:
+            role, indexable = "paragraph", True
+        section_path = [block.section_title] if block.section_title else []
+        converted.append(
+            {
+                "block_id": block.block_id,
+                "raw_text": block.content,
+                "normalized_text": block.content,
+                "content_type": block.content_type,
+                "content_role": role,
+                "section_path": section_path,
+                "page_start": block.page_number,
+                "page_end": block.page_number,
+                "bbox": None,
+                "source_ref": block.source_ref,
+                "indexable": indexable,
+                "quality_flags": [],
+            }
         )
+    return converted
+
+
+def _second_clean_media(media: list[MediaObject]) -> list[dict[str, Any]]:
+    converted: list[dict[str, Any]] = []
+    for item in media:
+        source = item.metadata.get("pipeline_media")
+        if isinstance(source, dict):
+            converted.append(dict(source))
+            continue
+        converted.append({
+            "object_id": item.object_id,
+            "object_type": item.kind,
+            "caption": [item.caption] if item.caption else [],
+            "nearby_text": [],
+            "section_path": [item.caption] if item.caption else [],
+            "page_start": item.page_number,
+            "page_end": item.page_number,
+            "pdf_bbox": None,
+            "source_ref": item.source_ref,
+            "block_id": item.object_id,
+            "quality_flags": [],
+        })
+    return converted
+
+
+def _second_clean_ocr(
+    ocr_results: dict[str, dict[str, Any]], media: list[MediaObject]
+) -> dict[str, dict[str, Any]]:
+    media_by_id = {item.object_id: item for item in media}
+    results: dict[str, dict[str, Any]] = {}
+    for object_id, ocr_result in ocr_results.items():
+        if not isinstance(ocr_result, dict) or ocr_result.get("status") != "success":
+            continue
+        item = media_by_id.get(object_id)
+        value = dict(ocr_result)
+        text = _ocr_result_text(value)
         if text:
-            child_type = "table" if item.kind == "table" else "figure"
-            chunks.append(
-                _built(
-                    f"{parent_id}:ocr",
-                    text,
-                    child_type,
-                    item.caption or item.kind,
-                    item.page_number,
-                    item.source_ref,
-                    object_id=item.object_id,
-                    parent_chunk_id=parent_id,
-                    metadata={
-                        "content_role": "table_rows"
-                        if item.kind == "table"
-                        else "figure_ocr",
-                        "section_path": [item.caption] if item.caption else [],
-                    },
-                )
-            )
-    return chunks
+            value["ocr_text"] = text
+        if item is not None and item.kind == "table" and text and not value.get("table_markdown_candidates"):
+            # The API OCR adapter currently returns normalized table text rather
+            # than a matrix.  Keep it as a table candidate instead of discarding
+            # it merely because it is not HTML.
+            value["table_markdown_candidates"] = [text]
+        results[object_id] = value
+    return results
+
+
+def _ocr_result_text(result: dict[str, Any]) -> str:
+    direct = result.get("ocr_text")
+    if isinstance(direct, str) and direct.strip():
+        return direct.strip()
+    for key in ("table_markdown_candidates", "table_html_candidates", "visual_descriptions"):
+        value = result.get(key)
+        if isinstance(value, list):
+            text = "\n".join(str(item).strip() for item in value if str(item).strip())
+            if text:
+                return text
+    return ""
+
+
+def _chunk_from_second_clean(item: dict[str, Any]) -> BuiltChunk:
+    metadata = {
+        "content_role": item["content_role"],
+        "section_path": list(item.get("section_path") or []),
+        "section_role": item.get("section_role") or "body",
+        "prev_chunk_id": item.get("prev_chunk_id"),
+        "next_chunk_id": item.get("next_chunk_id"),
+        "retrieval_weight": float(item.get("retrieval_weight") or 1.0),
+        "quality_flags": list(item.get("quality_flags") or []),
+        "indexable": bool(item.get("indexable")),
+        "parser_version": item.get("parser_version") or "mineru-v1",
+        "cleaning_version": item.get("cleaning_version") or "paper_second_clean_v2",
+        "raw_content": item.get("raw_content") or "",
+        "source_refs": list(item.get("source_refs") or []),
+        "source_block_ids": list(item.get("source_block_ids") or []),
+        "bbox": item.get("bbox"),
+        "provenance": item.get("provenance") or {},
+    }
+    page_start = int(item.get("page_start") or 1)
+    return _built(
+        str(item["source_chunk_id"]),
+        str(item["content"]),
+        str(item["content_type"]),
+        str(item.get("section") or ""),
+        page_start,
+        str(item.get("source_ref") or f"paper://{item['paper_id']}/{item['source_chunk_id']}"),
+        object_id=item.get("object_id"),
+        parent_chunk_id=item.get("parent_chunk_id"),
+        metadata={**metadata, "page_end": int(item.get("page_end") or page_start)},
+    )
 
 
 def _built(
@@ -923,34 +944,19 @@ def _built(
     )
 
 
-def _quality_report(
-    parsed: ParsedPaper, chunks: list[BuiltChunk], ocr_results: dict[str, str]
-) -> list[str]:
-    errors: list[str] = []
-    if not chunks:
-        errors.append("no_indexable_chunks")
-    for item in parsed.media:
-        if item.required and not ocr_results.get(item.object_id):
-            errors.append(f"ocr_missing:{item.object_id}")
-    ids = {item.chunk_id for item in chunks}
-    for chunk in chunks:
-        if not chunk.content.strip() or not chunk.source_ref or chunk.page_number < 1:
-            errors.append(f"invalid_chunk:{chunk.chunk_id}")
-        if chunk.parent_chunk_id and chunk.parent_chunk_id not in ids:
-            errors.append(f"orphan_chunk:{chunk.chunk_id}")
-    return errors
-
-
 def _understanding_evidences(paper_id: str, chunks: list[BuiltChunk]) -> list[EvidenceItem]:
-    """Build a bounded, local evidence set for upload-time paper understanding."""
+    """Build a bounded, chapter-balanced evidence set for paper understanding."""
     candidates = [
         chunk
         for chunk in chunks
-        if chunk.content.strip() and chunk.content_type != "reference" and (chunk.metadata or {}).get("indexable", True)
+        if (
+            chunk.content.strip()
+            and chunk.content_type != "reference"
+            and (chunk.metadata or {}).get("indexable", True)
+            and (chunk.metadata or {}).get("content_role") != "paper_metadata"
+        )
     ]
-    if len(candidates) > 24:
-        positions = sorted({round(index * (len(candidates) - 1) / 23) for index in range(24)})
-        candidates = [candidates[index] for index in positions]
+    candidates = _sample_by_section(candidates, limit=24)
     return [
         EvidenceItem(
             evidence_id=f"U{index}",
@@ -958,7 +964,7 @@ def _understanding_evidences(paper_id: str, chunks: list[BuiltChunk]) -> list[Ev
             paper_id=paper_id,
             document_id=f"local:{paper_id}",
             chunk_id=chunk.chunk_id,
-            content_type=chunk.content_type,
+            content_type=_understanding_content_type(chunk.content_type),
             quote=chunk.content[:2_000],
             section_title=chunk.section_title or None,
             page_number=chunk.page_number,
@@ -967,6 +973,88 @@ def _understanding_evidences(paper_id: str, chunks: list[BuiltChunk]) -> list[Ev
         )
         for index, chunk in enumerate(candidates, start=1)
     ]
+
+
+def _understanding_content_type(value: str) -> str:
+    """Map parser-specific text labels to the public evidence contract.
+
+    The second-clean pipeline preserves source labels such as ``abstract`` and
+    ``heading``.  The AI ``EvidenceItem`` schema intentionally exposes a
+    smaller set of evidence media types, so unsupported textual labels must be
+    represented as ``text`` rather than making the entire ingestion task fail
+    during Pydantic validation.
+    """
+
+    normalized = value.strip().lower()
+    accepted = {
+        "text",
+        "figure",
+        "figure_caption",
+        "table",
+        "formula",
+        "metadata",
+        "reference",
+    }
+    if normalized in accepted:
+        return normalized
+    if normalized in {"caption", "image_caption", "table_caption"}:
+        return "figure_caption"
+    if normalized in {"equation", "math"}:
+        return "formula"
+    if normalized in {"title", "heading", "section", "keyword"}:
+        return "metadata"
+    return "text"
+
+
+def _sample_by_section(chunks: list[BuiltChunk], *, limit: int) -> list[BuiltChunk]:
+    """Allocate the bounded understanding context across sections, not positions.
+
+    Every represented section receives one slot before the remaining slots are
+    apportioned to longer sections.  Selected chunks within a section are
+    evenly spaced, preserving coverage without privileging the document's
+    opening pages.
+    """
+
+    if len(chunks) <= limit:
+        return chunks
+    sections: dict[tuple[str, ...], list[BuiltChunk]] = {}
+    for chunk in chunks:
+        metadata = chunk.metadata or {}
+        path = tuple(str(part) for part in metadata.get("section_path") or [] if part)
+        key = path or (chunk.section_title or "Document",)
+        sections.setdefault(key, []).append(chunk)
+
+    ordered = sorted(
+        sections.items(),
+        key=lambda item: (min(chunk.page_number for chunk in item[1]), item[0]),
+    )
+    if len(ordered) > limit:
+        # Extremely fragmented parser output: retain the first chunk from the
+        # earliest sections rather than reverting to global positional sampling.
+        return [chunks[0] for _, chunks in ordered[:limit]]
+
+    quotas = {key: 1 for key, _ in ordered}
+    remaining = limit - len(ordered)
+    while remaining:
+        key, section_chunks = max(
+            ordered,
+            key=lambda item: (len(item[1]) / quotas[item[0]], -item[1][0].page_number),
+        )
+        quotas[key] += 1
+        remaining -= 1
+
+    selected: list[BuiltChunk] = []
+    for key, section_chunks in ordered:
+        count = min(quotas[key], len(section_chunks))
+        if count == 1:
+            selected.append(section_chunks[len(section_chunks) // 2])
+            continue
+        positions = {
+            round(index * (len(section_chunks) - 1) / (count - 1))
+            for index in range(count)
+        }
+        selected.extend(section_chunks[index] for index in sorted(positions))
+    return sorted(selected, key=lambda chunk: (chunk.page_number, chunk.chunk_id))[:limit]
 
 
 def _chunk_row(paper_id: str, version_id: str, item: BuiltChunk) -> PaperChunk:
@@ -997,31 +1085,8 @@ def _chunk_row(paper_id: str, version_id: str, item: BuiltChunk) -> PaperChunk:
     )
 
 
-def _ocr_text(data: Any) -> str:
-    if isinstance(data, str):
-        return data.strip()
-    if not isinstance(data, dict):
-        return ""
-    if isinstance(data.get("text"), str):
-        return data["text"].strip()
-    words = data.get("words_result") or data.get("items") or data.get("cells") or []
-    if isinstance(words, list):
-        return "\n".join(
-            str(item.get("words") or item.get("text") or item)
-            for item in words
-            if isinstance(item, (dict, str))
-        ).strip()
-    return ""
-
-
 def _page(value: Any) -> int:
     try:
         return max(int(value), 1)
     except (TypeError, ValueError):
         return 1
-
-
-def _bearer(secret: Any) -> dict[str, str]:
-    if not secret:
-        return {}
-    return {"Authorization": f"Bearer {secret.get_secret_value()}"}

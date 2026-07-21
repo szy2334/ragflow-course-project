@@ -1,0 +1,183 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.8832038641,
+        "min": 0.4884687066,
+        "variance": 0.01481656171
+      },
+      "words": "let Train is like a plane, with in-train magaaine and a j"
+    },
+    {
+      "probability": {
+        "average": 0.3394553959,
+        "min": 0.004454655573,
+        "variance": 0.1120121032
+      },
+      "words": "et thie you cam peue your edpt snee and thment"
+    },
+    {
+      "probability": {
+        "average": 0.9998658299,
+        "min": 0.9993281364,
+        "variance": 5.280266535e-08
+      },
+      "words": "cheetah"
+    },
+    {
+      "probability": {
+        "average": 0.9997516274,
+        "min": 0.9988492727,
+        "variance": 9.309072624e-08
+      },
+      "words": "bullet train"
+    },
+    {
+      "probability": {
+        "average": 0.9988411665,
+        "min": 0.9946523905,
+        "variance": 4.387525223e-06
+      },
+      "words": "morel"
+    },
+    {
+      "probability": {
+        "average": 1,
+        "min": 1,
+        "variance": 0
+      },
+      "words": "hand glass"
+    },
+    {
+      "probability": {
+        "average": 0.9995221496,
+        "min": 0.9979708791,
+        "variance": 5.00821784e-07
+      },
+      "words": "cheetah"
+    },
+    {
+      "probability": {
+        "average": 0.9993755817,
+        "min": 0.9946071506,
+        "variance": 2.089574309e-06
+      },
+      "words": "bullet train"
+    },
+    {
+      "probability": {
+        "average": 0.9996035099,
+        "min": 0.9983497858,
+        "variance": 2.206061254e-07
+      },
+      "words": "stinkhorn"
+    },
+    {
+      "probability": {
+        "average": 0.9987353086,
+        "min": 0.9949790835,
+        "variance": 2.343382448e-06
+      },
+      "words": "scissors"
+    },
+    {
+      "probability": {
+        "average": 0.9966335893,
+        "min": 0.9773471951,
+        "variance": 6.199564814e-05
+      },
+      "words": "leopard"
+    },
+    {
+      "probability": {
+        "average": 0.9996132255,
+        "min": 0.9959756732,
+        "variance": 1.110446192e-06
+      },
+      "words": "passenger car"
+    },
+    {
+      "probability": {
+        "average": 0.9992426038,
+        "min": 0.9968332648,
+        "variance": 1.461614602e-06
+      },
+      "words": "morel"
+    },
+    {
+      "probability": {
+        "average": 0.9993397593,
+        "min": 0.9943668246,
+        "variance": 2.769238108e-06
+      },
+      "words": "hand glass"
+    },
+    {
+      "probability": {
+        "average": 0.9994354844,
+        "min": 0.9971287847,
+        "variance": 9.957622069e-07
+      },
+      "words": "snow leopard"
+    },
+    {
+      "probability": {
+        "average": 0.9993963838,
+        "min": 0.9943354726,
+        "variance": 2.404104407e-06
+      },
+      "words": "subway train"
+    },
+    {
+      "probability": {
+        "average": 0.9997191429,
+        "min": 0.9993313551,
+        "variance": 5.369242828e-08
+      },
+      "words": "bolete"
+    },
+    {
+      "probability": {
+        "average": 0.9990746379,
+        "min": 0.9915342927,
+        "variance": 6.325404684e-06
+      },
+      "words": "frying pan"
+    },
+    {
+      "probability": {
+        "average": 0.9995825291,
+        "min": 0.9972955585,
+        "variance": 6.177186265e-07
+      },
+      "words": "Egyptian cat"
+    },
+    {
+      "probability": {
+        "average": 0.9998269081,
+        "min": 0.9988821149,
+        "variance": 8.258137996e-08
+      },
+      "words": "electric locomotive"
+    },
+    {
+      "probability": {
+        "average": 0.9999069571,
+        "min": 0.9997403026,
+        "variance": 6.234850858e-09
+      },
+      "words": "gyromitra"
+    },
+    {
+      "probability": {
+        "average": 0.9999064803,
+        "min": 0.9993898869,
+        "variance": 2.858858572e-08
+      },
+      "words": "stethoscope"
+    }
+  ],
+  "words_result_num": 22,
+  "direction": 0,
+  "log_id": 2079046047474108299
+}

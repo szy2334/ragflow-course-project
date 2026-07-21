@@ -1,0 +1,1105 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 11
+            },
+            {
+              "x": 327,
+              "y": 12
+            },
+            {
+              "x": 327,
+              "y": 80
+            },
+            {
+              "x": 12,
+              "y": 80
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": "System"
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 327,
+              "y": 12
+            },
+            {
+              "x": 440,
+              "y": 12
+            },
+            {
+              "x": 440,
+              "y": 80
+            },
+            {
+              "x": 327,
+              "y": 80
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Dev Test\nEM F1 EM F1"
+        },
+        {
+          "col_end": 4,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 440,
+              "y": 11
+            },
+            {
+              "x": 554,
+              "y": 11
+            },
+            {
+              "x": 554,
+              "y": 80
+            },
+            {
+              "x": 440,
+              "y": 80
+            }
+          ],
+          "row_start": 0,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 80
+            },
+            {
+              "x": 327,
+              "y": 80
+            },
+            {
+              "x": 327,
+              "y": 115
+            },
+            {
+              "x": 12,
+              "y": 115
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": ""
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 327,
+              "y": 80
+            },
+            {
+              "x": 440,
+              "y": 80
+            },
+            {
+              "x": 440,
+              "y": 115
+            },
+            {
+              "x": 327,
+              "y": 115
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "Top Leaderboard Systems (Dec 10th, 2018)"
+        },
+        {
+          "col_end": 3,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 440,
+              "y": 80
+            },
+            {
+              "x": 506,
+              "y": 80
+            },
+            {
+              "x": 506,
+              "y": 115
+            },
+            {
+              "x": 440,
+              "y": 115
+            }
+          ],
+          "row_start": 1,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 506,
+              "y": 80
+            },
+            {
+              "x": 555,
+              "y": 80
+            },
+            {
+              "x": 555,
+              "y": 115
+            },
+            {
+              "x": 506,
+              "y": 115
+            }
+          ],
+          "row_start": 1,
+          "col_start": 3,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 115
+            },
+            {
+              "x": 327,
+              "y": 115
+            },
+            {
+              "x": 327,
+              "y": 142
+            },
+            {
+              "x": 12,
+              "y": 142
+            }
+          ],
+          "row_start": 2,
+          "col_start": 0,
+          "words": "Human"
+        },
+        {
+          "col_end": 2,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 327,
+              "y": 115
+            },
+            {
+              "x": 440,
+              "y": 115
+            },
+            {
+              "x": 440,
+              "y": 142
+            },
+            {
+              "x": 327,
+              "y": 142
+            }
+          ],
+          "row_start": 2,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 440,
+              "y": 115
+            },
+            {
+              "x": 506,
+              "y": 115
+            },
+            {
+              "x": 506,
+              "y": 142
+            },
+            {
+              "x": 440,
+              "y": 142
+            }
+          ],
+          "row_start": 2,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 3,
+          "cell_location": [
+            {
+              "x": 506,
+              "y": 115
+            },
+            {
+              "x": 555,
+              "y": 115
+            },
+            {
+              "x": 555,
+              "y": 142
+            },
+            {
+              "x": 506,
+              "y": 142
+            }
+          ],
+          "row_start": 2,
+          "col_start": 3,
+          "words": "82.391.2"
+        },
+        {
+          "col_end": 1,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 142
+            },
+            {
+              "x": 327,
+              "y": 142
+            },
+            {
+              "x": 327,
+              "y": 206
+            },
+            {
+              "x": 12,
+              "y": 206
+            }
+          ],
+          "row_start": 3,
+          "col_start": 0,
+          "words": "#1 Ensemble-nlnet\n#2 Ensemble-QANet"
+        },
+        {
+          "col_end": 2,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 327,
+              "y": 142
+            },
+            {
+              "x": 440,
+              "y": 142
+            },
+            {
+              "x": 440,
+              "y": 206
+            },
+            {
+              "x": 327,
+              "y": 206
+            }
+          ],
+          "row_start": 3,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 440,
+              "y": 142
+            },
+            {
+              "x": 506,
+              "y": 142
+            },
+            {
+              "x": 506,
+              "y": 206
+            },
+            {
+              "x": 440,
+              "y": 206
+            }
+          ],
+          "row_start": 3,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 4,
+          "cell_location": [
+            {
+              "x": 506,
+              "y": 142
+            },
+            {
+              "x": 555,
+              "y": 142
+            },
+            {
+              "x": 555,
+              "y": 206
+            },
+            {
+              "x": 506,
+              "y": 206
+            }
+          ],
+          "row_start": 3,
+          "col_start": 3,
+          "words": "86.091.7\n84.590.5"
+        },
+        {
+          "col_end": 1,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 206
+            },
+            {
+              "x": 327,
+              "y": 206
+            },
+            {
+              "x": 327,
+              "y": 269
+            },
+            {
+              "x": 11,
+              "y": 269
+            }
+          ],
+          "row_start": 4,
+          "col_start": 0,
+          "words": "Published\nBiDAF+ELMo(Single)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 327,
+              "y": 206
+            },
+            {
+              "x": 440,
+              "y": 206
+            },
+            {
+              "x": 440,
+              "y": 269
+            },
+            {
+              "x": 327,
+              "y": 269
+            }
+          ],
+          "row_start": 4,
+          "col_start": 1,
+          "words": "85.6"
+        },
+        {
+          "col_end": 3,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 440,
+              "y": 206
+            },
+            {
+              "x": 506,
+              "y": 206
+            },
+            {
+              "x": 506,
+              "y": 269
+            },
+            {
+              "x": 440,
+              "y": 269
+            }
+          ],
+          "row_start": 4,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 5,
+          "cell_location": [
+            {
+              "x": 506,
+              "y": 206
+            },
+            {
+              "x": 555,
+              "y": 206
+            },
+            {
+              "x": 555,
+              "y": 269
+            },
+            {
+              "x": 506,
+              "y": 269
+            }
+          ],
+          "row_start": 4,
+          "col_start": 3,
+          "words": "85.8"
+        },
+        {
+          "col_end": 1,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 269
+            },
+            {
+              "x": 327,
+              "y": 269
+            },
+            {
+              "x": 327,
+              "y": 304
+            },
+            {
+              "x": 11,
+              "y": 304
+            }
+          ],
+          "row_start": 5,
+          "col_start": 0,
+          "words": "R.M. Reader(Ensemble)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 327,
+              "y": 269
+            },
+            {
+              "x": 440,
+              "y": 269
+            },
+            {
+              "x": 440,
+              "y": 304
+            },
+            {
+              "x": 327,
+              "y": 304
+            }
+          ],
+          "row_start": 5,
+          "col_start": 1,
+          "words": "81.287.982.388.5"
+        },
+        {
+          "col_end": 3,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 440,
+              "y": 269
+            },
+            {
+              "x": 506,
+              "y": 269
+            },
+            {
+              "x": 506,
+              "y": 304
+            },
+            {
+              "x": 440,
+              "y": 304
+            }
+          ],
+          "row_start": 5,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 6,
+          "cell_location": [
+            {
+              "x": 506,
+              "y": 269
+            },
+            {
+              "x": 555,
+              "y": 269
+            },
+            {
+              "x": 555,
+              "y": 304
+            },
+            {
+              "x": 506,
+              "y": 304
+            }
+          ],
+          "row_start": 5,
+          "col_start": 3,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 304
+            },
+            {
+              "x": 327,
+              "y": 304
+            },
+            {
+              "x": 327,
+              "y": 367
+            },
+            {
+              "x": 11,
+              "y": 367
+            }
+          ],
+          "row_start": 6,
+          "col_start": 0,
+          "words": "Ours\nBERTBASE(Single)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 327,
+              "y": 304
+            },
+            {
+              "x": 440,
+              "y": 304
+            },
+            {
+              "x": 441,
+              "y": 367
+            },
+            {
+              "x": 327,
+              "y": 367
+            }
+          ],
+          "row_start": 6,
+          "col_start": 1,
+          "words": "80.888.5"
+        },
+        {
+          "col_end": 3,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 440,
+              "y": 304
+            },
+            {
+              "x": 506,
+              "y": 304
+            },
+            {
+              "x": 506,
+              "y": 367
+            },
+            {
+              "x": 441,
+              "y": 367
+            }
+          ],
+          "row_start": 6,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 7,
+          "cell_location": [
+            {
+              "x": 506,
+              "y": 304
+            },
+            {
+              "x": 555,
+              "y": 304
+            },
+            {
+              "x": 555,
+              "y": 367
+            },
+            {
+              "x": 506,
+              "y": 367
+            }
+          ],
+          "row_start": 6,
+          "col_start": 3,
+          "words": "--"
+        },
+        {
+          "col_end": 1,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 367
+            },
+            {
+              "x": 327,
+              "y": 367
+            },
+            {
+              "x": 327,
+              "y": 395
+            },
+            {
+              "x": 11,
+              "y": 395
+            }
+          ],
+          "row_start": 7,
+          "col_start": 0,
+          "words": "BERTLARGE(Single)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 327,
+              "y": 367
+            },
+            {
+              "x": 441,
+              "y": 367
+            },
+            {
+              "x": 441,
+              "y": 395
+            },
+            {
+              "x": 327,
+              "y": 395
+            }
+          ],
+          "row_start": 7,
+          "col_start": 1,
+          "words": "84.1\n90.9"
+        },
+        {
+          "col_end": 3,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 441,
+              "y": 367
+            },
+            {
+              "x": 506,
+              "y": 367
+            },
+            {
+              "x": 506,
+              "y": 395
+            },
+            {
+              "x": 441,
+              "y": 395
+            }
+          ],
+          "row_start": 7,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 8,
+          "cell_location": [
+            {
+              "x": 506,
+              "y": 367
+            },
+            {
+              "x": 555,
+              "y": 367
+            },
+            {
+              "x": 555,
+              "y": 395
+            },
+            {
+              "x": 506,
+              "y": 395
+            }
+          ],
+          "row_start": 7,
+          "col_start": 3,
+          "words": "--"
+        },
+        {
+          "col_end": 1,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 395
+            },
+            {
+              "x": 327,
+              "y": 395
+            },
+            {
+              "x": 326,
+              "y": 421
+            },
+            {
+              "x": 11,
+              "y": 421
+            }
+          ],
+          "row_start": 8,
+          "col_start": 0,
+          "words": "BERTLARGE(Ensemble)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 327,
+              "y": 395
+            },
+            {
+              "x": 441,
+              "y": 395
+            },
+            {
+              "x": 441,
+              "y": 421
+            },
+            {
+              "x": 326,
+              "y": 421
+            }
+          ],
+          "row_start": 8,
+          "col_start": 1,
+          "words": "85.891.8"
+        },
+        {
+          "col_end": 3,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 441,
+              "y": 395
+            },
+            {
+              "x": 506,
+              "y": 395
+            },
+            {
+              "x": 506,
+              "y": 421
+            },
+            {
+              "x": 441,
+              "y": 421
+            }
+          ],
+          "row_start": 8,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 9,
+          "cell_location": [
+            {
+              "x": 506,
+              "y": 395
+            },
+            {
+              "x": 555,
+              "y": 395
+            },
+            {
+              "x": 556,
+              "y": 421
+            },
+            {
+              "x": 506,
+              "y": 421
+            }
+          ],
+          "row_start": 8,
+          "col_start": 3,
+          "words": ""
+        },
+        {
+          "col_end": 1,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 421
+            },
+            {
+              "x": 326,
+              "y": 421
+            },
+            {
+              "x": 326,
+              "y": 448
+            },
+            {
+              "x": 11,
+              "y": 448
+            }
+          ],
+          "row_start": 9,
+          "col_start": 0,
+          "words": "BERTLARGE(Sgl.+TriviaQA)"
+        },
+        {
+          "col_end": 2,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 326,
+              "y": 421
+            },
+            {
+              "x": 441,
+              "y": 421
+            },
+            {
+              "x": 441,
+              "y": 448
+            },
+            {
+              "x": 326,
+              "y": 448
+            }
+          ],
+          "row_start": 9,
+          "col_start": 1,
+          "words": "84.2\n91.1"
+        },
+        {
+          "col_end": 3,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 441,
+              "y": 421
+            },
+            {
+              "x": 506,
+              "y": 421
+            },
+            {
+              "x": 506,
+              "y": 448
+            },
+            {
+              "x": 441,
+              "y": 448
+            }
+          ],
+          "row_start": 9,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 10,
+          "cell_location": [
+            {
+              "x": 506,
+              "y": 421
+            },
+            {
+              "x": 556,
+              "y": 421
+            },
+            {
+              "x": 556,
+              "y": 448
+            },
+            {
+              "x": 506,
+              "y": 448
+            }
+          ],
+          "row_start": 9,
+          "col_start": 3,
+          "words": "85.191.8"
+        },
+        {
+          "col_end": 1,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 448
+            },
+            {
+              "x": 326,
+              "y": 448
+            },
+            {
+              "x": 326,
+              "y": 475
+            },
+            {
+              "x": 11,
+              "y": 475
+            }
+          ],
+          "row_start": 10,
+          "col_start": 0,
+          "words": "BERTLARGE(Ens.+TriviaQA) 86.2 92.2 87.4 93.2"
+        },
+        {
+          "col_end": 2,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 326,
+              "y": 448
+            },
+            {
+              "x": 441,
+              "y": 448
+            },
+            {
+              "x": 441,
+              "y": 475
+            },
+            {
+              "x": 326,
+              "y": 475
+            }
+          ],
+          "row_start": 10,
+          "col_start": 1,
+          "words": ""
+        },
+        {
+          "col_end": 3,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 441,
+              "y": 448
+            },
+            {
+              "x": 506,
+              "y": 448
+            },
+            {
+              "x": 506,
+              "y": 475
+            },
+            {
+              "x": 441,
+              "y": 475
+            }
+          ],
+          "row_start": 10,
+          "col_start": 2,
+          "words": ""
+        },
+        {
+          "col_end": 4,
+          "row_end": 11,
+          "cell_location": [
+            {
+              "x": 506,
+              "y": 448
+            },
+            {
+              "x": 556,
+              "y": 448
+            },
+            {
+              "x": 556,
+              "y": 475
+            },
+            {
+              "x": 506,
+              "y": 475
+            }
+          ],
+          "row_start": 10,
+          "col_start": 3,
+          "words": ""
+        }
+      ],
+      "table_location": [
+        {
+          "x": 11,
+          "y": 11
+        },
+        {
+          "x": 556,
+          "y": 11
+        },
+        {
+          "x": 556,
+          "y": 475
+        },
+        {
+          "x": 11,
+          "y": 475
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079048676825694701
+}

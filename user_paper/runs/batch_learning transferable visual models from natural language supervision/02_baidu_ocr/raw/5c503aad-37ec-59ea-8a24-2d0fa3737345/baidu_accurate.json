@@ -1,0 +1,255 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9976869226,
+        "min": 0.993776083,
+        "variance": 3.881018984e-06
+      },
+      "words": "Top labels,"
+    },
+    {
+      "probability": {
+        "average": 0.9998889565,
+        "min": 0.9995604157,
+        "variance": 1.270933403e-08
+      },
+      "words": "images of women"
+    },
+    {
+      "probability": {
+        "average": 0.9988288879,
+        "min": 0.9964030981,
+        "variance": 1.657945518e-06
+      },
+      "words": "woman"
+    },
+    {
+      "probability": {
+        "average": 0.9977524281,
+        "min": 0.9912475944,
+        "variance": 1.410575624e-05
+      },
+      "words": "lady"
+    },
+    {
+      "probability": {
+        "average": 0.999859333,
+        "min": 0.9995488524,
+        "variance": 2.036827418e-08
+      },
+      "words": "female"
+    },
+    {
+      "probability": {
+        "average": 0.9993020892,
+        "min": 0.9974042773,
+        "variance": 7.445103734e-07
+      },
+      "words": "looking"
+    },
+    {
+      "probability": {
+        "average": 0.999586761,
+        "min": 0.9953812361,
+        "variance": 1.396353241e-06
+      },
+      "words": "senior citizen"
+    },
+    {
+      "probability": {
+        "average": 0.9988976717,
+        "min": 0.9837788939,
+        "variance": 1.632765998e-05
+      },
+      "words": "public speaking"
+    },
+    {
+      "probability": {
+        "average": 0.999748528,
+        "min": 0.9989196062,
+        "variance": 1.443080322e-07
+      },
+      "words": "blonde"
+    },
+    {
+      "probability": {
+        "average": 0.9998481274,
+        "min": 0.9987220168,
+        "variance": 1.212848701e-07
+      },
+      "words": "spokesperson"
+    },
+    {
+      "probability": {
+        "average": 0.9993216395,
+        "min": 0.9971638322,
+        "variance": 9.859819556e-07
+      },
+      "words": "blazer"
+    },
+    {
+      "probability": {
+        "average": 0.9991875291,
+        "min": 0.9942440391,
+        "variance": 3.500814273e-06
+      },
+      "words": "laughing"
+    },
+    {
+      "probability": {
+        "average": 0.9997234941,
+        "min": 0.9995366335,
+        "variance": 2.367018404e-08
+      },
+      "words": "hot"
+    },
+    {
+      "probability": {
+        "average": 0.9998016953,
+        "min": 0.9994371533,
+        "variance": 3.99192075e-08
+      },
+      "words": "magenta"
+    },
+    {
+      "probability": {
+        "average": 0.9994686842,
+        "min": 0.9973107576,
+        "variance": 7.878427937e-07
+      },
+      "words": "bob cut"
+    },
+    {
+      "probability": {
+        "average": 0.999551177,
+        "min": 0.9967813492,
+        "variance": 8.664354141e-07
+      },
+      "words": "black hair"
+    },
+    {
+      "probability": {
+        "average": 0.9996061325,
+        "min": 0.9991492033,
+        "variance": 6.014082743e-08
+      },
+      "words": "pixie cut"
+    },
+    {
+      "probability": {
+        "average": 0.999578774,
+        "min": 0.9993504882,
+        "variance": 4.777593077e-08
+      },
+      "words": "pink"
+    },
+    {
+      "probability": {
+        "average": 0.9990768433,
+        "min": 0.9959186912,
+        "variance": 2.499901029e-06
+      },
+      "words": "bangs"
+    },
+    {
+      "probability": {
+        "average": 0.9999498129,
+        "min": 0.9996391535,
+        "variance": 1.123656013e-08
+      },
+      "words": "newsreader"
+    },
+    {
+      "probability": {
+        "average": 0.9994680285,
+        "min": 0.9985517859,
+        "variance": 1.879891869e-07
+      },
+      "words": "purple"
+    },
+    {
+      "probability": {
+        "average": 0.9951856732,
+        "min": 0.9776354432,
+        "variance": 7.731321966e-05
+      },
+      "words": "Women"
+    },
+    {
+      "probability": {
+        "average": 0.9992618561,
+        "min": 0.998198092,
+        "variance": 4.564699054e-07
+      },
+      "words": "blouse"
+    },
+    {
+      "probability": {
+        "average": 0.9987971187,
+        "min": 0.997989893,
+        "variance": 3.372011577e-07
+      },
+      "words": "Men"
+    },
+    {
+      "probability": {
+        "average": 0.9954125285,
+        "min": 0.9954125285,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9999513626,
+        "min": 0.999912858,
+        "variance": 1.482604262e-09
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9999042749,
+        "min": 0.9998190999,
+        "variance": 7.259865598e-09
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9999042153,
+        "min": 0.9998933077,
+        "variance": 1.189768284e-10
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9998555779,
+        "min": 0.9998413324,
+        "variance": 2.02934558e-10
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9999868274,
+        "min": 0.9999850988,
+        "variance": 1.993072374e-12
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9993955493,
+        "min": 0.9930294156,
+        "variance": 3.685374622e-06
+      },
+      "words": "Frequency(%)"
+    }
+  ],
+  "words_result_num": 31,
+  "direction": 0,
+  "log_id": 2079046640385385574
+}

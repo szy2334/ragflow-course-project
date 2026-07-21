@@ -1,0 +1,439 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.994250834,
+        "min": 0.9579572082,
+        "variance": 0.0001722513407
+      },
+      "words": "Version 1"
+    },
+    {
+      "probability": {
+        "average": 0.9998323321,
+        "min": 0.9994378686,
+        "variance": 3.918392721e-08
+      },
+      "words": "Debug"
+    },
+    {
+      "probability": {
+        "average": 0.9908280969,
+        "min": 0.9365783334,
+        "variance": 0.0004010919947
+      },
+      "words": "Version 2"
+    },
+    {
+      "probability": {
+        "average": 0.9996330738,
+        "min": 0.9974848032,
+        "variance": 4.789445143e-07
+      },
+      "words": "import wfdb"
+    },
+    {
+      "probability": {
+        "average": 0.997919023,
+        "min": 0.9875281453,
+        "variance": 1.689222881e-05
+      },
+      "words": "Executor"
+    },
+    {
+      "probability": {
+        "average": 0.9996868968,
+        "min": 0.9979867935,
+        "variance": 2.703040423e-07
+      },
+      "words": "import wfdb,os"
+    },
+    {
+      "probability": {
+        "average": 0.9885341525,
+        "min": 0.8656956553,
+        "variance": 0.001049661543
+      },
+      "words": "def load_mit_bih_database():"
+    },
+    {
+      "probability": {
+        "average": 0.9954659343,
+        "min": 0.9511423111,
+        "variance": 0.0001326780039
+      },
+      "words": "def load_mit_bih_database():"
+    },
+    {
+      "probability": {
+        "average": 0.9891271591,
+        "min": 0.7361434698,
+        "variance": 0.00157232827
+      },
+      "words": "record_names =wfdb.get_record_list('mitdb')"
+    },
+    {
+      "probability": {
+        "average": 0.9866573215,
+        "min": 0.6301837564,
+        "variance": 0.003078128444
+      },
+      "words": "record_names =wfdb.get_record_list('mitdb')"
+    },
+    {
+      "probability": {
+        "average": 0.9882522821,
+        "min": 0.6518942714,
+        "variance": 0.003772291588
+      },
+      "words": "# Iterate over each record name"
+    },
+    {
+      "probability": {
+        "average": 0.9849719405,
+        "min": 0.7085957527,
+        "variance": 0.003156197257
+      },
+      "words": "$python3 test.py -i <path>"
+    },
+    {
+      "probability": {
+        "average": 0.9877772331,
+        "min": 0.6364978552,
+        "variance": 0.004114358686
+      },
+      "words": "# Iterate over each record name"
+    },
+    {
+      "probability": {
+        "average": 0.9940834045,
+        "min": 0.8658329844,
+        "variance": 0.000686288171
+      },
+      "words": "for name in record_names:"
+    },
+    {
+      "probability": {
+        "average": 0.9773167968,
+        "min": 0.5202938914,
+        "variance": 0.008370836265
+      },
+      "words": "TypeError: rdrecord() got an"
+    },
+    {
+      "probability": {
+        "average": 0.9945361614,
+        "min": 0.8804227114,
+        "variance": 0.0005445987335
+      },
+      "words": "for name in record_names:"
+    },
+    {
+      "probability": {
+        "average": 0.9867318869,
+        "min": 0.5600090623,
+        "variance": 0.00508715678
+      },
+      "words": "# Load the record and its annotations"
+    },
+    {
+      "probability": {
+        "average": 0.9996333122,
+        "min": 0.9967005849,
+        "variance": 3.755080229e-07
+      },
+      "words": "unexpected keyword argument"
+    },
+    {
+      "probability": {
+        "average": 0.9856466055,
+        "min": 0.522426188,
+        "variance": 0.005992302205
+      },
+      "words": "# Load the record and its annotations"
+    },
+    {
+      "probability": {
+        "average": 0.9690672159,
+        "min": 0.5171948075,
+        "variance": 0.01130926888
+      },
+      "words": "record =wfdb.rdrecord(name, pb_dir=')"
+    },
+    {
+      "probability": {
+        "average": 0.9688987732,
+        "min": 0.8059274554,
+        "variance": 0.00396454474
+      },
+      "words": "'pb_dir'"
+    },
+    {
+      "probability": {
+        "average": 0.988129437,
+        "min": 0.6311261058,
+        "variance": 0.002858704887
+      },
+      "words": "record=wfdb.rdrecord(os.path.join(path, name))"
+    },
+    {
+      "probability": {
+        "average": 0.9919658303,
+        "min": 0.9459369779,
+        "variance": 0.0002953448857
+      },
+      "words": "Version 4"
+    },
+    {
+      "probability": {
+        "average": 0.9966363907,
+        "min": 0.9779751301,
+        "variance": 5.806926856e-05
+      },
+      "words": "Modify."
+    },
+    {
+      "probability": {
+        "average": 0.9893097281,
+        "min": 0.9286903143,
+        "variance": 0.0005168837379
+      },
+      "words": "Version 3"
+    },
+    {
+      "probability": {
+        "average": 0.9604417682,
+        "min": 0.8803851604,
+        "variance": 0.001965480624
+      },
+      "words": "and..."
+    },
+    {
+      "probability": {
+        "average": 0.9633211493,
+        "min": 0.5759005547,
+        "variance": 0.01116526313
+      },
+      "words": "python3 test. py -i <path>"
+    },
+    {
+      "probability": {
+        "average": 0.9996789694,
+        "min": 0.9980720282,
+        "variance": 2.811106015e-07
+      },
+      "words": "import wfdb"
+    },
+    {
+      "probability": {
+        "average": 0.9988447428,
+        "min": 0.9939768314,
+        "variance": 4.161018296e-06
+      },
+      "words": "Executor"
+    },
+    {
+      "probability": {
+        "average": 0.9992517233,
+        "min": 0.9937900901,
+        "variance": 3.029344271e-06
+      },
+      "words": "import wfdb"
+    },
+    {
+      "probability": {
+        "average": 0.9877690673,
+        "min": 0.6184747815,
+        "variance": 0.004399634432
+      },
+      "words": "Average detection accuracy: 0.85"
+    },
+    {
+      "probability": {
+        "average": 0.9941300154,
+        "min": 0.9388412833,
+        "variance": 0.0002369775902
+      },
+      "words": "def load_mit_bih_database():"
+    },
+    {
+      "probability": {
+        "average": 0.9954317808,
+        "min": 0.9397101402,
+        "variance": 0.0001701028814
+      },
+      "words": "def load_mit_bih_database():"
+    },
+    {
+      "probability": {
+        "average": 0.8809089065,
+        "min": 0.7561539412,
+        "variance": 0.004643028136
+      },
+      "words": "#......"
+    },
+    {
+      "probability": {
+        "average": 0.996935904,
+        "min": 0.9878156781,
+        "variance": 1.816180702e-05
+      },
+      "words": "$python3..."
+    },
+    {
+      "probability": {
+        "average": 0.9735239148,
+        "min": 0.6469002962,
+        "variance": 0.006543361582
+      },
+      "words": "# Iterate over each ..."
+    },
+    {
+      "probability": {
+        "average": 0.9981712103,
+        "min": 0.9691668153,
+        "variance": 3.339092291e-05
+      },
+      "words": "def bandpass_filter(param):"
+    },
+    {
+      "probability": {
+        "average": 0.999782443,
+        "min": 0.9989751577,
+        "variance": 8.30715905e-08
+      },
+      "words": "Accuracy:0.94"
+    },
+    {
+      "probability": {
+        "average": 0.9361237884,
+        "min": 0.8857885599,
+        "variance": 0.001230449299
+      },
+      "words": "#......"
+    },
+    {
+      "probability": {
+        "average": 0.9986583591,
+        "min": 0.9914101958,
+        "variance": 7.812437616e-06
+      },
+      "words": "Executor"
+    },
+    {
+      "probability": {
+        "average": 0.8672023416,
+        "min": 0.7353317142,
+        "variance": 0.005451103207
+      },
+      "words": "#......"
+    },
+    {
+      "probability": {
+        "average": 0.9982957244,
+        "min": 0.9705911875,
+        "variance": 3.146861854e-05
+      },
+      "words": "def bandpass_filter(param):"
+    },
+    {
+      "probability": {
+        "average": 0.9854874015,
+        "min": 0.8363676071,
+        "variance": 0.002025199821
+      },
+      "words": "1. Load data"
+    },
+    {
+      "probability": {
+        "average": 0.9987975955,
+        "min": 0.9818460345,
+        "variance": 1.917025111e-05
+      },
+      "words": "Modify algorithm"
+    },
+    {
+      "probability": {
+        "average": 0.9993082881,
+        "min": 0.9982374907,
+        "variance": 5.813615758e-07
+      },
+      "words": "def"
+    },
+    {
+      "probability": {
+        "average": 0.9985035062,
+        "min": 0.9790727496,
+        "variance": 1.49542484e-05
+      },
+      "words": "adaptive_thresholding(param):"
+    },
+    {
+      "probability": {
+        "average": 0.9975010753,
+        "min": 0.9876793027,
+        "variance": 1.793647789e-05
+      },
+      "words": "$python3.."
+    },
+    {
+      "probability": {
+        "average": 0.9740066528,
+        "min": 0.7377220392,
+        "variance": 0.004888631403
+      },
+      "words": "# Apply bandpass .."
+    },
+    {
+      "probability": {
+        "average": 0.9995518327,
+        "min": 0.9964560866,
+        "variance": 9.252577797e-07
+      },
+      "words": "2.Preprocess"
+    },
+    {
+      "probability": {
+        "average": 0.9996610284,
+        "min": 0.9947212934,
+        "variance": 1.1737867e-06
+      },
+      "words": "outline and adopt more"
+    },
+    {
+      "probability": {
+        "average": 0.9080792665,
+        "min": 0.8522595167,
+        "variance": 0.002048860071
+      },
+      "words": "#......"
+    },
+    {
+      "probability": {
+        "average": 0.9991654754,
+        "min": 0.9968028069,
+        "variance": 6.633063663e-07
+      },
+      "words": "Accuracy:0.97"
+    },
+    {
+      "probability": {
+        "average": 0.8754096031,
+        "min": 0.7749054432,
+        "variance": 0.005110709928
+      },
+      "words": "#......"
+    },
+    {
+      "probability": {
+        "average": 0.9998810887,
+        "min": 0.9979596138,
+        "variance": 1.847733984e-07
+      },
+      "words": "advanced technologies"
+    }
+  ],
+  "words_result_num": 54,
+  "direction": 0,
+  "log_id": 2079044215737005588
+}

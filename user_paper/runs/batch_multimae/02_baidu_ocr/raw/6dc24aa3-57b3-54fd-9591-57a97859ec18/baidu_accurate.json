@@ -1,0 +1,183 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9988942742,
+        "min": 0.9935498834,
+        "variance": 5.716268788e-06
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9992884398,
+        "min": 0.9959205389,
+        "variance": 1.679802608e-06
+      },
+      "words": "MultiMAE"
+    },
+    {
+      "probability": {
+        "average": 0.9997329116,
+        "min": 0.9984785914,
+        "variance": 3.147658276e-07
+      },
+      "words": "Target"
+    },
+    {
+      "probability": {
+        "average": 0.9995991588,
+        "min": 0.9977309108,
+        "variance": 7.000807614e-07
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9992002249,
+        "min": 0.9952188134,
+        "variance": 2.326815775e-06
+      },
+      "words": "MultiMAE"
+    },
+    {
+      "probability": {
+        "average": 0.9989447594,
+        "min": 0.9938828945,
+        "variance": 5.129769761e-06
+      },
+      "words": "Masked"
+    },
+    {
+      "probability": {
+        "average": 0.9993004203,
+        "min": 0.9953795671,
+        "variance": 2.225744311e-06
+      },
+      "words": "MultiMAE"
+    },
+    {
+      "probability": {
+        "average": 0.9998196959,
+        "min": 0.9992433786,
+        "variance": 7.11608763e-08
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9999839664,
+        "min": 0.9999465942,
+        "variance": 3.037463614e-10
+      },
+      "words": "predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9998313785,
+        "min": 0.999309659,
+        "variance": 5.909184964e-08
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9999794364,
+        "min": 0.9999339581,
+        "variance": 5.507672096e-10
+      },
+      "words": "predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9996497035,
+        "min": 0.9979817867,
+        "variance": 5.564607477e-07
+      },
+      "words": "Target"
+    },
+    {
+      "probability": {
+        "average": 0.999830544,
+        "min": 0.9993058443,
+        "variance": 5.939280712e-08
+      },
+      "words": "inputs"
+    },
+    {
+      "probability": {
+        "average": 0.9999780655,
+        "min": 0.9999284744,
+        "variance": 6.478496073e-10
+      },
+      "words": "predictions"
+    },
+    {
+      "probability": {
+        "average": 0.9996185899,
+        "min": 0.9977883101,
+        "variance": 6.700665836e-07
+      },
+      "words": "Target"
+    },
+    {
+      "probability": {
+        "average": 0.9012906551,
+        "min": 0.4446649253,
+        "variance": 0.01976597682
+      },
+      "words": "sky-other-merged"
+    },
+    {
+      "probability": {
+        "average": 0.9571346045,
+        "min": 0.8648756742,
+        "variance": 0.001484004548
+      },
+      "words": "sky-other-merged"
+    },
+    {
+      "probability": {
+        "average": 0.9019478559,
+        "min": 0.5514817834,
+        "variance": 0.015551975
+      },
+      "words": "treemerged"
+    },
+    {
+      "probability": {
+        "average": 0.8683994412,
+        "min": 0.5846427083,
+        "variance": 0.01856259815
+      },
+      "words": "reemerged"
+    },
+    {
+      "probability": {
+        "average": 0.9210748672,
+        "min": 0.6342391968,
+        "variance": 0.01358193811
+      },
+      "words": "dning table"
+    },
+    {
+      "probability": {
+        "average": 0.9862833619,
+        "min": 0.9422127008,
+        "variance": 0.0002955828677
+      },
+      "words": "dining table"
+    },
+    {
+      "probability": {
+        "average": 0.7626013756,
+        "min": 0.5104132891,
+        "variance": 0.03229529783
+      },
+      "words": "sow"
+    }
+  ],
+  "words_result_num": 22,
+  "direction": 0,
+  "log_id": 2079048339151096392
+}

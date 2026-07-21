@@ -1,0 +1,191 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.999779582,
+        "min": 0.9980641007,
+        "variance": 3.300293372e-07
+      },
+      "words": "Winogrande"
+    },
+    {
+      "probability": {
+        "average": 0.9991067648,
+        "min": 0.9958403111,
+        "variance": 2.668091838e-06
+      },
+      "words": "Human"
+    },
+    {
+      "probability": {
+        "average": 0.9996955991,
+        "min": 0.9995860457,
+        "variance": 1.200193367e-08
+      },
+      "words": "90"
+    },
+    {
+      "probability": {
+        "average": 0.9997927547,
+        "min": 0.9990416169,
+        "variance": 5.162019789e-08
+      },
+      "words": "Fine-tuned SOTA"
+    },
+    {
+      "probability": {
+        "average": 0.9997710586,
+        "min": 0.9996676445,
+        "variance": 1.069446753e-08
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9990827441,
+        "min": 0.9881613255,
+        "variance": 5.534837328e-06
+      },
+      "words": "Fine-tuned RoBERTa-Large"
+    },
+    {
+      "probability": {
+        "average": 0.9975382686,
+        "min": 0.9827131033,
+        "variance": 2.948452129e-05
+      },
+      "words": "Zero-Shot"
+    },
+    {
+      "probability": {
+        "average": 0.9978635311,
+        "min": 0.9867321849,
+        "variance": 1.915526082e-05
+      },
+      "words": "One-Shot"
+    },
+    {
+      "probability": {
+        "average": 0.9998280406,
+        "min": 0.9996888638,
+        "variance": 1.937019434e-08
+      },
+      "words": "70"
+    },
+    {
+      "probability": {
+        "average": 0.9999097586,
+        "min": 0.9997131228,
+        "variance": 9.997478401e-09
+      },
+      "words": "Few-Shot(K=50)"
+    },
+    {
+      "probability": {
+        "average": 0.9701170325,
+        "min": 0.8747609854,
+        "variance": 0.001146017923
+      },
+      "words": "Fine-tuned BERT-Large"
+    },
+    {
+      "probability": {
+        "average": 0.9999628067,
+        "min": 0.999931097,
+        "variance": 1.005503236e-09
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9997614622,
+        "min": 0.9995720983,
+        "variance": 3.584742103e-08
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9997553229,
+        "min": 0.9970382452,
+        "variance": 5.289234082e-07
+      },
+      "words": "Random Guessing"
+    },
+    {
+      "probability": {
+        "average": 0.9989783764,
+        "min": 0.9972562194,
+        "variance": 1.003411967e-06
+      },
+      "words": "0.1B"
+    },
+    {
+      "probability": {
+        "average": 0.9955109954,
+        "min": 0.9830309153,
+        "variance": 5.195348422e-05
+      },
+      "words": "0.4B"
+    },
+    {
+      "probability": {
+        "average": 0.9960583448,
+        "min": 0.9904058576,
+        "variance": 1.510499078e-05
+      },
+      "words": "0.8B"
+    },
+    {
+      "probability": {
+        "average": 0.9979704618,
+        "min": 0.9927389026,
+        "variance": 9.156456144e-06
+      },
+      "words": "1.3B"
+    },
+    {
+      "probability": {
+        "average": 0.9965677261,
+        "min": 0.9866505861,
+        "variance": 3.280004239e-05
+      },
+      "words": "2.6B"
+    },
+    {
+      "probability": {
+        "average": 0.996681273,
+        "min": 0.9870491624,
+        "variance": 3.093132545e-05
+      },
+      "words": "6.7B"
+    },
+    {
+      "probability": {
+        "average": 0.9999338984,
+        "min": 0.9998550415,
+        "variance": 3.11096815e-09
+      },
+      "words": "13B"
+    },
+    {
+      "probability": {
+        "average": 0.9992944002,
+        "min": 0.9972749352,
+        "variance": 1.359672751e-06
+      },
+      "words": "175B"
+    },
+    {
+      "probability": {
+        "average": 0.9996188283,
+        "min": 0.9970287681,
+        "variance": 5.393937954e-07
+      },
+      "words": "Parameters in LM(Billions)"
+    }
+  ],
+  "words_result_num": 23,
+  "direction": 0,
+  "log_id": 2079046588966087753
+}

@@ -1,0 +1,519 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9754357338,
+        "min": 0.9509587884,
+        "variance": 0.0005991194048
+      },
+      "words": "It"
+    },
+    {
+      "probability": {
+        "average": 0.9680813551,
+        "min": 0.9362957478,
+        "variance": 0.001010324806
+      },
+      "words": "It"
+    },
+    {
+      "probability": {
+        "average": 0.9888890982,
+        "min": 0.9786105752,
+        "variance": 0.0001056474212
+      },
+      "words": "is"
+    },
+    {
+      "probability": {
+        "average": 0.9885562658,
+        "min": 0.9779419303,
+        "variance": 0.0001126634888
+      },
+      "words": "is"
+    },
+    {
+      "probability": {
+        "average": 0.9991298318,
+        "min": 0.998470962,
+        "variance": 4.341093245e-07
+      },
+      "words": "in"
+    },
+    {
+      "probability": {
+        "average": 0.9993640184,
+        "min": 0.9988741279,
+        "variance": 2.399635832e-07
+      },
+      "words": "in"
+    },
+    {
+      "probability": {
+        "average": 0.99945575,
+        "min": 0.9983611703,
+        "variance": 4.197293038e-07
+      },
+      "words": "this"
+    },
+    {
+      "probability": {
+        "average": 0.999321878,
+        "min": 0.9974753261,
+        "variance": 1.138340849e-06
+      },
+      "words": "this"
+    },
+    {
+      "probability": {
+        "average": 0.9995112419,
+        "min": 0.9980267882,
+        "variance": 4.612589066e-07
+      },
+      "words": "spirit"
+    },
+    {
+      "probability": {
+        "average": 0.9991454482,
+        "min": 0.9971455932,
+        "variance": 9.276737387e-07
+      },
+      "words": "spirit"
+    },
+    {
+      "probability": {
+        "average": 0.9997862577,
+        "min": 0.9992989302,
+        "variance": 7.94935886e-08
+      },
+      "words": "that"
+    },
+    {
+      "probability": {
+        "average": 0.9999437332,
+        "min": 0.9998686314,
+        "variance": 1.908798453e-09
+      },
+      "words": "that"
+    },
+    {
+      "probability": {
+        "average": 0.9951713681,
+        "min": 0.9951713681,
+        "variance": 0
+      },
+      "words": "a"
+    },
+    {
+      "probability": {
+        "average": 0.9939323068,
+        "min": 0.9939323068,
+        "variance": 0
+      },
+      "words": "a"
+    },
+    {
+      "probability": {
+        "average": 0.9993829727,
+        "min": 0.9965999722,
+        "variance": 1.122080448e-06
+      },
+      "words": "majority"
+    },
+    {
+      "probability": {
+        "average": 0.9998722076,
+        "min": 0.9993701577,
+        "variance": 3.839431884e-08
+      },
+      "words": "majority"
+    },
+    {
+      "probability": {
+        "average": 0.9952880144,
+        "min": 0.9905973077,
+        "variance": 2.200245035e-05
+      },
+      "words": "of"
+    },
+    {
+      "probability": {
+        "average": 0.998398006,
+        "min": 0.9968172312,
+        "variance": 2.498848971e-06
+      },
+      "words": "of"
+    },
+    {
+      "probability": {
+        "average": 0.999283433,
+        "min": 0.9953338504,
+        "variance": 2.298104391e-06
+      },
+      "words": "American"
+    },
+    {
+      "probability": {
+        "average": 0.9996356368,
+        "min": 0.9984030128,
+        "variance": 3.203994368e-07
+      },
+      "words": "American"
+    },
+    {
+      "probability": {
+        "average": 0.9999052286,
+        "min": 0.9997525811,
+        "variance": 8.20854229e-09
+      },
+      "words": "governments"
+    },
+    {
+      "probability": {
+        "average": 0.9993025064,
+        "min": 0.9977517724,
+        "variance": 5.683959898e-07
+      },
+      "words": "governments"
+    },
+    {
+      "probability": {
+        "average": 0.9999442101,
+        "min": 0.9998244643,
+        "variance": 4.784220131e-09
+      },
+      "words": "have"
+    },
+    {
+      "probability": {
+        "average": 0.999974966,
+        "min": 0.99992764,
+        "variance": 7.47739648e-10
+      },
+      "words": "have"
+    },
+    {
+      "probability": {
+        "average": 0.9999054074,
+        "min": 0.9997856021,
+        "variance": 6.965585442e-09
+      },
+      "words": "passed"
+    },
+    {
+      "probability": {
+        "average": 0.9999401569,
+        "min": 0.9998530149,
+        "variance": 2.874837035e-09
+      },
+      "words": "passed"
+    },
+    {
+      "probability": {
+        "average": 0.999769032,
+        "min": 0.9995657802,
+        "variance": 2.083258011e-08
+      },
+      "words": "new"
+    },
+    {
+      "probability": {
+        "average": 0.9968543053,
+        "min": 0.9928572178,
+        "variance": 8.266868463e-06
+      },
+      "words": "new"
+    },
+    {
+      "probability": {
+        "average": 0.9958395958,
+        "min": 0.9884384274,
+        "variance": 2.16063072e-05
+      },
+      "words": "laws"
+    },
+    {
+      "probability": {
+        "average": 0.9974659681,
+        "min": 0.9936156273,
+        "variance": 6.943285371e-06
+      },
+      "words": "laws"
+    },
+    {
+      "probability": {
+        "average": 0.999684155,
+        "min": 0.9989017248,
+        "variance": 1.612913536e-07
+      },
+      "words": "since"
+    },
+    {
+      "probability": {
+        "average": 0.9994254112,
+        "min": 0.9978157282,
+        "variance": 6.673168969e-07
+      },
+      "words": "since"
+    },
+    {
+      "probability": {
+        "average": 0.99999547,
+        "min": 0.9999922514,
+        "variance": 9.951151014e-12
+      },
+      "words": "2009"
+    },
+    {
+      "probability": {
+        "average": 0.999994278,
+        "min": 0.9999898672,
+        "variance": 1.640643177e-11
+      },
+      "words": "2009"
+    },
+    {
+      "probability": {
+        "average": 0.9999281764,
+        "min": 0.9996417761,
+        "variance": 1.654399995e-08
+      },
+      "words": "making"
+    },
+    {
+      "probability": {
+        "average": 0.9999406338,
+        "min": 0.9997031093,
+        "variance": 1.142933304e-08
+      },
+      "words": "making"
+    },
+    {
+      "probability": {
+        "average": 0.9994761944,
+        "min": 0.9989954829,
+        "variance": 1.224119046e-07
+      },
+      "words": "the"
+    },
+    {
+      "probability": {
+        "average": 0.9998049736,
+        "min": 0.9996089339,
+        "variance": 2.019891632e-08
+      },
+      "words": "the"
+    },
+    {
+      "probability": {
+        "average": 0.9998213649,
+        "min": 0.9989390969,
+        "variance": 1.031020531e-07
+      },
+      "words": "registration"
+    },
+    {
+      "probability": {
+        "average": 0.9999486804,
+        "min": 0.9996498823,
+        "variance": 8.843798582e-09
+      },
+      "words": "registration"
+    },
+    {
+      "probability": {
+        "average": 0.9987092614,
+        "min": 0.9978260398,
+        "variance": 7.800804269e-07
+      },
+      "words": "or"
+    },
+    {
+      "probability": {
+        "average": 0.9985664487,
+        "min": 0.9976315498,
+        "variance": 8.740358908e-07
+      },
+      "words": "or"
+    },
+    {
+      "probability": {
+        "average": 0.9997582436,
+        "min": 0.9991693497,
+        "variance": 8.445425692e-08
+      },
+      "words": "voting"
+    },
+    {
+      "probability": {
+        "average": 0.9992454648,
+        "min": 0.9975474477,
+        "variance": 8.08497191e-07
+      },
+      "words": "voting"
+    },
+    {
+      "probability": {
+        "average": 0.9998680949,
+        "min": 0.9996137023,
+        "variance": 1.616888312e-08
+      },
+      "words": "process"
+    },
+    {
+      "probability": {
+        "average": 0.9998098612,
+        "min": 0.9994217157,
+        "variance": 3.874012933e-08
+      },
+      "words": "process"
+    },
+    {
+      "probability": {
+        "average": 0.9998618364,
+        "min": 0.9997245669,
+        "variance": 7.081458087e-09
+      },
+      "words": "more"
+    },
+    {
+      "probability": {
+        "average": 0.9998962879,
+        "min": 0.999782145,
+        "variance": 5.428586469e-09
+      },
+      "words": "more"
+    },
+    {
+      "probability": {
+        "average": 0.9997219443,
+        "min": 0.9993784428,
+        "variance": 3.232730705e-08
+      },
+      "words": "difficult"
+    },
+    {
+      "probability": {
+        "average": 0.999666512,
+        "min": 0.9991773963,
+        "variance": 1.142424111e-07
+      },
+      "words": "difficult"
+    },
+    {
+      "probability": {
+        "average": 0.9978027344,
+        "min": 0.9939283133,
+        "variance": 4.184614681e-06
+      },
+      "words": "<EOS>"
+    },
+    {
+      "probability": {
+        "average": 0.9968059659,
+        "min": 0.9905081987,
+        "variance": 1.265632454e-05
+      },
+      "words": "<EOS>"
+    },
+    {
+      "probability": {
+        "average": 0.9997637868,
+        "min": 0.9989155531,
+        "variance": 1.801292484e-07
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 0.9998788834,
+        "min": 0.9994748235,
+        "variance": 4.088871108e-08
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 0.9998514056,
+        "min": 0.9993643165,
+        "variance": 5.978957773e-08
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 0.9998898506,
+        "min": 0.9995829463,
+        "variance": 2.398343568e-08
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 0.9998840094,
+        "min": 0.9995119572,
+        "variance": 3.482504951e-08
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 0.999777317,
+        "min": 0.9990233183,
+        "variance": 1.427054883e-07
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 0.9998446703,
+        "min": 0.9993553758,
+        "variance": 6.061410573e-08
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 0.9998329282,
+        "min": 0.9993694425,
+        "variance": 5.614328913e-08
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 1,
+        "min": 1,
+        "variance": 0
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 0.9998711348,
+        "min": 0.9994382262,
+        "variance": 4.704092049e-08
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 0.9999340177,
+        "min": 0.9997383952,
+        "variance": 9.647527222e-09
+      },
+      "words": "<pad>"
+    },
+    {
+      "probability": {
+        "average": 0.9999228716,
+        "min": 0.9997344613,
+        "variance": 9.29609989e-09
+      },
+      "words": "<pad>"
+    }
+  ],
+  "words_result_num": 64,
+  "direction": 1,
+  "log_id": 2079037651155859327
+}

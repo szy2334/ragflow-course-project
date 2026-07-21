@@ -1,0 +1,10 @@
+{
+  "run_name": "batch_2401.01519v4",
+  "pdf": "D:\\JIXUN\\document_pdf\\2401.01519v4.pdf",
+  "run_root": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_2401.01519v4",
+  "mineru_clean_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_2401.01519v4\\01_mineru_clean",
+  "ocr_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_2401.01519v4\\02_baidu_ocr",
+  "chunks_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_2401.01519v4\\03_chunks",
+  "ragflow_dir": "D:\\JIXUN\\ragflow-course-project-user_paper\\runs\\batch_2401.01519v4\\04_ragflow",
+  "completed_at": "2026-07-20T03:17:21.545660+00:00"
+}

@@ -1,0 +1,199 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9987297058,
+        "min": 0.9944485426,
+        "variance": 3.756965498e-06
+      },
+      "words": "Test Error"
+    },
+    {
+      "probability": {
+        "average": 0.9999186397,
+        "min": 0.9998080134,
+        "variance": 6.210998382e-09
+      },
+      "words": "220"
+    },
+    {
+      "probability": {
+        "average": 0.998789072,
+        "min": 0.990880847,
+        "variance": 6.749221029e-06
+      },
+      "words": "800 units 2 layers"
+    },
+    {
+      "probability": {
+        "average": 0.9996374846,
+        "min": 0.9979040623,
+        "variance": 4.601868966e-07
+      },
+      "words": "1200 units 3 layers"
+    },
+    {
+      "probability": {
+        "average": 0.9996936917,
+        "min": 0.998441875,
+        "variance": 2.573391384e-07
+      },
+      "words": "1200 units 2 layers"
+    },
+    {
+      "probability": {
+        "average": 0.9997933507,
+        "min": 0.9996376038,
+        "variance": 2.236075325e-08
+      },
+      "words": "200"
+    },
+    {
+      "probability": {
+        "average": 0.9996647835,
+        "min": 0.9978979826,
+        "variance": 3.202233074e-07
+      },
+      "words": "2000 units 2 layers"
+    },
+    {
+      "probability": {
+        "average": 0.9999251962,
+        "min": 0.9998666048,
+        "variance": 1.757052615e-09
+      },
+      "words": "160"
+    },
+    {
+      "probability": {
+        "average": 0.9999008179,
+        "min": 0.9998505116,
+        "variance": 1.413392625e-09
+      },
+      "words": "180"
+    },
+    {
+      "probability": {
+        "average": 0.9999319911,
+        "min": 0.9998887777,
+        "variance": 1.177088649e-09
+      },
+      "words": "160"
+    },
+    {
+      "probability": {
+        "average": 0.9983264208,
+        "min": 0.9612433314,
+        "variance": 5.118860645e-05
+      },
+      "words": "50% dropout in hidden layers"
+    },
+    {
+      "probability": {
+        "average": 0.9998914599,
+        "min": 0.999776423,
+        "variance": 6.962368904e-09
+      },
+      "words": "140"
+    },
+    {
+      "probability": {
+        "average": 0.9999529719,
+        "min": 0.999894619,
+        "variance": 1.736626842e-09
+      },
+      "words": "120"
+    },
+    {
+      "probability": {
+        "average": 0.9998977184,
+        "min": 0.9998196959,
+        "variance": 4.603844417e-09
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9835276604,
+        "min": 0.536233902,
+        "variance": 0.005010663532
+      },
+      "words": "50% dropout in hidden layers + 20% in input layer"
+    },
+    {
+      "probability": {
+        "average": 0.9998973608,
+        "min": 0.9998749495,
+        "variance": 5.022684491e-10
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9651049376,
+        "min": 0.9651049376,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9996930957,
+        "min": 0.9995593429,
+        "variance": 3.475840415e-08
+      },
+      "words": "500"
+    },
+    {
+      "probability": {
+        "average": 0.9999580383,
+        "min": 0.9999492168,
+        "variance": 8.889955438e-11
+      },
+      "words": "1000"
+    },
+    {
+      "probability": {
+        "average": 0.9999562502,
+        "min": 0.9999209642,
+        "variance": 1.214676359e-09
+      },
+      "words": "1500"
+    },
+    {
+      "probability": {
+        "average": 0.9998514652,
+        "min": 0.9997162223,
+        "variance": 1.147374995e-08
+      },
+      "words": "2000"
+    },
+    {
+      "probability": {
+        "average": 0.9999130964,
+        "min": 0.999815762,
+        "variance": 5.704284156e-09
+      },
+      "words": "2500"
+    },
+    {
+      "probability": {
+        "average": 0.9994952679,
+        "min": 0.9984885454,
+        "variance": 3.453823183e-07
+      },
+      "words": "3000"
+    },
+    {
+      "probability": {
+        "average": 0.9984698892,
+        "min": 0.9955903292,
+        "variance": 2.142299991e-06
+      },
+      "words": "Epochs"
+    }
+  ],
+  "words_result_num": 24,
+  "direction": 0,
+  "log_id": 2079046031609675098
+}

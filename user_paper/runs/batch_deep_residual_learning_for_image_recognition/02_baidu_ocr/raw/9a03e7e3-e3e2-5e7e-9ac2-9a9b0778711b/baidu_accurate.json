@@ -1,0 +1,119 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.8423503041,
+        "min": 0.572018981,
+        "variance": 0.03681727871
+      },
+      "words": "20r"
+    },
+    {
+      "probability": {
+        "average": 0.6838333607,
+        "min": 0.4926187694,
+        "variance": 0.01716604829
+      },
+      "words": "(8)109"
+    },
+    {
+      "probability": {
+        "average": 0.9979444742,
+        "min": 0.9965078235,
+        "variance": 2.063879947e-06
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9998556376,
+        "min": 0.9991733432,
+        "variance": 7.175933803e-08
+      },
+      "words": "56-layer"
+    },
+    {
+      "probability": {
+        "average": 0.9995459318,
+        "min": 0.9967589974,
+        "variance": 1.116139856e-06
+      },
+      "words": "20-layer"
+    },
+    {
+      "probability": {
+        "average": 0.9980923533,
+        "min": 0.9980923533,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9987953901,
+        "min": 0.9987953901,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9996374846,
+        "min": 0.9996374846,
+        "variance": 0
+      },
+      "words": "1"
+    },
+    {
+      "probability": {
+        "average": 0.9998061061,
+        "min": 0.9998061061,
+        "variance": 0
+      },
+      "words": "2"
+    },
+    {
+      "probability": {
+        "average": 0.9997426867,
+        "min": 0.9997426867,
+        "variance": 0
+      },
+      "words": "3"
+    },
+    {
+      "probability": {
+        "average": 0.9998818636,
+        "min": 0.9998818636,
+        "variance": 0
+      },
+      "words": "4"
+    },
+    {
+      "probability": {
+        "average": 0.9997240901,
+        "min": 0.9997240901,
+        "variance": 0
+      },
+      "words": "5"
+    },
+    {
+      "probability": {
+        "average": 0.9991821647,
+        "min": 0.9991821647,
+        "variance": 0
+      },
+      "words": "6"
+    },
+    {
+      "probability": {
+        "average": 0.9843805432,
+        "min": 0.8521751761,
+        "variance": 0.001942826202
+      },
+      "words": "iter.(1e4)"
+    }
+  ],
+  "words_result_num": 14,
+  "direction": 0,
+  "log_id": 2079044800062626738
+}

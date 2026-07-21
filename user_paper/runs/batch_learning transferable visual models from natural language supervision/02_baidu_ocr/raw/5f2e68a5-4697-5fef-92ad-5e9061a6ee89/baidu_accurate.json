@@ -1,0 +1,3239 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.9917208552,
+        "min": 0.9814382792,
+        "variance": 4.794194683e-05
+      },
+      "words": "Food101"
+    },
+    {
+      "probability": {
+        "average": 0.9131950736,
+        "min": 0.4981168807,
+        "variance": 0.03449365124
+      },
+      "words": "5UN397"
+    },
+    {
+      "probability": {
+        "average": 0.9854441881,
+        "min": 0.8875172734,
+        "variance": 0.001069137943
+      },
+      "words": "Youtube-BB"
+    },
+    {
+      "probability": {
+        "average": 0.9633735418,
+        "min": 0.7749014497,
+        "variance": 0.005956608336
+      },
+      "words": "EuroSAT"
+    },
+    {
+      "probability": {
+        "average": 0.9272276759,
+        "min": 0.5983756781,
+        "variance": 0.01260135975
+      },
+      "words": "correct label: quacamole"
+    },
+    {
+      "probability": {
+        "average": 0.9200193286,
+        "min": 0.3587144017,
+        "variance": 0.01603240892
+      },
+      "words": "correct rank:1/101 corect probability:90.156"
+    },
+    {
+      "probability": {
+        "average": 0.9675834775,
+        "min": 0.7874544263,
+        "variance": 0.003151628189
+      },
+      "words": "correct label: television studio"
+    },
+    {
+      "probability": {
+        "average": 0.9478057623,
+        "min": 0.6393425465,
+        "variance": 0.006411142647
+      },
+      "words": "corect rank: 1/397 correct probabilty: 90.22%"
+    },
+    {
+      "probability": {
+        "average": 0.9152267575,
+        "min": 0.3964007199,
+        "variance": 0.01461985521
+      },
+      "words": "correct labelrs): airolane.person"
+    },
+    {
+      "probability": {
+        "average": 0.9333646297,
+        "min": 0.5060781837,
+        "variance": 0.0143113723
+      },
+      "words": "correct rank: 1/23 correct probability: 88.98%"
+    },
+    {
+      "probability": {
+        "average": 0.9396835566,
+        "min": 0.4753298163,
+        "variance": 0.01400146075
+      },
+      "words": "corect label: annual croo land"
+    },
+    {
+      "probability": {
+        "average": 0.9269462228,
+        "min": 0.4748533368,
+        "variance": 0.01221098937
+      },
+      "words": "correct rank:4/10 correct probabilty: 12.90%"
+    },
+    {
+      "probability": {
+        "average": 0.9472450614,
+        "min": 0.5635148287,
+        "variance": 0.007950138301
+      },
+      "words": "a photo of guacamole, a type of food"
+    },
+    {
+      "probability": {
+        "average": 0.783795476,
+        "min": 0.3138523996,
+        "variance": 0.03496725112
+      },
+      "words": "photo or a teevsion stubR"
+    },
+    {
+      "probability": {
+        "average": 0.9492323995,
+        "min": 0.7781082988,
+        "variance": 0.004152498674
+      },
+      "words": " photo of a arplane"
+    },
+    {
+      "probability": {
+        "average": 0.5953394771,
+        "min": 0.3019991219,
+        "variance": 0.02739070356
+      },
+      "words": "cntned samte pho"
+    },
+    {
+      "probability": {
+        "average": 0.8743839264,
+        "min": 0.4877682924,
+        "variance": 0.0175043568
+      },
+      "words": "of penmanent crop land"
+    },
+    {
+      "probability": {
+        "average": 0.9497801065,
+        "min": 0.4038412869,
+        "variance": 0.01373991743
+      },
+      "words": "ohoto of ceviche, a type of food."
+    },
+    {
+      "probability": {
+        "average": 0.9619989395,
+        "min": 0.5392867327,
+        "variance": 0.009754671715
+      },
+      "words": "photo of a podum indoor."
+    },
+    {
+      "probability": {
+        "average": 0.9533270597,
+        "min": 0.6649981141,
+        "variance": 0.006731622852
+      },
+      "words": "photo of a bird."
+    },
+    {
+      "probability": {
+        "average": 0.8752510548,
+        "min": 0.473113507,
+        "variance": 0.0159024056
+      },
+      "words": "d satelite photo of pasture land"
+    },
+    {
+      "probability": {
+        "average": 0.8958584666,
+        "min": 0.3874890804,
+        "variance": 0.0292280186
+      },
+      "words": "pboto of edamame a type of food"
+    },
+    {
+      "probability": {
+        "average": 0.8381254077,
+        "min": 0.3246018589,
+        "variance": 0.02911684662
+      },
+      "words": "hoto of a conference roo"
+    },
+    {
+      "probability": {
+        "average": 0.9743852019,
+        "min": 0.8413026929,
+        "variance": 0.001952785533
+      },
+      "words": "photo of a bear."
+    },
+    {
+      "probability": {
+        "average": 0.9243062735,
+        "min": 0.4386660457,
+        "variance": 0.01785107888
+      },
+      "words": "a photo or tuna tartare, a type of foo"
+    },
+    {
+      "probability": {
+        "average": 0.9796082973,
+        "min": 0.8338603973,
+        "variance": 0.001132268226
+      },
+      "words": "photo of a lecture room"
+    },
+    {
+      "probability": {
+        "average": 0.9570357203,
+        "min": 0.770188272,
+        "variance": 0.005158027634
+      },
+      "words": "photo of a giraffe"
+    },
+    {
+      "probability": {
+        "average": 0.9827265739,
+        "min": 0.7184308171,
+        "variance": 0.002297511557
+      },
+      "words": "a photo of hummus, a type of food"
+    },
+    {
+      "probability": {
+        "average": 0.9889860749,
+        "min": 0.8420920968,
+        "variance": 0.0009725008858
+      },
+      "words": "a photo of a control room"
+    },
+    {
+      "probability": {
+        "average": 0.9848408699,
+        "min": 0.8630999923,
+        "variance": 0.001031560823
+      },
+      "words": "a photo of a car"
+    },
+    {
+      "probability": {
+        "average": 0.905811131,
+        "min": 0.5246471763,
+        "variance": 0.01348735392
+      },
+      "words": "ered satelite photo of brunhland or shrubland"
+    },
+    {
+      "probability": {
+        "average": 0.9846644402,
+        "min": 0.9586862326,
+        "variance": 0.0003376947425
+      },
+      "words": "020"
+    },
+    {
+      "probability": {
+        "average": 0.9991863966,
+        "min": 0.9985141158,
+        "variance": 4.519213803e-07
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9314150214,
+        "min": 0.833977282,
+        "variance": 0.00320384372
+      },
+      "words": "6080"
+    },
+    {
+      "probability": {
+        "average": 0.9992855191,
+        "min": 0.9990692735,
+        "variance": 8.042798072e-08
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.999666214,
+        "min": 0.999666214,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9968197346,
+        "min": 0.995577693,
+        "variance": 1.542741302e-06
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9723295569,
+        "min": 0.9164466262,
+        "variance": 0.0009199176566
+      },
+      "words": "406080"
+    },
+    {
+      "probability": {
+        "average": 0.783115685,
+        "min": 0.5251840353,
+        "variance": 0.03827829659
+      },
+      "words": "300"
+    },
+    {
+      "probability": {
+        "average": 0.9999402761,
+        "min": 0.9999247789,
+        "variance": 2.401634447e-10
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9993072152,
+        "min": 0.9988391995,
+        "variance": 2.190386681e-07
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9503546953,
+        "min": 0.905441463,
+        "variance": 0.002017198363
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.9975931048,
+        "min": 0.9944804907,
+        "variance": 4.847313903e-06
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9981464148,
+        "min": 0.9981464148,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9992159605,
+        "min": 0.9985483289,
+        "variance": 4.456921943e-07
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.8358874321,
+        "min": 0.6822561026,
+        "variance": 0.02360259369
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9909293652,
+        "min": 0.9843355417,
+        "variance": 4.347811409e-05
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.718426168,
+        "min": 0.718426168,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9903561473,
+        "min": 0.9822544456,
+        "variance": 3.325332e-05
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.7752529979,
+        "min": 0.5051880479,
+        "variance": 0.02650411427
+      },
+      "words": "PatchCa"
+    },
+    {
+      "probability": {
+        "average": 0.8685371876,
+        "min": 0.5525709391,
+        "variance": 0.02854498476
+      },
+      "words": "(PCam)"
+    },
+    {
+      "probability": {
+        "average": 0.8254978657,
+        "min": 0.6943725348,
+        "variance": 0.01719385199
+      },
+      "words": "m:"
+    },
+    {
+      "probability": {
+        "average": 0.8054119349,
+        "min": 0.3833900392,
+        "variance": 0.03798601404
+      },
+      "words": "&dversarial"
+    },
+    {
+      "probability": {
+        "average": 0.8374601603,
+        "min": 0.5328413248,
+        "variance": 0.02771262825
+      },
+      "words": "CIEAR-10"
+    },
+    {
+      "probability": {
+        "average": 0.850096941,
+        "min": 0.7229807377,
+        "variance": 0.01136422437
+      },
+      "words": "CLEV"
+    },
+    {
+      "probability": {
+        "average": 0.8996917009,
+        "min": 0.81186831,
+        "variance": 0.007188715041
+      },
+      "words": "sunt"
+    },
+    {
+      "probability": {
+        "average": 0.6936833262,
+        "min": 0.4750511944,
+        "variance": 0.02468712442
+      },
+      "words": "corert lsbel"
+    },
+    {
+      "probability": {
+        "average": 0.7358438373,
+        "min": 0.4605155587,
+        "variance": 0.03353940323
+      },
+      "words": "tlabol"
+    },
+    {
+      "probability": {
+        "average": 0.8554159403,
+        "min": 0.5760401487,
+        "variance": 0.0263710916
+      },
+      "words": "bire"
+    },
+    {
+      "probability": {
+        "average": 0.7929860353,
+        "min": 0.5274755955,
+        "variance": 0.0229303278
+      },
+      "words": "40.86"
+    },
+    {
+      "probability": {
+        "average": 0.8384150267,
+        "min": 0.5309026241,
+        "variance": 0.01475238241
+      },
+      "words": "orect rank"
+    },
+    {
+      "probability": {
+        "average": 0.7982312441,
+        "min": 0.4195947945,
+        "variance": 0.04800507799
+      },
+      "words": "core"
+    },
+    {
+      "probability": {
+        "average": 0.7530135512,
+        "min": 0.3920722902,
+        "variance": 0.03914416581
+      },
+      "words": "correc ran"
+    },
+    {
+      "probability": {
+        "average": 0.8727254868,
+        "min": 0.4096290469,
+        "variance": 0.02624760754
+      },
+      "words": "cornect label"
+    },
+    {
+      "probability": {
+        "average": 0.7223545313,
+        "min": 0.3617131114,
+        "variance": 0.04344430566
+      },
+      "words": "corect rar"
+    },
+    {
+      "probability": {
+        "average": 0.664547801,
+        "min": 0.4223089814,
+        "variance": 0.02688163519
+      },
+      "words": "coect gre"
+    },
+    {
+      "probability": {
+        "average": 0.8955800533,
+        "min": 0.5348626375,
+        "variance": 0.01772722043
+      },
+      "words": "is is a photo of lymph node tum"
+    },
+    {
+      "probability": {
+        "average": 0.9755182266,
+        "min": 0.9526306391,
+        "variance": 0.000196801775
+      },
+      "words": "1550"
+    },
+    {
+      "probability": {
+        "average": 0.9175490141,
+        "min": 0.5128772855,
+        "variance": 0.02322019264
+      },
+      "words": "photo of a fox squir"
+    },
+    {
+      "probability": {
+        "average": 0.7870342731,
+        "min": 0.7269944549,
+        "variance": 0.00342553854
+      },
+      "words": "el."
+    },
+    {
+      "probability": {
+        "average": 0.9613761902,
+        "min": 0.8382806182,
+        "variance": 0.001812961884
+      },
+      "words": "a photo of a bird"
+    },
+    {
+      "probability": {
+        "average": 0.9406825304,
+        "min": 0.6633799076,
+        "variance": 0.006738909986
+      },
+      "words": "a photo of 3 objects"
+    },
+    {
+      "probability": {
+        "average": 0.8494215608,
+        "min": 0.8494215608,
+        "variance": 0
+      },
+      "words": "h"
+    },
+    {
+      "probability": {
+        "average": 0.9158899784,
+        "min": 0.5194974542,
+        "variance": 0.02014866844
+      },
+      "words": "of a mongoose"
+    },
+    {
+      "probability": {
+        "average": 0.9269245863,
+        "min": 0.6675257087,
+        "variance": 0.01682787947
+      },
+      "words": "a cat"
+    },
+    {
+      "probability": {
+        "average": 0.7970753908,
+        "min": 0.5074755549,
+        "variance": 0.03300261125
+      },
+      "words": "phat"
+    },
+    {
+      "probability": {
+        "average": 0.7881951332,
+        "min": 0.5390509963,
+        "variance": 0.02619776875
+      },
+      "words": "his is"
+    },
+    {
+      "probability": {
+        "average": 0.966932714,
+        "min": 0.676287353,
+        "variance": 0.00377031602
+      },
+      "words": "oto of healthy lymph node tissue"
+    },
+    {
+      "probability": {
+        "average": 0.8351889849,
+        "min": 0.4334390759,
+        "variance": 0.03638511151
+      },
+      "words": "a photo"
+    },
+    {
+      "probability": {
+        "average": 0.9398028851,
+        "min": 0.7139140368,
+        "variance": 0.009160156362
+      },
+      "words": "of 4 objects"
+    },
+    {
+      "probability": {
+        "average": 0.8454241157,
+        "min": 0.3768891692,
+        "variance": 0.03071942367
+      },
+      "words": "ato of a sun"
+    },
+    {
+      "probability": {
+        "average": 0.8496983647,
+        "min": 0.5300658345,
+        "variance": 0.02436221205
+      },
+      "words": "or a deer."
+    },
+    {
+      "probability": {
+        "average": 0.9536921978,
+        "min": 0.6249491572,
+        "variance": 0.008399768732
+      },
+      "words": "phato of 5 objects"
+    },
+    {
+      "probability": {
+        "average": 0.9710412621,
+        "min": 0.7989520431,
+        "variance": 0.003094040323
+      },
+      "words": "hoto of a red fox."
+    },
+    {
+      "probability": {
+        "average": 0.9822906852,
+        "min": 0.9185955524,
+        "variance": 0.0006708078436
+      },
+      "words": "hoto of a frog"
+    },
+    {
+      "probability": {
+        "average": 0.9559077024,
+        "min": 0.6788181663,
+        "variance": 0.007667785045
+      },
+      "words": "phato of 6 objects"
+    },
+    {
+      "probability": {
+        "average": 0.7551322579,
+        "min": 0.5405370593,
+        "variance": 0.02775231563
+      },
+      "words": "hote"
+    },
+    {
+      "probability": {
+        "average": 0.8520590067,
+        "min": 0.4277760684,
+        "variance": 0.0389867872
+      },
+      "words": "noto of a doo"
+    },
+    {
+      "probability": {
+        "average": 0.8632985353,
+        "min": 0.4879559577,
+        "variance": 0.01888439059
+      },
+      "words": "abato of 10 obiects"
+    },
+    {
+      "probability": {
+        "average": 0.9789997339,
+        "min": 0.8969391584,
+        "variance": 0.001040252624
+      },
+      "words": "20406080"
+    },
+    {
+      "probability": {
+        "average": 0.9905183911,
+        "min": 0.9822229147,
+        "variance": 6.881493027e-05
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9996323586,
+        "min": 0.9993740916,
+        "variance": 6.668641106e-08
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9978373051,
+        "min": 0.9960280657,
+        "variance": 3.273347147e-06
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9086871147,
+        "min": 0.8250617385,
+        "variance": 0.006877136417
+      },
+      "words": "6080"
+    },
+    {
+      "probability": {
+        "average": 0.974563241,
+        "min": 0.9517161846,
+        "variance": 0.0005219866289
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9996420145,
+        "min": 0.9995631576,
+        "variance": 2.574304325e-09
+      },
+      "words": "2040"
+    },
+    {
+      "probability": {
+        "average": 0.982694149,
+        "min": 0.9471194148,
+        "variance": 0.000423459278
+      },
+      "words": "6080"
+    },
+    {
+      "probability": {
+        "average": 0.9102692604,
+        "min": 0.7347185016,
+        "variance": 0.01541084889
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.840988338,
+        "min": 0.840988338,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9752897024,
+        "min": 0.8294994831,
+        "variance": 0.002190905157
+      },
+      "words": "20406080100"
+    },
+    {
+      "probability": {
+        "average": 0.9551662207,
+        "min": 0.7677581906,
+        "variance": 0.003258625511
+      },
+      "words": "acial Emotion Recognition 2013 (F"
+    },
+    {
+      "probability": {
+        "average": 0.9991749525,
+        "min": 0.9983787537,
+        "variance": 2.126785574e-07
+      },
+      "words": "2013"
+    },
+    {
+      "probability": {
+        "average": 0.8492901325,
+        "min": 0.3905456364,
+        "variance": 0.04810336605
+      },
+      "words": "JCF101"
+    },
+    {
+      "probability": {
+        "average": 0.8883048296,
+        "min": 0.490906775,
+        "variance": 0.01878608204
+      },
+      "words": "altoch-101"
+    },
+    {
+      "probability": {
+        "average": 0.8993590474,
+        "min": 0.6129750609,
+        "variance": 0.01642154902
+      },
+      "words": "ageNet-K (Kendition)"
+    },
+    {
+      "probability": {
+        "average": 0.9884608388,
+        "min": 0.965149641,
+        "variance": 0.0001134372869
+      },
+      "words": "correct label: angry"
+    },
+    {
+      "probability": {
+        "average": 0.9520350099,
+        "min": 0.550803721,
+        "variance": 0.006839288399
+      },
+      "words": "correct rank: 5/7 correct probability: 8.16%"
+    },
+    {
+      "probability": {
+        "average": 0.9649456143,
+        "min": 0.7472717166,
+        "variance": 0.003687277669
+      },
+      "words": "correct label: Volleyball Spiking"
+    },
+    {
+      "probability": {
+        "average": 0.9793423414,
+        "min": 0.8577480912,
+        "variance": 0.00075507164
+      },
+      "words": "correct rank: 1/101 correct probabilty: 99.30%"
+    },
+    {
+      "probability": {
+        "average": 0.9775263667,
+        "min": 0.7808005214,
+        "variance": 0.002059533028
+      },
+      "words": "correct label: kangaroo"
+    },
+    {
+      "probability": {
+        "average": 0.9571508765,
+        "min": 0.5852537155,
+        "variance": 0.008157568052
+      },
+      "words": "correct rank: 1/102 correct probability: 99.81%"
+    },
+    {
+      "probability": {
+        "average": 0.9678445458,
+        "min": 0.7846072316,
+        "variance": 0.002180551644
+      },
+      "words": "correct label: Siberian Husky"
+    },
+    {
+      "probability": {
+        "average": 0.9559745789,
+        "min": 0.4031404555,
+        "variance": 0.008783229627
+      },
+      "words": "correct rank: 1/200 correct probabilty: 76.02%"
+    },
+    {
+      "probability": {
+        "average": 0.8974224329,
+        "min": 0.4823501408,
+        "variance": 0.01403002255
+      },
+      "words": "a photo of a hanpy looking face"
+    },
+    {
+      "probability": {
+        "average": 0.9131191969,
+        "min": 0.5590375066,
+        "variance": 0.0130367782
+      },
+      "words": "aphoto of a person voleyball spiking"
+    },
+    {
+      "probability": {
+        "average": 0.802273035,
+        "min": 0.3194463253,
+        "variance": 0.03997313231
+      },
+      "words": "photo of a kangarcc"
+    },
+    {
+      "probability": {
+        "average": 0.9003055096,
+        "min": 0.5588235259,
+        "variance": 0.01389657054
+      },
+      "words": "a photo of a siberian husky"
+    },
+    {
+      "probability": {
+        "average": 0.8928129077,
+        "min": 0.4378467202,
+        "variance": 0.01305831131
+      },
+      "words": "a neutral looking face"
+    },
+    {
+      "probability": {
+        "average": 0.6462580562,
+        "min": 0.4466777444,
+        "variance": 0.03277566656
+      },
+      "words": "一年发总中章"
+    },
+    {
+      "probability": {
+        "average": 0.9526157975,
+        "min": 0.6339651346,
+        "variance": 0.006686574314
+      },
+      "words": "a photo of a person jump rope"
+    },
+    {
+      "probability": {
+        "average": 0.8619520068,
+        "min": 0.5354281068,
+        "variance": 0.01647009142
+      },
+      "words": "a phoco or a gerenuk"
+    },
+    {
+      "probability": {
+        "average": 0.925914824,
+        "min": 0.4569801986,
+        "variance": 0.01413838845
+      },
+      "words": "or a german shepherd doo"
+    },
+    {
+      "probability": {
+        "average": 0.9884228706,
+        "min": 0.9245285392,
+        "variance": 0.0002194338595
+      },
+      "words": "oto of a surprised looking face"
+    },
+    {
+      "probability": {
+        "average": 0.9891683459,
+        "min": 0.954030633,
+        "variance": 0.0001357376314
+      },
+      "words": "a photo of a person long jump"
+    },
+    {
+      "probability": {
+        "average": 0.9745323658,
+        "min": 0.9131169319,
+        "variance": 0.0004567643045
+      },
+      "words": "a photo of a emu"
+    },
+    {
+      "probability": {
+        "average": 0.902169466,
+        "min": 0.4251562059,
+        "variance": 0.03267715871
+      },
+      "words": "ohoto of a collie"
+    },
+    {
+      "probability": {
+        "average": 0.9716023803,
+        "min": 0.6614877582,
+        "variance": 0.004186266568
+      },
+      "words": "oto of a fearful looking fa"
+    },
+    {
+      "probability": {
+        "average": 0.8974134326,
+        "min": 0.4825023413,
+        "variance": 0.01902489364
+      },
+      "words": "nhoto of a nerson soccer nenalt"
+    },
+    {
+      "probability": {
+        "average": 0.9862691164,
+        "min": 0.9170844555,
+        "variance": 0.000326435751
+      },
+      "words": "photo of a wild cat"
+    },
+    {
+      "probability": {
+        "average": 0.7931921482,
+        "min": 0.4180077612,
+        "variance": 0.02503534593
+      },
+      "words": "ohoto of a horder collie"
+    },
+    {
+      "probability": {
+        "average": 0.9443078041,
+        "min": 0.4079027474,
+        "variance": 0.01430337969
+      },
+      "words": "oto of a angry looking face"
+    },
+    {
+      "probability": {
+        "average": 0.968401134,
+        "min": 0.7761079669,
+        "variance": 0.001871396787
+      },
+      "words": "a photo of a person table tennis shot"
+    },
+    {
+      "probability": {
+        "average": 0.9183785319,
+        "min": 0.7249307036,
+        "variance": 0.004935765173
+      },
+      "words": "photo of a scorpion"
+    },
+    {
+      "probability": {
+        "average": 0.8127916455,
+        "min": 0.5133360624,
+        "variance": 0.02277203836
+      },
+      "words": "photo of a rottweiler"
+    },
+    {
+      "probability": {
+        "average": 0.9983814955,
+        "min": 0.9970190525,
+        "variance": 1.856332119e-06
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9662348032,
+        "min": 0.8786183596,
+        "variance": 0.002559471875
+      },
+      "words": "4060"
+    },
+    {
+      "probability": {
+        "average": 0.9399626255,
+        "min": 0.8968628049,
+        "variance": 0.001857597148
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.5922125578,
+        "min": 0.5142611861,
+        "variance": 0.006076416466
+      },
+      "words": "45"
+    },
+    {
+      "probability": {
+        "average": 0.6788932085,
+        "min": 0.6078902483,
+        "variance": 0.005041424651
+      },
+      "words": "t0"
+    },
+    {
+      "probability": {
+        "average": 0.749509275,
+        "min": 0.749509275,
+        "variance": 0
+      },
+      "words": "8"
+    },
+    {
+      "probability": {
+        "average": 0.9998642802,
+        "min": 0.9995484948,
+        "variance": 2.112941822e-08
+      },
+      "words": "204060"
+    },
+    {
+      "probability": {
+        "average": 0.8925938606,
+        "min": 0.8925938606,
+        "variance": 0
+      },
+      "words": "1"
+    },
+    {
+      "probability": {
+        "average": 0.9621257186,
+        "min": 0.8141130805,
+        "variance": 0.003556414042
+      },
+      "words": "20406080"
+    },
+    {
+      "probability": {
+        "average": 0.8193590641,
+        "min": 0.8193590641,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.8864175677,
+        "min": 0.4665138125,
+        "variance": 0.02882516757
+      },
+      "words": "Oxford-llIT Pets"
+    },
+    {
+      "probability": {
+        "average": 0.992108047,
+        "min": 0.9780998826,
+        "variance": 6.041346569e-05
+      },
+      "words": "CIFAR-100"
+    },
+    {
+      "probability": {
+        "average": 0.983351171,
+        "min": 0.7564558387,
+        "variance": 0.002039459068
+      },
+      "words": "mageNetV2 Matched Frequency"
+    },
+    {
+      "probability": {
+        "average": 0.9685293436,
+        "min": 0.8417969942,
+        "variance": 0.001999459229
+      },
+      "words": "FGVC Aircraft"
+    },
+    {
+      "probability": {
+        "average": 0.9606075883,
+        "min": 0.5776019096,
+        "variance": 0.007015764713
+      },
+      "words": "correct label: Maine Coon"
+    },
+    {
+      "probability": {
+        "average": 0.9525800943,
+        "min": 0.7407498956,
+        "variance": 0.003714296501
+      },
+      "words": "correct rank: 1/37 correct probability: 99.99%"
+    },
+    {
+      "probability": {
+        "average": 0.9637951851,
+        "min": 0.7496087551,
+        "variance": 0.003787865862
+      },
+      "words": "correct label:snake"
+    },
+    {
+      "probability": {
+        "average": 0.9663946629,
+        "min": 0.7543585896,
+        "variance": 0.002703247592
+      },
+      "words": "correct rank: 1/100 correct probabilty: 38.02%"
+    },
+    {
+      "probability": {
+        "average": 0.9365990162,
+        "min": 0.6475178599,
+        "variance": 0.007789742667
+      },
+      "words": "correct label: beer bottle"
+    },
+    {
+      "probability": {
+        "average": 0.9639726877,
+        "min": 0.7814710736,
+        "variance": 0.002875200706
+      },
+      "words": "correct rank: 11000 correct probability: 88.27%"
+    },
+    {
+      "probability": {
+        "average": 0.9847711921,
+        "min": 0.9469280243,
+        "variance": 0.0001913806918
+      },
+      "words": "correct label: Boeing 717"
+    },
+    {
+      "probability": {
+        "average": 0.9656919837,
+        "min": 0.7709477544,
+        "variance": 0.002861362416
+      },
+      "words": "correct rank: 2/100 correct probabilty: 9.91%"
+    },
+    {
+      "probability": {
+        "average": 0.9502156973,
+        "min": 0.7799467444,
+        "variance": 0.005693045445
+      },
+      "words": "Maine Coon"
+    },
+    {
+      "probability": {
+        "average": 0.6883583665,
+        "min": 0.3786782324,
+        "variance": 0.0369836688
+      },
+      "words": "ood amne coon, type or pel"
+    },
+    {
+      "probability": {
+        "average": 0.9125739336,
+        "min": 0.6412539482,
+        "variance": 0.01108604111
+      },
+      "words": "photo of a sna"
+    },
+    {
+      "probability": {
+        "average": 0.8344522715,
+        "min": 0.5893628597,
+        "variance": 0.03045480512
+      },
+      "words": "photo"
+    },
+    {
+      "probability": {
+        "average": 0.9404136539,
+        "min": 0.6685743332,
+        "variance": 0.005983632058
+      },
+      "words": "a phobo of a persian, a type of pet"
+    },
+    {
+      "probability": {
+        "average": 0.9860667586,
+        "min": 0.8948172927,
+        "variance": 0.0004440195044
+      },
+      "words": "hoto of a sweet pepper"
+    },
+    {
+      "probability": {
+        "average": 0.9880471826,
+        "min": 0.9628638029,
+        "variance": 7.138023648e-05
+      },
+      "words": "photo of a pirate ship"
+    },
+    {
+      "probability": {
+        "average": 0.7352210283,
+        "min": 0.3429659903,
+        "variance": 0.03294702619
+      },
+      "words": "of a boeing 713， a tye of aircat"
+    },
+    {
+      "probability": {
+        "average": 0.9599127173,
+        "min": 0.4379575253,
+        "variance": 0.01614808291
+      },
+      "words": "hoto of a flatfish"
+    },
+    {
+      "probability": {
+        "average": 0.912404716,
+        "min": 0.4816770852,
+        "variance": 0.0146060735
+      },
+      "words": "photo of a checolate syo"
+    },
+    {
+      "probability": {
+        "average": 0.8401584029,
+        "min": 0.5357670188,
+        "variance": 0.01854017936
+      },
+      "words": "a photo of a birman. a type of pet"
+    },
+    {
+      "probability": {
+        "average": 0.9075561762,
+        "min": 0.6954288483,
+        "variance": 0.007049113978
+      },
+      "words": "photo of a turtle"
+    },
+    {
+      "probability": {
+        "average": 0.9458928108,
+        "min": 0.5030716658,
+        "variance": 0.01300641336
+      },
+      "words": "photo of a product packet 7 packaging."
+    },
+    {
+      "probability": {
+        "average": 0.7426013947,
+        "min": 0.3319445252,
+        "variance": 0.03729356453
+      },
+      "words": "to of a momonnel douglas do 530. a tye of airoat"
+    },
+    {
+      "probability": {
+        "average": 0.9060826898,
+        "min": 0.6022583842,
+        "variance": 0.009198003449
+      },
+      "words": "a photo of a siamese, a tpe of pe"
+    },
+    {
+      "probability": {
+        "average": 0.9746800661,
+        "min": 0.7078257203,
+        "variance": 0.004508690909
+      },
+      "words": "hoto of a lizard."
+    },
+    {
+      "probability": {
+        "average": 0.9864570498,
+        "min": 0.9003659487,
+        "variance": 0.0004444600199
+      },
+      "words": "photo of a wine bottle"
+    },
+    {
+      "probability": {
+        "average": 0.7754091024,
+        "min": 0.3675649166,
+        "variance": 0.02783172578
+      },
+      "words": "to of a boeing 727.200， a te of aircrat"
+    },
+    {
+      "probability": {
+        "average": 0.92034024,
+        "min": 0.842725873,
+        "variance": 0.00602398999
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9994084835,
+        "min": 0.9991053939,
+        "variance": 9.18633134e-08
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.5964800119,
+        "min": 0.4584073126,
+        "variance": 0.01906407438
+      },
+      "words": "00"
+    },
+    {
+      "probability": {
+        "average": 0.9699602127,
+        "min": 0.9606855512,
+        "variance": 8.601879381e-05
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9903054833,
+        "min": 0.9804576039,
+        "variance": 3.955501961e-05
+      },
+      "words": "2040"
+    },
+    {
+      "probability": {
+        "average": 0.6194514632,
+        "min": 0.4888475239,
+        "variance": 0.0170573853
+      },
+      "words": "50"
+    },
+    {
+      "probability": {
+        "average": 0.9871452451,
+        "min": 0.98204422,
+        "variance": 1.599989446e-05
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.8138103485,
+        "min": 0.6286866665,
+        "variance": 0.03427076712
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9818367958,
+        "min": 0.9677740932,
+        "variance": 0.0001783266489
+      },
+      "words": "4060"
+    },
+    {
+      "probability": {
+        "average": 0.7737628818,
+        "min": 0.5546283722,
+        "variance": 0.04801993445
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9970645905,
+        "min": 0.9922446609,
+        "variance": 1.164031346e-05
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.994841218,
+        "min": 0.9933852553,
+        "variance": 2.119827286e-06
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9842528105,
+        "min": 0.9698911309,
+        "variance": 0.0002062569838
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9852668643,
+        "min": 0.9191685319,
+        "variance": 0.0006298995577
+      },
+      "words": "Country211"
+    },
+    {
+      "probability": {
+        "average": 0.9273551702,
+        "min": 0.7657837272,
+        "variance": 0.007971012965
+      },
+      "words": "RESISC45"
+    },
+    {
+      "probability": {
+        "average": 0.9397063851,
+        "min": 0.7159614563,
+        "variance": 0.007255976088
+      },
+      "words": "Stanford Cars"
+    },
+    {
+      "probability": {
+        "average": 0.9791705608,
+        "min": 0.9479502439,
+        "variance": 0.0004982629907
+      },
+      "words": "SUN"
+    },
+    {
+      "probability": {
+        "average": 0.7767269611,
+        "min": 0.3286094368,
+        "variance": 0.03795381263
+      },
+      "words": "nrt Isbol: rounda"
+    },
+    {
+      "probability": {
+        "average": 0.8288053274,
+        "min": 0.8288053274,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.6717994213,
+        "min": 0.4158999622,
+        "variance": 0.03788892925
+      },
+      "words": "oed"
+    },
+    {
+      "probability": {
+        "average": 0.7923368812,
+        "min": 0.3858990073,
+        "variance": 0.04183599725
+      },
+      "words": "ornect"
+    },
+    {
+      "probability": {
+        "average": 0.9488257766,
+        "min": 0.7138679028,
+        "variance": 0.005912723485
+      },
+      "words": "correct labe"
+    },
+    {
+      "probability": {
+        "average": 0.7221360207,
+        "min": 0.4442720413,
+        "variance": 0.07720839232
+      },
+      "words": "2012 Hond"
+    },
+    {
+      "probability": {
+        "average": 0.8524075747,
+        "min": 0.4425240457,
+        "variance": 0.0363140665
+      },
+      "words": "o Coupe"
+    },
+    {
+      "probability": {
+        "average": 0.7763941884,
+        "min": 0.4174971282,
+        "variance": 0.0616042763
+      },
+      "words": "correc"
+    },
+    {
+      "probability": {
+        "average": 0.9150074124,
+        "min": 0.5557633042,
+        "variance": 0.02586305141
+      },
+      "words": "conect"
+    },
+    {
+      "probability": {
+        "average": 0.9317916632,
+        "min": 0.5305776596,
+        "variance": 0.01018479746
+      },
+      "words": "photo i took in french guiana."
+    },
+    {
+      "probability": {
+        "average": 0.8867266774,
+        "min": 0.376165837,
+        "variance": 0.01953454688
+      },
+      "words": "satelite imagery of rountabout"
+    },
+    {
+      "probability": {
+        "average": 0.8766063452,
+        "min": 0.4660022557,
+        "variance": 0.01553487498
+      },
+      "words": "hoto of a 2012 honda occo"
+    },
+    {
+      "probability": {
+        "average": 0.8266509175,
+        "min": 0.3138020039,
+        "variance": 0.04573977366
+      },
+      "words": "a anoto of a kennel indoor"
+    },
+    {
+      "probability": {
+        "average": 0.8100878,
+        "min": 0.3413905203,
+        "variance": 0.03978601098
+      },
+      "words": "hote i took in gahon"
+    },
+    {
+      "probability": {
+        "average": 0.9632204175,
+        "min": 0.5036765337,
+        "variance": 0.008592458442
+      },
+      "words": "elite imagery of intersertion"
+    },
+    {
+      "probability": {
+        "average": 0.848070085,
+        "min": 0.848070085,
+        "variance": 0
+      },
+      "words": "2"
+    },
+    {
+      "probability": {
+        "average": 0.7995943427,
+        "min": 0.4222739041,
+        "variance": 0.03467301279
+      },
+      "words": "nda accond sedan"
+    },
+    {
+      "probability": {
+        "average": 0.8660411239,
+        "min": 0.419364512,
+        "variance": 0.0290803425
+      },
+      "words": "nhoto of a kennel nutdoor"
+    },
+    {
+      "probability": {
+        "average": 0.8178234696,
+        "min": 0.4710218608,
+        "variance": 0.02859645709
+      },
+      "words": "in camood"
+    },
+    {
+      "probability": {
+        "average": 0.8977109194,
+        "min": 0.3851233721,
+        "variance": 0.02912828512
+      },
+      "words": "satelite imagery of church"
+    },
+    {
+      "probability": {
+        "average": 0.8109455109,
+        "min": 0.4077396095,
+        "variance": 0.02392441779
+      },
+      "words": "hoto of a 2012 acura  seda"
+    },
+    {
+      "probability": {
+        "average": 0.9729683399,
+        "min": 0.9016284943,
+        "variance": 0.0007127559511
+      },
+      "words": "photo of a jail cel"
+    },
+    {
+      "probability": {
+        "average": 0.9040904641,
+        "min": 0.3379656971,
+        "variance": 0.02650568448
+      },
+      "words": "ohoto i took in guyana"
+    },
+    {
+      "probability": {
+        "average": 0.9705740213,
+        "min": 0.6773113012,
+        "variance": 0.005082087591
+      },
+      "words": "satellite imagery of medium residential"
+    },
+    {
+      "probability": {
+        "average": 0.953032136,
+        "min": 0.8303411007,
+        "variance": 0.002235783497
+      },
+      "words": "photo of a 2012 acura tsx sedan"
+    },
+    {
+      "probability": {
+        "average": 0.9618365169,
+        "min": 0.8080425262,
+        "variance": 0.002408405533
+      },
+      "words": "a photo of a jail indoor"
+    },
+    {
+      "probability": {
+        "average": 0.7390468121,
+        "min": 0.5183676481,
+        "variance": 0.02844708972
+      },
+      "words": "sbote i took"
+    },
+    {
+      "probability": {
+        "average": 0.863805294,
+        "min": 0.3655042648,
+        "variance": 0.03822481632
+      },
+      "words": "photo of a weterinarians office"
+    },
+    {
+      "probability": {
+        "average": 0.9034068584,
+        "min": 0.5890518427,
+        "variance": 0.02051408403
+      },
+      "words": "204060"
+    },
+    {
+      "probability": {
+        "average": 0.7136154175,
+        "min": 0.7136154175,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9836208224,
+        "min": 0.9696102142,
+        "variance": 0.0001962971437
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.8217924833,
+        "min": 0.5079147816,
+        "variance": 0.04384560138
+      },
+      "words": "20405000"
+    },
+    {
+      "probability": {
+        "average": 0.9991033077,
+        "min": 0.9986257553,
+        "variance": 2.280847724e-07
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9590709805,
+        "min": 0.866964519,
+        "variance": 0.002956834389
+      },
+      "words": "2D40"
+    },
+    {
+      "probability": {
+        "average": 0.95018363,
+        "min": 0.9246627688,
+        "variance": 0.0006513159024
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.7691932321,
+        "min": 0.7691932321,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9992030263,
+        "min": 0.9988331199,
+        "variance": 1.878344165e-07
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.868591547,
+        "min": 0.5237519145,
+        "variance": 0.02972875722
+      },
+      "words": "20406000100"
+    },
+    {
+      "probability": {
+        "average": 0.9525589943,
+        "min": 0.8916720152,
+        "variance": 0.001365174307
+      },
+      "words": "netics-700"
+    },
+    {
+      "probability": {
+        "average": 0.915584445,
+        "min": 0.5280444622,
+        "variance": 0.01958773285
+      },
+      "words": "owers-102"
+    },
+    {
+      "probability": {
+        "average": 0.9801061749,
+        "min": 0.9196982384,
+        "variance": 0.0007465552189
+      },
+      "words": "mageNe"
+    },
+    {
+      "probability": {
+        "average": 0.9567517042,
+        "min": 0.7477612495,
+        "variance": 0.007301736623
+      },
+      "words": "irdsnap"
+    },
+    {
+      "probability": {
+        "average": 0.9704223871,
+        "min": 0.6675963998,
+        "variance": 0.003734565573
+      },
+      "words": "correct label: country line dancing correct rank: 1/700 correct probability: 98.989"
+    },
+    {
+      "probability": {
+        "average": 0.9625703096,
+        "min": 0.488019824,
+        "variance": 0.009163221344
+      },
+      "words": "comect label: great masterwort"
+    },
+    {
+      "probability": {
+        "average": 0.9475223422,
+        "min": 0.5598724484,
+        "variance": 0.008413623087
+      },
+      "words": "correct rank: 1/102 corroct probabilty: 74.25%"
+    },
+    {
+      "probability": {
+        "average": 0.95222193,
+        "min": 0.5767874718,
+        "variance": 0.007288327441
+      },
+      "words": "correct label: King Charles Spaniel correct rank: 1/1000 correct probability: 91.61%"
+    },
+    {
+      "probability": {
+        "average": 0.9576352835,
+        "min": 0.6515623331,
+        "variance": 0.005806807894
+      },
+      "words": "correct label: Black chinned Hummingbird correct rank: 4/500 correct probabilty: 12.00%"
+    },
+    {
+      "probability": {
+        "average": 0.9308571219,
+        "min": 0.6781628728,
+        "variance": 0.006657607853
+      },
+      "words": "photo of country ine dancing"
+    },
+    {
+      "probability": {
+        "average": 0.651895225,
+        "min": 0.3234139979,
+        "variance": 0.03970141336
+      },
+      "words": "oboro ofa ole mastwoa re"
+    },
+    {
+      "probability": {
+        "average": 0.9407000542,
+        "min": 0.5513587594,
+        "variance": 0.007887512445
+      },
+      "words": "a photo of a king charles spanlel"
+    },
+    {
+      "probability": {
+        "average": 0.6476415992,
+        "min": 0.3102020621,
+        "variance": 0.07220935076
+      },
+      "words": "photo od a lrio"
+    },
+    {
+      "probability": {
+        "average": 0.6801871061,
+        "min": 0.322625488,
+        "variance": 0.04658263922
+      },
+      "words": "stind a tyue at bind"
+    },
+    {
+      "probability": {
+        "average": 0.9383875132,
+        "min": 0.4106028378,
+        "variance": 0.0174997393
+      },
+      "words": "photo or square dancing"
+    },
+    {
+      "probability": {
+        "average": 0.8270078897,
+        "min": 0.3121186197,
+        "variance": 0.03851370141
+      },
+      "words": "a bishop or landam. a type ar fower"
+    },
+    {
+      "probability": {
+        "average": 0.7622115612,
+        "min": 0.4817024469,
+        "variance": 0.03287704289
+      },
+      "words": "noto"
+    },
+    {
+      "probability": {
+        "average": 0.8342714906,
+        "min": 0.4530290365,
+        "variance": 0.02215106413
+      },
+      "words": "onttany dog"
+    },
+    {
+      "probability": {
+        "average": 0.9924440384,
+        "min": 0.9350653887,
+        "variance": 0.00017789712
+      },
+      "words": "a photo of swing dancing"
+    },
+    {
+      "probability": {
+        "average": 0.9258202314,
+        "min": 0.435556978,
+        "variance": 0.01691231504
+      },
+      "words": "hoto of a pincushion nower, a type of owe"
+    },
+    {
+      "probability": {
+        "average": 0.9904704094,
+        "min": 0.9435600042,
+        "variance": 0.0001631499472
+      },
+      "words": "photo of a cocker spaniel"
+    },
+    {
+      "probability": {
+        "average": 0.7600870132,
+        "min": 0.4633053839,
+        "variance": 0.02625900507
+      },
+      "words": "da coola"
+    },
+    {
+      "probability": {
+        "average": 0.781165123,
+        "min": 0.3389505148,
+        "variance": 0.04261434451
+      },
+      "words": "ngbend. a lype of bird"
+    },
+    {
+      "probability": {
+        "average": 0.8627359867,
+        "min": 0.3610711992,
+        "variance": 0.02772894315
+      },
+      "words": "photn of dancing chardestn"
+    },
+    {
+      "probability": {
+        "average": 0.7792015076,
+        "min": 0.3763089776,
+        "variance": 0.03535866365
+      },
+      "words": "nboen of a nanilco"
+    },
+    {
+      "probability": {
+        "average": 0.9614818692,
+        "min": 0.6451099515,
+        "variance": 0.005685424432
+      },
+      "words": "a photo of salsa dancing"
+    },
+    {
+      "probability": {
+        "average": 0.9411742091,
+        "min": 0.4261355996,
+        "variance": 0.0127617484
+      },
+      "words": "photo of a prince of wales feathers, a type of fower"
+    },
+    {
+      "probability": {
+        "average": 0.9251722693,
+        "min": 0.4438836277,
+        "variance": 0.02053769492
+      },
+      "words": "a photo of a sussex spanie"
+    },
+    {
+      "probability": {
+        "average": 0.8827075362,
+        "min": 0.6004272103,
+        "variance": 0.01185393892
+      },
+      "words": "ingbird, a type of bird"
+    },
+    {
+      "probability": {
+        "average": 0.6341815591,
+        "min": 0.3297636509,
+        "variance": 0.09267026186
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9754959345,
+        "min": 0.9698828459,
+        "variance": 3.150642806e-05
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9775818586,
+        "min": 0.9752628207,
+        "variance": 5.377936759e-06
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.6144406796,
+        "min": 0.3234722912,
+        "variance": 0.08466261625
+      },
+      "words": "ān"
+    },
+    {
+      "probability": {
+        "average": 0.9539737701,
+        "min": 0.9228754044,
+        "variance": 0.0009671102162
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.846401751,
+        "min": 0.846401751,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9624863863,
+        "min": 0.9416394234,
+        "variance": 0.0004345946363
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9303612709,
+        "min": 0.9303612709,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9583377838,
+        "min": 0.9486973882,
+        "variance": 9.293780022e-05
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9955106378,
+        "min": 0.9879724383,
+        "variance": 1.321096352e-05
+      },
+      "words": "aYahoo"
+    },
+    {
+      "probability": {
+        "average": 0.9858534932,
+        "min": 0.8561615944,
+        "variance": 0.0009973107371
+      },
+      "words": "ObjectNet ImageNet Overlap"
+    },
+    {
+      "probability": {
+        "average": 0.991959691,
+        "min": 0.9239305854,
+        "variance": 0.0003614491434
+      },
+      "words": "mageNet Blurry"
+    },
+    {
+      "probability": {
+        "average": 0.980094254,
+        "min": 0.6566725969,
+        "variance": 0.003559107892
+      },
+      "words": "Describable Textures Dataset (DTD)"
+    },
+    {
+      "probability": {
+        "average": 0.9392280579,
+        "min": 0.5969034433,
+        "variance": 0.0103029795
+      },
+      "words": "comect label: bulding"
+    },
+    {
+      "probability": {
+        "average": 0.9454628229,
+        "min": 0.4633836746,
+        "variance": 0.0099976575
+      },
+      "words": "correct rank 1/12 comect probability: 97.69%"
+    },
+    {
+      "probability": {
+        "average": 0.8900083899,
+        "min": 0.4001809359,
+        "variance": 0.02300048433
+      },
+      "words": "correct label: Pll bottle"
+    },
+    {
+      "probability": {
+        "average": 0.9479715228,
+        "min": 0.5870146751,
+        "variance": 0.007019935641
+      },
+      "words": "correct rank: 1/113 correct probabilty: 98.34"
+    },
+    {
+      "probability": {
+        "average": 0.9373360872,
+        "min": 0.7120553255,
+        "variance": 0.00543302251
+      },
+      "words": "correct label marimba"
+    },
+    {
+      "probability": {
+        "average": 0.9316985011,
+        "min": 0.4693853855,
+        "variance": 0.01581854187
+      },
+      "words": "correct rank: 1/1000 comect probability: 79.5496"
+    },
+    {
+      "probability": {
+        "average": 0.9577832818,
+        "min": 0.7987896204,
+        "variance": 0.003463947447
+      },
+      "words": "comect label: perforated"
+    },
+    {
+      "probability": {
+        "average": 0.853970468,
+        "min": 0.3435589373,
+        "variance": 0.02759209089
+      },
+      "words": "correct cank: 2/47 correct probablity:20.504"
+    },
+    {
+      "probability": {
+        "average": 0.9273325205,
+        "min": 0.6047042608,
+        "variance": 0.01036985219
+      },
+      "words": "photo of a building"
+    },
+    {
+      "probability": {
+        "average": 0.93155092,
+        "min": 0.5749910474,
+        "variance": 0.009679137729
+      },
+      "words": "phato of a pill bottle"
+    },
+    {
+      "probability": {
+        "average": 0.8661826253,
+        "min": 0.3036433756,
+        "variance": 0.03101006895
+      },
+      "words": "a photo of a manmbr"
+    },
+    {
+      "probability": {
+        "average": 0.7225328684,
+        "min": 0.5319317579,
+        "variance": 0.03301590681
+      },
+      "words": "phot"
+    },
+    {
+      "probability": {
+        "average": 0.955204308,
+        "min": 0.8925653696,
+        "variance": 0.00155210495
+      },
+      "words": "to of"
+    },
+    {
+      "probability": {
+        "average": 0.9565443993,
+        "min": 0.4865885675,
+        "variance": 0.01279550046
+      },
+      "words": "photo of a carrlage"
+    },
+    {
+      "probability": {
+        "average": 0.9803753495,
+        "min": 0.8213781714,
+        "variance": 0.001833578106
+      },
+      "words": "a photo of a bottle cap."
+    },
+    {
+      "probability": {
+        "average": 0.958530724,
+        "min": 0.6440250874,
+        "variance": 0.006908920594
+      },
+      "words": "noto of a abacus"
+    },
+    {
+      "probability": {
+        "average": 0.8906861544,
+        "min": 0.771430254,
+        "variance": 0.007562601473
+      },
+      "words": "photo"
+    },
+    {
+      "probability": {
+        "average": 0.994813323,
+        "min": 0.962454617,
+        "variance": 6.501401367e-05
+      },
+      "words": "a perforated texture"
+    },
+    {
+      "probability": {
+        "average": 0.8655395508,
+        "min": 0.4850124121,
+        "variance": 0.01832220703
+      },
+      "words": "photn of a statue"
+    },
+    {
+      "probability": {
+        "average": 0.8931127787,
+        "min": 0.5035451055,
+        "variance": 0.02258802764
+      },
+      "words": "nhato of a beer hottle"
+    },
+    {
+      "probability": {
+        "average": 0.8292527199,
+        "min": 0.3891704977,
+        "variance": 0.03621036559
+      },
+      "words": "photn of a steel cnum"
+    },
+    {
+      "probability": {
+        "average": 0.5805343986,
+        "min": 0.3572531343,
+        "variance": 0.03515848517
+      },
+      "words": "nhot"
+    },
+    {
+      "probability": {
+        "average": 0.9596236944,
+        "min": 0.8457090855,
+        "variance": 0.001928200596
+      },
+      "words": "a dotted texture"
+    },
+    {
+      "probability": {
+        "average": 0.9183519483,
+        "min": 0.67340976,
+        "variance": 0.009774872102
+      },
+      "words": "a photo or a bag."
+    },
+    {
+      "probability": {
+        "average": 0.888610065,
+        "min": 0.6416783929,
+        "variance": 0.01393528003
+      },
+      "words": "a photo of a pillow"
+    },
+    {
+      "probability": {
+        "average": 0.9841667414,
+        "min": 0.8697193265,
+        "variance": 0.0007172907353
+      },
+      "words": "photo of a computer keyboard"
+    },
+    {
+      "probability": {
+        "average": 0.7893897891,
+        "min": 0.4526945353,
+        "variance": 0.05694121122
+      },
+      "words": "aph"
+    },
+    {
+      "probability": {
+        "average": 0.9303901792,
+        "min": 0.4405753613,
+        "variance": 0.01448206045
+      },
+      "words": "of a studded texture"
+    },
+    {
+      "probability": {
+        "average": 0.9344957471,
+        "min": 0.4198259115,
+        "variance": 0.02412651479
+      },
+      "words": "a photo of a mug."
+    },
+    {
+      "probability": {
+        "average": 0.9896377325,
+        "min": 0.9052066803,
+        "variance": 0.000429473439
+      },
+      "words": "a photo of a wine bottle."
+    },
+    {
+      "probability": {
+        "average": 0.9529355764,
+        "min": 0.571559608,
+        "variance": 0.01371398475
+      },
+      "words": "a photo of a pool table"
+    },
+    {
+      "probability": {
+        "average": 0.9685128331,
+        "min": 0.5235690475,
+        "variance": 0.008490510285
+      },
+      "words": "photo of a frecided texture"
+    },
+    {
+      "probability": {
+        "average": 0.9286212325,
+        "min": 0.9286212325,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9972308278,
+        "min": 0.9947069287,
+        "variance": 6.37006633e-06
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.9850443602,
+        "min": 0.9768599272,
+        "variance": 6.698493962e-05
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.721385181,
+        "min": 0.5406188369,
+        "variance": 0.03267646953
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.998729229,
+        "min": 0.9978398085,
+        "variance": 4.573914509e-07
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9834979177,
+        "min": 0.9834979177,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9985205531,
+        "min": 0.9973728657,
+        "variance": 1.317186502e-06
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9907135367,
+        "min": 0.9811578393,
+        "variance": 3.188060509e-05
+      },
+      "words": "4060"
+    },
+    {
+      "probability": {
+        "average": 0.7377713323,
+        "min": 0.5383164883,
+        "variance": 0.03978223354
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9882341027,
+        "min": 0.9773575664,
+        "variance": 6.777909584e-05
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9976558685,
+        "min": 0.9976558685,
+        "variance": 0
+      },
+      "words": "。"
+    },
+    {
+      "probability": {
+        "average": 0.9950945377,
+        "min": 0.9905926585,
+        "variance": 9.192595826e-06
+      },
+      "words": "2040"
+    },
+    {
+      "probability": {
+        "average": 0.9894047976,
+        "min": 0.9800533652,
+        "variance": 8.74498437e-05
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.8498055339,
+        "min": 0.7294978499,
+        "variance": 0.01447393838
+      },
+      "words": "30"
+    },
+    {
+      "probability": {
+        "average": 0.9966628551,
+        "min": 0.9925191402,
+        "variance": 8.763839105e-06
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9038037062,
+        "min": 0.9038037062,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9977982044,
+        "min": 0.9961577058,
+        "variance": 2.69123575e-06
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.8058838248,
+        "min": 0.7566744685,
+        "variance": 0.002421560697
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.8813114166,
+        "min": 0.658822,
+        "variance": 0.02475587092
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.8570308685,
+        "min": 0.4542432427,
+        "variance": 0.03301681951
+      },
+      "words": "PASCAL VOC. 2007"
+    },
+    {
+      "probability": {
+        "average": 0.9891583323,
+        "min": 0.9608976841,
+        "variance": 0.0002163500467
+      },
+      "words": "MNIST"
+    },
+    {
+      "probability": {
+        "average": 0.8953645825,
+        "min": 0.4487959743,
+        "variance": 0.02543108165
+      },
+      "words": "Street View Ho"
+    },
+    {
+      "probability": {
+        "average": 0.9540252686,
+        "min": 0.588122189,
+        "variance": 0.01213777065
+      },
+      "words": "e Numbers(SVHN)"
+    },
+    {
+      "probability": {
+        "average": 0.7343500853,
+        "min": 0.4756731987,
+        "variance": 0.0669137463
+      },
+      "words": "m:"
+    },
+    {
+      "probability": {
+        "average": 0.7862359881,
+        "min": 0.5033482909,
+        "variance": 0.03993885592
+      },
+      "words": "Nat Vid"
+    },
+    {
+      "probability": {
+        "average": 0.7166239023,
+        "min": 0.4702146053,
+        "variance": 0.03158916906
+      },
+      "words": "act laballcl mo"
+    },
+    {
+      "probability": {
+        "average": 0.8596596718,
+        "min": 0.8226724863,
+        "variance": 0.001368049649
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.7939142585,
+        "min": 0.5171342492,
+        "variance": 0.03797824308
+      },
+      "words": "00,608"
+    },
+    {
+      "probability": {
+        "average": 0.9466927648,
+        "min": 0.6882988214,
+        "variance": 0.005473208614
+      },
+      "words": "correct label: 7"
+    },
+    {
+      "probability": {
+        "average": 0.781887114,
+        "min": 0.4721117318,
+        "variance": 0.04878617451
+      },
+      "words": "310"
+    },
+    {
+      "probability": {
+        "average": 0.8141770959,
+        "min": 0.503036201,
+        "variance": 0.03389213607
+      },
+      "words": "85.329"
+    },
+    {
+      "probability": {
+        "average": 0.9718540311,
+        "min": 0.8860528469,
+        "variance": 0.0008919717511
+      },
+      "words": "ect label:"
+    },
+    {
+      "probability": {
+        "average": 0.9682856798,
+        "min": 0.9511201978,
+        "variance": 0.0002946548047
+      },
+      "words": "58"
+    },
+    {
+      "probability": {
+        "average": 0.7645564079,
+        "min": 0.3430028856,
+        "variance": 0.06298948079
+      },
+      "words": "k:83/200/"
+    },
+    {
+      "probability": {
+        "average": 0.9471766949,
+        "min": 0.9191705585,
+        "variance": 0.0003931208921
+      },
+      "words": "027"
+    },
+    {
+      "probability": {
+        "average": 0.7977062464,
+        "min": 0.4854185879,
+        "variance": 0.0454461053
+      },
+      "words": "00779"
+    },
+    {
+      "probability": {
+        "average": 0.6093666553,
+        "min": 0.4100268781,
+        "variance": 0.03122806735
+      },
+      "words": "OrTe"
+    },
+    {
+      "probability": {
+        "average": 0.9686418772,
+        "min": 0.9686418772,
+        "variance": 0
+      },
+      "words": "p"
+    },
+    {
+      "probability": {
+        "average": 0.9244341254,
+        "min": 0.5244617462,
+        "variance": 0.01329746377
+      },
+      "words": "photo or a matorcycle"
+    },
+    {
+      "probability": {
+        "average": 0.907587409,
+        "min": 0.6191216707,
+        "variance": 0.01155045535
+      },
+      "words": "a phato of the number.7"
+    },
+    {
+      "probability": {
+        "average": 0.9592703581,
+        "min": 0.4982886016,
+        "variance": 0.008792775683
+      },
+      "words": "a street sign of the number: \"1157\""
+    },
+    {
+      "probability": {
+        "average": 0.9390746355,
+        "min": 0.5568816066,
+        "variance": 0.008302776143
+      },
+      "words": "a photo of a antelope"
+    },
+    {
+      "probability": {
+        "average": 0.9295243025,
+        "min": 0.5108163953,
+        "variance": 0.01454643533
+      },
+      "words": "photo of a bicvcle"
+    },
+    {
+      "probability": {
+        "average": 0.9395414591,
+        "min": 0.5620263815,
+        "variance": 0.01306732185
+      },
+      "words": "hoto of the number. \"2\""
+    },
+    {
+      "probability": {
+        "average": 0.9654029608,
+        "min": 0.5189210773,
+        "variance": 0.008942313492
+      },
+      "words": "street sion of the number: \"1165\""
+    },
+    {
+      "probability": {
+        "average": 0.9692695141,
+        "min": 0.6376776695,
+        "variance": 0.007437367924
+      },
+      "words": "photo of a zebra"
+    },
+    {
+      "probability": {
+        "average": 0.9376323223,
+        "min": 0.6102829576,
+        "variance": 0.009536280297
+      },
+      "words": "a photo of a car"
+    },
+    {
+      "probability": {
+        "average": 0.8995610476,
+        "min": 0.5107015967,
+        "variance": 0.02086468413
+      },
+      "words": "nato of the numoer:"
+    },
+    {
+      "probability": {
+        "average": 0.9999037385,
+        "min": 0.9998313189,
+        "variance": 2.674922284e-09
+      },
+      "words": "158"
+    },
+    {
+      "probability": {
+        "average": 0.9445636868,
+        "min": 0.560784936,
+        "variance": 0.01278606337
+      },
+      "words": " street sign or the number: \"1164"
+    },
+    {
+      "probability": {
+        "average": 0.8608215451,
+        "min": 0.4746854901,
+        "variance": 0.02331976593
+      },
+      "words": "phato or a car"
+    },
+    {
+      "probability": {
+        "average": 0.9895203114,
+        "min": 0.9512109756,
+        "variance": 0.0001719766005
+      },
+      "words": "a photo of a horse"
+    },
+    {
+      "probability": {
+        "average": 0.9402042031,
+        "min": 0.6258968711,
+        "variance": 0.01073528733
+      },
+      "words": "photo of the number: \"6\""
+    },
+    {
+      "probability": {
+        "average": 0.9692086577,
+        "min": 0.7342467904,
+        "variance": 0.003737497842
+      },
+      "words": "a street sign of the number: \"1155\""
+    },
+    {
+      "probability": {
+        "average": 0.9710933566,
+        "min": 0.7449300885,
+        "variance": 0.00460204808
+      },
+      "words": "a phato of a cattle"
+    },
+    {
+      "probability": {
+        "average": 0.8182154298,
+        "min": 0.3338844776,
+        "variance": 0.03133665398
+      },
+      "words": "photo of a dining table"
+    },
+    {
+      "probability": {
+        "average": 0.8324385285,
+        "min": 0.3918632269,
+        "variance": 0.03240624815
+      },
+      "words": "hato of the number 4\""
+    },
+    {
+      "probability": {
+        "average": 0.9225396514,
+        "min": 0.6534165144,
+        "variance": 0.008570520207
+      },
+      "words": "street sinn of the number: \"1364\""
+    },
+    {
+      "probability": {
+        "average": 0.7903345823,
+        "min": 0.4116484821,
+        "variance": 0.0410063751
+      },
+      "words": "obato of a elenhant"
+    },
+    {
+      "probability": {
+        "average": 0.9973040223,
+        "min": 0.9945222139,
+        "variance": 3.581235433e-06
+      },
+      "words": "2040"
+    },
+    {
+      "probability": {
+        "average": 0.9850203395,
+        "min": 0.9827626944,
+        "variance": 5.096961559e-06
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.8314355612,
+        "min": 0.7051600814,
+        "variance": 0.01594550349
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.999656558,
+        "min": 0.9994978905,
+        "variance": 2.518485509e-08
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9923301935,
+        "min": 0.9707121253,
+        "variance": 0.0001047292099
+      },
+      "words": "0204060"
+    },
+    {
+      "probability": {
+        "average": 0.8413752317,
+        "min": 0.8224903345,
+        "variance": 0.0003566393571
+      },
+      "words": "80"
+    },
+    {
+      "probability": {
+        "average": 0.9978613853,
+        "min": 0.997618258,
+        "variance": 5.912539791e-08
+      },
+      "words": "10"
+    },
+    {
+      "probability": {
+        "average": 0.9992772341,
+        "min": 0.995978117,
+        "variance": 1.481331196e-06
+      },
+      "words": "020406080"
+    },
+    {
+      "probability": {
+        "average": 0.9978634715,
+        "min": 0.9953145981,
+        "variance": 3.596932174e-06
+      },
+      "words": "100"
+    },
+    {
+      "probability": {
+        "average": 0.9612625837,
+        "min": 0.9612625837,
+        "variance": 0
+      },
+      "words": "0"
+    },
+    {
+      "probability": {
+        "average": 0.9305197001,
+        "min": 0.6813334823,
+        "variance": 0.009237724356
+      },
+      "words": "20406080300"
+    },
+    {
+      "probability": {
+        "average": 0.8988688588,
+        "min": 0.6990486979,
+        "variance": 0.01055892278
+      },
+      "words": "mageNet"
+    },
+    {
+      "probability": {
+        "average": 0.8781777024,
+        "min": 0.5199190974,
+        "variance": 0.02132243663
+      },
+      "words": "ateful Meme:"
+    },
+    {
+      "probability": {
+        "average": 0.8777244687,
+        "min": 0.3834576309,
+        "variance": 0.03657639772
+      },
+      "words": "a Sentiment Treebank"
+    },
+    {
+      "probability": {
+        "average": 0.9159062505,
+        "min": 0.551543951,
+        "variance": 0.01244884823
+      },
+      "words": "serman Trac Sign Recognition Benchmar"
+    },
+    {
+      "probability": {
+        "average": 0.9419417381,
+        "min": 0.7094427347,
+        "variance": 0.01107792649
+      },
+      "words": "(GTSRB"
+    },
+    {
+      "probability": {
+        "average": 0.9498973489,
+        "min": 0.7406282425,
+        "variance": 0.003304787446
+      },
+      "words": "correct label: barn"
+    },
+    {
+      "probability": {
+        "average": 0.9538596869,
+        "min": 0.6566295028,
+        "variance": 0.006880274042
+      },
+      "words": "correct rank: 1/1000 correct probability: 79.56"
+    },
+    {
+      "probability": {
+        "average": 0.9473161101,
+        "min": 0.7853505611,
+        "variance": 0.004085424356
+      },
+      "words": "correct label: meme"
+    },
+    {
+      "probability": {
+        "average": 0.9531205893,
+        "min": 0.6162725687,
+        "variance": 0.006814034656
+      },
+      "words": "correct rank: 12 correct probabilty: 99.20%"
+    },
+    {
+      "probability": {
+        "average": 0.9273602962,
+        "min": 0.6133045554,
+        "variance": 0.01284958702
+      },
+      "words": "correct label: positive"
+    },
+    {
+      "probability": {
+        "average": 0.9413502216,
+        "min": 0.5528524518,
+        "variance": 0.009557901882
+      },
+      "words": "correct rank: 1/2 correct probability: 78.21%"
+    },
+    {
+      "probability": {
+        "average": 0.9319442511,
+        "min": 0.3263833523,
+        "variance": 0.01874124072
+      },
+      "words": "correct rank: 1/43 correct probabiity: 45.759"
+    },
+    {
+      "probability": {
+        "average": 0.9480109215,
+        "min": 0.6658015847,
+        "variance": 0.006326226052
+      },
+      "words": "collee isn't helping"
+    },
+    {
+      "probability": {
+        "average": 0.8918189406,
+        "min": 0.5626302958,
+        "variance": 0.01166588906
+      },
+      "words": "photo of a bam"
+    },
+    {
+      "probability": {
+        "average": 0.9563423395,
+        "min": 0.8500136733,
+        "variance": 0.003768968396
+      },
+      "words": "meme"
+    },
+    {
+      "probability": {
+        "average": 0.9025313258,
+        "min": 0.6140635014,
+        "variance": 0.01231705211
+      },
+      "words": "positive reew of a move"
+    },
+    {
+      "probability": {
+        "average": 0.9756357074,
+        "min": 0.8752074838,
+        "variance": 0.0009280594531
+      },
+      "words": "hoto of a church"
+    },
+    {
+      "probability": {
+        "average": 0.9216559529,
+        "min": 0.4437059164,
+        "variance": 0.01874827966
+      },
+      "words": "habesneech meme"
+    },
+    {
+      "probability": {
+        "average": 0.7118208408,
+        "min": 0.3805695176,
+        "variance": 0.06150732562
+      },
+      "words": "nea"
+    },
+    {
+      "probability": {
+        "average": 0.8630344272,
+        "min": 0.5191527009,
+        "variance": 0.02898340113
+      },
+      "words": "review of a movie"
+    },
+    {
+      "probability": {
+        "average": 0.7668844461,
+        "min": 0.5403547883,
+        "variance": 0.03108575568
+      },
+      "words": "ts perec"
+    },
+    {
+      "probability": {
+        "average": 0.9775103927,
+        "min": 0.7973436117,
+        "variance": 0.001673748484
+      },
+      "words": "photo of a threshing machine."
+    },
+    {
+      "probability": {
+        "average": 0.8394610882,
+        "min": 0.4953915477,
+        "variance": 0.0339821279
+      },
+      "words": "photo of a sawmil"
+    },
+    {
+      "probability": {
+        "average": 0.8958624005,
+        "min": 0.6248359084,
+        "variance": 0.01064123772
+      },
+      "words": "photo of a pnson"
+    },
+    {
+      "probability": {
+        "average": 0.9866144061,
+        "min": 0.7991884351,
+        "variance": 0.001785068423
+      },
+      "words": "get the jumper cables"
+    },
+    {
+      "probability": {
+        "average": 0.8746228814,
+        "min": 0.6902711391,
+        "variance": 0.01221471466
+      },
+      "words": "2040"
+    },
+    {
+      "probability": {
+        "average": 0.7191336155,
+        "min": 0.4992875457,
+        "variance": 0.04833229259
+      },
+      "words": "60"
+    },
+    {
+      "probability": {
+        "average": 0.8577777743,
+        "min": 0.7197558284,
+        "variance": 0.01905005798
+      },
+      "words": "40"
+    },
+    {
+      "probability": {
+        "average": 0.728944838,
+        "min": 0.4714070857,
+        "variance": 0.06632570177
+      },
+      "words": "4ù"
+    },
+    {
+      "probability": {
+        "average": 0.8463050127,
+        "min": 0.8084438443,
+        "variance": 0.001433468075
+      },
+      "words": "20"
+    },
+    {
+      "probability": {
+        "average": 0.9499667883,
+        "min": 0.9201297164,
+        "variance": 0.0008902526461
+      },
+      "words": "60"
+    }
+  ],
+  "words_result_num": 404,
+  "direction": 0,
+  "log_id": 2079046674784506323
+}

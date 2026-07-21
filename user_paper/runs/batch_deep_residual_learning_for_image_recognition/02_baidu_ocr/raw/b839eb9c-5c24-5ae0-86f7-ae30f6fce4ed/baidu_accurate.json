@@ -1,0 +1,1247 @@
+{
+  "words_result": [
+    {
+      "probability": {
+        "average": 0.8773757815,
+        "min": 0.7381696105,
+        "variance": 0.00676218234
+      },
+      "words": "000T"
+    },
+    {
+      "probability": {
+        "average": 0.9595555067,
+        "min": 0.9595555067,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.8919404745,
+        "min": 0.7732467651,
+        "variance": 0.004974028096
+      },
+      "words": "000T"
+    },
+    {
+      "probability": {
+        "average": 0.8922019601,
+        "min": 0.7011343837,
+        "variance": 0.01222794876
+      },
+      "words": "000T"
+    },
+    {
+      "probability": {
+        "average": 0.9551036358,
+        "min": 0.8430980444,
+        "variance": 0.004186131991
+      },
+      "words": "960t"
+    },
+    {
+      "probability": {
+        "average": 0.9849277735,
+        "min": 0.9849277735,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7223280072,
+        "min": 0.4580114484,
+        "variance": 0.03218983859
+      },
+      "words": "T:azs"
+    },
+    {
+      "probability": {
+        "average": 0.8594394326,
+        "min": 0.4199956357,
+        "variance": 0.03860335425
+      },
+      "words": "joodave"
+    },
+    {
+      "probability": {
+        "average": 0.8682376146,
+        "min": 0.4993574619,
+        "variance": 0.02915314399
+      },
+      "words": "loodave"
+    },
+    {
+      "probability": {
+        "average": 0.9656879902,
+        "min": 0.8796734214,
+        "variance": 0.002469312865
+      },
+      "words": "960t"
+    },
+    {
+      "probability": {
+        "average": 0.89023,
+        "min": 0.517698884,
+        "variance": 0.03520253301
+      },
+      "words": "nd1no"
+    },
+    {
+      "probability": {
+        "average": 0.9247975349,
+        "min": 0.9247975349,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.71833992,
+        "min": 0.4453309774,
+        "variance": 0.03846656531
+      },
+      "words": "ZTS 'AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7485303283,
+        "min": 0.4538546801,
+        "variance": 0.03539720178
+      },
+      "words": "ZIS AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7726168036,
+        "min": 0.3844333291,
+        "variance": 0.03197230399
+      },
+      "words": "ZISAUOO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7150846124,
+        "min": 0.4135741889,
+        "variance": 0.03717544675
+      },
+      "words": "ZIS 'AUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7732138634,
+        "min": 0.4440140426,
+        "variance": 0.03142676875
+      },
+      "words": "ZTS AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7706999183,
+        "min": 0.4859981537,
+        "variance": 0.0309716966
+      },
+      "words": "ZTS AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.8661538959,
+        "min": 0.8661538959,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7677189708,
+        "min": 0.4815749526,
+        "variance": 0.02858281881
+      },
+      "words": "ZTS AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7436563373,
+        "min": 0.473924309,
+        "variance": 0.02712357044
+      },
+      "words": "ZIS AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.9591571093,
+        "min": 0.9591571093,
+        "variance": 0
+      },
+      "words": "4"
+    },
+    {
+      "probability": {
+        "average": 0.7950935364,
+        "min": 0.4296040237,
+        "variance": 0.02640016004
+      },
+      "words": "ZISAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7496410012,
+        "min": 0.4233195186,
+        "variance": 0.03206868097
+      },
+      "words": "ZTS AUOO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.8150082827,
+        "min": 0.8150082827,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.6977527738,
+        "min": 0.4032489061,
+        "variance": 0.03191664815
+      },
+      "words": "L:azs"
+    },
+    {
+      "probability": {
+        "average": 0.6579185724,
+        "min": 0.4394613504,
+        "variance": 0.02841512114
+      },
+      "words": "Z/'ZTSAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7270687222,
+        "min": 0.3250002265,
+        "variance": 0.03754552826
+      },
+      "words": "Z/'ZISAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7745586634,
+        "min": 0.7037155032,
+        "variance": 0.005018753465
+      },
+      "words": "21"
+    },
+    {
+      "probability": {
+        "average": 0.9909806848,
+        "min": 0.9849393368,
+        "variance": 3.942522017e-05
+      },
+      "words": "ood"
+    },
+    {
+      "probability": {
+        "average": 0.8283031583,
+        "min": 0.3465715051,
+        "variance": 0.05986194313
+      },
+      "words": "1nd1no"
+    },
+    {
+      "probability": {
+        "average": 0.7385146022,
+        "min": 0.7385146022,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7395963669,
+        "min": 0.3622899652,
+        "variance": 0.03049375862
+      },
+      "words": "95ZAUOO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7681736946,
+        "min": 0.5830664039,
+        "variance": 0.01887802407
+      },
+      "words": "95ZAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.882445097,
+        "min": 0.882445097,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7518743873,
+        "min": 0.5560564995,
+        "variance": 0.02251648158
+      },
+      "words": "95ZAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7212822437,
+        "min": 0.4338093102,
+        "variance": 0.02818022855
+      },
+      "words": "95ZAUOEXE"
+    },
+    {
+      "probability": {
+        "average": 0.7655087113,
+        "min": 0.4657103717,
+        "variance": 0.02110143937
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7555984855,
+        "min": 0.5251533389,
+        "variance": 0.02413823456
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.8301374912,
+        "min": 0.8301374912,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7495056391,
+        "min": 0.7495056391,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.6844926476,
+        "min": 0.3138421178,
+        "variance": 0.03955408558
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6917760372,
+        "min": 0.3480950296,
+        "variance": 0.04185258597
+      },
+      "words": "95ZAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7095193863,
+        "min": 0.3307755291,
+        "variance": 0.04153921083
+      },
+      "words": "95ZAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6586986184,
+        "min": 0.3111963868,
+        "variance": 0.04603814706
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7021798491,
+        "min": 0.3556851149,
+        "variance": 0.04547574371
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7490724921,
+        "min": 0.42177701,
+        "variance": 0.03747006506
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7134647369,
+        "min": 0.7134647369,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7473525405,
+        "min": 0.4782032669,
+        "variance": 0.02872335352
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6827098131,
+        "min": 0.426109761,
+        "variance": 0.03671892732
+      },
+      "words": "9SZAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7742272019,
+        "min": 0.7742272019,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.801846981,
+        "min": 0.801846981,
+        "variance": 0
+      },
+      "words": "4"
+    },
+    {
+      "probability": {
+        "average": 0.6942760944,
+        "min": 0.3877027929,
+        "variance": 0.03607911244
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7245204449,
+        "min": 0.3992704451,
+        "variance": 0.0387178883
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7001181841,
+        "min": 0.360981822,
+        "variance": 0.04250681773
+      },
+      "words": "ZIS 'AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7887519598,
+        "min": 0.7887519598,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7542513013,
+        "min": 0.3014836013,
+        "variance": 0.04396570846
+      },
+      "words": "9SZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6806584001,
+        "min": 0.3167785704,
+        "variance": 0.04185241833
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7931036353,
+        "min": 0.5120320916,
+        "variance": 0.02454680763
+      },
+      "words": "ZTS AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7371625304,
+        "min": 0.428147316,
+        "variance": 0.02677116916
+      },
+      "words": "95ZAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6995235085,
+        "min": 0.3254190683,
+        "variance": 0.05303315818
+      },
+      "words": "95ZAuOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7774091959,
+        "min": 0.5176213384,
+        "variance": 0.02390834503
+      },
+      "words": "ZTSAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7556099892,
+        "min": 0.7556099892,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7874987721,
+        "min": 0.7874987721,
+        "variance": 0
+      },
+      "words": "4"
+    },
+    {
+      "probability": {
+        "average": 0.7316508293,
+        "min": 0.4719268382,
+        "variance": 0.02945811115
+      },
+      "words": "95ZAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.794085145,
+        "min": 0.4875849187,
+        "variance": 0.02107549831
+      },
+      "words": "95ZAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7469004989,
+        "min": 0.4923007488,
+        "variance": 0.03678613901
+      },
+      "words": "ZTS 'AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.8819793463,
+        "min": 0.8819793463,
+        "variance": 0
+      },
+      "words": "4"
+    },
+    {
+      "probability": {
+        "average": 0.7181068659,
+        "min": 0.7181068659,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.6438193917,
+        "min": 0.3394525051,
+        "variance": 0.04088144377
+      },
+      "words": "tT:azs"
+    },
+    {
+      "probability": {
+        "average": 0.5978738666,
+        "min": 0.3419971168,
+        "variance": 0.04918379709
+      },
+      "words": "Z/95ZAuO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6181585789,
+        "min": 0.3210906684,
+        "variance": 0.05046273023
+      },
+      "words": "Z/'95ZAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.8876146078,
+        "min": 0.4900961816,
+        "variance": 0.03961770982
+      },
+      "words": "Z/ood"
+    },
+    {
+      "probability": {
+        "average": 0.8347742558,
+        "min": 0.3194406331,
+        "variance": 0.063144207
+      },
+      "words": "1nd1no"
+    },
+    {
+      "probability": {
+        "average": 0.7130588889,
+        "min": 0.3022831678,
+        "variance": 0.03241186589
+      },
+      "words": "8ZTAUOO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7449437976,
+        "min": 0.4291810095,
+        "variance": 0.0245573055
+      },
+      "words": "8ZT AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7324232459,
+        "min": 0.7324232459,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.729142189,
+        "min": 0.3447802067,
+        "variance": 0.02861980163
+      },
+      "words": "8ZT AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7346662879,
+        "min": 0.4249439538,
+        "variance": 0.02959483676
+      },
+      "words": "8ZT AUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.856828928,
+        "min": 0.856828928,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7643747926,
+        "min": 0.4943881333,
+        "variance": 0.02233493514
+      },
+      "words": "8ZT AUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7969025373,
+        "min": 0.5333083868,
+        "variance": 0.01834817603
+      },
+      "words": "8ZTAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.8209777474,
+        "min": 0.8209777474,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.8628302217,
+        "min": 0.8628302217,
+        "variance": 0
+      },
+      "words": "4"
+    },
+    {
+      "probability": {
+        "average": 0.721265614,
+        "min": 0.536898315,
+        "variance": 0.01915653236
+      },
+      "words": "8ZT AUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.739589572,
+        "min": 0.52794981,
+        "variance": 0.02309802733
+      },
+      "words": "8ZTAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7221681476,
+        "min": 0.394222647,
+        "variance": 0.03543301672
+      },
+      "words": "ZTSAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.697596848,
+        "min": 0.3991920352,
+        "variance": 0.03412118927
+      },
+      "words": "8ZT AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7272647619,
+        "min": 0.3532651067,
+        "variance": 0.03894026577
+      },
+      "words": "8ZTAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7399186492,
+        "min": 0.3762653768,
+        "variance": 0.04329917207
+      },
+      "words": "ZTS'AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7363679409,
+        "min": 0.7363679409,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.8499654531,
+        "min": 0.8499654531,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7174453735,
+        "min": 0.4137250483,
+        "variance": 0.03176219761
+      },
+      "words": "8ZT AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7013095021,
+        "min": 0.3217765093,
+        "variance": 0.0341919288
+      },
+      "words": "8ZTAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.697562933,
+        "min": 0.4234925807,
+        "variance": 0.03926397115
+      },
+      "words": "ZIS 'AUOO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7327424884,
+        "min": 0.7327424884,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7925958037,
+        "min": 0.7925958037,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7754976749,
+        "min": 0.3104896545,
+        "variance": 0.03941626474
+      },
+      "words": "8ZTAUOO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7336359024,
+        "min": 0.4247493148,
+        "variance": 0.03035821207
+      },
+      "words": "8ZTAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7682750821,
+        "min": 0.4874972105,
+        "variance": 0.03015493602
+      },
+      "words": "ZTS'AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6673583388,
+        "min": 0.3369500339,
+        "variance": 0.04928167909
+      },
+      "words": "87:az1s"
+    },
+    {
+      "probability": {
+        "average": 0.9022523165,
+        "min": 0.9022523165,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7867628336,
+        "min": 0.7867628336,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.8332719803,
+        "min": 0.4224430621,
+        "variance": 0.05165648833
+      },
+      "words": "1nd1no"
+    },
+    {
+      "probability": {
+        "average": 0.6736710668,
+        "min": 0.3902956545,
+        "variance": 0.04463660344
+      },
+      "words": "Z/8ZTAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7157678008,
+        "min": 0.3012354076,
+        "variance": 0.04689055681
+      },
+      "words": "Z/'8ZTAUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.887090385,
+        "min": 0.5598905087,
+        "variance": 0.02751398459
+      },
+      "words": "Z/ood"
+    },
+    {
+      "probability": {
+        "average": 0.8271465898,
+        "min": 0.8271465898,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.6860291958,
+        "min": 0.4039599597,
+        "variance": 0.03724575788
+      },
+      "words": "t9AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6589159966,
+        "min": 0.3547839522,
+        "variance": 0.04689139873
+      },
+      "words": "t9AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6146983504,
+        "min": 0.3600168526,
+        "variance": 0.04075875133
+      },
+      "words": "t9AU0EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6968253851,
+        "min": 0.4350234568,
+        "variance": 0.03994418681
+      },
+      "words": "t9UO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6625486016,
+        "min": 0.3178162277,
+        "variance": 0.0441493839
+      },
+      "words": "t9 AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6502147317,
+        "min": 0.4583673179,
+        "variance": 0.03496984765
+      },
+      "words": "t9 AUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6953167915,
+        "min": 0.3858326375,
+        "variance": 0.04196200147
+      },
+      "words": "9SZAUOO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.8768325448,
+        "min": 0.8768325448,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.8968141675,
+        "min": 0.8968141675,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.6728163362,
+        "min": 0.4222742915,
+        "variance": 0.03568718955
+      },
+      "words": "t9UOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6651489139,
+        "min": 0.3688723743,
+        "variance": 0.03964819759
+      },
+      "words": "t9AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7326778769,
+        "min": 0.3978478014,
+        "variance": 0.03843667358
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.9409049749,
+        "min": 0.9409049749,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.80277282,
+        "min": 0.80277282,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.6781325936,
+        "min": 0.4821445942,
+        "variance": 0.02884972095
+      },
+      "words": "t9 UOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6915355921,
+        "min": 0.4622478783,
+        "variance": 0.03385906667
+      },
+      "words": "t9AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7269125581,
+        "min": 0.3780747652,
+        "variance": 0.03553304821
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7024115324,
+        "min": 0.7024115324,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7927831411,
+        "min": 0.7927831411,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.8104865551,
+        "min": 0.8104865551,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.6589771509,
+        "min": 0.4227486849,
+        "variance": 0.02899035066
+      },
+      "words": "t9 AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6289772987,
+        "min": 0.391209811,
+        "variance": 0.04484333843
+      },
+      "words": "t9AUOEXE"
+    },
+    {
+      "probability": {
+        "average": 0.7294785976,
+        "min": 0.4561428726,
+        "variance": 0.02706438117
+      },
+      "words": "95ZAUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.717513144,
+        "min": 0.717513144,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7236201167,
+        "min": 0.3250887692,
+        "variance": 0.04508593678
+      },
+      "words": "95:az1s"
+    },
+    {
+      "probability": {
+        "average": 0.8624286056,
+        "min": 0.4506766796,
+        "variance": 0.04038107023
+      },
+      "words": "1nd1no"
+    },
+    {
+      "probability": {
+        "average": 0.814884603,
+        "min": 0.468831569,
+        "variance": 0.05442227796
+      },
+      "words": "Z/lood"
+    },
+    {
+      "probability": {
+        "average": 0.90674752,
+        "min": 0.6330472231,
+        "variance": 0.01693984307
+      },
+      "words": "Z/jood"
+    },
+    {
+      "probability": {
+        "average": 0.8571361303,
+        "min": 0.4339262843,
+        "variance": 0.04580600932
+      },
+      "words": "Z/ood"
+    },
+    {
+      "probability": {
+        "average": 0.8763853312,
+        "min": 0.8763853312,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.6136642694,
+        "min": 0.3337344229,
+        "variance": 0.0265550185
+      },
+      "words": "/'tgnuOoLXL"
+    },
+    {
+      "probability": {
+        "average": 0.7376792431,
+        "min": 0.300206691,
+        "variance": 0.04764331877
+      },
+      "words": "8ZTAUOO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.722887218,
+        "min": 0.3679976463,
+        "variance": 0.03901521116
+      },
+      "words": "8ZT 'AuO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6120455861,
+        "min": 0.3432017267,
+        "variance": 0.05349064618
+      },
+      "words": "Zit:azs"
+    },
+    {
+      "probability": {
+        "average": 0.8340337276,
+        "min": 0.3528454304,
+        "variance": 0.0581596382
+      },
+      "words": "1nd1no"
+    },
+    {
+      "probability": {
+        "average": 0.8032605648,
+        "min": 0.4317704737,
+        "variance": 0.06103522703
+      },
+      "words": "z/1ood"
+    },
+    {
+      "probability": {
+        "average": 0.8911649585,
+        "min": 0.8911649585,
+        "variance": 0
+      },
+      "words": "↑"
+    },
+    {
+      "probability": {
+        "average": 0.7014701962,
+        "min": 0.4259442687,
+        "variance": 0.03170494363
+      },
+      "words": "9AUO EXE"
+    },
+    {
+      "probability": {
+        "average": 0.6249639392,
+        "min": 0.3070182502,
+        "variance": 0.04863793403
+      },
+      "words": "9AUOD EXE"
+    },
+    {
+      "probability": {
+        "average": 0.7582282424,
+        "min": 0.4367635846,
+        "variance": 0.03729819506
+      },
+      "words": ":azs"
+    },
+    {
+      "probability": {
+        "average": 0.8519241214,
+        "min": 0.5261338949,
+        "variance": 0.03888904676
+      },
+      "words": "1nd1no"
+    },
+    {
+      "probability": {
+        "average": 0.6666445136,
+        "min": 0.4197560549,
+        "variance": 0.04988963157
+      },
+      "words": "a3ew!"
+    },
+    {
+      "probability": {
+        "average": 0.7052012086,
+        "min": 0.407769978,
+        "variance": 0.03602807969
+      },
+      "words": "e3ew!"
+    },
+    {
+      "probability": {
+        "average": 0.5837312937,
+        "min": 0.3077848852,
+        "variance": 0.05123924091
+      },
+      "words": "eaewl"
+    },
+    {
+      "probability": {
+        "average": 0.7043007612,
+        "min": 0.3962756693,
+        "variance": 0.04030075669
+      },
+      "words": "enpiseeel-t"
+    },
+    {
+      "probability": {
+        "average": 0.6752203703,
+        "min": 0.3160184324,
+        "variance": 0.03986936435
+      },
+      "words": "uleldeel-t"
+    },
+    {
+      "probability": {
+        "average": 0.9228870273,
+        "min": 0.6407089829,
+        "variance": 0.01604639553
+      },
+      "words": "6T-99A"
+    }
+  ],
+  "words_result_num": 155,
+  "direction": 2,
+  "log_id": 2079044838245858514
+}

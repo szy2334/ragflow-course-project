@@ -1,0 +1,19 @@
+{
+  "schema_version": "paper_ragflow_manifest_v1",
+  "paper_id": "1c2f88d8-7e7e-55d2-afd2-11e5b07c47df",
+  "paper_version_id": "7988ad98-9eff-5438-8555-6719a1f169ba",
+  "document_name": "Language_Models_are_Few_Shot_Learners.pdf",
+  "title": "Language Models are Few-Shot Learners",
+  "file_sha256": "97fd272f1fdfc18677462d0292f5fbf26ca86b4d1b485c2dba03269b643a0e83",
+  "chunk_count": 400,
+  "meta_fields": {
+    "paper_id": "1c2f88d8-7e7e-55d2-afd2-11e5b07c47df",
+    "paper_version_id": "7988ad98-9eff-5438-8555-6719a1f169ba",
+    "file_name": "Language_Models_are_Few_Shot_Learners.pdf",
+    "file_sha256": "97fd272f1fdfc18677462d0292f5fbf26ca86b4d1b485c2dba03269b643a0e83",
+    "parser_version": "3.4.0",
+    "cleaning_version": "paper_second_clean_v2",
+    "schema_version": "paper_chunk_v1"
+  },
+  "created_at": "2026-07-20T03:32:52.792021+00:00"
+}

@@ -11,7 +11,6 @@ from typing import Sequence
 
 from pipeline_common import (
     config_bool,
-    config_path_value,
     config_value,
     load_user_paper_config,
     safe_config_summary,
@@ -41,19 +40,17 @@ def run_stage(
 def parse_args() -> argparse.Namespace:
     load_user_paper_config()
     parser = argparse.ArgumentParser()
-    pdf_default = config_path_value("USER_PAPER_PDF")
-    output_root_default = config_path_value(
-        "USER_PAPER_OUTPUT_ROOT", "data/user_paper_runs"
-    )
-    parser.add_argument("--pdf", type=Path, default=pdf_default)
-    parser.add_argument("--output-root", type=Path, default=output_root_default)
+    pdf_default = config_value("USER_PAPER_PDF")
+    output_root_default = config_value("USER_PAPER_OUTPUT_ROOT", "data/user_paper_runs")
+    parser.add_argument("--pdf", type=Path, default=Path(pdf_default) if pdf_default else None)
+    parser.add_argument("--output-root", type=Path, default=Path(output_root_default))
     parser.add_argument("--run-name", default=config_value("USER_PAPER_RUN_NAME"))
     parser.add_argument("--mineru-dir", type=Path)
-    fallback_mineru_dir = config_path_value("USER_PAPER_FALLBACK_MINERU_DIR")
+    fallback_mineru_dir = config_value("USER_PAPER_FALLBACK_MINERU_DIR")
     parser.add_argument(
         "--fallback-mineru-dir",
         type=Path,
-        default=fallback_mineru_dir,
+        default=Path(fallback_mineru_dir) if fallback_mineru_dir else None,
     )
     parser.add_argument("--skip-baidu", action="store_true")
     parser.add_argument("--skip-vl", action="store_true")
@@ -67,7 +64,26 @@ def parse_args() -> argparse.Namespace:
         action=argparse.BooleanOptionalAction,
         default=config_bool("USER_PAPER_FORCE_OCR", True),
     )
-    parser.add_argument("--skip-ragflow", action="store_true")
+    # User-paper chunks are the application's local PostgreSQL reading index.
+    # Keep the historical importer available only as an explicit opt-in for
+    # maintenance or non-user corpora; it must never be the default upload
+    # path for a user's paper.
+    parser.add_argument(
+        "--import-ragflow",
+        action="store_true",
+        default=config_bool("USER_PAPER_IMPORT_RAGFLOW", False),
+        help="Explicitly import chunks into RAGFlow (not used for user-paper reading).",
+    )
+    parser.add_argument(
+        "--skip-ragflow",
+        action="store_true",
+        help="Compatibility switch; overrides --import-ragflow.",
+    )
+    parser.add_argument(
+        "--replace-document",
+        action="store_true",
+        help="Replace an existing RAGFlow document for this paper instead of appending chunks.",
+    )
     parser.add_argument(
         "--ragflow-base-url",
         default=config_value("RAGFLOW_BASE_URL", "http://localhost:9380/api/v1"),
@@ -113,7 +129,8 @@ def main() -> int:
         return 0
     if args.pdf is None:
         raise SystemExit(
-            "PDF path is missing. Set USER_PAPER_PDF in user_paper/.env or provide --pdf."
+            "PDF path is missing. Set USER_PAPER_PDF in data_pipeline/user_paper/.env "
+            "or provide --pdf."
         )
     pdf = args.pdf.resolve()
     if not pdf.exists():
@@ -189,7 +206,8 @@ def main() -> int:
         ],
     )
 
-    if not args.skip_ragflow:
+    should_import_ragflow = args.import_ragflow and not args.skip_ragflow
+    if should_import_ragflow:
         import_command = [
             sys.executable,
             str(HERE / "ragflow_import.py"),
@@ -206,6 +224,8 @@ def main() -> int:
         ]
         if args.dataset_id:
             import_command.extend(["--dataset-id", args.dataset_id])
+        if args.replace_document:
+            import_command.append("--replace-document")
         run_stage("RAGFlow manual import", import_command)
 
     summary = {
@@ -215,7 +235,7 @@ def main() -> int:
         "mineru_clean_dir": str(mineru_clean_dir),
         "ocr_dir": str(ocr_dir),
         "chunks_dir": str(chunks_dir),
-        "ragflow_dir": str(ragflow_dir) if not args.skip_ragflow else None,
+        "ragflow_dir": str(ragflow_dir) if should_import_ragflow else None,
         "completed_at": utc_now(),
     }
     write_json(run_root / "pipeline_summary.json", summary)

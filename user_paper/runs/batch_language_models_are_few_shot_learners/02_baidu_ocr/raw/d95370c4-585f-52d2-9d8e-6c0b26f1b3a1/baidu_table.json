@@ -1,0 +1,130 @@
+{
+  "tables_result": [
+    {
+      "header": [],
+      "body": [
+        {
+          "col_end": 1,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 10
+            },
+            {
+              "x": 12,
+              "y": 11
+            },
+            {
+              "x": 11,
+              "y": 74
+            },
+            {
+              "x": 11,
+              "y": 74
+            }
+          ],
+          "row_start": 0,
+          "col_start": 0,
+          "words": ""
+        },
+        {
+          "col_end": 2,
+          "row_end": 1,
+          "cell_location": [
+            {
+              "x": 12,
+              "y": 11
+            },
+            {
+              "x": 291,
+              "y": 11
+            },
+            {
+              "x": 291,
+              "y": 74
+            },
+            {
+              "x": 11,
+              "y": 74
+            }
+          ],
+          "row_start": 0,
+          "col_start": 1,
+          "words": "Context\n→\nQ:What\nis\n40649\nminus\n78746?\nA:"
+        },
+        {
+          "col_end": 1,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 74
+            },
+            {
+              "x": 11,
+              "y": 74
+            },
+            {
+              "x": 11,
+              "y": 108
+            },
+            {
+              "x": 10,
+              "y": 108
+            }
+          ],
+          "row_start": 1,
+          "col_start": 0,
+          "words": ""
+        },
+        {
+          "col_end": 2,
+          "row_end": 2,
+          "cell_location": [
+            {
+              "x": 11,
+              "y": 74
+            },
+            {
+              "x": 291,
+              "y": 74
+            },
+            {
+              "x": 290,
+              "y": 108
+            },
+            {
+              "x": 11,
+              "y": 108
+            }
+          ],
+          "row_start": 1,
+          "col_start": 1,
+          "words": "Target\nCompletion\n→\n-38097"
+        }
+      ],
+      "table_location": [
+        {
+          "x": 10,
+          "y": 10
+        },
+        {
+          "x": 291,
+          "y": 10
+        },
+        {
+          "x": 291,
+          "y": 108
+        },
+        {
+          "x": 10,
+          "y": 108
+        }
+      ],
+      "footer": []
+    }
+  ],
+  "table_num": 1,
+  "log_id": 2079046764937331245
+}
