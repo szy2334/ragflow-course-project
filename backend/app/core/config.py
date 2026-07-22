@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     # Read-only source for preprocessed reference-paper artifacts.  Keep it
     # separate from user uploads, which remain ownership-scoped above.
     user_paper_root: Path | None = None
+    paper_parser_backend: Literal["mineru", "native_pdf"] = "mineru"
     ragflow_base_url: str | None = None
     ragflow_api_key: SecretStr | None = None
     mineru_base_url: str | None = None
@@ -50,11 +51,16 @@ class Settings(BaseSettings):
     baidu_ocr_paddle_query_url: str = (
         "https://aip.baidubce.com/rest/2.0/brain/online/v2/paddle-vl-parser/task/query"
     )
+    paper_parser_backend: Literal["mineru", "native_pdf"] = "mineru"
     llm_base_url: str | None = None
     llm_api_key: SecretStr | None = None
     llm_model: str = ""
     llm_timeout_seconds: float = Field(default=120.0, gt=0, le=300)
+    llm_reasoning_effort: Literal["low", "medium", "high"] | None = None
     llm_structured_mode: Literal["json_schema", "json_object", "prompt_json"] = "json_schema"
+    llm_enable_thinking: bool | None = None
+    qa_architecture_v3_enabled: bool = True
+    paper_summary_enabled: bool = True
     model_config_version: str = "env-v1"
     graph_version: str = "1.0"
     prompt_version: str = "v1"

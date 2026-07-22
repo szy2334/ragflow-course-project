@@ -70,13 +70,26 @@ function openEvidence(item: FormatReviewItemView) {
   previewTarget.value = { paperId: review.value.paper_id, aspect: item.aspect || item.rule_title, ...annotation }
 }
 
+function queryValue(value: unknown) {
+  return typeof value === 'string' ? value : ''
+}
+
 async function load() {
   loading.value = true
   error.value = ''
   try {
     const [_, profileResult] = await Promise.all([workspace.loadPapers({ status: 'ready' }), api.listFormatProfiles()])
     profiles.value = profileResult.items
-    selectedPaperId.value = String(route.query.paperId ?? readyPapers.value[0]?.paper_id ?? '')
+    const reviewId = queryValue(route.query.reviewId)
+    if (reviewId) {
+      const restoredReview = await api.getFormatReview(reviewId)
+      review.value = restoredReview
+      selectedPaperId.value = restoredReview.paper_id
+      selectedProfileId.value = restoredReview.format_profile.format_profile_id
+      selectedSubmissionMode.value = restoredReview.submission_mode
+      return
+    }
+    selectedPaperId.value = queryValue(route.query.paperId) || readyPapers.value[0]?.paper_id || ''
     selectedProfileId.value = profiles.value[0]?.format_profile_id ?? ''
     configureSubmissionMode()
   } catch (cause) {
@@ -100,6 +113,7 @@ async function startReview() {
       submission_mode: selectedSubmissionMode.value,
     })
     if (!task.resource_id) throw new Error('服务端未返回格式审查标识。')
+    await router.replace({ query: { ...route.query, paperId: selectedPaperId.value, reviewId: task.resource_id } })
     review.value = await api.getFormatReview(task.resource_id)
     const completed = await consumeReviewEvents(task.resource_id, task.stream_url, task.task_id)
     if (!completed) {

@@ -34,21 +34,39 @@ def validate_findings(
             for item in candidate.get("paper_evidence_ids", [])
             if item in paper_by_id
         ]
+        candidate_rule_ids = {
+            str(item) for item in candidate.get("rule_ids", []) if str(item).strip()
+        }
         standard_refs = [
             standard_by_id[item]
             for item in candidate.get("standard_evidence_ids", [])
             if item in standard_by_id
+            and (
+                not candidate_rule_ids
+                or str(standard_by_id[item].get("canonical_rule_id")) in candidate_rule_ids
+            )
         ]
+        cited_rule_ids = {
+            str(item.get("canonical_rule_id"))
+            for item in standard_refs
+            if item.get("canonical_rule_id")
+        }
+        represented_rule_ids = candidate_rule_ids or cited_rule_ids
+        rule_evidence_complete = not candidate_rule_ids or candidate_rule_ids.issubset(
+            cited_rule_ids
+        )
         paper_location_complete = bool(paper_refs) and all(
             isinstance(item.get("bbox"), list)
             and len(item["bbox"]) == 4
             and item.get("page_number") is not None
             for item in paper_refs
         )
-        evidence_complete = bool(standard_refs) and paper_location_complete
+        evidence_complete = (
+            bool(standard_refs) and paper_location_complete and rule_evidence_complete
+        )
         reason = str(candidate.get("reason") or "")
 
-        if category in missing_categories:
+        if category in missing_categories and not (candidate_rule_ids and evidence_complete):
             result = "unverifiable"
             reason = reason or "适用规范未被完整检索，无法可靠判断。"
         elif result in {"compliant", "non_compliant"} and not evidence_complete:
@@ -60,6 +78,7 @@ def validate_findings(
                 **candidate,
                 "category": category,
                 "aspect": aspect,
+                "rule_ids": sorted(represented_rule_ids),
                 "result": result,
                 "paper_evidences": paper_refs,
                 "standard_evidences": standard_refs,

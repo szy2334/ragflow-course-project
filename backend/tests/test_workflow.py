@@ -3,6 +3,7 @@ from conftest import FakeRetrieval, ScriptedLlm, dependencies
 from langgraph.checkpoint.memory import InMemorySaver
 
 from app.ai import AiWorkflowService
+from app.ai.agents.answer_generator import _prompt_evidence
 from app.ai.errors import AnswerPersistenceFailed, WorkflowCancelled
 from app.ai.schemas import AnswerDraft, Claim, PaperFact, PaperUnderstanding, RouteDecision
 
@@ -96,9 +97,39 @@ def invalid_fact_draft() -> AnswerDraft:
     )
 
 
+def insufficient_fact_draft() -> AnswerDraft:
+    return AnswerDraft(
+        route_type="fact",
+        answer="现有片段只说明论文使用 CIFAR-10，未覆盖所询问的训练硬件。",
+        claims=[
+            Claim(
+                claim_id="C1",
+                text="论文使用 CIFAR-10 数据集。",
+                verdict="supported",
+                confidence=0.9,
+                evidence_ids=["P1"],
+                reason="论文原文明确说明。",
+            ),
+            Claim(
+                claim_id="C2",
+                text="当前检索证据未覆盖训练硬件。",
+                type="negative",
+                verdict="insufficient_evidence",
+                confidence=0.4,
+                evidence_ids=[],
+                reason="检索片段中没有相关信息。",
+            ),
+        ],
+        evidence_ids=["P1"],
+        confidence=0.4,
+        evidence_sufficient=False,
+        evidence_gap_reason="当前检索片段未包含训练硬件信息。",
+    )
+
+
 @pytest.mark.asyncio
 async def test_reading_path_uses_only_local_paper_chunks(command, paper_evidence):
-    llm = ScriptedLlm([fact_route(), paper_understanding(), fact_draft()])
+    llm = ScriptedLlm([fact_route(), fact_draft()])
     retrieval = FakeRetrieval([paper_evidence])
     deps, events, _ = dependencies(retrieval)
     saver = InMemorySaver()
@@ -107,7 +138,7 @@ async def test_reading_path_uses_only_local_paper_chunks(command, paper_evidence
 
     assert result.answer.answer.startswith("论文使用了")
     assert retrieval.standard_requests == []
-    assert llm.calls == ["RouteDecision", "PaperUnderstanding", "AnswerDraft"]
+    assert llm.calls == ["RouteDecision", "AnswerDraft"]
     assert result.answer.review_opinions == []
     assert result.answer.standards == []
     assert result.answer.score is None
@@ -122,14 +153,14 @@ async def test_reading_path_uses_only_local_paper_chunks(command, paper_evidence
 @pytest.mark.asyncio
 async def test_evaluation_intent_is_converted_to_non_evaluative_reading(command, paper_evidence):
     command = command.model_copy(update={"original_question": "论文的实验设计是否充分？"})
-    llm = ScriptedLlm([evaluation_route(), paper_understanding(), fact_draft()])
+    llm = ScriptedLlm([evaluation_route(), fact_draft()])
     retrieval = FakeRetrieval([paper_evidence])
     deps, events, _ = dependencies(retrieval)
 
     result = await AiWorkflowService(llm).run(command, deps)
 
     assert result.answer.route_type == "fact"
-    assert llm.calls == ["RouteDecision", "PaperUnderstanding", "AnswerDraft"]
+    assert llm.calls == ["RouteDecision", "AnswerDraft"]
     assert retrieval.standard_requests == []
     assert not any(event.event_type == "review_summary" for event in events.items)
     assert any("non-evaluative paper reading" in warning for warning in result.answer.warnings)
@@ -139,7 +170,7 @@ async def test_evaluation_intent_is_converted_to_non_evaluative_reading(command,
 
 @pytest.mark.asyncio
 async def test_semantic_validation_repairs_once(command, paper_evidence):
-    llm = ScriptedLlm([fact_route(), paper_understanding(), invalid_fact_draft(), fact_draft()])
+    llm = ScriptedLlm([fact_route(), invalid_fact_draft(), fact_draft()])
     retrieval = FakeRetrieval([paper_evidence])
     deps, _, _ = dependencies(retrieval)
 
@@ -148,6 +179,24 @@ async def test_semantic_validation_repairs_once(command, paper_evidence):
     assert result.workflow_summary["repair_count"] == 1
     assert llm.calls.count("AnswerDraft") == 2
     assert not result.answer.is_refusal
+
+
+@pytest.mark.asyncio
+async def test_insufficient_evidence_is_a_validated_answer_not_a_refusal(
+    command, paper_evidence
+):
+    llm = ScriptedLlm([fact_route(), insufficient_fact_draft()])
+    retrieval = FakeRetrieval([paper_evidence])
+    deps, events, traces = dependencies(retrieval)
+
+    result = await AiWorkflowService(llm).run(command, deps)
+
+    assert result.answer.evidence_sufficient is False
+    assert result.answer.evidence_gap_reason
+    assert result.answer.is_refusal is False
+    assert "EVIDENCE_INSUFFICIENT" in result.answer.warnings
+    assert events.items[-1].event_type == "final"
+    assert traces.items[-1].node_name == "finalize_insufficient"
 
 
 @pytest.mark.asyncio
@@ -161,6 +210,41 @@ async def test_out_of_scope_skips_retrieval(command):
 
     assert result.answer.is_refusal
     assert not retrieval.paper_requests
+
+
+@pytest.mark.asyncio
+async def test_explicit_paper_question_cannot_be_misrouted_out_of_scope(
+    command, paper_evidence
+):
+    command = command.model_copy(
+        update={"original_question": "用一句话总结这篇论文解决的问题"}
+    )
+    llm = ScriptedLlm([out_of_scope_route(), fact_draft()])
+    retrieval = FakeRetrieval([paper_evidence])
+    deps, _, _ = dependencies(retrieval)
+
+    result = await AiWorkflowService(llm).run(command, deps)
+
+    assert result.answer.route_type == "fact"
+    assert retrieval.paper_requests
+    assert any("overridden" in warning for warning in result.answer.warnings)
+
+
+def test_answer_prompt_evidence_is_compact_and_drops_internal_metadata(paper_evidence):
+    oversized = paper_evidence.model_copy(
+        update={
+            "quote": "prefix " + ("irrelevant " * 5000) + "target method result",
+            "metadata": {"raw_content": "duplicate " * 10000},
+        }
+    )
+
+    payload = _prompt_evidence([oversized] * 15, "target method")
+
+    assert len(payload) == 7
+    assert sum(len(item["quote"]) for item in payload) <= 24_000
+    assert all(len(item["quote"]) <= 3_500 for item in payload)
+    assert all("metadata" not in item for item in payload)
+    assert "target method" in payload[0]["quote"]
 
 
 @pytest.mark.asyncio
@@ -191,7 +275,7 @@ async def test_cancellation_emits_error(command, paper_evidence):
 
 @pytest.mark.asyncio
 async def test_persistence_failure_does_not_expose_internal_error(command, paper_evidence):
-    llm = ScriptedLlm([fact_route(), paper_understanding(), fact_draft()])
+    llm = ScriptedLlm([fact_route(), fact_draft()])
     retrieval = FakeRetrieval([paper_evidence])
     deps, events, _ = dependencies(
         retrieval, persistence_error=RuntimeError("database password leaked")
@@ -200,6 +284,7 @@ async def test_persistence_failure_does_not_expose_internal_error(command, paper
     with pytest.raises(AnswerPersistenceFailed):
         await AiWorkflowService(llm).run(command, deps)
 
+    assert not any(event.event_type == "delta" for event in events.items)
     assert events.items[-1].event_type == "error"
     assert events.items[-1].data == {
         "code": "AI_WORKFLOW_ERROR",

@@ -40,10 +40,24 @@ export function ingestionFailureMessage(failure?: PaperFailure | null) {
 
 export function paperOverview(paper: PaperView) {
   if (paper.status === 'failed') return ingestionFailureMessage(paper.failure)
-  if (paper.understanding?.paper_summary) return paper.understanding.paper_summary
+  const summary = paper.summary_markdown || paper.understanding?.paper_summary
+  if (summary) return markdownPreview(summary)
   if (isUnderstandingUnavailable(paper.understanding)) {
     return paper.understanding?.message || '论文已完成结构化入库，可以检索原文和章节；模型理解与摘要暂不可用。'
   }
   if (paper.status === 'ready') return '论文已完成结构化入库，可以开始阅读、检索、总结或发起格式审查。'
   return '论文正在完成结构化入库，完成后即可开始阅读。'
+}
+
+function markdownPreview(markdown: string, limit = 260) {
+  const plain = markdown
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/__([^_]+)__/g, '$1')
+    .replace(/^\s*[-*+]\s+/gm, '')
+    .replace(/^\s*\d+\.\s+/gm, '')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim()
+  return plain.length > limit ? `${plain.slice(0, limit - 1).trimEnd()}…` : plain
 }

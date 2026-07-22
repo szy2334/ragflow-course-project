@@ -16,16 +16,30 @@ ClaimVerdict = Literal[
     "conflicting_evidence",
 ]
 TaskStatus = Literal["pending", "running", "succeeded", "failed", "cancelled"]
-AgentName = Literal["controller", "paper_understanding", "review_a", "review_b"]
+AgentName = Literal[
+    "controller",
+    "intent_router",
+    "paper_understanding",
+    "answer_generator",
+    "review_a",
+    "review_b",
+]
 
 
 class Claim(StrictModel):
     claim_id: str = Field(min_length=1)
     text: str = Field(min_length=1)
+    type: Literal["positive", "negative"] = "positive"
     verdict: ClaimVerdict
     confidence: float = Field(ge=0, le=1)
-    evidence_ids: list[str] = Field(min_length=1)
+    evidence_ids: list[str] = Field(default_factory=list)
     reason: str = Field(min_length=1, max_length=2000)
+
+    @model_validator(mode="after")
+    def positive_claim_has_evidence(self) -> "Claim":
+        if self.type == "positive" and not self.evidence_ids:
+            raise ValueError("positive claims require evidence")
+        return self
 
 
 class ScoreView(StrictModel):
@@ -50,6 +64,8 @@ class AnswerDraft(StrictModel):
     score: ScoreView | None = None
     confidence: float = Field(ge=0, le=1)
     warnings: list[str] = Field(default_factory=list)
+    evidence_sufficient: bool = True
+    evidence_gap_reason: str | None = None
     is_refusal: bool = False
     refusal_reason: str | None = None
 
@@ -61,6 +77,14 @@ class AnswerDraft(StrictModel):
             raise ValueError("refusal_reason must be null for a non-refusal answer")
         if self.score is not None and self.route_type != "score":
             raise ValueError("scores are only allowed for score routes")
+        if not self.evidence_sufficient and not self.evidence_gap_reason:
+            raise ValueError(
+                "evidence_gap_reason is required when evidence_sufficient is false"
+            )
+        if self.evidence_sufficient and self.evidence_gap_reason is not None:
+            raise ValueError(
+                "evidence_gap_reason must be null when evidence_sufficient is true"
+            )
         return self
 
 
@@ -91,6 +115,8 @@ class AnswerView(StrictModel):
     standards: list[StandardReference] = Field(default_factory=list)
     confidence: float = Field(ge=0, le=1)
     warnings: list[str] = Field(default_factory=list)
+    evidence_sufficient: bool = True
+    evidence_gap_reason: str | None = None
     is_refusal: bool
     refusal_reason: str | None = None
     completed_at: datetime
