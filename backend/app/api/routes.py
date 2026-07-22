@@ -59,6 +59,7 @@ from app.db.models import (
     FormatProfile,
     FormatReview,
     FormatReviewItem,
+    FormatReviewUnit,
     Paper,
     PaperChunk,
     PaperVersion,
@@ -74,6 +75,7 @@ from app.db.models import (
     WorkflowRun,
     new_id,
 )
+from app.format_review.schemas import RULE_EVIDENCE_SELECTORS, RULE_UNIT_KINDS
 from app.runtime.executor import snapshot_from_settings
 from app.services.idempotency import replay_or_raise, request_fingerprint, save_response
 
@@ -120,12 +122,15 @@ def _reference_paper_file(runs_root: Path, relative_path: str) -> Path:
 
 
 def _accepted(task: TaskRecord, *, message_id: str | None = None) -> dict[str, object]:
+    stream_url = f"/api/v1/messages/{message_id}/events" if message_id else None
+    if task.task_type == "format_review" and task.resource_id:
+        stream_url = f"/api/v1/format-reviews/{task.resource_id}/events"
     return {
         "task_id": task.task_id,
         "message_id": message_id,
         "status": task.status,
         "status_url": f"/api/v1/tasks/{task.task_id}",
-        "stream_url": f"/api/v1/messages/{message_id}/events" if message_id else None,
+        "stream_url": stream_url,
         "resource_id": task.resource_id,
     }
 
@@ -166,7 +171,8 @@ def _format_profile_view(profile: FormatProfile, *, include_dataset: bool = Fals
         "name": profile.name,
         "version": profile.version,
         "description": profile.description,
-        "rules": profile.rules_json,
+        "venue_id": profile.venue_id or profile.profile_key,
+        "allowed_submission_modes": profile.allowed_submission_modes or ["initial_submission"],
         "is_active": profile.is_active,
         "created_at": profile.created_at,
         "updated_at": profile.updated_at,
@@ -174,24 +180,81 @@ def _format_profile_view(profile: FormatProfile, *, include_dataset: bool = Fals
     if include_dataset:
         data["ragflow_dataset_id"] = profile.ragflow_dataset_id
         data["retrieval_query"] = profile.retrieval_query
+        data["shared_document_id"] = profile.shared_document_id
+        data["mode_document_mapping"] = profile.mode_document_mapping_json
+        data["rule_manifest"] = profile.rules_json
+        data["configuration_issues"] = _format_profile_configuration_issues(profile)
     return data
+
+
+def _format_profile_configuration_issues(profile: FormatProfile) -> list[str]:
+    """Return configuration gaps that would make a profile unsafe to execute."""
+
+    allowed_modes = set(profile.allowed_submission_modes or [])
+    mode_mapping = profile.mode_document_mapping_json or {}
+    issues: list[str] = []
+    if not profile.ragflow_dataset_id:
+        issues.append("ragflow_dataset_id")
+    if not profile.shared_document_id:
+        issues.append("shared_document_id")
+    if not profile.rules_json:
+        issues.append("rules")
+    for index, rule in enumerate(profile.rules_json or []):
+        if not isinstance(rule, dict) or str(rule.get("status") or "active") != "active":
+            continue
+        issues.extend(f"rules[{index}].{item}" for item in _rule_scope_issues(rule))
+    issues.extend(
+        f"mode_document_mapping.{mode}"
+        for mode in sorted(allowed_modes)
+        if not str(mode_mapping.get(mode) or "").strip()
+    )
+    return issues
 
 
 def _format_review_item_view(item: FormatReviewItem) -> dict[str, object]:
     return {
+        "unit_id": item.unit_id,
+        "unit_position": item.unit_position,
+        "source_stage": item.source_stage,
         "rule_id": item.rule_id,
         "rule_title": item.rule_title,
+        "category": item.category,
+        "aspect": item.aspect,
         "result": item.result,
         "severity": item.severity,
+        "evidence_status": item.evidence_status,
         "finding": item.finding,
         "suggestion": item.suggestion,
         "page_numbers": item.page_numbers,
         "paper_evidences": item.paper_evidence_json,
         "standard_evidences": item.standard_evidence_json,
+        "annotation": item.annotation_json,
     }
 
 
-def _format_review_view(review: FormatReview, items: list[FormatReviewItem]) -> dict[str, object]:
+def _format_review_unit_view(unit: FormatReviewUnit) -> dict[str, object]:
+    return {
+        "unit_id": unit.unit_id,
+        "unit_position": unit.unit_position,
+        "unit_kind": unit.unit_kind,
+        "title": unit.title,
+        "page_range": unit.page_range_json,
+        "status": unit.status,
+        "expected_rule_ids": unit.expected_rule_ids_json,
+        "retrieved_rule_ids": unit.retrieved_rule_ids_json,
+        "not_applicable_rule_ids": unit.not_applicable_rule_ids_json,
+        "coverage": unit.coverage_json,
+        "unit_cycle_count": unit.unit_cycle_count,
+        "retry_budget_remaining": unit.retry_budget_remaining,
+        "last_retry_reason": unit.last_retry_reason,
+        "event_sequence": unit.event_sequence,
+        "findings": unit.validated_findings_json,
+    }
+
+
+def _format_review_view(
+    review: FormatReview, items: list[FormatReviewItem], units: list[FormatReviewUnit]
+) -> dict[str, object]:
     snapshot = review.profile_snapshot_json
     return {
         "format_review_id": review.format_review_id,
@@ -202,9 +265,14 @@ def _format_review_view(review: FormatReview, items: list[FormatReviewItem]) -> 
             "name": snapshot.get("name"),
             "version": snapshot.get("version"),
         },
+        "submission_mode": review.submission_mode,
         "selected_rule_ids": review.selected_rule_ids,
         "status": review.status,
         "summary_markdown": review.summary_markdown,
+        "coverage_report": review.coverage_report_json,
+        "synthesis_status": review.synthesis_status,
+        "units": [_format_review_unit_view(unit) for unit in units],
+        "annotations": review.annotation_json,
         "items": [_format_review_item_view(item) for item in items],
         "error": review.error_json,
         "created_at": review.created_at,
@@ -946,7 +1014,14 @@ async def list_format_profiles(
         ).all()
     )
     return envelope(
-        {"items": [_format_profile_view(item) for item in profiles]}, request.state.request_id
+        {
+            "items": [
+                _format_profile_view(item)
+                for item in profiles
+                if not _format_profile_configuration_issues(item)
+            ]
+        },
+        request.state.request_id,
     )
 
 
@@ -965,14 +1040,30 @@ async def create_format_review(
     profile = await session.get(FormatProfile, body.format_profile_id)
     if profile is None or not profile.is_active:
         raise ApiError(404, "FORMAT_PROFILE_NOT_FOUND", "所选格式规范不可用。")
+    configuration_issues = _format_profile_configuration_issues(profile)
+    if configuration_issues:
+        raise ApiError(
+            409,
+            "FORMAT_PROFILE_UNAVAILABLE",
+            "所选格式规范尚未完成受控规则文档配置。",
+            {"configuration_issues": configuration_issues},
+        )
+    allowed_modes = set(profile.allowed_submission_modes or ["initial_submission"])
+    if body.submission_mode not in allowed_modes:
+        raise ApiError(422, "SUBMISSION_MODE_INVALID", "投稿模式不属于所选格式规范。")
     available_rules = {
         str(item.get("rule_id"))
         for item in profile.rules_json
         if isinstance(item, dict) and item.get("rule_id")
     }
-    selected_rule_ids = body.rule_ids or sorted(available_rules)
-    if not selected_rule_ids or not set(selected_rule_ids).issubset(available_rules):
+    if body.rule_ids and not set(body.rule_ids).issubset(available_rules):
         raise ApiError(422, "FORMAT_RULES_INVALID", "所选规则不属于该格式规范。")
+    # The workflow always checks the complete frozen manifest. `rule_ids` is
+    # accepted solely so historical API clients receive a deterministic error
+    # rather than silently changing their request semantics.
+    selected_rule_ids = sorted(available_rules)
+    if not selected_rule_ids:
+        raise ApiError(422, "FORMAT_RULES_UNAVAILABLE", "所选格式规范没有可执行规则。")
     fingerprint = request_fingerprint(body.model_dump(mode="json"))
     replay = await replay_or_raise(
         session,
@@ -984,21 +1075,33 @@ async def create_format_review(
     )
     if replay is not None:
         return _json(202, replay, request_id)
-    selected_rules = [
-        item for item in profile.rules_json if str(item.get("rule_id")) in set(selected_rule_ids)
-    ]
     review = FormatReview(
         user_id=user.user_id,
         paper_id=paper.paper_id,
         format_profile_id=profile.format_profile_id,
+        submission_mode=body.submission_mode,
         selected_rule_ids=selected_rule_ids,
         profile_snapshot_json={
             "profile_key": profile.profile_key,
             "name": profile.name,
             "version": profile.version,
+            "venue_id": profile.venue_id or profile.profile_key,
+            "format_version": profile.version,
+            "submission_mode": body.submission_mode,
             "ragflow_dataset_id": profile.ragflow_dataset_id,
             "retrieval_query": profile.retrieval_query,
-            "rules": selected_rules,
+            "shared_document_id": profile.shared_document_id,
+            "mode_document_id": (profile.mode_document_mapping_json or {}).get(
+                body.submission_mode, ""
+            ),
+            "allowed_submission_modes": sorted(allowed_modes),
+            "rule_manifest_version": hashlib.sha256(
+                json.dumps(profile.rules_json, ensure_ascii=False, sort_keys=True).encode("utf-8")
+            ).hexdigest(),
+            "rules": profile.rules_json,
+            "configuration": snapshot_from_settings(request.app.state.settings).model_dump(
+                mode="json"
+            ),
         },
     )
     session.add(review)
@@ -1051,11 +1154,100 @@ async def get_format_review(
             await session.scalars(
                 select(FormatReviewItem)
                 .where(FormatReviewItem.format_review_id == review.format_review_id)
-                .order_by(FormatReviewItem.rule_id)
+                .order_by(FormatReviewItem.category, FormatReviewItem.aspect, FormatReviewItem.rule_id)
             )
         ).all()
     )
-    return envelope(_format_review_view(review, items), request.state.request_id)
+    units = list(
+        (
+            await session.scalars(
+                select(FormatReviewUnit)
+                .where(FormatReviewUnit.format_review_id == review.format_review_id)
+                .order_by(FormatReviewUnit.unit_position)
+            )
+        ).all()
+    )
+    return envelope(_format_review_view(review, items, units), request.state.request_id)
+
+
+@router.post("/format-reviews/{format_review_id}/cancel")
+async def cancel_format_review(
+    format_review_id: str,
+    body: CancelInput,
+    request: Request,
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    review = await session.scalar(
+        select(FormatReview).where(
+            FormatReview.format_review_id == format_review_id,
+            FormatReview.user_id == user.user_id,
+        )
+    )
+    if review is None:
+        raise ApiError(404, "FORMAT_REVIEW_NOT_FOUND", "格式审查结果不存在。")
+    task = await session.scalar(
+        select(TaskRecord).where(
+            TaskRecord.resource_id == review.format_review_id,
+            TaskRecord.task_type == "format_review",
+        )
+    )
+    if task is None:
+        raise ApiError(404, "TASK_NOT_FOUND", "格式审查任务不存在。")
+    if task.status not in {"succeeded", "failed", "cancelled"}:
+        now = datetime.now(UTC)
+        task.status, task.stage, task.completed_at = "cancelled", "cancelled", now
+        task.error_json = {"code": "TASK_CANCELLED", "message": body.reason or "用户取消了格式审查。"}
+        review.status, review.completed_at = "cancelled", now
+        review.error_json = task.error_json
+        await session.commit()
+        await request.app.state.redis.cancel(task.task_id)
+        await request.app.state.redis.set_task_state(task.task_id, task_view(task))
+    return envelope({"task_id": task.task_id, "status": task.status}, request.state.request_id)
+
+
+@router.get("/format-reviews/{format_review_id}/events")
+async def stream_format_review_events(
+    format_review_id: str,
+    request: Request,
+    after_sequence: int = 0,
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    review = await session.scalar(
+        select(FormatReview).where(
+            FormatReview.format_review_id == format_review_id,
+            FormatReview.user_id == user.user_id,
+        )
+    )
+    if review is None:
+        raise ApiError(404, "FORMAT_REVIEW_NOT_FOUND", "格式审查结果不存在。")
+    if after_sequence < 0:
+        raise ApiError(422, "VALIDATION_ERROR", "after_sequence 不能为负数。")
+    after_event = await request.app.state.redis.after_event_id(
+        format_review_id, request.headers.get("Last-Event-ID")
+    )
+    sequence = max(after_sequence, after_event or 0)
+
+    async def event_source():
+        nonlocal sequence
+        while True:
+            events = await request.app.state.redis.events_after(format_review_id, sequence)
+            for event in events:
+                sequence = event.sequence
+                yield f"id: {event.event_id}\nevent: {event.event_type}\ndata: {event.model_dump_json()}\n\n"
+                if event.event_type in {"final", "error"}:
+                    return
+            if review.status in {"succeeded", "failed", "cancelled"} or await request.is_disconnected():
+                return
+            yield ": keepalive\n\n"
+            await asyncio.sleep(0.5)
+
+    return StreamingResponse(
+        event_source(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
 
 
 @router.post("/papers/{paper_id}/analyses/{kind}")
@@ -2146,18 +2338,139 @@ async def _admin_dataset_items(session: AsyncSession, request: Request) -> list[
     ]
 
 
-def _validated_format_rules(rules: list[dict[str, str]]) -> list[dict[str, str]]:
-    normalized: list[dict[str, str]] = []
+def _validated_format_rules(
+    rules: list[dict[str, object]],
+    *,
+    venue_id: str,
+    format_version: str,
+    allowed_submission_modes: set[str],
+) -> list[dict[str, object]]:
+    normalized: list[dict[str, object]] = []
     seen: set[str] = set()
     for item in rules:
-        rule_id = str(item.get("rule_id") or "").strip()
-        title = str(item.get("title") or "").strip()
-        description = str(item.get("description") or "").strip()
-        if not rule_id or not title or not description or rule_id in seen:
-            raise ApiError(422, "FORMAT_RULES_INVALID", "每条格式规则必须包含唯一 ID、标题和说明。")
+        metadata = item.get("metadata") if isinstance(item.get("metadata"), dict) else {}
+        rule = {**metadata, **item}
+        rule_id = str(rule.get("canonical_rule_id") or rule.get("rule_id") or "").strip()
+        title = str(rule.get("title") or rule.get("section_path") or rule_id).strip()
+        description = str(
+            rule.get("description") or rule.get("rule_text") or rule.get("content") or ""
+        ).strip()
+        required = {
+            "venue_id": str(rule.get("venue_id") or "").strip(),
+            "format_version": str(rule.get("format_version") or "").strip(),
+            "submission_mode": str(rule.get("submission_mode") or "").strip(),
+            "target_document": str(rule.get("target_document") or "").strip(),
+            "source_document_id": str(rule.get("source_document_id") or "").strip(),
+            "section_path": str(rule.get("section_path") or "").strip(),
+            "effective_from": str(rule.get("effective_from") or "").strip(),
+            "status": str(rule.get("status") or "").strip(),
+        }
+        missing = [name for name, value in required.items() if not value]
+        if not rule_id or not title or not description or missing or rule_id in seen:
+            raise ApiError(
+                422,
+                "FORMAT_RULE_MANIFEST_INVALID",
+                "每条格式规则必须包含完整的可追溯清单字段。",
+                {"missing_fields": missing, "canonical_rule_id": rule_id or None},
+            )
+        if required["venue_id"] != venue_id or required["format_version"] != format_version:
+            raise ApiError(422, "FORMAT_RULE_SCOPE_INVALID", "规则清单的投稿场所或规范版本与档案不一致。")
+        if required["submission_mode"] not in {"shared", *allowed_submission_modes}:
+            raise ApiError(422, "FORMAT_RULE_SCOPE_INVALID", "规则清单包含档案不允许的投稿模式。")
+        status = required["status"]
+        if status not in {"active", "disabled", "retired"}:
+            raise ApiError(422, "FORMAT_RULE_STATUS_INVALID", "格式规则状态必须为 active、disabled 或 retired。")
+        # Disabled rules remain in the administrative source manifest but are
+        # deliberately outside the PDF-only execution set.  They therefore do
+        # not make a profile unavailable merely because they have no runtime
+        # scope tags.
+        scope_issues = _rule_scope_issues(rule) if status == "active" else []
+        if scope_issues:
+            raise ApiError(
+                422,
+                "FORMAT_RULE_SCOPE_INVALID",
+                "每条启用规则必须包含有效的结构化适用范围和证据选择器。",
+                {"canonical_rule_id": rule_id, "invalid_fields": scope_issues},
+            )
         seen.add(rule_id)
-        normalized.append({"rule_id": rule_id, "title": title, "description": description})
+        applicable_unit_kinds = sorted(
+            {str(value) for value in rule.get("applicable_unit_kinds", [])}
+        )
+        evidence_selector = sorted({str(value) for value in rule.get("evidence_selector", [])})
+        conditions = rule.get("applicability_conditions")
+        conditions = conditions if isinstance(conditions, dict) else {}
+        cross_unit_kinds = sorted({str(value) for value in rule.get("cross_unit_kinds", [])})
+        normalized.append(
+            {
+                "rule_id": rule_id,
+                "canonical_rule_id": rule_id,
+                "title": title,
+                "description": description,
+                "venue_id": required["venue_id"],
+                "format_version": required["format_version"],
+                "submission_mode": required["submission_mode"],
+                "target_document": required["target_document"],
+                "source_document_id": required["source_document_id"],
+                "section_path": required["section_path"],
+                "effective_from": required["effective_from"],
+                "status": required["status"],
+                "rule_category": str(rule.get("rule_category") or "body").strip() or "body",
+                "keywords": rule.get("keywords") if isinstance(rule.get("keywords"), list) else [],
+                "applicable_unit_kinds": applicable_unit_kinds,
+                "is_global": bool(rule.get("is_global")),
+                "requires_cross_unit": bool(rule.get("requires_cross_unit")),
+                "cross_unit_kinds": cross_unit_kinds,
+                "applicability_conditions": conditions,
+                "evidence_selector": evidence_selector,
+                "observability": str(rule.get("observability") or "pdf_observable"),
+                "excluded_reason": str(rule.get("excluded_reason") or "") or None,
+            }
+        )
     return normalized
+
+
+def _rule_scope_issues(rule: dict[str, object]) -> list[str]:
+    """Validate deterministic V1.1 scope tags without interpreting rule prose."""
+
+    issues: list[str] = []
+    unit_kinds = rule.get("applicable_unit_kinds")
+    if not isinstance(unit_kinds, list) or not unit_kinds:
+        issues.append("applicable_unit_kinds")
+        normalized_kinds: set[str] = set()
+    else:
+        normalized_kinds = {str(value) for value in unit_kinds}
+        if not normalized_kinds.issubset(RULE_UNIT_KINDS):
+            issues.append("applicable_unit_kinds")
+    is_global = rule.get("is_global")
+    if not isinstance(is_global, bool):
+        issues.append("is_global")
+    elif is_global and normalized_kinds != {"global"}:
+        issues.append("applicable_unit_kinds")
+    requires_cross_unit = rule.get("requires_cross_unit")
+    if not isinstance(requires_cross_unit, bool):
+        issues.append("requires_cross_unit")
+    cross_unit_kinds = rule.get("cross_unit_kinds", [])
+    cross_unit_kinds_invalid = not isinstance(cross_unit_kinds, list) or not {
+        str(value) for value in cross_unit_kinds
+    }.issubset(RULE_UNIT_KINDS)
+    if cross_unit_kinds_invalid or (requires_cross_unit and not cross_unit_kinds):
+        issues.append("cross_unit_kinds")
+    conditions = rule.get("applicability_conditions")
+    if not isinstance(conditions, dict):
+        issues.append("applicability_conditions")
+    else:
+        for field in ("requires_object_types", "requires_section_roles", "requires_submission_mode"):
+            value = conditions.get(field)
+            if value is not None and (not isinstance(value, list) or not all(isinstance(item, str) for item in value)):
+                issues.append(f"applicability_conditions.{field}")
+    evidence_selector = rule.get("evidence_selector")
+    if (
+        not isinstance(evidence_selector, list)
+        or not evidence_selector
+        or not {str(value) for value in evidence_selector}.issubset(RULE_EVIDENCE_SELECTORS)
+    ):
+        issues.append("evidence_selector")
+    return sorted(set(issues))
 
 
 @router.get("/admin/format-profiles")
@@ -2184,7 +2497,30 @@ async def create_format_profile(
     user: User = Depends(require_admin),
     session: AsyncSession = Depends(get_session),
 ):
-    rules = _validated_format_rules(body.rules)
+    allowed_modes = set(body.allowed_submission_modes)
+    missing_documents = sorted(
+        mode for mode in allowed_modes if not body.mode_document_mapping.get(mode, "").strip()
+    )
+    if missing_documents:
+        raise ApiError(
+            422,
+            "FORMAT_DOCUMENT_MAPPING_INVALID",
+            "每个允许的投稿模式必须映射到受控规则文档。",
+            {"submission_modes": missing_documents},
+        )
+    if any(document_id == body.shared_document_id for document_id in body.mode_document_mapping.values()):
+        raise ApiError(
+            422,
+            "FORMAT_DOCUMENT_MAPPING_INVALID",
+            "通用规则文档不能同时作为投稿模式专用规则文档。",
+        )
+    venue_id = (body.venue_id or body.profile_key).strip()
+    rules = _validated_format_rules(
+        body.rules,
+        venue_id=venue_id,
+        format_version=body.version,
+        allowed_submission_modes=allowed_modes,
+    )
     fingerprint = request_fingerprint(body.model_dump(mode="json"))
     replay = await replay_or_raise(
         session,
@@ -2211,6 +2547,10 @@ async def create_format_profile(
         description=body.description,
         ragflow_dataset_id=body.ragflow_dataset_id,
         retrieval_query=body.retrieval_query,
+        venue_id=venue_id,
+        allowed_submission_modes=body.allowed_submission_modes,
+        shared_document_id=body.shared_document_id,
+        mode_document_mapping_json=body.mode_document_mapping,
         rules_json=rules,
         is_active=body.is_active,
     )

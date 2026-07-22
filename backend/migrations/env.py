@@ -8,6 +8,7 @@ from alembic import context
 from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
+from app.core.config import get_settings
 from app.db.models import Base
 
 config = context.config
@@ -15,7 +16,10 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-database_url = os.getenv("DATABASE_URL")
+# Command-line environment takes precedence for CI and one-off migrations.
+# When it is absent, use the same .env-backed setting as the application so a
+# normal `python -m alembic upgrade head` upgrades the actual runtime database.
+database_url = os.getenv("DATABASE_URL") or get_settings().database_url
 if database_url:
     config.set_main_option("sqlalchemy.url", database_url.replace("%", "%%"))
 

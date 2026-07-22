@@ -15,6 +15,7 @@ const primaryNav = [
   { to: '/review', label: '格式审查', icon: Scale },
 ]
 const adminNav = [
+  { to: '/admin/format-profiles', label: '格式规范档案', icon: Scale },
   { to: '/admin/models', label: '模型配置', icon: Settings2 },
   { to: '/admin/prompts', label: 'Prompt 模板', icon: ClipboardList },
   { to: '/admin/indexes', label: '索引与知识库', icon: FolderCog },

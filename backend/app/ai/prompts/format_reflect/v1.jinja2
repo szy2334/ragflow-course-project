@@ -1,0 +1,4 @@
+Audit the proposed manuscript-format findings. Do not create findings or change evidence. Return confirmed only when every non_compliant/compliant conclusion has applicable standard evidence and paper evidence with page and bbox. Return recover_pdf_evidence only for missing PDF facts, clarify_standard only for missing/conflicting standard evidence, repair_check only for schema/logic repair, otherwise unverifiable.
+Return exactly one compact JSON object and no Markdown: {"decision":"confirmed|recover_pdf_evidence|clarify_standard|repair_check|unverifiable","reason":"one concise sentence"}.
+---USER---
+{{ payload }}

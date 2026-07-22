@@ -10,7 +10,7 @@ export type ClaimVerdict = 'supported' | 'refuted' | 'insufficient_evidence' | '
 export type RouteType = 'fact' | 'explain' | 'follow_up' | 'out_of_scope'
 export type FeedbackType = 'like' | 'dislike' | 'issue'
 export type AgentName = 'controller' | 'paper_understanding' | 'synthesis'
-export type EventType = 'status' | 'delta' | 'citation' | 'final' | 'error'
+export type EventType = 'status' | 'delta' | 'citation' | 'review_summary' | 'unit_started' | 'unit_progress' | 'unit_validated' | 'unit_unverifiable' | 'unit_failed' | 'unit_skipped' | 'synthesis_started' | 'synthesis_completed' | 'final' | 'error'
 
 export interface ApiResponse<T> {
   code: string
@@ -79,9 +79,32 @@ export interface StreamEvent {
 }
 export interface ReadingReportView { report_id: string; user_id: string; title: string; paper_ids: string[]; status: TaskStatus; content_markdown: string | null; claims: Claim[]; evidence_ids: string[]; created_at: string; completed_at: string | null }
 export interface FormatRule { rule_id: string; title: string; description: string }
-export interface FormatProfileView { format_profile_id: string; profile_key: string; name: string; version: string; description: string | null; rules: FormatRule[]; is_active: boolean; created_at: string; updated_at: string }
-export interface FormatReviewItemView { rule_id: string; rule_title: string; result: 'compliant' | 'non_compliant' | 'needs_manual_check' | 'not_applicable'; severity: 'info' | 'low' | 'medium' | 'high'; finding: string; suggestion: string | null; page_numbers: number[]; paper_evidences: Array<Record<string, unknown>>; standard_evidences: Array<Record<string, unknown>> }
-export interface FormatReviewView { format_review_id: string; paper_id: string; format_profile: Pick<FormatProfileView, 'format_profile_id' | 'profile_key' | 'name' | 'version'>; selected_rule_ids: string[]; status: TaskStatus; summary_markdown: string | null; items: FormatReviewItemView[]; error: { code: string; message: string } | null; created_at: string; completed_at: string | null }
+export interface FormatProfileView { format_profile_id: string; profile_key: string; name: string; version: string; venue_id: string; description: string | null; allowed_submission_modes: string[]; is_active: boolean; created_at: string; updated_at: string }
+export interface AdminFormatProfileView extends FormatProfileView {
+  ragflow_dataset_id: string
+  retrieval_query: string
+  shared_document_id: string
+  mode_document_mapping: Record<string, string>
+  rule_manifest: Array<Record<string, unknown>>
+  configuration_issues: string[]
+}
+export interface FormatProfileCreateInput {
+  profile_key: string
+  name: string
+  version: string
+  description?: string | null
+  ragflow_dataset_id: string
+  retrieval_query: string
+  venue_id?: string | null
+  allowed_submission_modes: string[]
+  shared_document_id: string
+  mode_document_mapping: Record<string, string>
+  rules: Array<Record<string, unknown>>
+  is_active: boolean
+}
+export interface FormatReviewItemView { unit_id?: string | null; unit_position?: number | null; source_stage?: string; rule_id: string; rule_title: string; category: string; aspect: string; result: 'compliant' | 'non_compliant' | 'unverifiable' | 'not_applicable'; severity: 'info' | 'low' | 'medium' | 'high'; evidence_status: 'complete' | 'incomplete'; finding: string; suggestion: string | null; page_numbers: number[]; paper_evidences: Array<Record<string, unknown>>; standard_evidences: Array<Record<string, unknown>>; annotation: Record<string, unknown> }
+export interface FormatReviewUnitView { unit_id: string; unit_position: number; unit_kind: string; title: string; page_range: number[]; status: string; expected_rule_ids: string[]; retrieved_rule_ids: string[]; not_applicable_rule_ids: Array<Record<string, unknown>>; coverage: { expected_rule_ids?: string[]; retrieved_rule_ids?: string[]; missing_rule_ids?: string[]; complete?: boolean }; unit_cycle_count: number; retry_budget_remaining: number; last_retry_reason: string | null; event_sequence: number; findings: Array<Record<string, unknown>> }
+export interface FormatReviewView { format_review_id: string; paper_id: string; format_profile: Pick<FormatProfileView, 'format_profile_id' | 'profile_key' | 'name' | 'version'>; submission_mode: string; selected_rule_ids: string[]; status: TaskStatus; summary_markdown: string | null; coverage_report: { covered_categories?: string[]; missing_categories?: string[]; missing_rule_ids?: string[]; expected_rule_ids?: string[]; unallocated_rule_ids?: string[] }; synthesis_status: string; units: FormatReviewUnitView[]; annotations: Record<string, unknown>; items: FormatReviewItemView[]; error: { code: string; message: string } | null; created_at: string; completed_at: string | null }
 export interface MetricsOverviewView { request_count: number; question_count: number; token_input: number; token_output: number; estimated_cost: string; latency_p50_ms: number; latency_p95_ms: number; error_rate: number; retrieval_metrics: Record<string, number>; workflow_metrics: Record<string, number>; time_range: Record<string, string> }
 
 export type AdminRecord = Record<string, unknown>

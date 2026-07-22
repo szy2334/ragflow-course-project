@@ -56,7 +56,7 @@ MESSAGE_STATUSES = (*TASK_STATUSES, "partial")
 TRACE_STATUSES = ("running", "succeeded", "retried", "failed", "skipped")
 ROUTE_TYPES = ("fact", "explain", "review", "score", "follow_up", "out_of_scope")
 SOURCE_TYPES = ("paper", "standard")
-FORMAT_CHECK_RESULTS = ("compliant", "non_compliant", "needs_manual_check", "not_applicable")
+FORMAT_CHECK_RESULTS = ("compliant", "non_compliant", "unverifiable", "not_applicable")
 FORMAT_SEVERITIES = ("info", "low", "medium", "high")
 
 
@@ -258,6 +258,38 @@ class ParsedBlockRecord(Base):
     __table_args__ = (
         UniqueConstraint("paper_version_id", "block_id", name="uq_parsed_block_version"),
         CheckConstraint("page_number >= 1", name="ck_parsed_blocks_page"),
+    )
+
+
+class PdfTextSpanRecord(Base):
+    """Native PDF style facts retained for format review, not paper retrieval."""
+
+    __tablename__ = "pdf_text_spans"
+
+    pdf_text_span_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    paper_id: Mapped[str] = mapped_column(ForeignKey("papers.paper_id"), index=True)
+    paper_version_id: Mapped[str] = mapped_column(
+        ForeignKey("paper_versions.paper_version_id", ondelete="CASCADE"), index=True
+    )
+    span_index: Mapped[int] = mapped_column(Integer)
+    page_number: Mapped[int] = mapped_column(Integer)
+    bbox_json: Mapped[list[float]] = mapped_column(JsonValue)
+    page_width_pt: Mapped[float] = mapped_column(Float)
+    page_height_pt: Mapped[float] = mapped_column(Float)
+    page_rotation: Mapped[int] = mapped_column(Integer, default=0)
+    text: Mapped[str] = mapped_column(Text)
+    raw_font_name: Mapped[str | None] = mapped_column(String(512), nullable=True)
+    font_name: Mapped[str | None] = mapped_column(String(512), nullable=True)
+    font_size_pt: Mapped[float | None] = mapped_column(Float, nullable=True)
+    font_flags: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    color: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    extraction_source: Mapped[str] = mapped_column(String(32), default="native_pdf")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+    __table_args__ = (
+        UniqueConstraint("paper_version_id", "span_index", name="uq_pdf_text_span_version_index"),
+        CheckConstraint("page_number >= 1", name="ck_pdf_text_spans_page"),
+        CheckConstraint("span_index >= 0", name="ck_pdf_text_spans_index"),
     )
 
 
@@ -669,6 +701,14 @@ class FormatProfile(Base):
     # Kept server-side only; normal users select a profile ID, never a dataset ID.
     ragflow_dataset_id: Mapped[str] = mapped_column(String(128))
     retrieval_query: Mapped[str] = mapped_column(Text)
+    # The following fields are server controlled.  They isolate a venue/version
+    # dataset and prevent a browser from selecting arbitrary RAGFlow documents.
+    venue_id: Mapped[str] = mapped_column(String(128), default="")
+    allowed_submission_modes: Mapped[list[str]] = mapped_column(
+        JsonValue, default=lambda: ["initial_submission"]
+    )
+    shared_document_id: Mapped[str] = mapped_column(String(128), default="")
+    mode_document_mapping_json: Mapped[dict[str, str]] = mapped_column(JsonValue, default=dict)
     rules_json: Mapped[list[dict[str, Any]]] = mapped_column(JsonValue, default=list)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
@@ -692,23 +732,32 @@ class FormatReview(Base):
     format_profile_id: Mapped[str] = mapped_column(
         ForeignKey("format_profiles.format_profile_id"), index=True
     )
+    submission_mode: Mapped[str] = mapped_column(String(64), default="initial_submission")
     selected_rule_ids: Mapped[list[str]] = mapped_column(JsonValue, default=list)
     profile_snapshot_json: Mapped[dict[str, Any]] = mapped_column(JsonValue)
     status: Mapped[str] = mapped_column(String(32), default="pending", index=True)
     summary_markdown: Mapped[str | None] = mapped_column(Text, nullable=True)
+    coverage_report_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)
+    annotation_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)
     metrics_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)
+    # V1.1 keeps the immutable block plan with the review so a resumed worker
+    # and the UI reason about the exact same ordering and scope allocation.
+    unit_plan_json: Mapped[list[dict[str, Any]]] = mapped_column(JsonValue, default=list)
+    synthesis_status: Mapped[str] = mapped_column(String(32), default="pending")
+    event_sequence: Mapped[int] = mapped_column(Integer, default=0)
     error_json: Mapped[dict[str, Any] | None] = mapped_column(JsonValue, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     __table_args__ = (
         _in_check("status", TASK_STATUSES, "ck_format_reviews_status"),
+        CheckConstraint("event_sequence >= 0", name="ck_format_reviews_event_sequence"),
         Index("ix_format_reviews_user_created", "user_id", "created_at"),
     )
 
 
 class FormatReviewItem(Base):
-    """One rule-level result, including both manuscript and standard evidence."""
+    """One category/aspect finding, including both manuscript and standard evidence."""
 
     __tablename__ = "format_review_items"
 
@@ -716,21 +765,82 @@ class FormatReviewItem(Base):
     format_review_id: Mapped[str] = mapped_column(
         ForeignKey("format_reviews.format_review_id", ondelete="CASCADE"), index=True
     )
+    unit_id: Mapped[str | None] = mapped_column(String(96), nullable=True, index=True)
+    unit_position: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    source_stage: Mapped[str] = mapped_column(String(32), default="final")
     rule_id: Mapped[str] = mapped_column(String(128))
     rule_title: Mapped[str] = mapped_column(String(500))
+    category: Mapped[str] = mapped_column(String(64), default="body")
+    aspect: Mapped[str] = mapped_column(String(500), default="")
     result: Mapped[str] = mapped_column(String(32))
     severity: Mapped[str] = mapped_column(String(16), default="info")
+    evidence_status: Mapped[str] = mapped_column(String(32), default="complete")
     finding: Mapped[str] = mapped_column(Text)
     suggestion: Mapped[str | None] = mapped_column(Text, nullable=True)
     page_numbers: Mapped[list[int]] = mapped_column(JsonValue, default=list)
     paper_evidence_json: Mapped[list[dict[str, Any]]] = mapped_column(JsonValue, default=list)
     standard_evidence_json: Mapped[list[dict[str, Any]]] = mapped_column(JsonValue, default=list)
+    annotation_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
     __table_args__ = (
         UniqueConstraint("format_review_id", "rule_id", name="uq_format_review_rule"),
         _in_check("result", FORMAT_CHECK_RESULTS, "ck_format_review_item_result"),
         _in_check("severity", FORMAT_SEVERITIES, "ck_format_review_item_severity"),
+    )
+
+
+class FormatReviewUnit(Base):
+    """One durable V1.1 review unit and its deterministic rule allocation."""
+
+    __tablename__ = "format_review_units"
+
+    format_review_unit_id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    format_review_id: Mapped[str] = mapped_column(
+        ForeignKey("format_reviews.format_review_id", ondelete="CASCADE"), index=True
+    )
+    unit_id: Mapped[str] = mapped_column(String(96))
+    unit_position: Mapped[int] = mapped_column(Integer)
+    unit_kind: Mapped[str] = mapped_column(String(64))
+    title: Mapped[str] = mapped_column(String(500))
+    page_range_json: Mapped[list[int]] = mapped_column(JsonValue, default=list)
+    block_ids_json: Mapped[list[str]] = mapped_column(JsonValue, default=list)
+    expected_rule_ids_json: Mapped[list[str]] = mapped_column(JsonValue, default=list)
+    allocated_rule_ids_json: Mapped[list[str]] = mapped_column(JsonValue, default=list)
+    global_rule_ids_json: Mapped[list[str]] = mapped_column(JsonValue, default=list)
+    not_applicable_rule_ids_json: Mapped[list[dict[str, Any]]] = mapped_column(
+        JsonValue, default=list
+    )
+    retrieved_rule_ids_json: Mapped[list[str]] = mapped_column(JsonValue, default=list)
+    coverage_json: Mapped[dict[str, Any]] = mapped_column(JsonValue, default=dict)
+    validated_findings_json: Mapped[list[dict[str, Any]]] = mapped_column(JsonValue, default=list)
+    status: Mapped[str] = mapped_column(String(32), default="pending", index=True)
+    unit_cycle_count: Mapped[int] = mapped_column(Integer, default=0)
+    retry_budget_remaining: Mapped[int] = mapped_column(Integer, default=1)
+    last_retry_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+    event_sequence: Mapped[int] = mapped_column(Integer, default=0)
+    started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=utcnow, onupdate=utcnow
+    )
+
+    __table_args__ = (
+        UniqueConstraint("format_review_id", "unit_id", name="uq_format_review_unit"),
+        UniqueConstraint(
+            "format_review_id", "unit_position", name="uq_format_review_unit_position"
+        ),
+        CheckConstraint("unit_position >= 0", name="ck_format_review_unit_position"),
+        CheckConstraint(
+            "unit_cycle_count >= 0 AND unit_cycle_count <= 2", name="ck_format_review_unit_cycles"
+        ),
+        CheckConstraint(
+            "retry_budget_remaining >= 0 AND retry_budget_remaining <= 1",
+            name="ck_format_review_unit_retry_budget",
+        ),
+        CheckConstraint("event_sequence >= 0", name="ck_format_review_unit_event_sequence"),
+        Index("ix_format_review_units_review_status", "format_review_id", "status"),
     )
 
 

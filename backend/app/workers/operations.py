@@ -21,6 +21,7 @@ from app.db.models import (
     Paper,
     PaperChunk,
     ParsedBlockRecord,
+    PdfTextSpanRecord,
     ReadingReport,
     ReportExport,
     TaskRecord,
@@ -103,6 +104,7 @@ class OperationsTaskExecutor:
             await session.execute(delete(PaperChunk).where(PaperChunk.paper_id == paper.paper_id))
             await session.execute(delete(MediaObjectRecord).where(MediaObjectRecord.paper_id == paper.paper_id))
             await session.execute(delete(ParsedBlockRecord).where(ParsedBlockRecord.paper_id == paper.paper_id))
+            await session.execute(delete(PdfTextSpanRecord).where(PdfTextSpanRecord.paper_id == paper.paper_id))
             await session.execute(
                 delete(IngestionQualityReport).where(IngestionQualityReport.paper_id == paper.paper_id)
             )
@@ -245,7 +247,10 @@ class OperationsTaskExecutor:
             task = await session.get(TaskRecord, task_id)
             if task is None:
                 return
-            task.status, task.stage, task.completed_at = "failed", "failed", datetime.now(UTC)
+            cancelled = code == "TASK_CANCELLED" or await self._redis.is_cancelled(task_id)
+            task.status = "cancelled" if cancelled else "failed"
+            task.stage = "cancelled" if cancelled else "failed"
+            task.completed_at = datetime.now(UTC)
             task.error_json = {"code": code, "message": message, "retryable": retryable}
             if task.task_type == "reading_report" and task.resource_id:
                 report = await session.get(ReadingReport, task.resource_id)
@@ -258,7 +263,7 @@ class OperationsTaskExecutor:
             if task.task_type == "format_review" and task.resource_id:
                 review = await session.get(FormatReview, task.resource_id)
                 if review is not None:
-                    review.status = "failed"
+                    review.status = "cancelled" if cancelled else "failed"
                     review.error_json = {"code": code, "message": message, "retryable": retryable}
                     review.completed_at = task.completed_at
             await session.commit()

@@ -62,10 +62,13 @@ class OpenAICompatibleClient:
             )
         except (ValidationError, ValueError, json.JSONDecodeError) as exc:
             retry_count += 1
-            repair_messages = self._repair_messages(content, exc, output_model)
+            repair_mode = "prompt_json" if mode == "prompt_json" else "json_object"
+            repair_messages = self._repair_messages(
+                content, exc, output_model, compact=repair_mode == "prompt_json"
+            )
             try:
                 repaired, usage, retries = await self._complete(
-                    repair_messages, output_model, config, "json_object"
+                    repair_messages, output_model, config, repair_mode
                 )
                 retry_count += retries
                 input_tokens += usage.get("prompt_tokens", usage.get("input_tokens", 0))
@@ -120,10 +123,13 @@ class OpenAICompatibleClient:
         except (ValidationError, ValueError, json.JSONDecodeError) as exc:
             # A repair must be completed before it can be made visible as a final answer.
             retry_count += 1
-            repair_messages = self._repair_messages(content, exc, output_model)
+            repair_mode = "prompt_json" if mode == "prompt_json" else "json_object"
+            repair_messages = self._repair_messages(
+                content, exc, output_model, compact=repair_mode == "prompt_json"
+            )
             try:
                 repaired, usage, retries = await self._complete(
-                    repair_messages, output_model, config, "json_object"
+                    repair_messages, output_model, config, repair_mode
                 )
                 retry_count += retries
                 input_tokens += usage.get("prompt_tokens", usage.get("input_tokens", 0))
@@ -162,8 +168,10 @@ class OpenAICompatibleClient:
             ],
             "temperature": config.temperature,
             "max_tokens": config.max_output_tokens,
-            "response_format": self._response_format(mode, output_model),
         }
+        response_format = self._response_format(mode, output_model)
+        if response_format is not None:
+            payload["response_format"] = response_format
         headers = {
             "Authorization": f"Bearer {self._api_key.get_secret_value()}",
             "Content-Type": "application/json",
@@ -232,9 +240,11 @@ class OpenAICompatibleClient:
             ],
             "temperature": config.temperature,
             "max_tokens": config.max_output_tokens,
-            "response_format": self._response_format(mode, output_model),
             "stream": True,
         }
+        response_format = self._response_format(mode, output_model)
+        if response_format is not None:
+            payload["response_format"] = response_format
         headers = {
             "Authorization": f"Bearer {self._api_key.get_secret_value()}",
             "Content-Type": "application/json",
@@ -314,7 +324,7 @@ class OpenAICompatibleClient:
         raise ModelTransportError("model endpoint request exhausted")
 
     @staticmethod
-    def _response_format(mode: str, output_model: type[BaseModel]) -> dict[str, Any]:
+    def _response_format(mode: str, output_model: type[BaseModel]) -> dict[str, Any] | None:
         if mode == "json_schema":
             return {
                 "type": "json_schema",
@@ -324,7 +334,9 @@ class OpenAICompatibleClient:
                     "schema": output_model.model_json_schema(),
                 },
             }
-        return {"type": "json_object"}
+        if mode == "json_object":
+            return {"type": "json_object"}
+        return None
 
     @staticmethod
     def _messages_for_mode(
@@ -365,7 +377,24 @@ class OpenAICompatibleClient:
         previous_output: str,
         error: Exception,
         output_model: type[BaseModel],
+        *,
+        compact: bool = False,
     ) -> list[ChatMessage]:
+        if compact:
+            return [
+                ChatMessage(
+                    role="system",
+                    content="Return one valid JSON object only. Do not use Markdown or add facts.",
+                ),
+                ChatMessage(
+                    role="user",
+                    content=(
+                        "Repair the previous JSON with the required fields "
+                        "for the requested result. "
+                        f"Validation error: {error}. Previous output: {previous_output}"
+                    ),
+                ),
+            ]
         return [
             ChatMessage(
                 role="system",

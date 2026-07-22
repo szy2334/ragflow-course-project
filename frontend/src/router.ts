@@ -15,6 +15,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/compare', component: () => import('@/pages/ComparePage.vue'), meta: { requiresAuth: true } },
   { path: '/reports', component: () => import('@/pages/ReportsPage.vue'), meta: { requiresAuth: true } },
   { path: '/reports/:reportId', component: () => import('@/pages/ReportDetailPage.vue'), props: true, meta: { requiresAuth: true } },
+  { path: '/admin/format-profiles', component: () => import('@/pages/FormatProfileAdminPage.vue'), meta: { requiresAuth: true, admin: true } },
   { path: '/admin/:section(models|prompts|indexes|datasets|evaluations|monitoring)', component: () => import('@/pages/AdminPage.vue'), props: true, meta: { requiresAuth: true, admin: true } },
   { path: '/:pathMatch(.*)*', redirect: '/papers' },
 ]

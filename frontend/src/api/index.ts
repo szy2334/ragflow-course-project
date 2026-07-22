@@ -1,7 +1,7 @@
 import type { AxiosRequestConfig } from 'axios'
 import { http, newRequestId, request } from './http'
 import { demo } from './demo'
-import type { AdminRecord, AnswerDetailView, AuthView, ChatMessageView, ChatSessionView, FormatProfileView, FormatReviewView, MetricsOverviewView, PageData, PaperSectionView, PaperUploadBatchView, PaperView, ReadingReportView, TaskAccepted, TaskView, UserView } from './contracts'
+import type { AdminFormatProfileView, AdminRecord, AnswerDetailView, AuthView, ChatMessageView, ChatSessionView, FormatProfileCreateInput, FormatProfileView, FormatReviewView, MetricsOverviewView, PageData, PaperSectionView, PaperUploadBatchView, PaperView, ReadingReportView, TaskAccepted, TaskView, UserView } from './contracts'
 
 function createDemoPaperBlob() {
   const stream = 'BT\n/F1 24 Tf\n72 720 Td\n(Demo paper preview) Tj\nET\n'
@@ -65,8 +65,10 @@ export const api = {
   exportReport: (report_id: string, format: 'markdown' | 'pdf' | 'docx') => demo.active() ? Promise.resolve(demo.accepted('demo-export')) : post<TaskAccepted>(`/reading-reports/${report_id}/exports`, { format }),
 
   listFormatProfiles: () => demo.active() ? Promise.resolve(demo.formatProfiles()) : get<{ items: FormatProfileView[] }>('/format-profiles'),
-  createFormatReview: (data: { paper_id: string; format_profile_id: string; rule_ids: string[] }) => demo.active() ? Promise.resolve(demo.accepted('demo-format-review', 'cccccccc-cccc-4ccc-8ccc-cccccccccccc')) : post<TaskAccepted>('/format-reviews', data),
+  createFormatReview: (data: { paper_id: string; format_profile_id: string; submission_mode: string }) => demo.active() ? Promise.resolve(demo.accepted('demo-format-review', 'cccccccc-cccc-4ccc-8ccc-cccccccccccc')) : post<TaskAccepted>('/format-reviews', data),
   getFormatReview: (format_review_id: string) => demo.active() ? Promise.resolve(demo.formatReview()) : get<FormatReviewView>(`/format-reviews/${format_review_id}`),
+  listAdminFormatProfiles: () => get<{ items: AdminFormatProfileView[] }>('/admin/format-profiles'),
+  createAdminFormatProfile: (data: FormatProfileCreateInput) => post<AdminFormatProfileView>('/admin/format-profiles', data),
 
   listAdmin: (resource: 'model-configs' | 'prompt-templates' | 'retrieval-configs' | 'knowledge-bases' | 'datasets', params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.admin(resource)) : get<PageData<AdminRecord>>(`/admin/${resource}`, params),
   upsertAdmin: (resource: 'model-configs' | 'prompt-templates' | 'retrieval-configs', id: string, data: AdminRecord, version?: number) => put<AdminRecord>(`/admin/${resource}/${id}`, { value: data }, { headers: { 'If-Match': version ? String(version) : '*' } }),

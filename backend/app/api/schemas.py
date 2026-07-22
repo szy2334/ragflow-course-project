@@ -97,6 +97,9 @@ class EvaluationInput(ApiModel):
 class FormatReviewInput(ApiModel):
     paper_id: str = Field(min_length=1, max_length=36)
     format_profile_id: str = Field(min_length=1, max_length=36)
+    submission_mode: str = Field(min_length=1, max_length=64)
+    # Kept only as a transitional, server-validated request member. New clients
+    # must omit it: the workflow checks the complete applicable rule manifest.
     rule_ids: list[str] = Field(default_factory=list, max_length=50)
 
     @field_validator("rule_ids")
@@ -114,8 +117,19 @@ class FormatProfileUpsertInput(ApiModel):
     description: str | None = Field(default=None, max_length=4000)
     ragflow_dataset_id: str = Field(min_length=1, max_length=128)
     retrieval_query: str = Field(min_length=1, max_length=4000)
-    rules: list[dict[str, str]] = Field(min_length=1, max_length=50)
+    venue_id: str | None = Field(default=None, max_length=128)
+    allowed_submission_modes: list[str] = Field(min_length=1, max_length=12)
+    shared_document_id: str = Field(min_length=1, max_length=128)
+    mode_document_mapping: dict[str, str] = Field(min_length=1)
+    rules: list[dict[str, object]] = Field(min_length=1, max_length=50)
     is_active: bool = True
+
+    @field_validator("allowed_submission_modes")
+    @classmethod
+    def unique_submission_modes(cls, value: list[str]) -> list[str]:
+        if len(value) != len(set(value)):
+            raise ValueError("allowed_submission_modes must be unique")
+        return value
 
 
 class ConfigUpdateInput(ApiModel):

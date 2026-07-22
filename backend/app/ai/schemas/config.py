@@ -15,7 +15,7 @@ class ModelConfigSnapshot(StrictModel):
     timeout_seconds: float = Field(default=45.0, gt=0, le=300)
     temperature: float = Field(default=0.2, ge=0, le=2)
     max_output_tokens: int = Field(default=2048, ge=64, le=65536)
-    structured_mode: Literal["json_schema", "json_object"] = "json_schema"
+    structured_mode: Literal["json_schema", "json_object", "prompt_json"] = "json_schema"
 
 
 class ConfigurationSnapshot(StrictModel):

@@ -7,7 +7,22 @@ from pydantic import Field
 
 from .base import StrictModel
 
-StreamEventType = Literal["status", "delta", "citation", "review_summary", "final", "error"]
+StreamEventType = Literal[
+    "status",
+    "delta",
+    "citation",
+    "review_summary",
+    "unit_started",
+    "unit_progress",
+    "unit_validated",
+    "unit_unverifiable",
+    "unit_failed",
+    "unit_skipped",
+    "synthesis_started",
+    "synthesis_completed",
+    "final",
+    "error",
+]
 TraceStatus = Literal["running", "succeeded", "retried", "failed", "skipped"]
 
 

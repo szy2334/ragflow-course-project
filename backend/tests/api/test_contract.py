@@ -227,11 +227,34 @@ def test_format_review_uses_server_profile_mapping_and_persists_rule_contract(tm
             "description": "Checks manuscript structure and references.",
             "ragflow_dataset_id": "ragflow-format-acm-v2026-1",
             "retrieval_query": "ACM manuscript formatting rules",
+            "venue_id": "acm",
+            "allowed_submission_modes": ["initial_submission", "camera_ready"],
+            "shared_document_id": "acm-shared-2026-1",
+            "mode_document_mapping": {
+                "initial_submission": "acm-initial-2026-1",
+                "camera_ready": "acm-camera-ready-2026-1",
+            },
             "rules": [
                 {
                     "rule_id": "abstract-required",
                     "title": "Abstract",
                     "description": "The manuscript must contain an abstract section.",
+                    "venue_id": "acm",
+                    "format_version": "2026.1",
+                    "submission_mode": "shared",
+                    "target_document": "acm-shared-2026-1",
+                    "canonical_rule_id": "abstract-required",
+                    "rule_category": "abstract",
+                    "source_document_id": "acm-source-2026-1",
+                    "section_path": "Abstract",
+                    "effective_from": "2026-01-01",
+                    "status": "active",
+                    "applicable_unit_kinds": ["abstract"],
+                    "is_global": False,
+                    "requires_cross_unit": False,
+                    "cross_unit_kinds": [],
+                    "applicability_conditions": {"requires_section_roles": ["abstract"]},
+                    "evidence_selector": ["text_content", "font_style"],
                 }
             ],
         }
@@ -251,6 +274,7 @@ def test_format_review_uses_server_profile_mapping_and_persists_rule_contract(tm
                 **profile_body,
                 "version": "2026.2",
                 "ragflow_dataset_id": "ragflow-format-acm-v2026-2",
+                "rules": [{**profile_body["rules"][0], "format_version": "2026.2"}],
             },
         )
         assert next_version.status_code == 201
@@ -265,6 +289,8 @@ def test_format_review_uses_server_profile_mapping_and_persists_rule_contract(tm
         )
         assert "ragflow_dataset_id" not in public_profile
         assert "retrieval_query" not in public_profile
+        assert public_profile["allowed_submission_modes"] == ["initial_submission", "camera_ready"]
+        assert "shared_document_id" not in public_profile
 
         upload = client.post(
             "/api/v1/papers",
@@ -282,11 +308,24 @@ def test_format_review_uses_server_profile_mapping_and_persists_rule_contract(tm
             json={
                 "paper_id": paper_id,
                 "format_profile_id": profile_id,
+                "submission_mode": "initial_submission",
                 "rule_ids": ["not-in-profile"],
             },
         )
         assert invalid_rule.status_code == 422
         assert invalid_rule.json()["code"] == "FORMAT_RULES_INVALID"
+
+        invalid_mode = client.post(
+            "/api/v1/format-reviews",
+            headers=_headers(token, **{"Idempotency-Key": "format-review-invalid-mode"}),
+            json={
+                "paper_id": paper_id,
+                "format_profile_id": profile_id,
+                "submission_mode": "preprint",
+            },
+        )
+        assert invalid_mode.status_code == 422
+        assert invalid_mode.json()["code"] == "SUBMISSION_MODE_INVALID"
 
         accepted = client.post(
             "/api/v1/format-reviews",
@@ -294,7 +333,7 @@ def test_format_review_uses_server_profile_mapping_and_persists_rule_contract(tm
             json={
                 "paper_id": paper_id,
                 "format_profile_id": profile_id,
-                "rule_ids": ["abstract-required"],
+                "submission_mode": "initial_submission",
             },
         )
         assert accepted.status_code == 202

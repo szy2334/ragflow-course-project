@@ -54,7 +54,7 @@ class Settings(BaseSettings):
     llm_api_key: SecretStr | None = None
     llm_model: str = ""
     llm_timeout_seconds: float = Field(default=120.0, gt=0, le=300)
-    llm_structured_mode: Literal["json_schema", "json_object"] = "json_schema"
+    llm_structured_mode: Literal["json_schema", "json_object", "prompt_json"] = "json_schema"
     model_config_version: str = "env-v1"
     graph_version: str = "1.0"
     prompt_version: str = "v1"

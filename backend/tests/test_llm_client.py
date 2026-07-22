@@ -73,6 +73,25 @@ async def test_schema_mode_falls_back_to_json_object(model_snapshot):
 
 
 @pytest.mark.asyncio
+async def test_prompt_json_omits_gateway_response_format_and_schema_injection(model_snapshot):
+    bodies = []
+
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        return response(valid_route_json())
+
+    config = model_snapshot.model_copy(update={"structured_mode": "prompt_json"})
+    client = OpenAICompatibleClient("secret", transport=httpx.MockTransport(handler))
+    result = await client.invoke_structured(
+        [ChatMessage(role="user", content="Return a compact JSON object")], RouteDecision, config
+    )
+
+    assert result.output.effective_route_type == "fact"
+    assert "response_format" not in bodies[0]
+    assert bodies[0]["messages"] == [{"role": "user", "content": "Return a compact JSON object"}]
+
+
+@pytest.mark.asyncio
 async def test_429_is_retried_once(model_snapshot):
     calls = 0
 
@@ -123,6 +142,9 @@ async def test_markdown_fenced_json_is_accepted_without_a_repair(model_snapshot)
         [ChatMessage(role="user", content="Return JSON")], RouteDecision, model_snapshot
     )
 
+    assert result.output.effective_route_type == "fact"
+    assert calls == 1
+
 
 def stream_response(content):
     payload = "\n\n".join(
@@ -133,9 +155,6 @@ def stream_response(content):
         ]
     )
     return httpx.Response(200, text=payload, headers={"content-type": "text/event-stream"})
-
-    assert result.output.effective_route_type == "fact"
-    assert calls == 1
 
 
 @pytest.mark.asyncio
