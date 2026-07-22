@@ -26,6 +26,7 @@ from app.db.models import (
     FormatReview,
     FormatReviewItem,
     FormatReviewUnit,
+    MediaObjectRecord,
     Paper,
     ParsedBlockRecord,
     PdfTextSpanRecord,
@@ -48,7 +49,7 @@ from .validators import forced_unverifiable_findings, validate_findings
 MAX_RETRIEVAL_ATTEMPTS = 3
 MAX_UNIT_CYCLES = 2
 MAX_UNIT_CONCURRENCY = 3
-MAX_BODY_SEMANTIC_GROUPS = 3
+MAX_BODY_PAGES_PER_UNIT = 2
 MAX_CONTEXT_REFINEMENT_DEPTH = 3
 # Kept for the unused V1.0 node methods below while historical workflow
 # checkpoints remain readable. V1.1 uses the shared unit-cycle budget instead.
@@ -169,6 +170,18 @@ class FormatReviewWorkflowService:
                     )
                 ).all()
             )
+            media_rows = list(
+                (
+                    await session.scalars(
+                        select(MediaObjectRecord)
+                        .where(
+                            MediaObjectRecord.paper_id == state["task"]["paper_id"],
+                            MediaObjectRecord.paper_version_id == state["task"]["paper_version_id"],
+                        )
+                        .order_by(MediaObjectRecord.page_number, MediaObjectRecord.object_id)
+                    )
+                ).all()
+            )
         native_spans, native_quality = await self._load_native_spans(
             paper_id=state["task"]["paper_id"],
             paper_version_id=state["task"]["paper_version_id"],
@@ -232,12 +245,42 @@ class FormatReviewWorkflowService:
                     "source_uri": f"paper://{state['task']['paper_id']}/native-span/{span.span_index}",
                 }
             )
+        for item in media_rows:
+            metadata = (
+                item.raw_response_json.get("parser_metadata", {})
+                if isinstance(item.raw_response_json, dict)
+                else {}
+            )
+            facts.append(
+                {
+                    "evidence_id": f"P{len(facts) + 1}",
+                    "block_id": item.object_id,
+                    "page_number": item.page_number,
+                    "bbox": item.bbox_json,
+                    "quote": f"{item.object_type} object; visual content not inspected",
+                    "role": f"native_{item.object_type}_object",
+                    "section_title": None,
+                    "font_name": None,
+                    "font_size_pt": None,
+                    "font_flags": None,
+                    "alignment": None,
+                    "source": str(metadata.get("extraction_source") or "pdf_object_geometry"),
+                    "confidence": 1.0,
+                    "page_rotation": 0,
+                    "page_width_pt": metadata.get("page_width_pt"),
+                    "page_height_pt": metadata.get("page_height_pt"),
+                    "object_width_px": metadata.get("width_px"),
+                    "object_height_px": metadata.get("height_px"),
+                    "source_uri": item.source_ref,
+                }
+            )
         if not facts:
             raise FormatReviewFailure("FORMAT_REVIEW_NO_PAPER_EVIDENCE", "论文缺少可用于格式审查的版面产物。")
         quality = {
             "block_count": len(rows),
             "located_block_count": located,
             "native_span_count": len(native_spans),
+            "native_object_count": len(media_rows),
             "layout_source": "parsed_blocks+native_pdf",
             **native_quality,
         }
@@ -479,6 +522,32 @@ class FormatReviewWorkflowService:
                         "persistence_error": type(persist_error).__name__,
                     }
                 )
+        async with self._sessions() as session:
+            persisted_units = list(
+                (
+                    await session.scalars(
+                        select(FormatReviewUnit).where(
+                            FormatReviewUnit.format_review_id == state["review_id"]
+                        )
+                    )
+                ).all()
+            )
+        terminal_statuses = {"validated", "unverifiable", "failed", "cancelled", "skipped"}
+        non_terminal_ids = sorted(
+            row.unit_id for row in persisted_units if row.status not in terminal_statuses
+        )
+        persisted_ids = {row.unit_id for row in persisted_units}
+        missing_ids = sorted(
+            str(unit["unit_id"])
+            for unit in state["review_units"]
+            if str(unit["unit_id"]) not in persisted_ids
+        )
+        if non_terminal_ids or missing_ids:
+            raise FormatReviewFailure(
+                "FORMAT_REVIEW_UNIT_PERSISTENCE_FAILED",
+                "审查块终态未完整持久化，禁止生成汇总结果。",
+                retryable=True,
+            )
         sequence = await self._emit(state, "reviewing_units", "全部审查块已达到确定终态")
         await self._trace(
             state["task"],
@@ -859,6 +928,7 @@ class FormatReviewWorkflowService:
         ]
         retrieved_rule_ids = {str(item.get("canonical_rule_id")) for item in standards}
         missing_rule_ids = sorted(set(expected_rule_ids) - retrieved_rule_ids)
+        executable_rule_ids = sorted(set(expected_rule_ids) & retrieved_rule_ids)
         coverage = {
             **dict(unit.get("coverage", {})),
             "expected_rule_ids": expected_rule_ids,
@@ -885,22 +955,29 @@ class FormatReviewWorkflowService:
         )
 
         not_applicable = _not_applicable_findings(unit, rules_by_id, standards, all_facts)
-        if missing_rule_ids:
-            findings = not_applicable + _unverifiable_findings_for_rules(
-                missing_rule_ids,
-                rules_by_id,
-                "适用规范未完整检索，无法可靠判断。",
-            )
+        missing_findings = _unverifiable_findings_for_rules(
+            missing_rule_ids,
+            rules_by_id,
+            "适用规范未完整检索，无法可靠判断。",
+        )
+        fixed_findings = not_applicable + missing_findings
+        if not executable_rule_ids:
             return await self._finish_unit(
                 state,
                 unit,
                 status="unverifiable",
                 event_type="unit_unverifiable",
-                message="审查块缺少完整规则证据，已标记为无法可靠判断。",
-                findings=findings,
+                message="审查块没有可执行的已检索规则，已标记为无法可靠判断。",
+                findings=fixed_findings,
                 cycle_count=0,
                 retry_budget_remaining=1,
             )
+
+        execution_unit = {
+            **unit,
+            "expected_rule_ids": executable_rule_ids,
+            "retrieved_rule_ids": executable_rule_ids,
+        }
 
         runner = AgentRunner(self._settings, state["snapshot"].get("configuration"))
         cycle_count = 0
@@ -920,15 +997,15 @@ class FormatReviewWorkflowService:
                 last_retry_reason=last_retry_reason,
             )
             payload = _unit_context_payload(
-                unit=unit,
+                unit=execution_unit,
                 facts=facts,
                 standards=standards,
                 rules_by_id=rules_by_id,
                 submission_mode=state["review"]["submission_mode"],
             )
             if len(json.dumps(payload, ensure_ascii=False)) > MAX_CONTEXT_CHARACTERS:
-                findings = not_applicable + _unverifiable_findings_for_rules(
-                    expected_rule_ids,
+                findings = fixed_findings + _unverifiable_findings_for_rules(
+                    executable_rule_ids,
                     rules_by_id,
                     "该审查块无法在不截断完整规则的前提下装配到模型上下文。",
                 )
@@ -958,7 +1035,7 @@ class FormatReviewWorkflowService:
                     standard_evidences=standards,
                     coverage_report=coverage,
                 )
-                validated.extend(not_applicable)
+                validated.extend(fixed_findings)
                 validated = _ensure_unit_rule_representation(
                     validated, expected_rule_ids, rules_by_id
                 )
@@ -981,8 +1058,8 @@ class FormatReviewWorkflowService:
                     decision, reason = "confirmed", "全部候选已由确定性证据门禁处理。"
             except Exception as exc:
                 decision, reason = "repair_check", "模型调用或结构化校验失败。"
-                validated = not_applicable + _unverifiable_findings_for_rules(
-                    expected_rule_ids,
+                validated = fixed_findings + _unverifiable_findings_for_rules(
+                    executable_rule_ids,
                     rules_by_id,
                     "块级模型调用失败，无法可靠判断。",
                 )
@@ -998,7 +1075,7 @@ class FormatReviewWorkflowService:
                     status="failed",
                     event_type="unit_failed",
                     message="The model did not return a valid response after the bounded retry; no format conclusion was produced.",
-                    findings=not_applicable,
+                    findings=validated,
                     cycle_count=cycle_count,
                     retry_budget_remaining=0,
                     last_retry_reason=f"Model call failed: {check_metrics['error']}",
@@ -1382,7 +1459,10 @@ def _legacy_plan_review_units(facts: list[dict[str, Any]]) -> list[dict[str, Any
         append_unit("body_section", "正文", body_facts)
 
     figure_table_facts = [
-        fact for fact in facts if _fact_matches(fact, ("figure", "fig.", "table", "图", "表"))
+        fact
+        for fact in facts
+        if _fact_matches(fact, ("figure", "fig.", "table", "图", "表"))
+        or _is_native_graphic_fact(fact)
     ]
     if figure_table_facts:
         append_unit("figure_table", "图表与公式", figure_table_facts)
@@ -1464,7 +1544,10 @@ def _plan_review_units(facts: list[dict[str, Any]]) -> list[dict[str, Any]]:
         append_unit("body_section", title, group_facts)
 
     figure_table_facts = [
-        fact for fact in facts if _fact_matches(fact, ("figure", "fig.", "table"))
+        fact
+        for fact in facts
+        if _fact_matches(fact, ("figure", "fig.", "table"))
+        or _is_native_graphic_fact(fact)
     ]
     if figure_table_facts:
         append_unit("figure_table", "Figures and tables", figure_table_facts)
@@ -1482,7 +1565,7 @@ def _plan_review_units(facts: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def _coarse_body_groups(facts: list[dict[str, Any]]) -> list[tuple[str, list[dict[str, Any]]]]:
-    """Group consecutive numbered top-level sections; otherwise group pages."""
+    """Keep top-level sections independent; otherwise use short page windows."""
 
     by_root: dict[str, list[dict[str, Any]]] = defaultdict(list)
     root_titles: dict[str, str] = {}
@@ -1493,7 +1576,7 @@ def _coarse_body_groups(facts: list[dict[str, Any]]) -> list[tuple[str, list[dic
             continue
         root = match.group(1)
         by_root[root].append(fact)
-        if root not in root_titles and re.match(rf"^{re.escape(root)}\s+", section_title):
+        if root not in root_titles and re.match(rf"^{re.escape(root)}(?:\s|\.)+", section_title):
             root_titles[root] = section_title
 
     ordered_roots = sorted(
@@ -1501,18 +1584,22 @@ def _coarse_body_groups(facts: list[dict[str, Any]]) -> list[tuple[str, list[dic
         key=lambda root: min(int(fact.get("page_number") or 0) for fact in by_root[root]),
     )
     if ordered_roots:
-        group_count = min(MAX_BODY_SEMANTIC_GROUPS, len(ordered_roots))
-        grouped: list[tuple[str, list[dict[str, Any]]]] = []
-        for group_index in range(group_count):
-            start = group_index * len(ordered_roots) // group_count
-            end = (group_index + 1) * len(ordered_roots) // group_count
-            roots = ordered_roots[start:end]
-            selected = [fact for root in roots for fact in by_root[root]]
-            first_title = root_titles.get(roots[0], f"Section {roots[0]}")
-            last_title = root_titles.get(roots[-1], f"Section {roots[-1]}")
-            title = first_title if len(roots) == 1 else f"{first_title} - {last_title}"
-            grouped.append((title, selected))
-        return grouped
+        root_start_pages = {
+            root: min(int(fact.get("page_number") or 0) for fact in by_root[root])
+            for root in ordered_roots
+        }
+        assigned_ids = {id(fact) for root in ordered_roots for fact in by_root[root]}
+        for fact in facts:
+            if id(fact) in assigned_ids:
+                continue
+            page = int(fact.get("page_number") or 0)
+            eligible = [root for root in ordered_roots if root_start_pages[root] <= page]
+            target = eligible[-1] if eligible else ordered_roots[0]
+            by_root[target].append(fact)
+        return [
+            (root_titles.get(root, f"Section {root}"), by_root[root])
+            for root in ordered_roots
+        ]
 
     by_page: dict[int, list[dict[str, Any]]] = defaultdict(list)
     for fact in facts:
@@ -1522,20 +1609,13 @@ def _coarse_body_groups(facts: list[dict[str, Any]]) -> list[tuple[str, list[dic
     pages = sorted(by_page)
     if not pages:
         return []
-    group_count = min(MAX_BODY_SEMANTIC_GROUPS, len(pages))
     return [
         (
             f"Body pages {group_pages[0]}-{group_pages[-1]}",
             [fact for page in group_pages for fact in by_page[page]],
         )
-        for group_index in range(group_count)
-        for group_pages in [
-            pages[
-                group_index * len(pages) // group_count : (group_index + 1)
-                * len(pages)
-                // group_count
-            ]
-        ]
+        for start in range(0, len(pages), MAX_BODY_PAGES_PER_UNIT)
+        for group_pages in [pages[start : start + MAX_BODY_PAGES_PER_UNIT]]
         if group_pages
     ]
 
@@ -1849,6 +1929,7 @@ def _not_applicable_findings(
         standard = standards_by_rule.get(rule_id)
         findings.append(
             {
+                "rule_ids": [rule_id],
                 "category": rule["rule_category"],
                 "aspect": rule["title"],
                 "result": "not_applicable",
@@ -1876,6 +1957,7 @@ def _unverifiable_findings_for_rules(
             continue
         findings.append(
             {
+                "rule_ids": [rule_id],
                 "category": rule["rule_category"],
                 "aspect": rule["title"],
                 "result": "unverifiable",
@@ -1894,11 +1976,22 @@ def _unverifiable_findings_for_rules(
 def _ensure_unit_rule_representation(
     findings: list[dict[str, Any]], rule_ids: list[str], rules_by_id: dict[str, dict[str, Any]]
 ) -> list[dict[str, Any]]:
-    represented_categories = {str(item.get("category")) for item in findings}
+    represented_rule_ids = {
+        str(rule_id)
+        for item in findings
+        for rule_id in item.get("rule_ids", [])
+        if str(rule_id)
+    }
+    represented_rule_ids.update(
+        str(evidence.get("canonical_rule_id"))
+        for item in findings
+        for evidence in item.get("standard_evidences", [])
+        if evidence.get("canonical_rule_id")
+    )
     missing = [
         rule_id
         for rule_id in rule_ids
-        if rule_id in rules_by_id and str(rules_by_id[rule_id]["rule_category"]) not in represented_categories
+        if rule_id in rules_by_id and rule_id not in represented_rule_ids
     ]
     return [
         *findings,
@@ -1907,8 +2000,8 @@ def _ensure_unit_rule_representation(
 
 
 def _deduplicate_unit_findings(unit_results: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    seen: set[tuple[str, str, str]] = set()
-    findings: list[dict[str, Any]] = []
+    by_rule: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    without_rule: list[dict[str, Any]] = []
     for result in sorted(unit_results, key=lambda item: int(item.get("unit_position") or 0)):
         for finding in result.get("findings", []):
             enriched = {
@@ -1916,16 +2009,94 @@ def _deduplicate_unit_findings(unit_results: list[dict[str, Any]]) -> list[dict[
                 "unit_id": finding.get("unit_id") or result["unit_id"],
                 "unit_position": finding.get("unit_position", result["unit_position"]),
             }
-            key = (
-                str(enriched.get("category")),
-                str(enriched.get("aspect")),
-                str(enriched.get("result")),
+            rule_ids = {
+                str(rule_id)
+                for rule_id in enriched.get("rule_ids", [])
+                if str(rule_id)
+            }
+            rule_ids.update(
+                str(evidence.get("canonical_rule_id"))
+                for evidence in enriched.get("standard_evidences", [])
+                if evidence.get("canonical_rule_id")
             )
-            if key in seen:
+            if not rule_ids:
+                without_rule.append(enriched)
                 continue
-            seen.add(key)
-            findings.append(enriched)
+            for rule_id in sorted(rule_ids):
+                by_rule[rule_id].append({**enriched, "rule_ids": [rule_id]})
+
+    findings = [
+        _consolidate_rule_findings(rule_id, candidates)
+        for rule_id, candidates in sorted(by_rule.items())
+    ]
+    seen_without_rule: set[tuple[str, str, str]] = set()
+    for finding in without_rule:
+        key = (
+            str(finding.get("category")),
+            str(finding.get("aspect")),
+            str(finding.get("result")),
+        )
+        if key not in seen_without_rule:
+            findings.append(finding)
+            seen_without_rule.add(key)
     return findings
+
+
+def _consolidate_rule_findings(
+    rule_id: str, candidates: list[dict[str, Any]]
+) -> dict[str, Any]:
+    result_priority = {
+        "not_applicable": 0,
+        "compliant": 1,
+        "unverifiable": 2,
+        "non_compliant": 3,
+    }
+    chosen_result = max(
+        (str(item.get("result")) for item in candidates),
+        key=lambda value: result_priority.get(value, -1),
+    )
+    selected = [item for item in candidates if str(item.get("result")) == chosen_result]
+    base = selected[0]
+    severity_priority = {"info": 0, "low": 1, "medium": 2, "high": 3}
+    severity = max(
+        (str(item.get("severity") or "info") for item in selected),
+        key=lambda value: severity_priority.get(value, -1),
+    )
+
+    def merge_evidence(field: str) -> list[dict[str, Any]]:
+        merged: list[dict[str, Any]] = []
+        seen: set[str] = set()
+        for item in selected:
+            for evidence in item.get(field, []):
+                key = str(evidence.get("evidence_id") or json.dumps(evidence, sort_keys=True))
+                if key not in seen:
+                    merged.append(evidence)
+                    seen.add(key)
+        return merged
+
+    messages = list(dict.fromkeys(str(item.get("finding") or "") for item in selected))
+    reasons = list(dict.fromkeys(str(item.get("reason") or "") for item in selected if item.get("reason")))
+    suggestions = list(
+        dict.fromkeys(str(item.get("suggestion") or "") for item in selected if item.get("suggestion"))
+    )
+    return {
+        **base,
+        "rule_ids": [rule_id],
+        "result": chosen_result,
+        "severity": severity,
+        "finding": " ".join(messages)[:4000],
+        "suggestion": " ".join(suggestions)[:4000] or None,
+        "reason": " ".join(reasons)[:2000] or None,
+        "paper_evidences": merge_evidence("paper_evidences"),
+        "standard_evidences": merge_evidence("standard_evidences"),
+        "evidence_status": (
+            "complete"
+            if selected and all(item.get("evidence_status") == "complete" for item in selected)
+            else "incomplete"
+        ),
+        "unit_id": None,
+        "unit_position": min(int(item.get("unit_position") or 0) for item in selected),
+    }
 
 
 def _public_unit_plan(unit: dict[str, Any]) -> dict[str, Any]:
@@ -1964,6 +2135,13 @@ def _fact_matches(fact: dict[str, Any], terms: tuple[str, ...]) -> bool:
         ]
     )
     return any(term.lower() in haystack for term in terms)
+
+
+def _is_native_graphic_fact(fact: dict[str, Any]) -> bool:
+    return str(fact.get("role") or "") in {
+        "native_image_object",
+        "native_vector_graphic_object",
+    }
 
 
 def _applicable_manifest(raw: list[Any], submission_mode: str) -> list[dict[str, Any]]:
@@ -2179,7 +2357,13 @@ def _context_facts_for_category(
                 str(fact.get("section_title") or "").lower(),
             ]
         )
-        score = sum(8 for term in terms if term in haystack)
+        term_score = sum(8 for term in terms if term in haystack)
+        native_graphic = category in {"figure", "table"} and _is_native_graphic_fact(fact)
+        if category in {"figure", "table"} and not term_score and not native_graphic:
+            continue
+        score = term_score
+        if native_graphic:
+            score += 8
         if category == "page_layout" and fact.get("page_width_pt") is not None:
             score += 6
         if category == "heading" and fact.get("font_size_pt") is not None:
@@ -2274,12 +2458,20 @@ def _item_record(
     paper_refs = finding.get("paper_evidences", [])
     pages = sorted({int(item["page_number"]) for item in paper_refs if item.get("page_number") is not None})
     annotation = next((item for item in _annotations([finding])), {})
+    canonical_rule_ids = [str(value) for value in finding.get("rule_ids", []) if str(value)]
+    if source_stage == "final" and len(canonical_rule_ids) == 1:
+        stored_rule_id = canonical_rule_ids[0]
+    elif len(canonical_rule_ids) == 1 and unit_id:
+        unit_fingerprint = hashlib.sha256(unit_id.encode()).hexdigest()[:16]
+        stored_rule_id = f"{canonical_rule_ids[0]}:{unit_fingerprint}"
+    else:
+        stored_rule_id = f"{finding['category']}:{fingerprint}"
     return FormatReviewItem(
         format_review_id=review_id,
         unit_id=unit_id,
         unit_position=unit_position,
         source_stage=source_stage,
-        rule_id=f"{finding['category']}:{fingerprint}",
+        rule_id=stored_rule_id,
         rule_title=str(finding["aspect"]),
         category=str(finding["category"]),
         aspect=str(finding["aspect"]),

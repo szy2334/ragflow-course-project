@@ -6,10 +6,98 @@ from app.format_review.workflow import (
     _applicable_manifest,
     _context_facts_for_category,
     _context_groups,
+    _deduplicate_unit_findings,
+    _item_record,
     _pdf_span_record_values,
     _plan_review_units,
     _refine_units_for_context_budget,
 )
+from tools.backfill_format_rule_scopes import scope_for_v2
+
+
+def test_format_review_state_keeps_synthesized_findings():
+    from app.format_review.schemas import FormatReviewState
+
+    assert "final_findings" in FormatReviewState.__annotations__
+
+
+def test_final_findings_are_consolidated_by_canonical_rule():
+    units = [
+        {
+            "unit_id": "u-1",
+            "unit_position": 1,
+            "findings": [
+                {
+                    "rule_ids": ["heading-rule"],
+                    "category": "heading",
+                    "aspect": "Heading size",
+                    "result": "unverifiable",
+                    "severity": "info",
+                    "finding": "One heading lacks evidence.",
+                    "paper_evidences": [],
+                    "standard_evidences": [
+                        {"evidence_id": "S1", "canonical_rule_id": "heading-rule"}
+                    ],
+                    "evidence_status": "incomplete",
+                }
+            ],
+        },
+        {
+            "unit_id": "u-2",
+            "unit_position": 2,
+            "findings": [
+                {
+                    "rule_ids": ["heading-rule"],
+                    "category": "heading",
+                    "aspect": "Heading size",
+                    "result": "non_compliant",
+                    "severity": "medium",
+                    "finding": "Another heading is too small.",
+                    "paper_evidences": [
+                        {"evidence_id": "P2", "page_number": 2, "bbox": [1, 2, 3, 4]}
+                    ],
+                    "standard_evidences": [
+                        {"evidence_id": "S1", "canonical_rule_id": "heading-rule"}
+                    ],
+                    "evidence_status": "complete",
+                }
+            ],
+        },
+    ]
+
+    findings = _deduplicate_unit_findings(units)
+
+    assert len(findings) == 1
+    assert findings[0]["rule_ids"] == ["heading-rule"]
+    assert findings[0]["result"] == "non_compliant"
+    assert [item["evidence_id"] for item in findings[0]["paper_evidences"]] == ["P2"]
+
+
+def test_only_final_items_store_the_bare_canonical_rule_id():
+    finding = {
+        "rule_ids": ["canonical-heading-rule"],
+        "category": "heading",
+        "aspect": "Heading size",
+        "result": "non_compliant",
+        "severity": "medium",
+        "finding": "Heading is too small.",
+        "paper_evidences": [],
+        "standard_evidences": [],
+        "evidence_status": "incomplete",
+    }
+
+    first_unit = _item_record(
+        "review-1", finding, unit_id="u-001", unit_position=1, source_stage="unit"
+    )
+    second_unit = _item_record(
+        "review-1", finding, unit_id="u-002", unit_position=2, source_stage="unit"
+    )
+    final = _item_record("review-1", finding, source_stage="final")
+
+    assert first_unit.rule_id.startswith("canonical-heading-rule:")
+    assert second_unit.rule_id.startswith("canonical-heading-rule:")
+    assert first_unit.rule_id != second_unit.rule_id
+    assert final.rule_id == "canonical-heading-rule"
 
 
 def test_non_compliance_without_page_bbox_is_downgraded_to_unverifiable():
@@ -86,7 +174,7 @@ def test_inactive_rules_are_not_added_to_the_frozen_applicable_manifest():
     assert [item["rule_id"] for item in manifest] == ["active-rule"]
 
 
-def test_review_plan_groups_many_body_sections_into_three_semantic_units():
+def test_review_plan_keeps_top_level_sections_as_independent_units():
     facts = [
         {
             "evidence_id": f"P{index}",
@@ -102,9 +190,190 @@ def test_review_plan_groups_many_body_sections_into_three_semantic_units():
     units = _plan_review_units(facts)
 
     body_units = [unit for unit in units if unit["unit_kind"] == "body_section"]
-    assert len(body_units) == 3
+    assert len(body_units) == 7
     assert sum(len(unit["fact_ids"]) for unit in body_units) == len(facts)
+    assert [unit["title"] for unit in body_units] == [
+        f"{index} Main section" for index in range(1, 8)
+    ]
     assert all(unit["page_range"][0] <= unit["page_range"][1] for unit in body_units)
+
+
+def test_review_plan_does_not_merge_long_second_and_third_sections():
+    facts = []
+    evidence_index = 0
+    sections = (
+        ("1 Introduction", [1]),
+        ("2 Related Work", [2, 3]),
+        ("3 Method", [4, 5, 6]),
+    )
+    for section, pages in sections:
+        for page in pages:
+            evidence_index += 1
+            facts.append(
+                {
+                    "evidence_id": f"P{evidence_index}",
+                    "block_id": f"b-{evidence_index}",
+                    "page_number": page,
+                    "quote": f"Content for {section}",
+                    "role": "body",
+                    "section_title": section,
+                }
+            )
+
+    units = _plan_review_units(facts)
+    body_units = [unit for unit in units if unit["unit_kind"] == "body_section"]
+
+    assert [unit["title"] for unit in body_units] == [
+        "1 Introduction",
+        "2 Related Work",
+        "3 Method",
+    ]
+    assert [unit["page_range"] for unit in body_units] == [[1, 1], [2, 3], [4, 6]]
+
+
+def test_review_plan_keeps_native_graphic_geometry_in_figure_table_unit():
+    facts = [
+        {
+            "evidence_id": "P1",
+            "block_id": "caption-1",
+            "page_number": 2,
+            "quote": "Figure 1: Model overview",
+            "role": "paragraph",
+            "section_title": "1 Introduction",
+        },
+        {
+            "evidence_id": "P2",
+            "block_id": "native-vector-1",
+            "page_number": 2,
+            "bbox": [72, 100, 280, 260],
+            "quote": "vector_graphic object; visual content not inspected",
+            "role": "native_vector_graphic_object",
+            "page_width_pt": 612.0,
+            "page_height_pt": 792.0,
+        },
+    ]
+
+    units = _plan_review_units(facts)
+
+    figure_table = next(unit for unit in units if unit["unit_kind"] == "figure_table")
+    assert set(figure_table["fact_ids"]) == {"P1", "P2"}
+
+
+def test_figure_and_table_contexts_include_native_graphic_geometry():
+    facts = [
+        {
+            "evidence_id": "P1",
+            "page_number": 2,
+            "bbox": [72, 100, 280, 260],
+            "quote": "vector_graphic object; visual content not inspected",
+            "role": "native_vector_graphic_object",
+        },
+        {
+            "evidence_id": "P2",
+            "page_number": 2,
+            "bbox": [72, 270, 280, 282],
+            "quote": "Table 1: Results",
+            "role": "paragraph",
+        },
+        {
+            "evidence_id": "P3",
+            "page_number": 2,
+            "bbox": [72, 284, 280, 296],
+            "quote": "Figure 1: Overview",
+            "role": "paragraph",
+        },
+    ]
+
+    figure_ids = {item["evidence_id"] for item in _context_facts_for_category(facts, "figure")}
+    table_ids = {item["evidence_id"] for item in _context_facts_for_category(facts, "table")}
+
+    assert figure_ids == {"P1", "P3"}
+    assert table_ids == {"P1", "P2"}
+
+
+def test_reference_rules_are_pdf_observable_and_target_reference_unit():
+    scope = scope_for_v2(
+        {
+            "title": "References formatting",
+            "description": (
+                "References follow the acknowledgments. Use an unnumbered first-level heading "
+                "and a consistent citation style."
+            ),
+        }
+    )
+
+    assert scope["status"] == "active"
+    assert scope["rule_category"] == "reference"
+    assert scope["applicable_unit_kinds"] == ["reference"]
+    assert scope["evidence_selector"] == ["reference_entry", "font_style", "text_content"]
+
+
+def test_figure_rules_request_object_geometry_without_visual_content():
+    scope = scope_for_v2(
+        {
+            "title": "Figure formatting",
+            "description": "All artwork must be centered. The figure number and caption follow it.",
+        }
+    )
+
+    assert scope["status"] == "active"
+    assert scope["rule_category"] == "figure"
+    assert "object_geometry" in scope["evidence_selector"]
+
+
+def test_exact_rule_evidence_survives_partial_category_retrieval():
+    findings = validate_findings(
+        [
+            {
+                "rule_ids": ["reference-heading"],
+                "category": "reference",
+                "aspect": "Reference heading",
+                "result": "compliant",
+                "finding": "The heading is present.",
+                "paper_evidence_ids": ["P1"],
+                "standard_evidence_ids": ["S1"],
+            }
+        ],
+        paper_evidences=[{"evidence_id": "P1", "page_number": 9, "bbox": [1, 2, 3, 4]}],
+        standard_evidences=[
+            {
+                "evidence_id": "S1",
+                "canonical_rule_id": "reference-heading",
+                "quote": "Use an unnumbered first-level heading for references.",
+            }
+        ],
+        coverage_report={
+            "missing_categories": ["reference"],
+            "missing_rule_ids": ["reference-font-size"],
+        },
+    )
+
+    assert findings[0]["result"] == "compliant"
+    assert findings[0]["rule_ids"] == ["reference-heading"]
+
+
+def test_declared_rule_drops_standard_evidence_from_other_rules():
+    findings = validate_findings(
+        [
+            {
+                "rule_ids": ["table-rule"],
+                "category": "table",
+                "aspect": "Table placement",
+                "result": "unverifiable",
+                "finding": "Spacing cannot be confirmed.",
+                "paper_evidence_ids": ["P1"],
+                "standard_evidence_ids": ["S1", "S2"],
+            }
+        ],
+        paper_evidences=[{"evidence_id": "P1", "page_number": 2, "bbox": [1, 2, 3, 4]}],
+        standard_evidences=[
+            {"evidence_id": "S1", "canonical_rule_id": "table-rule", "quote": "Table rule"},
+            {"evidence_id": "S2", "canonical_rule_id": "figure-rule", "quote": "Figure rule"},
+        ],
+        coverage_report={"missing_categories": []},
+    )
+
+    assert [item["evidence_id"] for item in findings[0]["standard_evidences"]] == ["S1"]
 
 
 def test_oversized_unit_is_split_at_a_page_boundary_before_llm_execution():

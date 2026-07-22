@@ -1,9 +1,38 @@
 from app.workers.ingestion import (
     BuiltChunk,
     _chunk_from_second_clean,
+    _parse_native_pdf,
     _understanding_evidences,
 )
 from app.workers.second_clean_adapter import build_chunks as build_second_clean_chunks
+
+
+def test_native_pdf_parser_preserves_text_and_image_geometry_without_ocr(tmp_path):
+    import fitz
+
+    path = tmp_path / "native.pdf"
+    document = fitz.open()
+    page = document.new_page(width=300, height=400)
+    page.insert_text((40, 40), "Abstract", fontsize=12)
+    page.insert_textbox(
+        fitz.Rect(40, 55, 260, 120),
+        "This paragraph comes from the PDF text layer and remains selectable.",
+        fontsize=9,
+    )
+    pixmap = fitz.Pixmap(fitz.csRGB, fitz.IRect(0, 0, 4, 4), False)
+    pixmap.clear_with(255)
+    page.insert_image(fitz.Rect(100, 150, 180, 210), pixmap=pixmap)
+    document.save(path)
+    document.close()
+
+    parsed = _parse_native_pdf(path)
+
+    assert any(block.section_title == "Abstract" for block in parsed.blocks)
+    image = next(item for item in parsed.media if item.kind == "image")
+    assert image.required is False
+    assert image.image_url is None
+    assert image.metadata["pdf_bbox"] == [100.0, 150.0, 180.0, 210.0]
+    assert image.metadata["extraction_source"] == "native_pdf_image_object"
 
 
 def test_upload_time_understanding_uses_local_bounded_evidence_only():

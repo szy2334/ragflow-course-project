@@ -52,6 +52,23 @@ async def test_json_schema_success(model_snapshot):
 
 
 @pytest.mark.asyncio
+async def test_reasoning_effort_is_forwarded_when_configured(model_snapshot):
+    bodies = []
+
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        return response(valid_route_json())
+
+    config = model_snapshot.model_copy(update={"reasoning_effort": "low"})
+    client = OpenAICompatibleClient("secret", transport=httpx.MockTransport(handler))
+    await client.invoke_structured(
+        [ChatMessage(role="user", content="Return JSON")], RouteDecision, config
+    )
+
+    assert bodies[0]["reasoning_effort"] == "low"
+
+
+@pytest.mark.asyncio
 async def test_schema_mode_falls_back_to_json_object(model_snapshot):
     modes = []
 

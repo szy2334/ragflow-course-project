@@ -4,6 +4,8 @@
 
 import asyncio
 import hashlib
+import re
+from collections import Counter
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
@@ -129,6 +131,266 @@ class MinerUClient:
         return ParsedPaper(blocks=blocks, media=media)
 
 
+class NativePdfClient:
+    """Parse the PDF text layer and object geometry without OCR or rasterization."""
+
+    async def parse(self, file_path: Path, *, paper_id: str, paper_version_id: str) -> ParsedPaper:
+        del paper_id, paper_version_id
+        return await asyncio.to_thread(_parse_native_pdf, file_path)
+
+
+def _parse_native_pdf(file_path: Path) -> ParsedPaper:
+    try:
+        import fitz
+    except ImportError as exc:
+        raise IngestionFailure(
+            "NATIVE_PDF_UNAVAILABLE", "PyMuPDF is required for native PDF parsing."
+        ) from exc
+    try:
+        document = fitz.open(file_path)
+    except (fitz.FileDataError, RuntimeError, OSError) as exc:
+        raise IngestionFailure("NATIVE_PDF_PARSE_FAILED", "The PDF text layer could not be read.") from exc
+    try:
+        if document.needs_pass:
+            raise IngestionFailure("NATIVE_PDF_PARSE_FAILED", "The PDF is encrypted.", retryable=False)
+        body_size = _native_body_font_size(document)
+        blocks: list[ParsedBlock] = []
+        media: list[MediaObject] = []
+        current_section = ""
+        block_index = 0
+        media_index = 0
+
+        for page_number, page in enumerate(document, start=1):
+            # Preserve the PDF content stream order. PyMuPDF's geometric sort
+            # interleaves two-column pages (for example 3.2 before 3.1).
+            raw_page = page.get_text("dict", sort=False)
+            for raw_block in raw_page.get("blocks", []):
+                if raw_block.get("type") != 0:
+                    continue
+                pending: list[dict[str, Any]] = []
+
+                def emit(
+                    lines: list[dict[str, Any]],
+                    *,
+                    role: str,
+                    section: str,
+                    _page_number: int = page_number,
+                ) -> None:
+                    nonlocal block_index
+                    text = " ".join(str(line["text"]).strip() for line in lines).strip()
+                    bbox = _native_union_bbox([line["bbox"] for line in lines])
+                    if not text or bbox is None:
+                        return
+                    block_index += 1
+                    content_type = (
+                        "reference" if role == "reference_entry" else
+                        "abstract" if role == "abstract" else
+                        "metadata" if role in {"title", "heading"} else "text"
+                    )
+                    source_ref = f"page:{_page_number}:native-block:{block_index}"
+                    section_path = [section] if section else []
+                    second_clean_block = {
+                        "block_id": f"native-block-{block_index}",
+                        "raw_text": text,
+                        "normalized_text": text,
+                        "content_type": content_type,
+                        "content_role": role,
+                        "section_path": section_path,
+                        "page_start": _page_number,
+                        "page_end": _page_number,
+                        "bbox": bbox,
+                        "source_ref": source_ref,
+                        "indexable": role != "title",
+                        "quality_flags": [],
+                    }
+                    blocks.append(
+                        ParsedBlock(
+                            block_id=f"native-block-{block_index}",
+                            content=text,
+                            page_number=_page_number,
+                            section_title=section,
+                            content_type=content_type,
+                            source_ref=source_ref,
+                            metadata={
+                                "bbox": bbox,
+                                "content_role": role,
+                                "extraction_source": "native_pdf_text_layer",
+                                "second_clean_block": second_clean_block,
+                            },
+                        )
+                    )
+
+                line_rows: list[dict[str, Any]] = []
+                for raw_line in raw_block.get("lines", []):
+                    spans = [
+                        span for span in raw_line.get("spans", [])
+                        if str(span.get("text") or "").strip()
+                    ]
+                    text = "".join(str(span.get("text") or "") for span in spans).strip()
+                    bbox = _native_bbox(raw_line.get("bbox"))
+                    if not text or bbox is None:
+                        continue
+                    max_size = max((float(span.get("size") or 0.0) for span in spans), default=0.0)
+                    line_rows.append({"text": text, "bbox": bbox, "max_size": max_size})
+
+                heading_parts: list[dict[str, Any]] = []
+
+                def flush_heading() -> None:
+                    nonlocal current_section, heading_parts
+                    if not heading_parts:
+                        return
+                    current_section = " ".join(str(item["text"]) for item in heading_parts)
+                    emit(heading_parts, role="heading", section=current_section)
+                    heading_parts = []
+
+                for line in line_rows:
+                    text = str(line["text"])
+                    max_size = float(line["max_size"])
+                    numbered_prefix = bool(re.fullmatch(r"\d+(?:\.\d+)*\.?", text.strip()))
+                    if numbered_prefix and max_size >= body_size + 0.5:
+                        if pending:
+                            emit(pending, role=_native_body_role(current_section), section=current_section)
+                            pending = []
+                        flush_heading()
+                        heading_parts = [line]
+                        continue
+                    if heading_parts:
+                        if max_size >= body_size + 0.5:
+                            heading_parts.append(line)
+                            continue
+                        flush_heading()
+                    role = _native_line_role(text, page_number, max_size, body_size)
+                    if role in {"title", "heading"}:
+                        if pending:
+                            body_role = _native_body_role(current_section)
+                            emit(pending, role=body_role, section=current_section)
+                            pending = []
+                        if role == "heading":
+                            current_section = text
+                        emit([line], role=role, section=current_section if role == "heading" else "")
+                    else:
+                        pending.append(line)
+                flush_heading()
+                if pending:
+                    emit(pending, role=_native_body_role(current_section), section=current_section)
+
+            for info in page.get_image_info(xrefs=True):
+                bbox = _native_bbox(info.get("bbox"))
+                if bbox is None:
+                    continue
+                media_index += 1
+                media.append(
+                    MediaObject(
+                        object_id=f"native-image-{media_index}",
+                        kind="image",
+                        page_number=page_number,
+                        source_ref=f"page:{page_number}:native-image:{media_index}",
+                        image_url=None,
+                        caption=None,
+                        required=False,
+                        metadata={
+                            "pdf_bbox": bbox,
+                            "page_width_pt": float(page.rect.width),
+                            "page_height_pt": float(page.rect.height),
+                            "width_px": info.get("width"),
+                            "height_px": info.get("height"),
+                            "x_resolution": info.get("xres"),
+                            "y_resolution": info.get("yres"),
+                            "extraction_source": "native_pdf_image_object",
+                        },
+                    )
+                )
+
+            drawings = page.get_drawings()
+            clusters = page.cluster_drawings(drawings=drawings) if drawings else []
+            for rect in clusters:
+                bbox = _native_bbox(tuple(rect))
+                if bbox is None or rect.width < 24 or rect.height < 12 or rect.width * rect.height < 1000:
+                    continue
+                media_index += 1
+                media.append(
+                    MediaObject(
+                        object_id=f"native-vector-{media_index}",
+                        kind="vector_graphic",
+                        page_number=page_number,
+                        source_ref=f"page:{page_number}:native-vector:{media_index}",
+                        image_url=None,
+                        caption=None,
+                        required=False,
+                        metadata={
+                            "pdf_bbox": bbox,
+                            "page_width_pt": float(page.rect.width),
+                            "page_height_pt": float(page.rect.height),
+                            "width_pt": float(rect.width),
+                            "height_pt": float(rect.height),
+                            "extraction_source": "native_pdf_vector_cluster",
+                        },
+                    )
+                )
+        if not blocks:
+            raise IngestionFailure("NATIVE_PDF_PARSE_FAILED", "The PDF has no readable text layer.")
+        return ParsedPaper(blocks=blocks, media=media)
+    finally:
+        document.close()
+
+
+def _native_body_font_size(document: Any) -> float:
+    weighted: Counter[float] = Counter()
+    for page in document:
+        for block in page.get_text("dict").get("blocks", []):
+            if block.get("type") != 0:
+                continue
+            for line in block.get("lines", []):
+                for span in line.get("spans", []):
+                    text = str(span.get("text") or "").strip()
+                    if text:
+                        weighted[round(float(span.get("size") or 0.0), 1)] += len(text)
+    return weighted.most_common(1)[0][0] if weighted else 10.0
+
+
+def _native_line_role(text: str, page_number: int, max_size: float, body_size: float) -> str:
+    normalized = text.strip()
+    if page_number == 1 and max_size >= body_size + 4 and len(normalized) <= 240:
+        return "title"
+    lowered = normalized.rstrip(":").lower()
+    if lowered in {"abstract", "references", "bibliography", "acknowledgments", "acknowledgements"}:
+        return "heading"
+    if (
+        len(normalized) <= 160
+        and max_size >= body_size + 0.5
+        and re.match(r"^\d+(?:\.\d+)*\.?\s+\S", normalized)
+    ):
+        return "heading"
+    return "paragraph"
+
+
+def _native_body_role(section: str) -> str:
+    lowered = section.strip().lower()
+    if lowered in {"references", "bibliography"}:
+        return "reference_entry"
+    return "paragraph"
+
+
+def _native_bbox(value: Any) -> list[float] | None:
+    if not isinstance(value, (list, tuple)) or len(value) != 4:
+        return None
+    if not all(isinstance(item, (int, float)) for item in value):
+        return None
+    x0, y0, x1, y1 = (float(item) for item in value)
+    return [x0, y0, x1, y1] if x1 > x0 and y1 > y0 else None
+
+
+def _native_union_bbox(values: list[list[float]]) -> list[float] | None:
+    if not values:
+        return None
+    return [
+        min(item[0] for item in values),
+        min(item[1] for item in values),
+        max(item[2] for item in values),
+        max(item[3] for item in values),
+    ]
+
+
 class BaiduSpecializedOcrClient:
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
@@ -225,12 +487,21 @@ class IngestionTaskExecutor:
                 "title": paper.title,
                 "file_name": paper.file_name,
                 "file_sha256": paper.content_sha256,
-                "parser_name": "mineru",
-                "parser_version": "mineru-v1",
+                "parser_name": self._settings.paper_parser_backend,
+                "parser_version": (
+                    "native-pdf-v1"
+                    if self._settings.paper_parser_backend == "native_pdf"
+                    else "mineru-v1"
+                ),
             }
 
         if stage == "mineru_parsing" or not await self._has_parse_artifacts(paper_id, version_id):
-            parsed = await MinerUClient(self._settings).parse(
+            parser = (
+                NativePdfClient()
+                if self._settings.paper_parser_backend == "native_pdf"
+                else MinerUClient(self._settings)
+            )
+            parsed = await parser.parse(
                 file_path, paper_id=paper_id, paper_version_id=version_id
             )
             await self._store_parse_artifacts(task_id, paper_id, version_id, parsed)
@@ -843,9 +1114,10 @@ def _second_clean_media(media: list[MediaObject]) -> list[dict[str, Any]]:
             "section_path": [item.caption] if item.caption else [],
             "page_start": item.page_number,
             "page_end": item.page_number,
-            "pdf_bbox": None,
+            "pdf_bbox": item.metadata.get("pdf_bbox"),
             "source_ref": item.source_ref,
             "block_id": item.object_id,
+            "required": item.required,
             "quality_flags": [],
         })
     return converted

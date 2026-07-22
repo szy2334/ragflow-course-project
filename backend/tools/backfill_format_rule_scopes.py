@@ -74,13 +74,28 @@ def scope_for_v2(rule: dict[str, Any]) -> dict[str, Any]:
         observable = True
     elif "figure number and caption" in text or "all artwork must" in text:
         category, kind = "figure", "figure_table"
-        selectors = ["caption", "font_style", "text_content"]
+        selectors = ["caption", "object_geometry", "font_style", "text_content"]
         conditions = {"requires_object_types": ["figure"]}
         observable = True
     elif "table number and title" in text or "all tables must" in text:
         category, kind = "table", "figure_table"
-        selectors = ["caption", "font_style", "text_content"]
+        selectors = ["caption", "object_geometry", "font_style", "text_content"]
         conditions = {"requires_object_types": ["table"]}
+        observable = True
+    elif any(
+        phrase in text
+        for phrase in (
+            "references follow",
+            "reference section",
+            "references formatting",
+            "citations within the text",
+            "format of the references",
+            "bibliography",
+        )
+    ):
+        category, kind = "reference", "reference"
+        selectors = ["reference_entry", "font_style", "text_content"]
+        conditions = {"requires_section_roles": ["reference", "reference_entry"]}
         observable = True
     elif "do not include acknowledgments" in text:
         category, kind, global_rule = "anonymity", "global", True
@@ -185,9 +200,9 @@ async def run(profile_key: str | None, apply: bool) -> None:
                         )
                     )
                     if str(rule.get("status") or "active") == "active" and (
-                        missing or str(rule.get("scope_backfill_version") or "") != "v3"
+                        missing or str(rule.get("scope_backfill_version") or "") != "v4"
                     ):
-                        rule = {**rule, **scope_for(rule), "scope_backfill_version": "v3"}
+                        rule = {**rule, **scope_for(rule), "scope_backfill_version": "v4"}
                         updated += 1
                     rules.append(rule)
                 print(f"{profile.profile_key}:{profile.version} rules={len(rules)} backfilled={updated}")

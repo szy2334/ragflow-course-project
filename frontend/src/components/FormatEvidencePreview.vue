@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { X } from 'lucide-vue-next'
 import { GlobalWorkerOptions, getDocument, type PDFDocumentProxy } from 'pdfjs-dist'
 import workerSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
@@ -53,6 +53,8 @@ async function renderPage() {
     const page = await documentProxy.getPage(props.page)
     const rotation = props.rotation ?? page.rotate
     const viewport = page.getViewport({ scale: 1.35, rotation })
+    loading.value = false
+    await nextTick()
     if (!canvas.value) return
     const context = canvas.value.getContext('2d')
     if (!context) throw new Error('canvas unavailable')

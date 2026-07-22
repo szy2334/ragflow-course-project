@@ -178,6 +178,7 @@ def snapshot_from_settings(settings: Settings) -> ConfigurationSnapshot:
             base_url=base_url,
             model=model,
             timeout_seconds=settings.llm_timeout_seconds,
+            reasoning_effort=settings.llm_reasoning_effort,
             structured_mode=settings.llm_structured_mode,
         ),
     )

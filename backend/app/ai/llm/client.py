@@ -172,6 +172,8 @@ class OpenAICompatibleClient:
         response_format = self._response_format(mode, output_model)
         if response_format is not None:
             payload["response_format"] = response_format
+        if config.reasoning_effort is not None:
+            payload["reasoning_effort"] = config.reasoning_effort
         headers = {
             "Authorization": f"Bearer {self._api_key.get_secret_value()}",
             "Content-Type": "application/json",
@@ -245,6 +247,8 @@ class OpenAICompatibleClient:
         response_format = self._response_format(mode, output_model)
         if response_format is not None:
             payload["response_format"] = response_format
+        if config.reasoning_effort is not None:
+            payload["reasoning_effort"] = config.reasoning_effort
         headers = {
             "Authorization": f"Bearer {self._api_key.get_secret_value()}",
             "Content-Type": "application/json",
