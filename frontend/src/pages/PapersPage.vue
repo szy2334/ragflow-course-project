@@ -97,7 +97,15 @@ async function upload() {
     const result = await api.uploadPapers(files.value)
     showUpload.value = false
     files.value = []
-    showCompletionNotice(`已接收 ${result.items.length} 篇论文，正在持续更新处理进度。`)
+    const duplicates = result.items.filter((item) => item.duplicate)
+    const accepted = result.items.filter((item) => !item.duplicate)
+    if (duplicates.length && !accepted.length) {
+      showCompletionNotice(`论文库中已有该论文：${duplicates.map((item) => `《${item.file_name}》`).join('、')}，未重复处理。`)
+    } else if (duplicates.length) {
+      showCompletionNotice(`已接收 ${accepted.length} 篇论文；${duplicates.map((item) => `《${item.file_name}》`).join('、')}已在论文库中，未重复处理。`)
+    } else {
+      showCompletionNotice(`已接收 ${accepted.length} 篇论文，正在持续更新处理进度。`)
+    }
     await load()
   } catch (cause) { uploadError.value = cause instanceof ApiError ? cause.message : '上传未完成，请重试。' }
   finally { uploading.value = false }

@@ -24,13 +24,19 @@ const http = axios.create({ baseURL, withCredentials: true, timeout: 45_000 })
 let accessToken = sessionStorage.getItem('access_token')
 let refreshPromise: Promise<TokenView> | null = null
 
-export function setAccessToken(token: string | null) {
+export function setAccessToken(token: string | null, expiresAt?: string) {
   accessToken = token
-  if (token) sessionStorage.setItem('access_token', token)
-  else sessionStorage.removeItem('access_token')
+  if (token) {
+    sessionStorage.setItem('access_token', token)
+    if (expiresAt) sessionStorage.setItem('access_token_expires_at', expiresAt)
+  } else {
+    sessionStorage.removeItem('access_token')
+    sessionStorage.removeItem('access_token_expires_at')
+  }
 }
 
 export const getAccessToken = () => accessToken
+export const getAccessTokenExpiresAt = () => sessionStorage.getItem('access_token_expires_at')
 
 function newRequestId() {
   return typeof crypto?.randomUUID === 'function'
@@ -44,12 +50,16 @@ http.interceptors.request.use((config) => {
   return config
 })
 
-async function refreshAccessToken() {
+export async function refreshAccessToken() {
   if (!refreshPromise) {
-    refreshPromise = axios.post<ApiResponse<TokenView>>(`${baseURL}/auth/refresh`, undefined, { withCredentials: true })
+    refreshPromise = axios.post<ApiResponse<TokenView>>(`${baseURL}/auth/refresh`, undefined, {
+      withCredentials: true,
+      headers: { 'X-Request-Id': newRequestId() },
+    })
       .then(({ data }) => {
         if (data.code !== 'ok' || !data.data) throw new ApiError(data)
-        setAccessToken(data.data.access_token)
+        setAccessToken(data.data.access_token, data.data.access_expires_at)
+        window.dispatchEvent(new CustomEvent('auth-token-refreshed'))
         return data.data
       })
       .finally(() => { refreshPromise = null })

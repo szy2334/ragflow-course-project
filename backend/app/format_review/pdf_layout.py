@@ -18,6 +18,7 @@ _SUBSET_PREFIX = re.compile(r"^[A-Z]{6}\+")
 @dataclass(frozen=True, slots=True)
 class NativePdfLayout:
     spans: list[dict[str, Any]]
+    objects: list[dict[str, Any]]
     page_count: int
     available: bool
     reason: str | None = None
@@ -29,18 +30,21 @@ def extract_native_pdf_layout(file_path: str) -> NativePdfLayout:
     try:
         import fitz
     except ImportError:
-        return NativePdfLayout([], 0, False, "PyMuPDF is not installed.")
+        return NativePdfLayout([], [], 0, False, "PyMuPDF is not installed.")
     path = Path(file_path)
     if not path.is_file():
-        return NativePdfLayout([], 0, False, "论文原始 PDF 文件不存在。")
+        return NativePdfLayout([], [], 0, False, "论文原始 PDF 文件不存在。")
     try:
         document = fitz.open(path)
     except (fitz.FileDataError, RuntimeError, OSError) as exc:
-        return NativePdfLayout([], 0, False, f"PDF 无法解析：{type(exc).__name__}")
+        return NativePdfLayout([], [], 0, False, f"PDF 无法解析：{type(exc).__name__}")
     try:
         if document.needs_pass:
-            return NativePdfLayout([], document.page_count, False, "PDF 已加密，无法提取原生样式。")
+            return NativePdfLayout(
+                [], [], document.page_count, False, "PDF 已加密，无法提取原生样式。"
+            )
         spans: list[dict[str, Any]] = []
+        objects: list[dict[str, Any]] = []
         for page_index, page in enumerate(document, start=1):
             page_rect = page.rect
             rotation = int(page.rotation or 0)
@@ -73,7 +77,8 @@ def extract_native_pdf_layout(file_path: str) -> NativePdfLayout:
                                 "extraction_source": "native_pdf",
                             }
                         )
-        return NativePdfLayout(spans, document.page_count, True)
+            objects.extend(_page_objects(page, page_index, page_rect))
+        return NativePdfLayout(spans, objects, document.page_count, True)
     finally:
         document.close()
 
@@ -116,3 +121,67 @@ def _integer(value: Any) -> int | None:
 
 def _number(value: Any) -> float | None:
     return float(value) if isinstance(value, (int, float)) else None
+
+
+def _page_objects(page: Any, page_number: int, page_rect: Any) -> list[dict[str, Any]]:
+    """Expose native image/vector geometry without guessing visual content."""
+
+    objects: list[dict[str, Any]] = []
+    for image_index, image in enumerate(page.get_images(full=True), start=1):
+        xref = int(image[0])
+        for rect_index, rect in enumerate(page.get_image_rects(xref), start=1):
+            bbox = _bbox((rect.x0, rect.y0, rect.x1, rect.y1))
+            if bbox is None:
+                continue
+            objects.append(
+                {
+                    "object_id": f"image-{xref}-{image_index}-{rect_index}",
+                    "object_type": "image",
+                    "page_number": page_number,
+                    "bbox": bbox,
+                    "page_width_pt": float(page_rect.width),
+                    "page_height_pt": float(page_rect.height),
+                    "vertical_rule_count": 0,
+                    "horizontal_rule_count": 0,
+                    "extraction_source": "native_pdf_image_object",
+                }
+            )
+
+    drawings = page.get_drawings()
+    drawing_bboxes = [
+        _bbox((item["rect"].x0, item["rect"].y0, item["rect"].x1, item["rect"].y1))
+        for item in drawings
+        if item.get("rect")
+    ]
+    valid_bboxes = [bbox for bbox in drawing_bboxes if bbox is not None]
+    vertical_rules = 0
+    horizontal_rules = 0
+    for drawing in drawings:
+        for item in drawing.get("items", []):
+            if not item or item[0] != "l" or len(item) < 3:
+                continue
+            start, end = item[1], item[2]
+            if abs(float(start.x) - float(end.x)) < 0.5 and abs(float(start.y) - float(end.y)) > 3:
+                vertical_rules += 1
+            if abs(float(start.y) - float(end.y)) < 0.5 and abs(float(start.x) - float(end.x)) > 3:
+                horizontal_rules += 1
+    if valid_bboxes:
+        objects.append(
+            {
+                "object_id": f"vector-layout-{page_number}",
+                "object_type": "vector_graphic",
+                "page_number": page_number,
+                "bbox": [
+                    min(item[0] for item in valid_bboxes),
+                    min(item[1] for item in valid_bboxes),
+                    max(item[2] for item in valid_bboxes),
+                    max(item[3] for item in valid_bboxes),
+                ],
+                "page_width_pt": float(page_rect.width),
+                "page_height_pt": float(page_rect.height),
+                "vertical_rule_count": vertical_rules,
+                "horizontal_rule_count": horizontal_rules,
+                "extraction_source": "native_pdf_vector_geometry",
+            }
+        )
+    return objects

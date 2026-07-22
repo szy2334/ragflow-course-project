@@ -55,7 +55,7 @@ export interface PaperUnderstanding {
   reason?: string
   message?: string
 }
-export interface PaperUploadItem { paper_id: string; file_name: string; status: PaperStatus; task_id: string }
+export interface PaperUploadItem { paper_id: string; file_name: string; status: PaperStatus; task_id: string | null; duplicate: boolean }
 export interface PaperUploadBatchView { items: PaperUploadItem[] }
 export interface PaperSectionView { section_id: string; paper_id: string; parent_section_id: string | null; section_title: string; section_level: number; section_order: number; page_start: number; page_end: number; text: string; content_type: string; content_role: string }
 export interface ChatSessionView { session_id: string; user_id: string; title: string; paper_ids: string[]; last_message_at: string | null; created_at: string }

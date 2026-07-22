@@ -49,6 +49,15 @@ function configureSubmissionMode() {
 function modeLabel(mode: string) {
   return mode === 'initial_submission' ? '匿名初稿' : mode === 'camera_ready' ? '终稿' : mode.replace(/_/g, ' ')
 }
+function profileLabel(profile: Pick<FormatProfileView, 'name' | 'profile_key' | 'version'>) {
+  if (!/\?{2,}/.test(profile.name)) return profile.name
+  const repairedNames: Record<string, string> = {
+    neurips_2020: 'NeurIPS 2020 投稿格式',
+    neurips_2026: 'NeurIPS 2026 投稿格式',
+    degree_thesis_2026: '学位论文格式',
+  }
+  return repairedNames[profile.profile_key] ?? `${profile.profile_key} 格式规范`
+}
 function resultLabel(result: FormatReviewItemView['result']) {
   return result === 'compliant' ? '符合' : result === 'non_compliant' ? '不符合' : result === 'not_applicable' ? '不适用' : '无法可靠判断'
 }
@@ -219,7 +228,7 @@ onBeforeUnmount(() => streamAbort?.abort())
         <select v-model="selectedPaperId" class="review-select" aria-label="选择论文"><option v-for="paper in readyPapers" :key="paper.paper_id" :value="paper.paper_id">{{ paper.title }}</option></select>
 
         <div class="config-step"><span>02</span><div><h2>选择格式规范</h2><p>规范数据集和规则文档由服务端固定，不会暴露给客户端。</p></div></div>
-        <select v-model="selectedProfileId" class="review-select" aria-label="选择格式规范"><option v-for="profile in profiles" :key="profile.format_profile_id" :value="profile.format_profile_id">{{ profile.name }} · {{ profile.version }}</option></select>
+        <select v-model="selectedProfileId" class="review-select" aria-label="选择格式规范"><option v-for="profile in profiles" :key="profile.format_profile_id" :value="profile.format_profile_id">{{ profileLabel(profile) }} · {{ profile.version }}</option></select>
         <p v-if="selectedProfile?.description" class="profile-description">{{ selectedProfile.description }}</p>
 
         <div class="config-step"><span>03</span><div><h2>选择投稿模式</h2><p>系统将检索通用规则和当前投稿模式规则，并完成完整性检查。</p></div></div>
@@ -228,7 +237,7 @@ onBeforeUnmount(() => streamAbort?.abort())
       </section>
 
       <section v-if="review" class="review-result card-surface">
-        <div class="result-title"><div><p class="eyebrow">{{ review.format_profile.name }} · {{ review.format_profile.version }} · {{ modeLabel(review.submission_mode) }}</p><h2>格式审查结果</h2></div><StatusPill :status="review.status" /></div>
+        <div class="result-title"><div><p class="eyebrow">{{ profileLabel(review.format_profile) }} · {{ review.format_profile.version }} · {{ modeLabel(review.submission_mode) }}</p><h2>格式审查结果</h2></div><StatusPill :status="review.status" /></div>
         <div class="result-summary"><span><CircleAlert :size="17" />{{ resultCounts.non_compliant }} 项不符合</span><span><CheckCircle2 :size="17" />{{ resultCounts.compliant }} 项符合</span><span><AlertTriangle :size="17" />{{ resultCounts.unverifiable }} 项无法可靠判断</span></div>
         <MarkdownContent :content="review.summary_markdown || '审查块正在执行，阶段结果会实时出现。'" />
         <p v-if="review.coverage_report.missing_categories?.length" class="coverage-warning"><AlertTriangle :size="16" />未完整检索的规范类别：{{ review.coverage_report.missing_categories.join('、') }}</p>

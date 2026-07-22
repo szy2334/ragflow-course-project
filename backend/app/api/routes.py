@@ -695,6 +695,7 @@ async def upload_papers(
                     "file_name": existing.file_name,
                     "status": existing.status,
                     "task_id": task.task_id if task else None,
+                    "duplicate": True,
                 }
             )
             continue
@@ -742,6 +743,7 @@ async def upload_papers(
                 "file_name": paper.file_name,
                 "status": paper.status,
                 "task_id": task.task_id,
+                "duplicate": False,
             }
         )
         if auto_index:
@@ -1566,35 +1568,6 @@ async def create_session(
     )
     if len(papers) != len(set(body.paper_ids)):
         raise ApiError(409, "PAPER_NOT_READY", "所选论文尚未完成解析和索引。")
-    # Reuse the durable conversation for the same paper scope.
-    candidates = list(
-        (
-            await session.scalars(
-                select(ChatSession)
-                .where(
-                    ChatSession.user_id == user.user_id,
-                    ChatSession.is_internal.is_(False),
-                )
-                .order_by(ChatSession.created_at.asc())
-            )
-        ).all()
-    )
-    existing = next((item for item in candidates if item.paper_ids == body.paper_ids), None)
-    if existing is not None:
-        data = session_view(existing)
-        save_response(
-            session,
-            user_id=user.user_id,
-            key=idempotency_key,
-            method="POST",
-            path=request.url.path,
-            fingerprint=fingerprint,
-            status_code=200,
-            response=data,
-        )
-        await session.commit()
-        return _json(200, data, request_id)
-
     item = ChatSession(
         user_id=user.user_id,
         title=body.title or "未命名会话",
@@ -1984,7 +1957,16 @@ async def cancel_message(
         return envelope(replay, request_id)
     if task.status not in {"succeeded", "failed", "cancelled"}:
         await request.app.state.redis.cancel(task.task_id)
-        task.stage = "cancelling"
+        now = datetime.now(UTC)
+        task.status = "cancelled"
+        task.stage = "cancelled"
+        task.error_json = {"code": "TASK_CANCELLED", "message": "任务已由用户停止。"}
+        task.completed_at = now
+        message.status = "cancelled"
+        run = await session.scalar(select(WorkflowRun).where(WorkflowRun.task_id == task.task_id))
+        if run is not None:
+            run.status = "cancelled"
+            run.completed_at = now
         await session.commit()
         await request.app.state.redis.set_task_state(task.task_id, task_view(task))
     data = task_view(task)

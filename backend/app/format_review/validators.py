@@ -13,7 +13,12 @@ def validate_findings(
     standard_evidences: list[dict[str, Any]],
     coverage_report: dict[str, Any],
 ) -> list[dict[str, Any]]:
-    """Enforce the evidence closure before results become durable findings."""
+    """Require a traceable rule and at least one located paper anchor.
+
+    Whole-document rules may be checked from sufficiently representative
+    samples.  Auxiliary evidence can be unlocated without invalidating a
+    conclusion, provided the finding retains a localized primary anchor.
+    """
 
     paper_by_id = {str(item["evidence_id"]): item for item in paper_evidences}
     standard_by_id = {str(item["evidence_id"]): item for item in standard_evidences}
@@ -55,12 +60,14 @@ def validate_findings(
         rule_evidence_complete = not candidate_rule_ids or candidate_rule_ids.issubset(
             cited_rule_ids
         )
-        paper_location_complete = bool(paper_refs) and all(
-            isinstance(item.get("bbox"), list)
+        located_paper_refs = [
+            item
+            for item in paper_refs
+            if isinstance(item.get("bbox"), list)
             and len(item["bbox"]) == 4
             and item.get("page_number") is not None
-            for item in paper_refs
-        )
+        ]
+        paper_location_complete = bool(located_paper_refs)
         evidence_complete = (
             bool(standard_refs) and paper_location_complete and rule_evidence_complete
         )

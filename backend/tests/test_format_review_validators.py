@@ -3,16 +3,22 @@ from app.format_review.validators import validate_findings
 from app.format_review.workflow import (
     MAX_CONTEXT_CHARACTERS,
     _allocate_rules_to_units,
+    _appendix_pages,
     _applicable_manifest,
+    _coarse_body_groups,
     _context_facts_for_category,
     _context_groups,
     _deduplicate_unit_findings,
+    _has_complete_actionable_finding,
     _item_record,
+    _model_unit_plan,
     _pdf_span_record_values,
     _plan_review_units,
     _refine_units_for_context_budget,
+    _unverifiable_findings_for_rules,
 )
 from tools.backfill_format_rule_scopes import scope_for_v2
+from tools.reconcile_format_profiles import _icml_scope, _reference_scope
 
 
 def test_format_review_state_keeps_synthesized_findings():
@@ -73,6 +79,62 @@ def test_final_findings_are_consolidated_by_canonical_rule():
     assert [item["evidence_id"] for item in findings[0]["paper_evidences"]] == ["P2"]
 
 
+def test_complete_rule_conclusion_survives_another_rule_being_unverifiable():
+    findings = [
+        {"result": "unverifiable", "evidence_status": "incomplete"},
+        {"result": "non_compliant", "evidence_status": "complete"},
+    ]
+
+    assert _has_complete_actionable_finding(findings) is True
+
+
+def test_confirmed_compliance_is_not_downgraded_by_an_unrelated_missing_unit():
+    units = [
+        {
+            "unit_id": "u-1",
+            "unit_position": 1,
+            "findings": [
+                {
+                    "rule_ids": ["organization"],
+                    "category": "heading",
+                    "aspect": "Organization",
+                    "result": "unverifiable",
+                    "severity": "info",
+                    "finding": "One page is unavailable.",
+                    "paper_evidences": [],
+                    "standard_evidences": [
+                        {"evidence_id": "S1", "canonical_rule_id": "organization"}
+                    ],
+                    "evidence_status": "incomplete",
+                }
+            ],
+        },
+        {
+            "unit_id": "u-2",
+            "unit_position": 2,
+            "findings": [
+                {
+                    "rule_ids": ["organization"],
+                    "category": "heading",
+                    "aspect": "Organization",
+                    "result": "compliant",
+                    "severity": "info",
+                    "finding": "The document has numbered sections and paragraphs.",
+                    "paper_evidences": [
+                        {"evidence_id": "P2", "page_number": 2, "bbox": [1, 2, 3, 4]}
+                    ],
+                    "standard_evidences": [
+                        {"evidence_id": "S1", "canonical_rule_id": "organization"}
+                    ],
+                    "evidence_status": "complete",
+                }
+            ],
+        },
+    ]
+
+    assert _deduplicate_unit_findings(units)[0]["result"] == "compliant"
+
+
 def test_only_final_items_store_the_bare_canonical_rule_id():
     finding = {
         "rule_ids": ["canonical-heading-rule"],
@@ -119,6 +181,30 @@ def test_non_compliance_without_page_bbox_is_downgraded_to_unverifiable():
 
     assert findings[0]["result"] == "unverifiable"
     assert findings[0]["evidence_status"] == "incomplete"
+
+
+def test_sampled_conclusion_keeps_a_located_primary_anchor_with_unlocated_auxiliary_evidence():
+    findings = validate_findings(
+        [
+            {
+                "category": "heading",
+                "aspect": "章节组织",
+                "result": "compliant",
+                "finding": "基于跨章节抽样审查，标题与段落组织满足要求。",
+                "paper_evidence_ids": ["P1", "P2"],
+                "standard_evidence_ids": ["S1"],
+            }
+        ],
+        paper_evidences=[
+            {"evidence_id": "P1", "page_number": 1, "bbox": [1, 2, 3, 4]},
+            {"evidence_id": "P2", "page_number": 6, "bbox": None},
+        ],
+        standard_evidences=[{"evidence_id": "S1", "canonical_rule_id": "organization"}],
+        coverage_report={"missing_categories": []},
+    )
+
+    assert findings[0]["result"] == "compliant"
+    assert findings[0]["evidence_status"] == "complete"
 
 
 def test_missing_rule_coverage_cannot_return_compliant():
@@ -231,6 +317,18 @@ def test_review_plan_does_not_merge_long_second_and_third_sections():
     assert [unit["page_range"] for unit in body_units] == [[1, 1], [2, 3], [4, 6]]
 
 
+def test_coarse_body_group_does_not_use_a_subsection_as_the_chapter_title():
+    facts = [
+        {"page_number": 5, "section_title": "4.1 Datasets and Features"},
+        {"page_number": 5, "section_title": "4 Experiments"},
+        {"page_number": 6, "section_title": "4.2 Evaluation"},
+    ]
+
+    groups = _coarse_body_groups(facts)
+
+    assert [title for title, _ in groups] == ["4 Experiments"]
+
+
 def test_review_plan_keeps_native_graphic_geometry_in_figure_table_unit():
     facts = [
         {
@@ -306,6 +404,49 @@ def test_reference_rules_are_pdf_observable_and_target_reference_unit():
     assert scope["rule_category"] == "reference"
     assert scope["applicable_unit_kinds"] == ["reference"]
     assert scope["evidence_selector"] == ["reference_entry", "font_style", "text_content"]
+
+
+def test_reference_scope_is_not_silently_skipped_when_section_roles_are_missing():
+    assert _reference_scope()["applicability_conditions"] == {}
+
+
+def test_icml_scope_activates_pdf_observable_table_and_layout_rules():
+    table = _icml_scope("2.8 Tables", "All tables must be centered and have a title.")
+    layout = _icml_scope("2.1 Dimensions", "Use US letter size and two columns.")
+    abstract = _icml_scope("2.4 Abstract", "The abstract is in a single paragraph.")
+
+    assert table["status"] == "active"
+    assert table["rule_category"] == "table"
+    assert table["applicable_unit_kinds"] == ["figure_table"]
+    assert layout["status"] == "active"
+    assert layout["is_global"] is True
+    assert abstract["status"] == "active"
+    assert abstract["applicable_unit_kinds"] == ["abstract"]
+
+
+def test_icml_scope_excludes_rules_without_supported_pdf_facts():
+    paragraph = _icml_scope(
+        "2.5.2 Paragraphs and footnotes",
+        "Do not indent paragraphs and place footnotes at the bottom of each column.",
+    )
+    algorithm = _icml_scope("2.7 Algorithms", "Use the algorithmic environment.")
+    impact = _icml_scope("Impact statement", "Include societal consequences.")
+    self_citation = _icml_scope("2.3.1 Self-citations", "Refer to yourself in the third person.")
+
+    assert paragraph["status"] == "disabled"
+    assert algorithm["status"] == "disabled"
+    assert impact["status"] == "disabled"
+    assert self_citation["status"] == "disabled"
+
+
+def test_icml_scope_marks_complex_visible_rules_as_sampled_and_bounds_strict_checks():
+    title = _icml_scope("2.2 Title", "The title should be centered in 14 point bold type.")
+    figure = _icml_scope("2.6 Figures", "Captions should follow figures.")
+
+    assert title["assessment_mode"] == "strict"
+    assert title["supported_checks"] == ["title_font_size", "title_weight", "title_alignment"]
+    assert figure["assessment_mode"] == "sampled"
+    assert "caption_font" in figure["supported_checks"]
 
 
 def test_figure_rules_request_object_geometry_without_visual_content():
@@ -432,6 +573,61 @@ def test_oversized_unit_is_split_at_a_page_boundary_before_llm_execution():
     assert all(item["expected_rule_ids"] == ["heading-style"] for item in refined)
 
 
+def test_oversized_figure_table_unit_remains_a_single_review_block():
+    facts = [
+        {
+            "evidence_id": "P1",
+            "block_id": "figure-1",
+            "page_number": 2,
+            "quote": "Figure 1 " + "evidence " * 40,
+            "role": "paragraph",
+        },
+        {
+            "evidence_id": "P2",
+            "block_id": "table-1",
+            "page_number": 3,
+            "quote": "Table 1 " + "evidence " * 40,
+            "role": "paragraph",
+        },
+    ]
+    unit = {
+        "unit_id": "u-001",
+        "unit_position": 0,
+        "unit_kind": "figure_table",
+        "title": "Figures and tables",
+        "page_range": [2, 3],
+        "block_ids": ["figure-1", "table-1"],
+        "fact_ids": ["P1", "P2"],
+        "expected_rule_ids": ["figure-rule"],
+        "allocated_rule_ids": ["figure-rule"],
+        "global_rule_ids": [],
+        "not_applicable_rule_ids": [],
+        "retrieved_rule_ids": ["figure-rule"],
+        "coverage": {"complete": True},
+    }
+    rules_by_id = {
+        "figure-rule": {
+            "rule_id": "figure-rule",
+            "rule_category": "figure",
+            "title": "Figure placement",
+            "description": "Figures are inspected together.",
+        }
+    }
+
+    refined, metrics = _refine_units_for_context_budget(
+        units=[unit],
+        facts=facts,
+        standards=[{"canonical_rule_id": "figure-rule", "quote": "Figure rule"}],
+        rules_by_id=rules_by_id,
+        submission_mode="initial_submission",
+        context_budget=0,
+    )
+
+    assert metrics["split_parent_count"] == 0
+    assert len(refined) == 1
+    assert refined[0]["context_refinement"]["status"] == "aggregate_figure_table_exceeds_budget"
+
+
 def test_native_pdf_extractor_preserves_span_geometry_and_style(tmp_path):
     import fitz
 
@@ -439,6 +635,7 @@ def test_native_pdf_extractor_preserves_span_geometry_and_style(tmp_path):
     document = fitz.open()
     page = document.new_page(width=612, height=792)
     page.insert_text((72, 96), "Format Evidence", fontsize=14, fontname="helv")
+    page.draw_rect(fitz.Rect(72, 120, 280, 240))
     document.save(path)
     document.close()
 
@@ -449,6 +646,7 @@ def test_native_pdf_extractor_preserves_span_geometry_and_style(tmp_path):
     assert layout.spans[0]["text"] == "Format Evidence"
     assert layout.spans[0]["font_size_pt"] == 14.0
     assert len(layout.spans[0]["bbox"]) == 4
+    assert any(item["object_type"] == "vector_graphic" for item in layout.objects)
 
     values = _pdf_span_record_values(layout.spans[0])
     assert values["bbox_json"] == layout.spans[0]["bbox"]
@@ -603,3 +801,109 @@ def test_structured_scope_allocation_keeps_global_rules_single_and_records_not_a
     ]
     assert coverage["missing_rule_ids"] == []
     assert coverage["unallocated_rule_ids"] == []
+
+
+def test_appendix_planning_requires_a_heading_and_bounds_references_before_it():
+    facts = [
+        {
+            "evidence_id": "P1",
+            "block_id": "body-mention",
+            "page_number": 4,
+            "quote": "More details are available in the appendix.",
+            "role": "text",
+            "section_title": "4 Experiments",
+        },
+        {
+            "evidence_id": "P2",
+            "block_id": "references",
+            "page_number": 9,
+            "quote": "References",
+            "role": "heading",
+            "section_title": "References",
+        },
+        {
+            "evidence_id": "P3",
+            "block_id": "reference-entry",
+            "page_number": 10,
+            "quote": "Ada, A. An example reference.",
+            "role": "text",
+            "section_title": "References",
+        },
+        {
+            "evidence_id": "P3a",
+            "block_id": "native-span-reference-author",
+            "page_number": 9,
+            "quote": "A. Smith",
+            "role": "native_text_span",
+            "section_title": None,
+        },
+        {
+            "evidence_id": "P4",
+            "block_id": "appendix-heading",
+            "page_number": 12,
+            "quote": "A. Additional experiments",
+            "role": "heading",
+            "section_title": "A. Additional experiments",
+        },
+        {
+            "evidence_id": "P5",
+            "block_id": "appendix-content",
+            "page_number": 13,
+            "quote": "Appendix experiment detail.",
+            "role": "text",
+            "section_title": "A. Additional experiments",
+        },
+    ]
+
+    assert _appendix_pages(facts) == {12, 13}
+    units = _plan_review_units(facts)
+    reference = next(unit for unit in units if unit["unit_kind"] == "reference")
+    appendix = next(unit for unit in units if unit["unit_kind"] == "appendix")
+    assert reference["page_range"] == [9, 10]
+    assert appendix["page_range"] == [12, 13]
+
+
+def test_model_context_omits_large_fact_and_block_id_lists():
+    unit = {
+        "unit_id": "u-global",
+        "unit_kind": "global",
+        "page_range": [1, 13],
+        "fact_ids": [f"P{index}" for index in range(5000)],
+        "block_ids": [f"b-{index}" for index in range(5000)],
+        "expected_rule_ids": ["page-size"],
+    }
+
+    compact = _model_unit_plan(unit)
+
+    assert "fact_ids" not in compact
+    assert "block_ids" not in compact
+    assert compact["expected_rule_ids"] == ["page-size"]
+
+
+def test_unverifiable_rule_fallback_retains_inspected_pdf_and_standard_evidence():
+    facts = [
+        {
+            "evidence_id": "P1",
+            "page_number": 1,
+            "bbox": [72.0, 100.0, 320.0, 114.0],
+            "quote": "1. Introduction",
+            "role": "heading",
+            "section_title": "1. Introduction",
+            "font_size_pt": 12.0,
+        }
+    ]
+    standards = [{"evidence_id": "S1", "canonical_rule_id": "heading-rule"}]
+    rules = {"heading-rule": {"rule_category": "heading", "title": "Heading"}}
+
+    findings = _unverifiable_findings_for_rules(
+        ["heading-rule"],
+        rules,
+        "模型调用失败。",
+        facts=facts,
+        standards=standards,
+    )
+
+    assert findings[0]["result"] == "unverifiable"
+    assert findings[0]["evidence_status"] == "incomplete"
+    assert [item["evidence_id"] for item in findings[0]["paper_evidences"]] == ["P1"]
+    assert [item["evidence_id"] for item in findings[0]["standard_evidences"]] == ["S1"]

@@ -82,7 +82,7 @@ async function createReadingSession() {
   creatingSession.value = true
   error.value = ''
   try {
-    const created = await api.createSession({ paper_ids: paperIds, title: session.value?.title || undefined })
+    const created = await api.createSession({ paper_ids: paperIds })
     await workspace.loadSessions()
     await router.push(`/chat/${created.session_id}`)
   } catch (cause) {
@@ -117,12 +117,16 @@ async function submit() {
 }
 async function stop() {
   if (!activeTaskId.value || stopping.value) return
+  const taskId = activeTaskId.value
   const messageId = activeWorkflow.value?.task.message_id ?? activeWorkflow.value?.task.resource_id
   if (!messageId) { error.value = '当前问题尚未获得可取消的消息标识。'; return }
   stopping.value = true
   try {
-    await workspace.cancelWorkflow(activeTaskId.value, messageId)
-    await workspace.pollTask(activeTaskId.value, 15)
+    await workspace.cancelWorkflow(taskId, messageId)
+    workspace.removeMessageByTaskId(props.sessionId, taskId)
+    await workspace.pollTask(taskId, 15)
+    await workspace.loadMessages(props.sessionId)
+    error.value = ''
   }
   catch (cause) { error.value = cause instanceof ApiError ? cause.message : '无法停止当前任务。' }
   finally { stopping.value = false }

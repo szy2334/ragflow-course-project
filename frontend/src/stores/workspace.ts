@@ -57,7 +57,9 @@ export const useWorkspaceStore = defineStore('workspace', {
     },
     async loadMessages(sessionId: string) {
       const page = await api.listMessages(sessionId, { page: 1, page_size: 100 })
-      this.messagesBySession[sessionId] = page.items.slice().reverse()
+      // The API is chronological; preserve it so a cancelled or earlier
+      // question never jumps below later answers after a refresh.
+      this.messagesBySession[sessionId] = page.items.filter((message) => message.status !== 'cancelled')
       return this.messagesBySession[sessionId]
     },
     appendMessage(message: ChatMessageView) {
@@ -68,6 +70,10 @@ export const useWorkspaceStore = defineStore('workspace', {
     updateMessage(sessionId: string, messageId: string, updates: Partial<ChatMessageView>) {
       const message = this.messagesBySession[sessionId]?.find((item) => item.message_id === messageId)
       if (message) Object.assign(message, updates)
+    },
+    removeMessageByTaskId(sessionId: string, taskId: string) {
+      const messages = this.messagesBySession[sessionId] ?? []
+      this.messagesBySession[sessionId] = messages.filter((message) => message.task_id !== taskId)
     },
     removeSession(sessionId: string) {
       this.sessions = this.sessions.filter((item) => item.session_id !== sessionId)

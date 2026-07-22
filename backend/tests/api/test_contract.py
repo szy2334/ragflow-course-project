@@ -116,6 +116,9 @@ def test_write_request_id_and_login_contract(tmp_path):
         assert me.status_code == 200
         assert me.json()["data"]["email"] == "person@example.test"
         assert "password" not in json.dumps(me.json())
+        refreshed = client.post("/api/v1/auth/refresh", headers=_headers())
+        assert refreshed.status_code == 200
+        assert refreshed.json()["data"]["access_token"]
 
 
 def test_reference_paper_artifacts_are_read_only_and_confined(tmp_path):
@@ -173,15 +176,15 @@ def test_question_idempotency_and_terminal_sse_resume(tmp_path):
         )
         assert session_replay.status_code == 201
         assert session_replay.json()["data"]["session_id"] == session.json()["data"]["session_id"]
-        session_reopen = client.post(
+        second_session = client.post(
             "/api/v1/sessions",
             headers=_headers(token, **{"Idempotency-Key": "session-2"}),
             json={"title": "Paper chat", "paper_ids": [paper_id]},
         )
-        assert session_reopen.status_code == 200
-        assert session_reopen.json()["data"]["session_id"] == session.json()["data"]["session_id"]
+        assert second_session.status_code == 201
+        assert second_session.json()["data"]["session_id"] != session.json()["data"]["session_id"]
         assert asyncio.run(_row_count(settings.database_url, PaperVersion)) == 1
-        assert asyncio.run(_row_count(settings.database_url, SessionPaper)) == 1
+        assert asyncio.run(_row_count(settings.database_url, SessionPaper)) == 2
         session_id = session.json()["data"]["session_id"]
         body = {"question": "这篇论文说明了什么？", "stream": True}
         headers = _headers(token, **{"Idempotency-Key": "question-1"})
@@ -224,7 +227,9 @@ def test_question_idempotency_and_terminal_sse_resume(tmp_path):
         assert deleted.status_code == 200
         assert deleted.json()["data"]["session_id"] == session_id
         sessions = client.get("/api/v1/sessions", headers=_headers(token))
-        assert sessions.json()["data"]["items"] == []
+        assert [item["session_id"] for item in sessions.json()["data"]["items"]] == [
+            second_session.json()["data"]["session_id"]
+        ]
 
 
 def test_format_review_uses_server_profile_mapping_and_persists_rule_contract(tmp_path):

@@ -11,6 +11,7 @@ import re
 import time
 from collections import defaultdict
 from datetime import UTC, datetime
+from statistics import median
 from typing import Any
 from uuid import uuid4
 
@@ -48,7 +49,10 @@ from .validators import forced_unverifiable_findings, validate_findings
 
 MAX_RETRIEVAL_ATTEMPTS = 3
 MAX_UNIT_CYCLES = 2
-MAX_UNIT_CONCURRENCY = 3
+# The configured model gateway rate-limits concurrent structured calls. Two
+# independent units still progress in parallel without turning a short 429/5xx
+# burst into broad "unverifiable" review output.
+MAX_UNIT_CONCURRENCY = 2
 MAX_BODY_PAGES_PER_UNIT = 2
 MAX_CONTEXT_REFINEMENT_DEPTH = 3
 # Kept for the unused V1.0 node methods below while historical workflow
@@ -58,7 +62,7 @@ MAX_VALIDATION_REPAIRS = 1
 MAX_CONTEXT_CHARACTERS = 100_000
 MAX_CONTEXT_FACTS = 56
 MAX_COMPOSITE_CONTEXT_FACTS = 48
-MAX_CONTEXT_QUOTE_CHARACTERS = 800
+MAX_CONTEXT_QUOTE_CHARACTERS = 240
 FORMAT_CONTEXT_FACTS_PER_CATEGORY = 8
 FORMAT_MODEL_INPUT_CHARACTERS = 12_000
 
@@ -182,7 +186,7 @@ class FormatReviewWorkflowService:
                     )
                 ).all()
             )
-        native_spans, native_quality = await self._load_native_spans(
+        native_spans, native_objects, native_quality = await self._load_native_spans(
             paper_id=state["task"]["paper_id"],
             paper_version_id=state["task"]["paper_version_id"],
             file_path=state["task"]["paper_file_path"],
@@ -201,7 +205,8 @@ class FormatReviewWorkflowService:
             # matches, so retain the strongest observable span instead of
             # discarding useful coordinates whenever there is more than one.
             primary_span = matching_spans[0] if matching_spans else None
-            bbox = primary_span.bbox_json if primary_span is not None else None
+            matched_style = _matched_block_style(matching_spans)
+            bbox = matched_style["bbox"] if matched_style is not None else None
             if bbox:
                 located += 1
             facts.append(
@@ -213,10 +218,14 @@ class FormatReviewWorkflowService:
                     "quote": block.content,
                     "role": metadata.get("content_role") or block.content_type,
                     "section_title": block.section_title,
-                    "font_name": primary_span.font_name if primary_span else None,
-                    "font_size_pt": primary_span.font_size_pt if primary_span else None,
-                    "font_flags": primary_span.font_flags if primary_span else None,
-                    "alignment": metadata.get("alignment"),
+                    "font_name": matched_style["font_name"] if matched_style else None,
+                    "font_size_pt": matched_style["font_size_pt"] if matched_style else None,
+                    "font_size_raw_pt": matched_style["font_size_raw_pt"] if matched_style else None,
+                    "font_size_tolerance_pt": 0.25 if matched_style else None,
+                    "font_flags": matched_style["font_flags"] if matched_style else None,
+                    "alignment": _horizontal_alignment(bbox, primary_span.page_width_pt)
+                    if primary_span else metadata.get("alignment"),
+                    "is_bold": matched_style["is_bold"] if matched_style else None,
                     "source": "native_pdf+mineru" if primary_span else "mineru_layout",
                     "confidence": metadata.get("confidence"),
                     "page_rotation": primary_span.page_rotation if primary_span else metadata.get("rotation", 0),
@@ -236,13 +245,44 @@ class FormatReviewWorkflowService:
                     "font_name": span.font_name,
                     "font_size_pt": span.font_size_pt,
                     "font_flags": span.font_flags,
-                    "alignment": None,
+                    "alignment": _horizontal_alignment(span.bbox_json, span.page_width_pt),
+                    "is_bold": _font_is_bold(span),
                     "source": span.extraction_source,
                     "confidence": 1.0,
                     "page_rotation": span.page_rotation,
                     "page_width_pt": span.page_width_pt,
                     "page_height_pt": span.page_height_pt,
                     "source_uri": f"paper://{state['task']['paper_id']}/native-span/{span.span_index}",
+                }
+            )
+        for item in native_objects:
+            vertical_rules = int(item.get("vertical_rule_count") or 0)
+            horizontal_rules = int(item.get("horizontal_rule_count") or 0)
+            object_type = str(item["object_type"])
+            facts.append(
+                {
+                    "evidence_id": f"P{len(facts) + 1}",
+                    "block_id": str(item["object_id"]),
+                    "page_number": int(item["page_number"]),
+                    "bbox": item["bbox"],
+                    "quote": (
+                        f"{object_type} object; {vertical_rules} vertical rules and "
+                        f"{horizontal_rules} horizontal rules observed; visual content not inspected"
+                    ),
+                    "role": f"native_{object_type}_object",
+                    "section_title": None,
+                    "font_name": None,
+                    "font_size_pt": None,
+                    "font_flags": None,
+                    "alignment": _horizontal_alignment(item["bbox"], item.get("page_width_pt")),
+                    "source": item["extraction_source"],
+                    "confidence": 1.0,
+                    "page_rotation": 0,
+                    "page_width_pt": item.get("page_width_pt"),
+                    "page_height_pt": item.get("page_height_pt"),
+                    "vertical_rule_count": vertical_rules,
+                    "horizontal_rule_count": horizontal_rules,
+                    "source_uri": f"paper://{state['task']['paper_id']}/native-object/{item['object_id']}",
                 }
             )
         for item in media_rows:
@@ -281,6 +321,7 @@ class FormatReviewWorkflowService:
             "located_block_count": located,
             "native_span_count": len(native_spans),
             "native_object_count": len(media_rows),
+            "native_pdf_object_count": len(native_objects),
             "layout_source": "parsed_blocks+native_pdf",
             **native_quality,
         }
@@ -493,7 +534,11 @@ class FormatReviewWorkflowService:
                 continue
             reason = f"审查块执行异常：{type(outcome).__name__}。"
             findings = _unverifiable_findings_for_rules(
-                list(unit.get("expected_rule_ids", [])), rules_by_id, reason
+                list(unit.get("expected_rule_ids", [])),
+                rules_by_id,
+                reason,
+                facts=_facts_for_unit(unit, state["layout_facts"]),
+                standards=state["standard_evidences"],
             )
             try:
                 results.append(
@@ -808,7 +853,7 @@ class FormatReviewWorkflowService:
         paper_id: str,
         paper_version_id: str,
         file_path: str,
-    ) -> tuple[list[PdfTextSpanRecord], dict[str, Any]]:
+    ) -> tuple[list[PdfTextSpanRecord], list[dict[str, Any]], dict[str, Any]]:
         async with self._sessions() as session:
             existing = list(
                 (
@@ -822,15 +867,21 @@ class FormatReviewWorkflowService:
                     )
                 ).all()
             )
-        if existing:
-            return existing, {"native_pdf_available": True, "native_pdf_cached": True}
         layout = extract_native_pdf_layout(file_path)
+        if existing:
+            return existing, layout.objects, {
+                "native_pdf_available": layout.available,
+                "native_pdf_cached": True,
+                "native_pdf_object_count": len(layout.objects),
+                "native_pdf_reason": layout.reason,
+            }
         if not layout.spans:
-            return [], {
+            return [], layout.objects, {
                 "native_pdf_available": layout.available,
                 "native_pdf_cached": False,
                 "native_pdf_reason": layout.reason,
                 "page_count": layout.page_count,
+                "native_pdf_object_count": len(layout.objects),
             }
         records = [
             PdfTextSpanRecord(
@@ -861,10 +912,11 @@ class FormatReviewWorkflowService:
                         )
                     ).all()
                 )
-        return records, {
+        return records, layout.objects, {
             "native_pdf_available": True,
             "native_pdf_cached": False,
             "page_count": layout.page_count,
+            "native_pdf_object_count": len(layout.objects),
         }
 
     async def _persist_unit_plan(self, state: FormatReviewState, units: list[dict[str, Any]]) -> None:
@@ -959,6 +1011,8 @@ class FormatReviewWorkflowService:
             missing_rule_ids,
             rules_by_id,
             "适用规范未完整检索，无法可靠判断。",
+            facts=facts,
+            standards=standards,
         )
         fixed_findings = not_applicable + missing_findings
         if not executable_rule_ids:
@@ -1008,6 +1062,8 @@ class FormatReviewWorkflowService:
                     executable_rule_ids,
                     rules_by_id,
                     "该审查块无法在不截断完整规则的前提下装配到模型上下文。",
+                    facts=facts,
+                    standards=standards,
                 )
                 return await self._finish_unit(
                     state,
@@ -1037,7 +1093,11 @@ class FormatReviewWorkflowService:
                 )
                 validated.extend(fixed_findings)
                 validated = _ensure_unit_rule_representation(
-                    validated, expected_rule_ids, rules_by_id
+                    validated,
+                    expected_rule_ids,
+                    rules_by_id,
+                    facts=facts,
+                    standards=standards,
                 )
                 actionable = [
                     item for item in validated if item.get("result") in {"compliant", "non_compliant"}
@@ -1062,6 +1122,8 @@ class FormatReviewWorkflowService:
                     executable_rule_ids,
                     rules_by_id,
                     "块级模型调用失败，无法可靠判断。",
+                    facts=facts,
+                    standards=standards,
                 )
                 check_metrics, validation_metrics = {"error": type(exc).__name__}, {}
 
@@ -1096,6 +1158,22 @@ class FormatReviewWorkflowService:
                     cycle_count=cycle_count,
                     retry_budget_remaining=retry_budget_remaining,
                     last_retry_reason=last_retry_reason,
+                )
+            # A reflection request cannot recover facts: a unit retry receives
+            # the same immutable PDF facts. Preserve independently complete
+            # results and keep only the incomplete rules unresolved instead of
+            # degrading every finding during a futile second cycle.
+            if _has_complete_actionable_finding(validated):
+                return await self._finish_unit(
+                    state,
+                    unit,
+                    status="validated",
+                    event_type="unit_validated",
+                    message="审查块保留已完整核验的结论；其余规则因缺少局部锚点单独标记为无法可靠判断。",
+                    findings=validated,
+                    cycle_count=cycle_count,
+                    retry_budget_remaining=retry_budget_remaining,
+                    last_retry_reason=reason,
                 )
             if decision == "unverifiable":
                 return await self._finish_unit(
@@ -1145,9 +1223,13 @@ class FormatReviewWorkflowService:
             status="failed",
             event_type="unit_failed",
             message="审查块未能达到确定终态。",
-            findings=_unverifiable_findings_for_rules(
-                expected_rule_ids, rules_by_id, "审查块执行异常，无法可靠判断。"
-            ),
+                findings=_unverifiable_findings_for_rules(
+                    expected_rule_ids,
+                    rules_by_id,
+                    "审查块执行异常，无法可靠判断。",
+                    facts=facts,
+                    standards=standards,
+                ),
             cycle_count=cycle_count,
             retry_budget_remaining=0,
             last_retry_reason=last_retry_reason,
@@ -1439,6 +1521,8 @@ def _legacy_plan_review_units(facts: list[dict[str, Any]]) -> list[dict[str, Any
         if any(_fact_matches(fact, ("references", "bibliography", "参考文献")) for fact in by_page[page])
     ]
     reference_start = min(reference_pages) if reference_pages else None
+    appendix_pages = _appendix_pages(facts)
+    appendix_start = min(appendix_pages) if appendix_pages else None
     body_facts = [
         fact
         for fact in facts
@@ -1470,9 +1554,14 @@ def _legacy_plan_review_units(facts: list[dict[str, Any]]) -> list[dict[str, Any
         append_unit(
             "reference",
             "参考文献",
-            [fact for fact in facts if int(fact.get("page_number") or 0) >= reference_start],
+            [
+                fact
+                for fact in facts
+                if int(fact.get("page_number") or 0) >= reference_start
+                and (appendix_start is None or int(fact.get("page_number") or 0) < appendix_start)
+            ],
         )
-    appendix_facts = [fact for fact in facts if _fact_matches(fact, ("appendix", "附录"))]
+    appendix_facts = [fact for fact in facts if int(fact.get("page_number") or 0) in appendix_pages]
     if appendix_facts:
         append_unit("appendix", "附录", appendix_facts)
 
@@ -1535,6 +1624,8 @@ def _plan_review_units(facts: list[dict[str, Any]]) -> list[dict[str, Any]]:
         if any(_fact_matches(fact, ("references", "bibliography")) for fact in by_page[page])
     ]
     reference_start = min(reference_pages) if reference_pages else None
+    appendix_pages = _appendix_pages(facts)
+    appendix_start = min(appendix_pages) if appendix_pages else None
     body_facts = [
         fact
         for fact in facts
@@ -1555,13 +1646,47 @@ def _plan_review_units(facts: list[dict[str, Any]]) -> list[dict[str, Any]]:
         append_unit(
             "reference",
             "References",
-            [fact for fact in facts if int(fact.get("page_number") or 0) >= reference_start],
+            [
+                fact
+                for fact in facts
+                if int(fact.get("page_number") or 0) >= reference_start
+                and (appendix_start is None or int(fact.get("page_number") or 0) < appendix_start)
+            ],
         )
-    appendix_facts = [fact for fact in facts if _fact_matches(fact, ("appendix",))]
+    appendix_facts = [fact for fact in facts if int(fact.get("page_number") or 0) in appendix_pages]
     if appendix_facts:
         append_unit("appendix", "Appendix", appendix_facts)
     append_unit("global", "Global layout", facts)
     return units
+
+
+def _appendix_pages(facts: list[dict[str, Any]]) -> set[int]:
+    """Recognize appendix headers, not prose that merely mentions an appendix."""
+
+    pages: set[int] = set()
+    for fact in facts:
+        page = int(fact.get("page_number") or 0)
+        if page <= 0:
+            continue
+        title = str(fact.get("section_title") or "").strip()
+        quote = str(fact.get("quote") or "").strip()
+        role = str(fact.get("role") or "").lower()
+        title_is_appendix = bool(
+            title
+            and re.match(r"^(?:appendix\b|[A-Z]\.\s+)", title, flags=re.IGNORECASE)
+        )
+        explicit_heading_is_appendix = bool(
+            role in {"heading", "title", "section"}
+            and re.match(r"^(?:appendix\b|[A-Z]\.\s+)", quote, flags=re.IGNORECASE)
+        )
+        # Native spans include reference authors such as "A. Smith". They
+        # are useful layout evidence but cannot establish a document boundary.
+        if title_is_appendix or explicit_heading_is_appendix:
+            pages.add(page)
+    if not pages:
+        return set()
+    last_page = max(int(item.get("page_number") or 0) for item in facts)
+    return set(range(min(pages), last_page + 1))
 
 
 def _coarse_body_groups(facts: list[dict[str, Any]]) -> list[tuple[str, list[dict[str, Any]]]]:
@@ -1576,7 +1701,10 @@ def _coarse_body_groups(facts: list[dict[str, Any]]) -> list[tuple[str, list[dic
             continue
         root = match.group(1)
         by_root[root].append(fact)
-        if root not in root_titles and re.match(rf"^{re.escape(root)}(?:\s|\.)+", section_title):
+        # `4.1 Datasets and Features` belongs to chapter 4 but is not the
+        # chapter title. Only a bare `4 Experiments` / `4. Experiments` span
+        # can name the coarse body unit.
+        if root not in root_titles and re.match(rf"^{re.escape(root)}(?:\s+|\.\s+)", section_title):
             root_titles[root] = section_title
 
     ordered_roots = sorted(
@@ -1756,6 +1884,17 @@ def _refine_units_for_context_budget(
                 "context_characters": context_characters,
             }
             return [unit]
+        if str(unit.get("unit_kind")) == "figure_table":
+            # Figures and tables form one inspection surface. Splitting it by
+            # page repeats the same rules and makes equivalent evidence look
+            # like six unrelated review blocks. The compact selector already
+            # bounds its facts; an extreme document remains one explicit gap.
+            unit["context_refinement"] = {
+                "depth": depth,
+                "status": "aggregate_figure_table_exceeds_budget",
+                "context_characters": context_characters,
+            }
+            return [unit]
         children = _split_unit_at_page_boundary(unit, unit_facts)
         if depth >= MAX_CONTEXT_REFINEMENT_DEPTH or not children:
             unit["context_refinement"] = {
@@ -1830,6 +1969,11 @@ def _rule_applicable_to_document(
             fact
             for fact in facts
             if any(_fact_matches(fact, (object_type,)) for object_type in object_types)
+            or (
+                "figure" in object_types
+                and str(fact.get("role") or "")
+                in {"native_image_object", "native_vector_graphic_object"}
+            )
         ]
         if not matching:
             return False, [], "论文不包含该规则要求的对象类型。"
@@ -1898,9 +2042,14 @@ def _unit_context_payload(
         selected_facts = [_context_fact(item) for item in facts[:MAX_CONTEXT_FACTS]]
     return {
         "format_profile": {"submission_mode": submission_mode},
-        "review_unit": _public_unit_plan(unit),
+        "review_unit": _model_unit_plan(unit),
         "target_categories": categories,
         "expected_rule_ids": unit["expected_rule_ids"],
+        "review_policy_by_rule": {
+            rule_id: _rule_review_policy(rules_by_id[rule_id])
+            for rule_id in unit["expected_rule_ids"]
+            if rule_id in rules_by_id
+        },
         "standard_evidence": standards,
         "paper_layout_facts": selected_facts,
         "required_output": "Composite findings for this unit using only supplied P*/S* evidence identifiers.",
@@ -1948,24 +2097,38 @@ def _not_applicable_findings(
 
 
 def _unverifiable_findings_for_rules(
-    rule_ids: list[str], rules_by_id: dict[str, dict[str, Any]], reason: str
+    rule_ids: list[str],
+    rules_by_id: dict[str, dict[str, Any]],
+    reason: str,
+    *,
+    facts: list[dict[str, Any]] | None = None,
+    standards: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     findings: list[dict[str, Any]] = []
     for rule_id in rule_ids:
         rule = rules_by_id.get(rule_id)
         if rule is None:
             continue
+        category = str(rule["rule_category"])
+        # These facts are retained as the inspected context for an incomplete
+        # result, never promoted to proof of compliance or non-compliance.
+        paper_evidences = _context_facts_for_category(facts or [], category, limit=3)
+        standard_evidences = [
+            item
+            for item in standards or []
+            if str(item.get("canonical_rule_id")) == rule_id
+        ]
         findings.append(
             {
                 "rule_ids": [rule_id],
-                "category": rule["rule_category"],
+                "category": category,
                 "aspect": rule["title"],
                 "result": "unverifiable",
                 "severity": "info",
                 "finding": reason,
                 "suggestion": None,
-                "paper_evidences": [],
-                "standard_evidences": [],
+                "paper_evidences": paper_evidences,
+                "standard_evidences": standard_evidences,
                 "evidence_status": "incomplete",
                 "reason": reason,
             }
@@ -1974,7 +2137,12 @@ def _unverifiable_findings_for_rules(
 
 
 def _ensure_unit_rule_representation(
-    findings: list[dict[str, Any]], rule_ids: list[str], rules_by_id: dict[str, dict[str, Any]]
+    findings: list[dict[str, Any]],
+    rule_ids: list[str],
+    rules_by_id: dict[str, dict[str, Any]],
+    *,
+    facts: list[dict[str, Any]] | None = None,
+    standards: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     represented_rule_ids = {
         str(rule_id)
@@ -1995,7 +2163,13 @@ def _ensure_unit_rule_representation(
     ]
     return [
         *findings,
-        *_unverifiable_findings_for_rules(missing, rules_by_id, "模型未形成可验证的块级发现。"),
+        *_unverifiable_findings_for_rules(
+            missing,
+            rules_by_id,
+            "模型未形成可验证的块级发现。",
+            facts=facts,
+            standards=standards,
+        ),
     ]
 
 
@@ -2047,8 +2221,8 @@ def _consolidate_rule_findings(
 ) -> dict[str, Any]:
     result_priority = {
         "not_applicable": 0,
-        "compliant": 1,
-        "unverifiable": 2,
+        "unverifiable": 1,
+        "compliant": 2,
         "non_compliant": 3,
     }
     chosen_result = max(
@@ -2176,6 +2350,8 @@ def _applicable_manifest(raw: list[Any], submission_mode: str) -> list[dict[str,
                 if isinstance(item.get("applicability_conditions"), dict)
                 else {},
                 "evidence_selector": list(item.get("evidence_selector") or []),
+                "assessment_mode": str(item.get("assessment_mode") or "strict"),
+                "supported_checks": list(item.get("supported_checks") or []),
             }
         )
     return manifest
@@ -2426,6 +2602,16 @@ def _make_unverifiable(candidates: list[dict[str, Any]], reason: str) -> list[di
     return converted
 
 
+def _has_complete_actionable_finding(findings: list[dict[str, Any]]) -> bool:
+    """Whether a unit contains a conclusion that survived evidence validation."""
+
+    return any(
+        item.get("result") in {"compliant", "non_compliant"}
+        and item.get("evidence_status") == "complete"
+        for item in findings
+    )
+
+
 def _annotations(findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
     for finding in findings:
@@ -2495,6 +2681,128 @@ def _summary_markdown(findings: list[dict[str, Any]], coverage: dict[str, Any]) 
     if coverage.get("missing_categories"):
         lines.append(f"- 规范检索未完整覆盖：{'、'.join(coverage['missing_categories'])}")
     return "\n".join(lines)
+
+
+def _font_is_bold(span: PdfTextSpanRecord) -> bool:
+    """Use the native font flags/name; do not ask the model to infer weight."""
+
+    font_name = " ".join(
+        value for value in (span.raw_font_name, span.font_name) if isinstance(value, str)
+    ).lower()
+    return "bold" in font_name or bool((span.font_flags or 0) & 16)
+
+
+def _matched_block_style(spans: list[PdfTextSpanRecord]) -> dict[str, Any] | None:
+    """Aggregate a semantic block's matching native lines instead of picking one line."""
+
+    if not spans:
+        return None
+    sizes = [float(span.font_size_pt) for span in spans if span.font_size_pt is not None]
+    bboxes = [span.bbox_json for span in spans if _is_bbox(span.bbox_json)]
+    primary = spans[0]
+    return {
+        "bbox": (
+            [
+                min(item[0] for item in bboxes),
+                min(item[1] for item in bboxes),
+                max(item[2] for item in bboxes),
+                max(item[3] for item in bboxes),
+            ]
+            if bboxes
+            else None
+        ),
+        "font_name": primary.font_name,
+        "font_size_raw_pt": float(median(sizes)) if sizes else None,
+        "font_size_pt": _nominal_font_size(float(median(sizes))) if sizes else None,
+        "font_flags": primary.font_flags,
+        "is_bold": any(_font_is_bold(span) for span in spans),
+    }
+
+
+def _nominal_font_size(value: float) -> float:
+    """Map small PDF font-matrix drift to the author-facing nominal point size."""
+
+    nearest = round(value)
+    return float(nearest) if abs(value - nearest) <= 0.25 else value
+
+
+def _model_unit_plan(unit: dict[str, Any]) -> dict[str, Any]:
+    """Keep model metadata compact; the selected facts already carry evidence IDs."""
+
+    return {
+        key: unit.get(key)
+        for key in (
+            "unit_id",
+            "unit_position",
+            "unit_kind",
+            "title",
+            "page_range",
+            "expected_rule_ids",
+            "allocated_rule_ids",
+            "global_rule_ids",
+            "not_applicable_rule_ids",
+            "retrieved_rule_ids",
+            "coverage",
+            "context_refinement",
+        )
+        if key in unit
+    }
+
+
+def _rule_review_policy(rule: dict[str, Any]) -> dict[str, str]:
+    """Classify how much evidence a rule needs before an LLM can conclude."""
+
+    category = str(rule.get("rule_category") or "")
+    title = str(rule.get("title") or "").lower()
+    selectors = {str(item) for item in rule.get("evidence_selector", [])}
+    supported_checks = [str(item) for item in rule.get("supported_checks", []) if str(item)]
+    configured_mode = str(rule.get("assessment_mode") or "").lower()
+    scope = ", ".join(supported_checks) if supported_checks else "the supplied localized PDF facts"
+    if configured_mode == "sampled":
+        return {
+            "mode": "sampled",
+            "supported_checks": supported_checks,
+            "instruction": (
+                f"Only assess these supported checks: {scope}. Representative facts across relevant pages or sections may support a limited conclusion; state the sample scope and never claim exhaustive verification."
+            ),
+        }
+    if category in {"reference", "figure", "table"} or "组织" in title or "organization" in title:
+        return {
+            "mode": "sampled",
+            "supported_checks": supported_checks,
+            "instruction": (
+                f"Only assess these supported checks: {scope}. Representative facts across relevant pages or sections may support a limited conclusion; state the sample scope and never claim exhaustive verification."
+            ),
+        }
+    if selectors & {"page_geometry", "font_style", "author_identity"}:
+        return {
+            "mode": "strict",
+            "supported_checks": supported_checks,
+            "instruction": (
+                f"Only assess these supported checks: {scope}. This is a localized mechanical check; require the necessary localized facts and never use sampling to fill a missing fact."
+            ),
+        }
+    return {
+        "mode": "strict",
+        "supported_checks": supported_checks,
+        "instruction": (
+            f"Only assess these supported checks: {scope}. Require the necessary localized facts; return unverifiable when they are missing."
+        ),
+    }
+
+
+def _horizontal_alignment(bbox: list[float] | None, page_width: float | None) -> str | None:
+    if not _is_bbox(bbox) or not isinstance(page_width, (int, float)) or page_width <= 0:
+        return None
+    center = (float(bbox[0]) + float(bbox[2])) / 2
+    tolerance = max(8.0, float(page_width) * 0.04)
+    if abs(center - float(page_width) / 2) <= tolerance:
+        return "center"
+    if float(bbox[0]) <= float(page_width) * 0.12:
+        return "left"
+    if float(bbox[2]) >= float(page_width) * 0.88:
+        return "right"
+    return "indeterminate"
 
 
 def _is_bbox(value: Any) -> bool:

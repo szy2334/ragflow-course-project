@@ -14,6 +14,7 @@ from ..schemas import ModelConfigSnapshot
 from .base import ChatMessage, ModelCallMetrics, StructuredModelResult
 
 TModel = TypeVar("TModel", bound=BaseModel)
+RETRY_BACKOFF_SECONDS = 0.5
 
 
 class OpenAICompatibleClient:
@@ -197,7 +198,7 @@ class OpenAICompatibleClient:
                 except (httpx.TimeoutException, httpx.TransportError) as exc:
                     if attempt == 0:
                         retries += 1
-                        await asyncio.sleep(0)
+                        await asyncio.sleep(RETRY_BACKOFF_SECONDS)
                         continue
                     raise ModelTransportError("model endpoint unavailable") from exc
 
@@ -206,7 +207,7 @@ class OpenAICompatibleClient:
                 if response.status_code == 429 or response.status_code >= 500:
                     if attempt == 0:
                         retries += 1
-                        await asyncio.sleep(0)
+                        await asyncio.sleep(RETRY_BACKOFF_SECONDS)
                         continue
                     raise ModelTransportError(
                         f"model endpoint returned retryable status {response.status_code}"
@@ -280,7 +281,7 @@ class OpenAICompatibleClient:
                         if response.status_code == 429 or response.status_code >= 500:
                             if attempt == 0:
                                 retries += 1
-                                await asyncio.sleep(0)
+                                await asyncio.sleep(RETRY_BACKOFF_SECONDS)
                                 continue
                             raise ModelTransportError(
                                 f"model endpoint returned retryable status {response.status_code}"
@@ -319,7 +320,7 @@ class OpenAICompatibleClient:
                 except (httpx.TimeoutException, httpx.TransportError) as exc:
                     if attempt == 0 and not chunks:
                         retries += 1
-                        await asyncio.sleep(0)
+                        await asyncio.sleep(RETRY_BACKOFF_SECONDS)
                         continue
                     raise ModelTransportError("model endpoint unavailable") from exc
                 except httpx.HTTPError as exc:
