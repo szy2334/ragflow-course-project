@@ -25,6 +25,8 @@ def validate_numbers(draft: AnswerDraft, evidences: list[EvidenceItem]) -> list[
             errors.append(f"answer number {number} is not present in cited evidence")
 
     for claim in draft.claims:
+        if claim.type == "negative":
+            continue
         cited_text = " ".join(evidence_by_id.get(item, "") for item in claim.evidence_ids)
         cited_numbers = _numbers(cited_text)
         for number in _numbers(claim.text):

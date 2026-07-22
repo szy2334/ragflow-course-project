@@ -48,6 +48,7 @@ async def test_json_schema_success(model_snapshot):
 
     assert result.output.effective_route_type == "fact"
     assert bodies[0]["response_format"]["type"] == "json_schema"
+    assert bodies[0]["enable_thinking"] is False
     assert "secret" not in repr(client.__dict__)
 
 
@@ -173,7 +174,6 @@ def stream_response(content):
     )
     return httpx.Response(200, text=payload, headers={"content-type": "text/event-stream"})
 
-
 @pytest.mark.asyncio
 async def test_structured_stream_forwards_model_content(model_snapshot):
     bodies = []
@@ -197,6 +197,49 @@ async def test_structured_stream_forwards_model_content(model_snapshot):
     assert result.output.effective_route_type == "fact"
     assert "".join(streamed) == valid_route_json()
     assert bodies[0]["stream"] is True
+    assert bodies[0]["enable_thinking"] is False
+
+
+@pytest.mark.asyncio
+async def test_thinking_parameter_is_omitted_when_not_configured(model_snapshot):
+    bodies = []
+
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        return response(valid_route_json())
+
+    config = model_snapshot.model_copy(update={"enable_thinking": None})
+    client = OpenAICompatibleClient("secret", transport=httpx.MockTransport(handler))
+    await client.invoke_structured(
+        [ChatMessage(role="user", content="Return JSON")], RouteDecision, config
+    )
+
+    assert "enable_thinking" not in bodies[0]
+
+
+@pytest.mark.asyncio
+async def test_json_object_merges_existing_system_message(model_snapshot):
+    bodies = []
+
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        return response(valid_route_json())
+
+    config = model_snapshot.model_copy(update={"structured_mode": "json_object"})
+    client = OpenAICompatibleClient("secret", transport=httpx.MockTransport(handler))
+    await client.invoke_structured(
+        [
+            ChatMessage(role="system", content="Use only supplied evidence."),
+            ChatMessage(role="user", content="Return JSON"),
+        ],
+        RouteDecision,
+        config,
+    )
+
+    sent_messages = bodies[0]["messages"]
+    assert [message["role"] for message in sent_messages] == ["system", "user"]
+    assert "JSON Schema:" in sent_messages[0]["content"]
+    assert "Use only supplied evidence." in sent_messages[0]["content"]
 
 
 @pytest.mark.asyncio

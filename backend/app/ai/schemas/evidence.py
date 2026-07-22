@@ -47,6 +47,7 @@ class EvidenceItem(StrictModel):
 class EvidenceSet(StrictModel):
     items: list[EvidenceItem] = Field(default_factory=list)
     query: str = Field(min_length=1)
+    paper_summary: str = ""
     relaxed: bool = False
     warnings: list[str] = Field(default_factory=list)
 

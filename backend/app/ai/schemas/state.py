@@ -8,6 +8,7 @@ class ReviewGraphState(TypedDict, total=False):
     conversation_summary: str
     route_decision: dict[str, Any]
     paper_evidences: list[dict[str, Any]]
+    paper_summary: str
     standard_evidences: list[dict[str, Any]]
     paper_understanding: dict[str, Any] | None
     review_a: dict[str, Any] | None

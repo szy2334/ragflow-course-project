@@ -18,6 +18,7 @@ interface LiveWorkflow {
 }
 
 const wait = (ms: number) => new Promise((resolve) => window.setTimeout(resolve, ms))
+const streamControllers = new Map<string, AbortController>()
 
 export const useWorkspaceStore = defineStore('workspace', {
   state: () => ({
@@ -63,6 +64,14 @@ export const useWorkspaceStore = defineStore('workspace', {
       const messages = this.messagesBySession[message.session_id] ?? []
       if (!messages.some((item) => item.message_id === message.message_id)) messages.push(message)
       this.messagesBySession[message.session_id] = messages
+    },
+    updateMessage(sessionId: string, messageId: string, updates: Partial<ChatMessageView>) {
+      const message = this.messagesBySession[sessionId]?.find((item) => item.message_id === messageId)
+      if (message) Object.assign(message, updates)
+    },
+    removeSession(sessionId: string) {
+      this.sessions = this.sessions.filter((item) => item.session_id !== sessionId)
+      delete this.messagesBySession[sessionId]
     },
     startWorkflow(task: TaskAccepted) {
       this.workflows[task.task_id] = {
@@ -123,6 +132,8 @@ export const useWorkspaceStore = defineStore('workspace', {
         return
       }
       let reconnects = 0
+      const controller = new AbortController()
+      streamControllers.set(taskId, controller)
       while (reconnects < 3 && !workflow.completedAnswer && !workflow.error) {
         try {
           const after = workflow.lastSequence ? `?after_sequence=${workflow.lastSequence}` : ''
@@ -130,6 +141,7 @@ export const useWorkspaceStore = defineStore('workspace', {
           const response = await fetch(`${workflow.task.stream_url}${after}`, {
             headers: { Authorization: `Bearer ${getAccessToken() ?? ''}`, 'Last-Event-ID': eventIds[eventIds.length - 1] ?? '' },
             credentials: 'include',
+            signal: controller.signal,
           })
           if (!response.ok || !response.body) throw new Error('SSE 连接不可用')
           const reader = response.body.getReader()
@@ -149,6 +161,7 @@ export const useWorkspaceStore = defineStore('workspace', {
           }
           if (workflow.completedAnswer || workflow.error) return
         } catch {
+          if (controller.signal.aborted) return
           reconnects += 1
           workflow.phase = `连接中断，正在恢复（${reconnects}/3）`
           await wait(1_000 * reconnects)
@@ -160,6 +173,16 @@ export const useWorkspaceStore = defineStore('workspace', {
         if (task?.status === 'failed' || task?.status === 'cancelled') workflow.error = task.error?.message ?? '工作流已停止。'
         else workflow.phase = '任务完成，请刷新会话查看最终答案'
       }
+      streamControllers.delete(taskId)
+    },
+    async cancelWorkflow(taskId: string, messageId: string) {
+      const workflow = this.workflows[taskId]
+      if (workflow) workflow.phase = '正在停止任务…'
+      streamControllers.get(taskId)?.abort()
+      streamControllers.delete(taskId)
+      const task = await api.cancelWorkflow(messageId, '用户主动停止')
+      this.tasksById[task.task_id] = task
+      return task
     },
   },
 })

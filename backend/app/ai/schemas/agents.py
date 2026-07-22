@@ -54,6 +54,10 @@ class PaperUnderstanding(StrictModel):
         return self
 
 
+class PaperSummary(StrictModel):
+    summary_markdown: str = Field(min_length=1, max_length=20000)
+
+
 ReviewPosition = Literal["critical", "supportive", "mixed"]
 Severity = Literal["low", "medium", "high"]
 SupportVerdict = Literal["supported", "partially_supported", "unsupported", "not_applicable"]

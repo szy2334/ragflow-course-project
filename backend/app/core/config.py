@@ -58,6 +58,9 @@ class Settings(BaseSettings):
     llm_timeout_seconds: float = Field(default=120.0, gt=0, le=300)
     llm_reasoning_effort: Literal["low", "medium", "high"] | None = None
     llm_structured_mode: Literal["json_schema", "json_object", "prompt_json"] = "json_schema"
+    llm_enable_thinking: bool | None = None
+    qa_architecture_v3_enabled: bool = True
+    paper_summary_enabled: bool = True
     model_config_version: str = "env-v1"
     graph_version: str = "1.0"
     prompt_version: str = "v1"

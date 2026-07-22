@@ -118,6 +118,7 @@ def model_snapshot() -> ModelConfigSnapshot:
         temperature=0.1,
         max_output_tokens=1024,
         structured_mode="json_schema",
+        enable_thinking=False,
     )
 
 

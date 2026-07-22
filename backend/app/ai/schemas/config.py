@@ -17,6 +17,7 @@ class ModelConfigSnapshot(StrictModel):
     max_output_tokens: int = Field(default=2048, ge=64, le=65536)
     reasoning_effort: Literal["low", "medium", "high"] | None = None
     structured_mode: Literal["json_schema", "json_object", "prompt_json"] = "json_schema"
+    enable_thinking: bool | None = None
 
 
 class ConfigurationSnapshot(StrictModel):

@@ -174,6 +174,8 @@ class OpenAICompatibleClient:
             payload["response_format"] = response_format
         if config.reasoning_effort is not None:
             payload["reasoning_effort"] = config.reasoning_effort
+        if config.enable_thinking is not None:
+            payload["enable_thinking"] = config.enable_thinking
         headers = {
             "Authorization": f"Bearer {self._api_key.get_secret_value()}",
             "Content-Type": "application/json",
@@ -249,6 +251,8 @@ class OpenAICompatibleClient:
             payload["response_format"] = response_format
         if config.reasoning_effort is not None:
             payload["reasoning_effort"] = config.reasoning_effort
+        if config.enable_thinking is not None:
+            payload["enable_thinking"] = config.enable_thinking
         headers = {
             "Authorization": f"Bearer {self._api_key.get_secret_value()}",
             "Content-Type": "application/json",
@@ -351,17 +355,24 @@ class OpenAICompatibleClient:
         schema = json.dumps(
             output_model.model_json_schema(), ensure_ascii=False, separators=(",", ":")
         )
-        return [
-            ChatMessage(
-                role="system",
-                content=(
-                    "Return exactly one JSON object that validates against this JSON Schema. "
-                    "Do not use Markdown fences or add explanatory text.\n"
-                    f"JSON Schema: {schema}"
+        schema_instruction = (
+            "Return exactly one JSON object that validates against this JSON Schema. "
+            "Do not use Markdown fences or add explanatory text.\n"
+            f"JSON Schema: {schema}"
+        )
+        if messages and messages[0].role == "system":
+            # Some OpenAI-compatible providers, including SiliconFlow, reject a
+            # second system message even when both are at the start.  Keep one
+            # leading system message by merging our schema instruction with the
+            # prompt's existing system rules.
+            return [
+                ChatMessage(
+                    role="system",
+                    content=f"{schema_instruction}\n\n{messages[0].content}",
                 ),
-            ),
-            *messages,
-        ]
+                *messages[1:],
+            ]
+        return [ChatMessage(role="system", content=schema_instruction), *messages]
 
     @staticmethod
     def _json_payload(content: str) -> str:

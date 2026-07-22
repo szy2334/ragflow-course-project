@@ -52,6 +52,7 @@ export const api = {
 
   listSessions: (params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.sessions()) : get<PageData<ChatSessionView>>('/sessions', params),
   createSession: (data: { title?: string; paper_ids: string[] }) => demo.active() ? Promise.resolve(demo.session()) : post<ChatSessionView>('/sessions', data),
+  deleteSession: (session_id: string) => demo.active() ? Promise.resolve({ session_id, deleted_at: new Date().toISOString() }) : request<{ session_id: string; deleted_at: string }>({ url: `/sessions/${session_id}`, method: 'DELETE', headers: { 'Idempotency-Key': newRequestId() } }),
   listMessages: (session_id: string, params?: Record<string, unknown>) => demo.active() ? Promise.resolve(demo.messages()) : get<PageData<ChatMessageView>>(`/sessions/${session_id}/messages`, params),
   askQuestion: (session_id: string, data: { question: string; paper_ids?: string[] }) => demo.active() ? Promise.resolve(demo.accepted('demo-workflow', demo.answer.message_id)) : post<TaskAccepted>(`/sessions/${session_id}/messages`, { ...data, stream: true }),
   cancelWorkflow: (message_id: string, reason?: string) => demo.active() ? Promise.resolve({ ...demo.task(message_id), status: 'cancelled' as const }) : post<TaskView>(`/messages/${message_id}/cancel`, { reason }),

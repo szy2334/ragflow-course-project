@@ -9,7 +9,7 @@ export type IndexStatus = 'not_indexed' | 'pending' | 'running' | 'succeeded' | 
 export type ClaimVerdict = 'supported' | 'refuted' | 'insufficient_evidence' | 'conflicting_evidence'
 export type RouteType = 'fact' | 'explain' | 'follow_up' | 'out_of_scope'
 export type FeedbackType = 'like' | 'dislike' | 'issue'
-export type AgentName = 'controller' | 'paper_understanding' | 'synthesis'
+export type AgentName = 'controller' | 'intent_router' | 'paper_understanding' | 'answer_generator' | 'synthesis'
 export type EventType = 'status' | 'delta' | 'citation' | 'review_summary' | 'unit_started' | 'unit_progress' | 'unit_validated' | 'unit_unverifiable' | 'unit_failed' | 'unit_skipped' | 'synthesis_started' | 'synthesis_completed' | 'final' | 'error'
 
 export interface ApiResponse<T> {
@@ -43,7 +43,7 @@ export interface PaperFailure {
 export interface PaperView {
   paper_id: string; owner_id: string; title: string; authors: string[]; abstract: string | null; language: string | null
   publication_year: number | null; doi: string | null; file_name: string; file_size_bytes: number; page_count: number | null
-  status: PaperStatus; parse_progress: number; index_status: IndexStatus; quality_status?: 'pending' | 'ready' | 'failed' | null; understanding: PaperUnderstanding | null; failure?: PaperFailure | null; active_index_version: number | null
+  status: PaperStatus; parse_progress: number; index_status: IndexStatus; quality_status?: 'pending' | 'ready' | 'failed' | null; understanding: PaperUnderstanding | null; summary_markdown?: string | null; summary_status?: 'pending' | 'ready' | 'unavailable' | 'failed'; failure?: PaperFailure | null; active_index_version: number | null
   created_at: string; updated_at: string
 }
 export interface PaperUnderstanding {
@@ -66,10 +66,10 @@ export interface EvidenceItem {
   quote: string; retrieval_score: number; source_uri: string
   content_type: 'text' | 'figure' | 'table' | 'figure_caption' | 'formula' | 'metadata' | 'reference'; content_role?: string | null; object_id?: string | null; parent_chunk_id?: string | null; metadata?: Record<string, unknown>
 }
-export interface Claim { claim_id: string; text: string; verdict: ClaimVerdict; confidence: number; evidence_ids: string[]; reason: string }
+export interface Claim { claim_id: string; text: string; type?: 'positive' | 'negative'; verdict: ClaimVerdict; confidence: number; evidence_ids: string[]; reason: string }
 export interface AgentMetrics { latency_ms: number; input_tokens: number; output_tokens: number; model_config_id: string | null; retry_count: number; estimated_cost?: string | null; currency?: string | null }
 export interface AgentResult { agent_name: AgentName; status: TaskStatus; summary: string; claims: Claim[]; evidence_ids: string[]; confidence: number; warnings: string[]; metrics: AgentMetrics }
-export interface AnswerView { message_id: string; session_id: string; task_id: string; route_type?: RouteType; answer: string; claims: Claim[]; evidences: EvidenceItem[]; confidence: number; is_refusal: boolean; refusal_reason: string | null; warnings: string[]; completed_at: string }
+export interface AnswerView { message_id: string; session_id: string; task_id: string; route_type?: RouteType; answer: string; claims: Claim[]; evidences: EvidenceItem[]; confidence: number; evidence_sufficient?: boolean; evidence_gap_reason?: string | null; is_refusal: boolean; refusal_reason: string | null; warnings: string[]; completed_at: string }
 export interface WorkflowRunView { workflow_run_id: string; task_id: string; session_id: string | null; task_type: string; status: TaskStatus; planned_agents: AgentName[]; confidence: number | null; started_at: string | null; completed_at: string | null; metrics: AgentMetrics }
 export interface AnswerDetailView { answer: AnswerView; workflow_run: WorkflowRunView; agent_results: AgentResult[] }
 

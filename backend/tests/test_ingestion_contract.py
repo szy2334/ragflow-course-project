@@ -1,3 +1,10 @@
+import pytest
+from conftest import ScriptedLlm
+
+from app.ai.agents import PaperUnderstandingAgent
+from app.ai.prompts import PromptRepository
+from app.ai.runner import AgentRunner
+from app.ai.schemas import ConfigurationSnapshot, EvidenceItem, PaperSummary
 from app.workers.ingestion import (
     BuiltChunk,
     _chunk_from_second_clean,
@@ -33,6 +40,37 @@ def test_native_pdf_parser_preserves_text_and_image_geometry_without_ocr(tmp_pat
     assert image.image_url is None
     assert image.metadata["pdf_bbox"] == [100.0, 150.0, 180.0, 210.0]
     assert image.metadata["extraction_source"] == "native_pdf_image_object"
+
+
+@pytest.mark.asyncio
+async def test_upload_time_summary_uses_shared_agent_runner(model_snapshot):
+    llm = ScriptedLlm([PaperSummary(summary_markdown="# Summary\nSupported overview." )])
+    agent = PaperUnderstandingAgent(AgentRunner(llm, PromptRepository()))
+    evidence = EvidenceItem(
+        evidence_id="U1",
+        source_type="paper",
+        paper_id="paper-1",
+        document_id="local:paper-1",
+        chunk_id="chunk-1",
+        content_type="text",
+        quote="The paper studies robust retrieval.",
+        source_uri="paper://paper-1/chunk-1",
+        retrieval_score=1.0,
+    )
+
+    summary, result = await agent.run_summary(
+        evidences=[evidence],
+        configuration=ConfigurationSnapshot(
+            graph_version="v3",
+            prompt_version="v1",
+            schema_version="v1",
+            model=model_snapshot,
+        ),
+    )
+
+    assert summary.summary_markdown.startswith("# Summary")
+    assert result.agent_name == "paper_understanding"
+    assert llm.calls == ["PaperSummary"]
 
 
 def test_upload_time_understanding_uses_local_bounded_evidence_only():
