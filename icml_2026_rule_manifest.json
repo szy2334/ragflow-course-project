@@ -1,0 +1,3782 @@
+[
+  {
+    "rule_id": "icml-2026-shared-01-59165c90c9c79660",
+    "canonical_rule_id": "icml-2026-shared-01-59165c90c9c79660",
+    "title": "1. 页面尺寸与正文｜正文区域必须采用双栏布局。",
+    "description": "规则ID：icml-2026-shared-01-59165c90c9c79660\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：page_layout\n规则原文：\n正文区域必须采用双栏布局。\n原子检查要求：\n正文区域必须采用双栏布局。",
+    "rule_text": "正文区域必须采用双栏布局。",
+    "atomic_requirement": "正文区域必须采用双栏布局。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-59165c90c9c79660"
+    ],
+    "source_text": "正文区域必须采用双栏布局。"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-5515574aa9c0d183",
+    "canonical_rule_id": "icml-2026-shared-01-5515574aa9c0d183",
+    "title": "1. 页面尺寸与正文｜正文双栏区域总宽度：486 ± 2 pt。",
+    "description": "规则ID：icml-2026-shared-01-5515574aa9c0d183\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：page_layout\n规则原文：\n正文双栏区域总宽度：486 ± 2 pt。\n原子检查要求：\n正文双栏区域总宽度：486 ± 2 pt。",
+    "rule_text": "正文双栏区域总宽度：486 ± 2 pt。",
+    "atomic_requirement": "正文双栏区域总宽度：486 ± 2 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-5515574aa9c0d183"
+    ],
+    "source_text": "正文双栏区域总宽度：486 ± 2 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-2bfc5ff64c1a260c",
+    "canonical_rule_id": "icml-2026-shared-01-2bfc5ff64c1a260c",
+    "title": "1. 页面尺寸与正文｜正文左栏起点横坐标：55.44 ± 2 pt。",
+    "description": "规则ID：icml-2026-shared-01-2bfc5ff64c1a260c\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：page_layout\n规则原文：\n正文左栏起点横坐标：55.44 ± 2 pt。\n原子检查要求：\n正文左栏起点横坐标：55.44 ± 2 pt。",
+    "rule_text": "正文左栏起点横坐标：55.44 ± 2 pt。",
+    "atomic_requirement": "正文左栏起点横坐标：55.44 ± 2 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-2bfc5ff64c1a260c"
+    ],
+    "source_text": "正文左栏起点横坐标：55.44 ± 2 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-89641595792ad177",
+    "canonical_rule_id": "icml-2026-shared-01-89641595792ad177",
+    "title": "1. 页面尺寸与正文｜正文右栏起点横坐标：307.44 ± 2 pt。",
+    "description": "规则ID：icml-2026-shared-01-89641595792ad177\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：page_layout\n规则原文：\n正文右栏起点横坐标：307.44 ± 2 pt。\n原子检查要求：\n正文右栏起点横坐标：307.44 ± 2 pt。",
+    "rule_text": "正文右栏起点横坐标：307.44 ± 2 pt。",
+    "atomic_requirement": "正文右栏起点横坐标：307.44 ± 2 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-89641595792ad177"
+    ],
+    "source_text": "正文右栏起点横坐标：307.44 ± 2 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-24257acf0a354bdf",
+    "canonical_rule_id": "icml-2026-shared-01-24257acf0a354bdf",
+    "title": "1. 页面尺寸与正文｜正文单栏宽度：234 ± 2 pt。",
+    "description": "规则ID：icml-2026-shared-01-24257acf0a354bdf\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：page_layout\n规则原文：\n正文单栏宽度：234 ± 2 pt。\n原子检查要求：\n正文单栏宽度：234 ± 2 pt。",
+    "rule_text": "正文单栏宽度：234 ± 2 pt。",
+    "atomic_requirement": "正文单栏宽度：234 ± 2 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-24257acf0a354bdf"
+    ],
+    "source_text": "正文单栏宽度：234 ± 2 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-2522ac69bff14d48",
+    "canonical_rule_id": "icml-2026-shared-01-2522ac69bff14d48",
+    "title": "1. 页面尺寸与正文｜正文双栏的栏间距：18 ± 2 pt。",
+    "description": "规则ID：icml-2026-shared-01-2522ac69bff14d48\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：page_layout\n规则原文：\n正文双栏的栏间距：18 ± 2 pt。\n原子检查要求：\n正文双栏的栏间距：18 ± 2 pt。",
+    "rule_text": "正文双栏的栏间距：18 ± 2 pt。",
+    "atomic_requirement": "正文双栏的栏间距：18 ± 2 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-2522ac69bff14d48"
+    ],
+    "source_text": "正文双栏的栏间距：18 ± 2 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-775f94c90f43efbe",
+    "canonical_rule_id": "icml-2026-shared-01-775f94c90f43efbe",
+    "title": "1. 页面尺寸与正文｜正文字号众数：9.5–10.5 pt。",
+    "description": "规则ID：icml-2026-shared-01-775f94c90f43efbe\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：page_layout\n规则原文：\n正文字号众数：9.5–10.5 pt。\n原子检查要求：\n正文字号众数：9.5–10.5 pt。",
+    "rule_text": "正文字号众数：9.5–10.5 pt。",
+    "atomic_requirement": "正文字号众数：9.5–10.5 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-775f94c90f43efbe"
+    ],
+    "source_text": "正文字号众数：9.5–10.5 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-a5e486fb73074ddc",
+    "canonical_rule_id": "icml-2026-shared-01-a5e486fb73074ddc",
+    "title": "1. 页面尺寸与正文｜正文基线间距中位数：11–12.5 pt。",
+    "description": "规则ID：icml-2026-shared-01-a5e486fb73074ddc\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：page_layout\n规则原文：\n正文基线间距中位数：11–12.5 pt。\n原子检查要求：\n正文基线间距中位数：11–12.5 pt。",
+    "rule_text": "正文基线间距中位数：11–12.5 pt。",
+    "atomic_requirement": "正文基线间距中位数：11–12.5 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-a5e486fb73074ddc"
+    ],
+    "source_text": "正文基线间距中位数：11–12.5 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-c5dd654491fed190",
+    "canonical_rule_id": "icml-2026-shared-01-c5dd654491fed190",
+    "title": "1. 页面尺寸与正文｜正文不得超出页面边界。",
+    "description": "规则ID：icml-2026-shared-01-c5dd654491fed190\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：page_layout\n规则原文：\n正文不得超出页面边界。\n原子检查要求：\n正文不得超出页面边界。",
+    "rule_text": "正文不得超出页面边界。",
+    "atomic_requirement": "正文不得超出页面边界。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-c5dd654491fed190"
+    ],
+    "source_text": "正文不得超出页面边界。"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-6bc9afab9f7175f4",
+    "canonical_rule_id": "icml-2026-shared-01-6bc9afab9f7175f4",
+    "title": "1. 页面尺寸与正文｜正文字体必须属于下列文本字体白名单。",
+    "description": "规则ID：icml-2026-shared-01-6bc9afab9f7175f4\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：page_layout\n规则原文：\n正文字体必须属于下列文本字体白名单。\n原子检查要求：\n正文字体必须属于下列文本字体白名单。\n字体白名单：\nTimes-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant",
+    "rule_text": "正文字体必须属于下列文本字体白名单。",
+    "atomic_requirement": "正文字体必须属于下列文本字体白名单。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-6bc9afab9f7175f4"
+    ],
+    "source_text": "正文字体必须属于下列文本字体白名单。",
+    "source_attachment": "Times-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-9bac18b1dd02325f",
+    "canonical_rule_id": "icml-2026-shared-01-9bac18b1dd02325f",
+    "title": "1. 页面尺寸与正文｜论文标题字体必须属于下列文本字体白名单。",
+    "description": "规则ID：icml-2026-shared-01-9bac18b1dd02325f\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：heading\n规则原文：\n论文标题字体必须属于下列文本字体白名单。\n原子检查要求：\n论文标题字体必须属于下列文本字体白名单。\n字体白名单：\nTimes-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant",
+    "rule_text": "论文标题字体必须属于下列文本字体白名单。",
+    "atomic_requirement": "论文标题字体必须属于下列文本字体白名单。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-9bac18b1dd02325f"
+    ],
+    "source_text": "论文标题字体必须属于下列文本字体白名单。",
+    "source_attachment": "Times-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-9470c1c13310c676",
+    "canonical_rule_id": "icml-2026-shared-01-9470c1c13310c676",
+    "title": "1. 页面尺寸与正文｜章节标题字体必须属于下列文本字体白名单。",
+    "description": "规则ID：icml-2026-shared-01-9470c1c13310c676\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：heading\n规则原文：\n章节标题字体必须属于下列文本字体白名单。\n原子检查要求：\n章节标题字体必须属于下列文本字体白名单。\n字体白名单：\nTimes-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant",
+    "rule_text": "章节标题字体必须属于下列文本字体白名单。",
+    "atomic_requirement": "章节标题字体必须属于下列文本字体白名单。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-9470c1c13310c676"
+    ],
+    "source_text": "章节标题字体必须属于下列文本字体白名单。",
+    "source_attachment": "Times-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-81403e269a914aeb",
+    "canonical_rule_id": "icml-2026-shared-01-81403e269a914aeb",
+    "title": "1. 页面尺寸与正文｜图题字体必须属于下列文本字体白名单。",
+    "description": "规则ID：icml-2026-shared-01-81403e269a914aeb\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：figure\n规则原文：\n图题字体必须属于下列文本字体白名单。\n原子检查要求：\n图题字体必须属于下列文本字体白名单。\n字体白名单：\nTimes-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant",
+    "rule_text": "图题字体必须属于下列文本字体白名单。",
+    "atomic_requirement": "图题字体必须属于下列文本字体白名单。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-81403e269a914aeb"
+    ],
+    "source_text": "图题字体必须属于下列文本字体白名单。",
+    "source_attachment": "Times-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-c006e30c8f765c1d",
+    "canonical_rule_id": "icml-2026-shared-01-c006e30c8f765c1d",
+    "title": "1. 页面尺寸与正文｜表题字体必须属于下列文本字体白名单。",
+    "description": "规则ID：icml-2026-shared-01-c006e30c8f765c1d\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：table\n规则原文：\n表题字体必须属于下列文本字体白名单。\n原子检查要求：\n表题字体必须属于下列文本字体白名单。\n字体白名单：\nTimes-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant",
+    "rule_text": "表题字体必须属于下列文本字体白名单。",
+    "atomic_requirement": "表题字体必须属于下列文本字体白名单。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "table"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "table",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "table"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-c006e30c8f765c1d"
+    ],
+    "source_text": "表题字体必须属于下列文本字体白名单。",
+    "source_attachment": "Times-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant"
+  },
+  {
+    "rule_id": "icml-2026-shared-01-51768c98131b69f2",
+    "canonical_rule_id": "icml-2026-shared-01-51768c98131b69f2",
+    "title": "1. 页面尺寸与正文｜参考文献字体必须属于下列文本字体白名单。",
+    "description": "规则ID：icml-2026-shared-01-51768c98131b69f2\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：1. 页面尺寸与正文\n规则类别：reference\n规则原文：\n参考文献字体必须属于下列文本字体白名单。\n原子检查要求：\n参考文献字体必须属于下列文本字体白名单。\n字体白名单：\nTimes-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant",
+    "rule_text": "参考文献字体必须属于下列文本字体白名单。",
+    "atomic_requirement": "参考文献字体必须属于下列文本字体白名单。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "reference"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "1. 页面尺寸与正文",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "reference",
+    "applicable_unit_kinds": [
+      "reference"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "reference_entry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-01-51768c98131b69f2"
+    ],
+    "source_text": "参考文献字体必须属于下列文本字体白名单。",
+    "source_attachment": "Times-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant"
+  },
+  {
+    "rule_id": "icml-2026-shared-02-281ca39942e5e9df",
+    "canonical_rule_id": "icml-2026-shared-02-281ca39942e5e9df",
+    "title": "2. 论文标题｜论文标题字号：13.8–14.8 pt。",
+    "description": "规则ID：icml-2026-shared-02-281ca39942e5e9df\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：2. 论文标题\n规则类别：heading\n规则原文：\n论文标题字号：13.8–14.8 pt。\n原子检查要求：\n论文标题字号：13.8–14.8 pt。",
+    "rule_text": "论文标题字号：13.8–14.8 pt。",
+    "atomic_requirement": "论文标题字号：13.8–14.8 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "2. 论文标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-02-281ca39942e5e9df"
+    ],
+    "source_text": "论文标题字号：13.8–14.8 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-02-e0626d9dfe9fde23",
+    "canonical_rule_id": "icml-2026-shared-02-e0626d9dfe9fde23",
+    "title": "2. 论文标题｜论文标题的粗体字符比例至少为 0.9。",
+    "description": "规则ID：icml-2026-shared-02-e0626d9dfe9fde23\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：2. 论文标题\n规则类别：heading\n规则原文：\n论文标题的粗体字符比例至少为 0.9。\n原子检查要求：\n论文标题的粗体字符比例至少为 0.9。",
+    "rule_text": "论文标题的粗体字符比例至少为 0.9。",
+    "atomic_requirement": "论文标题的粗体字符比例至少为 0.9。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "2. 论文标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-02-e0626d9dfe9fde23"
+    ],
+    "source_text": "论文标题的粗体字符比例至少为 0.9。"
+  },
+  {
+    "rule_id": "icml-2026-shared-02-1379d9f30d99c2ed",
+    "canonical_rule_id": "icml-2026-shared-02-1379d9f30d99c2ed",
+    "title": "2. 论文标题｜论文标题中心与正文区域中心的偏差不超过 8 pt。",
+    "description": "规则ID：icml-2026-shared-02-1379d9f30d99c2ed\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：2. 论文标题\n规则类别：heading\n规则原文：\n论文标题中心与正文区域中心的偏差不超过 8 pt。\n原子检查要求：\n论文标题中心与正文区域中心的偏差不超过 8 pt。",
+    "rule_text": "论文标题中心与正文区域中心的偏差不超过 8 pt。",
+    "atomic_requirement": "论文标题中心与正文区域中心的偏差不超过 8 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "2. 论文标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-02-1379d9f30d99c2ed"
+    ],
+    "source_text": "论文标题中心与正文区域中心的偏差不超过 8 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-02-c8b5b97423632e3f",
+    "canonical_rule_id": "icml-2026-shared-02-c8b5b97423632e3f",
+    "title": "2. 论文标题｜论文标题上方和下方各有一条水平线。",
+    "description": "规则ID：icml-2026-shared-02-c8b5b97423632e3f\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：2. 论文标题\n规则类别：heading\n规则原文：\n论文标题上方和下方各有一条水平线。\n原子检查要求：\n论文标题上方和下方各有一条水平线。",
+    "rule_text": "论文标题上方和下方各有一条水平线。",
+    "atomic_requirement": "论文标题上方和下方各有一条水平线。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "2. 论文标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-02-c8b5b97423632e3f"
+    ],
+    "source_text": "论文标题上方和下方各有一条水平线。"
+  },
+  {
+    "rule_id": "icml-2026-shared-02-ccd94d62c253f30c",
+    "canonical_rule_id": "icml-2026-shared-02-ccd94d62c253f30c",
+    "title": "2. 论文标题｜论文标题上下水平线的线宽：0.8–1.2 pt。",
+    "description": "规则ID：icml-2026-shared-02-ccd94d62c253f30c\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：2. 论文标题\n规则类别：heading\n规则原文：\n论文标题上下水平线的线宽：0.8–1.2 pt。\n原子检查要求：\n论文标题上下水平线的线宽：0.8–1.2 pt。",
+    "rule_text": "论文标题上下水平线的线宽：0.8–1.2 pt。",
+    "atomic_requirement": "论文标题上下水平线的线宽：0.8–1.2 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "2. 论文标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-02-ccd94d62c253f30c"
+    ],
+    "source_text": "论文标题上下水平线的线宽：0.8–1.2 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-02-d62bfb59012d3ed5",
+    "canonical_rule_id": "icml-2026-shared-02-d62bfb59012d3ed5",
+    "title": "2. 论文标题｜论文标题上方水平线距页顶：70–75 pt。",
+    "description": "规则ID：icml-2026-shared-02-d62bfb59012d3ed5\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：2. 论文标题\n规则类别：heading\n规则原文：\n论文标题上方水平线距页顶：70–75 pt。\n原子检查要求：\n论文标题上方水平线距页顶：70–75 pt。",
+    "rule_text": "论文标题上方水平线距页顶：70–75 pt。",
+    "atomic_requirement": "论文标题上方水平线距页顶：70–75 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "2. 论文标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-02-d62bfb59012d3ed5"
+    ],
+    "source_text": "论文标题上方水平线距页顶：70–75 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-02-8890550fa0832ec6",
+    "canonical_rule_id": "icml-2026-shared-02-8890550fa0832ec6",
+    "title": "2. 论文标题｜论文标题中的内容词采用标题式大小写。",
+    "description": "规则ID：icml-2026-shared-02-8890550fa0832ec6\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：2. 论文标题\n规则类别：heading\n规则原文：\n论文标题中的内容词采用标题式大小写。\n原子检查要求：\n论文标题中的内容词采用标题式大小写。",
+    "rule_text": "论文标题中的内容词采用标题式大小写。",
+    "atomic_requirement": "论文标题中的内容词采用标题式大小写。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "2. 论文标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-02-8890550fa0832ec6"
+    ],
+    "source_text": "论文标题中的内容词采用标题式大小写。"
+  },
+  {
+    "rule_id": "icml-2026-shared-03-671e01e976641153",
+    "canonical_rule_id": "icml-2026-shared-03-671e01e976641153",
+    "title": "3. 章节标题｜一级章节标题格式：1. Title。",
+    "description": "规则ID：icml-2026-shared-03-671e01e976641153\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：3. 章节标题\n规则类别：heading\n规则原文：\n一级章节标题格式：1. Title。\n原子检查要求：\n一级章节标题格式：1. Title。",
+    "rule_text": "一级章节标题格式：1. Title。",
+    "atomic_requirement": "一级章节标题格式：1. Title。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "3. 章节标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-03-671e01e976641153"
+    ],
+    "source_text": "一级章节标题格式：1. Title。"
+  },
+  {
+    "rule_id": "icml-2026-shared-03-3ad9bf283403e268",
+    "canonical_rule_id": "icml-2026-shared-03-3ad9bf283403e268",
+    "title": "3. 章节标题｜二级章节标题格式：1.1. Title。",
+    "description": "规则ID：icml-2026-shared-03-3ad9bf283403e268\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：3. 章节标题\n规则类别：heading\n规则原文：\n二级章节标题格式：1.1. Title。\n原子检查要求：\n二级章节标题格式：1.1. Title。",
+    "rule_text": "二级章节标题格式：1.1. Title。",
+    "atomic_requirement": "二级章节标题格式：1.1. Title。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "3. 章节标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-03-3ad9bf283403e268"
+    ],
+    "source_text": "二级章节标题格式：1.1. Title。"
+  },
+  {
+    "rule_id": "icml-2026-shared-03-e25f3b0c17a36a4a",
+    "canonical_rule_id": "icml-2026-shared-03-e25f3b0c17a36a4a",
+    "title": "3. 章节标题｜三级章节标题格式：1.1.1. Title。",
+    "description": "规则ID：icml-2026-shared-03-e25f3b0c17a36a4a\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：3. 章节标题\n规则类别：heading\n规则原文：\n三级章节标题格式：1.1.1. Title。\n原子检查要求：\n三级章节标题格式：1.1.1. Title。",
+    "rule_text": "三级章节标题格式：1.1.1. Title。",
+    "atomic_requirement": "三级章节标题格式：1.1.1. Title。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "3. 章节标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-03-e25f3b0c17a36a4a"
+    ],
+    "source_text": "三级章节标题格式：1.1.1. Title。"
+  },
+  {
+    "rule_id": "icml-2026-shared-03-8b88812156780c73",
+    "canonical_rule_id": "icml-2026-shared-03-8b88812156780c73",
+    "title": "3. 章节标题｜一级章节标题字号：11.5–12.3 pt，粗体字符比例至少为 0.9。",
+    "description": "规则ID：icml-2026-shared-03-8b88812156780c73\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：3. 章节标题\n规则类别：heading\n规则原文：\n一级章节标题字号：11.5–12.3 pt，粗体字符比例至少为 0.9。\n原子检查要求：\n一级章节标题字号：11.5–12.3 pt，粗体字符比例至少为 0.9。",
+    "rule_text": "一级章节标题字号：11.5–12.3 pt，粗体字符比例至少为 0.9。",
+    "atomic_requirement": "一级章节标题字号：11.5–12.3 pt，粗体字符比例至少为 0.9。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "3. 章节标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-03-8b88812156780c73"
+    ],
+    "source_text": "一级章节标题字号：11.5–12.3 pt，粗体字符比例至少为 0.9。"
+  },
+  {
+    "rule_id": "icml-2026-shared-03-7da1a9ba75fac8e1",
+    "canonical_rule_id": "icml-2026-shared-03-7da1a9ba75fac8e1",
+    "title": "3. 章节标题｜二级章节标题字号：9.5–10.5 pt，粗体字符比例至少为 0.9。",
+    "description": "规则ID：icml-2026-shared-03-7da1a9ba75fac8e1\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：3. 章节标题\n规则类别：heading\n规则原文：\n二级章节标题字号：9.5–10.5 pt，粗体字符比例至少为 0.9。\n原子检查要求：\n二级章节标题字号：9.5–10.5 pt，粗体字符比例至少为 0.9。",
+    "rule_text": "二级章节标题字号：9.5–10.5 pt，粗体字符比例至少为 0.9。",
+    "atomic_requirement": "二级章节标题字号：9.5–10.5 pt，粗体字符比例至少为 0.9。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "3. 章节标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-03-7da1a9ba75fac8e1"
+    ],
+    "source_text": "二级章节标题字号：9.5–10.5 pt，粗体字符比例至少为 0.9。"
+  },
+  {
+    "rule_id": "icml-2026-shared-03-ed287d357a12a12d",
+    "canonical_rule_id": "icml-2026-shared-03-ed287d357a12a12d",
+    "title": "3. 章节标题｜三级章节标题字号：9.5–10.5 pt。",
+    "description": "规则ID：icml-2026-shared-03-ed287d357a12a12d\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：3. 章节标题\n规则类别：heading\n规则原文：\n三级章节标题字号：9.5–10.5 pt。\n原子检查要求：\n三级章节标题字号：9.5–10.5 pt。",
+    "rule_text": "三级章节标题字号：9.5–10.5 pt。",
+    "atomic_requirement": "三级章节标题字号：9.5–10.5 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "3. 章节标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-03-ed287d357a12a12d"
+    ],
+    "source_text": "三级章节标题字号：9.5–10.5 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-03-ebd6f29438a244ee",
+    "canonical_rule_id": "icml-2026-shared-03-ebd6f29438a244ee",
+    "title": "3. 章节标题｜章节标题左边界与所在栏起点的偏差不超过 3 pt。",
+    "description": "规则ID：icml-2026-shared-03-ebd6f29438a244ee\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：3. 章节标题\n规则类别：heading\n规则原文：\n章节标题左边界与所在栏起点的偏差不超过 3 pt。\n原子检查要求：\n章节标题左边界与所在栏起点的偏差不超过 3 pt。",
+    "rule_text": "章节标题左边界与所在栏起点的偏差不超过 3 pt。",
+    "atomic_requirement": "章节标题左边界与所在栏起点的偏差不超过 3 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "3. 章节标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-03-ebd6f29438a244ee"
+    ],
+    "source_text": "章节标题左边界与所在栏起点的偏差不超过 3 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-03-e2b41869b65c52f3",
+    "canonical_rule_id": "icml-2026-shared-03-e2b41869b65c52f3",
+    "title": "3. 章节标题｜章节标题不得与相邻内容重叠。",
+    "description": "规则ID：icml-2026-shared-03-e2b41869b65c52f3\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：3. 章节标题\n规则类别：heading\n规则原文：\n章节标题不得与相邻内容重叠。\n原子检查要求：\n章节标题不得与相邻内容重叠。",
+    "rule_text": "章节标题不得与相邻内容重叠。",
+    "atomic_requirement": "章节标题不得与相邻内容重叠。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "3. 章节标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-03-e2b41869b65c52f3"
+    ],
+    "source_text": "章节标题不得与相邻内容重叠。"
+  },
+  {
+    "rule_id": "icml-2026-shared-03-9ff9420e1424f93a",
+    "canonical_rule_id": "icml-2026-shared-03-9ff9420e1424f93a",
+    "title": "3. 章节标题｜章节标题层级最多为三级。",
+    "description": "规则ID：icml-2026-shared-03-9ff9420e1424f93a\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：3. 章节标题\n规则类别：heading\n规则原文：\n章节标题层级最多为三级。\n原子检查要求：\n章节标题层级最多为三级。",
+    "rule_text": "章节标题层级最多为三级。",
+    "atomic_requirement": "章节标题层级最多为三级。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "3. 章节标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-03-9ff9420e1424f93a"
+    ],
+    "source_text": "章节标题层级最多为三级。"
+  },
+  {
+    "rule_id": "icml-2026-shared-03-2e352c7dd5f391e0",
+    "canonical_rule_id": "icml-2026-shared-03-2e352c7dd5f391e0",
+    "title": "3. 章节标题｜章节标题中的内容词采用标题式大小写。",
+    "description": "规则ID：icml-2026-shared-03-2e352c7dd5f391e0\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：3. 章节标题\n规则类别：heading\n规则原文：\n章节标题中的内容词采用标题式大小写。\n原子检查要求：\n章节标题中的内容词采用标题式大小写。",
+    "rule_text": "章节标题中的内容词采用标题式大小写。",
+    "atomic_requirement": "章节标题中的内容词采用标题式大小写。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "3. 章节标题",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-03-2e352c7dd5f391e0"
+    ],
+    "source_text": "章节标题中的内容词采用标题式大小写。"
+  },
+  {
+    "rule_id": "icml-2026-shared-04-1cd599ca17757383",
+    "canonical_rule_id": "icml-2026-shared-04-1cd599ca17757383",
+    "title": "4. 图｜图号从 1 开始连续编号。",
+    "description": "规则ID：icml-2026-shared-04-1cd599ca17757383\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：4. 图\n规则类别：figure\n规则原文：\n图号从 1 开始连续编号。\n原子检查要求：\n图号从 1 开始连续编号。",
+    "rule_text": "图号从 1 开始连续编号。",
+    "atomic_requirement": "图号从 1 开始连续编号。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "4. 图",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-04-1cd599ca17757383"
+    ],
+    "source_text": "图号从 1 开始连续编号。"
+  },
+  {
+    "rule_id": "icml-2026-shared-04-5ee6889232610bc3",
+    "canonical_rule_id": "icml-2026-shared-04-5ee6889232610bc3",
+    "title": "4. 图｜图题位于图形下方。",
+    "description": "规则ID：icml-2026-shared-04-5ee6889232610bc3\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：4. 图\n规则类别：figure\n规则原文：\n图题位于图形下方。\n原子检查要求：\n图题位于图形下方。",
+    "rule_text": "图题位于图形下方。",
+    "atomic_requirement": "图题位于图形下方。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "4. 图",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-04-5ee6889232610bc3"
+    ],
+    "source_text": "图题位于图形下方。"
+  },
+  {
+    "rule_id": "icml-2026-shared-04-7dc0d5a9e3e75d0e",
+    "canonical_rule_id": "icml-2026-shared-04-7dc0d5a9e3e75d0e",
+    "title": "4. 图｜图题字号：8.5–9.5 pt。",
+    "description": "规则ID：icml-2026-shared-04-7dc0d5a9e3e75d0e\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：4. 图\n规则类别：figure\n规则原文：\n图题字号：8.5–9.5 pt。\n原子检查要求：\n图题字号：8.5–9.5 pt。",
+    "rule_text": "图题字号：8.5–9.5 pt。",
+    "atomic_requirement": "图题字号：8.5–9.5 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "4. 图",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-04-7dc0d5a9e3e75d0e"
+    ],
+    "source_text": "图题字号：8.5–9.5 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-04-06ef641d9a4af5ca",
+    "canonical_rule_id": "icml-2026-shared-04-06ef641d9a4af5ca",
+    "title": "4. 图｜单行图题中心与所在栏或跨栏区域中心偏差不超过 8 pt。",
+    "description": "规则ID：icml-2026-shared-04-06ef641d9a4af5ca\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：4. 图\n规则类别：figure\n规则原文：\n单行图题中心与所在栏或跨栏区域中心偏差不超过 8 pt。\n原子检查要求：\n单行图题中心与所在栏或跨栏区域中心偏差不超过 8 pt。",
+    "rule_text": "单行图题中心与所在栏或跨栏区域中心偏差不超过 8 pt。",
+    "atomic_requirement": "单行图题中心与所在栏或跨栏区域中心偏差不超过 8 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "4. 图",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-04-06ef641d9a4af5ca"
+    ],
+    "source_text": "单行图题中心与所在栏或跨栏区域中心偏差不超过 8 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-04-f2f87749956672a2",
+    "canonical_rule_id": "icml-2026-shared-04-f2f87749956672a2",
+    "title": "4. 图｜多行图题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。",
+    "description": "规则ID：icml-2026-shared-04-f2f87749956672a2\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：4. 图\n规则类别：figure\n规则原文：\n多行图题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。\n原子检查要求：\n多行图题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。",
+    "rule_text": "多行图题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。",
+    "atomic_requirement": "多行图题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "4. 图",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-04-f2f87749956672a2"
+    ],
+    "source_text": "多行图题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-04-6aed445d9754d01d",
+    "canonical_rule_id": "icml-2026-shared-04-6aed445d9754d01d",
+    "title": "4. 图｜图形 bbox 必须位于正文区域内。",
+    "description": "规则ID：icml-2026-shared-04-6aed445d9754d01d\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：4. 图\n规则类别：figure\n规则原文：\n图形 bbox 必须位于正文区域内。\n原子检查要求：\n图形 bbox 必须位于正文区域内。",
+    "rule_text": "图形 bbox 必须位于正文区域内。",
+    "atomic_requirement": "图形 bbox 必须位于正文区域内。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "4. 图",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-04-6aed445d9754d01d"
+    ],
+    "source_text": "图形 bbox 必须位于正文区域内。"
+  },
+  {
+    "rule_id": "icml-2026-shared-05-7e96131ebfaf1575",
+    "canonical_rule_id": "icml-2026-shared-05-7e96131ebfaf1575",
+    "title": "5. 表｜表号从 1 开始连续编号。",
+    "description": "规则ID：icml-2026-shared-05-7e96131ebfaf1575\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：5. 表\n规则类别：table\n规则原文：\n表号从 1 开始连续编号。\n原子检查要求：\n表号从 1 开始连续编号。",
+    "rule_text": "表号从 1 开始连续编号。",
+    "atomic_requirement": "表号从 1 开始连续编号。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "table"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "5. 表",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "table",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "table"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-05-7e96131ebfaf1575"
+    ],
+    "source_text": "表号从 1 开始连续编号。"
+  },
+  {
+    "rule_id": "icml-2026-shared-05-be68408d4d767305",
+    "canonical_rule_id": "icml-2026-shared-05-be68408d4d767305",
+    "title": "5. 表｜表题字号：8.5–9.5 pt。",
+    "description": "规则ID：icml-2026-shared-05-be68408d4d767305\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：5. 表\n规则类别：table\n规则原文：\n表题字号：8.5–9.5 pt。\n原子检查要求：\n表题字号：8.5–9.5 pt。",
+    "rule_text": "表题字号：8.5–9.5 pt。",
+    "atomic_requirement": "表题字号：8.5–9.5 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "table"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "5. 表",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "table",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "table"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-05-be68408d4d767305"
+    ],
+    "source_text": "表题字号：8.5–9.5 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-05-1c4d80638637c568",
+    "canonical_rule_id": "icml-2026-shared-05-1c4d80638637c568",
+    "title": "5. 表｜单行表题中心与所在栏或跨栏区域中心偏差不超过 8 pt。",
+    "description": "规则ID：icml-2026-shared-05-1c4d80638637c568\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：5. 表\n规则类别：table\n规则原文：\n单行表题中心与所在栏或跨栏区域中心偏差不超过 8 pt。\n原子检查要求：\n单行表题中心与所在栏或跨栏区域中心偏差不超过 8 pt。",
+    "rule_text": "单行表题中心与所在栏或跨栏区域中心偏差不超过 8 pt。",
+    "atomic_requirement": "单行表题中心与所在栏或跨栏区域中心偏差不超过 8 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "table"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "5. 表",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "table",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "table"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-05-1c4d80638637c568"
+    ],
+    "source_text": "单行表题中心与所在栏或跨栏区域中心偏差不超过 8 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-05-7cd05f19cc3b4708",
+    "canonical_rule_id": "icml-2026-shared-05-7cd05f19cc3b4708",
+    "title": "5. 表｜多行表题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。",
+    "description": "规则ID：icml-2026-shared-05-7cd05f19cc3b4708\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：5. 表\n规则类别：table\n规则原文：\n多行表题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。\n原子检查要求：\n多行表题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。",
+    "rule_text": "多行表题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。",
+    "atomic_requirement": "多行表题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "table"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "5. 表",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "table",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "table"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-05-7cd05f19cc3b4708"
+    ],
+    "source_text": "多行表题左边界与所在栏或跨栏区域左边界偏差不超过 3 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-05-67a1772ece94947b",
+    "canonical_rule_id": "icml-2026-shared-05-67a1772ece94947b",
+    "title": "5. 表｜表格 bbox 必须位于正文区域内。",
+    "description": "规则ID：icml-2026-shared-05-67a1772ece94947b\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：5. 表\n规则类别：table\n规则原文：\n表格 bbox 必须位于正文区域内。\n原子检查要求：\n表格 bbox 必须位于正文区域内。",
+    "rule_text": "表格 bbox 必须位于正文区域内。",
+    "atomic_requirement": "表格 bbox 必须位于正文区域内。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "table"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "5. 表",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "table",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "table"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-05-67a1772ece94947b"
+    ],
+    "source_text": "表格 bbox 必须位于正文区域内。"
+  },
+  {
+    "rule_id": "icml-2026-shared-06-6877a8298630b7f2",
+    "canonical_rule_id": "icml-2026-shared-06-6877a8298630b7f2",
+    "title": "6. 参考文献｜正文中的文内引用主要采用作者—年份格式。",
+    "description": "规则ID：icml-2026-shared-06-6877a8298630b7f2\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：6. 参考文献\n规则类别：reference\n规则原文：\n正文中的文内引用主要采用作者—年份格式。\n原子检查要求：\n正文中的文内引用主要采用作者—年份格式。",
+    "rule_text": "正文中的文内引用主要采用作者—年份格式。",
+    "atomic_requirement": "正文中的文内引用主要采用作者—年份格式。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "reference"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "6. 参考文献",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "reference",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-06-6877a8298630b7f2"
+    ],
+    "source_text": "正文中的文内引用主要采用作者—年份格式。"
+  },
+  {
+    "rule_id": "icml-2026-shared-06-144615c5963a270d",
+    "canonical_rule_id": "icml-2026-shared-06-144615c5963a270d",
+    "title": "6. 参考文献｜正文中的数字式文内引用不得占主要比例。",
+    "description": "规则ID：icml-2026-shared-06-144615c5963a270d\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：6. 参考文献\n规则类别：reference\n规则原文：\n正文中的数字式文内引用不得占主要比例。\n原子检查要求：\n正文中的数字式文内引用不得占主要比例。",
+    "rule_text": "正文中的数字式文内引用不得占主要比例。",
+    "atomic_requirement": "正文中的数字式文内引用不得占主要比例。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "reference"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "6. 参考文献",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "reference",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-06-144615c5963a270d"
+    ],
+    "source_text": "正文中的数字式文内引用不得占主要比例。"
+  },
+  {
+    "rule_id": "icml-2026-shared-06-31528b3f011a4821",
+    "canonical_rule_id": "icml-2026-shared-06-31528b3f011a4821",
+    "title": "6. 参考文献｜References 必须采用无编号的一级章节标题格式。",
+    "description": "规则ID：icml-2026-shared-06-31528b3f011a4821\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：6. 参考文献\n规则类别：reference\n规则原文：\nReferences 必须采用无编号的一级章节标题格式。\n原子检查要求：\nReferences 必须采用无编号的一级章节标题格式。",
+    "rule_text": "References 必须采用无编号的一级章节标题格式。",
+    "atomic_requirement": "References 必须采用无编号的一级章节标题格式。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "reference"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "6. 参考文献",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "reference",
+    "applicable_unit_kinds": [
+      "reference"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "reference_entry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-06-31528b3f011a4821"
+    ],
+    "source_text": "References 必须采用无编号的一级章节标题格式。"
+  },
+  {
+    "rule_id": "icml-2026-shared-06-d635c46643217519",
+    "canonical_rule_id": "icml-2026-shared-06-d635c46643217519",
+    "title": "6. 参考文献｜参考文献条目的悬挂缩进：8–12 pt。",
+    "description": "规则ID：icml-2026-shared-06-d635c46643217519\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：6. 参考文献\n规则类别：reference\n规则原文：\n参考文献条目的悬挂缩进：8–12 pt。\n原子检查要求：\n参考文献条目的悬挂缩进：8–12 pt。",
+    "rule_text": "参考文献条目的悬挂缩进：8–12 pt。",
+    "atomic_requirement": "参考文献条目的悬挂缩进：8–12 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "reference"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "6. 参考文献",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "reference",
+    "applicable_unit_kinds": [
+      "reference"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "reference_entry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-06-d635c46643217519"
+    ],
+    "source_text": "参考文献条目的悬挂缩进：8–12 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-06-eab825ccdfcc8444",
+    "canonical_rule_id": "icml-2026-shared-06-eab825ccdfcc8444",
+    "title": "6. 参考文献｜参考文献按第一作者姓氏排序。",
+    "description": "规则ID：icml-2026-shared-06-eab825ccdfcc8444\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：6. 参考文献\n规则类别：reference\n规则原文：\n参考文献按第一作者姓氏排序。\n原子检查要求：\n参考文献按第一作者姓氏排序。",
+    "rule_text": "参考文献按第一作者姓氏排序。",
+    "atomic_requirement": "参考文献按第一作者姓氏排序。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "reference"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "6. 参考文献",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "reference",
+    "applicable_unit_kinds": [
+      "reference"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "reference_entry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-06-eab825ccdfcc8444"
+    ],
+    "source_text": "参考文献按第一作者姓氏排序。"
+  },
+  {
+    "rule_id": "icml-2026-shared-06-0384b1f3ebd94085",
+    "canonical_rule_id": "icml-2026-shared-06-0384b1f3ebd94085",
+    "title": "6. 参考文献｜每条参考文献必须包含可识别年份。",
+    "description": "规则ID：icml-2026-shared-06-0384b1f3ebd94085\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：6. 参考文献\n规则类别：reference\n规则原文：\n每条参考文献必须包含可识别年份。\n原子检查要求：\n每条参考文献必须包含可识别年份。",
+    "rule_text": "每条参考文献必须包含可识别年份。",
+    "atomic_requirement": "每条参考文献必须包含可识别年份。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "reference"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "6. 参考文献",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "reference",
+    "applicable_unit_kinds": [
+      "reference"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "reference_entry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-06-0384b1f3ebd94085"
+    ],
+    "source_text": "每条参考文献必须包含可识别年份。"
+  },
+  {
+    "rule_id": "icml-2026-shared-07-1c752c165f2f432b",
+    "canonical_rule_id": "icml-2026-shared-07-1c752c165f2f432b",
+    "title": "7. 附录｜附录页面宽度和高度必须分别与正文页面宽度和高度一致。",
+    "description": "规则ID：icml-2026-shared-07-1c752c165f2f432b\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：7. 附录\n规则类别：appendix\n规则原文：\n附录页面宽度和高度必须分别与正文页面宽度和高度一致。\n原子检查要求：\n附录页面宽度和高度必须分别与正文页面宽度和高度一致。",
+    "rule_text": "附录页面宽度和高度必须分别与正文页面宽度和高度一致。",
+    "atomic_requirement": "附录页面宽度和高度必须分别与正文页面宽度和高度一致。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "appendix"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "7. 附录",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "appendix",
+    "applicable_unit_kinds": [
+      "appendix"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "appendix",
+      "body_section"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-07-1c752c165f2f432b"
+    ],
+    "source_text": "附录页面宽度和高度必须分别与正文页面宽度和高度一致。"
+  },
+  {
+    "rule_id": "icml-2026-shared-07-ba175c511470365b",
+    "canonical_rule_id": "icml-2026-shared-07-ba175c511470365b",
+    "title": "7. 附录｜附录正文字体必须属于下列文本字体白名单。",
+    "description": "规则ID：icml-2026-shared-07-ba175c511470365b\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：7. 附录\n规则类别：appendix\n规则原文：\n附录正文字体必须属于下列文本字体白名单。\n原子检查要求：\n附录正文字体必须属于下列文本字体白名单。\n字体白名单：\nTimes-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant",
+    "rule_text": "附录正文字体必须属于下列文本字体白名单。",
+    "atomic_requirement": "附录正文字体必须属于下列文本字体白名单。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "appendix"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "7. 附录",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "appendix",
+    "applicable_unit_kinds": [
+      "appendix"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-07-ba175c511470365b"
+    ],
+    "source_text": "附录正文字体必须属于下列文本字体白名单。",
+    "source_attachment": "Times-Roman\nTimes-Bold\nTimes-Italic\nTimes-BoldItalic\nTimesNewRomanPSMT\nTimesNewRomanPS-BoldMT\nTimesNewRomanPS-ItalicMT\nTimesNewRomanPS-BoldItalicMT\nNimbusRomNo9L-Regu\nNimbusRomNo9L-Medi\nNimbusRomNo9L-ReguItal\nNimbusRomNo9L-MediItal\nNimbusRomNo9L-Regu-Slant"
+  },
+  {
+    "rule_id": "icml-2026-shared-07-b4ff708c1be55413",
+    "canonical_rule_id": "icml-2026-shared-07-b4ff708c1be55413",
+    "title": "7. 附录｜附录正文字号众数与正文主体字号众数的差异不得超过 0.5 pt。",
+    "description": "规则ID：icml-2026-shared-07-b4ff708c1be55413\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：7. 附录\n规则类别：appendix\n规则原文：\n附录正文字号众数与正文主体字号众数的差异不得超过 0.5 pt。\n原子检查要求：\n附录正文字号众数与正文主体字号众数的差异不得超过 0.5 pt。",
+    "rule_text": "附录正文字号众数与正文主体字号众数的差异不得超过 0.5 pt。",
+    "atomic_requirement": "附录正文字号众数与正文主体字号众数的差异不得超过 0.5 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "appendix"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "7. 附录",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "appendix",
+    "applicable_unit_kinds": [
+      "appendix"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "appendix",
+      "body_section"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-07-b4ff708c1be55413"
+    ],
+    "source_text": "附录正文字号众数与正文主体字号众数的差异不得超过 0.5 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-07-3ee267b232b47a24",
+    "canonical_rule_id": "icml-2026-shared-07-3ee267b232b47a24",
+    "title": "7. 附录｜附录正文基线间距中位数与正文主体基线间距中位数的差异不得超过 1 pt。",
+    "description": "规则ID：icml-2026-shared-07-3ee267b232b47a24\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：7. 附录\n规则类别：appendix\n规则原文：\n附录正文基线间距中位数与正文主体基线间距中位数的差异不得超过 1 pt。\n原子检查要求：\n附录正文基线间距中位数与正文主体基线间距中位数的差异不得超过 1 pt。",
+    "rule_text": "附录正文基线间距中位数与正文主体基线间距中位数的差异不得超过 1 pt。",
+    "atomic_requirement": "附录正文基线间距中位数与正文主体基线间距中位数的差异不得超过 1 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "appendix"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "7. 附录",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "appendix",
+    "applicable_unit_kinds": [
+      "appendix"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "appendix",
+      "body_section"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-07-3ee267b232b47a24"
+    ],
+    "source_text": "附录正文基线间距中位数与正文主体基线间距中位数的差异不得超过 1 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-07-848d6666b8001d89",
+    "canonical_rule_id": "icml-2026-shared-07-848d6666b8001d89",
+    "title": "7. 附录｜双栏附录的左、右栏起点必须分别与正文双栏对应栏起点比对，差异均不得超过 2 pt。",
+    "description": "规则ID：icml-2026-shared-07-848d6666b8001d89\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：7. 附录\n规则类别：appendix\n规则原文：\n双栏附录的左、右栏起点必须分别与正文双栏对应栏起点比对，差异均不得超过 2 pt。\n原子检查要求：\n双栏附录的左、右栏起点必须分别与正文双栏对应栏起点比对，差异均不得超过 2 pt。",
+    "rule_text": "双栏附录的左、右栏起点必须分别与正文双栏对应栏起点比对，差异均不得超过 2 pt。",
+    "atomic_requirement": "双栏附录的左、右栏起点必须分别与正文双栏对应栏起点比对，差异均不得超过 2 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "appendix"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "7. 附录",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "appendix",
+    "applicable_unit_kinds": [
+      "appendix"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "appendix",
+      "body_section"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-07-848d6666b8001d89"
+    ],
+    "source_text": "双栏附录的左、右栏起点必须分别与正文双栏对应栏起点比对，差异均不得超过 2 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-07-527a2ddda9369b88",
+    "canonical_rule_id": "icml-2026-shared-07-527a2ddda9369b88",
+    "title": "7. 附录｜双栏附录的栏间距与正文双栏栏间距的差异不得超过 2 pt。",
+    "description": "规则ID：icml-2026-shared-07-527a2ddda9369b88\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：7. 附录\n规则类别：appendix\n规则原文：\n双栏附录的栏间距与正文双栏栏间距的差异不得超过 2 pt。\n原子检查要求：\n双栏附录的栏间距与正文双栏栏间距的差异不得超过 2 pt。",
+    "rule_text": "双栏附录的栏间距与正文双栏栏间距的差异不得超过 2 pt。",
+    "atomic_requirement": "双栏附录的栏间距与正文双栏栏间距的差异不得超过 2 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "appendix"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "7. 附录",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "appendix",
+    "applicable_unit_kinds": [
+      "appendix"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "appendix",
+      "body_section"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-07-527a2ddda9369b88"
+    ],
+    "source_text": "双栏附录的栏间距与正文双栏栏间距的差异不得超过 2 pt。"
+  },
+  {
+    "rule_id": "icml-2026-shared-07-3727f350c30951a6",
+    "canonical_rule_id": "icml-2026-shared-07-3727f350c30951a6",
+    "title": "7. 附录｜附录页码的存在状态和位置必须分别与正文页码的存在状态和位置一致。",
+    "description": "规则ID：icml-2026-shared-07-3727f350c30951a6\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：7. 附录\n规则类别：appendix\n规则原文：\n附录页码的存在状态和位置必须分别与正文页码的存在状态和位置一致。\n原子检查要求：\n附录页码的存在状态和位置必须分别与正文页码的存在状态和位置一致。",
+    "rule_text": "附录页码的存在状态和位置必须分别与正文页码的存在状态和位置一致。",
+    "atomic_requirement": "附录页码的存在状态和位置必须分别与正文页码的存在状态和位置一致。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "appendix"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "7. 附录",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "appendix",
+    "applicable_unit_kinds": [
+      "appendix"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "appendix",
+      "body_section"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-07-3727f350c30951a6"
+    ],
+    "source_text": "附录页码的存在状态和位置必须分别与正文页码的存在状态和位置一致。"
+  },
+  {
+    "rule_id": "icml-2026-shared-07-6214abd67772fa8b",
+    "canonical_rule_id": "icml-2026-shared-07-6214abd67772fa8b",
+    "title": "7. 附录｜附录标题采用 A.、B. 等连续编号。",
+    "description": "规则ID：icml-2026-shared-07-6214abd67772fa8b\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：shared\n章节：7. 附录\n规则类别：appendix\n规则原文：\n附录标题采用 A.、B. 等连续编号。\n原子检查要求：\n附录标题采用 A.、B. 等连续编号。",
+    "rule_text": "附录标题采用 A.、B. 等连续编号。",
+    "atomic_requirement": "附录标题采用 A.、B. 等连续编号。",
+    "keywords": [
+      "icml",
+      "2026",
+      "shared",
+      "appendix"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "shared",
+    "target_document": "e8cc32bc850611f1b211d112fde53137",
+    "source_document_id": "e8cc32bc850611f1b211d112fde53137",
+    "section_path": "7. 附录",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "appendix",
+    "applicable_unit_kinds": [
+      "appendix"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-shared-07-6214abd67772fa8b"
+    ],
+    "source_text": "附录标题采用 A.、B. 等连续编号。"
+  },
+  {
+    "rule_id": "icml-2026-initial_submission-08-3d2f92548b337862",
+    "canonical_rule_id": "icml-2026-initial_submission-08-3d2f92548b337862",
+    "title": "8. 初稿匿名｜论文标题下方水平线与摘要标题“Abstract”之间不得存在身份信息块。",
+    "description": "规则ID：icml-2026-initial_submission-08-3d2f92548b337862\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：initial_submission\n章节：8. 初稿匿名\n规则类别：author_identity\n规则原文：\n论文标题下方水平线与摘要标题“Abstract”之间不得存在身份信息块。\n原子检查要求：\n论文标题下方水平线与摘要标题“Abstract”之间不得存在身份信息块。",
+    "rule_text": "论文标题下方水平线与摘要标题“Abstract”之间不得存在身份信息块。",
+    "atomic_requirement": "论文标题下方水平线与摘要标题“Abstract”之间不得存在身份信息块。",
+    "keywords": [
+      "icml",
+      "2026",
+      "initial_submission",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "initial_submission",
+    "target_document": "e889e812850611f1b211d112fde53137",
+    "source_document_id": "e889e812850611f1b211d112fde53137",
+    "section_path": "8. 初稿匿名",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "initial_submission"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-initial_submission-08-3d2f92548b337862"
+    ],
+    "source_text": "论文标题下方水平线与摘要标题“Abstract”之间不得存在身份信息块。"
+  },
+  {
+    "rule_id": "icml-2026-initial_submission-08-9d15da6de36fbf31",
+    "canonical_rule_id": "icml-2026-initial_submission-08-9d15da6de36fbf31",
+    "title": "8. 初稿匿名｜论文标题下方水平线与摘要标题“Abstract”之间的区域只允许为空，或包含 Anonymous Authors、Anonymous Submission、Under Review。",
+    "description": "规则ID：icml-2026-initial_submission-08-9d15da6de36fbf31\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：initial_submission\n章节：8. 初稿匿名\n规则类别：author_identity\n规则原文：\n论文标题下方水平线与摘要标题“Abstract”之间的区域只允许为空，或包含 Anonymous Authors、Anonymous Submission、Under Review。\n原子检查要求：\n论文标题下方水平线与摘要标题“Abstract”之间的区域只允许为空，或包含 Anonymous Authors、Anonymous Submission、Under Review。",
+    "rule_text": "论文标题下方水平线与摘要标题“Abstract”之间的区域只允许为空，或包含 Anonymous Authors、Anonymous Submission、Under Review。",
+    "atomic_requirement": "论文标题下方水平线与摘要标题“Abstract”之间的区域只允许为空，或包含 Anonymous Authors、Anonymous Submission、Under Review。",
+    "keywords": [
+      "icml",
+      "2026",
+      "initial_submission",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "initial_submission",
+    "target_document": "e889e812850611f1b211d112fde53137",
+    "source_document_id": "e889e812850611f1b211d112fde53137",
+    "section_path": "8. 初稿匿名",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "initial_submission"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-initial_submission-08-9d15da6de36fbf31"
+    ],
+    "source_text": "论文标题下方水平线与摘要标题“Abstract”之间的区域只允许为空，或包含 Anonymous Authors、Anonymous Submission、Under Review。"
+  },
+  {
+    "rule_id": "icml-2026-initial_submission-08-62eadbfab362b1b5",
+    "canonical_rule_id": "icml-2026-initial_submission-08-62eadbfab362b1b5",
+    "title": "8. 初稿匿名｜首页不得出现符合邮箱格式的文本。",
+    "description": "规则ID：icml-2026-initial_submission-08-62eadbfab362b1b5\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：initial_submission\n章节：8. 初稿匿名\n规则类别：author_identity\n规则原文：\n首页不得出现符合邮箱格式的文本。\n原子检查要求：\n首页不得出现符合邮箱格式的文本。",
+    "rule_text": "首页不得出现符合邮箱格式的文本。",
+    "atomic_requirement": "首页不得出现符合邮箱格式的文本。",
+    "keywords": [
+      "icml",
+      "2026",
+      "initial_submission",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "initial_submission",
+    "target_document": "e889e812850611f1b211d112fde53137",
+    "source_document_id": "e889e812850611f1b211d112fde53137",
+    "section_path": "8. 初稿匿名",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "initial_submission"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-initial_submission-08-62eadbfab362b1b5"
+    ],
+    "source_text": "首页不得出现符合邮箱格式的文本。"
+  },
+  {
+    "rule_id": "icml-2026-initial_submission-08-8c5d56dc63f937b3",
+    "canonical_rule_id": "icml-2026-initial_submission-08-8c5d56dc63f937b3",
+    "title": "8. 初稿匿名｜首页不得出现 Correspondence to:。",
+    "description": "规则ID：icml-2026-initial_submission-08-8c5d56dc63f937b3\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：initial_submission\n章节：8. 初稿匿名\n规则类别：author_identity\n规则原文：\n首页不得出现 Correspondence to:。\n原子检查要求：\n首页不得出现 Correspondence to:。",
+    "rule_text": "首页不得出现 Correspondence to:。",
+    "atomic_requirement": "首页不得出现 Correspondence to:。",
+    "keywords": [
+      "icml",
+      "2026",
+      "initial_submission",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "initial_submission",
+    "target_document": "e889e812850611f1b211d112fde53137",
+    "source_document_id": "e889e812850611f1b211d112fde53137",
+    "section_path": "8. 初稿匿名",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "initial_submission"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-initial_submission-08-8c5d56dc63f937b3"
+    ],
+    "source_text": "首页不得出现 Correspondence to:。"
+  },
+  {
+    "rule_id": "icml-2026-initial_submission-08-0e0353442d8010e8",
+    "canonical_rule_id": "icml-2026-initial_submission-08-0e0353442d8010e8",
+    "title": "8. 初稿匿名｜首页不得出现 Proceedings of。",
+    "description": "规则ID：icml-2026-initial_submission-08-0e0353442d8010e8\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：initial_submission\n章节：8. 初稿匿名\n规则类别：author_identity\n规则原文：\n首页不得出现 Proceedings of。\n原子检查要求：\n首页不得出现 Proceedings of。",
+    "rule_text": "首页不得出现 Proceedings of。",
+    "atomic_requirement": "首页不得出现 Proceedings of。",
+    "keywords": [
+      "icml",
+      "2026",
+      "initial_submission",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "initial_submission",
+    "target_document": "e889e812850611f1b211d112fde53137",
+    "source_document_id": "e889e812850611f1b211d112fde53137",
+    "section_path": "8. 初稿匿名",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "initial_submission"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-initial_submission-08-0e0353442d8010e8"
+    ],
+    "source_text": "首页不得出现 Proceedings of。"
+  },
+  {
+    "rule_id": "icml-2026-initial_submission-08-dd7b0ab51487fc04",
+    "canonical_rule_id": "icml-2026-initial_submission-08-dd7b0ab51487fc04",
+    "title": "8. 初稿匿名｜首页不得出现 Copyright。",
+    "description": "规则ID：icml-2026-initial_submission-08-dd7b0ab51487fc04\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：initial_submission\n章节：8. 初稿匿名\n规则类别：author_identity\n规则原文：\n首页不得出现 Copyright。\n原子检查要求：\n首页不得出现 Copyright。",
+    "rule_text": "首页不得出现 Copyright。",
+    "atomic_requirement": "首页不得出现 Copyright。",
+    "keywords": [
+      "icml",
+      "2026",
+      "initial_submission",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "initial_submission",
+    "target_document": "e889e812850611f1b211d112fde53137",
+    "source_document_id": "e889e812850611f1b211d112fde53137",
+    "section_path": "8. 初稿匿名",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "initial_submission"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-initial_submission-08-dd7b0ab51487fc04"
+    ],
+    "source_text": "首页不得出现 Copyright。"
+  },
+  {
+    "rule_id": "icml-2026-initial_submission-08-f65e1ba7667107db",
+    "canonical_rule_id": "icml-2026-initial_submission-08-f65e1ba7667107db",
+    "title": "8. 初稿匿名｜首页不得出现 ©。",
+    "description": "规则ID：icml-2026-initial_submission-08-f65e1ba7667107db\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：initial_submission\n章节：8. 初稿匿名\n规则类别：author_identity\n规则原文：\n首页不得出现 ©。\n原子检查要求：\n首页不得出现 ©。",
+    "rule_text": "首页不得出现 ©。",
+    "atomic_requirement": "首页不得出现 ©。",
+    "keywords": [
+      "icml",
+      "2026",
+      "initial_submission",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "initial_submission",
+    "target_document": "e889e812850611f1b211d112fde53137",
+    "source_document_id": "e889e812850611f1b211d112fde53137",
+    "section_path": "8. 初稿匿名",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "initial_submission"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-initial_submission-08-f65e1ba7667107db"
+    ],
+    "source_text": "首页不得出现 ©。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-10-72367a7f7bba5431",
+    "canonical_rule_id": "icml-2026-camera_ready-10-72367a7f7bba5431",
+    "title": "10. 终稿页面｜每页宽度：612 ± 1 pt。",
+    "description": "规则ID：icml-2026-camera_ready-10-72367a7f7bba5431\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：10. 终稿页面\n规则类别：page_layout\n规则原文：\n每页宽度：612 ± 1 pt。\n原子检查要求：\n每页宽度：612 ± 1 pt。",
+    "rule_text": "每页宽度：612 ± 1 pt。",
+    "atomic_requirement": "每页宽度：612 ± 1 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "10. 终稿页面",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-10-72367a7f7bba5431"
+    ],
+    "source_text": "每页宽度：612 ± 1 pt。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-10-eb3698d77b356334",
+    "canonical_rule_id": "icml-2026-camera_ready-10-eb3698d77b356334",
+    "title": "10. 终稿页面｜每页高度：792 ± 1 pt。",
+    "description": "规则ID：icml-2026-camera_ready-10-eb3698d77b356334\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：10. 终稿页面\n规则类别：page_layout\n规则原文：\n每页高度：792 ± 1 pt。\n原子检查要求：\n每页高度：792 ± 1 pt。",
+    "rule_text": "每页高度：792 ± 1 pt。",
+    "atomic_requirement": "每页高度：792 ± 1 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "10. 终稿页面",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-10-eb3698d77b356334"
+    ],
+    "source_text": "每页高度：792 ± 1 pt。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-10-968d41dcb38d2545",
+    "canonical_rule_id": "icml-2026-camera_ready-10-968d41dcb38d2545",
+    "title": "10. 终稿页面｜页面旋转角度为 0。",
+    "description": "规则ID：icml-2026-camera_ready-10-968d41dcb38d2545\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：10. 终稿页面\n规则类别：page_layout\n规则原文：\n页面旋转角度为 0。\n原子检查要求：\n页面旋转角度为 0。",
+    "rule_text": "页面旋转角度为 0。",
+    "atomic_requirement": "页面旋转角度为 0。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "10. 终稿页面",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-10-968d41dcb38d2545"
+    ],
+    "source_text": "页面旋转角度为 0。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-10-986baa15db344c1a",
+    "canonical_rule_id": "icml-2026-camera_ready-10-986baa15db344c1a",
+    "title": "10. 终稿页面｜所有页面尺寸一致。",
+    "description": "规则ID：icml-2026-camera_ready-10-986baa15db344c1a\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：10. 终稿页面\n规则类别：page_layout\n规则原文：\n所有页面尺寸一致。\n原子检查要求：\n所有页面尺寸一致。",
+    "rule_text": "所有页面尺寸一致。",
+    "atomic_requirement": "所有页面尺寸一致。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "page_layout"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "10. 终稿页面",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-10-986baa15db344c1a"
+    ],
+    "source_text": "所有页面尺寸一致。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-a1f1e37ff0e96fef",
+    "canonical_rule_id": "icml-2026-camera_ready-11-a1f1e37ff0e96fef",
+    "title": "11. 终稿作者｜作者信息位于论文标题下方水平线之后。",
+    "description": "规则ID：icml-2026-camera_ready-11-a1f1e37ff0e96fef\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n作者信息位于论文标题下方水平线之后。\n原子检查要求：\n作者信息位于论文标题下方水平线之后。",
+    "rule_text": "作者信息位于论文标题下方水平线之后。",
+    "atomic_requirement": "作者信息位于论文标题下方水平线之后。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-a1f1e37ff0e96fef"
+    ],
+    "source_text": "作者信息位于论文标题下方水平线之后。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-2633301132682cda",
+    "canonical_rule_id": "icml-2026-camera_ready-11-2633301132682cda",
+    "title": "11. 终稿作者｜作者姓名文本或其上标距论文标题下方水平线：19–24 pt。",
+    "description": "规则ID：icml-2026-camera_ready-11-2633301132682cda\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n作者姓名文本或其上标距论文标题下方水平线：19–24 pt。\n原子检查要求：\n作者姓名文本或其上标距论文标题下方水平线：19–24 pt。",
+    "rule_text": "作者姓名文本或其上标距论文标题下方水平线：19–24 pt。",
+    "atomic_requirement": "作者姓名文本或其上标距论文标题下方水平线：19–24 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-2633301132682cda"
+    ],
+    "source_text": "作者姓名文本或其上标距论文标题下方水平线：19–24 pt。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-5682a3c5024fbdc3",
+    "canonical_rule_id": "icml-2026-camera_ready-11-5682a3c5024fbdc3",
+    "title": "11. 终稿作者｜作者姓名字号：9.5–10.5 pt。",
+    "description": "规则ID：icml-2026-camera_ready-11-5682a3c5024fbdc3\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n作者姓名字号：9.5–10.5 pt。\n原子检查要求：\n作者姓名字号：9.5–10.5 pt。",
+    "rule_text": "作者姓名字号：9.5–10.5 pt。",
+    "atomic_requirement": "作者姓名字号：9.5–10.5 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-5682a3c5024fbdc3"
+    ],
+    "source_text": "作者姓名字号：9.5–10.5 pt。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-fcdcf87d13ffdd12",
+    "canonical_rule_id": "icml-2026-camera_ready-11-fcdcf87d13ffdd12",
+    "title": "11. 终稿作者｜作者姓名为粗体。",
+    "description": "规则ID：icml-2026-camera_ready-11-fcdcf87d13ffdd12\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n作者姓名为粗体。\n原子检查要求：\n作者姓名为粗体。",
+    "rule_text": "作者姓名为粗体。",
+    "atomic_requirement": "作者姓名为粗体。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-fcdcf87d13ffdd12"
+    ],
+    "source_text": "作者姓名为粗体。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-0a58f4aa5c0c064f",
+    "canonical_rule_id": "icml-2026-camera_ready-11-0a58f4aa5c0c064f",
+    "title": "11. 终稿作者｜作者姓名行中心与正文区域中心的偏差不超过 8 pt。",
+    "description": "规则ID：icml-2026-camera_ready-11-0a58f4aa5c0c064f\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n作者姓名行中心与正文区域中心的偏差不超过 8 pt。\n原子检查要求：\n作者姓名行中心与正文区域中心的偏差不超过 8 pt。",
+    "rule_text": "作者姓名行中心与正文区域中心的偏差不超过 8 pt。",
+    "atomic_requirement": "作者姓名行中心与正文区域中心的偏差不超过 8 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-0a58f4aa5c0c064f"
+    ],
+    "source_text": "作者姓名行中心与正文区域中心的偏差不超过 8 pt。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-74989ab794d6921f",
+    "canonical_rule_id": "icml-2026-camera_ready-11-74989ab794d6921f",
+    "title": "11. 终稿作者｜所有作者姓名位于同一行。",
+    "description": "规则ID：icml-2026-camera_ready-11-74989ab794d6921f\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n所有作者姓名位于同一行。\n原子检查要求：\n所有作者姓名位于同一行。",
+    "rule_text": "所有作者姓名位于同一行。",
+    "atomic_requirement": "所有作者姓名位于同一行。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-74989ab794d6921f"
+    ],
+    "source_text": "所有作者姓名位于同一行。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-5f36d2ca7e5b74fa",
+    "canonical_rule_id": "icml-2026-camera_ready-11-5f36d2ca7e5b74fa",
+    "title": "11. 终稿作者｜单个作者姓名不得跨行。",
+    "description": "规则ID：icml-2026-camera_ready-11-5f36d2ca7e5b74fa\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n单个作者姓名不得跨行。\n原子检查要求：\n单个作者姓名不得跨行。",
+    "rule_text": "单个作者姓名不得跨行。",
+    "atomic_requirement": "单个作者姓名不得跨行。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-5f36d2ca7e5b74fa"
+    ],
+    "source_text": "单个作者姓名不得跨行。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-60e482d1c6c65919",
+    "canonical_rule_id": "icml-2026-camera_ready-11-60e482d1c6c65919",
+    "title": "11. 终稿作者｜单位编号从 1 开始连续出现。",
+    "description": "规则ID：icml-2026-camera_ready-11-60e482d1c6c65919\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n单位编号从 1 开始连续出现。\n原子检查要求：\n单位编号从 1 开始连续出现。",
+    "rule_text": "单位编号从 1 开始连续出现。",
+    "atomic_requirement": "单位编号从 1 开始连续出现。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-60e482d1c6c65919"
+    ],
+    "source_text": "单位编号从 1 开始连续出现。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-5653820ff0ff3e29",
+    "canonical_rule_id": "icml-2026-camera_ready-11-5653820ff0ff3e29",
+    "title": "11. 终稿作者｜单位编号为上标且不加粗。",
+    "description": "规则ID：icml-2026-camera_ready-11-5653820ff0ff3e29\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n单位编号为上标且不加粗。\n原子检查要求：\n单位编号为上标且不加粗。",
+    "rule_text": "单位编号为上标且不加粗。",
+    "atomic_requirement": "单位编号为上标且不加粗。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-5653820ff0ff3e29"
+    ],
+    "source_text": "单位编号为上标且不加粗。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-914eddeffa19e41c",
+    "canonical_rule_id": "icml-2026-camera_ready-11-914eddeffa19e41c",
+    "title": "11. 终稿作者｜单位信息集中在首页同一个脚注块中。",
+    "description": "规则ID：icml-2026-camera_ready-11-914eddeffa19e41c\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n单位信息集中在首页同一个脚注块中。\n原子检查要求：\n单位信息集中在首页同一个脚注块中。",
+    "rule_text": "单位信息集中在首页同一个脚注块中。",
+    "atomic_requirement": "单位信息集中在首页同一个脚注块中。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-914eddeffa19e41c"
+    ],
+    "source_text": "单位信息集中在首页同一个脚注块中。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-11-4d2810cb04f56b81",
+    "canonical_rule_id": "icml-2026-camera_ready-11-4d2810cb04f56b81",
+    "title": "11. 终稿作者｜相同单位文本只出现一次。",
+    "description": "规则ID：icml-2026-camera_ready-11-4d2810cb04f56b81\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：11. 终稿作者\n规则类别：author_identity\n规则原文：\n相同单位文本只出现一次。\n原子检查要求：\n相同单位文本只出现一次。",
+    "rule_text": "相同单位文本只出现一次。",
+    "atomic_requirement": "相同单位文本只出现一次。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "author_identity"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "11. 终稿作者",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "author_identity",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "author_identity",
+      "font_style",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-11-4d2810cb04f56b81"
+    ],
+    "source_text": "相同单位文本只出现一次。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-12-65b3dbd887a0faa6",
+    "canonical_rule_id": "icml-2026-camera_ready-12-65b3dbd887a0faa6",
+    "title": "12. 终稿摘要｜摘要标题“Abstract”居中。",
+    "description": "规则ID：icml-2026-camera_ready-12-65b3dbd887a0faa6\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：12. 终稿摘要\n规则类别：abstract\n规则原文：\n摘要标题“Abstract”居中。\n原子检查要求：\n摘要标题“Abstract”居中。",
+    "rule_text": "摘要标题“Abstract”居中。",
+    "atomic_requirement": "摘要标题“Abstract”居中。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "abstract"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "12. 终稿摘要",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-12-65b3dbd887a0faa6"
+    ],
+    "source_text": "摘要标题“Abstract”居中。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-12-d6778e098eab597c",
+    "canonical_rule_id": "icml-2026-camera_ready-12-d6778e098eab597c",
+    "title": "12. 终稿摘要｜摘要标题“Abstract”的字号：11.5–12.3 pt。",
+    "description": "规则ID：icml-2026-camera_ready-12-d6778e098eab597c\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：12. 终稿摘要\n规则类别：abstract\n规则原文：\n摘要标题“Abstract”的字号：11.5–12.3 pt。\n原子检查要求：\n摘要标题“Abstract”的字号：11.5–12.3 pt。",
+    "rule_text": "摘要标题“Abstract”的字号：11.5–12.3 pt。",
+    "atomic_requirement": "摘要标题“Abstract”的字号：11.5–12.3 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "abstract"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "12. 终稿摘要",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-12-d6778e098eab597c"
+    ],
+    "source_text": "摘要标题“Abstract”的字号：11.5–12.3 pt。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-12-9380550432449561",
+    "canonical_rule_id": "icml-2026-camera_ready-12-9380550432449561",
+    "title": "12. 终稿摘要｜摘要标题“Abstract”的粗体字符比例至少为 0.9。",
+    "description": "规则ID：icml-2026-camera_ready-12-9380550432449561\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：12. 终稿摘要\n规则类别：abstract\n规则原文：\n摘要标题“Abstract”的粗体字符比例至少为 0.9。\n原子检查要求：\n摘要标题“Abstract”的粗体字符比例至少为 0.9。",
+    "rule_text": "摘要标题“Abstract”的粗体字符比例至少为 0.9。",
+    "atomic_requirement": "摘要标题“Abstract”的粗体字符比例至少为 0.9。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "abstract"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "12. 终稿摘要",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-12-9380550432449561"
+    ],
+    "source_text": "摘要标题“Abstract”的粗体字符比例至少为 0.9。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-12-022b09ae493a056d",
+    "canonical_rule_id": "icml-2026-camera_ready-12-022b09ae493a056d",
+    "title": "12. 终稿摘要｜摘要正文位于左栏。",
+    "description": "规则ID：icml-2026-camera_ready-12-022b09ae493a056d\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：12. 终稿摘要\n规则类别：abstract\n规则原文：\n摘要正文位于左栏。\n原子检查要求：\n摘要正文位于左栏。",
+    "rule_text": "摘要正文位于左栏。",
+    "atomic_requirement": "摘要正文位于左栏。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "abstract"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "12. 终稿摘要",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-12-022b09ae493a056d"
+    ],
+    "source_text": "摘要正文位于左栏。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-12-c86e79794aa48431",
+    "canonical_rule_id": "icml-2026-camera_ready-12-c86e79794aa48431",
+    "title": "12. 终稿摘要｜摘要正文字号：9.5–10.5 pt。",
+    "description": "规则ID：icml-2026-camera_ready-12-c86e79794aa48431\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：12. 终稿摘要\n规则类别：abstract\n规则原文：\n摘要正文字号：9.5–10.5 pt。\n原子检查要求：\n摘要正文字号：9.5–10.5 pt。",
+    "rule_text": "摘要正文字号：9.5–10.5 pt。",
+    "atomic_requirement": "摘要正文字号：9.5–10.5 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "abstract"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "12. 终稿摘要",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-12-c86e79794aa48431"
+    ],
+    "source_text": "摘要正文字号：9.5–10.5 pt。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-12-59f4121b7255720d",
+    "canonical_rule_id": "icml-2026-camera_ready-12-59f4121b7255720d",
+    "title": "12. 终稿摘要｜摘要正文的基线间距中位数：11–12.5 pt。",
+    "description": "规则ID：icml-2026-camera_ready-12-59f4121b7255720d\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：12. 终稿摘要\n规则类别：abstract\n规则原文：\n摘要正文的基线间距中位数：11–12.5 pt。\n原子检查要求：\n摘要正文的基线间距中位数：11–12.5 pt。",
+    "rule_text": "摘要正文的基线间距中位数：11–12.5 pt。",
+    "atomic_requirement": "摘要正文的基线间距中位数：11–12.5 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "abstract"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "12. 终稿摘要",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-12-59f4121b7255720d"
+    ],
+    "source_text": "摘要正文的基线间距中位数：11–12.5 pt。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-12-6b1a445f7ccb1648",
+    "canonical_rule_id": "icml-2026-camera_ready-12-6b1a445f7ccb1648",
+    "title": "12. 终稿摘要｜摘要正文左侧额外缩进：15–21 pt。",
+    "description": "规则ID：icml-2026-camera_ready-12-6b1a445f7ccb1648\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：12. 终稿摘要\n规则类别：abstract\n规则原文：\n摘要正文左侧额外缩进：15–21 pt。\n原子检查要求：\n摘要正文左侧额外缩进：15–21 pt。",
+    "rule_text": "摘要正文左侧额外缩进：15–21 pt。",
+    "atomic_requirement": "摘要正文左侧额外缩进：15–21 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "abstract"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "12. 终稿摘要",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-12-6b1a445f7ccb1648"
+    ],
+    "source_text": "摘要正文左侧额外缩进：15–21 pt。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-12-13bed63547db1f4a",
+    "canonical_rule_id": "icml-2026-camera_ready-12-13bed63547db1f4a",
+    "title": "12. 终稿摘要｜摘要正文右侧额外缩进：15–21 pt。",
+    "description": "规则ID：icml-2026-camera_ready-12-13bed63547db1f4a\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：12. 终稿摘要\n规则类别：abstract\n规则原文：\n摘要正文右侧额外缩进：15–21 pt。\n原子检查要求：\n摘要正文右侧额外缩进：15–21 pt。",
+    "rule_text": "摘要正文右侧额外缩进：15–21 pt。",
+    "atomic_requirement": "摘要正文右侧额外缩进：15–21 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "abstract"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "12. 终稿摘要",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-12-13bed63547db1f4a"
+    ],
+    "source_text": "摘要正文右侧额外缩进：15–21 pt。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-12-09f7589ce943d432",
+    "canonical_rule_id": "icml-2026-camera_ready-12-09f7589ce943d432",
+    "title": "12. 终稿摘要｜摘要由一个段落组成。",
+    "description": "规则ID：icml-2026-camera_ready-12-09f7589ce943d432\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：12. 终稿摘要\n规则类别：abstract\n规则原文：\n摘要由一个段落组成。\n原子检查要求：\n摘要由一个段落组成。",
+    "rule_text": "摘要由一个段落组成。",
+    "atomic_requirement": "摘要由一个段落组成。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "abstract"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "12. 终稿摘要",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-12-09f7589ce943d432"
+    ],
+    "source_text": "摘要由一个段落组成。"
+  },
+  {
+    "rule_id": "icml-2026-camera_ready-12-cf36995f3769f816",
+    "canonical_rule_id": "icml-2026-camera_ready-12-cf36995f3769f816",
+    "title": "12. 终稿摘要｜摘要正文结束后空白：26–32 pt。",
+    "description": "规则ID：icml-2026-camera_ready-12-cf36995f3769f816\n会议：International Conference on Machine Learning (ICML)\n规范版本：2026.1\n投稿模式：camera_ready\n章节：12. 终稿摘要\n规则类别：abstract\n规则原文：\n摘要正文结束后空白：26–32 pt。\n原子检查要求：\n摘要正文结束后空白：26–32 pt。",
+    "rule_text": "摘要正文结束后空白：26–32 pt。",
+    "atomic_requirement": "摘要正文结束后空白：26–32 pt。",
+    "keywords": [
+      "icml",
+      "2026",
+      "camera_ready",
+      "abstract"
+    ],
+    "venue_id": "icml",
+    "format_version": "2026.1",
+    "submission_mode": "camera_ready",
+    "target_document": "e8a6511e850611f1b211d112fde53137",
+    "source_document_id": "e8a6511e850611f1b211d112fde53137",
+    "section_path": "12. 终稿摘要",
+    "effective_from": "2026-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_submission_mode": [
+        "camera_ready"
+      ]
+    },
+    "evidence_selector": [
+      "page_geometry",
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "icml-2026-camera_ready-12-cf36995f3769f816"
+    ],
+    "source_text": "摘要正文结束后空白：26–32 pt。"
+  }
+]

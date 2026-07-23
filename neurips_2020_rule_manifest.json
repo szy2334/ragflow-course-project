@@ -1,0 +1,1453 @@
+[
+  {
+    "rule_id": "neurips-2020-shared-01-a71f873e2bfff9b2",
+    "canonical_rule_id": "neurips-2020-shared-01-a71f873e2bfff9b2",
+    "title": "1. 正文区域几何（NIPS-01）｜正文横向版心宽度：396 ± 3 pt。",
+    "description": "规则ID：neurips-2020-shared-01-a71f873e2bfff9b2\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：1. 正文区域几何（NIPS-01）\n规则类别：page_layout\n规则原文：\n正文横向版心宽度：396 ± 3 pt。\n原子检查要求：\n正文横向版心宽度：396 ± 3 pt。",
+    "rule_text": "正文横向版心宽度：396 ± 3 pt。",
+    "atomic_requirement": "正文横向版心宽度：396 ± 3 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "1. 正文区域几何（NIPS-01）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-01-a71f873e2bfff9b2"
+    ],
+    "source_text": "正文横向版心宽度：396 ± 3 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-01-d09cbf61bceab87d",
+    "canonical_rule_id": "neurips-2020-shared-01-d09cbf61bceab87d",
+    "title": "1. 正文区域几何（NIPS-01）｜正文左边界：108 ± 3 pt。",
+    "description": "规则ID：neurips-2020-shared-01-d09cbf61bceab87d\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：1. 正文区域几何（NIPS-01）\n规则类别：page_layout\n规则原文：\n正文左边界：108 ± 3 pt。\n原子检查要求：\n正文左边界：108 ± 3 pt。",
+    "rule_text": "正文左边界：108 ± 3 pt。",
+    "atomic_requirement": "正文左边界：108 ± 3 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "1. 正文区域几何（NIPS-01）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-01-d09cbf61bceab87d"
+    ],
+    "source_text": "正文左边界：108 ± 3 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-01-ea2879907d86a877",
+    "canonical_rule_id": "neurips-2020-shared-01-ea2879907d86a877",
+    "title": "1. 正文区域几何（NIPS-01）｜正文区域起点距页顶：72 ± 3 pt。",
+    "description": "规则ID：neurips-2020-shared-01-ea2879907d86a877\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：1. 正文区域几何（NIPS-01）\n规则类别：page_layout\n规则原文：\n正文区域起点距页顶：72 ± 3 pt。\n原子检查要求：\n正文区域起点距页顶：72 ± 3 pt。",
+    "rule_text": "正文区域起点距页顶：72 ± 3 pt。",
+    "atomic_requirement": "正文区域起点距页顶：72 ± 3 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "1. 正文区域几何（NIPS-01）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-01-ea2879907d86a877"
+    ],
+    "source_text": "正文区域起点距页顶：72 ± 3 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-02-9dc4e64e3cb08908",
+    "canonical_rule_id": "neurips-2020-shared-02-9dc4e64e3cb08908",
+    "title": "2. 正文字体与行距（NIPS-02）｜正文主字体必须为 Times New Roman，或属于下列 Times 兼容字体白名单。",
+    "description": "规则ID：neurips-2020-shared-02-9dc4e64e3cb08908\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：2. 正文字体与行距（NIPS-02）\n规则类别：page_layout\n规则原文：\n正文主字体必须为 Times New Roman，或属于下列 Times 兼容字体白名单。\n原子检查要求：\n正文主字体必须为 Times New Roman，或属于下列 Times 兼容字体白名单。\n字体白名单：\nTimes*\nNimbusRomNo9L*\nLiberationSerif*\nTeXGyreTermes*\nNewTX*\nSTIX*\nXITS*",
+    "rule_text": "正文主字体必须为 Times New Roman，或属于下列 Times 兼容字体白名单。",
+    "atomic_requirement": "正文主字体必须为 Times New Roman，或属于下列 Times 兼容字体白名单。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "2. 正文字体与行距（NIPS-02）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-02-9dc4e64e3cb08908"
+    ],
+    "source_text": "正文主字体必须为 Times New Roman，或属于下列 Times 兼容字体白名单。",
+    "source_attachment": "Times*\nNimbusRomNo9L*\nLiberationSerif*\nTeXGyreTermes*\nNewTX*\nSTIX*\nXITS*"
+  },
+  {
+    "rule_id": "neurips-2020-shared-02-68d085b819c9a23f",
+    "canonical_rule_id": "neurips-2020-shared-02-68d085b819c9a23f",
+    "title": "2. 正文字体与行距（NIPS-02）｜正文主字号：9.75–10.25 pt。",
+    "description": "规则ID：neurips-2020-shared-02-68d085b819c9a23f\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：2. 正文字体与行距（NIPS-02）\n规则类别：page_layout\n规则原文：\n正文主字号：9.75–10.25 pt。\n原子检查要求：\n正文主字号：9.75–10.25 pt。",
+    "rule_text": "正文主字号：9.75–10.25 pt。",
+    "atomic_requirement": "正文主字号：9.75–10.25 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "2. 正文字体与行距（NIPS-02）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-02-68d085b819c9a23f"
+    ],
+    "source_text": "正文主字号：9.75–10.25 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-02-9f39a077cc32fb25",
+    "canonical_rule_id": "neurips-2020-shared-02-9f39a077cc32fb25",
+    "title": "2. 正文字体与行距（NIPS-02）｜正文相邻行基线距离中位数：10.5–11.5 pt。",
+    "description": "规则ID：neurips-2020-shared-02-9f39a077cc32fb25\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：2. 正文字体与行距（NIPS-02）\n规则类别：page_layout\n规则原文：\n正文相邻行基线距离中位数：10.5–11.5 pt。\n原子检查要求：\n正文相邻行基线距离中位数：10.5–11.5 pt。",
+    "rule_text": "正文相邻行基线距离中位数：10.5–11.5 pt。",
+    "atomic_requirement": "正文相邻行基线距离中位数：10.5–11.5 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "2. 正文字体与行距（NIPS-02）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-02-9f39a077cc32fb25"
+    ],
+    "source_text": "正文相邻行基线距离中位数：10.5–11.5 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-03-7ee21c7266c0498e",
+    "canonical_rule_id": "neurips-2020-shared-03-7ee21c7266c0498e",
+    "title": "3. 段落格式（NIPS-03）｜普通正文段落首行缩进中位数的绝对值不超过 1.5 pt。",
+    "description": "规则ID：neurips-2020-shared-03-7ee21c7266c0498e\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：3. 段落格式（NIPS-03）\n规则类别：page_layout\n规则原文：\n普通正文段落首行缩进中位数的绝对值不超过 1.5 pt。\n原子检查要求：\n普通正文段落首行缩进中位数的绝对值不超过 1.5 pt。",
+    "rule_text": "普通正文段落首行缩进中位数的绝对值不超过 1.5 pt。",
+    "atomic_requirement": "普通正文段落首行缩进中位数的绝对值不超过 1.5 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "3. 段落格式（NIPS-03）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-03-7ee21c7266c0498e"
+    ],
+    "source_text": "普通正文段落首行缩进中位数的绝对值不超过 1.5 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-03-c5941250c455a9de",
+    "canonical_rule_id": "neurips-2020-shared-03-c5941250c455a9de",
+    "title": "3. 段落格式（NIPS-03）｜相邻段落额外垂直间距中位数：3.5–7.5 pt。",
+    "description": "规则ID：neurips-2020-shared-03-c5941250c455a9de\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：3. 段落格式（NIPS-03）\n规则类别：page_layout\n规则原文：\n相邻段落额外垂直间距中位数：3.5–7.5 pt。\n原子检查要求：\n相邻段落额外垂直间距中位数：3.5–7.5 pt。",
+    "rule_text": "相邻段落额外垂直间距中位数：3.5–7.5 pt。",
+    "atomic_requirement": "相邻段落额外垂直间距中位数：3.5–7.5 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "page_layout"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "3. 段落格式（NIPS-03）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "page_layout",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-03-c5941250c455a9de"
+    ],
+    "source_text": "相邻段落额外垂直间距中位数：3.5–7.5 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-04-e2f224f8ea415801",
+    "canonical_rule_id": "neurips-2020-shared-04-e2f224f8ea415801",
+    "title": "4. 论文标题（NIPS-04）｜论文标题字号：16.5–17.5 pt。",
+    "description": "规则ID：neurips-2020-shared-04-e2f224f8ea415801\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：4. 论文标题（NIPS-04）\n规则类别：heading\n规则原文：\n论文标题字号：16.5–17.5 pt。\n原子检查要求：\n论文标题字号：16.5–17.5 pt。",
+    "rule_text": "论文标题字号：16.5–17.5 pt。",
+    "atomic_requirement": "论文标题字号：16.5–17.5 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "4. 论文标题（NIPS-04）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "author_identity",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-04-e2f224f8ea415801"
+    ],
+    "source_text": "论文标题字号：16.5–17.5 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-04-984c33d703128418",
+    "canonical_rule_id": "neurips-2020-shared-04-984c33d703128418",
+    "title": "4. 论文标题（NIPS-04）｜论文标题的粗体字符比例至少为 0.9。",
+    "description": "规则ID：neurips-2020-shared-04-984c33d703128418\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：4. 论文标题（NIPS-04）\n规则类别：heading\n规则原文：\n论文标题的粗体字符比例至少为 0.9。\n原子检查要求：\n论文标题的粗体字符比例至少为 0.9。",
+    "rule_text": "论文标题的粗体字符比例至少为 0.9。",
+    "atomic_requirement": "论文标题的粗体字符比例至少为 0.9。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "4. 论文标题（NIPS-04）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "author_identity",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-04-984c33d703128418"
+    ],
+    "source_text": "论文标题的粗体字符比例至少为 0.9。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-04-04c804e3f5eb813e",
+    "canonical_rule_id": "neurips-2020-shared-04-04c804e3f5eb813e",
+    "title": "4. 论文标题（NIPS-04）｜论文标题中心与正文区域中心的偏差不超过 8 pt。",
+    "description": "规则ID：neurips-2020-shared-04-04c804e3f5eb813e\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：4. 论文标题（NIPS-04）\n规则类别：heading\n规则原文：\n论文标题中心与正文区域中心的偏差不超过 8 pt。\n原子检查要求：\n论文标题中心与正文区域中心的偏差不超过 8 pt。",
+    "rule_text": "论文标题中心与正文区域中心的偏差不超过 8 pt。",
+    "atomic_requirement": "论文标题中心与正文区域中心的偏差不超过 8 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "4. 论文标题（NIPS-04）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "author_identity",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-04-04c804e3f5eb813e"
+    ],
+    "source_text": "论文标题中心与正文区域中心的偏差不超过 8 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-04-84864a9f749137a8",
+    "canonical_rule_id": "neurips-2020-shared-04-84864a9f749137a8",
+    "title": "4. 论文标题（NIPS-04）｜论文标题上方和下方必须各检测到至少一条水平线。",
+    "description": "规则ID：neurips-2020-shared-04-84864a9f749137a8\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：4. 论文标题（NIPS-04）\n规则类别：heading\n规则原文：\n论文标题上方和下方必须各检测到至少一条水平线。\n原子检查要求：\n论文标题上方和下方必须各检测到至少一条水平线。",
+    "rule_text": "论文标题上方和下方必须各检测到至少一条水平线。",
+    "atomic_requirement": "论文标题上方和下方必须各检测到至少一条水平线。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "4. 论文标题（NIPS-04）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "front_matter"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "author_identity",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-04-84864a9f749137a8"
+    ],
+    "source_text": "论文标题上方和下方必须各检测到至少一条水平线。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-05-02b984c540b85268",
+    "canonical_rule_id": "neurips-2020-shared-05-02b984c540b85268",
+    "title": "5. 摘要（NIPS-05）｜摘要正文相对正文区域左、右边界的额外缩进均为 31–41 pt。",
+    "description": "规则ID：neurips-2020-shared-05-02b984c540b85268\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：5. 摘要（NIPS-05）\n规则类别：abstract\n规则原文：\n摘要正文相对正文区域左、右边界的额外缩进均为 31–41 pt。\n原子检查要求：\n摘要正文相对正文区域左、右边界的额外缩进均为 31–41 pt。",
+    "rule_text": "摘要正文相对正文区域左、右边界的额外缩进均为 31–41 pt。",
+    "atomic_requirement": "摘要正文相对正文区域左、右边界的额外缩进均为 31–41 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "abstract"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "5. 摘要（NIPS-05）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "abstract",
+      "body_section"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-05-02b984c540b85268"
+    ],
+    "source_text": "摘要正文相对正文区域左、右边界的额外缩进均为 31–41 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-05-028417506ff6d560",
+    "canonical_rule_id": "neurips-2020-shared-05-028417506ff6d560",
+    "title": "5. 摘要（NIPS-05）｜摘要正文字号：9.5–10.5 pt。",
+    "description": "规则ID：neurips-2020-shared-05-028417506ff6d560\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：5. 摘要（NIPS-05）\n规则类别：abstract\n规则原文：\n摘要正文字号：9.5–10.5 pt。\n原子检查要求：\n摘要正文字号：9.5–10.5 pt。",
+    "rule_text": "摘要正文字号：9.5–10.5 pt。",
+    "atomic_requirement": "摘要正文字号：9.5–10.5 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "abstract"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "5. 摘要（NIPS-05）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-05-028417506ff6d560"
+    ],
+    "source_text": "摘要正文字号：9.5–10.5 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-05-f9a29aec287a2bfa",
+    "canonical_rule_id": "neurips-2020-shared-05-f9a29aec287a2bfa",
+    "title": "5. 摘要（NIPS-05）｜摘要正文相邻行基线距离：10.25–11.75 pt。",
+    "description": "规则ID：neurips-2020-shared-05-f9a29aec287a2bfa\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：5. 摘要（NIPS-05）\n规则类别：abstract\n规则原文：\n摘要正文相邻行基线距离：10.25–11.75 pt。\n原子检查要求：\n摘要正文相邻行基线距离：10.25–11.75 pt。",
+    "rule_text": "摘要正文相邻行基线距离：10.25–11.75 pt。",
+    "atomic_requirement": "摘要正文相邻行基线距离：10.25–11.75 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "abstract"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "5. 摘要（NIPS-05）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-05-f9a29aec287a2bfa"
+    ],
+    "source_text": "摘要正文相邻行基线距离：10.25–11.75 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-05-646a6b2467357bcf",
+    "canonical_rule_id": "neurips-2020-shared-05-646a6b2467357bcf",
+    "title": "5. 摘要（NIPS-05）｜摘要正文由一个段落组成。",
+    "description": "规则ID：neurips-2020-shared-05-646a6b2467357bcf\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：5. 摘要（NIPS-05）\n规则类别：abstract\n规则原文：\n摘要正文由一个段落组成。\n原子检查要求：\n摘要正文由一个段落组成。",
+    "rule_text": "摘要正文由一个段落组成。",
+    "atomic_requirement": "摘要正文由一个段落组成。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "abstract"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "5. 摘要（NIPS-05）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-05-646a6b2467357bcf"
+    ],
+    "source_text": "摘要正文由一个段落组成。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-05-b234d9e539dea587",
+    "canonical_rule_id": "neurips-2020-shared-05-b234d9e539dea587",
+    "title": "5. 摘要（NIPS-05）｜摘要标题“Abstract”的字号：11.5–12.5 pt。",
+    "description": "规则ID：neurips-2020-shared-05-b234d9e539dea587\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：5. 摘要（NIPS-05）\n规则类别：abstract\n规则原文：\n摘要标题“Abstract”的字号：11.5–12.5 pt。\n原子检查要求：\n摘要标题“Abstract”的字号：11.5–12.5 pt。",
+    "rule_text": "摘要标题“Abstract”的字号：11.5–12.5 pt。",
+    "atomic_requirement": "摘要标题“Abstract”的字号：11.5–12.5 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "abstract"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "5. 摘要（NIPS-05）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-05-b234d9e539dea587"
+    ],
+    "source_text": "摘要标题“Abstract”的字号：11.5–12.5 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-05-c960b79d9b306f3e",
+    "canonical_rule_id": "neurips-2020-shared-05-c960b79d9b306f3e",
+    "title": "5. 摘要（NIPS-05）｜摘要标题“Abstract”的粗体字符比例至少为 0.9。",
+    "description": "规则ID：neurips-2020-shared-05-c960b79d9b306f3e\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：5. 摘要（NIPS-05）\n规则类别：abstract\n规则原文：\n摘要标题“Abstract”的粗体字符比例至少为 0.9。\n原子检查要求：\n摘要标题“Abstract”的粗体字符比例至少为 0.9。",
+    "rule_text": "摘要标题“Abstract”的粗体字符比例至少为 0.9。",
+    "atomic_requirement": "摘要标题“Abstract”的粗体字符比例至少为 0.9。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "abstract"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "5. 摘要（NIPS-05）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-05-c960b79d9b306f3e"
+    ],
+    "source_text": "摘要标题“Abstract”的粗体字符比例至少为 0.9。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-05-2813a3d55386c32f",
+    "canonical_rule_id": "neurips-2020-shared-05-2813a3d55386c32f",
+    "title": "5. 摘要（NIPS-05）｜摘要标题“Abstract”中心与正文区域中心的偏差不超过 8 pt。",
+    "description": "规则ID：neurips-2020-shared-05-2813a3d55386c32f\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：5. 摘要（NIPS-05）\n规则类别：abstract\n规则原文：\n摘要标题“Abstract”中心与正文区域中心的偏差不超过 8 pt。\n原子检查要求：\n摘要标题“Abstract”中心与正文区域中心的偏差不超过 8 pt。",
+    "rule_text": "摘要标题“Abstract”中心与正文区域中心的偏差不超过 8 pt。",
+    "atomic_requirement": "摘要标题“Abstract”中心与正文区域中心的偏差不超过 8 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "abstract"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "5. 摘要（NIPS-05）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "abstract",
+    "applicable_unit_kinds": [
+      "abstract"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "abstract",
+      "body_section"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-05-2813a3d55386c32f"
+    ],
+    "source_text": "摘要标题“Abstract”中心与正文区域中心的偏差不超过 8 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-06-4ec467b599490e63",
+    "canonical_rule_id": "neurips-2020-shared-06-4ec467b599490e63",
+    "title": "6. 一级标题（NIPS-06）｜一级章节标题字号：11.5–12.5 pt。",
+    "description": "规则ID：neurips-2020-shared-06-4ec467b599490e63\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：6. 一级标题（NIPS-06）\n规则类别：heading\n规则原文：\n一级章节标题字号：11.5–12.5 pt。\n原子检查要求：\n一级章节标题字号：11.5–12.5 pt。",
+    "rule_text": "一级章节标题字号：11.5–12.5 pt。",
+    "atomic_requirement": "一级章节标题字号：11.5–12.5 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "6. 一级标题（NIPS-06）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-06-4ec467b599490e63"
+    ],
+    "source_text": "一级章节标题字号：11.5–12.5 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-06-cbf258bbdd9b5169",
+    "canonical_rule_id": "neurips-2020-shared-06-cbf258bbdd9b5169",
+    "title": "6. 一级标题（NIPS-06）｜一级章节标题的粗体字符比例至少为 0.8。",
+    "description": "规则ID：neurips-2020-shared-06-cbf258bbdd9b5169\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：6. 一级标题（NIPS-06）\n规则类别：heading\n规则原文：\n一级章节标题的粗体字符比例至少为 0.8。\n原子检查要求：\n一级章节标题的粗体字符比例至少为 0.8。",
+    "rule_text": "一级章节标题的粗体字符比例至少为 0.8。",
+    "atomic_requirement": "一级章节标题的粗体字符比例至少为 0.8。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "6. 一级标题（NIPS-06）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-06-cbf258bbdd9b5169"
+    ],
+    "source_text": "一级章节标题的粗体字符比例至少为 0.8。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-06-bf6bd2c3f0fc5616",
+    "canonical_rule_id": "neurips-2020-shared-06-bf6bd2c3f0fc5616",
+    "title": "6. 一级标题（NIPS-06）｜一级章节标题左边界与正文区域左边界的偏差不超过 3 pt。",
+    "description": "规则ID：neurips-2020-shared-06-bf6bd2c3f0fc5616\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：6. 一级标题（NIPS-06）\n规则类别：heading\n规则原文：\n一级章节标题左边界与正文区域左边界的偏差不超过 3 pt。\n原子检查要求：\n一级章节标题左边界与正文区域左边界的偏差不超过 3 pt。",
+    "rule_text": "一级章节标题左边界与正文区域左边界的偏差不超过 3 pt。",
+    "atomic_requirement": "一级章节标题左边界与正文区域左边界的偏差不超过 3 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "6. 一级标题（NIPS-06）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "page_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-06-bf6bd2c3f0fc5616"
+    ],
+    "source_text": "一级章节标题左边界与正文区域左边界的偏差不超过 3 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-07-3d6b3cbac8af68b0",
+    "canonical_rule_id": "neurips-2020-shared-07-3d6b3cbac8af68b0",
+    "title": "7. 二级标题（NIPS-07）｜二级章节标题字号：9.5–10.5 pt；如文档不存在二级章节标题，则本规则不适用。",
+    "description": "规则ID：neurips-2020-shared-07-3d6b3cbac8af68b0\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：7. 二级标题（NIPS-07）\n规则类别：heading\n规则原文：\n二级章节标题字号：9.5–10.5 pt；如文档不存在二级章节标题，则本规则不适用。\n原子检查要求：\n二级章节标题字号：9.5–10.5 pt；如文档不存在二级章节标题，则本规则不适用。",
+    "rule_text": "二级章节标题字号：9.5–10.5 pt；如文档不存在二级章节标题，则本规则不适用。",
+    "atomic_requirement": "二级章节标题字号：9.5–10.5 pt；如文档不存在二级章节标题，则本规则不适用。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "7. 二级标题（NIPS-07）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-07-3d6b3cbac8af68b0"
+    ],
+    "source_text": "二级章节标题字号：9.5–10.5 pt；如文档不存在二级章节标题，则本规则不适用。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-08-800f2a82f490f932",
+    "canonical_rule_id": "neurips-2020-shared-08-800f2a82f490f932",
+    "title": "8. 三级标题（NIPS-08）｜三级章节标题字号：9.5–10.5 pt；如文档不存在三级章节标题，则本规则不适用。",
+    "description": "规则ID：neurips-2020-shared-08-800f2a82f490f932\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：8. 三级标题（NIPS-08）\n规则类别：heading\n规则原文：\n三级章节标题字号：9.5–10.5 pt；如文档不存在三级章节标题，则本规则不适用。\n原子检查要求：\n三级章节标题字号：9.5–10.5 pt；如文档不存在三级章节标题，则本规则不适用。",
+    "rule_text": "三级章节标题字号：9.5–10.5 pt；如文档不存在三级章节标题，则本规则不适用。",
+    "atomic_requirement": "三级章节标题字号：9.5–10.5 pt；如文档不存在三级章节标题，则本规则不适用。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "heading"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "8. 三级标题（NIPS-08）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "heading",
+    "applicable_unit_kinds": [
+      "body_section"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "font_style",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-08-800f2a82f490f932"
+    ],
+    "source_text": "三级章节标题字号：9.5–10.5 pt；如文档不存在三级章节标题，则本规则不适用。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-09-bf428f033bea95d3",
+    "canonical_rule_id": "neurips-2020-shared-09-bf428f033bea95d3",
+    "title": "9. 参考文献标题（NIPS-09）｜必须存在无编号的 References 一级章节标题。",
+    "description": "规则ID：neurips-2020-shared-09-bf428f033bea95d3\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：9. 参考文献标题（NIPS-09）\n规则类别：reference\n规则原文：\n必须存在无编号的 References 一级章节标题。\n原子检查要求：\n必须存在无编号的 References 一级章节标题。",
+    "rule_text": "必须存在无编号的 References 一级章节标题。",
+    "atomic_requirement": "必须存在无编号的 References 一级章节标题。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "reference"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "9. 参考文献标题（NIPS-09）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "reference",
+    "applicable_unit_kinds": [
+      "global"
+    ],
+    "is_global": true,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [
+      "global"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "reference_entry",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-09-bf428f033bea95d3"
+    ],
+    "source_text": "必须存在无编号的 References 一级章节标题。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-09-d16be065c3e6b3d9",
+    "canonical_rule_id": "neurips-2020-shared-09-d16be065c3e6b3d9",
+    "title": "9. 参考文献标题（NIPS-09）｜References 标题在文档阅读顺序上必须位于正文之后。",
+    "description": "规则ID：neurips-2020-shared-09-d16be065c3e6b3d9\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：9. 参考文献标题（NIPS-09）\n规则类别：reference\n规则原文：\nReferences 标题在文档阅读顺序上必须位于正文之后。\n原子检查要求：\nReferences 标题在文档阅读顺序上必须位于正文之后。",
+    "rule_text": "References 标题在文档阅读顺序上必须位于正文之后。",
+    "atomic_requirement": "References 标题在文档阅读顺序上必须位于正文之后。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "reference"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "9. 参考文献标题（NIPS-09）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "reference",
+    "applicable_unit_kinds": [
+      "reference"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "reference",
+      "body_section"
+    ],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "reference_entry",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-09-d16be065c3e6b3d9"
+    ],
+    "source_text": "References 标题在文档阅读顺序上必须位于正文之后。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-09-d07dca226c8d2a51",
+    "canonical_rule_id": "neurips-2020-shared-09-d07dca226c8d2a51",
+    "title": "9. 参考文献标题（NIPS-09）｜References 标题之后必须存在可识别的参考文献条目。",
+    "description": "规则ID：neurips-2020-shared-09-d07dca226c8d2a51\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：9. 参考文献标题（NIPS-09）\n规则类别：reference\n规则原文：\nReferences 标题之后必须存在可识别的参考文献条目。\n原子检查要求：\nReferences 标题之后必须存在可识别的参考文献条目。",
+    "rule_text": "References 标题之后必须存在可识别的参考文献条目。",
+    "atomic_requirement": "References 标题之后必须存在可识别的参考文献条目。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "reference"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "9. 参考文献标题（NIPS-09）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "reference",
+    "applicable_unit_kinds": [
+      "reference"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {},
+    "evidence_selector": [
+      "reference_entry",
+      "text_content",
+      "page_geometry"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-09-d07dca226c8d2a51"
+    ],
+    "source_text": "References 标题之后必须存在可识别的参考文献条目。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-10-eaca2e1d22972ed8",
+    "canonical_rule_id": "neurips-2020-shared-10-eaca2e1d22972ed8",
+    "title": "10. 图表结构（NIPS-10）｜图号从 1 开始连续编号。",
+    "description": "规则ID：neurips-2020-shared-10-eaca2e1d22972ed8\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：10. 图表结构（NIPS-10）\n规则类别：figure\n规则原文：\n图号从 1 开始连续编号。\n原子检查要求：\n图号从 1 开始连续编号。",
+    "rule_text": "图号从 1 开始连续编号。",
+    "atomic_requirement": "图号从 1 开始连续编号。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "10. 图表结构（NIPS-10）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-10-eaca2e1d22972ed8"
+    ],
+    "source_text": "图号从 1 开始连续编号。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-10-e4654af104531c10",
+    "canonical_rule_id": "neurips-2020-shared-10-e4654af104531c10",
+    "title": "10. 图表结构（NIPS-10）｜表号从 1 开始连续编号。",
+    "description": "规则ID：neurips-2020-shared-10-e4654af104531c10\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：10. 图表结构（NIPS-10）\n规则类别：table\n规则原文：\n表号从 1 开始连续编号。\n原子检查要求：\n表号从 1 开始连续编号。",
+    "rule_text": "表号从 1 开始连续编号。",
+    "atomic_requirement": "表号从 1 开始连续编号。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "table"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "10. 图表结构（NIPS-10）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "table",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "table"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-10-e4654af104531c10"
+    ],
+    "source_text": "表号从 1 开始连续编号。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-10-3a3356ee746b6649",
+    "canonical_rule_id": "neurips-2020-shared-10-3a3356ee746b6649",
+    "title": "10. 图表结构（NIPS-10）｜图号的编号不得重复。",
+    "description": "规则ID：neurips-2020-shared-10-3a3356ee746b6649\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：10. 图表结构（NIPS-10）\n规则类别：figure\n规则原文：\n图号的编号不得重复。\n原子检查要求：\n图号的编号不得重复。",
+    "rule_text": "图号的编号不得重复。",
+    "atomic_requirement": "图号的编号不得重复。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "10. 图表结构（NIPS-10）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-10-3a3356ee746b6649"
+    ],
+    "source_text": "图号的编号不得重复。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-10-ec5c80dbdd6689cb",
+    "canonical_rule_id": "neurips-2020-shared-10-ec5c80dbdd6689cb",
+    "title": "10. 图表结构（NIPS-10）｜表号的编号不得重复。",
+    "description": "规则ID：neurips-2020-shared-10-ec5c80dbdd6689cb\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：10. 图表结构（NIPS-10）\n规则类别：table\n规则原文：\n表号的编号不得重复。\n原子检查要求：\n表号的编号不得重复。",
+    "rule_text": "表号的编号不得重复。",
+    "atomic_requirement": "表号的编号不得重复。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "table"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "10. 图表结构（NIPS-10）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "table",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "table"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-10-ec5c80dbdd6689cb"
+    ],
+    "source_text": "表号的编号不得重复。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-10-d08645425eb33669",
+    "canonical_rule_id": "neurips-2020-shared-10-d08645425eb33669",
+    "title": "10. 图表结构（NIPS-10）｜图题必须位于对应图形下方。",
+    "description": "规则ID：neurips-2020-shared-10-d08645425eb33669\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：10. 图表结构（NIPS-10）\n规则类别：figure\n规则原文：\n图题必须位于对应图形下方。\n原子检查要求：\n图题必须位于对应图形下方。",
+    "rule_text": "图题必须位于对应图形下方。",
+    "atomic_requirement": "图题必须位于对应图形下方。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "10. 图表结构（NIPS-10）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-10-d08645425eb33669"
+    ],
+    "source_text": "图题必须位于对应图形下方。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-10-93bdb38ab5e5b1cc",
+    "canonical_rule_id": "neurips-2020-shared-10-93bdb38ab5e5b1cc",
+    "title": "10. 图表结构（NIPS-10）｜表题必须位于对应表格下方。",
+    "description": "规则ID：neurips-2020-shared-10-93bdb38ab5e5b1cc\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：10. 图表结构（NIPS-10）\n规则类别：table\n规则原文：\n表题必须位于对应表格下方。\n原子检查要求：\n表题必须位于对应表格下方。",
+    "rule_text": "表题必须位于对应表格下方。",
+    "atomic_requirement": "表题必须位于对应表格下方。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "table"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "10. 图表结构（NIPS-10）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "table",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": false,
+    "cross_unit_kinds": [],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "table"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-10-93bdb38ab5e5b1cc"
+    ],
+    "source_text": "表题必须位于对应表格下方。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-10-28ebc5cc6ae420d1",
+    "canonical_rule_id": "neurips-2020-shared-10-28ebc5cc6ae420d1",
+    "title": "10. 图表结构（NIPS-10）｜图题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。",
+    "description": "规则ID：neurips-2020-shared-10-28ebc5cc6ae420d1\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：10. 图表结构（NIPS-10）\n规则类别：figure\n规则原文：\n图题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。\n原子检查要求：\n图题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。",
+    "rule_text": "图题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。",
+    "atomic_requirement": "图题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "figure"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "10. 图表结构（NIPS-10）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "figure",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "figure_table",
+      "body_section"
+    ],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "figure"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-10-28ebc5cc6ae420d1"
+    ],
+    "source_text": "图题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。"
+  },
+  {
+    "rule_id": "neurips-2020-shared-10-8646aceb3278f6fe",
+    "canonical_rule_id": "neurips-2020-shared-10-8646aceb3278f6fe",
+    "title": "10. 图表结构（NIPS-10）｜表题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。",
+    "description": "规则ID：neurips-2020-shared-10-8646aceb3278f6fe\n会议：Conference on Neural Information Processing Systems (NeurIPS)\n规范版本：2020.1\n投稿模式：shared\n章节：10. 图表结构（NIPS-10）\n规则类别：table\n规则原文：\n表题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。\n原子检查要求：\n表题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。",
+    "rule_text": "表题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。",
+    "atomic_requirement": "表题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。",
+    "keywords": [
+      "neurips",
+      "2020",
+      "shared",
+      "table"
+    ],
+    "venue_id": "neurips",
+    "format_version": "2020.1",
+    "submission_mode": "shared",
+    "target_document": "6bd5126e850711f1b211d112fde53137",
+    "source_document_id": "6bd5126e850711f1b211d112fde53137",
+    "section_path": "10. 图表结构（NIPS-10）",
+    "effective_from": "2020-01-01",
+    "status": "active",
+    "rule_category": "table",
+    "applicable_unit_kinds": [
+      "figure_table"
+    ],
+    "is_global": false,
+    "requires_cross_unit": true,
+    "cross_unit_kinds": [
+      "figure_table",
+      "body_section"
+    ],
+    "applicability_conditions": {
+      "requires_object_types": [
+        "table"
+      ]
+    },
+    "evidence_selector": [
+      "caption",
+      "object_geometry",
+      "text_content"
+    ],
+    "assessment_mode": "strict",
+    "supported_checks": [
+      "neurips-2020-shared-10-8646aceb3278f6fe"
+    ],
+    "source_text": "表题相对所属栏或跨栏正文区域居中，中心偏差不超过 10 pt。"
+  }
+]
