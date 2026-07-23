@@ -51,20 +51,39 @@ def scope_for_v2(rule: dict[str, Any]) -> dict[str, Any]:
     selectors = ["text_content"]
     conditions: dict[str, list[str]] = {}
     observable = False
+    assessment_mode = "strict"
+    supported_checks: list[str] = []
 
     if "authors' names are bold" in text or "authors’ names are bold" in text:
         category, kind = "author_identity", "front_matter"
         selectors = ["author_identity", "font_style", "text_content"]
         observable = True
+        assessment_mode = "sampled"
+        supported_checks = ["author_name_visibility", "author_name_style_samples"]
     elif "confine text within" in text or "general formatting instructions" in text:
         category, kind, global_rule = "page_layout", "global", True
         selectors = ["page_geometry", "font_style", "text_content"]
         observable = True
+        supported_checks = [
+            "page_dimensions",
+            "text_block_geometry",
+            "text_font_size",
+            "typeface_samples",
+            "title_font_size",
+            "title_weight",
+            "title_alignment",
+        ]
     elif "abstract paragraph" in text or "abstract formatting" in text:
         category, kind = "abstract", "abstract"
         selectors = ["page_geometry", "font_style", "text_content"]
         conditions = {"requires_section_roles": ["abstract"]}
         observable = True
+        supported_checks = [
+            "abstract_heading_style",
+            "abstract_body_font_size",
+            "abstract_alignment",
+            "abstract_paragraph_count",
+        ]
     elif any(
         phrase in text
         for phrase in ("first-level headings", "second-level headings", "third-level headings")
@@ -72,16 +91,41 @@ def scope_for_v2(rule: dict[str, Any]) -> dict[str, Any]:
         category, kind = "heading", "body_section"
         selectors = ["font_style", "text_content"]
         observable = True
+        if "first-level headings" in text:
+            supported_checks = [
+                "heading_font_size",
+                "heading_weight",
+                "heading_alignment",
+                "heading_case",
+            ]
+        elif "second-level headings" in text:
+            supported_checks = ["heading_font_size"]
+        else:
+            supported_checks = ["heading_font_size", "paragraph_heading_style"]
     elif "figure number and caption" in text or "all artwork must" in text:
         category, kind = "figure", "figure_table"
         selectors = ["caption", "object_geometry", "font_style", "text_content"]
         conditions = {"requires_object_types": ["figure"]}
         observable = True
+        assessment_mode = "sampled"
+        supported_checks = [
+            "caption_position",
+            "caption_font",
+            "object_caption_geometry",
+            "caption_numbering",
+        ]
     elif "table number and title" in text or "all tables must" in text:
         category, kind = "table", "figure_table"
         selectors = ["caption", "object_geometry", "font_style", "text_content"]
         conditions = {"requires_object_types": ["table"]}
         observable = True
+        assessment_mode = "sampled"
+        supported_checks = [
+            "caption_position",
+            "caption_font",
+            "object_caption_geometry",
+            "caption_numbering",
+        ]
     elif any(
         phrase in text
         for phrase in (
@@ -97,10 +141,27 @@ def scope_for_v2(rule: dict[str, Any]) -> dict[str, Any]:
         selectors = ["reference_entry", "font_style", "text_content"]
         conditions = {"requires_section_roles": ["reference", "reference_entry"]}
         observable = True
+        assessment_mode = "sampled"
+        citation_scope = " ".join(
+            [str(rule.get("title") or ""), str(rule.get("section_path") or "")]
+        ).lower()
+        if "citation" in citation_scope:
+            supported_checks = ["citation_style_samples", "reference_style_samples"]
+        else:
+            supported_checks = [
+                "reference_heading",
+                "reference_font_size",
+                "reference_style_samples",
+            ]
     elif "do not include acknowledgments" in text:
         category, kind, global_rule = "anonymity", "global", True
         selectors = ["author_identity", "text_content"]
         observable = True
+        supported_checks = [
+            "acknowledgment_absence",
+            "funding_disclosure_absence",
+            "competing_interest_absence",
+        ]
 
     reason = None
     if not observable:
@@ -119,6 +180,7 @@ def scope_for_v2(rule: dict[str, Any]) -> dict[str, Any]:
             reason = "Requires source files, compiler options, or submission-system evidence; PDF-only review cannot verify it."
         else:
             reason = "Not part of the initial PDF-observable execution set; it needs qualitative or process evidence."
+        assessment_mode = "excluded"
 
     return {
         "status": "active" if observable else "disabled",
@@ -131,6 +193,8 @@ def scope_for_v2(rule: dict[str, Any]) -> dict[str, Any]:
         "cross_unit_kinds": ["global"] if global_rule else [],
         "applicability_conditions": conditions,
         "evidence_selector": selectors,
+        "assessment_mode": assessment_mode,
+        "supported_checks": supported_checks,
     }
 
 
@@ -200,9 +264,9 @@ async def run(profile_key: str | None, apply: bool) -> None:
                         )
                     )
                     if str(rule.get("status") or "active") == "active" and (
-                        missing or str(rule.get("scope_backfill_version") or "") != "v4"
+                        missing or str(rule.get("scope_backfill_version") or "") != "v6"
                     ):
-                        rule = {**rule, **scope_for(rule), "scope_backfill_version": "v4"}
+                        rule = {**rule, **scope_for(rule), "scope_backfill_version": "v6"}
                         updated += 1
                     rules.append(rule)
                 print(f"{profile.profile_key}:{profile.version} rules={len(rules)} backfilled={updated}")

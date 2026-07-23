@@ -39,6 +39,29 @@ def test_initial_migration_round_trip_matches_orm(tmp_path, monkeypatch):
     assert {item["name"] for item in schema.get_foreign_keys("tasks")} >= {
         "fk_tasks_message"
     }
+    with sync_engine.begin() as connection:
+        connection.execute(text("PRAGMA foreign_keys=OFF"))
+        connection.execute(
+            text(
+                """
+                INSERT INTO ingestion_quality_reports (
+                    report_id, task_id, paper_id, paper_version_id, status,
+                    indexable_chunk_count, blocking_error_count,
+                    expected_mapping_count, mapped_chunk_count,
+                    mapping_failure_count, report_json, created_at
+                ) VALUES (
+                    'partial-report', 'task-1', 'paper-1', 'version-1', 'partial',
+                    1, 0, 0, 0, 0, '{}', CURRENT_TIMESTAMP
+                )
+                """
+            )
+        )
+        assert connection.scalar(
+            text(
+                "SELECT status FROM ingestion_quality_reports "
+                "WHERE report_id = 'partial-report'"
+            )
+        ) == "partial"
     sync_engine.dispose()
 
     command.check(config)

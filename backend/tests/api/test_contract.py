@@ -275,9 +275,30 @@ def test_format_review_uses_server_profile_mapping_and_persists_rule_contract(tm
                     "cross_unit_kinds": [],
                     "applicability_conditions": {"requires_section_roles": ["abstract"]},
                     "evidence_selector": ["text_content", "font_style"],
+                    "assessment_mode": "strict",
+                    "supported_checks": ["abstract_presence", "abstract_heading_style"],
                 }
             ],
         }
+
+        missing_supported_checks = client.post(
+            "/api/v1/admin/format-profiles",
+            headers=_headers(token, **{"Idempotency-Key": "format-profile-invalid-checks"}),
+            json={
+                **profile_body,
+                "version": "2026.0",
+                "rules": [
+                    {
+                        **profile_body["rules"][0],
+                        "format_version": "2026.0",
+                        "supported_checks": [],
+                    }
+                ],
+            },
+        )
+        assert missing_supported_checks.status_code == 422
+        assert missing_supported_checks.json()["code"] == "FORMAT_RULE_SCOPE_INVALID"
+
         created_profile = client.post(
             "/api/v1/admin/format-profiles",
             headers=_headers(token, **{"Idempotency-Key": "format-profile-1"}),
@@ -285,6 +306,12 @@ def test_format_review_uses_server_profile_mapping_and_persists_rule_contract(tm
         )
         assert created_profile.status_code == 201
         assert created_profile.json()["data"]["ragflow_dataset_id"] == "ragflow-format-acm-v2026-1"
+        stored_rule = created_profile.json()["data"]["rule_manifest"][0]
+        assert stored_rule["assessment_mode"] == "strict"
+        assert stored_rule["supported_checks"] == [
+            "abstract_presence",
+            "abstract_heading_style",
+        ]
         profile_id = created_profile.json()["data"]["format_profile_id"]
 
         next_version = client.post(

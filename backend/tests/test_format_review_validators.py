@@ -462,6 +462,52 @@ def test_figure_rules_request_object_geometry_without_visual_content():
     assert "object_geometry" in scope["evidence_selector"]
 
 
+def test_neurips_scope_bounds_observable_rules_with_supported_checks():
+    abstract = scope_for_v2(
+        {
+            "title": "Abstract formatting",
+            "description": "The abstract paragraph should use 10 point type.",
+        }
+    )
+    heading = scope_for_v2(
+        {
+            "title": "3 First-level headings",
+            "description": "First-level headings should be in 12-point type.",
+        }
+    )
+    anonymity = scope_for_v2(
+        {
+            "title": "Acknowledgments and Disclosure of Funding",
+            "description": "Do not include acknowledgments or funding disclosure.",
+        }
+    )
+    references = scope_for_v2(
+        {
+            "title": "References formatting",
+            "description": "References may use a consistent citation style.",
+        }
+    )
+
+    assert abstract["assessment_mode"] == "strict"
+    assert abstract["supported_checks"] == [
+        "abstract_heading_style",
+        "abstract_body_font_size",
+        "abstract_alignment",
+        "abstract_paragraph_count",
+    ]
+    assert "heading_font_size" in heading["supported_checks"]
+    assert anonymity["supported_checks"] == [
+        "acknowledgment_absence",
+        "funding_disclosure_absence",
+        "competing_interest_absence",
+    ]
+    assert references["supported_checks"] == [
+        "reference_heading",
+        "reference_font_size",
+        "reference_style_samples",
+    ]
+
+
 def test_exact_rule_evidence_survives_partial_category_retrieval():
     findings = validate_findings(
         [

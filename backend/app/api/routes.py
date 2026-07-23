@@ -2462,6 +2462,11 @@ def _validated_format_rules(
         conditions = rule.get("applicability_conditions")
         conditions = conditions if isinstance(conditions, dict) else {}
         cross_unit_kinds = sorted({str(value) for value in rule.get("cross_unit_kinds", [])})
+        supported_checks = [
+            str(value).strip()
+            for value in rule.get("supported_checks", [])
+            if str(value).strip()
+        ]
         normalized.append(
             {
                 "rule_id": rule_id,
@@ -2484,6 +2489,8 @@ def _validated_format_rules(
                 "cross_unit_kinds": cross_unit_kinds,
                 "applicability_conditions": conditions,
                 "evidence_selector": evidence_selector,
+                "assessment_mode": str(rule.get("assessment_mode") or "strict"),
+                "supported_checks": supported_checks,
                 "observability": str(rule.get("observability") or "pdf_observable"),
                 "excluded_reason": str(rule.get("excluded_reason") or "") or None,
             }
@@ -2532,6 +2539,16 @@ def _rule_scope_issues(rule: dict[str, object]) -> list[str]:
         or not {str(value) for value in evidence_selector}.issubset(RULE_EVIDENCE_SELECTORS)
     ):
         issues.append("evidence_selector")
+    assessment_mode = rule.get("assessment_mode")
+    if assessment_mode not in {"strict", "sampled"}:
+        issues.append("assessment_mode")
+    supported_checks = rule.get("supported_checks")
+    if (
+        not isinstance(supported_checks, list)
+        or not supported_checks
+        or not all(isinstance(value, str) and value.strip() for value in supported_checks)
+    ):
+        issues.append("supported_checks")
     return sorted(set(issues))
 
 
