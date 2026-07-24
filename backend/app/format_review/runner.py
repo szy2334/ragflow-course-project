@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import asdict
 from typing import Any, TypeVar
 
+import tiktoken
 from pydantic import BaseModel
 
 from app.ai.llm import OpenAICompatibleClient
@@ -14,13 +16,73 @@ from app.ai.schemas import ConfigurationSnapshot
 from app.core.config import Settings
 from app.runtime.executor import snapshot_from_settings
 
+from .schemas import CompositeFormatReviewOutput, FormatSynthesisOutput, ReflectionOutput
+
 TModel = TypeVar("TModel", bound=BaseModel)
 
 _OUTPUT_TOKEN_BUDGETS = {
-    "format_check": 800,
-    "format_reflect": 240,
-    "format_synthesis": 600,
+    "format_check": 8192,
+    "format_reflect": 1024,
+    "format_synthesis": 4096,
 }
+FORMAT_REVIEW_INPUT_TOKEN_LIMIT = 13_000
+# The configured gateway reports substantially more prompt tokens than the
+# local o200k estimate for json_object requests.  The multiplier is calibrated
+# from a real 10,018-token call and deliberately leaves room below the hard cap.
+FORMAT_REVIEW_GATEWAY_TOKEN_MULTIPLIER = 1.80
+
+
+def _output_token_budget(prompt_name: str, payload: dict[str, Any]) -> int:
+    del payload
+    return _OUTPUT_TOKEN_BUDGETS.get(prompt_name, 800)
+
+
+def format_review_input_tokens(
+    prompt_name: str,
+    payload: dict[str, Any],
+    *,
+    model: str = "gpt-5",
+    structured_mode: str = "json_object",
+    output_model: type[BaseModel] | None = None,
+) -> int:
+    """Estimate the final provider request, including structured-output framing."""
+
+    messages = PromptRepository().render(
+        prompt_name,
+        "v1",
+        payload=json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
+    )
+    effective_output_model = output_model or _structured_output_model(prompt_name)
+    messages = OpenAICompatibleClient.messages_for_mode(
+        messages, effective_output_model, structured_mode
+    )
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+    except KeyError:
+        encoding = tiktoken.get_encoding("o200k_base")
+    # Include chat framing, the exact json_object schema instruction injected
+    # by the client, then calibrate to the configured OpenAI-compatible proxy.
+    local_estimate = 8 + sum(16 + len(encoding.encode(message.content)) for message in messages)
+    if structured_mode == "json_schema":
+        schema = json.dumps(
+            effective_output_model.model_json_schema(), ensure_ascii=False, separators=(",", ":")
+        )
+        local_estimate += len(encoding.encode(schema))
+    return math.ceil(local_estimate * FORMAT_REVIEW_GATEWAY_TOKEN_MULTIPLIER)
+
+
+def _structured_output_model(prompt_name: str) -> type[BaseModel]:
+    """Return the exact output contract used for each model request.
+
+    The gateway injects the contract into json_object requests, so estimating
+    with BaseModel undercounts the real request for reflection and synthesis.
+    """
+
+    return {
+        "format_check": CompositeFormatReviewOutput,
+        "format_reflect": ReflectionOutput,
+        "format_synthesis": FormatSynthesisOutput,
+    }.get(prompt_name, BaseModel)
 
 
 class AgentRunner:
@@ -53,7 +115,7 @@ class AgentRunner:
             payload=json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
         )
         configuration = self._configuration.model.model_copy(
-            update={"max_output_tokens": _OUTPUT_TOKEN_BUDGETS.get(prompt_name, 800)}
+            update={"max_output_tokens": _output_token_budget(prompt_name, payload)}
         )
         client = OpenAICompatibleClient(self._settings.llm_api_key)
         # Format findings are published only after schema and evidence gates.

@@ -6,12 +6,15 @@ from app.format_review.workflow import (
     _appendix_pages,
     _applicable_manifest,
     _coarse_body_groups,
+    _compact_derived_measurements,
     _context_facts_for_category,
     _context_groups,
     _deduplicate_unit_findings,
+    _force_rules_unverifiable,
     _has_complete_actionable_finding,
     _item_record,
     _model_unit_plan,
+    _new_standard_evidences,
     _pdf_span_record_values,
     _plan_review_units,
     _refine_units_for_context_budget,
@@ -25,6 +28,26 @@ def test_format_review_state_keeps_synthesized_findings():
     from app.format_review.schemas import FormatReviewState
 
     assert "final_findings" in FormatReviewState.__annotations__
+
+
+def test_icml_abstract_centering_uses_the_column_center_not_body_indent():
+    compact = _compact_derived_measurements(
+        "derived_abstract",
+        {
+            "heading": {
+                "bbox": [150.198, 193.9932, 194.6833, 205.9484],
+                "column_center_x_pt": 172.4405,
+                "center_offset_from_column_pt": 0.00015,
+            },
+            "body": {
+                "bbox": [75.007, 213.3563, 273.6993, 498.3631],
+                "paragraph_count": 1,
+            },
+        },
+    )
+
+    assert compact["heading_center_offset_from_column_pt"] == 0.00015
+    assert compact["heading_column_center_x_pt"] == 172.4405
 
 
 def test_final_findings_are_consolidated_by_canonical_rule():
@@ -133,6 +156,44 @@ def test_confirmed_compliance_is_not_downgraded_by_an_unrelated_missing_unit():
     ]
 
     assert _deduplicate_unit_findings(units)[0]["result"] == "compliant"
+
+
+def test_consolidated_rule_keeps_one_canonical_finding_message():
+    units = [
+        {
+            "unit_id": "u-1",
+            "unit_position": 1,
+            "findings": [
+                {
+                    "rule_ids": ["body-font"],
+                    "category": "page_layout",
+                    "aspect": "Body font",
+                    "result": "compliant",
+                    "severity": "info",
+                    "finding": "The complete inventory is compliant.",
+                    "paper_evidences": [{"evidence_id": "P1"}],
+                    "standard_evidences": [{"evidence_id": "S1", "canonical_rule_id": "body-font"}],
+                    "evidence_status": "complete",
+                },
+                {
+                    "rule_ids": ["body-font"],
+                    "category": "page_layout",
+                    "aspect": "Body font",
+                    "result": "compliant",
+                    "severity": "info",
+                    "finding": "Sufficiency validation also confirms the complete inventory.",
+                    "paper_evidences": [{"evidence_id": "P2"}],
+                    "standard_evidences": [{"evidence_id": "S1", "canonical_rule_id": "body-font"}],
+                    "evidence_status": "complete",
+                },
+            ],
+        }
+    ]
+
+    finding = _deduplicate_unit_findings(units)[0]
+
+    assert finding["finding"] == "The complete inventory is compliant."
+    assert [item["evidence_id"] for item in finding["paper_evidences"]] == ["P1", "P2"]
 
 
 def test_only_final_items_store_the_bare_canonical_rule_id():
@@ -573,7 +634,7 @@ def test_oversized_unit_is_split_at_a_page_boundary_before_llm_execution():
     assert all(item["expected_rule_ids"] == ["heading-style"] for item in refined)
 
 
-def test_oversized_figure_table_unit_remains_a_single_review_block():
+def test_oversized_figure_table_unit_splits_on_page_when_one_rule_exceeds_budget():
     facts = [
         {
             "evidence_id": "P1",
@@ -623,9 +684,10 @@ def test_oversized_figure_table_unit_remains_a_single_review_block():
         context_budget=0,
     )
 
-    assert metrics["split_parent_count"] == 0
-    assert len(refined) == 1
-    assert refined[0]["context_refinement"]["status"] == "aggregate_figure_table_exceeds_budget"
+    assert metrics["split_parent_count"] == 1
+    assert len(refined) == 2
+    assert [item["page_range"] for item in refined] == [[2, 2], [3, 3]]
+    assert all(item["expected_rule_ids"] == ["figure-rule"] for item in refined)
 
 
 def test_native_pdf_extractor_preserves_span_geometry_and_style(tmp_path):
@@ -877,7 +939,12 @@ def test_model_context_omits_large_fact_and_block_id_lists():
 
     assert "fact_ids" not in compact
     assert "block_ids" not in compact
-    assert compact["expected_rule_ids"] == ["page-size"]
+    assert "expected_rule_ids" not in compact
+    assert compact == {
+        "unit_id": "u-global",
+        "unit_kind": "global",
+        "page_range": [1, 13],
+    }
 
 
 def test_unverifiable_rule_fallback_retains_inspected_pdf_and_standard_evidence():
@@ -907,3 +974,58 @@ def test_unverifiable_rule_fallback_retains_inspected_pdf_and_standard_evidence(
     assert findings[0]["evidence_status"] == "incomplete"
     assert [item["evidence_id"] for item in findings[0]["paper_evidences"]] == ["P1"]
     assert [item["evidence_id"] for item in findings[0]["standard_evidences"]] == ["S1"]
+
+
+def test_standard_refresh_requires_new_rule_source_material():
+    existing = [
+        {
+            "evidence_id": "S1",
+            "canonical_rule_id": "heading-rule",
+            "document_id": "rules-doc",
+            "quote": "Heading font size must be 12 pt.",
+        }
+    ]
+    same_material = [
+        {
+            "evidence_id": "S-REF-1",
+            "canonical_rule_id": "heading-rule",
+            "document_id": "rules-doc",
+            "quote": " Heading font size must be 12 pt. ",
+        }
+    ]
+    expanded_material = [
+        {
+            "evidence_id": "S-REF-2",
+            "canonical_rule_id": "heading-rule",
+            "document_id": "rules-doc",
+            "quote": "Heading font size must be 12 pt. Use bold face.",
+        }
+    ]
+
+    assert _new_standard_evidences(existing, same_material) == []
+    assert _new_standard_evidences(existing, expanded_material) == expanded_material
+
+
+def test_failed_recovery_downgrades_only_target_atomic_rules():
+    findings = [
+        {
+            "rule_ids": ["recovered-rule"],
+            "result": "compliant",
+            "severity": "info",
+            "evidence_status": "complete",
+        },
+        {
+            "rule_ids": ["unresolved-rule"],
+            "result": "non_compliant",
+            "severity": "high",
+            "evidence_status": "incomplete",
+        },
+    ]
+
+    downgraded = _force_rules_unverifiable(
+        findings, ["unresolved-rule"], "未获得新增可核验证据。"
+    )
+
+    assert downgraded[0] == findings[0]
+    assert downgraded[1]["result"] == "unverifiable"
+    assert downgraded[1]["evidence_status"] == "incomplete"

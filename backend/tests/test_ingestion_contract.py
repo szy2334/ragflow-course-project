@@ -5,6 +5,7 @@ from app.ai.agents import PaperUnderstandingAgent
 from app.ai.prompts import PromptRepository
 from app.ai.runner import AgentRunner
 from app.ai.schemas import ConfigurationSnapshot, EvidenceItem, PaperSummary
+from app.db.models import IngestionQualityReport
 from app.workers.ingestion import (
     BuiltChunk,
     _chunk_from_second_clean,
@@ -178,6 +179,54 @@ def test_second_clean_chunks_are_local_and_keep_section_provenance():
     assert any(chunk.metadata["section_path"] == ["Results"] for chunk in rows)
     assert any(chunk.metadata["content_role"] == "table_overview" for chunk in rows)
     assert all(chunk.metadata["cleaning_version"] == "paper_second_clean_v2" for chunk in rows)
+
+
+def test_non_blocking_quality_warnings_are_partial_and_persistable():
+    document = {
+        "paper_id": "paper-1",
+        "paper_version_id": "version-1",
+        "title": "Evidence-aware reader",
+        "file_name": "paper.pdf",
+        "file_sha256": "a" * 64,
+        "parser_name": "mineru",
+        "parser_version": "mineru-v1",
+    }
+    blocks = [
+        {
+            "block_id": f"b-{index}",
+            "raw_text": f"{section} " * 80,
+            "normalized_text": f"{section} " * 80,
+            "content_type": "text",
+            "content_role": "paragraph",
+            "section_path": [section],
+            "page_start": index,
+            "page_end": index,
+            "bbox": None,
+            "source_ref": f"page:{index}:block:1",
+            "indexable": True,
+            "quality_flags": [],
+        }
+        for index, section in enumerate(
+            ("Abstract", "Method", "Results", "Conclusion", "Appendix"), start=1
+        )
+    ]
+
+    cleaned = build_second_clean_chunks(
+        document=document,
+        blocks=blocks,
+        media_objects=[],
+        ocr_by_id={"media-with-non-blocking-warning": {"status": "partial"}},
+    )
+
+    constraints = {
+        str(constraint.sqltext)
+        for constraint in IngestionQualityReport.__table__.constraints
+        if getattr(constraint, "name", None) == "ck_quality_reports_status"
+    }
+
+    assert cleaned.quality_report["status"] == "partial"
+    assert cleaned.blocking_errors == []
+    assert any("'partial'" in constraint for constraint in constraints)
 
 
 def test_upload_time_understanding_samples_each_section_before_extra_chunks():

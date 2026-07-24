@@ -11,6 +11,7 @@ import re
 import time
 from collections import defaultdict
 from datetime import UTC, datetime
+from pathlib import Path
 from statistics import median
 from typing import Any
 from uuid import uuid4
@@ -37,8 +38,9 @@ from app.db.models import (
 from app.runtime.adapters import task_view
 from app.runtime.redis_store import RedisRuntime
 
+from .evidence_supplementer import supplement_unit_evidence
 from .pdf_layout import bbox_iou, extract_native_pdf_layout
-from .runner import AgentRunner
+from .runner import FORMAT_REVIEW_INPUT_TOKEN_LIMIT, AgentRunner, format_review_input_tokens
 from .schemas import (
     CompositeFormatReviewOutput,
     FormatReviewState,
@@ -46,6 +48,13 @@ from .schemas import (
     ReflectionOutput,
 )
 from .validators import forced_unverifiable_findings, validate_findings
+from .venue_layout import (
+    SUPPORTED_VENUE_EXTRACTORS,
+    VenueLayoutError,
+    build_venue_layout_facts,
+    locate_mineru_artifact,
+    review_facts_from_fused,
+)
 
 MAX_RETRIEVAL_ATTEMPTS = 3
 MAX_UNIT_CYCLES = 2
@@ -54,7 +63,7 @@ MAX_UNIT_CYCLES = 2
 # burst into broad "unverifiable" review output.
 MAX_UNIT_CONCURRENCY = 2
 MAX_BODY_PAGES_PER_UNIT = 2
-MAX_CONTEXT_REFINEMENT_DEPTH = 3
+MAX_CONTEXT_REFINEMENT_DEPTH = 8
 # Kept for the unused V1.0 node methods below while historical workflow
 # checkpoints remain readable. V1.1 uses the shared unit-cycle budget instead.
 MAX_EVIDENCE_RECOVERY = 1
@@ -64,7 +73,7 @@ MAX_CONTEXT_FACTS = 56
 MAX_COMPOSITE_CONTEXT_FACTS = 48
 MAX_CONTEXT_QUOTE_CHARACTERS = 240
 FORMAT_CONTEXT_FACTS_PER_CATEGORY = 8
-FORMAT_MODEL_INPUT_CHARACTERS = 12_000
+FORMAT_MODEL_INPUT_TOKENS = FORMAT_REVIEW_INPUT_TOKEN_LIMIT
 
 
 class FormatReviewFailure(Exception):
@@ -161,6 +170,53 @@ class FormatReviewWorkflowService:
         started = time.perf_counter()
         await self._check_cancelled(state["task_id"])
         await self._set_stage(state, "extracting_layout", 0.20)
+        venue_id = str(
+            state["snapshot"].get("venue_id") or state["snapshot"].get("profile_key") or ""
+        ).lower()
+        if venue_id in SUPPORTED_VENUE_EXTRACTORS:
+            mineru_artifact = locate_mineru_artifact(
+                self._settings.object_storage_path,
+                state["task"]["paper_id"],
+                state["task"]["paper_version_id"],
+            )
+            if mineru_artifact is None:
+                raise FormatReviewFailure(
+                    "FORMAT_VENUE_LAYOUT_INPUT_UNAVAILABLE",
+                    "投稿格式解析所需的 MinerU 原始产物不存在，请重新解析论文后再试。",
+                    retryable=False,
+                )
+            try:
+                fused_payload = await asyncio.to_thread(
+                    build_venue_layout_facts,
+                    venue_id=venue_id,
+                    pdf_path=Path(state["task"]["paper_file_path"]),
+                    mineru_json_path=mineru_artifact,
+                )
+            except (OSError, ValueError, VenueLayoutError) as exc:
+                raise FormatReviewFailure(
+                    "FORMAT_VENUE_LAYOUT_FAILED",
+                    "所选投稿格式的专用 PDF 解析器执行失败。",
+                    retryable=False,
+                ) from exc
+            facts = review_facts_from_fused(fused_payload)
+            if not facts:
+                raise FormatReviewFailure(
+                    "FORMAT_REVIEW_NO_PAPER_EVIDENCE", "专用解析器未生成可审查的版面事实。"
+                )
+            quality = {
+                **dict(fused_payload.get("quality") or {}),
+                "layout_source": "venue_fused_layout",
+                "venue_id": venue_id,
+                "extractor": SUPPORTED_VENUE_EXTRACTORS[venue_id],
+                "mineru_artifact": str(mineru_artifact),
+                "schema_version": fused_payload.get("schema_version"),
+                "review_fact_count": len(facts),
+            }
+            await self._emit(state, "extracting_layout", "正在按所选投稿格式提取论文版面事实")
+            await self._trace(
+                state["task"], "extract_pdf_layout", started, "succeeded", metrics=quality
+            )
+            return {"layout_facts": facts, "layout_quality": quality}
         async with self._sessions() as session:
             rows = list(
                 (
@@ -338,9 +394,20 @@ class FormatReviewWorkflowService:
         if not manifest:
             raise FormatReviewFailure("FORMAT_RULES_UNAVAILABLE", "所选投稿模式没有可执行格式规范。")
         categories = sorted({str(item["rule_category"]) for item in manifest})
-        document_ids = [str(value) for value in (snapshot.get("shared_document_id"), snapshot.get("mode_document_id")) if value]
-        if len(document_ids) != 2:
-            raise FormatReviewFailure("FORMAT_PROFILE_SNAPSHOT_INVALID", "格式规范缺少共享或投稿模式规则文档。")
+        document_ids = list(
+            dict.fromkeys(
+                str(value)
+                for value in (snapshot.get("shared_document_id"), snapshot.get("mode_document_id"))
+                if value
+            )
+        )
+        manifest_document_ids = {
+            str(item.get("source_document_id") or "") for item in manifest if item.get("source_document_id")
+        }
+        if not document_ids or not manifest_document_ids.issubset(set(document_ids)):
+            raise FormatReviewFailure(
+                "FORMAT_PROFILE_SNAPSHOT_INVALID", "格式规范与所选投稿模式的规则文档绑定不一致。"
+            )
         queries = {category: _category_query(snapshot, category, manifest) for category in categories}
         plan = {
             "attempt": 0,
@@ -351,6 +418,7 @@ class FormatReviewWorkflowService:
             "target_categories": categories,
             "queries": queries,
             "manifest": manifest,
+            "retrieval_strategy": "ragflow_manifest_exact",
         }
         await self._emit(state, "retrieving_format_rules", "正在构建受控规范检索计划")
         await self._trace(state["task"], "build_retrieval_plan", started, "succeeded", metrics={"categories": len(categories)})
@@ -359,11 +427,52 @@ class FormatReviewWorkflowService:
     async def retrieve_standard(self, state: FormatReviewState) -> dict[str, Any]:
         started = time.perf_counter()
         await self._check_cancelled(state["task_id"])
-        if not self._settings.ragflow_base_url or not self._settings.ragflow_api_key:
-            raise FormatReviewFailure("FORMAT_KB_UNAVAILABLE", "格式规范知识库服务尚未配置。")
         await self._set_stage(state, "retrieving_format_rules", 0.40)
         plan = dict(state["retrieval_plan"])
         manifest = list(plan["manifest"])
+        if plan.get("retrieval_strategy") == "ragflow_manifest_exact":
+            if not self._settings.ragflow_base_url or not self._settings.ragflow_api_key:
+                raise FormatReviewFailure("FORMAT_KB_UNAVAILABLE", "格式规范知识库服务尚未配置。")
+            raw = await self._retrieve_manifest_chunks(plan)
+            standards = _resolve_standard_chunks(raw, plan, [])
+            expected_ids = {str(item["rule_id"]) for item in manifest}
+            resolved_ids = {str(item["canonical_rule_id"]) for item in standards}
+            missing_ids = sorted(expected_ids - resolved_ids)
+            if missing_ids:
+                raise FormatReviewFailure(
+                    "FORMAT_KB_INCOMPLETE",
+                    "格式规范知识库与规则清单不一致，无法保证完整审查。",
+                    retryable=False,
+                )
+            rule_ids = sorted(expected_ids)
+            coverage = {
+                "attempt": 1,
+                "strategy": "ragflow_manifest_exact",
+                "covered_categories": sorted({str(item["rule_category"]) for item in manifest}),
+                "missing_categories": [],
+                "missing_rule_ids": [],
+                "retrieved_rule_ids": rule_ids,
+                "retrieved_chunk_count": len(raw),
+            }
+            sequence = await self._emit(
+                state, "retrieving_format_rules", "已按规则清单精确装载所选投稿模式的全部规则"
+            )
+            await self._trace(
+                state["task"],
+                "retrieve_standard",
+                started,
+                "succeeded",
+                metrics={**coverage, "standard_evidence_count": len(standards)},
+            )
+            return {
+                "retrieval_plan": plan,
+                "standard_evidences": standards,
+                "coverage_report": coverage,
+                "counters": {**state.get("counters", {}), "standard_retrieval": 1},
+                "sequence": sequence,
+            }
+        if not self._settings.ragflow_base_url or not self._settings.ragflow_api_key:
+            raise FormatReviewFailure("FORMAT_KB_UNAVAILABLE", "格式规范知识库服务尚未配置。")
         existing = list(state.get("standard_evidences", []))
         existing_rule_ids = {str(item.get("canonical_rule_id")) for item in existing}
         attempts = int(state.get("counters", {}).get("standard_retrieval", 0))
@@ -451,7 +560,7 @@ class FormatReviewWorkflowService:
                 str(rule["rule_id"]): rule for rule in state["retrieval_plan"]["manifest"]
             },
             submission_mode=state["review"]["submission_mode"],
-            context_budget=FORMAT_MODEL_INPUT_CHARACTERS,
+            context_budget=FORMAT_MODEL_INPUT_TOKENS,
         )
         await self._persist_unit_plan(state, units)
         sequence = await self._emit(
@@ -619,17 +728,16 @@ class FormatReviewWorkflowService:
         if findings and self._settings.llm_api_key:
             runner = AgentRunner(self._settings, state["snapshot"].get("configuration"))
             try:
-                output, metrics = await runner.invoke(
-                    "format_synthesis",
-                    FormatSynthesisOutput,
-                    payload={
-                        "validated_unit_findings": findings,
-                        "coverage_report": state["coverage_report"],
-                        "constraint": "Only summarize supplied findings. Do not add findings or evidence.",
-                    },
-                )
-                summary = output.summary_markdown
-                state.setdefault("metrics", {})["format_synthesis"] = metrics
+                synthesis_payload = _synthesis_payload(findings, state["coverage_report"])
+                if (
+                    format_review_input_tokens("format_synthesis", synthesis_payload)
+                    <= FORMAT_MODEL_INPUT_TOKENS
+                ):
+                    output, metrics = await runner.invoke(
+                        "format_synthesis", FormatSynthesisOutput, payload=synthesis_payload
+                    )
+                    summary = output.summary_markdown
+                    state.setdefault("metrics", {})["format_synthesis"] = metrics
             except Exception:
                 # The final gate remains deterministic; a summary-model failure
                 # must not discard already validated user-visible findings.
@@ -662,7 +770,7 @@ class FormatReviewWorkflowService:
                     set(coverage.get("missing_categories", [])) | {category}
                 )
                 continue
-            if len(json.dumps(payload, ensure_ascii=False)) > MAX_CONTEXT_CHARACTERS:
+            if format_review_input_tokens("format_check", payload) > FORMAT_MODEL_INPUT_TOKENS:
                 coverage["missing_categories"] = sorted(set(coverage.get("missing_categories", [])) | {category})
                 continue
             try:
@@ -734,7 +842,7 @@ class FormatReviewWorkflowService:
             if attempts >= MAX_EVIDENCE_RECOVERY:
                 route = "confirmed"
                 candidates = _make_unverifiable(candidates, "论文版面证据恢复达到上限。")
-        elif route == "clarify_standard":
+        elif route in {"retrieve_standard", "clarify_standard"}:
             attempts = counters.get("standard_retrieval", 0)
             if attempts >= MAX_RETRIEVAL_ATTEMPTS:
                 route = "confirmed"
@@ -846,6 +954,61 @@ class FormatReviewWorkflowService:
         data = body.get("data", body) if isinstance(body, dict) else {}
         raw = data.get("chunks", data.get("items", [])) if isinstance(data, dict) else []
         return [item for item in raw if isinstance(item, dict)] if isinstance(raw, list) else []
+
+    async def _retrieve_manifest_chunks(self, plan: dict[str, Any]) -> list[dict[str, Any]]:
+        """Retrieve every atomic chunk in each selected document, independent of similarity rank."""
+
+        headers = {"Authorization": f"Bearer {self._settings.ragflow_api_key.get_secret_value()}"}
+        collected: list[dict[str, Any]] = []
+        manifest = list(plan["manifest"])
+        for document_id in plan["document_ids"]:
+            expected = [
+                item for item in manifest if str(item.get("source_document_id")) == document_id
+            ]
+            if len(expected) > 100:
+                raise FormatReviewFailure(
+                    "FORMAT_PROFILE_SNAPSHOT_INVALID",
+                    "单个规则文档超过知识库全量检索上限，请拆分规则文档。",
+                )
+            payload = {
+                "question": (
+                    f"{plan['venue_id']} {plan['submission_mode']} all atomic manuscript "
+                    "format rules page layout title heading abstract author figure table "
+                    "reference appendix"
+                ),
+                "dataset_ids": [plan["dataset_id"]],
+                "document_ids": [document_id],
+                "top_k": 100,
+                "page_size": 100,
+                "similarity_threshold": 0,
+            }
+            for attempt in range(2):
+                try:
+                    async with httpx.AsyncClient(timeout=30, trust_env=False) as client:
+                        response = await client.post(
+                            _ragflow_endpoint(self._settings.ragflow_base_url, "retrieval"),
+                            json=payload,
+                            headers=headers,
+                        )
+                        response.raise_for_status()
+                        body = response.json()
+                    if isinstance(body, dict) and body.get("code") not in {None, 0}:
+                        raise ValueError(str(body.get("message") or "RAGFlow retrieval failed"))
+                    break
+                except (httpx.HTTPError, ValueError) as exc:
+                    if attempt == 0:
+                        await asyncio.sleep(0)
+                        continue
+                    raise FormatReviewFailure(
+                        "FORMAT_KB_UNAVAILABLE",
+                        "格式规范知识库检索失败。",
+                        retryable=True,
+                    ) from exc
+            data = body.get("data", body) if isinstance(body, dict) else {}
+            raw = data.get("chunks", data.get("items", [])) if isinstance(data, dict) else []
+            if isinstance(raw, list):
+                collected.extend(item for item in raw if isinstance(item, dict))
+        return collected
 
     async def _load_native_spans(
         self,
@@ -1014,7 +1177,7 @@ class FormatReviewWorkflowService:
             facts=facts,
             standards=standards,
         )
-        fixed_findings = not_applicable + missing_findings
+        retained_findings = not_applicable + missing_findings
         if not executable_rule_ids:
             return await self._finish_unit(
                 state,
@@ -1022,7 +1185,7 @@ class FormatReviewWorkflowService:
                 status="unverifiable",
                 event_type="unit_unverifiable",
                 message="审查块没有可执行的已检索规则，已标记为无法可靠判断。",
-                findings=fixed_findings,
+                findings=retained_findings,
                 cycle_count=0,
                 retry_budget_remaining=1,
             )
@@ -1057,8 +1220,8 @@ class FormatReviewWorkflowService:
                 rules_by_id=rules_by_id,
                 submission_mode=state["review"]["submission_mode"],
             )
-            if len(json.dumps(payload, ensure_ascii=False)) > MAX_CONTEXT_CHARACTERS:
-                findings = fixed_findings + _unverifiable_findings_for_rules(
+            if format_review_input_tokens("format_check", payload) > FORMAT_MODEL_INPUT_TOKENS:
+                findings = retained_findings + _unverifiable_findings_for_rules(
                     executable_rule_ids,
                     rules_by_id,
                     "该审查块无法在不截断完整规则的前提下装配到模型上下文。",
@@ -1091,7 +1254,7 @@ class FormatReviewWorkflowService:
                     standard_evidences=standards,
                     coverage_report=coverage,
                 )
-                validated.extend(fixed_findings)
+                validated.extend(retained_findings)
                 validated = _ensure_unit_rule_representation(
                     validated,
                     expected_rule_ids,
@@ -1106,11 +1269,7 @@ class FormatReviewWorkflowService:
                     reflected, validation_metrics = await runner.invoke(
                         "format_reflect",
                         ReflectionOutput,
-                        payload={
-                            "unit": _public_unit_plan(unit),
-                            "findings": validated,
-                            "coverage_report": coverage,
-                        },
+                        payload=_reflection_payload(unit, validated, coverage),
                     )
                     decision, reason = reflected.decision, reflected.reason
                 else:
@@ -1118,7 +1277,7 @@ class FormatReviewWorkflowService:
                     decision, reason = "confirmed", "全部候选已由确定性证据门禁处理。"
             except Exception as exc:
                 decision, reason = "repair_check", "模型调用或结构化校验失败。"
-                validated = fixed_findings + _unverifiable_findings_for_rules(
+                validated = retained_findings + _unverifiable_findings_for_rules(
                     executable_rule_ids,
                     rules_by_id,
                     "块级模型调用失败，无法可靠判断。",
@@ -1159,10 +1318,110 @@ class FormatReviewWorkflowService:
                     retry_budget_remaining=retry_budget_remaining,
                     last_retry_reason=last_retry_reason,
                 )
-            # A reflection request cannot recover facts: a unit retry receives
-            # the same immutable PDF facts. Preserve independently complete
-            # results and keep only the incomplete rules unresolved instead of
-            # degrading every finding during a futile second cycle.
+            unresolved_rule_ids = _unresolved_unit_rule_ids(validated, expected_rule_ids)
+            if decision in {"recover_pdf_evidence", "retrieve_standard", "clarify_standard"}:
+                if not unresolved_rule_ids:
+                    return await self._finish_unit(
+                        state,
+                        unit,
+                        status="validated",
+                        event_type="unit_validated",
+                        message="该审查块的全部原子规则均已有完整可核验结论。",
+                        findings=validated,
+                        cycle_count=cycle_count,
+                        retry_budget_remaining=retry_budget_remaining,
+                        last_retry_reason=reason,
+                    )
+                if cycle_count >= MAX_UNIT_CYCLES:
+                    return await self._finish_unit(
+                        state,
+                        unit,
+                        status="validated" if _has_complete_actionable_finding(validated) else "unverifiable",
+                        event_type="unit_validated" if _has_complete_actionable_finding(validated) else "unit_unverifiable",
+                        message="补正预算已用尽；未获得新增可核验证据的原子规则已标记为无法可靠判断。",
+                        findings=_force_rules_unverifiable(validated, unresolved_rule_ids, reason),
+                        cycle_count=cycle_count,
+                        retry_budget_remaining=0,
+                        last_retry_reason=reason,
+                    )
+                if decision == "recover_pdf_evidence":
+                    try:
+                        supplements = await asyncio.to_thread(
+                            supplement_unit_evidence,
+                            pdf_path=state["task"]["paper_file_path"],
+                            unit=unit,
+                            rules_by_id=rules_by_id,
+                            unresolved_rule_ids=unresolved_rule_ids,
+                            existing_facts=all_facts,
+                        )
+                    except Exception:
+                        # Evidence recovery must not turn a local uncertainty
+                        # into a failed review unit.
+                        supplements = []
+                    supplements = _new_supplemental_facts(all_facts, supplements)
+                    if supplements:
+                        all_facts = [*all_facts, *supplements]
+                        facts = _facts_for_unit(unit, all_facts)
+                    recovery_detail = "PDF 补正器未返回新增可定位事实。"
+                    has_recovery_delta = bool(supplements)
+                else:
+                    refreshed = self._refresh_standard_evidences_for_rules(
+                        state, unresolved_rule_ids
+                    )
+                    refreshed = _new_standard_evidences(all_standards, refreshed)
+                    if refreshed:
+                        all_standards = [
+                            item
+                            for item in all_standards
+                            if str(item.get("canonical_rule_id")) not in set(unresolved_rule_ids)
+                        ] + refreshed
+                        standards = [
+                            item
+                            for item in all_standards
+                            if str(item.get("canonical_rule_id"))
+                            in set(unresolved_rule_ids) | not_applicable_rule_ids
+                        ]
+                        executable_rule_ids = sorted(
+                            set(unresolved_rule_ids)
+                            & {str(item.get("canonical_rule_id")) for item in standards}
+                        )
+                    recovery_detail = "冻结规则清单未提供可用的精确标准补充。"
+                    has_recovery_delta = bool(refreshed)
+                if not has_recovery_delta:
+                    return await self._finish_unit(
+                        state,
+                        unit,
+                        status="validated" if _has_complete_actionable_finding(validated) else "unverifiable",
+                        event_type="unit_validated" if _has_complete_actionable_finding(validated) else "unit_unverifiable",
+                        message="补正未产生增量事实；相关原子规则已标记为无法可靠判断。",
+                        findings=_force_rules_unverifiable(
+                            validated, unresolved_rule_ids, f"{reason} {recovery_detail}"
+                        ),
+                        cycle_count=cycle_count,
+                        retry_budget_remaining=retry_budget_remaining,
+                        last_retry_reason=f"{reason} {recovery_detail}",
+                    )
+                retained_findings = _freeze_complete_findings(validated, unresolved_rule_ids)
+                execution_unit = {
+                    **unit,
+                    "expected_rule_ids": executable_rule_ids,
+                    "retrieved_rule_ids": executable_rule_ids,
+                }
+                retry_budget_remaining = 0
+                last_retry_reason = reason
+                await self._persist_unit_event(
+                    state,
+                    unit,
+                    event_type="unit_progress",
+                    status="running",
+                    message="已补充原子规则的可追溯证据，正在仅重审未解决规则。",
+                    cycle_count=cycle_count,
+                    retry_budget_remaining=retry_budget_remaining,
+                    last_retry_reason=last_retry_reason,
+                )
+                continue
+            # Preserve independently complete conclusions when reflection does
+            # not identify a recoverable evidence path.
             if _has_complete_actionable_finding(validated):
                 return await self._finish_unit(
                     state,
@@ -1182,14 +1441,15 @@ class FormatReviewWorkflowService:
                     status="unverifiable",
                     event_type="unit_unverifiable",
                     message="证据核验要求将该审查块标记为无法可靠判断。",
-                    findings=_make_unverifiable(validated, reason),
+                    findings=_force_rules_unverifiable(validated, unresolved_rule_ids, reason),
                     cycle_count=cycle_count,
                     retry_budget_remaining=retry_budget_remaining,
                     last_retry_reason=reason,
                 )
 
-            # recover_pdf_evidence / clarify_standard / repair_check use one
-            # shared complete-cycle retry, never independent retry counters.
+            # repair_check uses one same-context retry for model or schema
+            # instability. Evidence recovery is handled above with a concrete
+            # supplement before any second model call.
             if cycle_count < MAX_UNIT_CYCLES:
                 retry_budget_remaining = 0
                 last_retry_reason = reason
@@ -1210,7 +1470,7 @@ class FormatReviewWorkflowService:
                 status="unverifiable",
                 event_type="unit_unverifiable",
                 message="审查块已用尽一次完整重试预算。",
-                findings=_make_unverifiable(validated, reason),
+                findings=_force_rules_unverifiable(validated, unresolved_rule_ids, reason),
                 cycle_count=cycle_count,
                 retry_budget_remaining=0,
                 last_retry_reason=reason,
@@ -1223,7 +1483,7 @@ class FormatReviewWorkflowService:
             status="failed",
             event_type="unit_failed",
             message="审查块未能达到确定终态。",
-                findings=_unverifiable_findings_for_rules(
+            findings=_unverifiable_findings_for_rules(
                     expected_rule_ids,
                     rules_by_id,
                     "审查块执行异常，无法可靠判断。",
@@ -1234,6 +1494,23 @@ class FormatReviewWorkflowService:
             retry_budget_remaining=0,
             last_retry_reason=last_retry_reason,
         )
+
+    def _refresh_standard_evidences_for_rules(
+        self, state: FormatReviewState, rule_ids: list[str]
+    ) -> list[dict[str, Any]]:
+        """Rehydrate frozen atomic rule text without a similarity search."""
+
+        plan = state["retrieval_plan"]
+        requested = set(rule_ids)
+        manifest = [
+            item for item in plan["manifest"] if str(item.get("rule_id")) in requested
+        ]
+        evidences = _manifest_standard_evidences(manifest, list(plan["document_ids"]))
+        for evidence in evidences:
+            rule_id = str(evidence["canonical_rule_id"])
+            evidence["evidence_id"] = f"S-REF-{hashlib.sha256(rule_id.encode()).hexdigest()[:12]}"
+            evidence["retrieval_strategy"] = "manifest_refresh_exact"
+        return evidences
 
     async def _finish_unit(
         self,
@@ -1614,8 +1891,19 @@ def _plan_review_units(facts: list[dict[str, Any]]) -> list[dict[str, Any]]:
         )
 
     first_page = by_page[pages[0]]
-    append_unit("front_matter", "Front matter", first_page)
     abstract_facts = [fact for fact in facts if _fact_matches(fact, ("abstract",))]
+    abstract_ids = {str(fact.get("evidence_id")) for fact in abstract_facts}
+    front_matter_facts = [
+        fact
+        for fact in first_page
+        if str(fact.get("evidence_id")) not in abstract_ids
+        and (
+            str(fact.get("role") or "").lower()
+            in {"title", "document_title", "author", "authors", "affiliation", "front_matter"}
+            or not re.match(r"^\d+(?:\s|\.|$)", str(fact.get("section_title") or "").strip())
+        )
+    ]
+    append_unit("front_matter", "Front matter", front_matter_facts or first_page)
     append_unit("abstract", "Abstract", abstract_facts or first_page)
 
     reference_pages = [
@@ -1629,6 +1917,9 @@ def _plan_review_units(facts: list[dict[str, Any]]) -> list[dict[str, Any]]:
     body_facts = [
         fact
         for fact in facts
+        if str(fact.get("evidence_id")) not in abstract_ids
+        and fact not in front_matter_facts
+        and not str(fact.get("role") or "").startswith("derived_")
         if reference_start is None or int(fact.get("page_number") or 0) < reference_start
     ]
     for title, group_facts in _coarse_body_groups(body_facts):
@@ -1843,14 +2134,13 @@ def _refine_units_for_context_budget(
     standards: list[dict[str, Any]],
     rules_by_id: dict[str, dict[str, Any]],
     submission_mode: str,
-    context_budget: int = MAX_CONTEXT_CHARACTERS,
+    context_budget: int = FORMAT_MODEL_INPUT_TOKENS,
 ) -> tuple[list[dict[str, Any]], dict[str, int]]:
-    """Split an oversized rule-bearing unit before it ever reaches an LLM.
+    """Split a review unit until its complete rendered model input is at most 11K tokens.
 
-    Refinement is deterministic and uses only consecutive page boundaries. It
-    never drops a rule or silently shortens rule text.  The bounded depth is a
-    guard against pathological documents; a one-page leaf that still exceeds
-    the budget remains explicitly unverifiable at execution time.
+    Atomic-rule boundaries are preferred so a rule is never duplicated across
+    model calls. A single-rule leaf may then split on consecutive page
+    boundaries. No rule text or cited fact is silently truncated.
     """
 
     refined_count = 0
@@ -1859,7 +2149,9 @@ def _refine_units_for_context_budget(
     def refine(unit: dict[str, Any], depth: int) -> list[dict[str, Any]]:
         nonlocal refined_count, max_depth_reached
         max_depth_reached = max(max_depth_reached, depth)
-        expected_rule_ids = set(str(item) for item in unit.get("expected_rule_ids", []))
+        expected_rule_ids = sorted(
+            {str(item) for item in unit.get("expected_rule_ids", [])}
+        )
         if not expected_rule_ids:
             unit["context_refinement"] = {"depth": depth, "status": "not_needed"}
             return [unit]
@@ -1876,31 +2168,24 @@ def _refine_units_for_context_budget(
             rules_by_id=rules_by_id,
             submission_mode=submission_mode,
         )
-        context_characters = len(json.dumps(payload, ensure_ascii=False))
-        if context_characters <= context_budget:
+        context_tokens = format_review_input_tokens("format_check", payload)
+        if context_tokens <= context_budget:
             unit["context_refinement"] = {
                 "depth": depth,
                 "status": "within_budget",
-                "context_characters": context_characters,
+                "context_tokens": context_tokens,
+                "token_limit": context_budget,
             }
             return [unit]
-        if str(unit.get("unit_kind")) == "figure_table":
-            # Figures and tables form one inspection surface. Splitting it by
-            # page repeats the same rules and makes equivalent evidence look
-            # like six unrelated review blocks. The compact selector already
-            # bounds its facts; an extreme document remains one explicit gap.
-            unit["context_refinement"] = {
-                "depth": depth,
-                "status": "aggregate_figure_table_exceeds_budget",
-                "context_characters": context_characters,
-            }
-            return [unit]
-        children = _split_unit_at_page_boundary(unit, unit_facts)
+        children = _split_unit_by_rules(unit) if len(expected_rule_ids) > 1 else []
+        if not children:
+            children = _split_unit_at_page_boundary(unit, unit_facts)
         if depth >= MAX_CONTEXT_REFINEMENT_DEPTH or not children:
             unit["context_refinement"] = {
                 "depth": depth,
                 "status": "minimum_unit_exceeds_budget",
-                "context_characters": context_characters,
+                "context_tokens": context_tokens,
+                "token_limit": context_budget,
             }
             return [unit]
         refined_count += 1
@@ -1917,13 +2202,51 @@ def _refine_units_for_context_budget(
     }
 
 
+def _split_unit_by_rules(unit: dict[str, Any]) -> list[dict[str, Any]]:
+    """Bisect atomic rules while preserving one shared inspection surface."""
+
+    rule_ids = sorted({str(item) for item in unit.get("expected_rule_ids", [])})
+    if len(rule_ids) < 2:
+        return []
+    split_at = len(rule_ids) // 2
+    children: list[dict[str, Any]] = []
+    for index, selected in enumerate((rule_ids[:split_at], rule_ids[split_at:]), start=1):
+        selected_set = set(selected)
+        coverage = dict(unit.get("coverage", {}))
+        retrieved = sorted(selected_set & set(unit.get("retrieved_rule_ids", [])))
+        coverage.update(
+            {
+                "expected_rule_ids": selected,
+                "retrieved_rule_ids": retrieved,
+                "missing_rule_ids": sorted(selected_set - set(retrieved)),
+                "complete": selected_set <= set(retrieved),
+            }
+        )
+        children.append(
+            {
+                **unit,
+                "title": f"{unit['title']} (rules {index}/2)",
+                "expected_rule_ids": selected,
+                "allocated_rule_ids": selected,
+                "global_rule_ids": sorted(selected_set & set(unit.get("global_rule_ids", []))),
+                "retrieved_rule_ids": retrieved,
+                # Document-level non-applicability is emitted once, not once
+                # per rule child.
+                "not_applicable_rule_ids": (
+                    list(unit.get("not_applicable_rule_ids", [])) if index == 1 else []
+                ),
+                "coverage": coverage,
+                "context_refinement": {"status": "rule_split_pending"},
+            }
+        )
+    return children
+
+
 def _split_unit_at_page_boundary(
     unit: dict[str, Any], unit_facts: list[dict[str, Any]]
 ) -> list[dict[str, Any]]:
     """Create two consecutive page children while preserving full rule scope."""
 
-    if str(unit.get("unit_kind")) == "global":
-        return []
     by_page: dict[int, list[dict[str, Any]]] = defaultdict(list)
     for fact in unit_facts:
         page = int(fact.get("page_number") or 0)
@@ -1995,20 +2318,93 @@ def _rule_applicable_to_document(
 def _facts_for_unit(unit: dict[str, Any], facts: list[dict[str, Any]]) -> list[dict[str, Any]]:
     fact_ids = {str(item) for item in unit.get("fact_ids", [])}
     selected = [fact for fact in facts if str(fact.get("evidence_id")) in fact_ids]
+    supporting_roles_by_unit = {
+        "figure_table": {
+            "derived_captions",
+            "derived_caption_geometry",
+            "derived_column_geometry",
+            "derived_body_geometry",
+            "derived_rule_assessment",
+        },
+        "front_matter": {
+            "derived_front_matter",
+            "derived_front_matter_geometry",
+            "derived_supplement_front_matter",
+            "derived_column_geometry",
+            "derived_rule_assessment",
+        },
+        "body_section": {
+            "derived_column_geometry",
+            "derived_typography_inventory",
+            "derived_heading_inventory",
+            "derived_supplement_heading_case",
+            "derived_citation_inventory",
+            "derived_rule_assessment",
+        },
+        "abstract": {
+            "derived_abstract",
+            "derived_rule_assessment",
+        },
+        "appendix": {
+            "derived_page_geometry",
+            "derived_document_structure",
+            "derived_column_geometry",
+            "derived_typography_inventory",
+            "derived_appendix_layout",
+        },
+        "reference": {
+            "derived_references",
+            "derived_reference_inventory",
+            "derived_supplement_reference_indentation",
+            "derived_rule_assessment",
+        },
+        "global": {
+            "derived_page_geometry",
+            "derived_document_structure",
+            "derived_column_geometry",
+            "derived_typography_inventory",
+            "derived_appendix_layout",
+            "derived_supplement_page_boundary",
+            "derived_rule_assessment",
+        },
+    }
+    supporting_roles = supporting_roles_by_unit.get(str(unit.get("unit_kind") or ""), set())
+    if supporting_roles:
+        # Cross-block aggregates are document-derived and are not owned by one
+        # local text block. Inject their compact source facts for every unit
+        # whose atomic rules require their complete coverage.
+        selected_ids = {str(item.get("evidence_id")) for item in selected}
+        selected.extend(
+            fact
+            for fact in facts
+            if str(fact.get("role")) in supporting_roles
+            and str(fact.get("evidence_id")) not in selected_ids
+        )
     if unit.get("unit_kind") == "global":
         selected = _global_context_facts(selected)
     return selected
 
 
 def _global_context_facts(facts: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    selected: list[dict[str, Any]] = []
+    # Venue-derived measurements are the authoritative evidence for global
+    # geometry rules. Keep them before page sampling so ordinary text blocks
+    # cannot consume the global context budget first.
+    selected: list[dict[str, Any]] = [
+        fact for fact in facts if str(fact.get("role") or "").startswith("derived_")
+    ]
+    selected = selected[:MAX_CONTEXT_FACTS]
+    selected_ids = {str(item.get("evidence_id")) for item in selected}
     seen_pages: set[int] = set()
     for fact in sorted(facts, key=lambda item: (int(item.get("page_number") or 0), str(item.get("evidence_id")))):
+        if str(fact.get("evidence_id")) in selected_ids:
+            continue
         page = int(fact.get("page_number") or 0)
         if page and page not in seen_pages and fact.get("page_width_pt") is not None:
             selected.append(fact)
+            selected_ids.add(str(fact.get("evidence_id")))
             seen_pages.add(page)
-    selected_ids = {str(item.get("evidence_id")) for item in selected}
+        if len(selected) >= MAX_CONTEXT_FACTS:
+            return selected
     for fact in facts:
         if str(fact.get("evidence_id")) in selected_ids:
             continue
@@ -2031,15 +2427,18 @@ def _unit_context_payload(
     categories = sorted(
         {str(rules_by_id[rule_id]["rule_category"]) for rule_id in unit["expected_rule_ids"] if rule_id in rules_by_id}
     )
+    context_facts = _facts_for_expected_neurips_rule_groups(
+        facts, unit["expected_rule_ids"], rules_by_id
+    )
     selected_facts = (
         _context_facts_for_categories(
-            facts, categories, per_category_limit=FORMAT_CONTEXT_FACTS_PER_CATEGORY
+            context_facts, categories, per_category_limit=FORMAT_CONTEXT_FACTS_PER_CATEGORY
         )
         if categories
         else []
     )
     if not selected_facts:
-        selected_facts = [_context_fact(item) for item in facts[:MAX_CONTEXT_FACTS]]
+        selected_facts = [_context_fact(item) for item in context_facts[:MAX_CONTEXT_FACTS]]
     return {
         "format_profile": {"submission_mode": submission_mode},
         "review_unit": _model_unit_plan(unit),
@@ -2050,10 +2449,45 @@ def _unit_context_payload(
             for rule_id in unit["expected_rule_ids"]
             if rule_id in rules_by_id
         },
-        "standard_evidence": standards,
+        "standard_evidence": [_model_standard_evidence(item) for item in standards],
         "paper_layout_facts": selected_facts,
         "required_output": "Composite findings for this unit using only supplied P*/S* evidence identifiers.",
     }
+
+
+def _facts_for_expected_neurips_rule_groups(
+    facts: list[dict[str, Any]], expected_rule_ids: list[str], rules_by_id: dict[str, dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Avoid repeating unrelated NeurIPS rule-group measurements in each unit.
+
+    The mapping is derived from the manifest's stable NIPS-xx section marker,
+    not from a document title, paper content, or a particular rule hash.
+    """
+
+    expected_groups: set[str] = set()
+    for rule_id in expected_rule_ids:
+        rule = rules_by_id.get(rule_id)
+        if not isinstance(rule, dict):
+            continue
+        source = " ".join(
+            str(rule.get(key) or "") for key in ("section_path", "title", "description")
+        )
+        expected_groups.update(re.findall(r"\bNIPS-\d{2}\b", source, flags=re.IGNORECASE))
+    if not expected_groups:
+        return facts
+    normalized_groups = {item.upper() for item in expected_groups}
+    return [
+        fact
+        for fact in facts
+        if str(fact.get("role")) != "derived_rule_assessment"
+        or str(
+            (fact.get("measurements") if isinstance(fact.get("measurements"), dict) else {}).get(
+                "parser_rule_group"
+            )
+            or ""
+        ).upper()
+        in normalized_groups
+    ]
 
 
 def _not_applicable_findings(
@@ -2216,6 +2650,79 @@ def _deduplicate_unit_findings(unit_results: list[dict[str, Any]]) -> list[dict[
     return findings
 
 
+def _reflection_payload(
+    unit: dict[str, Any], findings: list[dict[str, Any]], coverage: dict[str, Any]
+) -> dict[str, Any]:
+    """Keep evidence reflection within the same request budget as checking."""
+
+    def evidence_ids(item: dict[str, Any], field: str) -> list[str]:
+        return [
+            str(evidence.get("evidence_id"))
+            for evidence in item.get(field, [])
+            if isinstance(evidence, dict) and evidence.get("evidence_id")
+        ][:8]
+
+    return {
+        "unit": _public_unit_plan(unit),
+        "findings": [
+            {
+                "rule_ids": item.get("rule_ids", []),
+                "result": item.get("result"),
+                "severity": item.get("severity"),
+                "evidence_status": item.get("evidence_status"),
+                "paper_evidence_ids": evidence_ids(item, "paper_evidences"),
+                "standard_evidence_ids": evidence_ids(item, "standard_evidences"),
+                "finding": str(item.get("finding") or "")[:120],
+                "reason": str(item.get("reason") or "")[:80],
+            }
+            for item in findings
+        ],
+        "coverage_report": _compact_reflection_coverage(coverage),
+    }
+
+
+def _compact_reflection_coverage(coverage: dict[str, Any]) -> dict[str, Any]:
+    return {
+        key: list(coverage.get(key, []))[:32]
+        for key in (
+            "expected_rule_ids",
+            "retrieved_rule_ids",
+            "missing_rule_ids",
+            "missing_categories",
+        )
+        if isinstance(coverage.get(key), list)
+    }
+
+
+def _synthesis_payload(findings: list[dict[str, Any]], coverage: dict[str, Any]) -> dict[str, Any]:
+    """Use a compact deterministic inventory for the optional LLM summary."""
+
+    return {
+        "validated_unit_findings": [
+            {
+                "rule_ids": item.get("rule_ids", []),
+                "category": item.get("category"),
+                "aspect": str(item.get("aspect") or item.get("rule_title") or "")[:120],
+                "result": item.get("result"),
+                "severity": item.get("severity"),
+                "page_numbers": sorted(
+                    {
+                        int(evidence.get("page_number") or evidence.get("page"))
+                        for evidence in item.get("paper_evidences", [])
+                        if isinstance(evidence, dict)
+                        and isinstance(
+                            evidence.get("page_number", evidence.get("page")), int
+                        )
+                    }
+                ),
+            }
+            for item in findings
+        ],
+        "coverage_report": _compact_reflection_coverage(coverage),
+        "constraint": "Only summarize supplied findings. Do not add findings or evidence.",
+    }
+
+
 def _consolidate_rule_findings(
     rule_id: str, candidates: list[dict[str, Any]]
 ) -> dict[str, Any]:
@@ -2248,19 +2755,22 @@ def _consolidate_rule_findings(
                     seen.add(key)
         return merged
 
-    messages = list(dict.fromkeys(str(item.get("finding") or "") for item in selected))
-    reasons = list(dict.fromkeys(str(item.get("reason") or "") for item in selected if item.get("reason")))
-    suggestions = list(
-        dict.fromkeys(str(item.get("suggestion") or "") for item in selected if item.get("suggestion"))
+    # A canonical rule has one user-facing outcome. Multiple units or a
+    # bounded retry can contribute extra evidence, but must not concatenate
+    # near-identical prose into a paragraph-sized "finding".
+    finding = str(base.get("finding") or "")
+    reason = next((str(item["reason"]) for item in selected if item.get("reason")), None)
+    suggestion = next(
+        (str(item["suggestion"]) for item in selected if item.get("suggestion")), None
     )
     return {
         **base,
         "rule_ids": [rule_id],
         "result": chosen_result,
         "severity": severity,
-        "finding": " ".join(messages)[:4000],
-        "suggestion": " ".join(suggestions)[:4000] or None,
-        "reason": " ".join(reasons)[:2000] or None,
+        "finding": finding[:4000],
+        "suggestion": suggestion[:4000] if suggestion else None,
+        "reason": reason[:2000] if reason else None,
         "paper_evidences": merge_evidence("paper_evidences"),
         "standard_evidences": merge_evidence("standard_evidences"),
         "evidence_status": (
@@ -2337,6 +2847,7 @@ def _applicable_manifest(raw: list[Any], submission_mode: str) -> list[dict[str,
                 "rule_id": rule_id,
                 "title": str(item.get("title") or item.get("section_path") or rule_id),
                 "description": description,
+                "source_attachment": str(item.get("source_attachment") or "").strip(),
                 "rule_category": str(item.get("rule_category") or "body"),
                 "submission_mode": mode,
                 "source_document_id": str(item.get("source_document_id") or ""),
@@ -2365,6 +2876,37 @@ def _category_query(snapshot: dict[str, Any], category: str, manifest: list[dict
     )
 
 
+def _manifest_standard_evidences(
+    manifest: list[dict[str, Any]], document_ids: list[str]
+) -> list[dict[str, Any]]:
+    """Materialize every selected atomic rule; semantic top-k must not gate coverage."""
+
+    allowed_documents = set(document_ids)
+    evidences: list[dict[str, Any]] = []
+    for rule in manifest:
+        document_id = str(rule.get("source_document_id") or "")
+        rule_id = str(rule.get("rule_id") or "")
+        quote = str(rule.get("description") or "").strip()
+        if not rule_id or not quote or document_id not in allowed_documents:
+            continue
+        evidences.append(
+            {
+                "evidence_id": f"S{len(evidences) + 1}",
+                "canonical_rule_id": rule_id,
+                "category": str(rule.get("rule_category") or "body"),
+                "document_id": document_id,
+                "chunk_id": rule_id,
+                "section_path": str(rule.get("section_path") or rule.get("title") or ""),
+                "quote": quote,
+                "source_attachment": str(rule.get("source_attachment") or ""),
+                "source_uri": f"manifest://{document_id}/{rule_id}",
+                "retrieval_score": 1.0,
+                "retrieval_strategy": "manifest_exact",
+            }
+        )
+    return evidences
+
+
 def _resolve_standard_chunks(raw: list[dict[str, Any]], plan: dict[str, Any], existing: list[dict[str, Any]]) -> list[dict[str, Any]]:
     manifest_by_id = {str(item["rule_id"]): item for item in plan["manifest"]}
     allowed_documents = set(plan["document_ids"])
@@ -2381,8 +2923,11 @@ def _resolve_standard_chunks(raw: list[dict[str, Any]], plan: dict[str, Any], ex
             or ""
         )
         content = str(item.get("content") or item.get("text") or "").strip()
-        canonical_id = supplied_rule_id if supplied_rule_id in manifest_by_id else _match_manifest_rule_id(
-            content, document_id, plan["manifest"]
+        explicit_rule_id = _explicit_rule_id(content, set(manifest_by_id))
+        canonical_id = (
+            supplied_rule_id
+            if supplied_rule_id in manifest_by_id
+            else explicit_rule_id or _match_manifest_rule_id(content, document_id, plan["manifest"])
         )
         if document_id not in allowed_documents or not canonical_id or canonical_id in known:
             continue
@@ -2398,7 +2943,11 @@ def _resolve_standard_chunks(raw: list[dict[str, Any]], plan: dict[str, Any], ex
                 "document_id": document_id,
                 "chunk_id": str(item.get("chunk_id") or item.get("id") or canonical_id),
                 "section_path": metadata.get("section_path") or metadata.get("section") or rule["section_path"],
-                "quote": content,
+                # RAGFlow proves that this atomic chunk exists in the frozen
+                # document. The profile manifest remains the canonical text
+                # shown to the model, avoiding stale or oversized chunk prose.
+                "quote": str(rule["description"]),
+                "source_attachment": str(rule.get("source_attachment") or ""),
                 "source_uri": metadata.get("source_uri"),
                 "retrieval_score": item.get("score", item.get("similarity", 0.0)),
             }
@@ -2424,6 +2973,16 @@ def _match_manifest_rule_id(
         if description_key in content_key or content_key in description_key:
             matches.append(str(rule["rule_id"]))
     return matches[0] if len(matches) == 1 else None
+
+
+def _explicit_rule_id(content: str, allowed_rule_ids: set[str]) -> str | None:
+    """Read the canonical ID embedded in an imported atomic-rule chunk wrapper."""
+
+    for line in content.splitlines()[:8]:
+        match = re.match(r"^\s*(?:规则ID|rule\s*id)\s*[:：]\s*(\S+)\s*$", line, re.IGNORECASE)
+        if match and match.group(1) in allowed_rule_ids:
+            return match.group(1)
+    return None
 
 
 def _context_groups(
@@ -2525,6 +3084,17 @@ def _context_facts_for_category(
     terms = terms_by_category.get(category, ())
     ranked: list[tuple[int, int, int, str, dict[str, Any]]] = []
     for fact in facts:
+        role = str(fact.get("role") or "")
+        if role.startswith("derived_") and not _derived_fact_relevant(fact, category):
+            continue
+        if (
+            category in {"figure", "table"}
+            and role == "paragraph"
+            and not _caption_label(str(fact.get("quote") or ""))
+        ):
+            # Narrative mentions of a figure/table do not establish its label,
+            # style, pairing, or geometry.  Keep the linked structured facts.
+            continue
         quote = str(fact.get("quote") or "")
         haystack = " ".join(
             [
@@ -2535,9 +3105,16 @@ def _context_facts_for_category(
         )
         term_score = sum(8 for term in terms if term in haystack)
         native_graphic = category in {"figure", "table"} and _is_native_graphic_fact(fact)
-        if category in {"figure", "table"} and not term_score and not native_graphic:
+        if (
+            category in {"figure", "table"}
+            and not term_score
+            and not native_graphic
+            and not _derived_fact_relevant(fact, category)
+        ):
             continue
         score = term_score
+        if _derived_fact_relevant(fact, category):
+            score += 40
         if native_graphic:
             score += 8
         if category == "page_layout" and fact.get("page_width_pt") is not None:
@@ -2559,10 +3136,24 @@ def _context_facts_for_category(
         )
 
     ranked.sort(key=lambda item: (-item[0], item[1], item[2], item[3]))
-    selected: list[dict[str, Any]] = []
-    selected_ids: set[str] = set()
+    # Structured measurements frequently share a page anchor. They are
+    # independent facts and must not eliminate one another via page coverage.
+    derived_ranked = [item for item in ranked if _derived_fact_relevant(item[4], category)]
+    selected: list[dict[str, Any]] = [_context_fact(item[4]) for item in derived_ranked[:limit]]
+    selected_ids: set[str] = {str(item.get("evidence_id") or "") for item in selected}
+    # The NeurIPS extractor provides category-routable, complete rule-group
+    # measurements.  Their compact derived inventories retain the geometry and
+    # style observables, so unrelated body prose adds token cost without
+    # increasing the evidence population.  Other venues keep the established
+    # page-covering raw-fact fallback.
+    if any(str(item.get("role")) == "derived_rule_assessment" for item in selected):
+        return selected
+    if len(selected) >= limit:
+        return selected
     covered_pages: set[int] = set()
     for _, _, page_number, evidence_id, fact in ranked:
+        if evidence_id in selected_ids:
+            continue
         if page_number in covered_pages:
             continue
         context_fact = _context_fact(fact)
@@ -2583,13 +3174,435 @@ def _context_facts_for_category(
     return selected
 
 
+def _derived_fact_relevant(fact: dict[str, Any], category: str) -> bool:
+    role = str(fact.get("role") or "")
+    if not role.startswith("derived_"):
+        return False
+    name = role.removeprefix("derived_")
+    if name == "rule_assessment":
+        measurements = fact.get("measurements")
+        categories = measurements.get("rule_categories") if isinstance(measurements, dict) else []
+        return category in categories if isinstance(categories, list) else False
+    if category == "page_layout":
+        return name in {
+            "page_geometry",
+            "document_structure",
+            "column_geometry",
+            "body_geometry",
+            "paragraph_metrics",
+            "typography_inventory",
+            "appendix_layout",
+        }
+    if category == "appendix":
+        return name in {
+            "page_geometry",
+            "document_structure",
+            "column_geometry",
+            "typography_inventory",
+            "appendix_layout",
+        }
+    if category in {"author_identity", "anonymity"}:
+        return name in {"front_matter", "front_matter_geometry", "column_geometry"}
+    if category == "heading":
+        return name in {"front_matter", "front_matter_geometry", "heading_inventory", "column_geometry"}
+    if category == "reference":
+        return name in {"references", "citation_inventory", "reference_inventory"}
+    if category in {"figure", "table"}:
+        return name in {"captions", "caption_geometry", "column_geometry", "body_geometry"}
+    return category in name or name in category
+
+
 def _context_fact(fact: dict[str, Any]) -> dict[str, Any]:
     context_fact = dict(fact)
+    if str(context_fact.get("role") or "").startswith("derived_"):
+        measurements = context_fact.get("measurements")
+        if isinstance(measurements, dict):
+            context_fact["measurements"] = _compact_derived_measurements(
+                str(context_fact.get("role") or ""), measurements
+            )
+        context_fact["quote"] = str(context_fact.get("role") or "derived measurement")
+        for key in ("block_id", "section_title", "confidence", "source_uri"):
+            context_fact.pop(key, None)
+        return context_fact
+    role = str(context_fact.get("role") or "")
+    if role in {"figure_caption", "table_caption"}:
+        return {
+            key: context_fact.get(key)
+            for key in (
+                "evidence_id",
+                "page_number",
+                "bbox",
+                "role",
+                "font_name",
+                "font_size_pt",
+                "is_bold",
+                "baseline_gap_pt",
+                "page_width_pt",
+                "page_height_pt",
+            )
+        } | {"caption_label": _caption_label(str(context_fact.get("quote") or ""))}
+    if role in {
+        "figure_object",
+        "table_object",
+        "native_image_object",
+        "native_vector_drawing_object",
+        "native_vector_graphic_object",
+    }:
+        return {
+            key: context_fact.get(key)
+            for key in (
+                "evidence_id",
+                "page_number",
+                "bbox",
+                "role",
+                "page_width_pt",
+                "page_height_pt",
+            )
+        }
     quote = str(context_fact.get("quote") or "")
     if len(quote) > MAX_CONTEXT_QUOTE_CHARACTERS:
         context_fact["quote"] = quote[:MAX_CONTEXT_QUOTE_CHARACTERS]
         context_fact["quote_truncated"] = True
     return context_fact
+
+
+def _compact_derived_measurements(role: str, value: dict[str, Any]) -> dict[str, Any]:
+    """Remove repeated raw arrays while retaining every global-rule measurement."""
+
+    compact = dict(value)
+    if role == "derived_page_geometry":
+        pages = [item for item in compact.get("pages", []) if isinstance(item, dict)]
+        unique_sizes = sorted(
+            {
+                (
+                    float(item.get("width_pt") or 0),
+                    float(item.get("height_pt") or 0),
+                    int(item.get("rotation") or 0),
+                )
+                for item in pages
+            }
+        )
+        compact["page_sizes"] = [
+            {"width_pt": width, "height_pt": height, "rotation": rotation}
+            for width, height, rotation in unique_sizes
+        ]
+        compact.pop("pages", None)
+    if role == "derived_captions":
+        compact = _compact_caption_inventory(compact)
+    if role == "derived_body_geometry":
+        compact = _compact_body_geometry(compact)
+    if role == "derived_front_matter":
+        compact = _compact_front_matter(compact)
+    if role == "derived_abstract":
+        compact = _compact_abstract(compact)
+    if role == "derived_paragraph_metrics":
+        compact = _compact_paragraph_metrics(compact)
+    if role == "derived_headings":
+        compact = _compact_headings(compact)
+    if role == "derived_references":
+        compact = {"heading": _compact_reference_heading(compact.get("heading"))}
+    return compact
+
+
+def _compact_body_geometry(value: Any) -> dict[str, Any]:
+    source = value if isinstance(value, dict) else {}
+    return {
+        key: source.get(key)
+        for key in (
+            "page_width_pt",
+            "page_height_pt",
+            "left_pt",
+            "right_pt",
+            "width_pt",
+            "top_pt",
+            "font_size_mode_pt",
+            "font_name_mode",
+            "font_name_times_compatible",
+            "baseline_gap_median_pt",
+            "sample_line_count",
+            "sample_pages",
+        )
+    }
+
+
+def _compact_front_matter(value: Any) -> dict[str, Any]:
+    source = value if isinstance(value, dict) else {}
+    title = source.get("title") if isinstance(source.get("title"), dict) else {}
+    if "horizontal_rules" in title:
+        # ICML fused-layout schema. Keep the real parser fields instead of
+        # applying the NeurIPS front-matter projection below.
+        style = title.get("style") if isinstance(title.get("style"), dict) else {}
+        title_bbox = title.get("bbox")
+        rules = [item for item in title.get("horizontal_rules", []) if isinstance(item, dict)]
+        rule_rows = []
+        for item in rules:
+            start, end = item.get("start"), item.get("end")
+            if not (
+                isinstance(start, list)
+                and isinstance(end, list)
+                and len(start) == len(end) == 2
+                and all(isinstance(component, (int, float)) for component in start + end)
+            ):
+                continue
+            rule_rows.append(
+                {
+                    "y_pt": round((float(start[1]) + float(end[1])) / 2, 4),
+                    "width_pt": item.get("width_pt"),
+                }
+            )
+        rule_rows.sort(key=lambda item: item["y_pt"])
+        return {
+            "schema": "icml_fused_layout",
+            "title_bbox": title_bbox,
+            "title_style": {
+                "font_name": style.get("dominant_font"),
+                "font_size_pt": style.get("font_size_median_pt"),
+                "bold_ratio": style.get("bold_character_ratio"),
+            },
+            "title_alignment": title.get("alignment"),
+            "horizontal_rule_count": len(rule_rows),
+            "horizontal_rules": rule_rows,
+            "top_rule_y_positions_pt": [rule_rows[0]["y_pt"]] if rule_rows else [],
+            "bottom_rule_y_positions_pt": [rule_rows[-1]["y_pt"]] if rule_rows else [],
+            "title_between_top_and_bottom_rules": bool(
+                isinstance(title_bbox, list)
+                and len(title_bbox) == 4
+                and len(rule_rows) >= 2
+                and rule_rows[0]["y_pt"] <= float(title_bbox[1])
+                and rule_rows[-1]["y_pt"] >= float(title_bbox[3])
+            ),
+        }
+    style = title.get("native_style") if isinstance(title.get("native_style"), dict) else {}
+    title_bbox = source.get("title_bbox") or title.get("native_bbox") or title.get("bbox")
+    top_rule_ys = _horizontal_rule_ys(source.get("top_rule_candidates"))
+    bottom_rule_ys = _horizontal_rule_ys(source.get("bottom_rule_candidates"))
+    return {
+        "title_page_number": title.get("page_number"),
+        "title_bbox": title_bbox,
+        "title_style": {
+            key: style.get(key)
+            for key in ("font_name", "font_size_pt", "bold_ratio", "line_count")
+        },
+        "title_alignment_delta_pt": source.get("title_alignment_delta_pt"),
+        "top_rule_count": len(source.get("top_rule_candidates") or []),
+        "bottom_rule_count": len(source.get("bottom_rule_candidates") or []),
+        "horizontal_rule_count": len(source.get("horizontal_rules") or []),
+        "top_rule_y_positions_pt": top_rule_ys,
+        "bottom_rule_y_positions_pt": bottom_rule_ys,
+        "title_between_top_and_bottom_rules": (
+            isinstance(title_bbox, list)
+            and len(title_bbox) == 4
+            and bool(top_rule_ys)
+            and bool(bottom_rule_ys)
+            and max(top_rule_ys) <= float(title_bbox[1])
+            and min(bottom_rule_ys) >= float(title_bbox[3])
+        ),
+    }
+
+
+def _horizontal_rule_ys(value: Any) -> list[float]:
+    rows = value if isinstance(value, list) else []
+    positions: list[float] = []
+    for item in rows:
+        if not isinstance(item, dict):
+            continue
+        box = item.get("bbox")
+        if isinstance(box, list) and len(box) == 4 and all(
+            isinstance(component, (int, float)) for component in box
+        ):
+            positions.append(round((float(box[1]) + float(box[3])) / 2, 4))
+            continue
+        start, end = item.get("start"), item.get("end")
+        if (
+            isinstance(start, list)
+            and isinstance(end, list)
+            and len(start) == len(end) == 2
+            and isinstance(start[1], (int, float))
+            and isinstance(end[1], (int, float))
+        ):
+            positions.append(round((float(start[1]) + float(end[1])) / 2, 4))
+    return sorted(positions)
+
+
+def _compact_abstract(value: Any) -> dict[str, Any]:
+    source = value if isinstance(value, dict) else {}
+    body = source.get("body") if isinstance(source.get("body"), dict) else {}
+    if body:
+        # ICML stores all abstract-body measurements under `body`. Exposing
+        # them as named top-level fields prevents a generic schema projection
+        # from turning present parser measurements into null placeholders.
+        heading = source.get("heading") if isinstance(source.get("heading"), dict) else {}
+        heading_style = heading.get("style") if isinstance(heading.get("style"), dict) else {}
+        body_style = body.get("style") if isinstance(body.get("style"), dict) else {}
+        return {
+            "schema": "icml_fused_layout",
+            "heading_bbox": heading.get("bbox"),
+            "heading_column_center_x_pt": heading.get("column_center_x_pt"),
+            "heading_center_offset_from_column_pt": heading.get(
+                "center_offset_from_column_pt"
+            ),
+            "heading_style": {
+                "font_name": heading_style.get("dominant_font"),
+                "font_size_pt": heading_style.get("font_size_median_pt"),
+                "bold_ratio": heading_style.get("bold_character_ratio"),
+            },
+            "body_bbox": body.get("bbox"),
+            "paragraph_count": body.get("paragraph_count"),
+            "sentence_count": body.get("sentence_count"),
+            "left_extra_indent_pt": body.get("left_extra_indent_pt"),
+            "right_extra_indent_pt": body.get("right_extra_indent_pt"),
+            "gap_after_pt": body.get("gap_after_pt"),
+            "body_style": {
+                "font_name": body_style.get("dominant_font"),
+                "font_size_pt": body_style.get("font_size_median_pt"),
+                "bold_ratio": body_style.get("bold_character_ratio"),
+                "baseline_gap_pt": body_style.get("baseline_gap_median_pt"),
+            },
+        }
+    style = source.get("style") if isinstance(source.get("style"), dict) else {}
+    heading_style = source.get("heading_style") if isinstance(source.get("heading_style"), dict) else {}
+    heading = source.get("heading") if isinstance(source.get("heading"), dict) else {}
+    return {
+        "heading_page_number": heading.get("page_number"),
+        "heading_bbox": heading.get("native_bbox") or heading.get("bbox"),
+        "heading_style": {
+            key: heading_style.get(key)
+            for key in ("font_name", "font_size_pt", "bold_ratio", "line_count")
+        },
+        "heading_alignment_delta_pt": source.get("heading_alignment_delta_pt"),
+        "body_bbox": source.get("body_bbox"),
+        "paragraph_count": source.get("paragraph_count"),
+        "line_count": source.get("line_count"),
+        "left_indent_pt": source.get("left_indent_pt"),
+        "right_indent_pt": source.get("right_indent_pt"),
+        "body_style": {
+            key: style.get(key)
+            for key in ("font_name", "font_size_pt", "bold_ratio", "baseline_gap_pt")
+        },
+    }
+
+
+def _compact_paragraph_metrics(value: Any) -> dict[str, Any]:
+    source = value if isinstance(value, dict) else {}
+    return {
+        key: source.get(key)
+        for key in (
+            "paragraph_count_sampled",
+            "first_line_indent_median_pt",
+            "first_line_indent_abs_p90_pt",
+            "paragraph_extra_gap_median_pt",
+            "paragraph_extra_gap_samples",
+        )
+    }
+
+
+def _compact_headings(value: Any) -> dict[str, Any]:
+    source = value if isinstance(value, dict) else {}
+    rows = (
+        source.get("items")
+        if isinstance(source.get("items"), list)
+        else value if isinstance(value, list) else []
+    )
+    by_depth: dict[int, list[dict[str, Any]]] = defaultdict(list)
+    for item in rows:
+        if not isinstance(item, dict) or not isinstance(item.get("depth"), int):
+            continue
+        by_depth[item["depth"]].append(item)
+    inventory: dict[str, Any] = {}
+    for depth, items in sorted(by_depth.items()):
+        styles = [item.get("style") for item in items if isinstance(item.get("style"), dict)]
+        sizes = [item.get("font_size_pt") for item in styles if isinstance(item.get("font_size_pt"), (int, float))]
+        bold = [item.get("bold_ratio") for item in styles if isinstance(item.get("bold_ratio"), (int, float))]
+        offsets = [item.get("bbox", [None])[0] for item in items if isinstance(item.get("bbox"), list) and item["bbox"]]
+        inventory[f"depth_{depth}"] = {
+            "count": len(items),
+            "pages": sorted({item.get("page_number") for item in items if isinstance(item.get("page_number"), int)}),
+            "font_size_values_pt": sorted({round(float(item), 4) for item in sizes}),
+            "bold_ratio_range": [round(min(bold), 4), round(max(bold), 4)] if bold else None,
+            "left_x_values_pt": sorted({round(float(item), 4) for item in offsets}),
+        }
+    return {
+        "levels": inventory,
+        "title_case": source.get("title_case"),
+    }
+
+
+def _compact_reference_heading(value: Any) -> dict[str, Any] | None:
+    if not isinstance(value, dict):
+        return None
+    style = value.get("native_style") if isinstance(value.get("native_style"), dict) else {}
+    return {
+        "page_number": value.get("page_number"),
+        "text": value.get("text"),
+        "bbox": value.get("native_bbox") or value.get("bbox"),
+        "style": {
+            key: style.get(key)
+            for key in ("font_name", "font_size_pt", "bold_ratio", "line_count")
+        },
+    }
+
+
+def _caption_label(text: str) -> str:
+    match = re.match(r"\s*((?:figure|fig\.|table)\s*\d+)\b", text, re.IGNORECASE)
+    return match.group(1) if match else ""
+
+
+def _compact_caption_inventory(value: dict[str, Any]) -> dict[str, Any]:
+    """Project full figure/table evidence without sending caption or OCR prose.
+
+    The source inventory remains complete, but range/count aggregates are the
+    minimum sufficient representation for numbering, caption style, and
+    caption-pair direction rules.  Per-object geometry stays in the raw facts
+    for rules that require a local anchor.
+    """
+
+    inventory: dict[str, Any] = {}
+    for kind in ("figures", "tables"):
+        source = value.get(kind)
+        if not isinstance(source, dict):
+            continue
+        numbers: list[int] = []
+        fonts: set[str] = set()
+        font_sizes: list[float] = []
+        paired_count = 0
+        below_count = 0
+        not_below_numbers: list[int] = []
+        for item in source.get("items", []):
+            if not isinstance(item, dict):
+                continue
+            style = item.get("caption_style") if isinstance(item.get("caption_style"), dict) else {}
+            number = item.get("number")
+            if isinstance(number, int):
+                numbers.append(number)
+            font = style.get("dominant_font")
+            if isinstance(font, str) and font:
+                fonts.add(font)
+            size = style.get("font_size_median_pt")
+            if isinstance(size, (int, float)):
+                font_sizes.append(float(size))
+            if item.get("caption_bbox") and item.get("paired_object_bbox"):
+                paired_count += 1
+            gap = item.get("gap_pt")
+            if isinstance(gap, (int, float)):
+                if gap >= 0:
+                    below_count += 1
+                elif isinstance(number, int):
+                    not_below_numbers.append(number)
+        inventory[kind] = {
+            "count": source.get("count"),
+            "numbers": source.get("numbers") or sorted(numbers),
+            "numbering_continuous": source.get("numbering_continuous"),
+            "caption_pair_count": paired_count,
+            "caption_below_count": below_count,
+            "caption_not_below_numbers": sorted(not_below_numbers),
+            "caption_font_names": sorted(fonts),
+            "caption_font_size_range_pt": (
+                [round(min(font_sizes), 4), round(max(font_sizes), 4)]
+                if font_sizes
+                else None
+            ),
+        }
+    return inventory
 
 
 def _make_unverifiable(candidates: list[dict[str, Any]], reason: str) -> list[dict[str, Any]]:
@@ -2600,6 +3613,104 @@ def _make_unverifiable(candidates: list[dict[str, Any]], reason: str) -> list[di
         else:
             converted.append(item)
     return converted
+
+
+def _unresolved_unit_rule_ids(
+    findings: list[dict[str, Any]], expected_rule_ids: list[str]
+) -> list[str]:
+    """Identify rules without a complete terminal conclusion in one unit."""
+
+    resolved: set[str] = set()
+    for finding in findings:
+        if finding.get("result") not in {"compliant", "non_compliant", "not_applicable"}:
+            continue
+        if finding.get("result") != "not_applicable" and finding.get("evidence_status") != "complete":
+            continue
+        resolved.update(str(rule_id) for rule_id in finding.get("rule_ids", []) if str(rule_id))
+    return sorted(set(expected_rule_ids) - resolved)
+
+
+def _freeze_complete_findings(
+    findings: list[dict[str, Any]], unresolved_rule_ids: list[str]
+) -> list[dict[str, Any]]:
+    unresolved = set(unresolved_rule_ids)
+    frozen: list[dict[str, Any]] = []
+    for finding in findings:
+        rule_ids = {str(rule_id) for rule_id in finding.get("rule_ids", []) if str(rule_id)}
+        if (
+            rule_ids
+            and rule_ids.isdisjoint(unresolved)
+            and finding.get("result") in {"compliant", "non_compliant", "not_applicable"}
+            and (
+                finding.get("result") == "not_applicable"
+                or finding.get("evidence_status") == "complete"
+            )
+        ):
+            frozen.append(finding)
+    return frozen
+
+
+def _force_rules_unverifiable(
+    findings: list[dict[str, Any]], rule_ids: list[str], reason: str
+) -> list[dict[str, Any]]:
+    """Downgrade only rules whose requested recovery did not produce evidence."""
+
+    target = set(rule_ids)
+    forced: list[dict[str, Any]] = []
+    for finding in findings:
+        finding_rule_ids = {str(rule_id) for rule_id in finding.get("rule_ids", []) if str(rule_id)}
+        if finding_rule_ids & target:
+            forced.append(
+                {
+                    **finding,
+                    "result": "unverifiable",
+                    "severity": "info",
+                    "suggestion": None,
+                    "reason": reason,
+                    "evidence_status": "incomplete",
+                }
+            )
+        else:
+            forced.append(finding)
+    return forced
+
+
+def _new_supplemental_facts(
+    existing: list[dict[str, Any]], supplements: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    existing_keys = {
+        (str(item.get("block_id") or ""), str(item.get("source_uri") or ""))
+        for item in existing
+    }
+    return [
+        item
+        for item in supplements
+        if (str(item.get("block_id") or ""), str(item.get("source_uri") or ""))
+        not in existing_keys
+    ]
+
+
+def _new_standard_evidences(
+    existing: list[dict[str, Any]], refreshed: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Keep only rule supplements that add source material, not a new ID."""
+
+    existing_material = {_standard_evidence_material_key(item) for item in existing}
+    return [
+        item
+        for item in refreshed
+        if _standard_evidence_material_key(item) not in existing_material
+    ]
+
+
+def _standard_evidence_material_key(evidence: dict[str, Any]) -> tuple[str, str, str]:
+    """Identify a standard by canonical rule and source text, never its transient S* ID."""
+
+    return (
+        str(evidence.get("canonical_rule_id") or ""),
+        str(evidence.get("document_id") or ""),
+        _text_key(str(evidence.get("quote") or "")),
+    )
 
 
 def _has_complete_actionable_finding(findings: list[dict[str, Any]]) -> bool:
@@ -2733,61 +3844,95 @@ def _model_unit_plan(unit: dict[str, Any]) -> dict[str, Any]:
         key: unit.get(key)
         for key in (
             "unit_id",
-            "unit_position",
             "unit_kind",
-            "title",
             "page_range",
-            "expected_rule_ids",
-            "allocated_rule_ids",
-            "global_rule_ids",
-            "not_applicable_rule_ids",
-            "retrieved_rule_ids",
-            "coverage",
-            "context_refinement",
         )
         if key in unit
     }
 
 
-def _rule_review_policy(rule: dict[str, Any]) -> dict[str, str]:
-    """Classify how much evidence a rule needs before an LLM can conclude."""
+def _model_standard_evidence(evidence: dict[str, Any]) -> dict[str, Any]:
+    """Expose only the rule text and IDs an LLM must cite."""
+
+    compact = {
+        key: evidence.get(key)
+        for key in ("evidence_id", "canonical_rule_id", "category", "quote")
+        if evidence.get(key) is not None
+    }
+    whitelist = _font_whitelist(str(evidence.get("quote") or ""))
+    if not whitelist:
+        whitelist = _font_attachment(str(evidence.get("source_attachment") or ""))
+    if whitelist:
+        compact["font_whitelist"] = whitelist
+    return compact
+
+
+def _font_whitelist(rule_text: str) -> list[str]:
+    """Expose a manifest's embedded font whitelist as structured rule data."""
+
+    match = re.search(r"字体白名单\s*[:：]\s*(.+)", rule_text, re.DOTALL)
+    if match is None:
+        return []
+    values: list[str] = []
+    for line in match.group(1).splitlines():
+        candidate = line.strip()
+        if not candidate:
+            continue
+        if not re.fullmatch(r"[A-Za-z0-9._-]+", candidate):
+            break
+        values.append(candidate)
+    return values
+
+
+def _font_attachment(value: str) -> list[str]:
+    values = [line.strip() for line in value.splitlines() if line.strip()]
+    # Font manifests use glob suffixes such as ``NimbusRomNo9L*``.  These are
+    # rule data, not prose, and must survive projection into S*.font_whitelist.
+    return values if values and all(re.fullmatch(r"[A-Za-z0-9.*_-]+", item) for item in values) else []
+
+
+def _rule_review_policy(rule: dict[str, Any]) -> dict[str, Any]:
+    """Choose the minimum auditable evidence scope for one atomic rule."""
 
     category = str(rule.get("rule_category") or "")
-    title = str(rule.get("title") or "").lower()
     selectors = {str(item) for item in rule.get("evidence_selector", [])}
     supported_checks = [str(item) for item in rule.get("supported_checks", []) if str(item)]
     configured_mode = str(rule.get("assessment_mode") or "").lower()
-    scope = ", ".join(supported_checks) if supported_checks else "the supplied localized PDF facts"
+    is_global = bool(rule.get("is_global"))
+    requires_cross_unit = bool(rule.get("requires_cross_unit"))
+
+    if category in {"figure", "table"}:
+        return {
+            "mode": "complete_inventory",
+            "supported_checks": supported_checks,
+            "coverage_scope": "all_extracted_figures_and_tables",
+            "selectors": sorted(selectors),
+        }
+    if is_global or requires_cross_unit or category in {
+        "author_identity",
+        "heading",
+        "page_layout",
+        "appendix",
+        "reference",
+    }:
+        return {
+            "mode": "sufficiency",
+            "supported_checks": supported_checks,
+            "coverage_scope": "derived_aggregate",
+            "selectors": sorted(selectors),
+        }
     if configured_mode == "sampled":
         return {
             "mode": "sampled",
             "supported_checks": supported_checks,
-            "instruction": (
-                f"Only assess these supported checks: {scope}. Representative facts across relevant pages or sections may support a limited conclusion; state the sample scope and never claim exhaustive verification."
-            ),
-        }
-    if category in {"reference", "figure", "table"} or "组织" in title or "organization" in title:
-        return {
-            "mode": "sampled",
-            "supported_checks": supported_checks,
-            "instruction": (
-                f"Only assess these supported checks: {scope}. Representative facts across relevant pages or sections may support a limited conclusion; state the sample scope and never claim exhaustive verification."
-            ),
-        }
-    if selectors & {"page_geometry", "font_style", "author_identity"}:
-        return {
-            "mode": "strict",
-            "supported_checks": supported_checks,
-            "instruction": (
-                f"Only assess these supported checks: {scope}. This is a localized mechanical check; require the necessary localized facts and never use sampling to fill a missing fact."
-            ),
+            "coverage_scope": "representative_sample",
+            "selectors": sorted(selectors),
         }
     return {
-        "mode": "strict",
+        "mode": "tolerance_aware",
         "supported_checks": supported_checks,
-        "instruction": (
-            f"Only assess these supported checks: {scope}. Require the necessary localized facts; return unverifiable when they are missing."
-        ),
+        "coverage_scope": "localized",
+        "selectors": sorted(selectors),
     }
 
 

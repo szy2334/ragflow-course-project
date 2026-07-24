@@ -404,7 +404,11 @@ class IngestionQualityReport(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
     __table_args__ = (
-        CheckConstraint("status IN ('ready', 'failed')", name="ck_quality_reports_status"),
+        # ``partial`` retains non-blocking extraction warnings while allowing
+        # the verified, indexable chunks to remain available for reading.
+        CheckConstraint(
+            "status IN ('ready', 'partial', 'failed')", name="ck_quality_reports_status"
+        ),
         CheckConstraint(
             "indexable_chunk_count >= 0 AND blocking_error_count >= 0 "
             "AND expected_mapping_count >= 0 AND mapped_chunk_count >= 0 "

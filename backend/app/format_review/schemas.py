@@ -46,7 +46,12 @@ class CompositeFormatReviewOutput(StrictModel):
 
 class ReflectionOutput(StrictModel):
     decision: Literal[
-        "confirmed", "recover_pdf_evidence", "clarify_standard", "repair_check", "unverifiable"
+        "confirmed",
+        "recover_pdf_evidence",
+        "retrieve_standard",
+        "clarify_standard",
+        "repair_check",
+        "unverifiable",
     ]
     reason: str = Field(min_length=1, max_length=2000)
 

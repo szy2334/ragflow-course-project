@@ -160,7 +160,7 @@ class OpenAICompatibleClient:
         config: ModelConfigSnapshot,
         mode: str,
     ) -> tuple[str, dict[str, int], int]:
-        payload_messages = self._messages_for_mode(messages, output_model, mode)
+        payload_messages = self.messages_for_mode(messages, output_model, mode)
         payload: dict[str, Any] = {
             "model": config.model,
             "messages": [
@@ -236,7 +236,7 @@ class OpenAICompatibleClient:
         mode: str,
         on_content: Callable[[str], Awaitable[None]],
     ) -> tuple[str, dict[str, int], int]:
-        payload_messages = self._messages_for_mode(messages, output_model, mode)
+        payload_messages = self.messages_for_mode(messages, output_model, mode)
         payload: dict[str, Any] = {
             "model": config.model,
             "messages": [
@@ -348,7 +348,7 @@ class OpenAICompatibleClient:
         return None
 
     @staticmethod
-    def _messages_for_mode(
+    def messages_for_mode(
         messages: list[ChatMessage], output_model: type[BaseModel], mode: str
     ) -> list[ChatMessage]:
         if mode != "json_object":
