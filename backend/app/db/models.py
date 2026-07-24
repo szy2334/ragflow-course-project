@@ -54,7 +54,15 @@ PAPER_STATUSES = (
 TASK_STATUSES = ("pending", "running", "succeeded", "failed", "cancelled")
 MESSAGE_STATUSES = (*TASK_STATUSES, "partial")
 TRACE_STATUSES = ("running", "succeeded", "retried", "failed", "skipped")
-ROUTE_TYPES = ("fact", "explain", "review", "score", "follow_up", "out_of_scope")
+ROUTE_TYPES = (
+    "fact",
+    "explain",
+    "review",
+    "score",
+    "follow_up",
+    "general_chat",
+    "out_of_scope",
+)
 SOURCE_TYPES = ("paper", "standard")
 FORMAT_CHECK_RESULTS = ("compliant", "non_compliant", "unverifiable", "not_applicable")
 FORMAT_SEVERITIES = ("info", "low", "medium", "high")
@@ -529,7 +537,8 @@ class ChatMessage(Base):
         ),
         CheckConstraint(
             "route_type IS NULL OR route_type IN "
-            "('fact', 'explain', 'review', 'score', 'follow_up', 'out_of_scope')",
+            "('fact', 'explain', 'review', 'score', 'follow_up', "
+            "'general_chat', 'out_of_scope')",
             name="ck_chat_messages_route",
         ),
         CheckConstraint(

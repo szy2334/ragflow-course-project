@@ -80,9 +80,27 @@ export const useWorkspaceStore = defineStore('workspace', {
       delete this.messagesBySession[sessionId]
     },
     startWorkflow(task: TaskAccepted) {
+      streamControllers.get(task.task_id)?.abort()
+      streamControllers.delete(task.task_id)
       this.workflows[task.task_id] = {
         task, lastSequence: 0, eventIds: new Set(), text: '', evidences: [], warnings: [], phase: '正在连接工作流', error: null, completedAnswer: null, events: [],
       }
+    },
+    async resumeWorkflow(message: ChatMessageView) {
+      if (!message.task_id || !['pending', 'running'].includes(message.status ?? '')) return null
+      const task = await api.getTask(message.task_id)
+      this.tasksById[task.task_id] = task
+      if (!['pending', 'running'].includes(task.status)) return null
+      const accepted: TaskAccepted = {
+        task_id: task.task_id,
+        message_id: message.message_id,
+        status: task.status,
+        status_url: `/api/v1/tasks/${task.task_id}`,
+        stream_url: `/api/v1/messages/${message.message_id}/events`,
+        resource_id: task.resource_id,
+      }
+      this.startWorkflow(accepted)
+      return accepted
     },
     applyEvent(taskId: string, event: StreamEvent) {
       const workflow = this.workflows[taskId]
@@ -189,6 +207,10 @@ export const useWorkspaceStore = defineStore('workspace', {
       const task = await api.cancelWorkflow(messageId, '用户主动停止')
       this.tasksById[task.task_id] = task
       return task
+    },
+    disconnectWorkflow(taskId: string) {
+      streamControllers.get(taskId)?.abort()
+      streamControllers.delete(taskId)
     },
   },
 })

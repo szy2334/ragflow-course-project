@@ -70,6 +70,23 @@ async def test_reasoning_effort_is_forwarded_when_configured(model_snapshot):
 
 
 @pytest.mark.asyncio
+async def test_max_tokens_is_omitted_when_output_limit_is_unset(model_snapshot):
+    bodies = []
+
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        return response(valid_route_json())
+
+    config = model_snapshot.model_copy(update={"max_output_tokens": None})
+    client = OpenAICompatibleClient("secret", transport=httpx.MockTransport(handler))
+    await client.invoke_structured(
+        [ChatMessage(role="user", content="Return JSON")], RouteDecision, config
+    )
+
+    assert "max_tokens" not in bodies[0]
+
+
+@pytest.mark.asyncio
 async def test_schema_mode_falls_back_to_json_object(model_snapshot):
     modes = []
 
@@ -107,6 +124,29 @@ async def test_prompt_json_omits_gateway_response_format_and_schema_injection(mo
     assert result.output.effective_route_type == "fact"
     assert "response_format" not in bodies[0]
     assert bodies[0]["messages"] == [{"role": "user", "content": "Return a compact JSON object"}]
+
+
+@pytest.mark.asyncio
+async def test_prompt_json_repair_includes_the_output_schema(model_snapshot):
+    bodies = []
+
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        if len(bodies) == 1:
+            return response("{}")
+        return response(valid_route_json())
+
+    config = model_snapshot.model_copy(update={"structured_mode": "prompt_json"})
+    client = OpenAICompatibleClient("secret", transport=httpx.MockTransport(handler))
+    result = await client.invoke_structured(
+        [ChatMessage(role="user", content="Return JSON")], RouteDecision, config
+    )
+
+    assert result.metrics.retry_count == 1
+    repair_prompt = bodies[1]["messages"][1]["content"]
+    assert "JSON Schema:" in repair_prompt
+    assert "initial_route_type" in repair_prompt
+    assert "effective_route_type" in repair_prompt
 
 
 @pytest.mark.asyncio
@@ -174,6 +214,7 @@ def stream_response(content):
     )
     return httpx.Response(200, text=payload, headers={"content-type": "text/event-stream"})
 
+
 @pytest.mark.asyncio
 async def test_structured_stream_forwards_model_content(model_snapshot):
     bodies = []
@@ -198,6 +239,29 @@ async def test_structured_stream_forwards_model_content(model_snapshot):
     assert "".join(streamed) == valid_route_json()
     assert bodies[0]["stream"] is True
     assert bodies[0]["enable_thinking"] is False
+
+
+@pytest.mark.asyncio
+async def test_stream_omits_max_tokens_when_output_limit_is_unset(model_snapshot):
+    bodies = []
+
+    def handler(request):
+        bodies.append(json.loads(request.content))
+        return stream_response(valid_route_json())
+
+    async def ignore_delta(_content: str) -> None:
+        pass
+
+    config = model_snapshot.model_copy(update={"max_output_tokens": None})
+    client = OpenAICompatibleClient("secret", transport=httpx.MockTransport(handler))
+    await client.invoke_structured_stream(
+        [ChatMessage(role="user", content="Return JSON")],
+        RouteDecision,
+        config,
+        ignore_delta,
+    )
+
+    assert "max_tokens" not in bodies[0]
 
 
 @pytest.mark.asyncio

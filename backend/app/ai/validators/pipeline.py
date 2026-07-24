@@ -23,10 +23,17 @@ class AnswerValidationPipeline:
         evidences: list[EvidenceItem],
         original_question: str,
     ) -> ValidationResult:
+        evidence_errors = (
+            []
+            if route.effective_route_type == "general_chat"
+            else [
+                *validate_citations(draft, route, evidences),
+                *validate_numbers(draft, evidences),
+            ]
+        )
         errors = [
             *validate_answerability(draft, route, understanding, evidences),
-            *validate_citations(draft, route, evidences),
-            *validate_numbers(draft, evidences),
+            *evidence_errors,
             *validate_output_sanity(draft, original_question),
         ]
         errors = list(dict.fromkeys(errors))

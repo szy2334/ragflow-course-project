@@ -10,6 +10,7 @@ import { api } from '@/api'
 import type { PaperView } from '@/api/contracts'
 import { useWorkspaceStore } from '@/stores/workspace'
 import { ingestionStageLabel, paperOverview } from '@/utils/paperIngestion'
+import { formatChinaTime } from '@/utils/dateTime'
 
 const workspace = useWorkspaceStore()
 const router = useRouter()
@@ -29,7 +30,7 @@ let completionNoticeTimer: number | undefined
 const papers = computed(() => Object.values(workspace.papersById))
 const readyPapers = computed(() => papers.value.filter((paper) => paper.status === 'ready').length)
 const activePapers = computed(() => papers.value.filter((paper) => !['ready', 'failed'].includes(paper.status)))
-const lastUpdatedLabel = computed(() => lastUpdatedAt.value?.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) ?? '尚未更新')
+const lastUpdatedLabel = computed(() => lastUpdatedAt.value ? formatChinaTime(lastUpdatedAt.value, true) : '尚未更新')
 const activePaperSummary = computed(() => {
   const summaries = activePapers.value.slice(0, 2).map((paper) => `《${paper.title}》${ingestionStageLabel(paper.status, paper.failure)}`)
   return `${summaries.join('；')}${activePapers.value.length > 2 ? `；另有 ${activePapers.value.length - 2} 篇` : ''}`

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { AlertTriangle, BookOpen, ChevronRight, CircleStop, MessageCircleQuestion, Plus, SearchCheck, Send, Sparkles, Trash2, X } from 'lucide-vue-next'
+import { AlertTriangle, BookOpen, ChevronRight, CircleStop, LoaderCircle, MessageCircleQuestion, Plus, SearchCheck, Send, Sparkles, Trash2, X } from 'lucide-vue-next'
 import EvidenceCard from '@/components/EvidenceCard.vue'
 import AnswerContext from '@/components/AnswerContext.vue'
 import MarkdownContent from '@/components/MarkdownContent.vue'
@@ -11,6 +11,7 @@ import { api } from '@/api'
 import { ApiError } from '@/api/http'
 import type { AnswerDetailView, ChatSessionView, EvidenceItem } from '@/api/contracts'
 import { useWorkspaceStore } from '@/stores/workspace'
+import { formatChinaTime } from '@/utils/dateTime'
 
 const props = defineProps<{ sessionId: string }>()
 const router = useRouter()
@@ -32,6 +33,7 @@ const previewPdfUrl = ref('')
 const previewLoading = ref(false)
 const previewError = ref('')
 let previewRequestId = 0
+let loadRequestId = 0
 const session = computed<ChatSessionView | undefined>(() => workspace.sessions.find((item) => item.session_id === props.sessionId))
 const messages = computed(() => workspace.messagesBySession[props.sessionId] ?? [])
 const papers = computed(() => Object.values(workspace.papersById))
@@ -50,12 +52,34 @@ const workspaceLabel = '论文阅读工作台'
 const questionPlaceholder = '例如：这个方法的核心创新是什么？'
 
 async function load() {
+  const requestId = ++loadRequestId
   error.value = ''
   try {
-    await Promise.all([workspace.loadPapers(), workspace.loadSessions(), workspace.loadMessages(props.sessionId)])
+    const [, , loadedMessages] = await Promise.all([workspace.loadPapers(), workspace.loadSessions(), workspace.loadMessages(props.sessionId)])
+    if (requestId !== loadRequestId) return
     selectedPaperIds.value = session.value?.paper_ids ?? []
+    await resumePendingWorkflow(loadedMessages)
     await scrollToEnd()
   } catch (cause) { error.value = cause instanceof ApiError ? cause.message : '无法加载这个阅读会话。' }
+}
+async function resumePendingWorkflow(loadedMessages: typeof messages.value) {
+  const pending = [...loadedMessages].reverse().find((message) => message.task_id && ['pending', 'running'].includes(message.status ?? ''))
+  if (!pending) return
+  const task = await workspace.resumeWorkflow(pending)
+  if (!task) {
+    await workspace.loadMessages(props.sessionId)
+    return
+  }
+  activeTaskId.value = task.task_id
+  followWorkflow(task.task_id)
+}
+function followWorkflow(taskId: string) {
+  void workspace.streamWorkflow(taskId).finally(async () => {
+    if (activeTaskId.value !== taskId) return
+    await workspace.loadMessages(props.sessionId)
+    activeTaskId.value = ''
+    await scrollToEnd()
+  })
 }
 async function scrollToEnd() { await nextTick(); chatScroll.value?.scrollTo({ top: chatScroll.value.scrollHeight, behavior: 'smooth' }) }
 function togglePaper(paperId: string) {
@@ -107,11 +131,7 @@ async function submit() {
     workspace.updateMessage(props.sessionId, localMessageId, { task_id: task.task_id, status: task.status })
     question.value = ''
     await scrollToEnd()
-    void workspace.streamWorkflow(task.task_id).finally(async () => {
-      await workspace.loadMessages(props.sessionId)
-      activeTaskId.value = ''
-      await scrollToEnd()
-    })
+    followWorkflow(task.task_id)
   } catch (cause) { error.value = cause instanceof ApiError ? cause.message : '问题没有提交成功，请重试。' }
   finally { sending.value = false }
 }
@@ -173,9 +193,17 @@ function closePreview() {
   if (previewPdfUrl.value) URL.revokeObjectURL(previewPdfUrl.value)
   previewPdfUrl.value = ''
 }
-watch(() => props.sessionId, load)
+watch(() => props.sessionId, () => {
+  if (activeTaskId.value) workspace.disconnectWorkflow(activeTaskId.value)
+  activeTaskId.value = ''
+  void load()
+})
 onMounted(load)
-onBeforeUnmount(closePreview)
+onBeforeUnmount(() => {
+  loadRequestId += 1
+  if (activeTaskId.value) workspace.disconnectWorkflow(activeTaskId.value)
+  closePreview()
+})
 </script>
 
 <template>
@@ -193,16 +221,16 @@ onBeforeUnmount(closePreview)
       <div ref="chatScroll" class="message-stream">
         <div v-if="!messages.length && !activeWorkflow" class="chat-empty"><Sparkles :size="29" /><h3>从论文中开始一个问题</h3><p>聚焦研究问题、方法、实验与结论，并查看对应原文证据。</p></div>
         <template v-for="message in messages" :key="message.message_id">
-          <article class="message user"><div class="message-avatar">你</div><div class="message-body"><div class="message-meta"><span>你的问题</span><span>{{ new Date(message.created_at).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) }}</span></div><p>{{ message.content }}</p></div></article>
-          <article v-if="message.task_id === activeTaskId && activeWorkflow" class="message assistant live-answer"><div class="message-avatar">知</div><div class="message-body"><div class="message-meta"><span>知阅助手 · 实时回答</span><StatusPill :status="activeWorkflow.completedAnswer ? 'succeeded' : activeWorkflow.error ? 'failed' : 'running'" /></div><MarkdownContent v-if="activeWorkflow.text" :content="activeWorkflow.text" /><div v-else class="answer-pending"><span class="dot-loader"><i /><i /><i /></span>{{ activeWorkflow.phase }}</div><p v-if="activeWorkflow.completedAnswer?.is_refusal" class="refusal-note"><AlertTriangle :size="16" />{{ activeWorkflow.completedAnswer.refusal_reason || '现有论文证据不足，系统没有使用外部常识补答。' }}</p><p v-if="activeWorkflow.error" class="inline-error">{{ activeWorkflow.error }}</p></div></article>
-          <article v-else-if="message.answer" class="message assistant"><div class="message-avatar">知</div><div class="message-body"><div class="message-meta"><span>知阅助手</span><span>{{ new Date(message.answer.completed_at).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) }}</span></div><MarkdownContent :content="message.answer.answer" /><button class="inspect-link" @click="inspectMessage(message.answer.message_id)">查看引用与执行记录</button></div></article>
+          <article class="message user"><div class="message-avatar">你</div><div class="message-body"><div class="message-meta"><span>你的问题</span><span>{{ formatChinaTime(message.created_at) }}</span></div><p>{{ message.content }}</p></div></article>
+          <article v-if="message.task_id === activeTaskId && activeWorkflow" class="message assistant live-answer"><div class="message-avatar">知</div><div class="message-body"><div class="message-meta"><span>知阅助手 · 实时回答</span><StatusPill :status="activeWorkflow.completedAnswer ? 'succeeded' : activeWorkflow.error ? 'failed' : 'running'" /></div><MarkdownContent v-if="activeWorkflow.text" :content="activeWorkflow.text" /><div v-if="!activeWorkflow.completedAnswer && !activeWorkflow.error" :class="activeWorkflow.text ? 'answer-streaming' : 'answer-pending'" role="status" aria-live="polite"><span class="answer-loader"><LoaderCircle :size="18" class="spin" /></span><span class="answer-pending-copy"><strong>{{ activeWorkflow.text ? '正在继续生成' : '正在理解并组织回答' }}<span class="dot-loader" aria-hidden="true"><i /><i /><i /></span></strong><small>{{ activeWorkflow.phase }}</small><span class="answer-progress" aria-hidden="true"><i /></span></span></div><p v-if="activeWorkflow.completedAnswer?.is_refusal" class="refusal-note"><AlertTriangle :size="16" />{{ activeWorkflow.completedAnswer.refusal_reason || '现有论文证据不足，系统没有使用外部常识补答。' }}</p><p v-if="activeWorkflow.error" class="inline-error">{{ activeWorkflow.error }}</p></div></article>
+          <article v-else-if="message.answer" class="message assistant"><div class="message-avatar">知</div><div class="message-body"><div class="message-meta"><span>知阅助手</span><span>{{ formatChinaTime(message.answer.completed_at) }}</span></div><MarkdownContent :content="message.answer.answer" /><button class="inspect-link" @click="inspectMessage(message.answer.message_id)">查看引用与执行记录</button></div></article>
         </template>
       </div>
       <form class="question-box" @submit.prevent="submit"><textarea v-model="question" rows="2" :disabled="sending || workflowRunning" :placeholder="questionPlaceholder" @keydown.ctrl.enter="submit" /><div class="question-actions"><span class="shortcut-hint">只检索当前选择的本地论文</span><span class="shortcut-hint">Ctrl + Enter 发送</span><button v-if="workflowRunning" type="button" class="stop-button" :disabled="stopping" @click="stop"><CircleStop :size="17" />{{ stopping ? '正在停止' : '停止' }}</button><button type="submit" class="send-button" :disabled="sending || workflowRunning || !question.trim()"><Send :size="18" /><span>{{ sending ? '提交中' : '发送' }}</span></button></div></form>
     </main>
 
     <aside class="reading-right">
-      <WorkflowTimeline :events="activeWorkflow?.events || detail?.workflow_run ? (activeWorkflow?.events || []) : []" :phase="activeWorkflow?.phase || '尚未开始任务'" />
+      <WorkflowTimeline :events="activeWorkflow?.events ?? []" :phase="activeWorkflow?.phase || '尚未开始任务'" />
       <AnswerContext v-if="displayedAnswer" :answer="displayedAnswer" />
       <section class="evidence-panel"><div class="evidence-heading"><div><SearchCheck :size="17" /><strong>证据定位</strong></div><span>{{ readableEvidences.length }} 条</span></div><div v-if="readableEvidences.length" class="evidence-list"><EvidenceCard v-for="evidence in readableEvidences" :key="evidence.evidence_id" :evidence="evidence" @locate="locate" /></div><p v-else class="side-empty">{{ activeEvidences.length ? '本次回答没有可直接阅读的正文证据。' : '回答完成后，实际使用的原文证据会显示在这里。' }}</p></section>
     </aside>

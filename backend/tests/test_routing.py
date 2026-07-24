@@ -11,7 +11,8 @@ from app.ai.agents import fallback_route
         ("实验设计是否充分？", "", "fact", "fact"),
         ("请为实验充分性评分。", "", "fact", "fact"),
         ("那实验部分呢？", "上一轮讨论了方法。", "follow_up", "fact"),
-        ("今天天气怎么样？", "", "out_of_scope", "out_of_scope"),
+        ("今天天气怎么样？", "", "general_chat", "general_chat"),
+        ("hi", "", "general_chat", "general_chat"),
     ],
 )
 def test_deterministic_fallback_covers_all_routes(question, summary, initial, effective):

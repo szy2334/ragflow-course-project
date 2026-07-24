@@ -20,7 +20,8 @@ def validate_numbers(draft: AnswerDraft, evidences: list[EvidenceItem]) -> list[
         )
 
     errors: list[str] = []
-    for number in _numbers(draft.answer):
+    answer_text = _without_evidence_ids(draft.answer, evidence_by_id)
+    for number in _numbers(answer_text):
         if number not in all_evidence_numbers and number not in derived_numbers:
             errors.append(f"answer number {number} is not present in cited evidence")
 
@@ -29,12 +30,21 @@ def validate_numbers(draft: AnswerDraft, evidences: list[EvidenceItem]) -> list[
             continue
         cited_text = " ".join(evidence_by_id.get(item, "") for item in claim.evidence_ids)
         cited_numbers = _numbers(cited_text)
-        for number in _numbers(claim.text):
+        claim_text = _without_evidence_ids(claim.text, evidence_by_id)
+        for number in _numbers(claim_text):
             if number not in cited_numbers and number not in derived_numbers:
                 errors.append(
                     f"claim {claim.claim_id} number {number} is not present in its citations"
                 )
     return errors
+
+
+def _without_evidence_ids(text: str, evidence_by_id: dict[str, str]) -> str:
+    """Remove structured citation identifiers before extracting factual numbers."""
+
+    for evidence_id in sorted(evidence_by_id, key=len, reverse=True):
+        text = text.replace(evidence_id, "")
+    return text
 
 
 def _numbers(text: str) -> set[str]:

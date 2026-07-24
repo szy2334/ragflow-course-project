@@ -156,7 +156,12 @@ class MasterController:
     async def generate_answer(self, state: ReviewGraphState) -> dict[str, Any]:
         command = _command(state)
         route = _route(state)
-        started = await self._begin(state, "generating_answer", "正在基于论文原文生成回答")
+        label = (
+            "正在生成通用回答"
+            if route.effective_route_type == "general_chat"
+            else "正在基于论文原文生成回答"
+        )
+        started = await self._begin(state, "generating_answer", label)
         previous = (
             AnswerDraft.model_validate(state["draft_answer"])
             if state.get("draft_answer")
@@ -175,6 +180,7 @@ class MasterController:
                     route=route,
                     evidences=_evidences(state),
                     paper_summary=state.get("paper_summary", ""),
+                    conversation_summary=state.get("conversation_summary", ""),
                     warnings=state.get("warnings", []),
                     configuration=command.configuration,
                     previous_draft=previous,
@@ -196,11 +202,44 @@ class MasterController:
         except Exception as exc:
             if isinstance(exc, WorkflowCancelled):
                 raise
-            await self._trace(command, "generate_answer", started, "failed", "MODEL_OUTPUT_INVALID")
+            error_code = (
+                exc.code
+                if isinstance(exc, AiWorkflowError)
+                else "MODEL_TRANSPORT_ERROR"
+                if isinstance(exc, TimeoutError)
+                else "MODEL_OUTPUT_INVALID"
+            )
+            repair_transport_failure = (
+                previous is not None
+                and validation is not None
+                and error_code == "MODEL_TRANSPORT_ERROR"
+            )
+            warning = (
+                "answer repair model endpoint unavailable; semantic repair retried"
+                if repair_transport_failure
+                else "answer model endpoint unavailable"
+                if error_code == "MODEL_TRANSPORT_ERROR"
+                else "answer generation failed"
+            )
+            await self._trace(
+                command,
+                "generate_answer",
+                started,
+                "failed",
+                error_code,
+                metrics={
+                    "error": str(exc),
+                    "semantic_repair": previous is not None,
+                },
+            )
             return {
-                "error_code": "MODEL_OUTPUT_INVALID",
-                "error_message": str(exc),
-                "warnings": [*state.get("warnings", []), "answer generation failed"],
+                # Preserve the private invalid draft so the validation edge can
+                # consume the next bounded semantic-repair opportunity. A
+                # transient provider failure must not immediately discard a
+                # successfully generated candidate.
+                "error_code": None if repair_transport_failure else error_code,
+                "error_message": None if repair_transport_failure else str(exc),
+                "warnings": [*state.get("warnings", []), warning],
                 "sequence": self._events.sequence,
             }
         await self._trace(
@@ -263,6 +302,7 @@ class MasterController:
         code = state.get("error_code")
         reason = {
             "RAG_NO_EVIDENCE": "当前论文没有可用于回答该问题的文本证据。",
+            "MODEL_TRANSPORT_ERROR": "模型服务暂时不可用，请稍后重新发送问题。",
             "MODEL_OUTPUT_INVALID": "系统未能生成通过引用与数字校验的回答。",
         }.get(code, "当前证据不足，无法生成可靠回答。")
         return await self._refusal(state, reason=reason, node="refuse_failed")

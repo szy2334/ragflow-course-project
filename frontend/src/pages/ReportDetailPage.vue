@@ -8,6 +8,7 @@ import { api } from '@/api'
 import { ApiError } from '@/api/http'
 import type { ReadingReportView } from '@/api/contracts'
 import { useWorkspaceStore } from '@/stores/workspace'
+import { formatChinaDateTime } from '@/utils/dateTime'
 
 const props = defineProps<{ reportId: string }>()
 const workspace = useWorkspaceStore()
@@ -15,7 +16,7 @@ const report = ref<ReadingReportView | null>(null)
 const error = ref('')
 const exporting = ref('')
 const downloadUrl = ref('')
-const completion = computed(() => report.value?.completed_at ? new Date(report.value.completed_at).toLocaleString('zh-CN') : '尚未完成')
+const completion = computed(() => report.value?.completed_at ? formatChinaDateTime(report.value.completed_at) : '尚未完成')
 async function load() { try { report.value = await api.getReport(props.reportId) } catch (cause) { error.value = cause instanceof ApiError ? cause.message : '无法读取报告详情。' } }
 async function exportReport(format: 'markdown' | 'pdf' | 'docx') {
   exporting.value = format; error.value = ''; downloadUrl.value = ''

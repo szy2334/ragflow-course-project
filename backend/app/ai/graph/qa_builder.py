@@ -31,7 +31,11 @@ def build_qa_workflow_graph(
     graph.add_conditional_edges(
         "intent_route",
         _after_route,
-        {"refuse": "refuse_out_of_scope", "retrieve": "paper_retrieve"},
+        {
+            "refuse": "refuse_out_of_scope",
+            "general": "generate_answer",
+            "retrieve": "paper_retrieve",
+        },
     )
     graph.add_conditional_edges(
         "paper_retrieve",
@@ -62,7 +66,11 @@ def build_qa_workflow_graph(
 
 def _after_route(state: ReviewGraphState) -> str:
     route = RouteDecision.model_validate(state["route_decision"])
-    return "refuse" if route.effective_route_type == "out_of_scope" else "retrieve"
+    if route.effective_route_type == "out_of_scope":
+        return "refuse"
+    if route.effective_route_type == "general_chat":
+        return "general"
+    return "retrieve"
 
 
 def _after_required_step(state: ReviewGraphState) -> str:
