@@ -56,6 +56,8 @@ class Settings(BaseSettings):
     llm_api_key: SecretStr | None = None
     llm_model: str = ""
     llm_timeout_seconds: float = Field(default=120.0, gt=0, le=300)
+    # None means do not send max_tokens to the provider (no hard output cap).
+    llm_max_output_tokens: int | None = Field(default=None, ge=64, le=65536)
     llm_reasoning_effort: Literal["low", "medium", "high"] | None = None
     llm_structured_mode: Literal["json_schema", "json_object", "prompt_json"] = "json_schema"
     llm_enable_thinking: bool | None = None

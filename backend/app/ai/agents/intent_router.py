@@ -40,20 +40,12 @@ def normalize_reading_route(
     decision: RouteDecision,
     original_question: str = "",
 ) -> RouteDecision:
-    if decision.effective_route_type == "out_of_scope" and _looks_paper_scoped(
-        original_question
-    ):
-        warning = "out-of-scope decision overridden for an explicit paper-reading question"
-        return decision.model_copy(
-            update={
-                "initial_route_type": "fact",
-                "effective_route_type": "fact",
-                "review_dimensions": [],
-                "needs_public_kb": False,
-                "warnings": list(dict.fromkeys([*decision.warnings, warning])),
-            }
-        )
-    if decision.effective_route_type in {"fact", "explain", "out_of_scope"}:
+    if decision.effective_route_type in {
+        "fact",
+        "explain",
+        "general_chat",
+        "out_of_scope",
+    }:
         return decision
     warning = "evaluation intent was handled as non-evaluative paper reading"
     return decision.model_copy(
@@ -67,9 +59,21 @@ def normalize_reading_route(
     )
 
 
-def _looks_paper_scoped(question: str) -> bool:
-    normalized = question.lower()
-    paper_terms = (
+def fallback_route(question: str, conversation_summary: str) -> RouteDecision:
+    normalized = question.lower().strip()
+    explain_tokens = ("为什么", "如何解释", "机制", "why", "explain", "mechanism")
+    follow_up_tokens = (
+        "这个",
+        "上述",
+        "那个",
+        "那",
+        "呢",
+        "它",
+        "that",
+        "those",
+        "what about",
+    )
+    paper_tokens = (
         "论文",
         "文章",
         "本文",
@@ -91,24 +95,6 @@ def _looks_paper_scoped(question: str) -> bool:
         "contribution",
         "conclusion",
     )
-    return any(term in normalized for term in paper_terms)
-
-
-def fallback_route(question: str, conversation_summary: str) -> RouteDecision:
-    normalized = question.lower().strip()
-    explain_tokens = ("为什么", "如何解释", "机制", "why", "explain", "mechanism")
-    follow_up_tokens = (
-        "这个",
-        "上述",
-        "那个",
-        "那",
-        "呢",
-        "它",
-        "that",
-        "those",
-        "what about",
-    )
-    out_tokens = ("天气", "股票", "彩票", "weather", "stock price", "lottery")
     evaluation_tokens = (
         "评分",
         "打分",
@@ -121,17 +107,19 @@ def fallback_route(question: str, conversation_summary: str) -> RouteDecision:
         "weakness",
     )
 
-    initial = "fact"
-    effective = "fact"
+    initial = "general_chat"
+    effective = "general_chat"
     warnings = ["deterministic route fallback"]
-    if any(token in normalized for token in out_tokens):
-        initial = effective = "out_of_scope"
-    elif conversation_summary and any(token in normalized for token in follow_up_tokens):
+    if conversation_summary and any(token in normalized for token in follow_up_tokens):
         initial = "follow_up"
+        effective = "fact"
     elif any(token in normalized for token in evaluation_tokens):
+        initial = effective = "fact"
         warnings.append("evaluation intent was handled as non-evaluative paper reading")
-    elif any(token in normalized for token in explain_tokens):
-        initial = effective = "explain"
+    elif any(token in normalized for token in paper_tokens):
+        initial = effective = (
+            "explain" if any(token in normalized for token in explain_tokens) else "fact"
+        )
 
     standalone = question
     if initial == "follow_up":

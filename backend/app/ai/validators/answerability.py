@@ -11,6 +11,13 @@ def validate_answerability(
 ) -> list[str]:
     if draft.is_refusal:
         return []
+    if route.effective_route_type == "general_chat":
+        errors: list[str] = []
+        if draft.claims or draft.evidence_ids:
+            errors.append("general chat answer must not claim paper evidence")
+        if not draft.evidence_sufficient or draft.evidence_gap_reason is not None:
+            errors.append("general chat answer must not report a paper evidence gap")
+        return errors
     if route.effective_route_type == "out_of_scope":
         return ["out_of_scope route must return a refusal"]
     if not any(item.source_type == "paper" for item in evidences):

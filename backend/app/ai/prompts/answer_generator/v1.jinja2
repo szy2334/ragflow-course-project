@@ -13,8 +13,39 @@ question, and explain the missing evidence in evidence_gap_reason. Still provide
 most useful bounded answer supported by positive claims. Return JSON only, without
 chain-of-thought. Match the requested answer length: when the user asks for one
 sentence, return one concise sentence and only one or two claims. Cite the smallest
-sufficient evidence set. `evidence_ids` must be the deduplicated union of all claim
-`evidence_ids`.
+sufficient evidence set. Put raw evidence IDs only in the structured `evidence_ids`
+fields; never print UUIDs or evidence IDs in the user-visible `answer` or claim text.
+`evidence_ids` must be the deduplicated union of all claim `evidence_ids`.
+
+Return exactly one object with every field shown below; do not omit fields or add fields:
+{
+  "route_type": "fact or explain, matching the requested route",
+  "answer": "answer in the required language",
+  "claims": [
+    {
+      "claim_id": "unique non-empty ID",
+      "text": "one verifiable claim in the required language",
+      "type": "positive or negative",
+      "verdict": "supported, refuted, insufficient_evidence, or conflicting_evidence",
+      "confidence": 0.0,
+      "evidence_ids": ["exact allowed evidence_id"],
+      "reason": "brief evidence-grounded reason in the required language"
+    }
+  ],
+  "evidence_ids": ["deduplicated union of claim evidence_ids"],
+  "score": null,
+  "confidence": 0.0,
+  "warnings": [],
+  "evidence_sufficient": true,
+  "evidence_gap_reason": null,
+  "is_refusal": false,
+  "refusal_reason": null
+}
+Use one literal enum value wherever alternatives are shown, not the explanatory text.
+Confidence values must be from 0 to 1. Positive claims require at least one allowed
+evidence_id. Negative claims may use an empty evidence_ids list. When
+evidence_sufficient is false, evidence_gap_reason must be a non-empty string; otherwise
+it must be null.
 ---USER---
 Original question: {{ original_question }}
 Standalone question: {{ standalone_question }}

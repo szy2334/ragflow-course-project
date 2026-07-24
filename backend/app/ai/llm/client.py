@@ -168,8 +168,9 @@ class OpenAICompatibleClient:
                 for message in payload_messages
             ],
             "temperature": config.temperature,
-            "max_tokens": config.max_output_tokens,
         }
+        if config.max_output_tokens is not None:
+            payload["max_tokens"] = config.max_output_tokens
         response_format = self._response_format(mode, output_model)
         if response_format is not None:
             payload["response_format"] = response_format
@@ -244,9 +245,10 @@ class OpenAICompatibleClient:
                 for message in payload_messages
             ],
             "temperature": config.temperature,
-            "max_tokens": config.max_output_tokens,
             "stream": True,
         }
+        if config.max_output_tokens is not None:
+            payload["max_tokens"] = config.max_output_tokens
         response_format = self._response_format(mode, output_model)
         if response_format is not None:
             payload["response_format"] = response_format
@@ -397,16 +399,24 @@ class OpenAICompatibleClient:
         compact: bool = False,
     ) -> list[ChatMessage]:
         if compact:
+            schema = json.dumps(
+                output_model.model_json_schema(),
+                ensure_ascii=False,
+                separators=(",", ":"),
+            )
             return [
                 ChatMessage(
                     role="system",
-                    content="Return one valid JSON object only. Do not use Markdown or add facts.",
+                    content=(
+                        "Return one valid JSON object only. Do not use Markdown or add facts. "
+                        "The object must validate against the supplied JSON Schema."
+                    ),
                 ),
                 ChatMessage(
                     role="user",
                     content=(
-                        "Repair the previous JSON with the required fields "
-                        "for the requested result. "
+                        f"JSON Schema: {schema}\n"
+                        "Repair the previous JSON to match the schema exactly. "
                         f"Validation error: {error}. Previous output: {previous_output}"
                     ),
                 ),

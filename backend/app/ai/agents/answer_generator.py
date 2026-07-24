@@ -26,6 +26,7 @@ class AnswerGeneratorAgent:
         route: RouteDecision,
         evidences: list[EvidenceItem],
         paper_summary: str,
+        conversation_summary: str,
         warnings: list[str],
         configuration: ConfigurationSnapshot,
         previous_draft: AnswerDraft | None = None,
@@ -42,8 +43,9 @@ class AnswerGeneratorAgent:
                 streamed = True
                 await on_answer_delta(delta)
 
+        is_general_chat = route.effective_route_type == "general_chat"
         result = await self._runner.run(
-            prompt_name="answer_generator",
+            prompt_name="general_answer" if is_general_chat else "answer_generator",
             prompt_version=configuration.prompt_version,
             output_model=AnswerDraft,
             model_config=configuration.model,
@@ -57,6 +59,7 @@ class AnswerGeneratorAgent:
                     else "the language of the original question"
                 ),
                 "paper_summary": paper_summary or "unavailable",
+                "conversation_summary": conversation_summary or "unavailable",
                 # Persistence keeps rich provenance and raw OCR metadata, but
                 # those fields are not useful to the answer model and can
                 # duplicate the source text.  Use a bounded citeable payload.
@@ -70,7 +73,20 @@ class AnswerGeneratorAgent:
             on_content=relay if on_answer_delta is not None else None,
         )
         draft = result.output
-        if draft.route_type != route.effective_route_type or draft.score is not None:
+        if is_general_chat:
+            draft = draft.model_copy(
+                update={
+                    "route_type": "general_chat",
+                    "claims": [],
+                    "evidence_ids": [],
+                    "score": None,
+                    "evidence_sufficient": True,
+                    "evidence_gap_reason": None,
+                    "is_refusal": False,
+                    "refusal_reason": None,
+                }
+            )
+        elif draft.route_type != route.effective_route_type or draft.score is not None:
             draft = draft.model_copy(
                 update={"route_type": route.effective_route_type, "score": None}
             )
@@ -89,7 +105,11 @@ class AnswerGeneratorAgent:
         cited = [item for claim in draft.claims for item in claim.evidence_ids]
         return draft, agent_result(
             name="answer_generator",
-            summary="generated an evidence-grounded answer candidate",
+            summary=(
+                "generated a general conversation answer"
+                if is_general_chat
+                else "generated an evidence-grounded answer candidate"
+            ),
             confidence=draft.confidence,
             metrics=result.metrics,
             claims=draft.claims,

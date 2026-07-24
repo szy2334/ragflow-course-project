@@ -16,8 +16,23 @@ ContentType = Literal[
     "metadata",
     "reference",
 ]
-RouteType = Literal["fact", "explain", "review", "score", "follow_up", "out_of_scope"]
-EffectiveRouteType = Literal["fact", "explain", "review", "score", "out_of_scope"]
+RouteType = Literal[
+    "fact",
+    "explain",
+    "review",
+    "score",
+    "follow_up",
+    "general_chat",
+    "out_of_scope",
+]
+EffectiveRouteType = Literal[
+    "fact",
+    "explain",
+    "review",
+    "score",
+    "general_chat",
+    "out_of_scope",
+]
 
 
 class EvidenceItem(StrictModel):

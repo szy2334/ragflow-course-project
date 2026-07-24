@@ -4,7 +4,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 
 from app.ai import AiWorkflowService
 from app.ai.agents.answer_generator import _prompt_evidence
-from app.ai.errors import AnswerPersistenceFailed, WorkflowCancelled
+from app.ai.errors import AnswerPersistenceFailed, ModelTransportError, WorkflowCancelled
 from app.ai.schemas import AnswerDraft, Claim, PaperFact, PaperUnderstanding, RouteDecision
 
 
@@ -37,6 +37,17 @@ def out_of_scope_route() -> RouteDecision:
         initial_route_type="out_of_scope",
         effective_route_type="out_of_scope",
         standalone_question="今天天气如何？",
+        review_dimensions=[],
+        needs_public_kb=False,
+        confidence=0.99,
+    )
+
+
+def general_chat_route() -> RouteDecision:
+    return RouteDecision(
+        initial_route_type="general_chat",
+        effective_route_type="general_chat",
+        standalone_question="你好，请介绍一下你自己。",
         review_dimensions=[],
         needs_public_kb=False,
         confidence=0.99,
@@ -127,6 +138,16 @@ def insufficient_fact_draft() -> AnswerDraft:
     )
 
 
+def general_chat_draft() -> AnswerDraft:
+    return AnswerDraft(
+        route_type="general_chat",
+        answer="你好，我可以回答通用问题，也可以在需要时查阅你选择的论文。",
+        claims=[],
+        evidence_ids=[],
+        confidence=0.95,
+    )
+
+
 @pytest.mark.asyncio
 async def test_reading_path_uses_only_local_paper_chunks(command, paper_evidence):
     llm = ScriptedLlm([fact_route(), fact_draft()])
@@ -182,6 +203,35 @@ async def test_semantic_validation_repairs_once(command, paper_evidence):
 
 
 @pytest.mark.asyncio
+async def test_semantic_repair_transport_failure_uses_next_bounded_repair(
+    command, paper_evidence
+):
+    llm = ScriptedLlm(
+        [
+            fact_route(),
+            invalid_fact_draft(),
+            ModelTransportError("provider unavailable"),
+            fact_draft(),
+        ]
+    )
+    retrieval = FakeRetrieval([paper_evidence])
+    deps, _, traces = dependencies(retrieval)
+
+    result = await AiWorkflowService(llm).run(command, deps)
+
+    assert result.workflow_summary["repair_count"] == 2
+    assert llm.calls.count("AnswerDraft") == 3
+    assert not result.answer.is_refusal
+    failed_repair = next(
+        item
+        for item in traces.items
+        if item.node_name == "generate_answer" and item.status == "failed"
+    )
+    assert failed_repair.error_code == "MODEL_TRANSPORT_ERROR"
+    assert failed_repair.metrics["semantic_repair"] is True
+
+
+@pytest.mark.asyncio
 async def test_insufficient_evidence_is_a_validated_answer_not_a_refusal(
     command, paper_evidence
 ):
@@ -213,21 +263,21 @@ async def test_out_of_scope_skips_retrieval(command):
 
 
 @pytest.mark.asyncio
-async def test_explicit_paper_question_cannot_be_misrouted_out_of_scope(
-    command, paper_evidence
-):
+async def test_general_chat_calls_model_without_retrieving_paper(command):
     command = command.model_copy(
-        update={"original_question": "用一句话总结这篇论文解决的问题"}
+        update={"original_question": "你好，请介绍一下你自己。"}
     )
-    llm = ScriptedLlm([out_of_scope_route(), fact_draft()])
-    retrieval = FakeRetrieval([paper_evidence])
+    llm = ScriptedLlm([general_chat_route(), general_chat_draft()])
+    retrieval = FakeRetrieval([])
     deps, _, _ = dependencies(retrieval)
 
     result = await AiWorkflowService(llm).run(command, deps)
 
-    assert result.answer.route_type == "fact"
-    assert retrieval.paper_requests
-    assert any("overridden" in warning for warning in result.answer.warnings)
+    assert result.answer.route_type == "general_chat"
+    assert not result.answer.is_refusal
+    assert not result.answer.evidences
+    assert not retrieval.paper_requests
+    assert llm.calls == ["RouteDecision", "AnswerDraft"]
 
 
 def test_answer_prompt_evidence_is_compact_and_drops_internal_metadata(paper_evidence):
@@ -258,6 +308,22 @@ async def test_empty_paper_evidence_returns_refusal(command):
     assert result.answer.is_refusal
     assert len(retrieval.paper_requests) == 2
     assert events.items[-1].event_type == "final"
+
+
+@pytest.mark.asyncio
+async def test_answer_transport_failure_is_not_reported_as_invalid_output(
+    command, paper_evidence
+):
+    llm = ScriptedLlm([fact_route(), ModelTransportError("provider unavailable")])
+    retrieval = FakeRetrieval([paper_evidence])
+    deps, _, traces = dependencies(retrieval)
+
+    result = await AiWorkflowService(llm).run(command, deps)
+
+    assert result.answer.is_refusal
+    assert "模型服务暂时不可用" in result.answer.answer
+    generate_trace = next(item for item in traces.items if item.node_name == "generate_answer")
+    assert generate_trace.error_code == "MODEL_TRANSPORT_ERROR"
 
 
 @pytest.mark.asyncio

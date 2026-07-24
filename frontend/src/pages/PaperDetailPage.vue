@@ -10,6 +10,7 @@ import { api } from '@/api'
 import { ApiError } from '@/api/http'
 import type { PaperSectionView, PaperView } from '@/api/contracts'
 import { isUnderstandingUnavailable, paperOverview } from '@/utils/paperIngestion'
+import { formatChinaTime } from '@/utils/dateTime'
 
 const props = defineProps<{ paperId: string }>()
 const route = useRoute()
@@ -48,7 +49,7 @@ const canRetry = computed(() => {
   return paper.value?.status === 'ready' && paper.value.understanding?.reason === 'MODEL_ENDPOINT_UNAVAILABLE' && stageIsRetryable
 })
 const processing = computed(() => paper.value && !['ready', 'failed'].includes(paper.value.status))
-const lastUpdatedLabel = computed(() => lastUpdatedAt.value?.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) ?? '尚未更新')
+const lastUpdatedLabel = computed(() => lastUpdatedAt.value ? formatChinaTime(lastUpdatedAt.value, true) : '尚未更新')
 const sectionGroups = computed(() => {
   const groups = new Map<string, PaperSectionView[]>()
   for (const section of sections.value) {
