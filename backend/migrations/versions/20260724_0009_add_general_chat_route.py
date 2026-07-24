@@ -1,7 +1,7 @@
 """add general chat route
 
 Revision ID: 20260724_0009
-Revises: 20260723_0008
+Revises: 20260724_0008
 Create Date: 2026-07-24
 """
 
@@ -10,7 +10,7 @@ from collections.abc import Sequence
 from alembic import op
 
 revision: str = "20260724_0009"
-down_revision: str | None = "20260723_0008"
+down_revision: str | None = "20260724_0008"
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
 
