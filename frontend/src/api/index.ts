@@ -1,7 +1,7 @@
 import type { AxiosRequestConfig } from 'axios'
 import { http, newRequestId, request } from './http'
 import { demo } from './demo'
-import type { AdminFormatProfileView, AdminRecord, AnswerDetailView, AuthView, ChatMessageView, ChatSessionView, FormatProfileCreateInput, FormatProfileView, FormatReviewView, MetricsOverviewView, PageData, PaperSectionView, PaperUploadBatchView, PaperView, ReadingReportView, TaskAccepted, TaskView, UserView } from './contracts'
+import type { AdminFormatProfileView, AdminRecord, AnswerDetailView, AuthView, ChatMessageView, ChatSessionView, FormatProfileCreateInput, FormatProfileView, FormatReviewHistoryItem, FormatReviewView, MetricsOverviewView, PageData, PaperSectionView, PaperUploadBatchView, PaperView, ReadingReportView, TaskAccepted, TaskView, UserView } from './contracts'
 
 function createDemoPaperBlob() {
   const stream = 'BT\n/F1 24 Tf\n72 720 Td\n(Demo paper preview) Tj\nET\n'
@@ -66,8 +66,10 @@ export const api = {
   exportReport: (report_id: string, format: 'markdown' | 'pdf' | 'docx') => demo.active() ? Promise.resolve(demo.accepted('demo-export')) : post<TaskAccepted>(`/reading-reports/${report_id}/exports`, { format }),
 
   listFormatProfiles: () => demo.active() ? Promise.resolve(demo.formatProfiles()) : get<{ items: FormatProfileView[] }>('/format-profiles'),
+  listFormatReviews: (params?: { paper_id?: string }) => demo.active() ? Promise.resolve({ items: [demo.formatReview()] }) : get<{ items: FormatReviewHistoryItem[] }>('/format-reviews', params),
   createFormatReview: (data: { paper_id: string; format_profile_id: string; submission_mode: string }) => demo.active() ? Promise.resolve(demo.accepted('demo-format-review', 'cccccccc-cccc-4ccc-8ccc-cccccccccccc')) : post<TaskAccepted>('/format-reviews', data),
   getFormatReview: (format_review_id: string) => demo.active() ? Promise.resolve(demo.formatReview()) : get<FormatReviewView>(`/format-reviews/${format_review_id}`),
+  deleteFormatReview: (format_review_id: string) => demo.active() ? Promise.resolve({ format_review_id, deleted_at: new Date().toISOString() }) : request<{ format_review_id: string; deleted_at: string }>({ url: `/format-reviews/${format_review_id}`, method: 'DELETE', headers: { 'Idempotency-Key': newRequestId() } }),
   listAdminFormatProfiles: () => get<{ items: AdminFormatProfileView[] }>('/admin/format-profiles'),
   createAdminFormatProfile: (data: FormatProfileCreateInput) => post<AdminFormatProfileView>('/admin/format-profiles', data),
 

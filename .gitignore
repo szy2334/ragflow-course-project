@@ -225,7 +225,19 @@ __marimo__/
 .docker-codex-readonly/
 .tmp-pytest/
 backend/.tmp-pytest-*/
+backend/.pytest_tmp_*/
+backend/.migration-verification.db
 backend/paper_review.db
+paper_review.db
+frontend/.env.local
 user_paper/runs/
 user_paper/ragflow_chunks*.jsonl
 docs/generated/
+
+# Local research inputs, exports, and backup snapshots
+artifacts/
+backups/
+exports/
+*.fused_facts.json
+*_rule_manifest.json
+format_review_replay_report.json

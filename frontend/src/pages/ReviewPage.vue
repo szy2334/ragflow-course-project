@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { AlertTriangle, CheckCircle2, CircleAlert, ClipboardCheck, FileSearch, MapPin, Play } from 'lucide-vue-next'
+import { AlertTriangle, CheckCircle2, CircleAlert, ClipboardCheck, FileSearch, MapPin, PanelRightClose, PanelRightOpen, Play, Trash2 } from 'lucide-vue-next'
 import PageHeader from '@/components/PageHeader.vue'
 import MarkdownContent from '@/components/MarkdownContent.vue'
 import StatusPill from '@/components/StatusPill.vue'
 import FormatEvidencePreview from '@/components/FormatEvidencePreview.vue'
 import { api } from '@/api'
 import { ApiError, getAccessToken } from '@/api/http'
-import type { FormatProfileView, FormatReviewItemView, FormatReviewUnitView, FormatReviewView, StreamEvent } from '@/api/contracts'
+import type { FormatProfileView, FormatReviewHistoryItem, FormatReviewItemView, FormatReviewUnitView, FormatReviewView, StreamEvent } from '@/api/contracts'
 import { useWorkspaceStore } from '@/stores/workspace'
+import { formatChinaDateTime } from '@/utils/dateTime'
 
 const route = useRoute()
 const router = useRouter()
@@ -19,6 +20,9 @@ const selectedPaperId = ref('')
 const selectedProfileId = ref('')
 const selectedSubmissionMode = ref('')
 const review = ref<FormatReviewView | null>(null)
+const reviewHistory = ref<FormatReviewHistoryItem[]>([])
+const historyOpen = ref(true)
+const deletingHistoryId = ref('')
 const loading = ref(true)
 const submitting = ref(false)
 const error = ref('')
@@ -28,6 +32,7 @@ let streamAbort: AbortController | null = null
 
 const readyPapers = computed(() => Object.values(workspace.papersById).filter((paper) => paper.status === 'ready'))
 const selectedProfile = computed(() => profiles.value.find((profile) => profile.format_profile_id === selectedProfileId.value) ?? null)
+const submissionModes = computed(() => selectedProfile.value?.profile_key === 'neurips_2020' ? ['general'] : selectedProfile.value?.allowed_submission_modes ?? [])
 const reviewGroups = computed(() => {
   const groups = new Map<string, FormatReviewItemView[]>()
   for (const item of review.value?.items ?? []) groups.set(item.category, [...(groups.get(item.category) ?? []), item])
@@ -43,11 +48,11 @@ const resultCounts = computed(() => {
 })
 
 function configureSubmissionMode() {
-  const modes = selectedProfile.value?.allowed_submission_modes ?? []
+  const modes = submissionModes.value
   if (!modes.includes(selectedSubmissionMode.value)) selectedSubmissionMode.value = modes[0] ?? ''
 }
 function modeLabel(mode: string) {
-  return mode === 'initial_submission' ? '匿名初稿' : mode === 'camera_ready' ? '终稿' : mode.replace(/_/g, ' ')
+  return mode === 'general' ? '通用' : mode === 'initial_submission' ? '匿名初稿' : mode === 'camera_ready' ? '终稿' : mode.replace(/_/g, ' ')
 }
 function profileLabel(profile: Pick<FormatProfileView, 'name' | 'profile_key' | 'version'>) {
   if (!/\?{2,}/.test(profile.name)) return profile.name
@@ -87,8 +92,9 @@ async function load() {
   loading.value = true
   error.value = ''
   try {
-    const [_, profileResult] = await Promise.all([workspace.loadPapers({ status: 'ready' }), api.listFormatProfiles()])
+    const [_, profileResult, historyResult] = await Promise.all([workspace.loadPapers({ status: 'ready' }), api.listFormatProfiles(), api.listFormatReviews()])
     profiles.value = profileResult.items
+    reviewHistory.value = historyResult.items
     const reviewId = queryValue(route.query.reviewId)
     if (reviewId) {
       const restoredReview = await api.getFormatReview(reviewId)
@@ -104,6 +110,46 @@ async function load() {
   } catch (cause) {
     error.value = cause instanceof ApiError ? cause.message : '无法加载可用格式规范。'
   } finally { loading.value = false }
+}
+
+async function loadReviewHistory() {
+  try {
+    reviewHistory.value = (await api.listFormatReviews()).items
+  } catch {
+    // History should not block starting or viewing a review.
+  }
+}
+
+async function openReviewHistory(item: FormatReviewHistoryItem) {
+  try {
+    const restoredReview = await api.getFormatReview(item.format_review_id)
+    review.value = restoredReview
+    selectedPaperId.value = restoredReview.paper_id
+    selectedProfileId.value = restoredReview.format_profile.format_profile_id
+    selectedSubmissionMode.value = restoredReview.submission_mode
+    error.value = ''
+    await router.replace({ query: { ...route.query, paperId: restoredReview.paper_id, reviewId: restoredReview.format_review_id } })
+  } catch (cause) {
+    error.value = cause instanceof ApiError ? cause.message : '无法加载历史格式审查记录。'
+  }
+}
+
+async function deleteReviewHistory(item: FormatReviewHistoryItem) {
+  if (item.status === 'pending' || item.status === 'running') return
+  if (!window.confirm(`删除“${profileLabel(item.format_profile)}”的格式审查记录？此操作无法撤销。`)) return
+  deletingHistoryId.value = item.format_review_id
+  try {
+    await api.deleteFormatReview(item.format_review_id)
+    reviewHistory.value = reviewHistory.value.filter((entry) => entry.format_review_id !== item.format_review_id)
+    if (review.value?.format_review_id === item.format_review_id) {
+      review.value = null
+      await router.replace({ query: { ...route.query, reviewId: undefined } })
+    }
+  } catch (cause) {
+    error.value = cause instanceof ApiError ? cause.message : '无法删除格式审查记录。'
+  } finally {
+    deletingHistoryId.value = ''
+  }
 }
 
 async function startReview() {
@@ -132,7 +178,10 @@ async function startReview() {
     review.value = await api.getFormatReview(task.resource_id)
   } catch (cause) {
     error.value = cause instanceof ApiError || cause instanceof Error ? cause.message : '无法完成格式审查。'
-  } finally { submitting.value = false }
+  } finally {
+    submitting.value = false
+    void loadReviewHistory()
+  }
 }
 
 function updateUnitFromEvent(event: StreamEvent) {
@@ -223,6 +272,8 @@ onBeforeUnmount(() => streamAbort?.abort())
     <p v-if="error" class="inline-error" role="alert">{{ error }}</p>
     <div v-if="loading" class="skeleton-list"><div v-for="item in 3" :key="item" class="skeleton-row" /></div>
     <template v-else>
+      <div class="review-layout" :class="{ 'history-collapsed': !historyOpen }">
+        <div class="review-main">
       <section class="review-config card-surface">
         <div class="config-step"><span>01</span><div><h2>选择论文</h2><p>仅可审查已完成解析与理解的本地 PDF。</p></div></div>
         <select v-model="selectedPaperId" class="review-select" aria-label="选择论文"><option v-for="paper in readyPapers" :key="paper.paper_id" :value="paper.paper_id">{{ paper.title }}</option></select>
@@ -231,8 +282,8 @@ onBeforeUnmount(() => streamAbort?.abort())
         <select v-model="selectedProfileId" class="review-select" aria-label="选择格式规范"><option v-for="profile in profiles" :key="profile.format_profile_id" :value="profile.format_profile_id">{{ profileLabel(profile) }} · {{ profile.version }}</option></select>
         <p v-if="selectedProfile?.description" class="profile-description">{{ selectedProfile.description }}</p>
 
-        <div class="config-step"><span>03</span><div><h2>选择投稿模式</h2><p>系统将检索通用规则和当前投稿模式规则，并完成完整性检查。</p></div></div>
-        <select v-model="selectedSubmissionMode" class="review-select" aria-label="选择投稿模式"><option v-for="mode in selectedProfile?.allowed_submission_modes ?? []" :key="mode" :value="mode">{{ modeLabel(mode) }}</option></select>
+        <div class="config-step"><span>03</span><div><h2>选择投稿模式</h2><p>{{ selectedProfile?.profile_key === 'neurips_2020' ? 'NeurIPS 2020 规则清单适用于通用模式。' : '系统将检索通用规则和当前投稿模式规则，并完成完整性检查。' }}</p></div></div>
+        <select v-model="selectedSubmissionMode" class="review-select" aria-label="选择投稿模式" :disabled="selectedProfile?.profile_key === 'neurips_2020'"><option v-for="mode in submissionModes" :key="mode" :value="mode">{{ modeLabel(mode) }}</option></select>
         <button class="primary-button full-width" :disabled="submitting || !readyPapers.length || !profiles.length" @click="startReview"><Play :size="18" />{{ submitting ? '正在分块审查…' : '开始综合审查' }}</button>
       </section>
 
@@ -265,11 +316,30 @@ onBeforeUnmount(() => streamAbort?.abort())
         </section>
       </section>
       <div v-else-if="!readyPapers.length || !profiles.length" class="empty-state"><AlertTriangle :size="34" /><h2>{{ !readyPapers.length ? '没有可审查论文' : '没有可用格式规范' }}</h2><p>{{ !readyPapers.length ? '请先完成论文解析与理解。' : '请由管理员创建格式规范并绑定对应的 RAGFlow 知识库。' }}</p></div>
+        </div>
+        <aside class="review-history" :class="{ open: historyOpen }" aria-label="格式审查历史记录">
+          <button class="history-toggle" type="button" :aria-expanded="historyOpen" :aria-label="historyOpen ? '收起格式审查历史' : '展开格式审查历史'" @click="historyOpen = !historyOpen">
+            <PanelRightClose v-if="historyOpen" :size="18" /><PanelRightOpen v-else :size="18" />
+            <span v-if="historyOpen">格式审查历史</span>
+          </button>
+          <div v-if="historyOpen" class="history-list">
+            <p v-if="!reviewHistory.length" class="history-empty">尚无格式审查记录。</p>
+            <article v-for="item in reviewHistory" :key="item.format_review_id" class="history-item" :class="{ active: item.format_review_id === review?.format_review_id }">
+              <button class="history-open" type="button" @click="openReviewHistory(item)">
+                <span class="history-item-title">{{ profileLabel(item.format_profile) }}</span>
+                <span>{{ modeLabel(item.submission_mode) }} · {{ item.status === 'succeeded' ? '已完成' : item.status === 'failed' ? '失败' : '进行中' }}</span>
+                <time>{{ formatChinaDateTime(item.created_at) }}</time>
+              </button>
+              <button class="icon-button history-delete" type="button" :disabled="deletingHistoryId === item.format_review_id || item.status === 'pending' || item.status === 'running'" :title="item.status === 'pending' || item.status === 'running' ? '执行中的审查不能删除' : '删除审查记录'" aria-label="删除审查记录" @click="deleteReviewHistory(item)"><Trash2 :size="15" /></button>
+            </article>
+          </div>
+        </aside>
+      </div>
     </template>
     <FormatEvidencePreview v-if="previewTarget" v-bind="previewTarget" @close="previewTarget = null" />
   </section>
 </template>
 
 <style scoped>
-.review-page, .review-config, .review-result, .finding-group, .review-units { display: grid; gap: 16px; }.review-config, .review-result { padding: 22px; }.config-step { display: flex; gap: 12px; align-items: flex-start; }.config-step > span { display: grid; width: 28px; height: 28px; place-items: center; color: white; background: #8b4b17; border-radius: 50%; font-size: 12px; }.config-step h2 { margin: 2px 0 4px; font-size: 16px; }.config-step p, .profile-description { margin: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.5; }.review-select { width: 100%; min-height: 42px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; background: white; color: var(--ink); }.result-title, .finding-title, .result-summary, .finding-group-heading, .format-review-item footer, .review-unit, .review-unit > div { display: flex; gap: 10px; align-items: center; }.result-title, .finding-group-heading { justify-content: space-between; }.result-title h2 { margin: 2px 0 0; }.result-summary { flex-wrap: wrap; padding: 12px 0; border-block: 1px solid var(--line); color: var(--ink-soft); font-size: 13px; }.result-summary span { display: inline-flex; gap: 5px; align-items: center; }.coverage-warning, .unverifiable-note { display: flex; gap: 7px; align-items: center; margin: 0; color: #88620b; font-size: 13px; line-height: 1.5; }.finding-group { padding-top: 4px; }.finding-group-heading h3 { margin: 0; font-size: 15px; text-transform: capitalize; }.finding-group-heading span, .review-unit span { color: var(--ink-faint); font-size: 12px; }.review-unit { flex-wrap: wrap; padding: 11px 13px; border-left: 3px solid #b8b1a6; background: #fafaf8; }.review-unit > div { flex: 1; min-width: 220px; }.review-unit > div span { margin-left: auto; }.review-unit > p { flex-basis: 100%; margin: 0; color: var(--ink-soft); font-size: 12px; }.review-unit.validated { border-color: #4a7a57; }.review-unit.unverifiable, .review-unit.failed { border-color: #9c7615; }.format-review-item { display: grid; gap: 9px; padding: 14px; border-left: 3px solid var(--line); background: #fafaf8; }.finding-title strong { flex: 1; }.finding-title span { color: var(--ink-soft); font-size: 13px; }.format-review-item p { margin: 0; line-height: 1.6; }.format-review-item footer { flex-wrap: wrap; color: var(--ink-faint); font-size: 12px; }.format-review-item.non_compliant { border-color: #b24031; }.format-review-item.compliant { border-color: #4a7a57; }.format-review-item.unverifiable { border-color: #9c7615; }.suggestion { color: var(--ink-soft); }.evidence-details { padding-top: 2px; color: var(--ink-soft); font-size: 13px; }.evidence-details summary { cursor: pointer; color: var(--ink); }.evidence-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 10px; }.evidence-columns h4 { margin: 0 0 6px; color: var(--ink); font-size: 13px; }.evidence-columns p { padding: 8px 0; border-top: 1px solid var(--line); font-size: 12px; }@media (max-width: 720px) { .review-config, .review-result { padding: 16px; }.evidence-columns { grid-template-columns: 1fr; gap: 8px; } }
+.review-page, .review-config, .review-result, .finding-group, .review-units { display: grid; gap: 16px; }.review-layout { display: grid; grid-template-columns: minmax(0, 1fr) 286px; gap: 16px; align-items: start; }.review-layout.history-collapsed { grid-template-columns: minmax(0, 1fr) 46px; }.review-main { display: grid; min-width: 0; gap: 16px; }.review-config, .review-result { padding: 22px; }.config-step { display: flex; gap: 12px; align-items: flex-start; }.config-step > span { display: grid; width: 28px; height: 28px; place-items: center; color: white; background: #8b4b17; border-radius: 50%; font-size: 12px; }.config-step h2 { margin: 2px 0 4px; font-size: 16px; }.config-step p, .profile-description { margin: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.5; }.review-select { width: 100%; min-height: 42px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; background: white; color: var(--ink); }.result-title, .finding-title, .result-summary, .finding-group-heading, .format-review-item footer, .review-unit, .review-unit > div { display: flex; gap: 10px; align-items: center; }.result-title, .finding-group-heading { justify-content: space-between; }.result-title h2 { margin: 2px 0 0; }.result-summary { flex-wrap: wrap; padding: 12px 0; border-block: 1px solid var(--line); color: var(--ink-soft); font-size: 13px; }.result-summary span { display: inline-flex; gap: 5px; align-items: center; }.coverage-warning, .unverifiable-note { display: flex; gap: 7px; align-items: center; margin: 0; color: #88620b; font-size: 13px; line-height: 1.5; }.finding-group { padding-top: 4px; }.finding-group-heading h3 { margin: 0; font-size: 15px; text-transform: capitalize; }.finding-group-heading span, .review-unit span { color: var(--ink-faint); font-size: 12px; }.review-unit { flex-wrap: wrap; padding: 11px 13px; border-left: 3px solid #b8b1a6; background: #fafaf8; }.review-unit > div { flex: 1; min-width: 220px; }.review-unit > div span { margin-left: auto; }.review-unit > p { flex-basis: 100%; margin: 0; color: var(--ink-soft); font-size: 12px; }.review-unit.validated { border-color: #4a7a57; }.review-unit.unverifiable, .review-unit.failed { border-color: #9c7615; }.format-review-item { display: grid; gap: 9px; padding: 14px; border-left: 3px solid var(--line); background: #fafaf8; }.finding-title strong { flex: 1; }.finding-title span { color: var(--ink-soft); font-size: 13px; }.format-review-item p { margin: 0; line-height: 1.6; }.format-review-item footer { flex-wrap: wrap; color: var(--ink-faint); font-size: 12px; }.format-review-item.non_compliant { border-color: #b24031; }.format-review-item.compliant { border-color: #4a7a57; }.format-review-item.unverifiable { border-color: #9c7615; }.suggestion { color: var(--ink-soft); }.evidence-details { padding-top: 2px; color: var(--ink-soft); font-size: 13px; }.evidence-details summary { cursor: pointer; color: var(--ink); }.evidence-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 10px; }.evidence-columns h4 { margin: 0 0 6px; color: var(--ink); font-size: 13px; }.evidence-columns p { padding: 8px 0; border-top: 1px solid var(--line); font-size: 12px; }.review-history { position: sticky; top: 82px; min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: white; box-shadow: var(--shadow-sm); }.history-toggle { display: flex; width: 100%; min-height: 43px; gap: 8px; align-items: center; padding: 0 12px; border: 0; color: var(--ink); background: white; font-size: 13px; font-weight: 700; text-align: left; }.history-toggle:hover { color: var(--teal-800); background: var(--teal-100); }.history-list { display: grid; max-height: calc(100dvh - 140px); overflow-y: auto; border-top: 1px solid var(--line); }.history-empty { margin: 0; padding: 15px 12px; color: var(--ink-faint); font-size: 12px; }.history-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px; align-items: center; padding: 5px; border-bottom: 1px solid var(--line); color: var(--ink-soft); background: white; }.history-item:hover, .history-item.active { background: var(--teal-100); }.history-open { display: grid; min-width: 0; gap: 3px; padding: 7px; border: 0; color: var(--ink-soft); background: transparent; font-size: 11px; text-align: left; }.history-item-title { overflow: hidden; color: var(--ink); font-size: 12px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }.history-item time { color: var(--ink-faint); }.history-delete { width: 30px; height: 30px; color: var(--ink-faint); }.history-delete:hover:not(:disabled) { color: var(--red); background: var(--red-bg); }.history-collapsed .review-history { width: 46px; }.history-collapsed .history-toggle { justify-content: center; padding: 0; }@media (min-width: 721px) and (max-width: 960px) { .review-layout { grid-template-columns: minmax(0, 1fr) 220px; gap: 12px; }.review-layout.history-collapsed { grid-template-columns: minmax(0, 1fr) 46px; } }.review-history { position: sticky; }@media (max-width: 720px) { .review-layout, .review-layout.history-collapsed { grid-template-columns: 1fr; }.review-history { position: static; }.history-collapsed .review-history { width: 100%; }.history-collapsed .history-toggle { justify-content: flex-start; padding: 0 12px; }.review-config, .review-result { padding: 16px; }.evidence-columns { grid-template-columns: 1fr; gap: 8px; } }
 </style>

@@ -280,6 +280,24 @@ def _format_review_view(
     }
 
 
+def _format_review_history_view(review: FormatReview) -> dict[str, object]:
+    snapshot = review.profile_snapshot_json or {}
+    return {
+        "format_review_id": review.format_review_id,
+        "paper_id": review.paper_id,
+        "format_profile": {
+            "format_profile_id": review.format_profile_id,
+            "profile_key": snapshot.get("profile_key"),
+            "name": snapshot.get("name"),
+            "version": snapshot.get("version"),
+        },
+        "submission_mode": review.submission_mode,
+        "status": review.status,
+        "created_at": review.created_at,
+        "completed_at": review.completed_at,
+    }
+
+
 _CONFIG_ID_FIELDS = {
     "model": "model_config_id",
     "prompt": "prompt_template_id",
@@ -1027,6 +1045,29 @@ async def list_format_profiles(
     )
 
 
+@router.get("/format-reviews")
+async def list_format_reviews(
+    request: Request,
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+    paper_id: str | None = None,
+):
+    statement = select(FormatReview).where(FormatReview.user_id == user.user_id)
+    if paper_id:
+        statement = statement.where(FormatReview.paper_id == paper_id)
+    reviews = list(
+        (
+            await session.scalars(
+                statement.order_by(FormatReview.created_at.desc()).limit(50)
+            )
+        ).all()
+    )
+    return envelope(
+        {"items": [_format_review_history_view(review) for review in reviews]},
+        request.state.request_id,
+    )
+
+
 @router.post("/format-reviews")
 async def create_format_review(
     body: FormatReviewInput,
@@ -1170,6 +1211,44 @@ async def get_format_review(
         ).all()
     )
     return envelope(_format_review_view(review, items, units), request.state.request_id)
+
+
+@router.delete("/format-reviews/{format_review_id}")
+async def delete_format_review(
+    format_review_id: str,
+    request: Request,
+    user: User = Depends(current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    review = await session.scalar(
+        select(FormatReview).where(
+            FormatReview.format_review_id == format_review_id,
+            FormatReview.user_id == user.user_id,
+        )
+    )
+    if review is None:
+        raise ApiError(404, "FORMAT_REVIEW_NOT_FOUND", "格式审查结果不存在。")
+    if review.status in {"pending", "running"}:
+        raise ApiError(409, "FORMAT_REVIEW_ACTIVE", "正在执行的格式审查不能删除。")
+    await session.execute(
+        delete(FormatReviewItem).where(FormatReviewItem.format_review_id == format_review_id)
+    )
+    await session.execute(
+        delete(FormatReviewUnit).where(FormatReviewUnit.format_review_id == format_review_id)
+    )
+    await session.execute(
+        delete(TaskRecord).where(
+            TaskRecord.resource_id == format_review_id,
+            TaskRecord.task_type == "format_review",
+            TaskRecord.user_id == user.user_id,
+        )
+    )
+    await session.delete(review)
+    await session.commit()
+    return envelope(
+        {"format_review_id": format_review_id, "deleted_at": datetime.now(UTC)},
+        request.state.request_id,
+    )
 
 
 @router.post("/format-reviews/{format_review_id}/cancel")
